@@ -10,6 +10,7 @@
 </head>
 <body>
 	<h1 style="text-align:center">MVC Exercise</h1>
+	<h1 style="text-align:center">周修盟測試</h1>
 	<hr>
 	<table border="1" style="margin: 0px auto;">
 		<tr height="52" bgcolor="lightblue" align="center">
