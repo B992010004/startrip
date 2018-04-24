@@ -31,7 +31,7 @@ public class RootAppConfig {
 			e.printStackTrace();
 		}
 
-		ds.setJdbcUrl("jdbc:sqlserver://127.0.0.1:1433;DatabaseName=jspdb");
+		ds.setJdbcUrl("jdbc:sqlserver://127.0.0.1:1433;DatabaseName=startrip");
 		ds.setInitialPoolSize(4);
 		ds.setMaxPoolSize(8);
 
