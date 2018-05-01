@@ -1,4 +1,4 @@
-package com.web.store.config;
+package com.startrip.config;
 
 import java.beans.PropertyVetoException;
 import java.util.Properties;
@@ -18,6 +18,7 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 @Configuration
 @EnableTransactionManagement
 public class RootAppConfig {
+	
 	@Bean
 	public DataSource dataSource() {
 		ComboPooledDataSource ds = new ComboPooledDataSource();
@@ -43,7 +44,7 @@ public class RootAppConfig {
 		System.out.println("SessionFactory... in RootAppConfig");
 		LocalSessionFactoryBean factory = new LocalSessionFactoryBean();
 		factory.setDataSource(dataSource());
-		factory.setPackagesToScan(new String[] { "com.web.store.model" });
+		factory.setPackagesToScan(new String[] { "com.startrip" });
 		factory.setHibernateProperties(additionalProperties());
 		return factory;
 	}

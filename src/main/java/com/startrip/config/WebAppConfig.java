@@ -1,4 +1,4 @@
-package com.web.store.config;
+package com.startrip.config;
 
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -16,8 +16,9 @@ import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("com.web.store")
+@ComponentScan("com.startrip")
 public class WebAppConfig extends WebMvcConfigurerAdapter {
+	
 	@Bean
 	public ViewResolver internalResourceViewResolver() {
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
@@ -28,6 +29,7 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 		return resolver;
 	}
 
+	//message.properties
 	@Bean
 	public MessageSource messageSource() {
 		ResourceBundleMessageSource resource = new ResourceBundleMessageSource();
