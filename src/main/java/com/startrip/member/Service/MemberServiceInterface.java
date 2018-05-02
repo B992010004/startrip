@@ -1,11 +1,11 @@
-package com.web.store.MemberInterface;
+package com.startrip.member.Service;
 
 import java.util.List;
 
-import com.web.store.memberModle.MemberBean;
+import com.startrip.member.memberModle.MemberBean;
 
-public interface MemberRepositoryinterface {
-
+public interface MemberServiceInterface {
+	
 	List<MemberBean> select();
 
 	MemberBean select(String email);

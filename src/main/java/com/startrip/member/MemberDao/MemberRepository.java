@@ -1,4 +1,4 @@
-package com.web.store.MemberDao;
+package com.startrip.member.MemberDao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,12 +8,13 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.web.store.MemberInterface.MemberRepositoryinterface;
-import com.web.store.memberModle.MemberBean;
+import com.startrip.member.MemberInterface.MemberRepositoryinterface;
+import com.startrip.member.memberModle.MemberBean;
 
 
 @Repository
 public class MemberRepository implements MemberRepositoryinterface {
+	
 	@Autowired
 	SessionFactory factory;
 
@@ -48,22 +49,16 @@ public class MemberRepository implements MemberRepositoryinterface {
 	}
 
 	@Override
-	public MemberBean insert(MemberBean bean) {
+	public void insert(MemberBean bean) {
 		Session session = factory.getCurrentSession();
-		if (bean != null) {
-			MemberBean temp = this.select(bean.getMail());
-			if (temp == null) {
-				session.save(bean);
-				return bean;
-			}
-		}
-		return null;
+		MemberBean bb = select(bean.getMail());		
+		session.save(bb);
 	}
 
 	@Override
 	public boolean delete(String email) {
 		Session session = factory.getCurrentSession();
-		MemberBean bean = this.select(email);
+		MemberBean bean = select(email);
 		if (bean != null) {
 			session.delete(bean);
 			return true;

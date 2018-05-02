@@ -1,24 +1,22 @@
-package com.web.store.config.Service;
+package com.startrip.member.Service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.web.store.MemberDao.MemberRepository;
-import com.web.store.MemberInterface.MemberRepositoryinterface;
-import com.web.store.memberModle.MemberBean;
+import com.startrip.member.MemberInterface.MemberRepositoryinterface;
+import com.startrip.member.memberModle.MemberBean;
 
 @Service
 public class MemberService implements MemberRepositoryinterface {
+	
 	@Autowired
-	private MemberRepository memberDAO;
+	private MemberRepositoryinterface memberDAO;
 
 	@Transactional
 	@Override
 	public List<MemberBean> select() {
-
 		return memberDAO.select();
 	}
 
@@ -38,9 +36,9 @@ public class MemberService implements MemberRepositoryinterface {
 
 	@Transactional
 	@Override
-	public MemberBean insert(MemberBean bean) {
+	public void insert(MemberBean bean) {
 		
-		return memberDAO.insert(bean);
+		 memberDAO.insert(bean);
 	}
 
 	@Transactional

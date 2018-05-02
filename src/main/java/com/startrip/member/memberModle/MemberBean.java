@@ -1,15 +1,21 @@
-package com.web.store.memberModle;
+package com.startrip.member.memberModle;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 
 
-@XmlRootElement
+
+
 @Entity
 @Table(name="Membertable")
 public class MemberBean {
+	
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int memberID;
+	
 	@Id
 	private String mail;
 	private String password;
@@ -19,6 +25,12 @@ public class MemberBean {
 	private String birthday;
 	private String avatar;
 	
+	public int getMemberID() {
+		return memberID;
+	}
+	public void setMemberID(int memberID) {
+		this.memberID = memberID;
+	}
 	public String getAvatar() {
 		return avatar;
 	}

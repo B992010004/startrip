@@ -1,11 +1,11 @@
-package com.web.store.config.Service;
+package com.startrip.member.MemberInterface;
 
 import java.util.List;
 
-import com.web.store.memberModle.MemberBean;
+import com.startrip.member.memberModle.MemberBean;
 
-public interface MemberServiceInterface {
-	
+public interface MemberRepositoryinterface {
+
 	List<MemberBean> select();
 
 	MemberBean select(String email);
@@ -14,7 +14,7 @@ public interface MemberServiceInterface {
 			String avatar
 	);
 
-	MemberBean insert(MemberBean bean);
+	void insert(MemberBean bean);
 
 	boolean delete(String email);
 
