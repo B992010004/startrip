@@ -13,7 +13,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table
-public class Review implements Serializable{
+public class ReviewBean implements Serializable{
 	/**
 	 * 
 	 */
