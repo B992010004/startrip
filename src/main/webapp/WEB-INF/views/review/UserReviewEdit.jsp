@@ -34,7 +34,7 @@
     <link rel="stylesheet" href="assets/css/helpers.css">
     <link rel="stylesheet" href="assets/css/style.css">
 
-	</head>
+</head>
 
 <body>
  <div><jsp:include page="/WEB-INF/views/header.jsp" flush="true" /></div>

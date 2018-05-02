@@ -5,12 +5,6 @@
 <html lang="en">
 <head>
 
-<!-- 
-    More Templates Visit ==> ProBootstrap.com
-    Free Template by ProBootstrap.com under the License Creative Commons 3.0 ==> (probootstrap.com/license)
-
-    IMPORTANT: You can do whatever you want with this template but you need to keep the footer link back to ProBootstrap.com
-    -->
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -25,34 +19,18 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,700"
 	rel="stylesheet">
-	
-<link rel="stylesheet" href="/WEB-INF/views/assets/css/bootstrap/bootstrap.css">
-<link rel="stylesheet" href="/WEB-INF/views/assets/css/animate.css">
-<link rel="stylesheet" href="/WEB-INF/views/assets/fonts/ionicons/css/ionicons.min.css">
-<link rel="stylesheet" href="/WEB-INF/views/assets/css/owl.carousel.min.css">
-<link rel="stylesheet" href="/WEB-INF/views/assets/fonts/flaticon/font/flaticon.css">
+<link rel="stylesheet" href="assets/css/bootstrap/bootstrap.css">
+<link rel="stylesheet" href="assets/css/animate.css">
+<link rel="stylesheet" href="assets/fonts/ionicons/css/ionicons.min.css">
+<link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+<link rel="stylesheet" href="assets/fonts/flaticon/font/flaticon.css">
 <link rel="stylesheet"
-	href="/WEB-INF/views/assets/fonts/fontawesome/css/font-awesome.min.css">
-<link rel="stylesheet" href="/WEB-INF/views/assets/css/bootstrap-datepicker.css">
-<link rel="stylesheet" href="/WEB-INF/views/assets/css/select2.css">
-<link rel="stylesheet" href="/WEB-INF/views/assets/css/helpers.css">
-<link rel="stylesheet" href="/WEB-INF/views/assets/css/style.css">
-<link href="/WEB-INF/views/assets/css/bootstrap/botton.css" rel="stylesheet" type="text/css" />
-<script src="/WEB-INF/views/assets/js/jquery.min.js"></script>
-<script src="/WEB-INF/views/assets/js/popper.min.js"></script>
-<script src="/WEB-INF/views/assets/js/bootstrap.min.js"></script>
-<script src="/WEB-INF/views/assets/js/owl.carousel.min.js"></script>
-<script src="/WEB-INF/views/assets/js/bootstrap-datepicker.js"></script>
-<script src="/WEB-INF/views/assets/js/jquery.waypoints.min.js"></script>
-<script src="/WEB-INF/views/assets/js/jquery.easing.1.3.js"></script>
-<script src="/WEB-INF/views/assets/js/select2.min.js"></script>
-<script src="/WEB-INF/views/assets/js/main.js"></script>
-<script src="/WEB-INF/views/plugins/iCheck/icheck.min.js" type="text/javascript"></script>
-<script src='https://www.google.com/recaptcha/api.js'></script>
-<script src="https://apis.google.com/js/platform.js" async defer></script>
-<script
-	src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
-	async defer></script>
+	href="assets/fonts/fontawesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="assets/css/bootstrap-datepicker.css">
+<link rel="stylesheet" href="assets/css/select2.css">
+<link rel="stylesheet" href="assets/css/helpers.css">
+<link rel="stylesheet" href="assets/css/style.css">
+<link href="assets/css/bootstrap/botton.css" rel="stylesheet" type="text/css" />
 <style>
 .img1 {
 	width: 150px;
@@ -152,7 +130,31 @@
 				</div>
 			</form>
 		</div>
-		    <script>
+		    
+	</section>
+	<!-- END section -->
+	<div ><jsp:include page="/WEB-INF/views/member/login.jsp" flush="true"/></div>
+<div ><jsp:include page="/WEB-INF/views/footer.jsp" flush="true"/></div>
+
+
+
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/popper.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/owl.carousel.min.js"></script>
+<script src="assets/js/bootstrap-datepicker.js"></script>
+<script src="assets/js/jquery.waypoints.min.js"></script>
+<script src="assets/js/jquery.easing.1.3.js"></script>
+<script src="assets/js/select2.min.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="plugins/iCheck/icheck.min.js" type="text/javascript"></script>
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script
+	src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+	async defer></script>
+	
+	<script>
         $("#progressbarTWInput").change(function () {
             readURL(this);
         });
@@ -167,12 +169,5 @@
         }
 
     </script>
-	</section>
-	<!-- END section -->
-	<div ><jsp:include page="/WEB-INF/views/member/login.jsp" flush="true"/></div>
-<div ><jsp:include page="/WEB-INF/views/footer.jsp" flush="true"/></div>
-
-
-
 </body>
 </html>

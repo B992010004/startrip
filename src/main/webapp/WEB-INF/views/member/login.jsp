@@ -5,6 +5,11 @@
 <html>
 <head>
 <script type="text/javascript" src="http://code.jquery.com/*.min.js"></script>
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script
+	src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+	async defer></script>
 <script>
 	document.addEventListener("DOMContentLoaded", function() {
 		document.getElementById("nameid").addEventListener("blur", ckname);
@@ -88,7 +93,7 @@
 						<!-- /.social-auth-links -->
 
 						<p>
-							還沒加入會員嗎? 立即<a href="member/insertMember"
+							還沒加入會員嗎? 立即<a href="insertMember"
 								class="text-center" style="text-align: right">加入會員</a>
 						</p>
 					</div>

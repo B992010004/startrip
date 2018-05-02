@@ -34,11 +34,7 @@
 <script src="assets/js/select2.min.js"></script>
 <script src="assets/js/main.js"></script>
 <script src="plugins/iCheck/icheck.min.js" type="text/javascript"></script>
-<script src='https://www.google.com/recaptcha/api.js'></script>
-<script src="https://apis.google.com/js/platform.js" async defer></script>
-<script
-	src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
-	async defer></script>
+
 <meta name="description"
 	content="Free Bootstrap 4 Theme by ProBootstrap.com">
 <meta name="keywords"
