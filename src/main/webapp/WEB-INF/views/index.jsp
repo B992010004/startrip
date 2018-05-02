@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC 
-"-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE HTML>
 
 <html>
 <head>
@@ -59,7 +58,7 @@
 				<li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
 				<li class="nav-item"><a class="nav-link" href="travel.html">Travel
 						With Us</a></li>
-				<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+				<li class="nav-item"><a class="nav-link" href="UserReviewEdit">寫評論</a></li>
 			</ul>
 		</div>
 	</div>
