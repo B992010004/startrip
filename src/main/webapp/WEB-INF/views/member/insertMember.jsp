@@ -33,9 +33,9 @@
 <link rel="stylesheet"
 	href="assets/fonts/fontawesome/css/font-awesome.min.css">
 <link rel="stylesheet" href="assets/css/bootstrap-datepicker.css">
-<link rel="stylesheet" href="/assets/css/select2.css">
-<link rel="stylesheet" href="/assets/css/helpers.css">
-<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet" href="assets/css/select2.css">
+<link rel="stylesheet" href="assets/css/helpers.css">
+<link rel="stylesheet" href="assets/css/style.css">
 <link href="assets/css/bootstrap/botton.css" rel="stylesheet" type="text/css" />
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/popper.min.js"></script>

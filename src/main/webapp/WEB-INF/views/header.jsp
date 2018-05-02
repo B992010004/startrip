@@ -35,7 +35,7 @@
 						<a class="nav-link" href="#" data-toggle="modal"
 							data-target=".bd-example-modal-lg">登入</a>
 					</c:if> <c:if test="${ !empty LoginOK }">
-						<a class="nav-link" href="/lab/logout.jsp">登出</a>
+						<a class="nav-link" href="index">登出</a>
 					</c:if>
 			</ul>
 		</div>
