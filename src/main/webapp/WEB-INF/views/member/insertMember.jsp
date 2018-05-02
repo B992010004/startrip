@@ -19,18 +19,18 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,700"
 	rel="stylesheet">
-<link rel="stylesheet" href="assets/css/bootstrap/bootstrap.css">
-<link rel="stylesheet" href="assets/css/animate.css">
-<link rel="stylesheet" href="assets/fonts/ionicons/css/ionicons.min.css">
-<link rel="stylesheet" href="assets/css/owl.carousel.min.css">
-<link rel="stylesheet" href="assets/fonts/flaticon/font/flaticon.css">
+<link rel="stylesheet" href="/startrip/assets/css/bootstrap/bootstrap.css">
+<link rel="stylesheet" href="/startrip/assets/css/animate.css">
+<link rel="stylesheet" href="/startrip/assets/fonts/ionicons/css/ionicons.min.css">
+<link rel="stylesheet" href="/startrip/assets/css/owl.carousel.min.css">
+<link rel="stylesheet" href="/startrip/assets/fonts/flaticon/font/flaticon.css">
 <link rel="stylesheet"
-	href="assets/fonts/fontawesome/css/font-awesome.min.css">
-<link rel="stylesheet" href="assets/css/bootstrap-datepicker.css">
-<link rel="stylesheet" href="assets/css/select2.css">
-<link rel="stylesheet" href="assets/css/helpers.css">
-<link rel="stylesheet" href="assets/css/style.css">
-<link href="assets/css/bootstrap/botton.css" rel="stylesheet" type="text/css" />
+	href="/startrip/assets/fonts/fontawesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/startrip/assets/css/bootstrap-datepicker.css">
+<link rel="stylesheet" href="/startrip/assets/css/select2.css">
+<link rel="stylesheet" href="/startrip/assets/css/helpers.css">
+<link rel="stylesheet" href="/startrip/assets/css/style.css">
+<link href="/startrip/assets/css/bootstrap/botton.css" rel="stylesheet" type="text/css" />
 <style>
 .img1 {
 	width: 150px;
@@ -45,7 +45,7 @@
 <div ><jsp:include page="/WEB-INF/views/header.jsp" flush="true"/></div>
 
 	<section class="probootstrap-cover overflow-hidden relative"
-		style="background-image: url('assets/images/bg_1.jpg');"
+		style="background-image: url('/startrip/assets/images/bg_1.jpg');"
 		data-stellar-background-ratio="0.5" id="section-home">
 		<div class="overlay"></div>
 		<div class="container">
@@ -114,7 +114,7 @@
 						</div>
 						<div class="form-group">
 							<img id="preview_progressbarTW_img" class="img1" 
-								value="" src="/lab/img/snop.jpg" /> <label
+								value="" src="/startrip/assets/images/membericon/snop.jpg" /> <label
 								for="progressbarTWInput" class="btn btn-primary"> input file</label>
 								<input
 								type="file" id="progressbarTWInput" name="mAvatar"
@@ -138,16 +138,16 @@
 
 
 
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/popper.min.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
-<script src="assets/js/owl.carousel.min.js"></script>
-<script src="assets/js/bootstrap-datepicker.js"></script>
-<script src="assets/js/jquery.waypoints.min.js"></script>
-<script src="assets/js/jquery.easing.1.3.js"></script>
-<script src="assets/js/select2.min.js"></script>
-<script src="assets/js/main.js"></script>
-<script src="plugins/iCheck/icheck.min.js" type="text/javascript"></script>
+<script src="/startrip/assets/js/jquery.min.js"></script>
+<script src="/startrip/assets/js/popper.min.js"></script>
+<script src="/startrip/assets/js/bootstrap.min.js"></script>
+<script src="/startrip/assets/js/owl.carousel.min.js"></script>
+<script src="/startrip/assets/js/bootstrap-datepicker.js"></script>
+<script src="/startrip/assets/js/jquery.waypoints.min.js"></script>
+<script src="/startrip/assets/js/jquery.easing.1.3.js"></script>
+<script src="/startrip/assets/js/select2.min.js"></script>
+<script src="/startrip/assets/js/main.js"></script>
+<script src="/startrip/plugins/iCheck/icheck.min.js" type="text/javascript"></script>
 <script src='https://www.google.com/recaptcha/api.js'></script>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <script
