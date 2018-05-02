@@ -1,4 +1,4 @@
-package com.web.store.config;
+package com.startrip.config;
 
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -16,8 +16,9 @@ import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("com.web.store")
+@ComponentScan("com.startrip")
 public class WebAppConfig extends WebMvcConfigurerAdapter {
+	
 	@Bean
 	public ViewResolver internalResourceViewResolver() {
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
@@ -28,6 +29,7 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 		return resolver;
 	}
 
+	//message.properties
 	@Bean
 	public MessageSource messageSource() {
 		ResourceBundleMessageSource resource = new ResourceBundleMessageSource();
@@ -35,10 +37,14 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 		return resource;
 	}
 
+	//天哪 前端好難喔!
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/css/**").addResourceLocations("/WEB-INF/views/css/");
-		registry.addResourceHandler("/image/**").addResourceLocations("/WEB-INF/views/images/");
+		registry.addResourceHandler("/assets/css/**").addResourceLocations("/WEB-INF/views/assets/css/");
+		registry.addResourceHandler("/assets/images/**").addResourceLocations("/WEB-INF/views/assets/images/");
+		registry.addResourceHandler("/assets/fonts/**").addResourceLocations("/WEB-INF/views/assets/fonts/");
+		registry.addResourceHandler("/assets/js/**").addResourceLocations("/WEB-INF/views/assets/js/");
+		registry.addResourceHandler("/assets/scss/**").addResourceLocations("/WEB-INF/views/assets/scss/");
 	}
 
 	@Bean
