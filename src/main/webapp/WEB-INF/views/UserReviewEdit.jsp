@@ -42,23 +42,7 @@
 	</head>
 
 <body>
- <nav class="navbar navbar-expand-lg navbar-dark probootstrap_navbar" id="probootstrap-navbar">
-      <div class="container">
-        <a class="navbar-brand" href="/">Places</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#probootstrap-menu" aria-controls="probootstrap-menu" aria-expanded="false" aria-label="Toggle navigation">
-          <span><i class="ion-navicon"></i></span>
-        </button>
-        <div class="collapse navbar-collapse" id="probootstrap-menu">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="city-guides.html">City Guides</a></li>
-            <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
-            <li class="nav-item"><a class="nav-link" href="travel.html">Travel With Us</a></li>
-            <li class="nav-item"><a class="nav-link active" href="UserReviewEdit">寫評論</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+ <div><jsp:include page="/WEB-INF/views/header.jsp" flush="true" /></div>
     <!-- END nav -->
     
 
@@ -178,56 +162,9 @@
       </div>
     </section>
     <!-- END section -->
-  
-    <footer class="probootstrap_section probootstrap-border-top">
-      <div class="container">
-        <div class="row mb-5">
-          <div class="col-md-3">
-            <h3 class="probootstrap_font-18 mb-3">Quick Links</h3>
-            <ul class="list-unstyled">
-              <li><a href="https://free-template.co" target="_blank">Home</a></li>
-              <li><a href="https://free-template.co" target="_blank">About</a></li>
-              <li><a href="https://free-template.co" target="_blank">Services</a></li>
-              <li><a href="https://free-template.co" target="_blank">Contact</a></li>
-            </ul>
-          </div>
-          <div class="col-md-3">
-            <h3 class="probootstrap_font-18 mb-3">Quick Links</h3>
-            <ul class="list-unstyled">
-              <li><a href="https://free-template.co" target="_blank">Home</a></li>
-              <li><a href="https://free-template.co" target="_blank">About</a></li>
-              <li><a href="https://free-template.co" target="_blank">Services</a></li>
-              <li><a href="https://free-template.co" target="_blank">Contact</a></li>
-            </ul>
-          </div>
-          <div class="col-md-3">
-            <h3 class="probootstrap_font-18 mb-3">Quick Links</h3>
-            <ul class="list-unstyled">
-              <li><a href="https://free-template.co" target="_blank">Home</a></li>
-              <li><a href="https://free-template.co" target="_blank">About</a></li>
-              <li><a href="https://free-template.co" target="_blank">Services</a></li>
-              <li><a href="https://free-template.co" target="_blank">Contact</a></li>
-            </ul>
-          </div>
-          <div class="col-md-3">
-            <h3 class="probootstrap_font-18 mb-3">Quick Links</h3>
-            <ul class="list-unstyled">
-              <li><a href="https://free-template.co" target="_blank">Home</a></li>
-              <li><a href="https://free-template.co" target="_blank">About</a></li>
-              <li><a href="https://free-template.co" target="_blank">Services</a></li>
-              <li><a href="https://free-template.co" target="_blank">Contact</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="row pt-5">
-          <div class="col-md-12 text-center">
-            <p class="probootstrap_font-14">&copy; 2017. All Rights Reserved. <br> Designed &amp; Developed by <a href="https://probootstrap.com/" target="_blank">ProBootstrap</a><small> (Don't remove credit link on this footer. See <a href="https://probootstrap.com/license/">license</a>)</small></p>
-            <p class="probootstrap_font-14">Demo Images: <a href="https://unsplash.com/" target="_blank">Unsplash</a></p>
-          </div>
-        </div>
-      </div>
-    </footer>
-
+      
+    <div><jsp:include page="/WEB-INF/views/footer.jsp" flush="true" /></div>
+	<div><jsp:include page="/WEB-INF/views/member/login.jsp" flush="true" /></div>
     
     <script src="assets/js/jquery.min.js"></script>
     

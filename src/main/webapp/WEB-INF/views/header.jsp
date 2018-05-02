@@ -20,12 +20,11 @@
 		<div class="collapse navbar-collapse" id="probootstrap-menu">
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item active"><a class="nav-link"
-					href="/StarTrip/src/main/webapp/WEB-INF/views/index.jsp">Home</a></li>
+					href="index">Home</a></li>
 				<li class="nav-item"><a class="nav-link"
 					href="city-guides.html">City Guides</a></li>
 				<li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
-				<li class="nav-item"><a class="nav-link" href="travel.html">Travel
-						With Us</a></li>
+				<li class="nav-item"><a class="nav-link" href="UserReviewEdit">寫評論</a></li>
 				<li class="nav-item"><c:if test="${ !empty LoginOK }">
 						<a class="nav-link" href="travel.html">會員專區 </a>
 					</c:if></li>
