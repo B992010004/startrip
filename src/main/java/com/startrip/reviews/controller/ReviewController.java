@@ -9,6 +9,6 @@ public class ReviewController {
 
 	@RequestMapping("UserReviewEdit")
 	public String UserReviewEdit() {
-		return "UserReviewEdit";
+		return "/review/UserReviewEdit";
 	}
 }
