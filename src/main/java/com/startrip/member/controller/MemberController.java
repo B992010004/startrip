@@ -20,8 +20,10 @@ public class MemberController {
 	
 	@RequestMapping("member/insertMember")
 	public String InsertMember() {
-		return "member/insertMember";
+		return "member/insertMember";	
 	}
+	
+	
 	
 	
 }
