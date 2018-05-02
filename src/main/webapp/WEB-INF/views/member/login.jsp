@@ -88,7 +88,7 @@
 						<!-- /.social-auth-links -->
 
 						<p>
-							還沒加入會員嗎? 立即<a href="member/insertMember"
+							還沒加入會員嗎? 立即<a href="insertMember"
 								class="text-center" style="text-align: right">加入會員</a>
 						</p>
 					</div>
