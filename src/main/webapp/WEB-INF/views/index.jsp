@@ -1,9 +1,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html>
+<head>
 
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>StarTrip&mdash;星遊網</title>
 <link
 	href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,700"
 	rel="stylesheet">
@@ -34,19 +39,6 @@
 <script
 	src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
 	async defer></script>
-<head>
-<!-- 
-    More Templates Visit ==> ProBootstrap.com
-    Free Template by ProBootstrap.com under the License Creative Commons 3.0 ==> (probootstrap.com/license)
-
-    IMPORTANT: You can do whatever you want with this template but you need to keep the footer link back to ProBootstrap.com
-    -->
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-<title>Places &mdash; Free HTML5 Bootstrap 4 Theme by
-	ProBootstrap.com</title>
 <meta name="description"
 	content="Free Bootstrap 4 Theme by ProBootstrap.com">
 <meta name="keywords"
@@ -77,9 +69,8 @@
 		}
 	}
 </script>
-
-
 </head>
+
 
 <body>
 
