@@ -26,16 +26,11 @@
 	<link rel="stylesheet" href="assets/css/bootstrap/bootstrap.css">
     <link rel="stylesheet" href="assets/css/animate.css">
     <link rel="stylesheet" href="assets/fonts/ionicons/css/ionicons.min.css">
-    
-    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
-    
+    <link href="assets/css/bootstrap/botton.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">  
     <link rel="stylesheet" href="assets/fonts/flaticon/font/flaticon.css">
-
     <link rel="stylesheet" href="assets/fonts/fontawesome/css/font-awesome.min.css">
-
     <link rel="stylesheet" href="assets/css/select2.css">
-    
-
     <link rel="stylesheet" href="assets/css/helpers.css">
     <link rel="stylesheet" href="assets/css/style.css">
 
