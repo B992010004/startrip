@@ -39,7 +39,6 @@
 </head>
 <body>
 
-
 	<nav class="navbar navbar-expand-lg navbar-dark probootstrap_navbar"
 		id="probootstrap-navbar">
 	<div class="container">
