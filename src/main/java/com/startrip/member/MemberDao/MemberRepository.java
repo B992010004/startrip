@@ -50,9 +50,8 @@ public class MemberRepository implements MemberRepositoryinterface {
 
 	@Override
 	public void insert(MemberBean bean) {
-		Session session = factory.getCurrentSession();
-		MemberBean bb = select(bean.getMail());		
-		session.save(bb);
+		Session session = factory.getCurrentSession();		
+		session.save(bean);
 	}
 
 	@Override

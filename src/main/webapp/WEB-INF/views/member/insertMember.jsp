@@ -1,6 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,18 +21,23 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,700"
 	rel="stylesheet">
-<link rel="stylesheet" href="/startrip/assets/css/bootstrap/bootstrap.css">
+<link rel="stylesheet"
+	href="/startrip/assets/css/bootstrap/bootstrap.css">
 <link rel="stylesheet" href="/startrip/assets/css/animate.css">
-<link rel="stylesheet" href="/startrip/assets/fonts/ionicons/css/ionicons.min.css">
+<link rel="stylesheet"
+	href="/startrip/assets/fonts/ionicons/css/ionicons.min.css">
 <link rel="stylesheet" href="/startrip/assets/css/owl.carousel.min.css">
-<link rel="stylesheet" href="/startrip/assets/fonts/flaticon/font/flaticon.css">
+<link rel="stylesheet"
+	href="/startrip/assets/fonts/flaticon/font/flaticon.css">
 <link rel="stylesheet"
 	href="/startrip/assets/fonts/fontawesome/css/font-awesome.min.css">
-<link rel="stylesheet" href="/startrip/assets/css/bootstrap-datepicker.css">
+<link rel="stylesheet"
+	href="/startrip/assets/css/bootstrap-datepicker.css">
 <link rel="stylesheet" href="/startrip/assets/css/select2.css">
 <link rel="stylesheet" href="/startrip/assets/css/helpers.css">
 <link rel="stylesheet" href="/startrip/assets/css/style.css">
-<link href="/startrip/assets/css/bootstrap/botton.css" rel="stylesheet" type="text/css" />
+<link href="/startrip/assets/css/bootstrap/botton.css" rel="stylesheet"
+	type="text/css" />
 <style>
 .img1 {
 	width: 150px;
@@ -42,7 +49,7 @@
 </head>
 <body>
 
-<div ><jsp:include page="/WEB-INF/views/header.jsp" flush="true"/></div>
+	<div><jsp:include page="/WEB-INF/views/header.jsp" flush="true" /></div>
 
 	<section class="probootstrap-cover overflow-hidden relative"
 		style="background-image: url('/startrip/assets/images/bg_1.jpg');"
@@ -69,56 +76,57 @@
 	<!-- END section -->
 
 
-	<section class="probootstrap_section bg-light" id="section-contact" >
+	<section class="probootstrap_section bg-light" id="section-contact">
 
 		<div class="container" id="SignUp">
-			<form action="<c:url value='/MemberServlet' />" method="post"
-				class="probootstrap-form probootstrap-form-box mb60" enctype="multipart/form-data" >
-				<H2 class="display-4 border-bottom probootstrap-section-heading" style="text-align: center">Sign Up</H2>
+
+
+			<form:form method="post" modelAttribute="MemberBean"
+				class="probootstrap-form probootstrap-form-box mb60"
+				enctype="multipart/form-data">
+			
+				<H2 class="display-4 border-bottom probootstrap-section-heading"
+					style="text-align: center">Sign Up</H2>
 				<div class="row">
 
 					<div class="col-md-6  probootstrap-animate">
-
 						<div class="form-group">
-							<label>帳號:</label> <input type="text" class="form-control"
-								name="mAcc" value="" placeholder="請輸入" autocomplete="off"
-								autofocus required>
+							<label>信箱:</label>
+							 <form:input type="text" class="form-control"
+								name="mEmail" path='mail' placeholder="請輸入"  ></form:input>
 						</div>
 
 						<div class="form-group">
-							<label>密碼:</label> <input type="password" class="form-control"
-								name="mPwd" value="" placeholder="請輸入" autofocus required>
+							<label>密碼:</label> <form:input type="password" class="form-control"
+								name="mPwd" path="password" placeholder="請輸入"   />
 						</div>
 						<div class="form-group">
-							<label>姓名:</label> <input type="text" class="form-control"
-								name="mName" value="" placeholder="請輸入" autofocus required>
+							<label>姓名:</label> <form:input type="text" class="form-control"
+								name="mName" path="username" placeholder="請輸入"   />
 						</div>
 						<div class="form-group">
-							<label>地址:</label> <input type="text" class="form-control"
-								name="mAdd" value="" placeholder="請輸入" autofocus required>
+							<label>地址:</label> <form:input type="text" class="form-control"
+								name="mAdd" path="address" placeholder="請輸入"   /> 
 						</div>
 						<div class="form-group">
-							<label>電話:</label> <input type="text" class="form-control"
-								name="mPhone" value="" placeholder="請輸入" autofocus required>
+							<label>電話:</label> <form:input type="text" class="form-control"
+								name="mPhone" path="phone" placeholder="請輸入"   />
 						</div>
 
 					</div>
 					<div class="col-md-6  probootstrap-animate">
 						<div class="form-group">
-							<label>生日:</label> <input type="text" class="form-control"
-								name="mbday" value="" placeholder="請輸入" autofocus required>
+							<label>生日:</label> <form:input type="text" class="form-control"
+								name="mbday" path="birthday" placeholder="請輸入"   />
 						</div>
+
 						<div class="form-group">
-							<label>信箱:</label> <input type="text" class="form-control"
-								name="mEmail" value="" placeholder="請輸入" autofocus required>
-						</div>
-						<div class="form-group">
-							<img id="preview_progressbarTW_img" class="img1" 
-								value="" src="/startrip/assets/images/membericon/snop.jpg" /> <label
-								for="progressbarTWInput" class="btn btn-primary"> input file</label>
-								<input
-								type="file" id="progressbarTWInput" name="mAvatar"
-								accept="image/gif, image/jpeg, image/png" style="display: none;" />
+							<img id="preview_progressbarTW_img" class="img1" value=""
+								src="/startrip/assets/images/membericon/snop.jpg" />
+								 <label for="progressbarTWInput" class="btn btn-primary"> input
+								file</label> 
+								<form:input type="file" path="avatarImage" id="progressbarTWInput" name="mAvatar"
+								accept="image/gif, image/jpeg, image/png"  style="display: none;" />
 						</div>
 						<div class="form-group">
 							<input type="submit" class="btn btn-primary" id="submit"
@@ -128,46 +136,46 @@
 
 					</div>
 				</div>
-			</form>
+			</form:form>
 		</div>
-		    
+
 	</section>
 	<!-- END section -->
-	<div ><jsp:include page="/WEB-INF/views/member/login.jsp" flush="true"/></div>
-<div ><jsp:include page="/WEB-INF/views/footer.jsp" flush="true"/></div>
+	<div><jsp:include page="/WEB-INF/views/member/login.jsp"
+			flush="true" /></div>
+	<div><jsp:include page="/WEB-INF/views/footer.jsp" flush="true" /></div>
 
 
 
-<script src="/startrip/assets/js/jquery.min.js"></script>
-<script src="/startrip/assets/js/popper.min.js"></script>
-<script src="/startrip/assets/js/bootstrap.min.js"></script>
-<script src="/startrip/assets/js/owl.carousel.min.js"></script>
-<script src="/startrip/assets/js/bootstrap-datepicker.js"></script>
-<script src="/startrip/assets/js/jquery.waypoints.min.js"></script>
-<script src="/startrip/assets/js/jquery.easing.1.3.js"></script>
-<script src="/startrip/assets/js/select2.min.js"></script>
-<script src="/startrip/assets/js/main.js"></script>
-<script src="/startrip/plugins/iCheck/icheck.min.js" type="text/javascript"></script>
-<script src='https://www.google.com/recaptcha/api.js'></script>
-<script src="https://apis.google.com/js/platform.js" async defer></script>
-<script
-	src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
-	async defer></script>
-	
+	<script src="/startrip/assets/js/jquery.min.js"></script>
+	<script src="/startrip/assets/js/popper.min.js"></script>
+	<script src="/startrip/assets/js/bootstrap.min.js"></script>
+	<script src="/startrip/assets/js/owl.carousel.min.js"></script>
+	<script src="/startrip/assets/js/bootstrap-datepicker.js"></script>
+	<script src="/startrip/assets/js/jquery.waypoints.min.js"></script>
+	<script src="/startrip/assets/js/jquery.easing.1.3.js"></script>
+	<script src="/startrip/assets/js/select2.min.js"></script>
+	<script src="/startrip/assets/js/main.js"></script>
+	<script src='https://www.google.com/recaptcha/api.js'></script>
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
+	<script
+		src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+		async defer></script>
+
 	<script>
-        $("#progressbarTWInput").change(function () {
-            readURL(this);
-        });
-        function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    $("#preview_progressbarTW_img").attr('src', e.target.result);
-                }
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-
-    </script>
+		$("#progressbarTWInput").change(function() {
+			readURL(this);
+		});
+		function readURL(input) {
+			if (input.files && input.files[0]) {
+				var reader = new FileReader();
+				reader.onload = function(e) {
+					$("#preview_progressbarTW_img")
+							.attr('src', e.target.result);
+				}
+				reader.readAsDataURL(input.files[0]);
+			}
+		}
+	</script>
 </body>
 </html>

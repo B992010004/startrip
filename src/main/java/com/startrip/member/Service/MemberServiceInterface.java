@@ -14,7 +14,7 @@ public interface MemberServiceInterface {
 			String avatar
 	);
 
-	MemberBean insert(MemberBean bean);
+	void insert(MemberBean bean);
 
 	boolean delete(String email);
 

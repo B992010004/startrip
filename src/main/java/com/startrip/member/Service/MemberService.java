@@ -9,7 +9,7 @@ import com.startrip.member.MemberInterface.MemberRepositoryinterface;
 import com.startrip.member.memberModle.MemberBean;
 
 @Service
-public class MemberService implements MemberRepositoryinterface {
+public class MemberService implements MemberServiceInterface {
 	
 	@Autowired
 	private MemberRepositoryinterface memberDAO;

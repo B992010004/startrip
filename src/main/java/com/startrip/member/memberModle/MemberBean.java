@@ -5,6 +5,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.xml.bind.annotation.XmlTransient;
+
+import org.springframework.web.multipart.MultipartFile;
 
 
 
@@ -12,7 +16,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="Membertable")
 public class MemberBean {
-	
+	@Transient
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int memberID;
 	
@@ -25,6 +29,16 @@ public class MemberBean {
 	private String birthday;
 	private String avatar;
 	
+	@Transient
+	private MultipartFile  avatarImage;	
+	
+	@XmlTransient
+	public MultipartFile getAvatarImage() {
+		return avatarImage;
+	}
+	public void setAvatarImage(MultipartFile avatarImage) {
+		this.avatarImage = avatarImage;
+	}
 	public int getMemberID() {
 		return memberID;
 	}
