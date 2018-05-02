@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ReviewController {
 
 	@RequestMapping("UserReviewEdit")
-	public String UserReviewEdit(Model model) {
+	public String UserReviewEdit() {
 		return "UserReviewEdit";
 	}
 }
