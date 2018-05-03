@@ -20,11 +20,11 @@
 		<div class="collapse navbar-collapse" id="probootstrap-menu">
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item active"><a class="nav-link"
-					href="index">Home</a></li>
+					href="/startrip/">Home</a></li>
 				<li class="nav-item"><a class="nav-link"
 					href="city-guides.html">City Guides</a></li>
 				<li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
-				<li class="nav-item"><a class="nav-link" href="review/UserReviewEdit">寫評論</a></li>
+				<li class="nav-item"><a class="nav-link" href="/startrip/review/UserReviewEdit">寫評論</a></li>
 				<li class="nav-item"><c:if test="${ !empty LoginOK }">
 						<a class="nav-link" href="travel.html">會員專區 </a>
 					</c:if></li>
@@ -36,6 +36,7 @@
 							data-target=".bd-example-modal-lg">登入</a>
 					</c:if> <c:if test="${ !empty LoginOK }">
 						<a class="nav-link" href="logout">登出</a>
+
 					</c:if>
 			</ul>
 		</div>
