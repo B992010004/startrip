@@ -16,10 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Entity
 @Table(name="Membertable")
 public class MemberBean {
-	@Transient
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int memberID;
-	
+		
 	@Id
 	private String mail;
 	private String password;
@@ -29,6 +26,9 @@ public class MemberBean {
 	private String birthday;
 	private String avatar;
 	
+	@Transient
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int memberID;
 	@Transient
 	private MultipartFile  avatarImage;	
 	

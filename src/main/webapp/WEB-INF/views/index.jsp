@@ -12,18 +12,23 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,700"
 	rel="stylesheet">
-<link rel="stylesheet" href="/startrip/assets/css/bootstrap/bootstrap.css">
+<link rel="stylesheet"
+	href="/startrip/assets/css/bootstrap/bootstrap.css">
 <link rel="stylesheet" href="/startrip/assets/css/animate.css">
-<link rel="stylesheet" href="/startrip/assets/fonts/ionicons/css/ionicons.min.css">
+<link rel="stylesheet"
+	href="/startrip/assets/fonts/ionicons/css/ionicons.min.css">
 <link rel="stylesheet" href="/startrip/assets/css/owl.carousel.min.css">
-<link rel="stylesheet" href="/startrip/assets/fonts/flaticon/font/flaticon.css">
+<link rel="stylesheet"
+	href="/startrip/assets/fonts/flaticon/font/flaticon.css">
 <link rel="stylesheet"
 	href="/startrip/assets/fonts/fontawesome/css/font-awesome.min.css">
-<link rel="stylesheet" href="/startrip/assets/css/bootstrap-datepicker.css">
+<link rel="stylesheet"
+	href="/startrip/assets/css/bootstrap-datepicker.css">
 <link rel="stylesheet" href="/startrip/assets/css/select2.css">
 <link rel="stylesheet" href="/startrip/assets/css/helpers.css">
 <link rel="stylesheet" href="/startrip/assets/css/style.css">
-<link href="/startrip/assets/css/bootstrap/botton.css" rel="stylesheet" type="text/css" />
+<link href="/startrip/assets/css/bootstrap/botton.css" rel="stylesheet"
+	type="text/css" />
 <script src="/startrip/assets/js/jquery.min.js"></script>
 <script src="/startrip/assets/js/popper.min.js"></script>
 <script src="/startrip/assets/js/bootstrap.min.js"></script>

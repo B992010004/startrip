@@ -1,7 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<!DOCTYPE html>
 <html>
 <head>
 <script type="text/javascript" src="http://code.jquery.com/*.min.js"></script>
@@ -11,12 +12,16 @@
 	src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
 	async defer></script>
 <script>
-	document.addEventListener("DOMContentLoaded", function() {
-		document.getElementById("nameid").addEventListener("blur", ckname);
-		document.getElementById("idPwd").addEventListener("blur", chkPassword);
-		document.getElementById("loginSubmit").addEventListener("click", login);
-	
-	})
+	document.addEventListener("DOMContentLoaded",
+			function() {
+				document.getElementById("nameid").addEventListener("blur",
+						ckname);
+				document.getElementById("idPwd").addEventListener("blur",
+						chkPassword);
+				document.getElementById("loginSubmit").addEventListener(
+						"click", login);
+
+			})
 	function ckname() {
 		var getname = document.getElementById("nameid").value;
 		if (getname == "") {
@@ -52,17 +57,19 @@
 					<div class="col-md">
 						<H2 class="col-md" style="text-align: center">Login in</h2>
 
-						<form action="<c:url value='/LoginServlet' />" class="form-group"
-							method="POST" name="loginform">
+						<form method="POST" action="<c:url value='/LoginServlet' />" class="form-group" name="loginform"">
 							<div class="form-group">
-								<input type="text" id="nameid" style="width: 75%"
-									class="form-control" name="acc" value="" placeholder="請輸入帳號" />
+							
+								<input  type="text" id="nameid"
+									style="width: 75%" class="form-control" name="mail"
+									placeholder="請輸入信箱" ></input>
 								<span id="nname" class="errorDiv"></span>
 							</div>
 							<div class="form-group">
-								<input type="password" id="idPwd" style="width: 75%"
-									class="form-control" name="password" placeholder="請輸入密碼" /> <span
-									id="pswid" class="errorDiv"></span>
+								<input  type="password" id="idPwd"
+									style="width: 75%" class="form-control" name="password"
+									placeholder="請輸入密碼" />
+								<span id="pswid" class="errorDiv"></span>
 							</div>
 
 							<div class="g-recaptcha" style="width: 85%"
@@ -77,7 +84,6 @@
 									class="btn btn-primary btn-block btn-flat">登入</button>
 							</div>
 							<!-- /.col -->
-
 						</form>
 
 						<div class="social-auth-links text-center">
@@ -93,8 +99,8 @@
 						<!-- /.social-auth-links -->
 
 						<p>
-							還沒加入會員嗎? 立即<a href="insertMember"
-								class="text-center" style="text-align: right">加入會員</a>
+							還沒加入會員嗎? 立即<a href="insertMember" class="text-center"
+								style="text-align: right">加入會員</a>
 						</p>
 					</div>
 					<!-- /.login-box-body -->

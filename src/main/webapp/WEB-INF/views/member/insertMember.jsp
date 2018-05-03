@@ -11,8 +11,7 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<title>Places &mdash; Free HTML5 Bootstrap 4 Theme by
-	ProBootstrap.com</title>
+<title>StarTrip&mdash;星遊網</title>
 <meta name="description"
 	content="Free Bootstrap 4 Theme by ProBootstrap.com">
 <meta name="keywords"
@@ -93,31 +92,31 @@
 						<div class="form-group">
 							<label>信箱:</label>
 							 <form:input type="text" class="form-control"
-								name="mEmail" path='mail' placeholder="請輸入"  ></form:input>
+								name="mEmail" path='mail' placeholder="請輸入" autofocus="autofocus"  required="required" ></form:input>
 						</div>
 
 						<div class="form-group">
 							<label>密碼:</label> <form:input type="password" class="form-control"
-								name="mPwd" path="password" placeholder="請輸入"   />
+								name="mPwd" path="password" placeholder="請輸入" autofocus="autofocus"  required="required" />
 						</div>
 						<div class="form-group">
 							<label>姓名:</label> <form:input type="text" class="form-control"
-								name="mName" path="username" placeholder="請輸入"   />
+								name="mName" path="username" placeholder="請輸入"  autofocus="autofocus"  required="required" />
 						</div>
 						<div class="form-group">
 							<label>地址:</label> <form:input type="text" class="form-control"
-								name="mAdd" path="address" placeholder="請輸入"   /> 
+								name="mAdd" path="address" placeholder="請輸入"  autofocus="autofocus"  required="required" /> 
 						</div>
 						<div class="form-group">
 							<label>電話:</label> <form:input type="text" class="form-control"
-								name="mPhone" path="phone" placeholder="請輸入"   />
+								name="mPhone" path="phone" placeholder="請輸入"   autofocus="autofocus"  required="required"/>
 						</div>
 
 					</div>
 					<div class="col-md-6  probootstrap-animate">
 						<div class="form-group">
 							<label>生日:</label> <form:input type="text" class="form-control"
-								name="mbday" path="birthday" placeholder="請輸入"   />
+								name="mbday" path="birthday" placeholder="請輸入"  autofocus="autofocus"  required="required" />
 						</div>
 
 						<div class="form-group">

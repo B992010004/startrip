@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -32,10 +32,10 @@
 						<a class="nav-link" href="travel.html"> ${userBean.username} </a>
 					</c:if></li>
 				<li class="nav-item"><c:if test="${ empty LoginOK }">
-						<a class="nav-link" href="#" data-toggle="modal"
+						<a class="nav-link" href="/startrip/login" data-toggle="modal"
 							data-target=".bd-example-modal-lg">登入</a>
 					</c:if> <c:if test="${ !empty LoginOK }">
-						<a class="nav-link" href="index">登出</a>
+						<a class="nav-link" href="logout">登出</a>
 					</c:if>
 			</ul>
 		</div>
