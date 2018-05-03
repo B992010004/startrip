@@ -15,7 +15,7 @@ public class HomeController {
 		return "index";
 	}
 	
-	@RequestMapping("index")
+	@RequestMapping("/startrip/index")
 	public String index() {
 		return "index";
 	}
