@@ -9,13 +9,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class HomeController {
-
+	
+	//servletPath
 	@RequestMapping("/")
 	public String root() {
 		return "index";
 	}
 	
-	@RequestMapping("/startrip/index")
+	@RequestMapping("/index")
 	public String index() {
 		return "index";
 	}
