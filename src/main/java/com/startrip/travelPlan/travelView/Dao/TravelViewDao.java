@@ -2,6 +2,7 @@ package com.startrip.travelPlan.travelView.Dao;
 
 import java.util.List;
 
+import com.startrip.member.memberModle.MemberBean;
 import com.startrip.travelPlan.travelView.model.TravelViewBean;
 
 public interface TravelViewDao {
@@ -22,4 +23,7 @@ public interface TravelViewDao {
 	public void delete(int viewId);
 
 	public List<String> getAllOrgClass();
+
+
+	MemberBean getMail(String mail);
 }

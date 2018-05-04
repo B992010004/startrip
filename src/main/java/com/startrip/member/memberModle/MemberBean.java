@@ -39,8 +39,8 @@ public class MemberBean {
 	//-------------------------------
 	@OneToMany(mappedBy="mailBean",cascade= {CascadeType.ALL})
 	private Set<TravelViewBean> ViewMB;
-	@OneToMany(mappedBy="mailBean",cascade= {CascadeType.ALL})
-	private Set<TravelViewBean> travelMB;
+//	@OneToMany(mappedBy="mailBean",cascade= {CascadeType.ALL})
+//	private Set<TravelViewBean> travelMB;
 	@ManyToMany
 	@JoinTable(name="travelCollection",joinColumns=@JoinColumn(name="member_Mail"),inverseJoinColumns=@JoinColumn(name="travel_Id"))
 	private Set<TravelAllBean> travels;
@@ -122,12 +122,7 @@ public class MemberBean {
 	public void setViewMB(Set<TravelViewBean> viewMB) {
 		ViewMB = viewMB;
 	}
-	public Set<TravelViewBean> getTravelMB() {
-		return travelMB;
-	}
-	public void setTravelMB(Set<TravelViewBean> travelMB) {
-		this.travelMB = travelMB;
-	}
+	
 	public Set<TravelAllBean> getTravels() {
 		return travels;
 	}
