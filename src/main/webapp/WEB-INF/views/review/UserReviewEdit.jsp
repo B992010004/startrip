@@ -139,15 +139,21 @@
                                 <span id="rR"></span>
 
                         </div>
+                        
+<!--                         可以一次上傳多個檔案!!! -->
+                        <div>
+                        	<label class="btn btn-primary" for="files">上傳相片</label>
+                        	<form:input path="multipartFiles" type="file" class="btn btn-primary" id="files" name="files" value="Send Review" multiple="multiple" style="display:none;" />
+                        </div>
 
                         <div class="form-group">
                             <input type="submit" class="btn btn-primary" id="submit" name="submit" value="Send Review">
                         </div>
-                        <form:input id="overallRank" path="overallRank" type="hidden" class="form-control" placeholder="星星評分用(隱藏欄位)" />
                         
-                        <form:input id="serviceRating" path="serviceRating" type="hidden" class="form-control" placeholder="星星評分用(隱藏欄位)" />
-                        <form:input id="valueRating" path="valueRating" type="hidden" class="form-control" placeholder="星星評分用(隱藏欄位)" />
-                        <form:input id="roomsRating" path="roomsRating" type="hidden" class="form-control" placeholder="星星評分用(隱藏欄位)" />
+                        <form:input id="overallRank" path="overallRank" type="hidden" class="form-control" placeholder="星星評分用(隱藏欄位)" />
+                        <form:input id="serviceRating" path="serviceRating" type="hidden" class="form-control" placeholder="服務評分用(隱藏欄位)" />
+                        <form:input id="valueRating" path="valueRating" type="hidden" class="form-control" placeholder="衛生評分用(隱藏欄位)" />
+                        <form:input id="roomsRating" path="roomsRating" type="hidden" class="form-control" placeholder="睡眠評分用(隱藏欄位)" />
                     </form:form>
                 </div>
             </div>
