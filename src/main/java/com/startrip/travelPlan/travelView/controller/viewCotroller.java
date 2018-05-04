@@ -34,7 +34,7 @@ public class viewCotroller {
 		System.out.println(vb.toString());
 		viewService.insert(vb);
 		
-		return "redirect://TravelProject/TravelViews/AllViews";
+		return "redirect:/TravelProject/TravelViews/AllViews";
 		
 	}
 	

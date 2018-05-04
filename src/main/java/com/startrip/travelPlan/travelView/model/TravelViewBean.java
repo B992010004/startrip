@@ -27,8 +27,8 @@ public class TravelViewBean {
 	
 	
 	private Integer imgSrc;
-	private MemberBean member;
-	private Integer memberId;
+	private MemberBean mailBean;
+	private String mail;
 	private String viewName;
 	private String viewaddr;
 	private String viewPhone;
@@ -36,7 +36,7 @@ public class TravelViewBean {
 	private java.sql.Date tdate;
 	private String viewDetail;
 	private Set<TravelAllBean> travels;
-	private Set<MemberBean> members;
+	private Set<MemberBean> mails;
 	
 	
 	
@@ -54,23 +54,23 @@ public class TravelViewBean {
 	}
 	
 	@Transient
-	public Integer getMemberId() {
-		return memberId;
+	public String getMail() {
+		return mail;
 	}
 
-	public void setMemberId(Integer memberId) {
-		this.memberId = memberId;
+	public void setMail(String mail) {
+		this.mail = mail;
 	}
 	//關聯MemberBean,memberid
 	//name=本Bean memederId,referencedColumnName=MemberBean的屬性,
 	@ManyToOne
-	@JoinColumn(name="memberId",referencedColumnName="memberId",insertable=true,updatable=false)
-	public MemberBean getMember() {
+	@JoinColumn(name="mail",referencedColumnName="mail",insertable=true,updatable=false)
+	public MemberBean getMailBean() {
 		
-		return member;
+		return mailBean;
 	}
-	public void setMember(MemberBean member) {
-		this.member = member;
+	public void setMailBean(MemberBean mailBean) {
+		this.mailBean = mailBean;
 	}
 	
 	
@@ -135,16 +135,16 @@ public class TravelViewBean {
 	public void setViewDetail(String viewDetail) {
 		this.viewDetail = viewDetail;
 	}
-	//將view Id 加入ViewCollection,member_Id關連到MemberBean的PK
-	@ManyToMany
-	@JoinTable(name="ViewCollection",joinColumns=@JoinColumn(name="view_Id"),inverseJoinColumns=@JoinColumn(name="member_Id"))
-	public Set<MemberBean> getMembers() {
-		return members;
-	}
-
-	public void setMembers(Set<MemberBean> members) {
-		this.members = members;
-	}
+//	//將view Id 加入ViewCollection,member_Id關連到MemberBean的PK
+//	@ManyToMany
+//	@JoinTable(name="ViewCollection",joinColumns=@JoinColumn(name="view_Id"),inverseJoinColumns=@JoinColumn(name="mail_Id"))
+//	public Set<MemberBean> getMails() {
+//		return mails;
+//	}
+//
+//	public void setMembers(Set<MemberBean> mails) {
+//		this.mails = mails;
+//	}
 
 	
 	
