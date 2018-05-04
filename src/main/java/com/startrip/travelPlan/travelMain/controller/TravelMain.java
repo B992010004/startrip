@@ -11,8 +11,5 @@ public class TravelMain {
 		return "TravelProject/Main";
 	}
 	
-	@RequestMapping("/TravelViews")
-	public String addViews() {
-		return "TravelProject/TravelViews/AllViews";
-	}
+	
 }
