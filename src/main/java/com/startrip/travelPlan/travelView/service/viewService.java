@@ -4,9 +4,11 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.startrip.member.memberModle.MemberBean;
 import com.startrip.travelPlan.travelView.Dao.TravelViewDao;
 import com.startrip.travelPlan.travelView.model.TravelViewBean;
 @Service
@@ -33,7 +35,11 @@ public class viewService implements travelViewService {
 		viewDao.insert(bean);
 	}
 	
-	
+	public MemberBean getMail(String mail) {
+		
+		return viewDao.getMail(mail);
+		
+	}
 	
 	
 	@Transactional

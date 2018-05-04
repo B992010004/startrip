@@ -12,6 +12,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.xml.bind.annotation.XmlTransient;
+
+import org.springframework.web.multipart.MultipartFile;
 
 import com.startrip.member.memberModle.MemberBean;
 import com.startrip.travelPlan.travelAll.model.TravelAllBean;
@@ -26,7 +29,10 @@ public class TravelViewBean {
 	
 	
 	
-	private Integer imgSrc;
+	private MultipartFile[] imgSrc;
+	private String imgName;
+	
+
 	private MemberBean mailBean;
 	private String mail;
 	private String viewName;
@@ -36,7 +42,7 @@ public class TravelViewBean {
 	private java.sql.Date tdate;
 	private String viewDetail;
 	private Set<TravelAllBean> travels;
-	private Set<MemberBean> mails;
+//	private Set<MemberBean> mails;
 	
 	
 	
@@ -61,10 +67,10 @@ public class TravelViewBean {
 	public void setMail(String mail) {
 		this.mail = mail;
 	}
-	//關聯MemberBean,memberid
+	//關聯MemberBean,
 	//name=本Bean memederId,referencedColumnName=MemberBean的屬性,
 	@ManyToOne
-	@JoinColumn(name="mail",referencedColumnName="mail",insertable=true,updatable=false)
+	@JoinColumn(name="mail",referencedColumnName="mail",insertable=false,updatable=false)
 	public MemberBean getMailBean() {
 		
 		return mailBean;
@@ -75,12 +81,13 @@ public class TravelViewBean {
 	
 	
 	
-	
-	public Integer getImgSrc() {
+	@Transient
+	@XmlTransient
+	public MultipartFile[] getImgSrc() {
 		return imgSrc;
 	}
 
-	public void setImgSrc(Integer imgSrc) {
+	public void setImgSrc(MultipartFile[] imgSrc) {
 		this.imgSrc = imgSrc;
 	}
 
@@ -135,14 +142,19 @@ public class TravelViewBean {
 	public void setViewDetail(String viewDetail) {
 		this.viewDetail = viewDetail;
 	}
-//	//將view Id 加入ViewCollection,member_Id關連到MemberBean的PK
-//	@ManyToMany
-//	@JoinTable(name="ViewCollection",joinColumns=@JoinColumn(name="view_Id"),inverseJoinColumns=@JoinColumn(name="mail_Id"))
+
+	public String getImgName() {
+		return imgName;
+	}
+
+	public void setImgName(String imgName) {
+		this.imgName = imgName;
+	}
 //	public Set<MemberBean> getMails() {
 //		return mails;
 //	}
 //
-//	public void setMembers(Set<MemberBean> mails) {
+//	public void setMails(Set<MemberBean> mails) {
 //		this.mails = mails;
 //	}
 
@@ -158,23 +170,3 @@ public class TravelViewBean {
 	
 }
 
-////	@Transient
-//	
-//	public Integer getViewImageId() {
-//		return viewImageId;
-//	}
-//
-//	public void setViewImageId(Integer viewImageId) {
-//		this.viewImageId = viewImageId;
-//	}
-
-
-
-//	@OneToMany(mappedBy="viewImage",cascade= {CascadeType.ALL})
-//	public Set<viewSourceCollection> getImageIds() {
-//		return ImageIds;
-//	}
-//	
-//	public void setImageIds(Set<viewSourceCollection> imageIds) {
-//		ImageIds = imageIds;
-//	}
