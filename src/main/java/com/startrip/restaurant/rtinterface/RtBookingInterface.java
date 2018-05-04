@@ -1,6 +1,8 @@
-package com.startrip.restaurant.model;
+package com.startrip.restaurant.rtinterface;
 
-public interface RBinterface {
+import com.startrip.restaurant.rtmodel.RtBookingBean;
+
+public interface RtBookingInterface {
 	
 	RtBookingBean select(String mail);
 	
