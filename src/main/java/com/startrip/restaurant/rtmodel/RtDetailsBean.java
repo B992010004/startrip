@@ -1,4 +1,4 @@
-package com.startrip.restaurant.model;
+package com.startrip.restaurant.rtmodel;
 
 public class RtDetailsBean {
 

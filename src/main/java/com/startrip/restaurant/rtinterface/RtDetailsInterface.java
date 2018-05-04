@@ -1,6 +1,8 @@
-package com.startrip.restaurant.model;
+package com.startrip.restaurant.rtinterface;
 
-public interface RDinterface {
+import com.startrip.restaurant.rtmodel.RtDetailsBean;
+
+public interface RtDetailsInterface {
 
 	RtDetailsBean select(String rtName);
 	
