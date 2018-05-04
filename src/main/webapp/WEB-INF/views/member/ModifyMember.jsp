@@ -126,7 +126,7 @@
 						</div>
 						<div class="form-group">
 							<img id="preview_progressbarTW_img" class="img1" value=""
-								src="/startrip/assets/images/membericon/snop.jpg" /> <label
+								src="<c:url value='/getPicture/${LoginOK.mail}'/>" /> <label
 								for="progressbarTWInput" class="btn btn-primary"> input
 								file</label>
 							<form:input type="file" path="avatarImage"

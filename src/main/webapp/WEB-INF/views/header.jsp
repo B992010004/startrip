@@ -32,7 +32,7 @@
 						<li class="nav-item"><p class="nav-link">${LoginOK.username}您好</p></li>
 						<img width="40px" height="40px"
 							style="border-radius: 50%; border: 5px solid #fff;"
-							" src="${LoginOK.avatar}" />
+							 src="<c:url value='/getPicture/${LoginOK.mail}'/>" />
 					</c:if>
 					<li class="nav-item"><c:if test="${ empty LoginOK }">
 							<a class="nav-link" href="/startrip/login" data-toggle="modal"

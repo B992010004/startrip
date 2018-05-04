@@ -18,6 +18,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.startrip.travelPlan.travelAll.model.TravelAllBean;
 import com.startrip.travelPlan.travelView.model.TravelViewBean;
 
@@ -36,8 +37,10 @@ public class MemberBean {
 	private int phone;
 	private String birthday;
 	private String avatar;
+	@JsonIgnore
 	private Blob photo;
-	
+	@Transient
+	private MultipartFile  avatarImage;	
 	
 	@XmlTransient
 	public Blob getPhoto() {
@@ -61,8 +64,6 @@ public class MemberBean {
 	@Transient
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int memberid;
-	@Transient
-	private MultipartFile  avatarImage;	
 	
 	@XmlTransient
 	public MultipartFile getAvatarImage() {
