@@ -59,7 +59,18 @@ public class RoomtypeBean implements Serializable{
 	private Set<SinglenightBean> singlenight;
 	
 	@OneToMany(mappedBy="roomid",cascade={CascadeType.REMOVE})
-	private Set<MainphotoBean> mainphoto;
+	private Set<MainphotoBean> mainphoto;	
+	
+	@OneToMany(mappedBy="roomid",cascade={CascadeType.REMOVE})
+	private Set<FacilitylistBean> facilitylist;	
+
+	@OneToMany(mappedBy="roomid",cascade={CascadeType.REMOVE})
+	private Set<ServicelistBean> servicelist;
+	
+	@OneToMany(mappedBy="roomid",cascade={CascadeType.REMOVE})
+	private Set<RulelistBean> rulelist;
+	
+	
 	
 	private String roomname;
 	private Integer numberofpeople;

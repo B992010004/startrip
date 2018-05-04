@@ -47,6 +47,14 @@
 		<mapping class="com.startrip.hotel.model.persistent.MainphotoBean"></mapping>
 		<mapping class="com.startrip.hotel.model.persistent.ServicenameBean"></mapping>
 		<mapping class="com.startrip.hotel.model.persistent.FacilitynameBean"></mapping>
+		<mapping class="com.startrip.hotel.model.persistent.ServicelistBean"></mapping>
+		<mapping class="com.startrip.hotel.model.persistent.FacilitylistBean"></mapping>
+		<mapping class="com.startrip.hotel.model.persistent.AdvancedayBean"></mapping>
+		<mapping class="com.startrip.hotel.model.persistent.RefundBean"></mapping>
+		<mapping class="com.startrip.hotel.model.persistent.RulelistBean"></mapping>
+		<mapping class="com.startrip.hotel.model.persistent.PaymentmethodBean"></mapping>
+		<mapping class="com.startrip.hotel.model.persistent.OrderstateBean"></mapping>
+		<mapping class="com.startrip.hotel.model.persistent.MemberorderBean"></mapping>
 		
 
 	</session-factory>

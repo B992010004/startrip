@@ -56,6 +56,8 @@ public class PhotoBean implements Serializable{
 	private Set<MainphotoBean> mainphoto;
 	
 	private String photoepath;
+	// yyyyMMdd + hotelid + serial number
+	
 	private Integer photosorting;
 	public Integer getHotelid() {
 		return hotelid;

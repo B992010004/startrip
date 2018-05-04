@@ -1,9 +1,13 @@
 package com.startrip.hotel.model.persistent;
 
+import java.io.Serializable;
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -12,7 +16,10 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 @Entity(name="facilityname")
-public class FacilitynameBean {
+public class FacilitynameBean implements Serializable{
+	private static final long serialVersionUID = 2083367913259654639L;
+
+
 	public static void main(String[] args) {
 		StandardServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().configure("/com/startrip/hotel/model/persistent/hibernateTest.cfg.xml").build();
 		SessionFactory factory = new MetadataSources(serviceRegistry).buildMetadata().buildSessionFactory();
@@ -20,7 +27,7 @@ public class FacilitynameBean {
 		session.beginTransaction();
 		
 		FacilitynameBean bean = new FacilitynameBean();
-		bean.setFacilityname("服務種類");
+		bean.setFacilityname("設施種類");
 		session.save(bean);
 		
 		session.getTransaction().commit();
@@ -30,6 +37,10 @@ public class FacilitynameBean {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer facilityid;
+
+	@OneToMany(mappedBy="facilityid")
+	private Set<FacilitylistBean> facility;
+	
 	private String facilityname;
 	
 	
@@ -44,6 +55,12 @@ public class FacilitynameBean {
 	}
 	public void setFacilityname(String facilityname) {
 		this.facilityname = facilityname;
+	}
+	public Set<FacilitylistBean> getFacility() {
+		return facility;
+	}
+	public void setFacility(Set<FacilitylistBean> facility) {
+		this.facility = facility;
 	}
 	
 	

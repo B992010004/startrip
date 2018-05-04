@@ -1,9 +1,13 @@
 package com.startrip.hotel.model.persistent;
 
+import java.io.Serializable;
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -12,7 +16,11 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 @Entity(name="servicename")
-public class ServicenameBean {
+public class ServicenameBean implements Serializable{
+
+	private static final long serialVersionUID = 859871354455070412L;
+
+
 	public static void main(String[] args) {
 		StandardServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().configure("/com/startrip/hotel/model/persistent/hibernateTest.cfg.xml").build();
 		SessionFactory factory = new MetadataSources(serviceRegistry).buildMetadata().buildSessionFactory();
@@ -31,6 +39,10 @@ public class ServicenameBean {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer serviceid;
+	
+	@OneToMany(mappedBy="serviceid")
+	private Set<ServicelistBean> service;
+	
 	private String servicename;
 	
 	
@@ -45,6 +57,12 @@ public class ServicenameBean {
 	}
 	public void setServicename(String servicename) {
 		this.servicename = servicename;
+	}
+	public Set<ServicelistBean> getService() {
+		return service;
+	}
+	public void setService(Set<ServicelistBean> service) {
+		this.service = service;
 	}
 	
 }

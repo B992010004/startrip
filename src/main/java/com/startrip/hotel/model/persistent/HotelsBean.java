@@ -51,13 +51,23 @@ public class HotelsBean implements Serializable{
 	@OneToMany(mappedBy="hotelid")
 	private Set<RoomtypeBean> roomtype;
 	
-
 	@OneToMany(mappedBy="hotelid")
 	private Set<PhotoBean> photos;
 	
 	@OneToMany(mappedBy="hotelid")
 	private Set<MainphotoBean> MainphotoBean;
+
+	@OneToMany(mappedBy="hotelid")
+	private Set<FacilitylistBean> faclititylist;
+
+	@OneToMany(mappedBy="hotelid")
+	private Set<ServicelistBean> servicelist;
+
+	@OneToMany(mappedBy="hotelid")
+	private Set<RulelistBean> rulelist;
 	
+	@OneToMany(mappedBy="hotelid")
+	private Set<MemberorderBean> memberorder;
 	
 	private String hotelname;
 	private Integer hotelphone;
@@ -137,6 +147,70 @@ public class HotelsBean implements Serializable{
 
 	public void setHotelrulenote(String hotelrulenote) {
 		this.hotelrulenote = hotelrulenote;
+	}
+
+	public MemberBean getMember() {
+		return member;
+	}
+
+	public void setMember(MemberBean member) {
+		this.member = member;
+	}
+
+	public Set<RoomtypeBean> getRoomtype() {
+		return roomtype;
+	}
+
+	public void setRoomtype(Set<RoomtypeBean> roomtype) {
+		this.roomtype = roomtype;
+	}
+
+	public Set<PhotoBean> getPhotos() {
+		return photos;
+	}
+
+	public void setPhotos(Set<PhotoBean> photos) {
+		this.photos = photos;
+	}
+
+	public Set<MainphotoBean> getMainphotoBean() {
+		return MainphotoBean;
+	}
+
+	public void setMainphotoBean(Set<MainphotoBean> mainphotoBean) {
+		MainphotoBean = mainphotoBean;
+	}
+
+	public Set<FacilitylistBean> getFaclititylist() {
+		return faclititylist;
+	}
+
+	public void setFaclititylist(Set<FacilitylistBean> faclititylist) {
+		this.faclititylist = faclititylist;
+	}
+
+	public Set<ServicelistBean> getServicelist() {
+		return servicelist;
+	}
+
+	public void setServicelist(Set<ServicelistBean> servicelist) {
+		this.servicelist = servicelist;
+	}
+
+	public Set<RulelistBean> getRulelist() {
+		return rulelist;
+	}
+
+	public void setRulelist(Set<RulelistBean> rulelist) {
+		this.rulelist = rulelist;
+	}
+
+	public Set<MemberorderBean> getMemberorder() {
+		return memberorder;
+	}
+
+	public void setMemberorder(Set<MemberorderBean> memberorder) {
+		this.memberorder = memberorder;
 	}
 
 }

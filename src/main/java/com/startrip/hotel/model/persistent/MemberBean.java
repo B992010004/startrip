@@ -17,9 +17,12 @@ public class MemberBean implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer memberid;
-	
+
 	@OneToMany(mappedBy="hotelmanagerid")
 	private Set<HotelsBean> hotels;
+	
+	@OneToMany(mappedBy="memberid")
+	private Set<MemberorderBean> memberorder;
 	
 	private String membername;
 	private String memberemail;
