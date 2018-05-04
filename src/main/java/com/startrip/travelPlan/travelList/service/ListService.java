@@ -8,14 +8,14 @@ import com.startrip.travelPlan.travelList.model.TravelListPK;
 
 public interface ListService {
 	
-	public TravelListBean Select_TravelId(TravelListPK bean);
+	public TravelListBean Select_ListId(TravelListPK bean);
 
-	public List<TravelListBean> selectAllTravel();
+	public List<TravelListBean> selectAllList();
 
 
 	public void insert(TravelListBean bean);
 
-	public void updateTrip(TravelListBean bean) throws SQLException;
+	public void update(TravelListBean bean) throws SQLException;
 
 	public void delete(int id); 
 }

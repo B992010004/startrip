@@ -15,14 +15,14 @@ public class TravelListservice implements ListService {
 	TravelListDao listDao;
 	
 	@Override
-	public TravelListBean Select_TravelId(TravelListPK bean) {
+	public TravelListBean Select_ListId(TravelListPK bean) {
 		TravelListBean result = new TravelListBean();
 		result = listDao.Select_PK(bean);
 		return result;
 	}
 
 	@Override
-	public List<TravelListBean> selectAllTravel() {
+	public List<TravelListBean> selectAllList() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -34,7 +34,7 @@ public class TravelListservice implements ListService {
 	}
 
 	@Override
-	public void updateTrip(TravelListBean bean) throws SQLException {
+	public void update(TravelListBean bean) throws SQLException {
 		// TODO Auto-generated method stub
 
 	}
