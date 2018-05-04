@@ -28,7 +28,7 @@ public class MemberBean {
 	
 	@Transient
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int memberID;
+	private int memberid;
 	@Transient
 	private MultipartFile  avatarImage;	
 	
@@ -39,11 +39,12 @@ public class MemberBean {
 	public void setAvatarImage(MultipartFile avatarImage) {
 		this.avatarImage = avatarImage;
 	}
-	public int getMemberID() {
-		return memberID;
+
+	public int getMemberid() {
+		return memberid;
 	}
-	public void setMemberID(int memberID) {
-		this.memberID = memberID;
+	public void setMemberid(int memberid) {
+		this.memberid = memberid;
 	}
 	public String getAvatar() {
 		return avatar;

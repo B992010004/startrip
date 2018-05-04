@@ -90,12 +90,14 @@ public class MemberController {
 		}
 
 	}
+
 	@RequestMapping(value = "/ModifyMember", method = RequestMethod.GET)
 	public String ModifyMember(Model model) {
 		MemberBean mb = new MemberBean();
 		model.addAttribute("MemberBean", mb);
 		return "/member/ModifyMember";
 	}
+
 	@RequestMapping(value = "/ModifyMember", method = RequestMethod.POST)
 	public String ModifyMember(@ModelAttribute("MemberBean") MemberBean mb, BindingResult result,
 			HttpServletRequest request) {
@@ -106,7 +108,8 @@ public class MemberController {
 		String ext = originalFilename.substring(originalFilename.lastIndexOf("."));
 		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
 		mb.setAvatar(mb.getMail() + ext);
-		memberservice.insert(mb);
+		memberservice.update(mb.getMail(), mb.getPassword(), mb.getUsername(), mb.getAddress(), mb.getPhone(),
+				mb.getBirthday(), mb.getAvatar());
 		try {
 			File imageFolder = new File(rootDirectory, "images");
 			if (!imageFolder.exists())
