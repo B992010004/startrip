@@ -90,5 +90,34 @@ public class MemberController {
 		}
 
 	}
+	@RequestMapping(value = "/ModifyMember", method = RequestMethod.GET)
+	public String ModifyMember(Model model) {
+		MemberBean mb = new MemberBean();
+		model.addAttribute("MemberBean", mb);
+		return "/member/ModifyMember";
+	}
+	@RequestMapping(value = "/ModifyMember", method = RequestMethod.POST)
+	public String ModifyMember(@ModelAttribute("MemberBean") MemberBean mb, BindingResult result,
+			HttpServletRequest request) {
+
+		MultipartFile avatarImage = mb.getAvatarImage();
+		System.out.println(avatarImage);
+		String originalFilename = avatarImage.getOriginalFilename();
+		String ext = originalFilename.substring(originalFilename.lastIndexOf("."));
+		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
+		mb.setAvatar(mb.getMail() + ext);
+		memberservice.insert(mb);
+		try {
+			File imageFolder = new File(rootDirectory, "images");
+			if (!imageFolder.exists())
+				imageFolder.mkdirs();
+			File file = new File(imageFolder, mb.getMail() + ext);
+			avatarImage.transferTo(file);
+
+		} catch (Exception e) {
+			throw new RuntimeException("檔案上傳發生異常" + e.getMessage());
+		}
+		return "index";
+	}
 
 }
