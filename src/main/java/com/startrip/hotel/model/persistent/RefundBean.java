@@ -11,12 +11,12 @@ import javax.persistence.OneToMany;
 public class RefundBean implements Serializable{	
 	private static final long serialVersionUID = -7439730669003920115L;
 	
+	public RefundBean() {
+	}
+
 	@Id
 	private Integer refundid;
-	
-	@OneToMany(mappedBy="refundid")
-	private Set<RulelistBean> rulelist;
-	
+		
 	private String rulename;
 
 	public Integer getRefundid() {
@@ -27,14 +27,6 @@ public class RefundBean implements Serializable{
 		this.refundid = refundid;
 	}
 
-	public Set<RulelistBean> getRulelist() {
-		return rulelist;
-	}
-
-	public void setRulelist(Set<RulelistBean> rulelist) {
-		this.rulelist = rulelist;
-	}
-
 	public String getRulename() {
 		return rulename;
 	}
@@ -42,7 +34,12 @@ public class RefundBean implements Serializable{
 	public void setRulename(String rulename) {
 		this.rulename = rulename;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "RefundBean [refundid=" + refundid + ", rulename=" + rulename + "]";
+	}
+
 	
 	
 }

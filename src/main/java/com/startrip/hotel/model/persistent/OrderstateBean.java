@@ -14,13 +14,13 @@ public class OrderstateBean  implements Serializable{
 
 	private static final long serialVersionUID = -4339537248637915584L;
 
+	public OrderstateBean() {
+	}
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer orderstateid;
-	
-	@OneToMany(mappedBy="orderstateid")
-	private Set<MemberorderBean> memberorder;
-	
+		
 	private String orderstatename;
 
 	public Integer getOrderstateid() {
@@ -31,14 +31,6 @@ public class OrderstateBean  implements Serializable{
 		this.orderstateid = orderstateid;
 	}
 
-	public Set<MemberorderBean> getMemberorder() {
-		return memberorder;
-	}
-
-	public void setMemberorder(Set<MemberorderBean> memberorder) {
-		this.memberorder = memberorder;
-	}
-
 	public String getOrderstatename() {
 		return orderstatename;
 	}
@@ -46,7 +38,12 @@ public class OrderstateBean  implements Serializable{
 	public void setOrderstatename(String orderstatename) {
 		this.orderstatename = orderstatename;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "OrderstateBean [orderstateid=" + orderstateid + ", orderstatename=" + orderstatename + "]";
+	}
+
 	
 	
 }

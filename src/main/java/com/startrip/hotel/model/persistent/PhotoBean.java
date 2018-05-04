@@ -21,6 +21,10 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 public class PhotoBean implements Serializable{
 
 	private static final long serialVersionUID = 2239193847300701964L;
+	
+	
+	public PhotoBean() {
+	}
 	public static void main(String[] args) {
 		StandardServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().configure("/com/startrip/hotel/model/persistent/hibernateTest.cfg.xml").build();
 		SessionFactory factory = new MetadataSources(serviceRegistry).buildMetadata().buildSessionFactory();
@@ -31,57 +35,36 @@ public class PhotoBean implements Serializable{
 		bean.setPhotonameid(1);
 		bean.setPhotoepath("ssss");
 		session.save(bean);
+		System.out.println("---------------");
+		PhotoBean temp = session.get(PhotoBean.class, 1);
+		System.out.println(temp);
 		
 		session.getTransaction().commit();
 		session.close();
 		factory.close();
 	}
 	private Integer hotelid;
-	
-	@ManyToOne
-	@JoinColumn(name="hotelid", referencedColumnName="hotelid",insertable=false,updatable=false)
-	private HotelsBean hotels;
-	
 	private Integer photonameid;
-
-	@ManyToOne
-	@JoinColumn(name="photonameid", referencedColumnName="photonameid",insertable=false,updatable=false)
-	private PhotonameBean photoname;
-	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer photoid;
-	
-	@OneToMany(mappedBy="photoid")
-	private Set<MainphotoBean> mainphoto;
-	
 	private String photoepath;
 	// yyyyMMdd + hotelid + serial number
 	
 	private Integer photosorting;
+
+
 	public Integer getHotelid() {
 		return hotelid;
 	}
 	public void setHotelid(Integer hotelid) {
 		this.hotelid = hotelid;
 	}
-	public HotelsBean getHotels() {
-		return hotels;
-	}
-	public void setHotels(HotelsBean hotels) {
-		this.hotels = hotels;
-	}
 	public Integer getPhotonameid() {
 		return photonameid;
 	}
 	public void setPhotonameid(Integer photonameid) {
 		this.photonameid = photonameid;
-	}
-	public PhotonameBean getPhotoname() {
-		return photoname;
-	}
-	public void setPhotoname(PhotonameBean photoname) {
-		this.photoname = photoname;
 	}
 	public Integer getPhotoid() {
 		return photoid;
@@ -100,6 +83,11 @@ public class PhotoBean implements Serializable{
 	}
 	public void setPhotosorting(Integer photosorting) {
 		this.photosorting = photosorting;
+	}
+	@Override
+	public String toString() {
+		return "PhotoBean [hotelid=" + hotelid + ", photonameid=" + photonameid + ", photoid=" + photoid
+				+ ", photoepath=" + photoepath + ", photosorting=" + photosorting + "]";
 	}
 	
 	

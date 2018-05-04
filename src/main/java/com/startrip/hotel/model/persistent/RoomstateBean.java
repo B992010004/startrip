@@ -13,41 +13,27 @@ public class RoomstateBean implements Serializable{
 
 	private static final long serialVersionUID = 8445459242224212296L;
 
+	public RoomstateBean() {
+	}
 	@Id
-	private Integer stateid;
-	
-	@OneToMany(mappedBy="roomstate")
-	private Set<RoomtypeBean> roomtype;
-	
+	private Integer stateid;	
 	private String statename;
-
 	public Integer getStateid() {
 		return stateid;
 	}
-
 	public void setStateid(Integer stateid) {
 		this.stateid = stateid;
 	}
-
-	public Set<RoomtypeBean> getRoomtype() {
-		return roomtype;
-	}
-
-	public void setRoomtype(Set<RoomtypeBean> roomtype) {
-		this.roomtype = roomtype;
-	}
-
 	public String getStatename() {
 		return statename;
 	}
-
 	public void setStatename(String statename) {
 		this.statename = statename;
 	}
-
-
-
-	
+	@Override
+	public String toString() {
+		return "RoomstateBean [stateid=" + stateid + ", statename=" + statename + "]";
+	}
 
 
 }

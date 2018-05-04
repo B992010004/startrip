@@ -6,8 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -19,6 +17,9 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 public class RulelistBean implements Serializable {
 	private static final long serialVersionUID = 1846305702592902315L;
 	
+	public RulelistBean() {
+	}
+
 	public static void main(String[] args) {
 		StandardServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
 				.configure("/com/startrip/hotel/model/persistent/hibernateTest.cfg.xml").build();
@@ -26,43 +27,27 @@ public class RulelistBean implements Serializable {
 		Session session = factory.openSession();
 		session.beginTransaction();
 
-		RulelistBean bean = new RulelistBean();
-		bean.setAdvancedayid(1);
-		bean.setHotelid(2);
-		bean.setRoomid(2);
-
-		session.save(bean);
-
+//		RulelistBean bean = new RulelistBean();
+//		bean.setAdvancedayid(2);
+//		bean.setHotelid(2);
+//		bean.setRoomid(2);
+//
+//		session.save(bean);
+		RulelistBean temp = session.get(RulelistBean.class, 1);
+		System.out.println(temp);
+		
 		session.getTransaction().commit();
 		session.close();
 		factory.close();
 	}
 
 	private Integer hotelid;
-	
-	@ManyToOne
-	@JoinColumn(name = "hotelid", referencedColumnName = "hotelid", insertable = false, updatable = false)
-	private HotelsBean hotels;
-
 	private Integer refundid;
-	
-	@ManyToOne
-	@JoinColumn(name = "refundid", referencedColumnName = "refundid", insertable = false, updatable = false)
-	private RefundBean refund;
-
-	private Integer advancedayid;
-	
-	@ManyToOne
-	@JoinColumn(name = "advancedayid", referencedColumnName = "advancedayid", insertable = false, updatable = false)
-	private AdvancedayBean advanceday;
+	private Integer advancedayid;	
 
 	private Integer roomid;
 	// -- if roomid = null, all rooms has this rule.
 	
-	@ManyToOne
-	@JoinColumn(name = "roomid", referencedColumnName = "roomid", insertable = false, updatable = false)
-	private RoomtypeBean roomtype;
-
 	private Integer bookingdaysperorder;
 
 	@Id
@@ -77,28 +62,12 @@ public class RulelistBean implements Serializable {
 		this.hotelid = hotelid;
 	}
 
-	public HotelsBean getHotels() {
-		return hotels;
-	}
-
-	public void setHotels(HotelsBean hotels) {
-		this.hotels = hotels;
-	}
-
 	public Integer getRefundid() {
 		return refundid;
 	}
 
 	public void setRefundid(Integer refundid) {
 		this.refundid = refundid;
-	}
-
-	public RefundBean getRefund() {
-		return refund;
-	}
-
-	public void setRefund(RefundBean refund) {
-		this.refund = refund;
 	}
 
 	public Integer getAdvancedayid() {
@@ -109,28 +78,12 @@ public class RulelistBean implements Serializable {
 		this.advancedayid = advancedayid;
 	}
 
-	public AdvancedayBean getAdvanceday() {
-		return advanceday;
-	}
-
-	public void setAdvanceday(AdvancedayBean advanceday) {
-		this.advanceday = advanceday;
-	}
-
 	public Integer getRoomid() {
 		return roomid;
 	}
 
 	public void setRoomid(Integer roomid) {
 		this.roomid = roomid;
-	}
-
-	public RoomtypeBean getRoomtype() {
-		return roomtype;
-	}
-
-	public void setRoomtype(RoomtypeBean roomtype) {
-		this.roomtype = roomtype;
 	}
 
 	public Integer getBookingdaysperorder() {
@@ -149,4 +102,14 @@ public class RulelistBean implements Serializable {
 		this.checknumber = checknumber;
 	}
 
+	@Override
+	public String toString() {
+		return "RulelistBean [hotelid=" + hotelid + ", refundid=" + refundid + ", advancedayid=" + advancedayid
+				+ ", roomid=" + roomid + ", bookingdaysperorder=" + bookingdaysperorder + ", checknumber=" + checknumber
+				+ "]";
+	}
+
+	
+	
+	
 }

@@ -15,49 +15,47 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
-@Entity(name="mainphoto")
-public class MainphotoBean implements Serializable{
+@Entity(name = "mainphoto")
+public class MainphotoBean implements Serializable {
 	private static final long serialVersionUID = -2931993366620449837L;
 
+	public MainphotoBean() {
+	}
+
 	public static void main(String[] args) {
-		StandardServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().configure("/com/startrip/hotel/model/persistent/hibernateTest.cfg.xml").build();
+		StandardServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
+				.configure("/com/startrip/hotel/model/persistent/hibernateTest.cfg.xml").build();
 		SessionFactory factory = new MetadataSources(serviceRegistry).buildMetadata().buildSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
-		
+
 		MainphotoBean bean = new MainphotoBean();
-		bean.setHotelid(1);
-		bean.setRoomid(2);
-		bean.setPhotoid(1);
-		session.save(bean);
-		
+		// bean.setHotelid(1);
+		// bean.setRoomid(6);
+		// session.save(bean);
+		System.out.println("------------");
+		MainphotoBean temp = session.get(MainphotoBean.class, 8);
+		System.out.println(temp);
+
 		session.getTransaction().commit();
 		session.close();
 		factory.close();
 	}
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer checknumber;
-
 	private Integer hotelid;
-	
-	@ManyToOne
-	@JoinColumn(name = "hotelid", referencedColumnName = "hotelid", insertable = false, updatable = false)
-	private HotelsBean hotels;
-
 	private Integer roomid;
-	
-	@ManyToOne
-	@JoinColumn(name="roomid",referencedColumnName="roomid",insertable=false,updatable=false)
-	private RoomtypeBean roomtype;
-	
-	
 	private Integer photoid;
-	
-	@ManyToOne
-	@JoinColumn(name="photoid", referencedColumnName="photoid",insertable=false,updatable=false)
-	private PhotoBean mainphoto;
+
+	public Integer getChecknumber() {
+		return checknumber;
+	}
+
+	public void setChecknumber(Integer checknumber) {
+		this.checknumber = checknumber;
+	}
 
 	public Integer getHotelid() {
 		return hotelid;
@@ -65,14 +63,6 @@ public class MainphotoBean implements Serializable{
 
 	public void setHotelid(Integer hotelid) {
 		this.hotelid = hotelid;
-	}
-
-	public HotelsBean getHotels() {
-		return hotels;
-	}
-
-	public void setHotels(HotelsBean hotels) {
-		this.hotels = hotels;
 	}
 
 	public Integer getRoomid() {
@@ -83,14 +73,6 @@ public class MainphotoBean implements Serializable{
 		this.roomid = roomid;
 	}
 
-	public RoomtypeBean getRoomtype() {
-		return roomtype;
-	}
-
-	public void setRoomtype(RoomtypeBean roomtype) {
-		this.roomtype = roomtype;
-	}
-
 	public Integer getPhotoid() {
 		return photoid;
 	}
@@ -99,13 +81,12 @@ public class MainphotoBean implements Serializable{
 		this.photoid = photoid;
 	}
 
-	public PhotoBean getMainphoto() {
-		return mainphoto;
+	@Override
+	public String toString() {
+		return "MainphotoBean [checknumber=" + checknumber + ", hotelid=" + hotelid + ", roomid=" + roomid
+				+ ", photoid=" + photoid + "]";
 	}
 
-	public void setMainphoto(PhotoBean mainphoto) {
-		this.mainphoto = mainphoto;
-	}
 	
-	
+
 }

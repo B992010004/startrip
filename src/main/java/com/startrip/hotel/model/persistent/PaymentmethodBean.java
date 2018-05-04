@@ -13,11 +13,11 @@ import javax.persistence.OneToMany;
 public class PaymentmethodBean  implements Serializable{
 	private static final long serialVersionUID = 1132143219284705867L;
 
+	public PaymentmethodBean() {
+	}
+
 	@Id
 	private Integer methodid;
-	
-	@OneToMany(mappedBy="paymentmethodid")
-	private Set<MemberorderBean> memberorder;
 	
 	private String methodname;
 
@@ -29,14 +29,6 @@ public class PaymentmethodBean  implements Serializable{
 		this.methodid = methodid;
 	}
 
-	public Set<MemberorderBean> getMemberorder() {
-		return memberorder;
-	}
-
-	public void setMemberorder(Set<MemberorderBean> memberorder) {
-		this.memberorder = memberorder;
-	}
-
 	public String getMethodname() {
 		return methodname;
 	}
@@ -44,6 +36,12 @@ public class PaymentmethodBean  implements Serializable{
 	public void setMethodname(String methodname) {
 		this.methodname = methodname;
 	}
+
+	@Override
+	public String toString() {
+		return "PaymentmethodBean [methodid=" + methodid + ", methodname=" + methodname + "]";
+	}
+
 	
 	
 }

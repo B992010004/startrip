@@ -7,17 +7,17 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-@Entity(name="advanceday")
-public class AdvancedayBean implements Serializable{
-	
+@Entity(name = "advanceday")
+public class AdvancedayBean implements Serializable {
+
 	private static final long serialVersionUID = 6375349337563027399L;
+
+	public AdvancedayBean() {
+	}
 
 	@Id
 	private Integer advancedayid;
-	
-	@OneToMany(mappedBy="advancedayid")
-	private Set<RulelistBean> rulelist;
-	
+
 	private String advancedayname;
 
 	public Integer getAdvancedayid() {
@@ -28,14 +28,6 @@ public class AdvancedayBean implements Serializable{
 		this.advancedayid = advancedayid;
 	}
 
-	public Set<RulelistBean> getRulelist() {
-		return rulelist;
-	}
-
-	public void setRulelist(Set<RulelistBean> rulelist) {
-		this.rulelist = rulelist;
-	}
-
 	public String getAdvancedayname() {
 		return advancedayname;
 	}
@@ -43,7 +35,10 @@ public class AdvancedayBean implements Serializable{
 	public void setAdvancedayname(String advancedayname) {
 		this.advancedayname = advancedayname;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "AdvancedayBean [advancedayid=" + advancedayid + ", advancedayname=" + advancedayname + "]";
+	}
 
 }

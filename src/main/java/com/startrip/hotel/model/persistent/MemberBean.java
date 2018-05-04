@@ -14,15 +14,11 @@ public class MemberBean implements Serializable{
 
 	private static final long serialVersionUID = 1063990249709170616L;
 
+	public MemberBean() {
+	}
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer memberid;
-
-	@OneToMany(mappedBy="hotelmanagerid")
-	private Set<HotelsBean> hotels;
-	
-	@OneToMany(mappedBy="memberid")
-	private Set<MemberorderBean> memberorder;
 	
 	private String membername;
 	private String memberemail;
@@ -33,12 +29,6 @@ public class MemberBean implements Serializable{
 	}
 	public void setMemberid(Integer memberid) {
 		this.memberid = memberid;
-	}
-	public Set<HotelsBean> getHotels() {
-		return hotels;
-	}
-	public void setHotels(Set<HotelsBean> hotels) {
-		this.hotels = hotels;
 	}
 	public String getMembername() {
 		return membername;
@@ -64,7 +54,13 @@ public class MemberBean implements Serializable{
 	public void setMemberphone(Integer memberphone) {
 		this.memberphone = memberphone;
 	}
-	
+	@Override
+	public String toString() {
+		return "MemberBean [memberid=" + memberid + ", membername=" + membername + ", memberemail=" + memberemail
+				+ ", memberpassword=" + memberpassword + ", memberphone=" + memberphone + "]";
+	}
+
+
 	
 	
 }

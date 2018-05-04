@@ -22,6 +22,9 @@ public class PhotonameBean implements Serializable{
 	private static final long serialVersionUID = -2171304932516973087L;
 
 
+	public PhotonameBean() {
+		
+	}
 	public static void main(String[] args) {
 		StandardServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().configure("/com/startrip/hotel/model/persistent/hibernateTest.cfg.xml").build();
 		SessionFactory factory = new MetadataSources(serviceRegistry).buildMetadata().buildSessionFactory();
@@ -31,7 +34,9 @@ public class PhotonameBean implements Serializable{
 		PhotonameBean bean = new PhotonameBean();
 		bean.setPhotoname("sss");
 		session.save(bean);
-		
+		System.out.println("----------");
+		PhotonameBean temp = session.get(PhotonameBean.class, 1);
+		System.out.println(temp);
 		
 		session.getTransaction().commit();
 		session.close();
@@ -40,30 +45,24 @@ public class PhotonameBean implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer photonameid;
-	
-	@OneToMany(mappedBy="photonameid")
-	private Set<PhotonameBean> photos;
-
-	
 	private String photoname;
-	
+
 
 	public Integer getPhotonameid() {
 		return photonameid;
 	}
-
 	public void setPhotonameid(Integer photonameid) {
 		this.photonameid = photonameid;
 	}
-
 	public String getPhotoname() {
 		return photoname;
 	}
-
 	public void setPhotoname(String photoname) {
 		this.photoname = photoname;
 	}
-	
-	
+	@Override
+	public String toString() {
+		return "PhotonameBean [photonameid=" + photonameid + ", photoname=" + photoname + "]";
+	}
 	
 }

@@ -17,6 +17,8 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 public class MemberorderBean implements Serializable {
 	private static final long serialVersionUID = 8538582177447768571L;
 	
+	public MemberorderBean() {
+	}
 	public static void main(String[] args) {
 		StandardServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().configure("/com/startrip/hotel/model/persistent/hibernateTest.cfg.xml").build();
 		SessionFactory factory = new MetadataSources(serviceRegistry).buildMetadata().buildSessionFactory();
@@ -24,8 +26,13 @@ public class MemberorderBean implements Serializable {
 		session.beginTransaction();
 		
 		MemberorderBean bean = new MemberorderBean();
-		bean.setOrdernumber(201805030001L);
+		bean.setOrdernumber(201805020001L);
 		session.save(bean);
+		System.out.println("-------");
+		MemberorderBean temp = session.get(MemberorderBean.class, 201805020001L);
+		System.out.println(temp);
+		System.out.println("-------");
+		session.delete(bean);
 		
 		session.getTransaction().commit();
 		session.close();
@@ -36,31 +43,10 @@ public class MemberorderBean implements Serializable {
 	private Long ordernumber;
 	// yyyyMMdd + serial number
 	
-	private Integer hotelid;
-	
-	@ManyToOne
-	@JoinColumn(name="hotelid", referencedColumnName="hotelid",insertable=false,updatable=false)
-	private HotelsBean hotels;
-	
-	private Integer memberid;
-	
-	@ManyToOne
-	@JoinColumn(name="memberid", referencedColumnName="memberid",insertable=false,updatable=false)
-	private MemberBean member;
-	
-	private Integer orderstateid;
-	
-	@ManyToOne
-	@JoinColumn(name="orderstateid", referencedColumnName="orderstateid",insertable=false, updatable=false)
-	private OrderstateBean orderstate;
-	
-	private Integer paymentmethodid;
-	
-	@ManyToOne
-	@JoinColumn(name="paymentmethodid", referencedColumnName="methodid",insertable=false, updatable=false)
-	private PaymentmethodBean paymentmethod;
-	
-	
+	private Integer hotelid;		
+	private Integer memberid;	
+	private Integer orderstateid;	
+	private Integer paymentmethodid;	
 	private java.sql.Date orderdate;
 	private String ordernote;
 	private Integer totalamount;
@@ -68,6 +54,7 @@ public class MemberorderBean implements Serializable {
 	// -- use string to record list.
 	private java.sql.Date checkin;
 	private java.sql.Date checkout;
+
 	public Long getOrdernumber() {
 		return ordernumber;
 	}
@@ -80,11 +67,11 @@ public class MemberorderBean implements Serializable {
 	public void setHotelid(Integer hotelid) {
 		this.hotelid = hotelid;
 	}
-	public HotelsBean getHotels() {
-		return hotels;
+	public Integer getMemberid() {
+		return memberid;
 	}
-	public void setHotels(HotelsBean hotels) {
-		this.hotels = hotels;
+	public void setMemberid(Integer memberid) {
+		this.memberid = memberid;
 	}
 	public Integer getOrderstateid() {
 		return orderstateid;
@@ -92,23 +79,11 @@ public class MemberorderBean implements Serializable {
 	public void setOrderstateid(Integer orderstateid) {
 		this.orderstateid = orderstateid;
 	}
-	public OrderstateBean getOrderstate() {
-		return orderstate;
-	}
-	public void setOrderstate(OrderstateBean orderstate) {
-		this.orderstate = orderstate;
-	}
 	public Integer getPaymentmethodid() {
 		return paymentmethodid;
 	}
 	public void setPaymentmethodid(Integer paymentmethodid) {
 		this.paymentmethodid = paymentmethodid;
-	}
-	public PaymentmethodBean getPaymentmethod() {
-		return paymentmethod;
-	}
-	public void setPaymentmethod(PaymentmethodBean paymentmethod) {
-		this.paymentmethod = paymentmethod;
 	}
 	public java.sql.Date getOrderdate() {
 		return orderdate;
@@ -146,7 +121,16 @@ public class MemberorderBean implements Serializable {
 	public void setCheckout(java.sql.Date checkout) {
 		this.checkout = checkout;
 	}
-
+	@Override
+	public String toString() {
+		return "MemberorderBean [ordernumber=" + ordernumber + ", hotelid=" + hotelid + ", memberid=" + memberid
+				+ ", orderstateid=" + orderstateid + ", paymentmethodid=" + paymentmethodid + ", orderdate=" + orderdate
+				+ ", ordernote=" + ordernote + ", totalamount=" + totalamount + ", singlenightprice=" + singlenightprice
+				+ ", checkin=" + checkin + ", checkout=" + checkout + "]";
+	}
+	
+	
+	
 	
 	
 }

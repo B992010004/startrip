@@ -20,6 +20,9 @@ public class FacilitynameBean implements Serializable{
 	private static final long serialVersionUID = 2083367913259654639L;
 
 
+	public FacilitynameBean() {
+	}
+
 	public static void main(String[] args) {
 		StandardServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().configure("/com/startrip/hotel/model/persistent/hibernateTest.cfg.xml").build();
 		SessionFactory factory = new MetadataSources(serviceRegistry).buildMetadata().buildSessionFactory();
@@ -29,6 +32,9 @@ public class FacilitynameBean implements Serializable{
 		FacilitynameBean bean = new FacilitynameBean();
 		bean.setFacilityname("設施種類");
 		session.save(bean);
+		System.out.println("--------");
+		FacilitynameBean temp = session.get(FacilitynameBean.class, 1);
+		System.out.println(temp);
 		
 		session.getTransaction().commit();
 		session.close();
@@ -38,30 +44,30 @@ public class FacilitynameBean implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer facilityid;
 
-	@OneToMany(mappedBy="facilityid")
-	private Set<FacilitylistBean> facility;
-	
 	private String facilityname;
-	
-	
+
+
 	public Integer getFacilityid() {
 		return facilityid;
 	}
+
 	public void setFacilityid(Integer facilityid) {
 		this.facilityid = facilityid;
 	}
+
 	public String getFacilityname() {
 		return facilityname;
 	}
+
 	public void setFacilityname(String facilityname) {
 		this.facilityname = facilityname;
 	}
-	public Set<FacilitylistBean> getFacility() {
-		return facility;
-	}
-	public void setFacility(Set<FacilitylistBean> facility) {
-		this.facility = facility;
+
+	@Override
+	public String toString() {
+		return "FacilitynameBean [facilityid=" + facilityid + ", facilityname=" + facilityname + "]";
 	}
 	
+
 	
 }

@@ -22,6 +22,11 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 public class RoomtypeBean implements Serializable{
 
 	private static final long serialVersionUID = -7434598944388707416L;
+	
+	
+	public RoomtypeBean() {
+	}
+	
 	public static void main(String[] args) {
 		StandardServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
 				.configure("/com/startrip/hotel/model/persistent/hibernateTest.cfg.xml").build();
@@ -30,47 +35,25 @@ public class RoomtypeBean implements Serializable{
 		session.beginTransaction();
 
 		RoomtypeBean bean = new RoomtypeBean();
-		bean.setRoomstate(1);
+		bean.setRoomid(2);
+			
+//		RoomtypeBean bean = session.get(RoomtypeBean.class, 1);
+//		System.out.println(bean);
+//		session.delete(bean);
 
-		session.save(bean);
+//		session.save(bean);
 
 		session.getTransaction().commit();
 		session.close();
 		factory.close();
 	}
 
-	private Integer hotelid;
-	
-	@ManyToOne
-	@JoinColumn(name = "hotelid", referencedColumnName = "hotelid", insertable = false, updatable = false)
-	private HotelsBean hotels;
-	
+	private Integer hotelid;	
 	private Integer roomstate;
-	
-	@ManyToOne
-	@JoinColumn(name = "roomstate", referencedColumnName = "stateid", insertable = false, updatable = false)
-	private RoomstateBean states;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer roomid;
-	
-	@OneToMany(mappedBy="roomid",cascade={CascadeType.REMOVE})
-	private Set<SinglenightBean> singlenight;
-	
-	@OneToMany(mappedBy="roomid",cascade={CascadeType.REMOVE})
-	private Set<MainphotoBean> mainphoto;	
-	
-	@OneToMany(mappedBy="roomid",cascade={CascadeType.REMOVE})
-	private Set<FacilitylistBean> facilitylist;	
-
-	@OneToMany(mappedBy="roomid",cascade={CascadeType.REMOVE})
-	private Set<ServicelistBean> servicelist;
-	
-	@OneToMany(mappedBy="roomid",cascade={CascadeType.REMOVE})
-	private Set<RulelistBean> rulelist;
-	
-	
 	
 	private String roomname;
 	private Integer numberofpeople;
@@ -79,17 +62,13 @@ public class RoomtypeBean implements Serializable{
 	private java.sql.Date enddate;
 	private Boolean extrabed;
 	private Float extrabedprice;
+
+
 	public Integer getHotelid() {
 		return hotelid;
 	}
 	public void setHotelid(Integer hotelid) {
 		this.hotelid = hotelid;
-	}
-	public HotelsBean getHotels() {
-		return hotels;
-	}
-	public void setHotels(HotelsBean hotels) {
-		this.hotels = hotels;
 	}
 	public Integer getRoomstate() {
 		return roomstate;
@@ -97,23 +76,11 @@ public class RoomtypeBean implements Serializable{
 	public void setRoomstate(Integer roomstate) {
 		this.roomstate = roomstate;
 	}
-	public RoomstateBean getStates() {
-		return states;
-	}
-	public void setStates(RoomstateBean states) {
-		this.states = states;
-	}
 	public Integer getRoomid() {
 		return roomid;
 	}
 	public void setRoomid(Integer roomid) {
 		this.roomid = roomid;
-	}
-	public Set<SinglenightBean> getSinglenight() {
-		return singlenight;
-	}
-	public void setSinglenight(Set<SinglenightBean> singlenight) {
-		this.singlenight = singlenight;
 	}
 	public String getRoomname() {
 		return roomname;
@@ -157,7 +124,14 @@ public class RoomtypeBean implements Serializable{
 	public void setExtrabedprice(Float extrabedprice) {
 		this.extrabedprice = extrabedprice;
 	}
-
-
+	@Override
+	public String toString() {
+		return "RoomtypeBean [hotelid=" + hotelid + ", roomstate=" + roomstate + ", roomid=" + roomid + ", roomname="
+				+ roomname + ", numberofpeople=" + numberofpeople + ", numberofrooms=" + numberofrooms + ", opendate="
+				+ opendate + ", enddate=" + enddate + ", extrabed=" + extrabed + ", extrabedprice=" + extrabedprice
+				+ "]";
+	}
+	
+	
 
 }

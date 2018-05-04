@@ -6,20 +6,21 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-              
-@Entity(name="singlenight")
-public class SinglenightBean implements Serializable{
+
+@Entity(name = "singlenight")
+public class SinglenightBean implements Serializable {
 
 	private static final long serialVersionUID = 7127500049359610632L;
 
+	public SinglenightBean() {
+
+	}
 
 	public static void main(String[] args) {
 		StandardServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
@@ -30,7 +31,8 @@ public class SinglenightBean implements Serializable{
 
 		SinglenightBean bean = new SinglenightBean();
 		bean.setRoomnumber(1);
-		bean.setRoomid(1);;
+		bean.setRoomid(1);
+		;
 
 		session.save(bean);
 
@@ -38,67 +40,70 @@ public class SinglenightBean implements Serializable{
 		session.close();
 		factory.close();
 	}
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer checknumber;
-	
+
 	private Integer roomid;
-	
-	@ManyToOne
-	@JoinColumn(name="roomid",referencedColumnName="roomid",insertable=false,updatable=false)
-	private RoomtypeBean roomtype;
-	
+
 	private Integer roomnumber;
 	private java.sql.Date bookingdate;
 	private Integer roomprice;
 	private Boolean locked;
-	
-	
+
 	public Integer getChecknumber() {
 		return checknumber;
 	}
+
 	public void setChecknumber(Integer checknumber) {
 		this.checknumber = checknumber;
 	}
-	
 
 	public Integer getRoomid() {
 		return roomid;
 	}
+
 	public void setRoomid(Integer roomid) {
 		this.roomid = roomid;
 	}
-	public RoomtypeBean getRoomtype() {
-		return roomtype;
-	}
-	public void setRoomtype(RoomtypeBean roomtype) {
-		this.roomtype = roomtype;
-	}
+
 	public Integer getRoomnumber() {
 		return roomnumber;
 	}
+
 	public void setRoomnumber(Integer roomnumber) {
 		this.roomnumber = roomnumber;
 	}
+
 	public java.sql.Date getBookingdate() {
 		return bookingdate;
 	}
+
 	public void setBookingdate(java.sql.Date bookingdate) {
 		this.bookingdate = bookingdate;
 	}
+
 	public Integer getRoomprice() {
 		return roomprice;
 	}
+
 	public void setRoomprice(Integer roomprice) {
 		this.roomprice = roomprice;
 	}
+
 	public Boolean getLocked() {
 		return locked;
 	}
+
 	public void setLocked(Boolean locked) {
 		this.locked = locked;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "SinglenightBean [checknumber=" + checknumber + ", roomid=" + roomid + ", roomnumber=" + roomnumber
+				+ ", bookingdate=" + bookingdate + ", roomprice=" + roomprice + ", locked=" + locked + "]";
+	}
+
 }

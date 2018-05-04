@@ -20,6 +20,11 @@ public class FacilitylistBean implements Serializable{
 
 	private static final long serialVersionUID = -4802990258126207198L;
 
+	
+	
+	public FacilitylistBean() {
+	}
+
 	public static void main(String[] args) {
 		StandardServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
 				.configure("/com/startrip/hotel/model/persistent/hibernateTest.cfg.xml").build();
@@ -32,12 +37,14 @@ public class FacilitylistBean implements Serializable{
 		bean.setHotelid(1);
 		bean.setRoomid(1);
 		session.save(bean);
-
+		System.out.println("-----------");
+		FacilitylistBean temp = session.get(FacilitylistBean.class, 1);
+		System.out.println(temp);
+			
 		session.getTransaction().commit();
 		session.close();
 		factory.close();
 	}
-
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -45,22 +52,10 @@ public class FacilitylistBean implements Serializable{
 	
 	private Integer facilityid;
 	
-	@ManyToOne
-	@JoinColumn(name = "facilityid", referencedColumnName = "facilityid", insertable = false, updatable = false)
-	private FacilitynameBean facilityname;
-	
 	private Integer hotelid;
-	
-	@ManyToOne
-	@JoinColumn(name = "hotelid", referencedColumnName = "hotelid", insertable = false, updatable = false)
-	private HotelsBean hotels;
-	
+
 	private Integer roomid;
 	// if roomid = null, all rooms has this facility.
-
-	@ManyToOne
-	@JoinColumn(name="roomid",referencedColumnName="roomid",insertable=false,updatable=false)
-	private RoomtypeBean roomtype;
 
 	public Integer getChecknumber() {
 		return checknumber;
@@ -78,28 +73,12 @@ public class FacilitylistBean implements Serializable{
 		this.facilityid = facilityid;
 	}
 
-	public FacilitynameBean getFacilityname() {
-		return facilityname;
-	}
-
-	public void setFacilityname(FacilitynameBean facilityname) {
-		this.facilityname = facilityname;
-	}
-
 	public Integer getHotelid() {
 		return hotelid;
 	}
 
 	public void setHotelid(Integer hotelid) {
 		this.hotelid = hotelid;
-	}
-
-	public HotelsBean getHotels() {
-		return hotels;
-	}
-
-	public void setHotels(HotelsBean hotels) {
-		this.hotels = hotels;
 	}
 
 	public Integer getRoomid() {
@@ -110,12 +89,10 @@ public class FacilitylistBean implements Serializable{
 		this.roomid = roomid;
 	}
 
-	public RoomtypeBean getRoomtype() {
-		return roomtype;
-	}
-
-	public void setRoomtype(RoomtypeBean roomtype) {
-		this.roomtype = roomtype;
+	@Override
+	public String toString() {
+		return "FacilitylistBean [checknumber=" + checknumber + ", facilityid=" + facilityid + ", hotelid=" + hotelid
+				+ ", roomid=" + roomid + "]";
 	}
 	
 	

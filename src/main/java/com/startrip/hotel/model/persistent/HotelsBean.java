@@ -1,16 +1,11 @@
 package com.startrip.hotel.model.persistent;
 
 import java.io.Serializable;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -22,6 +17,9 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 public class HotelsBean implements Serializable{
 	private static final long serialVersionUID = -2333660904250123305L;
 
+	public HotelsBean() {
+	}
+
 	public static void main(String[] args) {
 		StandardServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().configure("/com/startrip/hotel/model/persistent/hibernateTest.cfg.xml").build();
 		SessionFactory factory = new MetadataSources(serviceRegistry).buildMetadata().buildSessionFactory();
@@ -32,6 +30,9 @@ public class HotelsBean implements Serializable{
 		bean.setHotelmanagerid(1);
 		bean.setHotelname("HAHA");
 		session.save(bean);
+		System.out.println("----------");
+		HotelsBean temp = session.get(HotelsBean.class, 1);
+		System.out.println(temp);
 		
 		session.getTransaction().commit();
 		session.close();
@@ -40,34 +41,9 @@ public class HotelsBean implements Serializable{
 
 	private Integer hotelmanagerid;
 	
-	@ManyToOne
-	@JoinColumn(name="hotelmanagerid",referencedColumnName="memberid", insertable=false,updatable=false)
-	private MemberBean member;
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer hotelid;
-	
-	@OneToMany(mappedBy="hotelid")
-	private Set<RoomtypeBean> roomtype;
-	
-	@OneToMany(mappedBy="hotelid")
-	private Set<PhotoBean> photos;
-	
-	@OneToMany(mappedBy="hotelid")
-	private Set<MainphotoBean> MainphotoBean;
-
-	@OneToMany(mappedBy="hotelid")
-	private Set<FacilitylistBean> faclititylist;
-
-	@OneToMany(mappedBy="hotelid")
-	private Set<ServicelistBean> servicelist;
-
-	@OneToMany(mappedBy="hotelid")
-	private Set<RulelistBean> rulelist;
-	
-	@OneToMany(mappedBy="hotelid")
-	private Set<MemberorderBean> memberorder;
 	
 	private String hotelname;
 	private Integer hotelphone;
@@ -77,6 +53,7 @@ public class HotelsBean implements Serializable{
 	private String hotelinfo;
 	private String hotelrulenote;
 
+	
 	public Integer getHotelmanagerid() {
 		return hotelmanagerid;
 	}
@@ -149,68 +126,12 @@ public class HotelsBean implements Serializable{
 		this.hotelrulenote = hotelrulenote;
 	}
 
-	public MemberBean getMember() {
-		return member;
+	@Override
+	public String toString() {
+		return "HotelsBean [hotelmanagerid=" + hotelmanagerid + ", hotelid=" + hotelid + ", hotelname=" + hotelname
+				+ ", hotelphone=" + hotelphone + ", hotelstar=" + hotelstar + ", hoteladdress=" + hoteladdress
+				+ ", hotelstate=" + hotelstate + ", hotelinfo=" + hotelinfo + ", hotelrulenote=" + hotelrulenote + "]";
 	}
 
-	public void setMember(MemberBean member) {
-		this.member = member;
-	}
-
-	public Set<RoomtypeBean> getRoomtype() {
-		return roomtype;
-	}
-
-	public void setRoomtype(Set<RoomtypeBean> roomtype) {
-		this.roomtype = roomtype;
-	}
-
-	public Set<PhotoBean> getPhotos() {
-		return photos;
-	}
-
-	public void setPhotos(Set<PhotoBean> photos) {
-		this.photos = photos;
-	}
-
-	public Set<MainphotoBean> getMainphotoBean() {
-		return MainphotoBean;
-	}
-
-	public void setMainphotoBean(Set<MainphotoBean> mainphotoBean) {
-		MainphotoBean = mainphotoBean;
-	}
-
-	public Set<FacilitylistBean> getFaclititylist() {
-		return faclititylist;
-	}
-
-	public void setFaclititylist(Set<FacilitylistBean> faclititylist) {
-		this.faclititylist = faclititylist;
-	}
-
-	public Set<ServicelistBean> getServicelist() {
-		return servicelist;
-	}
-
-	public void setServicelist(Set<ServicelistBean> servicelist) {
-		this.servicelist = servicelist;
-	}
-
-	public Set<RulelistBean> getRulelist() {
-		return rulelist;
-	}
-
-	public void setRulelist(Set<RulelistBean> rulelist) {
-		this.rulelist = rulelist;
-	}
-
-	public Set<MemberorderBean> getMemberorder() {
-		return memberorder;
-	}
-
-	public void setMemberorder(Set<MemberorderBean> memberorder) {
-		this.memberorder = memberorder;
-	}
 
 }
