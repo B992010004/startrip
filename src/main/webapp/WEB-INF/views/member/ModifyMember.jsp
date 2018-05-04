@@ -83,39 +83,55 @@
 			<form:form method="post" modelAttribute="MemberBean"
 				class="probootstrap-form probootstrap-form-box mb60"
 				enctype="multipart/form-data">
-			
+
 				<H2 class="display-4 border-bottom probootstrap-section-heading"
 					style="text-align: center">Sign Up</H2>
 				<div class="row">
 
 					<div class="col-md-6  probootstrap-animate">
-						
+
 						<div class="form-group">
-							<label>姓名:</label> <form:input type="text" class="form-control"
-								name="mName" path="username" value="${LoginOK.username}" placeholder="請輸入"  autofocus="autofocus"  required="required" />
+							<label>姓名:</label>
+							<form:input type="text" class="form-control" name="mName"
+								path="username" value="${LoginOK.username}" placeholder="請輸入"
+								autofocus="autofocus" required="required" />
 						</div>
 						<div class="form-group">
-							<label>地址:</label> <form:input type="text" class="form-control"
-								name="mAdd" path="address" value="${LoginOK.address}" placeholder="請輸入"  autofocus="autofocus"  required="required" /> 
+							<label>地址:</label>
+							<form:input type="text" class="form-control" name="mAdd"
+								path="address" value="${LoginOK.address}" placeholder="請輸入"
+								autofocus="autofocus" required="required" />
 						</div>
 						<div class="form-group">
-							<label>電話:</label> <form:input type="text" class="form-control"
-								name="mPhone" path="phone" value="${LoginOK.phone}" placeholder="請輸入"   autofocus="autofocus"  required="required"/>
+							<label>電話:</label>
+							<form:input type="text" class="form-control" name="mPhone"
+								path="phone" value="${LoginOK.phone}" placeholder="請輸入"
+								autofocus="autofocus" required="required" />
 						</div>
 					</div>
 					<div class="col-md-6  probootstrap-animate">
 						<div class="form-group">
-							<label>生日:</label> <form:input type="text" class="form-control"
-								name="mbday" path="birthday" value="${LoginOK.birthday}" placeholder="請輸入"  autofocus="autofocus"  required="required" />
+							<label>生日:</label>
+							<form:input type="text" class="form-control" name="mbday"
+								path="birthday" value="${LoginOK.birthday}" placeholder="請輸入"
+								autofocus="autofocus" required="required" />
 						</div>
-
+						<div class="form-group">
+							<form:input type="text" class="form-control" name="mEmail"
+								path='mail' style="display: none;" value="${LoginOK.mail}"></form:input>
+						</div>
+						<div class="form-group">
+							<form:input type="password" class="form-control" name="mPwd"
+								path="password" style="display: none;" value="${LoginOK.password}" />
+						</div>
 						<div class="form-group">
 							<img id="preview_progressbarTW_img" class="img1" value=""
-								src="/startrip/assets/images/membericon/snop.jpg" />
-								 <label for="progressbarTWInput" class="btn btn-primary"> input
-								file</label> 
-								<form:input type="file" path="avatarImage" id="progressbarTWInput" name="mAvatar"
-								accept="image/gif, image/jpeg, image/png"  style="display: none;" />
+								src="/startrip/assets/images/membericon/snop.jpg" /> <label
+								for="progressbarTWInput" class="btn btn-primary"> input
+								file</label>
+							<form:input type="file" path="avatarImage"
+								id="progressbarTWInput" name="mAvatar"
+								accept="image/gif, image/jpeg, image/png" style="display: none;" />
 						</div>
 						<div class="form-group">
 							<input type="submit" class="btn btn-primary" id="submit"

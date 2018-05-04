@@ -3,13 +3,13 @@ package com.startrip.member.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashMap;
-import java.util.Map;
+import java.sql.Blob;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.sql.rowset.serial.SerialBlob;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -46,19 +46,31 @@ public class MemberController {
 		return "index";
 	}
 
+	
 	@RequestMapping(value = "/insertMember", method = RequestMethod.POST)
 	public String InsertMember(@ModelAttribute("MemberBean") MemberBean mb, BindingResult result,
 			HttpServletRequest request) {
 
 		MultipartFile avatarImage = mb.getAvatarImage();
-		System.out.println(avatarImage);
+	
 		String originalFilename = avatarImage.getOriginalFilename();
 		String ext = originalFilename.substring(originalFilename.lastIndexOf("."));
 		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
-		mb.setAvatar(mb.getMail() + ext);
+		if (avatarImage != null && avatarImage.isEmpty()) {
+			try {
+				byte[] b = avatarImage.getBytes();
+				Blob blob = new SerialBlob(b);
+				mb.setPhoto(blob);
+			} catch (Exception e) {
+				e.printStackTrace();
+				throw new RuntimeException("檔案上傳發生異常" + e.getMessage());
+			}
+		}
+		mb.setAvatar(mb.getMail()+ext);
 		memberservice.insert(mb);
+	
 		try {
-			File imageFolder = new File(rootDirectory, "images");
+			File imageFolder = new File(rootDirectory, "membericon");
 			if (!imageFolder.exists())
 				imageFolder.mkdirs();
 			File file = new File(imageFolder, mb.getMail() + ext);
@@ -103,13 +115,25 @@ public class MemberController {
 			HttpServletRequest request) {
 
 		MultipartFile avatarImage = mb.getAvatarImage();
-		System.out.println(avatarImage);
+		
 		String originalFilename = avatarImage.getOriginalFilename();
+		System.out.println(originalFilename);
 		String ext = originalFilename.substring(originalFilename.lastIndexOf("."));
 		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
 		mb.setAvatar(mb.getMail() + ext);
+		if (avatarImage != null && avatarImage.isEmpty()) {
+			try {
+				byte[] b = avatarImage.getBytes();
+				Blob blob = new SerialBlob(b);
+				mb.setPhoto(blob);
+			} catch (Exception e) {
+				e.printStackTrace();
+				throw new RuntimeException("檔案上傳發生異常" + e.getMessage());
+			}
+		}	
 		memberservice.update(mb.getMail(), mb.getPassword(), mb.getUsername(), mb.getAddress(), mb.getPhone(),
-				mb.getBirthday(), mb.getAvatar());
+				mb.getBirthday(), mb.getAvatar() ,mb.getPhoto());
+		
 		try {
 			File imageFolder = new File(rootDirectory, "images");
 			if (!imageFolder.exists())
@@ -122,5 +146,4 @@ public class MemberController {
 		}
 		return "index";
 	}
-
 }

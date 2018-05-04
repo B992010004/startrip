@@ -1,5 +1,6 @@
 package com.startrip.member.memberModle;
 
+import java.sql.Blob;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -35,7 +36,16 @@ public class MemberBean {
 	private int phone;
 	private String birthday;
 	private String avatar;
+	private Blob photo;
 	
+	
+	@XmlTransient
+	public Blob getPhoto() {
+		return photo;
+	}
+	public void setPhoto(Blob photo) {
+		this.photo = photo;
+	}
 	//-------------------------------
 	@OneToMany(mappedBy="mailBean",cascade= {CascadeType.ALL})
 	private Set<TravelViewBean> ViewMB;
@@ -135,7 +145,7 @@ public class MemberBean {
 	public void setTravels(Set<TravelAllBean> travels) {
 		this.travels = travels;
 	}
-	
+
 	
 	//--------------------------------------------
 	
