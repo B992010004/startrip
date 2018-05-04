@@ -9,8 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.startrip.travelPlan.travelView.Dao.TravelViewDao;
 import com.startrip.travelPlan.travelView.model.TravelViewBean;
-import com.startrip.travelPlan.viewSource.DAO.imp.imageDao;
-import com.startrip.travelPlan.viewSource.model.viewSourceCollection;
 @Service
 public class viewService implements travelViewService {
 	@Autowired

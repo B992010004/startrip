@@ -12,7 +12,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.startrip.travelPlan._trip.model.MemberBean;
+import com.startrip.member.memberModle.MemberBean;
 import com.startrip.travelPlan.travelView.model.TravelViewBean;
 
 @Entity
