@@ -41,9 +41,9 @@ public class TravelViewDaoImp implements TravelViewDao {
 	public void insert(TravelViewBean bean) {
 		
 		Session session  =factory.getCurrentSession();
-		MemberBean mb = getMemberId(bean.getMemberId());
+		MemberBean mb = getMemberId(bean.getMail());
 //		Set<viewSourceCollection> vsc = getImgId(bean.getViewImageId());
-		bean.setMember(mb);
+		bean.setMailBean(mb);;
 //		bean.setImageIds(vsc);;
 		session.save(bean);
 		
@@ -56,7 +56,7 @@ public class TravelViewDaoImp implements TravelViewDao {
 //		return id;
 //	}
 //	
-	public MemberBean getMemberId(int memberId) {
+	public MemberBean getMemberId(String memberId) {
 		MemberBean id = null;
 		Session session= factory.getCurrentSession();
 		 id = session.get(MemberBean.class, memberId);
@@ -87,6 +87,8 @@ public class TravelViewDaoImp implements TravelViewDao {
 		return list;
 	}
 	
-	
+	public static void main (String[] args) {
+		
+	}
 
 }

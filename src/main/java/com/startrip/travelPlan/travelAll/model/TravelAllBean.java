@@ -25,7 +25,7 @@ public class TravelAllBean {
 	private java.sql.Date endDate;
 	private int travelDays;
 	
-	private MemberBean memberId;//fk
+	private MemberBean mailBean;//fk
 	private Set<TravelViewBean> Views;
 	private Set<MemberBean> travels;
 	
@@ -65,12 +65,12 @@ public class TravelAllBean {
 	
 	//memberId關連到MemeberBean的memberId
 		@ManyToOne
-		@JoinColumn(name="memberId",referencedColumnName="memberId",insertable=true,updatable=false)
-	public MemberBean getMemberId() {
-		return memberId;
+		@JoinColumn(name="mail",referencedColumnName="mail",insertable=true,updatable=false)
+	public MemberBean getMailBean() {
+		return mailBean;
 	}
-	public void setMemberId(MemberBean memberId) {
-		this.memberId = memberId;
+	public void setMailBean(MemberBean mailBean) {
+		this.mailBean = mailBean;
 	}
 	
 	//將travel_Id加入TravelList,view_Id關連到TravelViewBean的PK
@@ -84,7 +84,7 @@ public class TravelAllBean {
 	}
 	//將travel_Id加入travelCollection,member_Id關連到MemberBean的PK
 	@ManyToMany
-	@JoinTable(name="travelCollection",joinColumns=@JoinColumn(name="travel_Id"),inverseJoinColumns=@JoinColumn(name="member_Id"))
+	@JoinTable(name="travelCollection",joinColumns=@JoinColumn(name="travel_Id"),inverseJoinColumns=@JoinColumn(name="member_Mail"))
 	public Set<MemberBean> getTravels() {
 		return travels;
 	}
