@@ -9,21 +9,21 @@
 
   <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,700" rel="stylesheet">
 
-  <link rel="stylesheet" href="assets/css/bootstrap/bootstrap.css">
-  <link rel="stylesheet" href="assets/css/animate.css">
-  <link rel="stylesheet" href="assets/fonts/ionicons/css/ionicons.min.css">
+  <link rel="stylesheet" href="/startrip/assets/css/bootstrap/bootstrap.css">
+  <link rel="stylesheet" href="/startrip/assets/css/animate.css">
+  <link rel="stylesheet" href="/startrip/assets/fonts/ionicons/css/ionicons.min.css">
 
-  <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+  <link rel="stylesheet" href="/startrip/assets/css/owl.carousel.min.css">
 
-  <link rel="stylesheet" href="assets/fonts/flaticon/font/flaticon.css">
+  <link rel="stylesheet" href="/startrip/assets/fonts/flaticon/font/flaticon.css">
 
-  <link rel="stylesheet" href="assets/fonts/fontawesome/css/font-awesome.min.css">
-  <link rel="stylesheet" href="assets/css/bootstrap-datepicker.css">
-  <link rel="stylesheet" href="assets/css/select2.css">
+  <link rel="stylesheet" href="/startrip/assets/fonts/fontawesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/startrip/assets/css/bootstrap-datepicker.css">
+  <link rel="stylesheet" href="/startrip/assets/css/select2.css">
 
 
-  <link rel="stylesheet" href="assets/css/helpers.css">
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="/startrip/assets/css/helpers.css">
+  <link rel="stylesheet" href="/startrip/assets/css/style.css">
 
   <style>
     #section-home {
@@ -75,7 +75,7 @@
     </div>
   </nav>
   <!-- END nav -->
-  <section class="probootstrap-cover overflow-hidden relative" style="background-image: url('assets/images/bg_1.jpg');" data-stellar-background-ratio="0.5"
+  <section class="probootstrap-cover overflow-hidden relative" style="background-image: url('/startrip/assets/images/bg_1.jpg');" data-stellar-background-ratio="0.5"
     id="section-home">
     <div class="overlay"></div>
   </section>
@@ -209,21 +209,21 @@
   <!-- END footer -->
 
 
-  <script src="assets/js/jquery.min.js"></script>
+  <script src="/startrip/assets/js/jquery.min.js"></script>
 
-  <script src="assets/js/popper.min.js"></script>
-  <script src="assets/js/bootstrap.min.js"></script>
-  <script src="assets/js/owl.carousel.min.js"></script>
+  <script src="/startrip/assets/js/popper.min.js"></script>
+  <script src="/startrip/assets/js/bootstrap.min.js"></script>
+  <script src="/startrip/assets/js/owl.carousel.min.js"></script>
 
-  <script src="assets/js/bootstrap-datepicker.js"></script>
-  <script src="assets/js/jquery.waypoints.min.js"></script>
-  <script src="assets/js/jquery.easing.1.3.js"></script>
+  <script src="/startrip/assets/js/bootstrap-datepicker.js"></script>
+  <script src="/startrip/assets/js/jquery.waypoints.min.js"></script>
+  <script src="/startrip/assets/js/jquery.easing.1.3.js"></script>
 
-  <script src="assets/js/select2.min.js"></script>
+  <script src="/startrip/assets/js/select2.min.js"></script>
 
-  <script src="assets/js/main.js"></script>
+  <script src="/startrip/assets/js/main.js"></script>
 
-  <script src="assets/js/range.js"></script>
+  <script src="/startrip/assets/js/range.js"></script>
 
 </body>
 

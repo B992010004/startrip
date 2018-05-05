@@ -8,21 +8,21 @@
 
   <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,700" rel="stylesheet">
 
-  <link rel="stylesheet" href="../assets/css/bootstrap/bootstrap.css">
-  <link rel="stylesheet" href="../assets/css/animate.css">
-  <link rel="stylesheet" href="../assets/fonts/ionicons/css/ionicons.min.css">
+  <link rel="stylesheet" href="/startrip/assets/css/bootstrap/bootstrap.css">
+  <link rel="stylesheet" href="/startrip/assets/css/animate.css">
+  <link rel="stylesheet" href="/startrip/assets/fonts/ionicons/css/ionicons.min.css">
 
-  <link rel="stylesheet" href="../assets/css/owl.carousel.min.css">
+  <link rel="stylesheet" href="/startrip/assets/css/owl.carousel.min.css">
 
-  <link rel="stylesheet" href="../assets/fonts/flaticon/font/flaticon.css">
+  <link rel="stylesheet" href="/startrip/assets/fonts/flaticon/font/flaticon.css">
 
-  <link rel="stylesheet" href="../assets/fonts/fontawesome/css/font-awesome.min.css">
-  <link rel="stylesheet" href="../assets/css/bootstrap-datepicker.css">
-  <link rel="stylesheet" href="../assets/css/select2.css">
+  <link rel="stylesheet" href="/startrip/assets/fonts/fontawesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/startrip/assets/css/bootstrap-datepicker.css">
+  <link rel="stylesheet" href="/startrip/assets/css/select2.css">
 
 
-  <link rel="stylesheet" href="../assets/css/helpers.css">
-  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="/startrip/assets/css/helpers.css">
+  <link rel="stylesheet" href="/startrip/assets/css/style.css">
 
   <style>
     #section-home {
@@ -78,7 +78,7 @@
     </div>
   </nav>
   <!-- END nav -->
-  <section class="probootstrap-cover overflow-hidden relative" style="background-image: url('../assets/images/bg_1.jpg');"
+  <section class="probootstrap-cover overflow-hidden relative" style="background-image: url('/startrip/assets/images/bg_1.jpg');"
     data-stellar-background-ratio="0.5" id="section-home">
     <div class="overlay"></div>
   </section>
@@ -92,14 +92,14 @@
         <div class="tab-pane fade show active" id="v-pills-hotel" role="tabpanel" aria-labelledby="v-pills-hotel-tab">
           <div class="row">
             <div class="col-sm-2">
-              <form action="HostConnect_Hotel.html">
-                <button type="submit" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal">
+              <form action="/startrip/admin/HostConnect_AddHotel" method="POST">
+                <button type="submit" value="0" name="setting" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal">
                   新增飯店
                 </button>
               </form>
             </div>
             <div class="col-sm-6">
-              <form action="HostConnect_Orders.html">
+              <form action="/startrip/admin/HostConnect_Orders">
                 <button type="submit" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal">
                   訂單管理
                 </button>
@@ -107,7 +107,7 @@
             </div>
             <!-- select by name -->
             <div class="col-sm-4">
-              <form action="HostManage.html" method="GET" class="form-inline my-2 my-lg-0">
+              <form action="HostManage" method="GET" class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" name="name" placeholder="飯店名稱查詢" aria-label="Search">
                 <button class="btn btn-light my-2 my-sm-0" type="submit">查詢</button>
               </form>
@@ -133,7 +133,7 @@
               <tbody>
                 <tr>
                   <th scope="row">
-                    <img src="../assets/images/test1.jpg" class="img-thumbnail" />
+                    <img src="/startrip/assets/images/test1.jpg" class="img-thumbnail" />
                   </th>
                   <td>
                     台北君悅酒店
@@ -142,15 +142,15 @@
                   <td>5</td>
                   <td>台北市信義區松壽路2號</td>
                   <td>
-                    <form action="HostConnect_Hotel.html" method="">
-                      <button type="submit" value="20170605001" name="setting" class="btn btn-outline-dark">
+                    <form action="/startrip/admin/HostConnect_Hotel" method="POST">
+                      <button type="submit" value="1" name="pk"  class="btn btn-outline-dark">
                         管理
                       </button>
                     </form>
                   </td>
                   <td>
-                    <form action="" method="">
-                      <button type="submit" value="20170605001" name="state" class="btn btn-outline-dark">
+                    <form action="HostManage" method="">
+                      <button type="submit" value="1" name="pk" class="btn btn-outline-dark">
                         未完成
                       </button>
                     </form>
@@ -256,21 +256,21 @@
   <!-- END footer -->
 
 
-  <script src="../assets/js/jquery.min.js"></script>
+  <script src="/startrip/assets/js/jquery.min.js"></script>
 
-  <script src="../assets/js/popper.min.js"></script>
-  <script src="../assets/js/bootstrap.min.js"></script>
-  <script src="../assets/js/owl.carousel.min.js"></script>
+  <script src="/startrip/assets/js/popper.min.js"></script>
+  <script src="/startrip/assets/js/bootstrap.min.js"></script>
+  <script src="/startrip/assets/js/owl.carousel.min.js"></script>
 
-  <script src="../assets/js/bootstrap-datepicker.js"></script>
-  <script src="../assets/js/jquery.waypoints.min.js"></script>
-  <script src="../assets/js/jquery.easing.1.3.js"></script>
+  <script src="/startrip/assets/js/bootstrap-datepicker.js"></script>
+  <script src="/startrip/assets/js/jquery.waypoints.min.js"></script>
+  <script src="/startrip/assets/js/jquery.easing.1.3.js"></script>
 
-  <script src="../assets/js/select2.min.js"></script>
+  <script src="/startrip/assets/js/select2.min.js"></script>
 
-  <script src="../assets/js/main.js"></script>
+  <script src="/startrip/assets/js/main.js"></script>
 
-  <script src="../assets/js/range.js"></script>
+  <script src="/startrip/assets/js/range.js"></script>
 
 </body>
 

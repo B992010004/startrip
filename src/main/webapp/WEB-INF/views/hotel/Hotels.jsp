@@ -9,21 +9,21 @@
 
   <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,700" rel="stylesheet">
 
-  <link rel="stylesheet" href="assets/css/bootstrap/bootstrap.css">
-  <link rel="stylesheet" href="assets/css/animate.css">
-  <link rel="stylesheet" href="assets/fonts/ionicons/css/ionicons.min.css">
+  <link rel="stylesheet" href="/startrip/assets/css/bootstrap/bootstrap.css">
+  <link rel="stylesheet" href="/startrip/assets/css/animate.css">
+  <link rel="stylesheet" href="/startrip/assets/fonts/ionicons/css/ionicons.min.css">
 
-  <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+  <link rel="stylesheet" href="/startrip/assets/css/owl.carousel.min.css">
 
-  <link rel="stylesheet" href="assets/fonts/flaticon/font/flaticon.css">
+  <link rel="stylesheet" href="/startrip/assets/fonts/flaticon/font/flaticon.css">
 
-  <link rel="stylesheet" href="assets/fonts/fontawesome/css/font-awesome.min.css">
-  <link rel="stylesheet" href="assets/css/bootstrap-datepicker.css">
-  <link rel="stylesheet" href="assets/css/select2.css">
+  <link rel="stylesheet" href="/startrip/assets/fonts/fontawesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/startrip/assets/css/bootstrap-datepicker.css">
+  <link rel="stylesheet" href="/startrip/assets/css/select2.css">
 
 
-  <link rel="stylesheet" href="assets/css/helpers.css">
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="/startrip/assets/css/helpers.css">
+  <link rel="stylesheet" href="/startrip/assets/css/style.css">
   <style>
     #inputState {
       height: 46px;
@@ -76,7 +76,7 @@
   <!-- END nav -->
 
 
-  <section class="probootstrap-cover overflow-hidden relative" style="background-image: url('assets/images/bg_1.jpg');" data-stellar-background-ratio="0.5"
+  <section class="probootstrap-cover overflow-hidden relative" style="background-image: url('/startrip/assets/images/bg_1.jpg');" data-stellar-background-ratio="0.5"
     id="section-home">
     <div class="overlay"></div>
     <div class="container">
@@ -220,7 +220,7 @@
       <div class="row">
         <div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
           <a href="#" class="probootstrap-thumbnail">
-            <img src="assets/images/img_1.jpg" alt="Free Template by ProBootstrap.com" class="img-fluid">
+            <img src="/startrip/assets/images/img_1.jpg" alt="Free Template by ProBootstrap.com" class="img-fluid">
             <div class="probootstrap-text">
               <h3>5</h3>
             </div>
@@ -228,19 +228,19 @@
         </div>
         <div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
           <a href="#" class="probootstrap-thumbnail">
-            <img src="assets/images/img_2.jpg" alt="Free Template by ProBootstrap.com" class="img-fluid">
+            <img src="/startrip/assets/images/img_2.jpg" alt="Free Template by ProBootstrap.com" class="img-fluid">
             <h3>6</h3>
           </a>
         </div>
         <div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
           <a href="#" class="probootstrap-thumbnail">
-            <img src="assets/images/img_3.jpg" alt="Free Template by ProBootstrap.com" class="img-fluid">
+            <img src="/startrip/assets/images/img_3.jpg" alt="Free Template by ProBootstrap.com" class="img-fluid">
             <h3>7</h3>
           </a>
         </div>
         <div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
           <a href="#" class="probootstrap-thumbnail">
-            <img src="assets/images/img_4.jpg" alt="Free Template by ProBootstrap.com" class="img-fluid">
+            <img src="/startrip/assets/images/img_4.jpg" alt="Free Template by ProBootstrap.com" class="img-fluid">
             <h3>8</h3>
           </a>
         </div>
@@ -339,19 +339,19 @@
   <!-- END footer -->
 
 
-  <script src="assets/js/jquery.min.js"></script>
+  <script src="/startrip/assets/js/jquery.min.js"></script>
 
-  <script src="assets/js/popper.min.js"></script>
-  <script src="assets/js/bootstrap.min.js"></script>
-  <script src="assets/js/owl.carousel.min.js"></script>
+  <script src="/startrip/assets/js/popper.min.js"></script>
+  <script src="/startrip/assets/js/bootstrap.min.js"></script>
+  <script src="/startrip/assets/js/owl.carousel.min.js"></script>
 
-  <script src="assets/js/bootstrap-datepicker.js"></script>
-  <script src="assets/js/jquery.waypoints.min.js"></script>
-  <script src="assets/js/jquery.easing.1.3.js"></script>
+  <script src="/startrip/assets/js/bootstrap-datepicker.js"></script>
+  <script src="/startrip/assets/js/jquery.waypoints.min.js"></script>
+  <script src="/startrip/assets/js/jquery.easing.1.3.js"></script>
 
-  <script src="assets/js/select2.min.js"></script>
+  <script src="/startrip/assets/js/select2.min.js"></script>
 
-  <script src="assets/js/main.js"></script>
+  <script src="/startrip/assets/js/main.js"></script>
 
 
 </body>

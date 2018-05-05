@@ -9,6 +9,7 @@ import javax.persistence.Id;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -46,7 +47,7 @@ public class HotelsBean implements Serializable{
 	private Integer hotelid;
 	
 	private String hotelname;
-	private Integer hotelphone;
+	private String hotelphone;
 	private Integer hotelstar;
 	private String hoteladdress;
 	private Boolean hotelstate;
@@ -78,11 +79,11 @@ public class HotelsBean implements Serializable{
 		this.hotelname = hotelname;
 	}
 
-	public Integer getHotelphone() {
+	public String getHotelphone() {
 		return hotelphone;
 	}
 
-	public void setHotelphone(Integer hotelphone) {
+	public void setHotelphone(String hotelphone) {
 		this.hotelphone = hotelphone;
 	}
 

@@ -9,21 +9,21 @@
 
   <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,700" rel="stylesheet">
 
-  <link rel="stylesheet" href="../assets/css/bootstrap/bootstrap.css">
-  <link rel="stylesheet" href="../assets/css/animate.css">
-  <link rel="stylesheet" href="../assets/fonts/ionicons/css/ionicons.min.css">
+  <link rel="stylesheet" href="/startrip/assets/css/bootstrap/bootstrap.css">
+  <link rel="stylesheet" href="/startrip/assets/css/animate.css">
+  <link rel="stylesheet" href="/startrip/assets/fonts/ionicons/css/ionicons.min.css">
 
-  <link rel="stylesheet" href="../assets/css/owl.carousel.min.css">
+  <link rel="stylesheet" href="/startrip/assets/css/owl.carousel.min.css">
 
-  <link rel="stylesheet" href="../assets/fonts/flaticon/font/flaticon.css">
+  <link rel="stylesheet" href="/startrip/assets/fonts/flaticon/font/flaticon.css">
 
-  <link rel="stylesheet" href="../assets/fonts/fontawesome/css/font-awesome.min.css">
-  <link rel="stylesheet" href="../assets/css/bootstrap-datepicker.css">
-  <link rel="stylesheet" href="../assets/css/select2.css">
+  <link rel="stylesheet" href="/startrip/assets/fonts/fontawesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/startrip/assets/css/bootstrap-datepicker.css">
+  <link rel="stylesheet" href="/startrip/assets/css/select2.css">
 
 
-  <link rel="stylesheet" href="../assets/css/helpers.css">
-  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="/startrip/assets/css/helpers.css">
+  <link rel="stylesheet" href="/startrip/assets/css/style.css">
 
   <style>
     #section-home {
@@ -92,7 +92,7 @@
     </div>
   </nav>
   <!-- END nav -->
-  <section class="probootstrap-cover overflow-hidden relative" style="background-image: url('../assets/images/bg_1.jpg');"
+  <section class="probootstrap-cover overflow-hidden relative" style="background-image: url('/startrip/assets/images/bg_1.jpg');"
     data-stellar-background-ratio="0.5" id="section-home">
     <div class="overlay"></div>
   </section>
@@ -102,22 +102,22 @@
     <div class="row">
       <div class="col-md-2">
         <nav class="nav flex-column subnav">
-          <a class="nav-link" href="HostConnect_Hotel.html">基本資訊</a>
-          <a class="nav-link active" href="HostConnect_Info.html">住宿簡介</a>
-          <a class="nav-link" href="HostConnect_Service.html">服務與設施</a>
-          <a class="nav-link" href="HostConnect_Rooms.html">設定房型</a>
-          <a class="nav-link" href="HostConnect_Bookingday.html">設定可訂房期間</a>
-          <a class="nav-link" href="HostConnect_Image.html">照片</a>
-          <a class="nav-link" href="HostConnect_Onsale.html">上線販售</a>
+          <a class="nav-link" href="/startrip/admin/HostConnect_Hotel">基本資訊</a>
+          <a class="nav-link active" href="/startrip/admin/HostConnect_Info">住宿簡介</a>
+          <a class="nav-link" href="/startrip/admin/HostConnect_Service">服務與設施</a>
+          <a class="nav-link" href="/startrip/admin/HostConnect_Rooms">設定房型</a>
+          <a class="nav-link" href="/startrip/admin/HostConnect_Bookingday">設定可訂房期間</a>
+          <a class="nav-link" href="/startrip/admin/HostConnect_Image">照片</a>
+          <a class="nav-link" href="/startrip/admin/HostConnect_Onsale">上線販售</a>
         </nav>
       </div>
       <div class="col-md-10">
-        <form action="">
+        <form action="/startrip/admin/HostConnect_Service" method="POST">
           <br>
           <h5>介紹：</h5>
           <div class="form-row  ml-4">
             <div class="form-group col-md">
-              <textarea class="form-control" name="note" rows="8" placeholder="範例：設計概念源於18世紀布拉格的澳門勵庭海景酒店為客人帶來不同凡響的酒店住宿、餐飲及購物體驗。酒店共有389間舒適客房及55間寬敞套房，房內備有品牌淋浴用品及免費無線網路可讓客人與遠方親友保持緊密聯繫。這個揉合古典魅力和現代優雅的獨特體驗，從可品嚐國際美食的珀克餐廳延伸至可暢飲美酒的珀克酒吧。酒店更設有按摩浴池、健身中心及適合四季使用的恆温泳池，能助您舒緩緊張情緒。此外，酒店亦毗鄰多個位於澳門半島及澳門漁人碼頭的旅遊景點。這別具新藝術建築特色的酒店為您帶來無與倫比的生活享受及難忘回憶。"></textarea>
+              <textarea class="form-control" name="info" rows="8" placeholder="範例：設計概念源於18世紀布拉格的澳門勵庭海景酒店為客人帶來不同凡響的酒店住宿、餐飲及購物體驗。酒店共有389間舒適客房及55間寬敞套房，房內備有品牌淋浴用品及免費無線網路可讓客人與遠方親友保持緊密聯繫。這個揉合古典魅力和現代優雅的獨特體驗，從可品嚐國際美食的珀克餐廳延伸至可暢飲美酒的珀克酒吧。酒店更設有按摩浴池、健身中心及適合四季使用的恆温泳池，能助您舒緩緊張情緒。此外，酒店亦毗鄰多個位於澳門半島及澳門漁人碼頭的旅遊景點。這別具新藝術建築特色的酒店為您帶來無與倫比的生活享受及難忘回憶。"></textarea>
             </div>
           </div>
           <hr>
@@ -130,10 +130,10 @@
           <hr>
           <div class="row">
             <div class="col-md-3">
-              <a href="HostManage.html">儲存並離開</a>
+              <a href="HostManage">儲存並離開</a>
             </div>
             <div class="col-md-2">
-              <button type="submit" class="btn btn-outline-secondary">上一步</button>
+             <a href="/startrip/admin/HostConnect_Hotel" class="btn btn-outline-secondary">上一步</a>
             </div>
             <div class="col-md-2">
               <button type="submit" class="btn btn-outline-primary">下一步</button>
@@ -238,21 +238,21 @@
     <!-- END footer -->
 
 
-    <script src="../assets/js/jquery.min.js"></script>
+    <script src="/startrip/assets/js/jquery.min.js"></script>
 
-    <script src="../assets/js/popper.min.js"></script>
-    <script src="../assets/js/bootstrap.min.js"></script>
-    <script src="../assets/js/owl.carousel.min.js"></script>
+    <script src="/startrip/assets/js/popper.min.js"></script>
+    <script src="/startrip/assets/js/bootstrap.min.js"></script>
+    <script src="/startrip/assets/js/owl.carousel.min.js"></script>
 
-    <script src="../assets/js/bootstrap-datepicker.js"></script>
-    <script src="../assets/js/jquery.waypoints.min.js"></script>
-    <script src="../assets/js/jquery.easing.1.3.js"></script>
+    <script src="/startrip/assets/js/bootstrap-datepicker.js"></script>
+    <script src="/startrip/assets/js/jquery.waypoints.min.js"></script>
+    <script src="/startrip/assets/js/jquery.easing.1.3.js"></script>
 
-    <script src="../assets/js/select2.min.js"></script>
+    <script src="/startrip/assets/js/select2.min.js"></script>
 
-    <script src="../assets/js/main.js"></script>
+    <script src="/startrip/assets/js/main.js"></script>
 
-    <script src="../assets/js/range.js"></script>
+    <script src="/startrip/assets/js/range.js"></script>
 
 </body>
 
