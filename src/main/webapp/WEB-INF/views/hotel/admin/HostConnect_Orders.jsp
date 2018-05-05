@@ -113,6 +113,7 @@
         <button type="submit" class="btn btn-outline-secondary ml-5">離開</button>
       </div>
     </div>
+   </div>
 
     <footer class="probootstrap_section probootstrap-border-top">
       <div class="container">

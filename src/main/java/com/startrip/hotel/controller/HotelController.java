@@ -109,7 +109,7 @@ public class HotelController {
 
 		if (pk != null) {
 			System.out.println("變更飯店基本資料");
-			hotelAdminService.updateHotel(pk,name,phone,address,star);
+			hotelAdminService.updateHotel(pk, name, phone, address, star);
 		} else {
 			HotelsBean bean = new HotelsBean();
 			bean.setHotelname(name);
@@ -146,17 +146,33 @@ public class HotelController {
 		if (pk != null) {
 			HotelsBean bean = new HotelsBean();
 
-			hotelAdminService.updateHotel(pk,info,note);
+			hotelAdminService.updateHotel(pk, info, note);
 		}
 		return "redirect:/admin/HostConnect_Service";
 	}
 
 	@RequestMapping(value = "/admin/HostConnect_Service", method = RequestMethod.GET)
-	public String hostConnectService(Model model) {
+	public String hostConnectService(Model model, HttpServletRequest request) {
+
+		request.setAttribute("facilityname", hotelAdminService.selectFacilityname());
+		request.setAttribute("servicename", hotelAdminService.selectServicename());
+
 		return "hotel/admin/HostConnect_Service";
 	}
 
-	@RequestMapping(value = "/admin/HostConnect_Rooms")
+	@RequestMapping(value = "/admin/HostConnect_Rooms", method = RequestMethod.POST)
+	public String hostConnectRoomsNextPage(Model model, HttpServletRequest request, @RequestParam Integer refund,
+			@RequestParam Integer advanceday) {
+		String[] service = request.getParameterValues("service");
+		String[] facility = request.getParameterValues("facility");
+		System.out.println(service);
+		System.out.println(facility);
+		
+
+		return "redirect:/admin/HostConnect_Rooms";
+	}
+
+	@RequestMapping(value = "/admin/HostConnect_Rooms", method = RequestMethod.GET)
 	public String hostConnectRooms(Model model) {
 		return "hotel/admin/HostConnect_Rooms";
 	}

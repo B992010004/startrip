@@ -290,6 +290,8 @@
           </div>
         </div>
       </div>
+     </div>
+     </div>
 
       <footer class="probootstrap_section probootstrap-border-top">
         <div class="container">

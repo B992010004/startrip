@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -111,17 +113,17 @@
     <div class="row">
       <div class="col-md-2">
         <nav class="nav flex-column subnav">
-          <a class="nav-link" href="/startrip/admin/HostConnect_Hotel.html">基本資訊</a>
-          <a class="nav-link" href="/startrip/admin/HostConnect_Info.html">住宿簡介</a>
-          <a class="nav-link active" href="/startrip/admin/HostConnect_Service.html">服務與設施</a>
-          <a class="nav-link" href="/startrip/admin/HostConnect_Rooms.html">設定房型</a>
-          <a class="nav-link" href="/startrip/admin/HostConnect_Bookingday.html">設定可訂房期間</a>
-          <a class="nav-link" href="/startrip/admin/HostConnect_Image.html">照片</a>
-          <a class="nav-link" href="/startrip/admin/HostConnect_Onsale.html">上線販售</a>
+          <a class="nav-link" href="/startrip/admin/HostConnect_Hotel">基本資訊</a>
+          <a class="nav-link" href="/startrip/admin/HostConnect_Info">住宿簡介</a>
+          <a class="nav-link active" href="/startrip/admin/HostConnect_Service">服務與設施</a>
+          <a class="nav-link" href="/startrip/admin/HostConnect_Rooms">設定房型</a>
+          <a class="nav-link" href="/startrip/admin/HostConnect_Bookingday">設定可訂房期間</a>
+          <a class="nav-link" href="/startrip/admin/HostConnect_Image">照片</a>
+          <a class="nav-link" href="/startrip/admin/HostConnect_Onsale">上線販售</a>
         </nav>
       </div>
       <div class="col-md-10">
-        <form action="">
+        <form action="/startrip/admin/HostConnect_Rooms" method="POST">
           <br>
           <div class="row">
             <div class="col-md">
@@ -146,22 +148,16 @@
               <h5>可預定時間：</h5>
               <div class="form-row ml-4">
                 <div class="form-group">
-                  <select class="form-control" name="booking">
-                    <option value="2">一個月內</option>
-                    <option value="3">三個月內</option>
-                    <option value="4">六個月內</option>
-                    <option value="5">一年內</option>
-                    <option selected value="1">無限制</option>
+                  <select class="form-control" name="advanceday">
+                    <option value="1">一個月內</option>
+                    <option value="2">三個月內</option>
+                    <option value="3">六個月內</option>
+                    <option value="4">一年內</option>
+                    <option selected value="5">無限制</option>
                   </select>
                 </div>
               </div>
-              <h5>一次最多訂幾晚：</h5>
-              <div class="form-row ml-4">
-                <div class="form-group roomnumber">
-                  <input type="number" onkeydown="javascript: return event.keyCode == 69 ? false : true" class="form-control"
-                    name="rooms" id="rooms" min="1" max="365" value="7">
-                </div>
-              </div>
+             
             </div>
             <div class="col-md-9">
               <div class="row">
@@ -169,94 +165,55 @@
                   <div class="row">
                     <div class="col-md">
                       <h5 class="ml-2">服務：</h5>
-                      <div class="form-row ml-4">
-                        <div class="form-group">
-                          <div class="col-md">
-                            <label for="service1">
-                              <input type="checkbox" id="service1" name="service">客房WIFI</label>
-                            <label for="service2">
-                              <input type="checkbox" id="service2" name="service">公共WIFI</label>
-                            <label for="service3">
-                              <input type="checkbox" id="service3" name="service">網際網路</label>
-                            <label for="service4">
-                              <input type="checkbox" id="service4" name="service">行李寄放</label>
-                          </div>
-                        </div>
+                      
+                     <c:forEach var="service" items="${servicename}" varStatus="status">
+                     <c:if test="${status.count%4 == 1}">
+                       <div class="form-row ml-4">
+                       <div class="form-group">
+                       <div class="col-md">
+                     </c:if>
+                             <label for="service${service.serviceid}">
+                               <input type="checkbox" id="service${service.serviceid}" name="service" value="${service.serviceid}">${service.servicename}</label>
+
+                     <c:if test="${status.count%4 == 0}">
                       </div>
-                      <div class="form-row ml-4">
-                        <div class="form-group">
-                          <div class="col-md">
-                            <label for="service5">
-                              <input type="checkbox" id="service5" name="service">Spa 服務</label>
-                            <label for="service6">
-                              <input type="checkbox" id="service6" name="service">游泳池</label>
-                            <label for="service7">
-                              <input type="checkbox" id="service7" name="service">健身房</label>
-                            <label for="service8">
-                              <input type="checkbox" id="service8" name="service">溫泉</label>
-                          </div>
-                        </div>
                       </div>
-                      <div class="form-row ml-4">
-                        <div class="form-group">
-                          <div class="col-md">
-                            <label for="service9">
-                              <input type="checkbox" id="service9" name="service">餐廳</label>
-                            <label for="servicea">
-                              <input type="checkbox" id="servicea" name="service">24小時前台</label>
-                            <label for="serviceb">
-                              <input type="checkbox" id="serviceb" name="service">收費停車場</label>
-                            <label for="servicec">
-                              <input type="checkbox" id="servicec" name="service">區域接駁車</label>
-                          </div>
-                        </div>
                       </div>
+                     </c:if>
+                     <c:if test="${status.last && status.count%4 != 0}">
+                      </div>
+                      </div>
+                      </div>
+                     </c:if>
+                     </c:forEach> 
+
                     </div>
                   </div>
                   <hr>
                   <h5 class="ml-2">設施：</h5>
-                  <div class="form-row ml-4">
-                    <div class="form-group">
-                      <div class="col-md">
-                        <label for="facility1">
-                          <input type="checkbox" id="facility1" name="facility">客房WIFI</label>
-                        <label for="facility2">
-                          <input type="checkbox" id="facility2" name="facility">公共WIFI</label>
-                        <label for="facility3">
-                          <input type="checkbox" id="facility3" name="facility">網際網路</label>
-                        <label for="facility4">
-                          <input type="checkbox" id="facility4" name="facility">行李寄放</label>
+                  
+                 <c:forEach var="facility" items="${facilityname}" varStatus="status">
+                     <c:if test="${status.count%4 == 1}">
+                       <div class="form-row ml-4">
+                       <div class="form-group">
+                       <div class="col-md">
+                     </c:if>
+                             <label for="facility${facility.facilityid}">
+                               <input type="checkbox" id="facility${facility.facilityid}" name="facility" value="${facility.facilityid}">${facility.facilityname}</label>
+
+                     <c:if test="${status.count%4 == 0}">
                       </div>
-                    </div>
-                  </div>
-                  <div class="form-row ml-4">
-                    <div class="form-group">
-                      <div class="col-md">
-                        <label for="facility5">
-                          <input type="checkbox" id="facility5" name="facility">Spa 服務</label>
-                        <label for="facility6">
-                          <input type="checkbox" id="facility6" name="facility">游泳池</label>
-                        <label for="facility7">
-                          <input type="checkbox" id="facility7" name="facility">健身房</label>
-                        <label for="facility8">
-                          <input type="checkbox" id="facility8" name="facility">溫泉</label>
                       </div>
-                    </div>
-                  </div>
-                  <div class="form-row ml-4">
-                    <div class="form-group">
-                      <div class="col-md">
-                        <label for="facility9">
-                          <input type="checkbox" id="facility9" name="facility">餐廳</label>
-                        <label for="facilitya">
-                          <input type="checkbox" id="facilitya" name="facility">24小時前台</label>
-                        <label for="facilityb">
-                          <input type="checkbox" id="facilityb" name="facility">收費停車場</label>
-                        <label for="facilityc">
-                          <input type="checkbox" id="facilityc" name="facility">區域接駁車</label>
                       </div>
-                    </div>
-                  </div>
+                     </c:if>
+                     <c:if test="${status.last && status.count%4 != 0}">
+                      </div>
+                      </div>
+                      </div>
+                     </c:if>
+                     </c:forEach> 
+            
+                  
                 </div>
               </div>
             </div>
@@ -264,7 +221,7 @@
           <hr>
           <div class="row">
             <div class="col-md-3">
-              <a href="HostManage.html">儲存並離開</a>
+              <a href="HostManage">儲存並離開</a>
             </div>
             <div class="col-md-2">
              <a href="/startrip/admin/HostConnect_Info" class="btn btn-outline-secondary">上一步</a>
@@ -276,6 +233,7 @@
         </form>
       </div>
     </div>
+  </div>
 
     <footer class="probootstrap_section probootstrap-border-top">
       <div class="container">

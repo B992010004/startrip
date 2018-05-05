@@ -160,21 +160,7 @@
                     <option value="5">無限制</option>
                   </select>
                 </div>
-              </div>
-              <h5>一次最多訂幾晚：</h5>
-              <div class="form-row ml-4">
-                <div class="form-group roomnumber">
-                  <input type="number" onkeydown="javascript: return event.keyCode == 69 ? false : true" class="form-control" placeholder="預設"
-                    name="rooms" id="rooms" min="1" max="365">
-                </div>
-              </div>
-              <h5>加床費用：</h5>
-              <div class="form-row ml-4">
-                <div class="form-group roomnumber">
-                  <input type="number" onkeydown="javascript: return event.keyCode == 69 ? false : true" class="form-control"
-                    name="extrabed" id="extrabed" placeholder="百分比" step="0.01" min="0" max="1">
-                </div>
-              </div>
+              </div> 
             </div>
             <div class="col-md-9">
               <div class="row">
@@ -280,6 +266,7 @@
           </form>
         </div>
       </div>
+     </div>
 
 
         <footer class="probootstrap_section probootstrap-border-top">

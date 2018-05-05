@@ -60,8 +60,6 @@ public class RoomtypeBean implements Serializable{
 	private Integer numberofrooms;
 	private java.sql.Date opendate;
 	private java.sql.Date enddate;
-	private Boolean extrabed;
-	private Float extrabedprice;
 
 
 	public Integer getHotelid() {
@@ -112,24 +110,12 @@ public class RoomtypeBean implements Serializable{
 	public void setEnddate(java.sql.Date enddate) {
 		this.enddate = enddate;
 	}
-	public Boolean getExtrabed() {
-		return extrabed;
-	}
-	public void setExtrabed(Boolean extrabed) {
-		this.extrabed = extrabed;
-	}
-	public Float getExtrabedprice() {
-		return extrabedprice;
-	}
-	public void setExtrabedprice(Float extrabedprice) {
-		this.extrabedprice = extrabedprice;
-	}
+
 	@Override
 	public String toString() {
 		return "RoomtypeBean [hotelid=" + hotelid + ", roomstate=" + roomstate + ", roomid=" + roomid + ", roomname="
 				+ roomname + ", numberofpeople=" + numberofpeople + ", numberofrooms=" + numberofrooms + ", opendate="
-				+ opendate + ", enddate=" + enddate + ", extrabed=" + extrabed + ", extrabedprice=" + extrabedprice
-				+ "]";
+				+ opendate + ", enddate=" + enddate + "]";
 	}
 	
 	

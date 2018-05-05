@@ -1,26 +1,26 @@
 USE startrip;
 
---DROP TABLE IF EXISTS favorite;
---DROP TABLE IF EXISTS advertisement;
---DROP TABLE IF EXISTS comment;
-DROP TABLE IF EXISTS memberorder;
-DROP TABLE IF EXISTS orderstate;
-DROP TABLE IF EXISTS paymentmethod;
-DROP TABLE IF EXISTS rulelist;
-DROP TABLE IF EXISTS facilitylist;
-DROP TABLE IF EXISTS servicelist;
-DROP TABLE IF EXISTS advanceday;
-DROP TABLE IF EXISTS refund;
-DROP TABLE IF EXISTS facilityname;
-DROP TABLE IF EXISTS servicename;
-DROP TABLE IF EXISTS mainphoto;
-DROP TABLE IF EXISTS photo;
-DROP TABLE IF EXISTS photoname;
-DROP TABLE IF EXISTS singlenight;
-DROP TABLE IF EXISTS roomtype;
-DROP TABLE IF EXISTS roomstate;
-DROP TABLE IF EXISTS hotels;
-DROP TABLE IF EXISTS member;
+--DROP TABLE favorite;
+--DROP TABLE advertisement;
+--DROP TABLE comment;
+DROP TABLE memberorder;
+DROP TABLE orderstate;
+DROP TABLE paymentmethod;
+DROP TABLE rulelist;
+DROP TABLE facilitylist;
+DROP TABLE servicelist;
+DROP TABLE advanceday;
+DROP TABLE refund;
+DROP TABLE facilityname;
+DROP TABLE servicename;
+DROP TABLE mainphoto;
+DROP TABLE photo;
+DROP TABLE photoname;
+DROP TABLE singlenight;
+DROP TABLE roomtype;
+DROP TABLE roomstate;
+DROP TABLE hotels;
+DROP TABLE member;
 
 CREATE TABLE member(
 memberid INT IDENTITY NOT NULL PRIMARY KEY,
@@ -35,7 +35,7 @@ CREATE TABLE hotels(
 hotelmanagerid INT FOREIGN KEY REFERENCES member(memberid),
 hotelid INT IDENTITY NOT NULL  PRIMARY KEY,
 hotelname VARCHAR(30),
-hotelphone INT,
+hotelphone VARCHAR(20),
 hotelstar INT,
 hoteladdress VARCHAR(200),
 hotelstate BIT,
@@ -62,8 +62,6 @@ numberofpeople INT,
 numberofrooms INT,
 opendate DATE,
 enddate DATE,
-extrabed BIT,
-extrabedprice FLOAT
 );
 
 
@@ -117,6 +115,7 @@ INSERT INTO servicename(servicename) values('免費晚餐');
 INSERT INTO servicename(servicename) values('公共WIFI');
 INSERT INTO servicename(servicename) values('客房WIFI');
 INSERT INTO servicename(servicename) values('網際網路');
+INSERT INTO servicename(servicename) values('接送服務');
 
 CREATE TABLE facilityname(
 facilityid INT IDENTITY NOT NULL PRIMARY KEY,
@@ -127,7 +126,6 @@ INSERT INTO facilityname(facilityname) values('餐廳');
 INSERT INTO facilityname(facilityname) values('停車場');
 INSERT INTO facilityname(facilityname) values('游泳池');
 INSERT INTO facilityname(facilityname) values('健身房');
-INSERT INTO facilityname(facilityname) values('接送服務');
 INSERT INTO facilityname(facilityname) values('酒吧');
 INSERT INTO facilityname(facilityname) values('水療');
 
@@ -174,7 +172,6 @@ CREATE TABLE rulelist(
 hotelid INT FOREIGN KEY REFERENCES hotels(hotelid),
 refundid INT FOREIGN KEY REFERENCES refund(refundid),
 advancedayid INT FOREIGN KEY REFERENCES advanceday(advancedayid),
-bookingdaysperorder VARCHAR(50),
 checknumber INT IDENTITY NOT NULL PRIMARY KEY,
 roomid INT FOREIGN KEY REFERENCES roomtype(roomid),
 -- if roomid = null, all rooms has this rule.

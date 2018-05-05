@@ -48,8 +48,6 @@ public class RulelistBean implements Serializable {
 	private Integer roomid;
 	// -- if roomid = null, all rooms has this rule.
 	
-	private Integer bookingdaysperorder;
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer checknumber;
@@ -86,13 +84,7 @@ public class RulelistBean implements Serializable {
 		this.roomid = roomid;
 	}
 
-	public Integer getBookingdaysperorder() {
-		return bookingdaysperorder;
-	}
 
-	public void setBookingdaysperorder(Integer bookingdaysperorder) {
-		this.bookingdaysperorder = bookingdaysperorder;
-	}
 
 	public Integer getChecknumber() {
 		return checknumber;
@@ -105,11 +97,6 @@ public class RulelistBean implements Serializable {
 	@Override
 	public String toString() {
 		return "RulelistBean [hotelid=" + hotelid + ", refundid=" + refundid + ", advancedayid=" + advancedayid
-				+ ", roomid=" + roomid + ", bookingdaysperorder=" + bookingdaysperorder + ", checknumber=" + checknumber
-				+ "]";
+				+ ", roomid=" + roomid + ", checknumber=" + checknumber + "]";
 	}
-
-	
-	
-	
 }

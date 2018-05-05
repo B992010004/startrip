@@ -22,7 +22,7 @@ public class HotelsDAO{
 		Session session = factory.getCurrentSession();
 		
 		session.update(bean);
-		System.out.println("修改飯店基本資料結束");
+		System.out.println("修改飯店資料結束");
 		
 	}
 	public HotelsBean selectByPk(Integer pk) {
