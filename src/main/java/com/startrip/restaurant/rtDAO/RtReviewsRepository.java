@@ -1,9 +1,15 @@
 package com.startrip.restaurant.rtDAO;
 
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.startrip.restaurant.rtinterface.RtReviewsInterface;
 import com.startrip.restaurant.rtmodel.RtReviewsBean;
 
 public class RtReviewsRepository implements RtReviewsInterface {
+	
+	@Autowired
+	SessionFactory factory;
 
 	@Override
 	public RtReviewsBean getAllRtReviewsrwId(Integer rwId) {

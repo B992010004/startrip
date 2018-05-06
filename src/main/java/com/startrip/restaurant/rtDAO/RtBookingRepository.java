@@ -1,9 +1,15 @@
 package com.startrip.restaurant.rtDAO;
 
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.startrip.restaurant.rtinterface.RtBookingInterface;
 import com.startrip.restaurant.rtmodel.RtBookingBean;
 
 public class RtBookingRepository implements RtBookingInterface {
+	
+	@Autowired
+	SessionFactory factory;
 
 	@Override
 	public RtBookingBean getAllRtBookingmail(String mail) {
