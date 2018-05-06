@@ -18,7 +18,7 @@ public class TravelPlanController {
 	@Autowired
 	TravelAllService travelservice;
 	
-	
+	//新增行程-------------------------------------------
 	@RequestMapping(value="Travel/addPlan",method=RequestMethod.GET)
 	public String travelNewAdd(Model model) {
 		TravelAllBean bean = new TravelAllBean();
@@ -31,7 +31,7 @@ public class TravelPlanController {
 		travelservice.insert(bean);
 		return "redirect:/travel/all";
 	}
-	
+	//查詢ALL Travel-----------------------------------------
 	@RequestMapping(value="travel/all",method=RequestMethod.GET)
 	public String travelAll(Model model) {
 		List<TravelAllBean> list = travelservice.selectAllTravel();

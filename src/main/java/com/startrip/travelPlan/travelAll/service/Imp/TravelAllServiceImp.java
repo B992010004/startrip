@@ -31,8 +31,8 @@ public class TravelAllServiceImp implements TravelAllService {
 	}
 
 	@Override
-	public void updateTrip(TravelAllBean bean) throws SQLException {
-		travelDao.updateTrip(bean);
+	public void update(TravelAllBean bean) throws SQLException {
+		travelDao.update(bean);
 	}
 
 	@Override
