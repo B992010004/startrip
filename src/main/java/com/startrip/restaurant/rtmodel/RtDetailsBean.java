@@ -1,7 +1,14 @@
 package com.startrip.restaurant.rtmodel;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="RtDetails")
 public class RtDetailsBean {
 
+	@Id
 	private Integer rtId;
 	private String rtName;
 	private String rtCuisine;

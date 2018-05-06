@@ -4,13 +4,13 @@ import com.startrip.restaurant.rtmodel.RtBookingBean;
 
 public interface RtBookingInterface {
 	
-	RtBookingBean select(String mail);
+	RtBookingBean getAllRtBookingmail(String mail);
 	
-	RtBookingBean update(RtBookingBean bean);
+	RtBookingBean updateRtBooking(RtBookingBean bean);
 
-	RtBookingBean insert(RtBookingBean bean);
+	RtBookingBean insertRtBooking(RtBookingBean bean);
 
-	boolean delete(Integer bgId);
+	boolean deleteRtBookingbgId(Integer bgId);
 	
 }
 

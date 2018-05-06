@@ -4,17 +4,17 @@ import com.startrip.restaurant.rtmodel.RtReviewsBean;
 
 public interface RtReviewsInterface {
 
-	RtReviewsBean select(Integer rwId);
+	RtReviewsBean getAllRtReviewsrwId(Integer rwId);
 	
-	RtReviewsBean select(String rtTitle);
+	RtReviewsBean getAllRtReviewsrtTitle(String rtTitle);
 
-	RtReviewsBean update(RtReviewsBean bean);
+	RtReviewsBean updateRtReviews(RtReviewsBean bean);
 
-	RtReviewsBean insert(RtReviewsBean bean);
+	RtReviewsBean insertRtReviews(RtReviewsBean bean);
 
-	boolean delete(Integer rwId);
+	boolean deleteRtReviewsrwId(Integer rwId);
 
-	boolean delete(String rtTitle);
+	boolean deleteRtReviewsrtTitle(String rtTitle);
 	
 }
 
