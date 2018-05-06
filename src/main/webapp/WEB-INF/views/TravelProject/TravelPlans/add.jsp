@@ -10,25 +10,22 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form:form method='POST' modelAttribute="TravelViewBean">
+<form:form method='POST' modelAttribute="TravelAllBean">
 
-	<label>member:</label>
+	<label>mail:</label>
 	<form:input path="mail" type='text'/><br>
-	<label>name:</label>
-	<form:input path="viewName" type='text'/><br>
-	<label>address</label>
-	<form:input path="viewaddr" type='text'/><br>
-	<label>phone</label>
-	<form:input path="viewPhone" type='text'/><br>
-	<label>tdate</label>
-	<form:input path="tdate" type='text'/><br>
+	<label>travelName</label>
+	<form:input path="travelName" type='text'/><br>
+	<label>startDate</label>
+	<form:input path="startDate" type='text'/><br>
+	<label>endDate</label>
+	<form:input path="endDate" type='text'/><br>
+	
 <%-- 	<label>class</label><form:select path="Orgclass'"> --%>
 <%-- 		<form:option value='-1' lable="請挑選"/> --%>
 <%-- 		<form:options items="${orgclassList}"/> --%>
 <%-- 	</form:select> --%>
 	
-	<label>detail</label>
-	<form:textarea path='viewDetail' cols='20' rows='7'/>
 	<input type="submit" value="確定"><br>
 
 </form:form>

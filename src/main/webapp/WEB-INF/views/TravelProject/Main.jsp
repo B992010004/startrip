@@ -32,6 +32,8 @@
         <jsp:include page="/WEB-INF/views/header.jsp" flush="true" />
     </div>
     <hr>
+    	<a class="nav-link" style="border: 1px solid"href="Travel/addPlan">新增行程</a><br>
+    	<a class="nav-link" style="border: 1px solid"href="Travel/addList">新增清單</a><br>
 		<a class="nav-link" style="border: 1px solid"href="Views/add">新增景點</a><br>
 		<a class="nav-link" style="border: 1px solid" href="TravelViews/all">查詢景點</a><br>
 		<a class="nav-link" style="border: 1px solid" href="list/All">查詢行程</a><br>

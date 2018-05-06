@@ -22,13 +22,13 @@ import com.startrip.travelPlan.travelMain.controller.HibernateUtil_SQLServer;
 @Repository
 public class TravelAllDaoSpring implements TripAllDaoSpringI {
 	
-//測試-----	
-	SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-//------
+////測試-----	
+//	SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+////------
 
 	
-//	@Autowired
-//	SessionFactory sessionFactory;
+	@Autowired
+	SessionFactory sessionFactory;
 	
 	
 	public Session getSession() {

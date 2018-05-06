@@ -1,5 +1,6 @@
 package com.startrip.travelPlan.travelAll.controller;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +23,22 @@ public class TravelPlanController {
 	@RequestMapping(value="Travel/addPlan",method=RequestMethod.GET)
 	public String travelNewAdd(Model model) {
 		TravelAllBean bean = new TravelAllBean();
-		model.addAttribute(bean);
+		model.addAttribute("TravelAllBean",bean);
 		return "TravelProject/TravelPlans/add";
 	}
 	
-	@RequestMapping(value="travel/addPlan",method=RequestMethod.POST)
-	public String travelAdd(@ModelAttribute TravelAllBean bean) {
+	@RequestMapping(value="Travel/addPlan",method=RequestMethod.POST)
+	public String travelAdd(@ModelAttribute("TravelALLBean") TravelAllBean bean) {
+		System.out.println(bean.toString());
+		//天數計算----------------
+		int days = 0;
+		Date start = bean.getStartDate();
+		Date end = bean.getEndDate();
+		start.getTime();
+		end.getTime();
+		days = (int) ((end.getTime()- start.getTime()) / (1000 * 60 * 60 * 24));
+		bean.setTravelDays(days);
+		//------------------
 		travelservice.insert(bean);
 		return "redirect:/travel/all";
 	}
