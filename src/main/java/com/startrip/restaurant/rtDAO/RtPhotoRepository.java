@@ -2,10 +2,12 @@ package com.startrip.restaurant.rtDAO;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.startrip.restaurant.rtinterface.RtPhotoInterface;
 import com.startrip.restaurant.rtmodel.RtPhotoBean;
 
+@Repository
 public class RtPhotoRepository implements RtPhotoInterface {
 	
 	@Autowired

@@ -3,12 +3,14 @@ package com.startrip.restaurant.rtmodel;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="RtReviews")
 public class RtReviewsBean {
 
+	@Id
 	private Integer rwId;
 	private Integer rtScore;
 	private String rtTitle;

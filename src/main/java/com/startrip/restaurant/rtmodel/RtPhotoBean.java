@@ -1,12 +1,14 @@
 package com.startrip.restaurant.rtmodel;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="RtPhoto")
 public class RtPhotoBean {
 
+	@Id
 	private Integer poId;
 	private Integer rtId;
 	private String rtImage;
