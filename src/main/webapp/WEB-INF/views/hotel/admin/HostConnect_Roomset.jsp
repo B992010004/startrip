@@ -58,8 +58,13 @@
     }
     .roomnumber {
       width: 112px;
+    }   
+     .inputState label,
+    .inputState select {
+      height: 46px;
+      width: 100%;
+      color: rgb(151, 148, 148)
     }
-
   </style>
 
 
@@ -113,160 +118,80 @@
 
 
   <div class="container">
-      <div class="row">
-        <div class="col-md-2">
-          <nav class="nav flex-column subnav">
-            <a class="nav-link" href="/startrip/admin/HostConnect_Hotel.html">基本資訊</a>
-            <a class="nav-link" href="/startrip/admin/HostConnect_Info.html">住宿簡介</a>
-            <a class="nav-link" href="/startrip/admin/HostConnect_Service.html">服務與設施</a>
-            <a class="nav-link active" href="/startrip/admin/HostConnect_Rooms.html">設定房型</a>
-            <a class="nav-link" href="/startrip/admin/HostConnect_Bookingday.html">設定可訂房期間</a>
-            <a class="nav-link" href="/startrip/admin/HostConnect_Image.html">照片</a>
-            <a class="nav-link" href="/startrip/admin/HostConnect_Onsale.html">上線販售</a>
-          </nav>
-        </div>
-        <div class="col-md-10">
-          <br>
-          <div class="row">
-            <div class="col-md">
-              <h4>設定此房型專屬的服務與設施
-              </h4>
-            </div>
-          </div>
-          <br>
-          <div class="row">
-            <div class="col-md-3">
-              <h5>退款規定：</h5>
-              <div class="form-row ml-4">
-                <div class="form-group">
-                  <select  class="form-control" name="rollback">
-                    <option selected>預設</option>
-                    <option value="1">嚴格 - 不可退款</option>
-                    <option value="2">寬鬆 - 入住 3 日前可退款</option>
-                    <option value="3">基本 - 入住 7 日前可退款</option>
-                    <option value="4">無限制</option>
-                  </select>
-                </div>
-              </div>
-              <h5>可預定時間：</h5>
-              <div class="form-row ml-4">
-                <div class="form-group">
-                  <select class="form-control" name="booking">
-                    <option selected>預設</option>
-                    <option value="1">一個月內</option>
-                    <option value="2">三個月內</option>
-                    <option value="3">六個月內</option>
-                    <option value="4">一年內</option>
-                    <option value="5">無限制</option>
-                  </select>
-                </div>
-              </div> 
-            </div>
-            <div class="col-md-9">
-              <div class="row">
-                <div class="col-md">
-                  <div class="row">
-                    <div class="col-md">
-                      <h5 class="ml-2">服務：</h5>
-                      <div class="form-row ml-4">
-                        <div class="form-group">
-                          <div class="col-md">
-                            <label for="service1">
-                              <input type="checkbox" id="service1" name="service">客房WIFI</label>
-                            <label for="service2">
-                              <input type="checkbox" id="service2" name="service">公共WIFI</label>
-                            <label for="service3">
-                              <input type="checkbox" id="service3" name="service">網際網路</label>
-                            <label for="service4">
-                              <input type="checkbox" id="service4" name="service">行李寄放</label>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="form-row ml-4">
-                        <div class="form-group">
-                          <div class="col-md">
-                            <label for="service5">
-                              <input type="checkbox" id="service5" name="service">Spa 服務</label>
-                            <label for="service6">
-                              <input type="checkbox" id="service6" name="service">游泳池</label>
-                            <label for="service7">
-                              <input type="checkbox" id="service7" name="service">健身房</label>
-                            <label for="service8">
-                              <input type="checkbox" id="service8" name="service">溫泉</label>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="form-row ml-4">
-                        <div class="form-group">
-                          <div class="col-md">
-                            <label for="service9">
-                              <input type="checkbox" id="service9" name="service">餐廳</label>
-                            <label for="servicea">
-                              <input type="checkbox" id="servicea" name="service">24小時前台</label>
-                            <label for="serviceb">
-                              <input type="checkbox" id="serviceb" name="service">收費停車場</label>
-                            <label for="servicec">
-                              <input type="checkbox" id="servicec" name="service">區域接駁車</label>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <hr>
-                  <h5 class="ml-2">設施：</h5>
-                  <div class="form-row ml-4">
-                    <div class="form-group">
-                      <div class="col-md">
-                        <label for="facility1">
-                          <input type="checkbox" id="facility1" name="facility">客房WIFI</label>
-                        <label for="facility2">
-                          <input type="checkbox" id="facility2" name="facility">公共WIFI</label>
-                        <label for="facility3">
-                          <input type="checkbox" id="facility3" name="facility">網際網路</label>
-                        <label for="facility4">
-                          <input type="checkbox" id="facility4" name="facility">行李寄放</label>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-row ml-4">
-                    <div class="form-group">
-                      <div class="col-md">
-                        <label for="facility5">
-                          <input type="checkbox" id="facility5" name="facility">Spa 服務</label>
-                        <label for="facility6">
-                          <input type="checkbox" id="facility6" name="facility">游泳池</label>
-                        <label for="facility7">
-                          <input type="checkbox" id="facility7" name="facility">健身房</label>
-                        <label for="facility8">
-                          <input type="checkbox" id="facility8" name="facility">溫泉</label>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-row ml-4">
-                    <div class="form-group">
-                      <div class="col-md">
-                        <label for="facility9">
-                          <input type="checkbox" id="facility9" name="facility">餐廳</label>
-                        <label for="facilitya">
-                          <input type="checkbox" id="facilitya" name="facility">24小時前台</label>
-                        <label for="facilityb">
-                          <input type="checkbox" id="facilityb" name="facility">收費停車場</label>
-                        <label for="facilityc">
-                          <input type="checkbox" id="facilityc" name="facility">區域接駁車</label>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <hr>
-          <form action="/startrip/admin/HostConnect_Rooms.html">
-            <button type="submit" class="btn btn-outline-primary mr-5">儲存</button>
-          </form>
-        </div>
+    <div class="row">
+      <div class="col-md-2">
+        <nav class="nav flex-column subnav">
+          <a class="nav-link" href="/startrip/admin/HostConnect_Hotel">基本資訊</a>
+          <a class="nav-link" href="/startrip/admin/HostConnect_Info">住宿簡介</a>
+          <a class="nav-link" href="/startrip/admin/HostConnect_Service">服務與設施</a>
+          <a class="nav-link active" href="/startrip/admin/HostConnect_Rooms">設定房型</a>
+          <a class="nav-link" href="/startrip/admin/HostConnect_Bookingday">設定可訂房期間</a>
+          <a class="nav-link" href="/startrip/admin/HostConnect_Image">照片</a>
+          <a class="nav-link" href="/startrip/admin/HostConnect_Onsale">上線販售</a>
+        </nav>
       </div>
-     </div>
+      <div class="col-md-10">
+        <br>
+        <div class="row">
+          <div class="col-md">
+            <h4>設定此房型的基本訂房資訊
+            </h4>
+          </div>
+        </div>
+        <br>
+        <h5>選擇可訂房的日期區間：</h5>
+        <div class="row">
+          <div class="col-md-3 ml-3">
+            <div class="form-group inputState">
+              <div class="probootstrap-date-wrap">
+                <label for="probootstrap-date-arrival">
+                  <span class="icon ion-calendar"></span>
+                  <input type="text" id="probootstrap-date-arrival" name="checkin" class="form-control" placeholder="預訂起始日">
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 ml-3">
+            <div class="form-group inputState">
+              <div class="probootstrap-date-wrap">
+                <label for="probootstrap-date-departure">
+                  <span class="icon ion-calendar"></span>
+                  <input type="text" id="probootstrap-date-departure" name="checkout" class="form-control" placeholder="預訂結束日">
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <h5>設定基本的訂房價格：</h5>
+        <div class="row">
+          <div class="col-md-3 ml-3">
+            <div class="form-group inputState">
+              <label for="rooms">
+                <input type="number" onkeydown="javascript: return event.keyCode == 69 ? false : true" class="form-control" name="rooms"
+                  id="rooms" min="1" placeholder="基本價格">
+              </label>
+            </div>
+          </div>
+        </div>       
+         <h5>備註：</h5>
+        <div class="row">
+          <div class="col-md-6 ml-3">
+            <div class="form-row ">
+              <div class="form-group col-md">
+                <textarea class="form-control" name="note" rows="4" placeholder="範例：1 張雙人床 / 2 張單人床"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <hr>
+        <form action="HostConnect_Rooms.html">
+          <button type="submit" class="btn btn-outline-primary mr-5">儲存</button>
+        </form>
+      </div>
+    </div>
+  </div>
 
 
         <footer class="probootstrap_section probootstrap-border-top">

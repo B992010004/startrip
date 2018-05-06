@@ -4,10 +4,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>HostConnect BookingDay</title>
-
-
-  <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,700" rel="stylesheet">
+<title>HostConnect Bookingdetail</title>
+ <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,700" rel="stylesheet">
 
   <link rel="stylesheet" href="/startrip/assets/css/bootstrap/bootstrap.css">
   <link rel="stylesheet" href="/startrip/assets/css/animate.css">
@@ -25,6 +23,9 @@
   <link rel="stylesheet" href="/startrip/assets/css/helpers.css">
   <link rel="stylesheet" href="/startrip/assets/css/style.css">
 
+  <link href='/startrip/assets/css/fullcalendar.min.css' rel='stylesheet' />
+  <link href='/startrip/assets/css/fullcalendar.print.min.css' rel='stylesheet' media='print' />
+
   <style>
     #section-home {
       padding-top: 45px;
@@ -32,7 +33,7 @@
     }
 
     label {
-      width: 150px;
+      width: 200px;
     }
 
     .nav-link {
@@ -52,11 +53,18 @@
       color: rgb(23, 156, 0);
     }
 
-    .inputState label,
-    .inputState select {
-      height: 46px;
-      width: 100%;
-      color: rgb(151, 148, 148)
+
+    .navtop a {
+      padding-top: 5px;
+    }
+
+    .roomnumber {
+      width: 112px;
+    }
+
+    #calendar {
+      max-width: 900px;
+      margin: 0 auto;
     }
   </style>
 
@@ -64,6 +72,8 @@
 </head>
 
 <body>
+
+
   <nav class="navbar navbar-expand-lg navbar-dark probootstrap_navbar" id="probootstrap-navbar">
     <div class="container">
       <a class="navbar-brand" href="#">TRIP_LOGO</a>
@@ -112,105 +122,81 @@
     <div class="row">
       <div class="col-md-2">
         <nav class="nav flex-column subnav">
-          <a class="nav-link" href="/startrip//startrip/admin/HostConnect_Hotel.html">基本資訊</a>
-          <a class="nav-link" href="/startrip/admin/HostConnect_Info.html">住宿簡介</a>
-          <a class="nav-link" href="/startrip/admin/HostConnect_Service.html">服務與設施</a>
-          <a class="nav-link" href="/startrip/admin/HostConnect_Rooms.html">設定房型</a>
-          <a class="nav-link active" href="/startrip/admin/HostConnect_Bookingday.html">設定可訂房期間</a>
-          <a class="nav-link" href="/startrip/admin/HostConnect_Image.html">照片</a>
-          <a class="nav-link" href="/startrip/admin/HostConnect_Onsale.html">上線販售</a>
+          <a class="nav-link" href="/startrip/admin/HostConnect_Hotel">基本資訊</a>
+          <a class="nav-link" href="/startrip/admin/HostConnect_Info">住宿簡介</a>
+          <a class="nav-link" href="/startrip/admin/HostConnect_Service">服務與設施</a>
+          <a class="nav-link" href="/startrip/admin/HostConnect_Rooms">設定房型</a>
+          <a class="nav-link active" href="/startrip/admin/HostConnect_Bookingday">設定可訂房期間</a>
+          <a class="nav-link" href="/startrip/admin/HostConnect_Image">照片</a>
+          <a class="nav-link" href="/startrip/admin/HostConnect_Onsale">上線販售</a>
         </nav>
       </div>
       <div class="col-md-10">
-        <form action="">
-          <br>
-          <h4>設定可訂房期間與基本價格</h4>
-          <br>
-          <h5>選擇房型：</h5>
-          <div class="row">
-            <div class="col-md-3 ml-3">
-              <div class="form-group inputState">
-                <label for="roomtype">
-                  <select id="roomtype" class="form-control" name="roomtype">
-                    <option></option>
-                    <option value="1">雙人房</option>
-                    <option value="2">三人房</option>
-                    <option value="3">四人房</option>
-                    <option value="4">超過四人</option>
-                  </select>
-                </label>
-              </div>
-            </div>
-            <div class="col-md-3 ml-5">
-              <div class="form-group inputState">
-                <label for="bookingsave">
-                  儲存設定
-                </label>
-              </div>
-              <input hidden type="submit" name="submit" value="1" id="bookingsave">
+        <br>
+        <div class="row">
+          <div class="col-md">
+            <h5>房型：XX套房</h5>
+            2018-05-15 ~ 2019-05-15
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="form-group ml-3">
+              <label for="condition">
+                <select class="form-control" name="condition">
+                  <option>選擇日期區間</option>
+                  <option value="1">春季</option>
+                  <option value="2">夏季</option>
+                  <option value="3">秋季</option>
+                  <option value="4">冬季</option>
+                  <option value="5">一月</option>
+                  <option value="6">二月</option>
+                  <option value="7">三月</option>
+                  <option value="8">四月</option>
+                  <option value="9">五月</option>
+                  <option value="a">六月</option>
+                  <option value="b">七月</option>
+                  <option value="c">八月</option>
+                  <option value="d">九月</option>
+                  <option value="e">十月</option>
+                  <option value="f">十一月</option>
+                  <option value="g">十二月</option>
+                  <option value="h">星期一</option>
+                  <option value="i">星期二</option>
+                  <option value="j">星期三</option>
+                  <option value="k">星期四</option>
+                  <option value="l">星期五</option>
+                  <option value="m">星期六</option>
+                  <option value="n">星期日</option>
+                </select>
+              </label>
             </div>
           </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="condition">
+                <input type="number" placeholder="若價格為0則禁止預定" class="form-control" min="0" name="conditionvalue" id="conditionvalue">
+              </label>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-md">
+            <div id='calendar'></div>
+          </div>
+        </div>
 
-          <h5>選擇可訂房的日期區間：</h5>
-          <div class="row">
-            <div class="col-md-3 ml-3">
-              <div class="form-group inputState">
-                <div class="probootstrap-date-wrap">
-                  <label for="probootstrap-date-arrival">
-                    <span class="icon ion-calendar"></span>
-                    <input type="text" id="probootstrap-date-arrival" name="checkin" class="form-control" placeholder="預訂起始日">
-                  </label>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3 ml-3">
-              <div class="form-group inputState">
-                <div class="probootstrap-date-wrap">
-                  <label for="probootstrap-date-departure">
-                    <span class="icon ion-calendar"></span>
-                    <input type="text" id="probootstrap-date-departure" name="checkout" class="form-control" placeholder="預訂結束日">
-                  </label>
-                </div>
-              </div>
-            </div>
-          </div>
-          <h5>設定基本的訂房價格：</h5>
-          <div class="row">
-            <div class="col-md-3 ml-3">
-              <div class="form-group inputState">
-                <label for="rooms">
-                  <input type="number" onkeydown="javascript: return event.keyCode == 69 ? false : true" class="form-control" name="rooms"
-                    id="rooms" min="1" placeholder="基本價格">
-                </label>
-              </div>
-            </div>
-            <div class="col-md ml-5">
-              <div class="form-group inputState">
-                <label for="bookingdetail">
-                  點我進行更詳細的設定
-                </label>
-              </div>
-              <input hidden type="submit" name="submit" value="2" id="bookingdetail">
-
-            </div>
-          </div>
-
-          <hr>
-          <div class="row">
-            <div class="col-md-3">
-              <a href="HostManage.html">儲存並離開</a>
-            </div>
-            <div class="col-md-2">
-              <button type="submit" class="btn btn-outline-secondary">上一步</button>
-            </div>
-            <div class="col-md-2">
-              <button type="submit" class="btn btn-outline-primary">下一步</button>
-            </div>
-          </div>
+        <hr>
+        <form action="/startrip/admin/HostConnect_Bookingday">
+          <button type="submit" class="btn btn-outline-primary mr-5">儲存</button>
         </form>
       </div>
     </div>
    </div>
+
+
 
 
     <footer class="probootstrap_section probootstrap-border-top">
@@ -319,6 +305,58 @@
 
     <script src="/startrip/assets/js/range.js"></script>
 
+    <script src='/startrip/assets/js/moment.min.js'></script>
+    <script src='/startrip/assets/js/fullcalendar.min.js'></script>
+
+
+    <script>
+
+      $(document).ready(function () {
+
+        $('#calendar').fullCalendar({
+          header: {
+            left: 'prev,next',
+            center: 'title',
+            right: 'prevYear,nextYear'
+          },
+          columnHeaderText: function (mom) {
+            if (mom.weekday() === 0) {
+              return '星期日';
+            } else if (mom.weekday() === 6) {
+              return '星期六';
+            } else if (mom.weekday() === 5) {
+              return '星期五';
+            } else if (mom.weekday() === 4) {
+              return '星期四';
+            } else if (mom.weekday() === 3) {
+              return '星期三';
+            } else if (mom.weekday() === 2) {
+              return '星期二';
+            } else if (mom.weekday() === 1) {
+              return '星期一';
+            }
+          },
+          monthNames: ['一月', '二月', '三月', '四月', '五月', '六月', '七月',
+            '八月', '九月', '十月', '十一月', '十二月'],
+          defaultDate: '2018-05-03',
+          navLinks: false, // can click day/week names to navigate views
+          editable: true,
+          eventLimit: true, // allow "more" link when too many events
+          selectable: true,
+          select: function (startDate, endDate) {
+            alert('selected ' + startDate.format() + ' to ' + endDate.format());
+          },
+          events: [
+            {
+
+            }
+          ]
+
+        });
+
+      });
+
+    </script>
 </body>
 
 </html>

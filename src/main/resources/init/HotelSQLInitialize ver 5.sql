@@ -18,7 +18,6 @@ DROP TABLE photo;
 DROP TABLE photoname;
 DROP TABLE singlenight;
 DROP TABLE roomtype;
-DROP TABLE roomstate;
 DROP TABLE hotels;
 DROP TABLE member;
 
@@ -38,30 +37,24 @@ hotelname VARCHAR(30),
 hotelphone VARCHAR(20),
 hotelstar INT,
 hoteladdress VARCHAR(200),
-hotelstate BIT,
+hotelstate INT,
 hotelinfo VARCHAR(8000),
 hotelrulenote VARCHAR(8000),
 );
 
-CREATE TABLE roomstate(
-stateid INT NOT NULL PRIMARY KEY,
-statename VARCHAR(30)
-);
-
-INSERT INTO roomstate(stateid,statename) values(1,'未開放');
-INSERT INTO roomstate(stateid,statename) values(2,'已開放');
-INSERT INTO roomstate(stateid,statename) values(3,'作廢');
 
 
 CREATE TABLE roomtype(
 hotelid INT FOREIGN KEY REFERENCES hotels(hotelid),
-roomstate INT FOREIGN KEY REFERENCES roomstate(stateid),
+roomstate BIT,
 roomid INT IDENTITY NOT NULL PRIMARY KEY,
 roomname VARCHAR(30),
 numberofpeople INT,
 numberofrooms INT,
 opendate DATE,
 enddate DATE,
+basicprice INT,
+roomnote VARCHAR(255)
 );
 
 
@@ -132,17 +125,13 @@ INSERT INTO facilityname(facilityname) values('水療');
 CREATE TABLE servicelist(
 serviceid INT FOREIGN KEY REFERENCES servicename(serviceid),
 hotelid INT FOREIGN KEY REFERENCES hotels(hotelid),
-checknumber INT IDENTITY NOT NULL PRIMARY KEY,
-roomid INT FOREIGN KEY REFERENCES roomtype(roomid),
--- if roomid = null, all rooms has this service.
+checknumber INT IDENTITY NOT NULL PRIMARY KEY
 );
 
 CREATE TABLE facilitylist(
 facilityid INT FOREIGN KEY REFERENCES facilityname(facilityid),
 hotelid INT FOREIGN KEY REFERENCES hotels(hotelid),
-checknumber INT IDENTITY NOT NULL PRIMARY KEY,
-roomid INT FOREIGN KEY REFERENCES roomtype(roomid),
--- if roomid = null, all rooms has this facility.
+checknumber INT IDENTITY NOT NULL PRIMARY KEY
 );
 
 CREATE TABLE refund(
@@ -150,7 +139,7 @@ refundid INT NOT NULL PRIMARY KEY,
 rulename VARCHAR(50)
 );
 
-INSERT INTO refund(refundid,rulename) values(0, '預設');
+
 INSERT INTO refund(refundid,rulename) values(1, '嚴格 - 不可退款');
 INSERT INTO refund(refundid,rulename) values(2, '寬鬆 - 入住 3 日前可退款');
 INSERT INTO refund(refundid,rulename) values(3, '基本 - 入住 7 日前可退款');
@@ -161,7 +150,7 @@ advancedayid INT NOT NULL PRIMARY KEY,
 advancedayname VARCHAR(50)
 );
 
-INSERT INTO advanceday(advancedayid,advancedayname) values(0, '預設');
+
 INSERT INTO advanceday(advancedayid,advancedayname) values(1, '一個月內');
 INSERT INTO advanceday(advancedayid,advancedayname) values(2, '三個月內');
 INSERT INTO advanceday(advancedayid,advancedayname) values(3, '六個月內');
@@ -169,12 +158,9 @@ INSERT INTO advanceday(advancedayid,advancedayname) values(4, '一年內');
 INSERT INTO advanceday(advancedayid,advancedayname) values(5, '無限制');
 
 CREATE TABLE rulelist(
-hotelid INT FOREIGN KEY REFERENCES hotels(hotelid),
+hotelid INT FOREIGN KEY REFERENCES hotels(hotelid) NOT NULL  PRIMARY KEY,
 refundid INT FOREIGN KEY REFERENCES refund(refundid),
-advancedayid INT FOREIGN KEY REFERENCES advanceday(advancedayid),
-checknumber INT IDENTITY NOT NULL PRIMARY KEY,
-roomid INT FOREIGN KEY REFERENCES roomtype(roomid),
--- if roomid = null, all rooms has this rule.
+advancedayid INT FOREIGN KEY REFERENCES advanceday(advancedayid)
 );
 
 CREATE TABLE paymentmethod(

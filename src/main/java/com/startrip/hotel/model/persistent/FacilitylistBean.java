@@ -35,7 +35,6 @@ public class FacilitylistBean implements Serializable{
 		FacilitylistBean bean = new FacilitylistBean();
 		bean.setFacilityid(1);
 		bean.setHotelid(1);
-		bean.setRoomid(1);
 		session.save(bean);
 		System.out.println("-----------");
 		FacilitylistBean temp = session.get(FacilitylistBean.class, 1);
@@ -53,9 +52,6 @@ public class FacilitylistBean implements Serializable{
 	private Integer facilityid;
 	
 	private Integer hotelid;
-
-	private Integer roomid;
-	// if roomid = null, all rooms has this facility.
 
 	public Integer getChecknumber() {
 		return checknumber;
@@ -81,19 +77,12 @@ public class FacilitylistBean implements Serializable{
 		this.hotelid = hotelid;
 	}
 
-	public Integer getRoomid() {
-		return roomid;
-	}
-
-	public void setRoomid(Integer roomid) {
-		this.roomid = roomid;
-	}
-
 	@Override
 	public String toString() {
 		return "FacilitylistBean [checknumber=" + checknumber + ", facilityid=" + facilityid + ", hotelid=" + hotelid
-				+ ", roomid=" + roomid + "]";
+				+ "]";
 	}
+
 	
 	
 	

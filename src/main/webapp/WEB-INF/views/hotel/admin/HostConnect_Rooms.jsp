@@ -133,13 +133,13 @@
     <div class="row">
       <div class="col-md-2">
         <nav class="nav flex-column subnav">
-          <a class="nav-link" href="/startrip/admin/HostConnect_Hotel.html">基本資訊</a>
-          <a class="nav-link" href="/startrip/admin/HostConnect_Info.html">住宿簡介</a>
-          <a class="nav-link" href="/startrip/admin/HostConnect_Service.html">服務與設施</a>
-          <a class="nav-link active" href="/startrip/admin/HostConnect_Rooms.html">設定房型</a>
-          <a class="nav-link" href="/startrip/admin/HostConnect_Bookingday.html">設定可訂房期間</a>
-          <a class="nav-link" href="/startrip/admin/HostConnect_Image.html">照片</a>
-          <a class="nav-link" href="/startrip/admin/HostConnect_Onsale.html">上線販售</a>
+          <a class="nav-link" href="/startrip/admin/HostConnect_Hotel">基本資訊</a>
+          <a class="nav-link" href="/startrip/admin/HostConnect_Info">住宿簡介</a>
+          <a class="nav-link" href="/startrip/admin/HostConnect_Service">服務與設施</a>
+          <a class="nav-link active" href="/startrip/admin/HostConnect_Rooms">設定房型</a>
+          <a class="nav-link" href="/startrip/admin/HostConnect_Bookingday">設定可訂房期間</a>
+          <a class="nav-link" href="/startrip/admin/HostConnect_Image">照片</a>
+          <a class="nav-link" href="/startrip/admin/HostConnect_Onsale">上線販售</a>
         </nav>
       </div>
       <div class="col-md-10">
@@ -165,7 +165,7 @@
               </thead>
               <tbody>
 
-                <form action="">
+                <form action="/startrip/admin/AddRoom" method="POST">
                   <tr>
                     <td>
                       <div class="form-group mr-3">
@@ -174,7 +174,7 @@
                     </td>
                     <td>
                       <div class="form-group mr-3">
-                        <select id="inputState" class="form-control" name="poeple">
+                        <select id="inputState" class="form-control" name="people">
                           <option value="1">單人房</option>
                           <option selected value="2">雙人房</option>
                           <option value="3">三人房</option>
@@ -190,11 +190,9 @@
                       </div>
                     </td>
                     <td>
-                      <form action="" method="">
                         <button type="submit" class="btn btn-outline-dark">
                           新增
                         </button>
-                      </form>
                     </td>
                     <td>
 
@@ -222,51 +220,15 @@
                     <p>10</p>
                   </td>
                   <td>
-                    <form action="/startrip/admin/HostConnect_Roomset.html" method="">
-                      <button type="submit" name="pk" value="111" class="btn btn-outline-dark">
+                    <form action="/startrip/admin/HostConnect_Roomset" method="POST">
+                      <button type="submit"  name="roomid" value="1"  class="btn btn-outline-dark">
                         設定
                       </button>
                     </form>
                   </td>
                   <td>
-                    <form action="" method="">
-                      <button type="submit" class="btn btn-outline-dark">
-                        刪除
-                      </button>
-                    </form>
-                  </td>
-                </tr>
-                <!-- 動態資料結束 -->
-                <!-- 動態資料產生 -->
-                <tr class="trcontent2">
-                  <td>
-                    <p>總統套房</p>
-                  </td>
-                  <td>
-                    <p>單人房</p>
-                    <div class="form-group mr-3" hidden>
-                      <select val="1" class="form-control" name="poeple2">
-                        <option value="1">單人房</option>
-                        <option value="2">雙人房</option>
-                        <option value="3">三人房</option>
-                        <option value="4">四人房</option>
-                        <option value="5">超過四人</option>
-                      </select>
-                    </div>
-                  </td>
-                  <td>
-                    <p>10</p>
-                  </td>
-                  <td>
-                    <form action="/startrip/admin/HostConnect_Roomset.html" method="">
-                      <button type="submit" name="pk" value="111" class="btn btn-outline-dark">
-                        設定
-                      </button>
-                    </form>
-                  </td>
-                  <td>
-                    <form action="" method="">
-                      <button type="submit" class="btn btn-outline-dark">
+                    <form action="/startrip/admin/DeleteRoom" method="POST">
+                      <button type="submit" name="roomid" value="1" class="btn btn-outline-dark">
                         刪除
                       </button>
                     </form>
@@ -280,13 +242,13 @@
         </div>
         <div class="row">
           <div class="col-md-3">
-            <a href="HostManage.html">儲存並離開</a>
+            <a href="HostManage">儲存並離開</a>
           </div>
+            <div class="col-md-2">
+             <a href="/startrip/admin/HostConnect_Service" class="btn btn-outline-secondary">上一步</a>
+            </div>
           <div class="col-md-2">
-            <button type="submit" class="btn btn-outline-secondary">上一步</button>
-          </div>
-          <div class="col-md-2">
-            <button type="submit" class="btn btn-outline-primary">下一步</button>
+            <a href="/startrip/admin/HostConnect_Bookingday" class="btn btn-outline-primary">下一步</a>
           </div>
         </div>
       </div>

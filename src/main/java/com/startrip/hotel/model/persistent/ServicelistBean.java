@@ -33,7 +33,6 @@ public class ServicelistBean implements Serializable {
 		ServicelistBean bean = new ServicelistBean();
 		bean.setServiceid(1);
 		bean.setHotelid(1);
-		bean.setRoomid(1);
 		session.save(bean);
 
 		session.getTransaction().commit();
@@ -49,9 +48,6 @@ public class ServicelistBean implements Serializable {
 
 	private Integer hotelid;
 
-	private Integer roomid;
-
-	// if roomid = null, all rooms has this service.
 	public Integer getChecknumber() {
 		return checknumber;
 	}
@@ -76,18 +72,11 @@ public class ServicelistBean implements Serializable {
 		this.hotelid = hotelid;
 	}
 
-	public Integer getRoomid() {
-		return roomid;
-	}
-
-	public void setRoomid(Integer roomid) {
-		this.roomid = roomid;
-	}
-
 	@Override
 	public String toString() {
 		return "ServicelistBean [checknumber=" + checknumber + ", serviceid=" + serviceid + ", hotelid=" + hotelid
-				+ ", roomid=" + roomid + "]";
+				+ "]";
 	}
+
 
 }

@@ -143,14 +143,14 @@
                   <td>台北市信義區松壽路2號</td>
                   <td>
                     <form action="/startrip/admin/HostConnect_Hotel" method="POST">
-                      <button type="submit" value="1" name="pk"  class="btn btn-outline-dark">
+                      <button type="submit" value="1" name="hotelid"  class="btn btn-outline-dark">
                         管理
                       </button>
                     </form>
                   </td>
                   <td>
                     <form action="HostManage" method="">
-                      <button type="submit" value="1" name="pk" class="btn btn-outline-dark">
+                      <button type="submit" value="1" name="hotelid" class="btn btn-outline-dark">
                         未完成
                       </button>
                     </form>

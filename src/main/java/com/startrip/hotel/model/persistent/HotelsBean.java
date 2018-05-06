@@ -50,7 +50,7 @@ public class HotelsBean implements Serializable{
 	private String hotelphone;
 	private Integer hotelstar;
 	private String hoteladdress;
-	private Boolean hotelstate;
+	private Integer hotelstate;
 	private String hotelinfo;
 	private String hotelrulenote;
 
@@ -103,11 +103,11 @@ public class HotelsBean implements Serializable{
 		this.hoteladdress = hoteladdress;
 	}
 
-	public Boolean getHotelstate() {
+	public Integer getHotelstate() {
 		return hotelstate;
 	}
 
-	public void setHotelstate(Boolean hotelstate) {
+	public void setHotelstate(Integer hotelstate) {
 		this.hotelstate = hotelstate;
 	}
 

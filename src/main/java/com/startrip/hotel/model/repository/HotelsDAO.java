@@ -25,9 +25,9 @@ public class HotelsDAO{
 		System.out.println("修改飯店資料結束");
 		
 	}
-	public HotelsBean selectByPk(Integer pk) {
+	public HotelsBean selectByPk(Integer hotelid) {
 		Session session = factory.getCurrentSession();
-		HotelsBean bean = session.get(HotelsBean.class, pk);
+		HotelsBean bean = session.get(HotelsBean.class, hotelid);
 		return bean;
 	}
 
