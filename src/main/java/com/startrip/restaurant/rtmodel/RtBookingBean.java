@@ -2,6 +2,11 @@ package com.startrip.restaurant.rtmodel;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="RtBooking")
 public class RtBookingBean {
 
 	private String mail;

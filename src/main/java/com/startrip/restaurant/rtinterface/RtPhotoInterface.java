@@ -4,13 +4,12 @@ import com.startrip.restaurant.rtmodel.RtPhotoBean;
 
 public interface RtPhotoInterface {
 
-	RtPhotoBean select(Integer rtId);
+	RtPhotoBean getAllRtPhotortId(Integer rtId);
 
-	RtPhotoBean update(RtPhotoBean bean);
+	RtPhotoBean updateRtPhoto(RtPhotoBean bean);
 
-	RtPhotoBean insert(RtPhotoBean bean);
+	RtPhotoBean insertRtPhoto(RtPhotoBean bean);
 
-	boolean delete(Integer poId);
+	boolean deleteRtPhotopoId(Integer poId);
 	
 }
-
