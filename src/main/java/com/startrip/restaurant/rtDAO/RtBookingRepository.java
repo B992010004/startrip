@@ -6,23 +6,25 @@ import com.startrip.restaurant.rtmodel.RtBookingBean;
 public class RtBookingRepository implements RtBookingInterface {
 
 	@Override
-	public RtBookingBean select(String mail) {
+	public RtBookingBean getAllRtBookingmail(String mail) {
 		return null;
 	}
 
 	@Override
-	public RtBookingBean update(RtBookingBean bean) {
+	public RtBookingBean updateRtBooking(RtBookingBean bean) {
 		return null;
 	}
 
 	@Override
-	public RtBookingBean insert(RtBookingBean bean) {
+	public RtBookingBean insertRtBooking(RtBookingBean bean) {
 		return null;
 	}
 
 	@Override
-	public boolean delete(Integer bgId) {
+	public boolean deleteRtBookingbgId(Integer bgId) {
 		return false;
 	}
+
+
 
 }

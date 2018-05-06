@@ -1,5 +1,10 @@
 package com.startrip.restaurant.rtmodel;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="RtPhoto")
 public class RtPhotoBean {
 
 	private Integer poId;

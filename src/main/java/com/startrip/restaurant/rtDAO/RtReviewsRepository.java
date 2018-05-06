@@ -6,33 +6,34 @@ import com.startrip.restaurant.rtmodel.RtReviewsBean;
 public class RtReviewsRepository implements RtReviewsInterface {
 
 	@Override
-	public RtReviewsBean select(Integer rwId) {
+	public RtReviewsBean getAllRtReviewsrwId(Integer rwId) {
 		return null;
 	}
 
 	@Override
-	public RtReviewsBean select(String rtTitle) {
+	public RtReviewsBean getAllRtReviewsrtTitle(String rtTitle) {
 		return null;
 	}
 
 	@Override
-	public RtReviewsBean update(RtReviewsBean bean) {
+	public RtReviewsBean updateRtReviews(RtReviewsBean bean) {
 		return null;
 	}
 
 	@Override
-	public RtReviewsBean insert(RtReviewsBean bean) {
+	public RtReviewsBean insertRtReviews(RtReviewsBean bean) {
 		return null;
 	}
 
 	@Override
-	public boolean delete(Integer rwId) {
+	public boolean deleteRtReviewsrwId(Integer rwId) {
 		return false;
 	}
 
 	@Override
-	public boolean delete(String rtTitle) {
+	public boolean deleteRtReviewsrtTitle(String rtTitle) {
 		return false;
 	}
+
 
 }
