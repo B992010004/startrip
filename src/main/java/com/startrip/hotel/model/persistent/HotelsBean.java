@@ -53,6 +53,8 @@ public class HotelsBean implements Serializable{
 	private Integer hotelstate;
 	private String hotelinfo;
 	private String hotelrulenote;
+	private Integer refundid;
+	private Integer advancedayid;
 
 	
 	public Integer getHotelmanagerid() {
@@ -127,12 +129,30 @@ public class HotelsBean implements Serializable{
 		this.hotelrulenote = hotelrulenote;
 	}
 
+	public Integer getRefundid() {
+		return refundid;
+	}
+
+	public void setRefundid(Integer refundid) {
+		this.refundid = refundid;
+	}
+
+	public Integer getAdvancedayid() {
+		return advancedayid;
+	}
+
+	public void setAdvancedayid(Integer advancedayid) {
+		this.advancedayid = advancedayid;
+	}
+
 	@Override
 	public String toString() {
 		return "HotelsBean [hotelmanagerid=" + hotelmanagerid + ", hotelid=" + hotelid + ", hotelname=" + hotelname
 				+ ", hotelphone=" + hotelphone + ", hotelstar=" + hotelstar + ", hoteladdress=" + hoteladdress
-				+ ", hotelstate=" + hotelstate + ", hotelinfo=" + hotelinfo + ", hotelrulenote=" + hotelrulenote + "]";
+				+ ", hotelstate=" + hotelstate + ", hotelinfo=" + hotelinfo + ", hotelrulenote=" + hotelrulenote
+				+ ", refundid=" + refundid + ", advancedayid=" + advancedayid + "]";
 	}
+
 
 
 }

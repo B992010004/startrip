@@ -131,6 +131,8 @@
         </nav>
       </div>
       <div class="col-md-10">
+        <form action="/startrip/admin/Roomsetting" method="POST">
+        <input hidden type="text" name="roomid" value="${roomid}">
         <br>
         <div class="row">
           <div class="col-md">
@@ -166,9 +168,9 @@
         <div class="row">
           <div class="col-md-3 ml-3">
             <div class="form-group inputState">
-              <label for="rooms">
-                <input type="number" onkeydown="javascript: return event.keyCode == 69 ? false : true" class="form-control" name="rooms"
-                  id="rooms" min="1" placeholder="基本價格">
+              <label for="price">
+                <input type="number" onkeydown="javascript: return event.keyCode == 69 ? false : true" class="form-control" name="price"
+                  id="price" min="1" placeholder="基本價格">
               </label>
             </div>
           </div>
@@ -178,7 +180,7 @@
           <div class="col-md-6 ml-3">
             <div class="form-row ">
               <div class="form-group col-md">
-                <textarea class="form-control" name="note" rows="4" placeholder="範例：1 張雙人床 / 2 張單人床"></textarea>
+                <textarea class="form-control" name="roomnote" rows="4" placeholder="範例：1 張雙人床 / 2 張單人床"></textarea>
               </div>
             </div>
           </div>
@@ -186,9 +188,9 @@
 
 
         <hr>
-        <form action="HostConnect_Rooms.html">
           <button type="submit" class="btn btn-outline-primary mr-5">儲存</button>
         </form>
+        <br>
       </div>
     </div>
   </div>

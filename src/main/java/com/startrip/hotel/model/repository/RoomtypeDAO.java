@@ -22,5 +22,10 @@ public class RoomtypeDAO{
 		session.delete(bean);
 	}
 	
+	public RoomtypeBean selectByPk(Integer roomid) {
+		Session session = factory.getCurrentSession();
+		return session.load(RoomtypeBean.class, roomid);
+	}
+	
 	
 }

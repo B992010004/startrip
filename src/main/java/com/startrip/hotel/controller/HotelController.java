@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.startrip.hotel.model.persistent.FacilitylistBean;
 import com.startrip.hotel.model.persistent.HotelsBean;
 import com.startrip.hotel.model.persistent.RoomtypeBean;
-import com.startrip.hotel.model.persistent.RulelistBean;
 import com.startrip.hotel.model.persistent.ServicelistBean;
 import com.startrip.hotel.model.service.HotelAdminService;
 import com.startrip.hotel.model.service.HotelService;
@@ -112,9 +111,7 @@ public class HotelController {
 
 		if (hotelid != null) {
 			System.out.println("變更飯店基本資料");
-			
-			HotelsBean bean = hotelAdminService.selectHotelByPk(hotelid);
-			hotelAdminService.updateHotel(bean, name, phone, address, star);
+			hotelAdminService.updateHotel(hotelid, name, phone, address, star);
 		} else {
 			HotelsBean bean = new HotelsBean();
 			bean.setHotelname(name);
@@ -149,8 +146,7 @@ public class HotelController {
 		note = sb.toString();
 
 		if (hotelid != null) {
-			HotelsBean bean = hotelAdminService.selectHotelByPk(hotelid);
-			hotelAdminService.updateHotel(bean, info, note);
+			hotelAdminService.updateHotel(hotelid, info, note);
 		}
 		return "redirect:/admin/HostConnect_Service";
 	}
@@ -170,11 +166,7 @@ public class HotelController {
 
 		Integer hotelid = (Integer) session.getAttribute("hotelid");
 
-		RulelistBean bean = new RulelistBean();
-		bean.setHotelid(hotelid);
-		bean.setRefundid(refund);
-		bean.setAdvancedayid(advanceday);
-		hotelAdminService.insertOrUpdateRulelist(bean);
+		hotelAdminService.updateHotel(hotelid, refund, advanceday);
 
 		String[] service = request.getParameterValues("service");
 		hotelAdminService.deleteServicelistByHotelid(hotelid);
@@ -213,8 +205,8 @@ public class HotelController {
 	}
 
 	@RequestMapping(value = "/admin/AddRoom", method = RequestMethod.POST)
-	public String hostConnectRoomsAddRoom(Model model, HttpSession session, @RequestParam String name, @RequestParam Integer people,
-			@RequestParam Integer rooms) {
+	public String hostConnectRoomsAddRoom(Model model, HttpSession session, @RequestParam String name,
+			@RequestParam Integer people, @RequestParam Integer rooms) {
 		Integer hotelid = (Integer) session.getAttribute("hotelid");
 		System.out.println(hotelid);
 		RoomtypeBean bean = new RoomtypeBean();
@@ -224,12 +216,12 @@ public class HotelController {
 		bean.setNumberofrooms(rooms);
 		bean.setRoomstate(false);
 		hotelAdminService.insertRoomtype(bean);
-		
+
 		return "redirect:/admin/HostConnect_Rooms";
 	}
 
 	@RequestMapping(value = "/admin/DeleteRoom", method = RequestMethod.POST)
-	public String hostConnectRoomsDeleteRoom(Model model, HttpSession session,@RequestParam Integer roomid) {
+	public String hostConnectRoomsDeleteRoom(Model model, HttpSession session, @RequestParam Integer roomid) {
 
 		RoomtypeBean bean = new RoomtypeBean();
 		bean.setRoomid(roomid);
@@ -238,8 +230,25 @@ public class HotelController {
 	}
 
 	@RequestMapping(value = "/admin/HostConnect_Roomset")
-	public String hostConnectRoomset(Model model) {
+	public String hostConnectRoomset(Model model, @RequestParam Integer roomid) {
+		System.out.println("roomid = " + roomid);
+		model.addAttribute("roomid", roomid);
 		return "hotel/admin/HostConnect_Roomset";
+	}
+
+	@RequestMapping(value = "/admin/Roomsetting", method = RequestMethod.POST)
+	public String hostConnectRoomsetSave(Model model, HttpServletRequest request, @RequestParam Integer roomid,
+			@RequestParam Integer price, @RequestParam String roomnote) {
+		System.out.println("setting roomid = " + roomid);
+		String checkintemp = request.getParameter("checkin").replaceAll("/", "-");
+		String checkouttemp = request.getParameter("checkout").replaceAll("/", "-");
+		java.sql.Date checkin = java.sql.Date.valueOf(checkintemp);
+		java.sql.Date checkout = java.sql.Date.valueOf(checkouttemp);
+		System.out.println(checkin);
+		System.out.println(checkout);
+		hotelAdminService.updateRoomtype(roomid, checkin, checkout, price, roomnote);
+
+		return "redirect:/admin/HostConnect_Rooms";
 	}
 
 	@RequestMapping(value = "/admin/HostConnect_Bookingday")

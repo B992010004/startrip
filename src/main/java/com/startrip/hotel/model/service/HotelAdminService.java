@@ -6,13 +6,13 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.startrip.hotel.model.persistent.FacilitylistBean;
 import com.startrip.hotel.model.persistent.FacilitynameBean;
 import com.startrip.hotel.model.persistent.HotelsBean;
 import com.startrip.hotel.model.persistent.PhotonameBean;
 import com.startrip.hotel.model.persistent.RoomtypeBean;
-import com.startrip.hotel.model.persistent.RulelistBean;
 import com.startrip.hotel.model.persistent.ServicelistBean;
 import com.startrip.hotel.model.persistent.ServicenameBean;
 import com.startrip.hotel.model.repository.FacilitylistDAO;
@@ -20,7 +20,6 @@ import com.startrip.hotel.model.repository.FacilitynameDAO;
 import com.startrip.hotel.model.repository.HotelsDAO;
 import com.startrip.hotel.model.repository.PhotonameDAO;
 import com.startrip.hotel.model.repository.RoomtypeDAO;
-import com.startrip.hotel.model.repository.RulelistDAO;
 import com.startrip.hotel.model.repository.ServicelistDAO;
 import com.startrip.hotel.model.repository.ServicenameDAO;
 
@@ -35,13 +34,12 @@ public class HotelAdminService {
 	@Autowired
 	ServicenameDAO servicename;
 	@Autowired
-	RulelistDAO rulelist;
-	@Autowired
 	ServicelistDAO servicelist;
 	@Autowired
 	FacilitylistDAO facilitylist;
 	@Autowired
 	RoomtypeDAO roomtype;
+	
 
 	@Transactional
 	public int insertHotel(HotelsBean bean) {
@@ -49,38 +47,42 @@ public class HotelAdminService {
 		return hotels.insert(bean);
 	}
 	@Transactional
-	public void updateHotel(HotelsBean bean, String name,  String phone,
+	public void updateHotel(Integer hotelid, String name,  String phone,
 			 String address,  Integer star) {
 		System.out.println("開始更新飯店基本資料");
 
+		HotelsBean bean = hotels.selectByPk(hotelid);
 		bean.setHotelname(name);
 		bean.setHotelphone(phone);
 		bean.setHoteladdress(address);
 		bean.setHotelstar(star);
 		
-		hotels.update(bean);
-		
 	}	
 	@Transactional
-	public void updateHotel(HotelsBean bean,String info,String note) {
+	public void updateHotel(Integer hotelid,String info,String note) {
 		System.out.println("開始更新飯店介紹與政策提示");
-		
+		HotelsBean bean = hotels.selectByPk(hotelid);
 		bean.setHotelinfo(info);
-		bean.setHotelrulenote(note);
-		
-		hotels.update(bean);
-		
+		bean.setHotelrulenote(note);		
+	}
+	@Transactional
+	public void updateHotel(Integer hotelid, Integer refund, Integer advanceday) {
+		System.out.println("開始更新飯店介紹與政策提示");
+		HotelsBean bean = hotels.selectByPk(hotelid);
+		bean.setRefundid(refund);
+		bean.setAdvancedayid(advanceday);		
 	}
 
 	@Transactional
-	public HotelsBean selectHotelByPk(Integer hotelid) {
-		return hotels.selectByPk(hotelid);
+	public void updateRoomtype(Integer roomid,java.sql.Date checkin,java.sql.Date checkout,Integer price,String roomnote) {
+		RoomtypeBean bean = roomtype.selectByPk(roomid);
+		bean.setOpendate(checkin);
+		bean.setEnddate(checkout);
+		bean.setBasicprice(price);
+		bean.setRoomnote(roomnote);
+		bean.setRoomstate(true);
 	}
-	
-	@Transactional
-	public void insertOrUpdateRulelist(RulelistBean bean) {
-		rulelist.insertOrUpdate(bean);
-	}
+
 	
 	@Transactional
 	public void insertServicelist(ServicelistBean bean) {

@@ -6,11 +6,8 @@ USE startrip;
 DROP TABLE memberorder;
 DROP TABLE orderstate;
 DROP TABLE paymentmethod;
-DROP TABLE rulelist;
 DROP TABLE facilitylist;
 DROP TABLE servicelist;
-DROP TABLE advanceday;
-DROP TABLE refund;
 DROP TABLE facilityname;
 DROP TABLE servicename;
 DROP TABLE mainphoto;
@@ -19,6 +16,8 @@ DROP TABLE photoname;
 DROP TABLE singlenight;
 DROP TABLE roomtype;
 DROP TABLE hotels;
+DROP TABLE advanceday;
+DROP TABLE refund;
 DROP TABLE member;
 
 CREATE TABLE member(
@@ -28,7 +27,29 @@ memberemail VARCHAR(50),
 memberpassword VARCHAR(30),
 memberphone INT
 );
-INSERT INTO member(membername,memberemail,memberpassword,memberphone) values('test','test@test.com','test',0123456789);
+INSERT INTO member(membername,memberemail,memberpassword,memberphone) values('sa','sa@sa.com','sa123456',0123456789);
+
+
+CREATE TABLE refund(
+refundid INT NOT NULL PRIMARY KEY,
+rulename VARCHAR(50)
+);
+
+INSERT INTO refund(refundid,rulename) values(1, '嚴格 - 不可退款');
+INSERT INTO refund(refundid,rulename) values(2, '寬鬆 - 入住 3 日前可退款');
+INSERT INTO refund(refundid,rulename) values(3, '基本 - 入住 7 日前可退款');
+INSERT INTO refund(refundid,rulename) values(4, '無限制');
+
+CREATE TABLE advanceday(
+advancedayid INT NOT NULL PRIMARY KEY,
+advancedayname VARCHAR(50)
+);
+
+INSERT INTO advanceday(advancedayid,advancedayname) values(1, '一個月內');
+INSERT INTO advanceday(advancedayid,advancedayname) values(2, '三個月內');
+INSERT INTO advanceday(advancedayid,advancedayname) values(3, '六個月內');
+INSERT INTO advanceday(advancedayid,advancedayname) values(4, '一年內');
+INSERT INTO advanceday(advancedayid,advancedayname) values(5, '無限制');
 
 CREATE TABLE hotels(
 hotelmanagerid INT FOREIGN KEY REFERENCES member(memberid),
@@ -40,6 +61,8 @@ hoteladdress VARCHAR(200),
 hotelstate INT,
 hotelinfo VARCHAR(8000),
 hotelrulenote VARCHAR(8000),
+refundid INT FOREIGN KEY REFERENCES refund(refundid),
+advancedayid INT FOREIGN KEY REFERENCES advanceday(advancedayid)
 );
 
 
@@ -134,34 +157,6 @@ hotelid INT FOREIGN KEY REFERENCES hotels(hotelid),
 checknumber INT IDENTITY NOT NULL PRIMARY KEY
 );
 
-CREATE TABLE refund(
-refundid INT NOT NULL PRIMARY KEY,
-rulename VARCHAR(50)
-);
-
-
-INSERT INTO refund(refundid,rulename) values(1, '嚴格 - 不可退款');
-INSERT INTO refund(refundid,rulename) values(2, '寬鬆 - 入住 3 日前可退款');
-INSERT INTO refund(refundid,rulename) values(3, '基本 - 入住 7 日前可退款');
-INSERT INTO refund(refundid,rulename) values(4, '無限制');
-
-CREATE TABLE advanceday(
-advancedayid INT NOT NULL PRIMARY KEY,
-advancedayname VARCHAR(50)
-);
-
-
-INSERT INTO advanceday(advancedayid,advancedayname) values(1, '一個月內');
-INSERT INTO advanceday(advancedayid,advancedayname) values(2, '三個月內');
-INSERT INTO advanceday(advancedayid,advancedayname) values(3, '六個月內');
-INSERT INTO advanceday(advancedayid,advancedayname) values(4, '一年內');
-INSERT INTO advanceday(advancedayid,advancedayname) values(5, '無限制');
-
-CREATE TABLE rulelist(
-hotelid INT FOREIGN KEY REFERENCES hotels(hotelid) NOT NULL  PRIMARY KEY,
-refundid INT FOREIGN KEY REFERENCES refund(refundid),
-advancedayid INT FOREIGN KEY REFERENCES advanceday(advancedayid)
-);
 
 CREATE TABLE paymentmethod(
 methodid INT NOT NULL PRIMARY KEY,
