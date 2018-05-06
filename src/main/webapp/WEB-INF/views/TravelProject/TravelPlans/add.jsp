@@ -13,19 +13,13 @@
 <form:form method='POST' modelAttribute="TravelViewBean">
 
 	<label>member:</label>
-	<form:input path="memberId" type='text'/><br>
+	<form:input path="mail" type='text'/><br>
 	<label>name:</label>
 	<form:input path="viewName" type='text'/><br>
 	<label>address</label>
 	<form:input path="viewaddr" type='text'/><br>
 	<label>phone</label>
 	<form:input path="viewPhone" type='text'/><br>
-	<label>coordx</label>
-	<form:input path="coordx" type='text'/><br>
-	<label>coordy</label>
-	<form:input path="coordy" type='text'/><br>
-	<label>orgclass</label>
-	<form:input path="orgclass" type='text'/><br>
 	<label>tdate</label>
 	<form:input path="tdate" type='text'/><br>
 <%-- 	<label>class</label><form:select path="Orgclass'"> --%>

@@ -25,6 +25,7 @@ public class TravelAllBean {
 	private java.sql.Date endDate;
 	private int travelDays;
 	
+
 	private MemberBean mailBean;//fk
 	private Set<TravelViewBean> Views;
 	private Set<MemberBean> travels;
@@ -65,6 +66,8 @@ public class TravelAllBean {
 	
 	//memberId關連到MemeberBean的memberId
 		@ManyToOne
+
+
 		@JoinColumn(name="mail",referencedColumnName="mail",insertable=true,updatable=false)
 	public MemberBean getMailBean() {
 		return mailBean;

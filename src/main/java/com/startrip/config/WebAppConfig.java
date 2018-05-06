@@ -41,11 +41,21 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 	//天哪 前端好難喔!
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("assets/css/**").addResourceLocations("/WEB-INF/views/assets/css/");
-		registry.addResourceHandler("assets/images/**").addResourceLocations("/WEB-INF/views/assets/images/");
-		registry.addResourceHandler("assets/fonts/**").addResourceLocations("/WEB-INF/views/assets/fonts/");
-		registry.addResourceHandler("assets/js/**").addResourceLocations("/WEB-INF/views/assets/js/");
-		registry.addResourceHandler("assets/scss/**").addResourceLocations("/WEB-INF/views/assets/scss/");
+		
+		
+		registry.addResourceHandler("assets/**").addResourceLocations("/WEB-INF/views/assets/");
+		//------------------------------------------- 
+//		registry.addResourceHandler("assets/css/**").addResourceLocations("/WEB-INF/views/assets/css/");
+//		registry.addResourceHandler("assets/images/**").addResourceLocations("/WEB-INF/views/assets/images/");
+//		registry.addResourceHandler("assets/fonts/**").addResourceLocations("/WEB-INF/views/assets/fonts/");
+//		registry.addResourceHandler("assets/js/**").addResourceLocations("/WEB-INF/views/assets/js/");
+//		registry.addResourceHandler("assets/scss/**").addResourceLocations("/WEB-INF/views/assets/scss/");
+		
+		//-------------------------------------------
+//		registry.addResourceHandler("assets/Travel/js/**").addResourceLocations("/WEB-INF/views/assets/Travel/js/");
+//		registry.addResourceHandler("assets/Travel/css/**").addResourceLocations("/WEB-INF/views/assets/Travel/css/");
+//		registry.addResourceHandler("assets/Travel/images/**").addResourceLocations("/WEB-INF/views/assets/Travel/images/");
+		//-------------------------------------------------
 	}
 
 	@Bean

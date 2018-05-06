@@ -14,20 +14,25 @@ import com.startrip.travelPlan.travelAll.service.TravelAllService;
 
 @Controller
 public class TravelPlanController {
+	
 	@Autowired
 	TravelAllService travelservice;
-	@RequestMapping(value="travel/add",method=RequestMethod.GET)
+	
+	
+	@RequestMapping(value="Travel/addPlan",method=RequestMethod.GET)
 	public String travelNewAdd(Model model) {
 		TravelAllBean bean = new TravelAllBean();
 		model.addAttribute(bean);
 		return "TravelProject/TravelPlans/add";
 	}
-	@RequestMapping(value="travel/add",method=RequestMethod.POST)
+	
+	@RequestMapping(value="travel/addPlan",method=RequestMethod.POST)
 	public String travelAdd(@ModelAttribute TravelAllBean bean) {
 		travelservice.insert(bean);
-		return "redirect:/TravelProject/TravelPlans/travels";
+		return "redirect:/travel/all";
 	}
 	
+	@RequestMapping(value="travel/all",method=RequestMethod.GET)
 	public String travelAll(Model model) {
 		List<TravelAllBean> list = travelservice.selectAllTravel();
 		model.addAttribute("travels", list);

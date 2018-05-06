@@ -1,5 +1,6 @@
 package com.startrip.member.memberModle;
 
+import java.sql.Blob;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -17,6 +18,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.startrip.travelPlan.travelAll.model.TravelAllBean;
 import com.startrip.travelPlan.travelView.model.TravelViewBean;
 
@@ -35,12 +37,23 @@ public class MemberBean {
 	private int phone;
 	private String birthday;
 	private String avatar;
+	@JsonIgnore
+	private Blob photo;
+	@Transient
+	private MultipartFile  avatarImage;	
 	
+	@XmlTransient
+	public Blob getPhoto() {
+		return photo;
+	}
+	public void setPhoto(Blob photo) {
+		this.photo = photo;
+	}
 	//-------------------------------
 	@OneToMany(mappedBy="mailBean",cascade= {CascadeType.ALL})
 	private Set<TravelViewBean> ViewMB;
-	@OneToMany(mappedBy="mailBean",cascade= {CascadeType.ALL})
-	private Set<TravelViewBean> travelMB;
+//	@OneToMany(mappedBy="mailBean",cascade= {CascadeType.ALL})
+//	private Set<TravelViewBean> travelMB;
 	@ManyToMany
 	@JoinTable(name="travelCollection",joinColumns=@JoinColumn(name="member_Mail"),inverseJoinColumns=@JoinColumn(name="travel_Id"))
 	private Set<TravelAllBean> travels;
@@ -50,9 +63,7 @@ public class MemberBean {
 	
 	@Transient
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int memberID;
-	@Transient
-	private MultipartFile  avatarImage;	
+	private int memberid;
 	
 	@XmlTransient
 	public MultipartFile getAvatarImage() {
@@ -61,11 +72,12 @@ public class MemberBean {
 	public void setAvatarImage(MultipartFile avatarImage) {
 		this.avatarImage = avatarImage;
 	}
-	public int getMemberID() {
-		return memberID;
+
+	public int getMemberid() {
+		return memberid;
 	}
-	public void setMemberID(int memberID) {
-		this.memberID = memberID;
+	public void setMemberid(int memberid) {
+		this.memberid = memberid;
 	}
 	public String getAvatar() {
 		return avatar;
@@ -122,19 +134,14 @@ public class MemberBean {
 	public void setViewMB(Set<TravelViewBean> viewMB) {
 		ViewMB = viewMB;
 	}
-	public Set<TravelViewBean> getTravelMB() {
-		return travelMB;
-	}
-	public void setTravelMB(Set<TravelViewBean> travelMB) {
-		this.travelMB = travelMB;
-	}
+	
 	public Set<TravelAllBean> getTravels() {
 		return travels;
 	}
 	public void setTravels(Set<TravelAllBean> travels) {
 		this.travels = travels;
 	}
-	
+
 	
 	//--------------------------------------------
 	

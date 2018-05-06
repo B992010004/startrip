@@ -22,12 +22,12 @@ public class TravelListDao implements TravelListDaoInterface  {
 	
 	
 	@Override
-	public TravelListBean Select_PK(TravelListBean bean) {
+	public TravelListBean Select_PK(TravelListPK bean) {
 		TravelListPK pk = new TravelListPK(bean.getViewid(), bean.getTravelId());
 			Session session = factory.getCurrentSession();
-			
-			bean = session.get(TravelListBean.class, pk);
-		return bean;
+			TravelListBean result = new TravelListBean();
+			result = session.get(TravelListBean.class, pk);
+		return result;
 	}
 	@Override
 	public List<TravelListBean> select() {
