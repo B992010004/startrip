@@ -1,5 +1,6 @@
 package com.startrip.member.memberModle;
 
+import java.io.Serializable;
 import java.sql.Blob;
 import java.util.Set;
 
@@ -27,16 +28,23 @@ import com.startrip.travelPlan.model.TravelViewBean;
 
 @Entity
 @Table(name="Membertable")
-public class MemberBean {
-		
+public class MemberBean implements Serializable{
+
+	private static final long serialVersionUID = 1L;
+
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Integer memberid;	
+	
 	private String mail;
 	private String password;
+	
 	private String username;
 	private String address;
 	private int phone;
 	private String birthday;
 	private String avatar;
+	
 	@JsonIgnore
 	private Blob photo;
 	@Transient
@@ -63,9 +71,7 @@ public class MemberBean {
 	//--------------------------------
 	
 	
-	@Transient
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int memberid;
+	
 	
 	@XmlTransient
 	public MultipartFile getAvatarImage() {
@@ -75,10 +81,10 @@ public class MemberBean {
 		this.avatarImage = avatarImage;
 	}
 
-	public int getMemberid() {
+	public Integer getMemberid() {
 		return memberid;
 	}
-	public void setMemberid(int memberid) {
+	public void setMemberid(Integer memberid) {
 		this.memberid = memberid;
 	}
 	public String getAvatar() {

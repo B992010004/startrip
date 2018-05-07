@@ -20,7 +20,7 @@ public class HotelsDAO{
 
 	public HotelsBean selectByPk(Integer hotelid) {
 		Session session = factory.getCurrentSession();
-		return session.load(HotelsBean.class, hotelid);
+		return session.get(HotelsBean.class, hotelid);
 	}
 
 }

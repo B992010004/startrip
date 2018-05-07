@@ -1,5 +1,7 @@
 package com.startrip.hotel.model.repository;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,5 +24,12 @@ public class ServicelistDAO{
 		Session session = factory.getCurrentSession();
 		session.createQuery(hql).setParameter("hotelid", hotelid).executeUpdate();
 		
+	}
+	
+	public List<Integer> selectByHotelid(Integer hotelid){
+		String hql = "SELECT serviceid FROM servicelist WHERE hotelid = :hotelid";
+		Session session = factory.getCurrentSession();
+		
+		return session.createQuery(hql, Integer.class).setParameter("hotelid", hotelid).list();
 	}
 }

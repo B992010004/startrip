@@ -1,5 +1,6 @@
 package com.startrip.restaurant.rtController;
 
+
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,10 +17,10 @@ public class RtDetailsController {
 		model.addAttribute("RtDetailsBean", rdb);
 		return "restaurantHome";
 	}
-
 	
 	@RequestMapping(value = "/restaurant/restaurantHome", method = RequestMethod.POST)
 	public String processAddNewrestaurantHome(@ModelAttribute("RtDetailsBean") RtDetailsBean rdb) {
 		return "restaurantHome";
 	}
+
 }

@@ -9,8 +9,6 @@ import com.startrip.restaurant.rtexception.RtReviewsNotFoundException;
 import com.startrip.restaurant.rtinterface.RtBookingInterface;
 import com.startrip.restaurant.rtmodel.RtBookingBean;
 
-
-
 @Repository
 public class RtBookingRepository implements RtBookingInterface {
 	

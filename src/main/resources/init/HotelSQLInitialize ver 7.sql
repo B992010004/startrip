@@ -1,5 +1,9 @@
 USE startrip;
 
+--USE master;
+--DROP DATABASE startrip;
+--CREATE DATABASE startrip;
+
 --DROP TABLE favorite;
 --DROP TABLE advertisement;
 --DROP TABLE comment;
@@ -18,16 +22,22 @@ DROP TABLE roomtype;
 DROP TABLE hotels;
 DROP TABLE advanceday;
 DROP TABLE refund;
-DROP TABLE member;
+DROP TABLE Membertable;
 
-CREATE TABLE member(
-memberid INT IDENTITY NOT NULL PRIMARY KEY,
-membername VARCHAR(30),
-memberemail VARCHAR(50),
-memberpassword VARCHAR(30),
-memberphone INT
+
+
+CREATE TABLE [dbo].[Membertable](
+	[memberid] [int] IDENTITY(1,1) NOT NULL PRIMARY KEY ,
+	[mail] [varchar](255) NOT NULL,
+	[password] [varchar](255) NULL,
+	[username] [varchar](255) NULL,
+	[birthday] [varchar](255) NULL,
+	[address] [varchar](255) NULL,
+	[phone] [int] NOT NULL,
+	[avatar] [varchar](255) NULL,
 );
-INSERT INTO member(membername,memberemail,memberpassword,memberphone) values('sa','sa@sa.com','sa123456',0123456789);
+
+INSERT INTO Membertable(username,mail,[password],phone) values('sa','sa@sa.com','sa123456',0123456789);
 
 
 CREATE TABLE refund(
@@ -52,7 +62,7 @@ INSERT INTO advanceday(advancedayid,advancedayname) values(4, '一年內');
 INSERT INTO advanceday(advancedayid,advancedayname) values(5, '無限制');
 
 CREATE TABLE hotels(
-hotelmanagerid INT FOREIGN KEY REFERENCES member(memberid),
+hotelmanagerid VARCHAR(255) FOREIGN KEY REFERENCES Membertable(memberid),
 hotelid INT IDENTITY NOT NULL  PRIMARY KEY,
 hotelname VARCHAR(30),
 hotelphone VARCHAR(20),
@@ -178,7 +188,7 @@ INSERT INTO orderstate(orderstateid,orderstatename) values(3,'作廢');
 CREATE TABLE memberorder(
 hotelid INT FOREIGN KEY REFERENCES hotels(hotelid),
 orderstateid INT FOREIGN KEY REFERENCES orderstate(orderstateid),
-memberid INT FOREIGN KEY REFERENCES member(memberid),
+memberid VARCHAR(255) FOREIGN KEY REFERENCES Membertable(mail),
 ordernumber BIGINT NOT NULL PRIMARY KEY,
 -- yyyyMMdd + serial number 
 orderdate DATE,
@@ -190,6 +200,10 @@ singlenightprice VARCHAR(8000),
 checkin DATE,
 checkout DATE,
 );
+
+
+
+
 
 /*
 廢棄功能

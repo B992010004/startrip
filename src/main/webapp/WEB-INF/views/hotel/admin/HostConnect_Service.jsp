@@ -172,9 +172,16 @@
                        <div class="form-group">
                        <div class="col-md">
                      </c:if>
+                     		
                              <label for="service${service.serviceid}">
-                               <input type="checkbox" id="service${service.serviceid}" name="service" value="${service.serviceid}">${service.servicename}</label>
-
+                             <input type="checkbox" 
+                             <c:forEach var="checked" items="${servicelist}">
+                             <c:if test="${checked eq service.serviceid}">checked</c:if>
+                             </c:forEach>
+							 id="service${service.serviceid}" name="service" 
+							 value="${service.serviceid}">${service.servicename}</label>
+                             
+								
                      <c:if test="${status.count%4 == 0}">
                       </div>
                       </div>
@@ -191,15 +198,23 @@
                   </div>
                   <hr>
                   <h5 class="ml-2">設施：</h5>
-                  
+                 <div hidden id="facilitylist">
+
+                 </div>
                  <c:forEach var="facility" items="${facilityname}" varStatus="status">
                      <c:if test="${status.count%4 == 1}">
                        <div class="form-row ml-4">
                        <div class="form-group">
                        <div class="col-md">
                      </c:if>
+                     
                              <label for="facility${facility.facilityid}">
-                               <input type="checkbox" id="facility${facility.facilityid}" name="facility" value="${facility.facilityid}">${facility.facilityname}</label>
+                             <input type="checkbox"
+                             <c:forEach var="checked" items="${facilitylist}">
+                             <c:if test="${checked eq facility.facilityid}">checked</c:if>
+                             </c:forEach>
+							 id="facility${facility.facilityid}" name="facility"
+   	  						 value="${facility.facilityid}">${facility.facilityname}</label>
 
                      <c:if test="${status.count%4 == 0}">
                       </div>

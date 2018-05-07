@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -129,7 +130,7 @@
               <label for="name">
                 <h5>住宿名稱：</h5>
               </label>
-              <input type="text" class="form-control" value="" name="name" id="name" size=50px>
+              <input type="text" class="form-control" value="${hotelbean.hotelname}" name="name" id="name" size=50px>
             </div>
           </div>
           <div class="form-row">
@@ -137,7 +138,7 @@
               <label for="phone">
                 <h5>聯絡電話：</h5>
               </label>
-              <input type="text" class="form-control" value="" name="phone" id="phone" size=50px>
+              <input type="text" class="form-control" value="${hotelbean.hotelphone}" name="phone" id="phone" size=50px>
             </div>
           </div>
           <div class="form-row">
@@ -145,7 +146,7 @@
               <label for="address">
                 <h5>地址：</h5>
               </label>
-              <input type="text" class="form-control" value="" name="address" id="address" size=50px>
+              <input type="text" class="form-control" value="${hotelbean.hoteladdress}" name="address" id="address" size=50px>
             </div>
           </div>
           <div class="form-row">
@@ -154,12 +155,11 @@
                 <h5>星等：</h5>
               </label>
               <div>
-                <img id="idimg1" src="/startrip/assets/images/star-off-big.png" />
-                <img id="idimg2" src="/startrip/assets/images/star-off-big.png" />
-                <img id="idimg3" src="/startrip/assets/images/star-off-big.png" />
-                <img id="idimg4" src="/startrip/assets/images/star-off-big.png" />
-                <img id="idimg5" src="/startrip/assets/images/star-off-big.png" />
-                <input hidden type="number" name="star" id="star" value="0">
+                <c:forEach var="step" begin="1" end="5">
+                <c:if test="${step <= hotelbean.hotelstar}"><img id="idimg${step}" src="/startrip/assets/images/star-on-big.png" /></c:if>
+                <c:if test="${step > hotelbean.hotelstar}"><img id="idimg${step}" src="/startrip/assets/images/star-off-big.png" /></c:if>                
+                <input hidden type="number" name="star" id="star" value="${hotelbean.hotelstar}">
+                </c:forEach>
               </div>
             </div>
           </div>
@@ -298,6 +298,9 @@
         document.getElementById("idimg" + i).addEventListener("mouseover", mouseover);  //事件繫結，滑鼠滑入
         document.getElementById("idimg" + i).addEventListener("mouseout", mouseout);    //事件繫結，滑鼠滑出
         document.getElementById("idimg" + i).addEventListener("click", mouseclick);
+      }
+      if(starinput.value != 0){
+    	  checkNum = -1;
       }
     });
 

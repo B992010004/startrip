@@ -40,7 +40,10 @@ public class HotelAdminService {
 	@Autowired
 	RoomtypeDAO roomtype;
 	
-
+	@Transactional
+	public HotelsBean selectHotelByPk(Integer hotelid) {
+		return hotels.selectByPk(hotelid);
+	}
 	@Transactional
 	public int insertHotel(HotelsBean bean) {
 		System.out.println("開始新增飯店基本資料");
@@ -57,7 +60,7 @@ public class HotelAdminService {
 		bean.setHoteladdress(address);
 		bean.setHotelstar(star);
 		
-	}	
+	}
 	@Transactional
 	public void updateHotel(Integer hotelid,String info,String note) {
 		System.out.println("開始更新飯店介紹與政策提示");
@@ -98,12 +101,23 @@ public class HotelAdminService {
 	}
 	@Transactional
 	public void deleteFacilitylistByHotelid(Integer hotelid) {
-		facilitylist.delete(hotelid);
+		facilitylist.deleteByHotelid(hotelid);
 	}
 	@Transactional
 	public void insertRoomtype(RoomtypeBean bean) {
 		roomtype.insert(bean);
 	}
+	
+	@Transactional
+	public List<Integer> selectFacilitylistByHotelid(Integer hotelid){
+		return facilitylist.selectByHotelid(hotelid);
+	}
+	
+	@Transactional
+	public List<Integer> selectServicelistByHotelid(Integer hotelid){
+		return servicelist.selectByHotelid(hotelid);
+	}
+	
 	@Transactional
 	public void deleteRoomtype(RoomtypeBean bean) {
 		roomtype.delete(bean);

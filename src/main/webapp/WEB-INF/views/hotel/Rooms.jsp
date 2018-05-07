@@ -496,6 +496,8 @@
 
 
   <script>
+  	
+  
     $(document).ready(function(){
       $("#my_popup").attr("hidden",false)
     })
