@@ -92,10 +92,20 @@ public class HotelController {
 
 	@RequestMapping(value = "/admin/HostConnect_Hotel")
 	public String hostConnectHotel(Model model, HttpServletRequest request, HttpSession session) {
-		String hotelid = request.getParameter("hotelid");
-		if (hotelid != null) {
+		
+		String hotelidtemp = request.getParameter("hotelid");
+		if (hotelidtemp != null) {
+			Integer hotelid = Integer.valueOf(hotelidtemp);
 			System.out.println("hotelid = " + hotelid);
-			session.setAttribute("hotelid", Integer.valueOf(hotelid));
+			request.setAttribute("hotelbean", hotelAdminService.selectHotelByPk(hotelid));
+			session.setAttribute("hotelid", hotelid);
+		}else {
+			Integer hotelid = (Integer) session.getAttribute("hotelid");
+			if(hotelid != null) {
+				request.setAttribute("hotelbean", hotelAdminService.selectHotelByPk(hotelid));
+				
+			}
+		
 		}
 
 		return "hotel/admin/HostConnect_Hotel";
@@ -128,8 +138,11 @@ public class HotelController {
 	}
 
 	@RequestMapping(value = "/admin/HostConnect_Info", method = RequestMethod.GET)
-	public String hostConnectInfo(Model model) {
-
+	public String hostConnectInfo(Model model,HttpSession session,HttpServletRequest request) {
+		 Integer hotelid = (Integer) session.getAttribute("hotelid");
+		 HotelsBean bean = hotelAdminService.selectHotelByPk(hotelid);
+		 request.setAttribute("hotelbean",bean);
+		 
 		return "hotel/admin/HostConnect_Info";
 	}
 
