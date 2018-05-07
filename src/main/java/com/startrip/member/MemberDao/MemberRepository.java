@@ -30,12 +30,17 @@ public class MemberRepository implements MemberRepositoryinterface {
 		return list;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public MemberBean select(String mail) {
-		MemberBean bean=null;
-		Session session = factory.getCurrentSession();
-		bean = session.get(MemberBean.class, mail);
-		return  bean;
+		
+		String hql = "FROM MemberBean where mail =:mail ";
+		Session session = null;
+		List<MemberBean> list = new ArrayList<>();
+		session = factory.getCurrentSession();
+		list = session.createQuery(hql).setParameter("mail", mail).getResultList();
+		
+		return list.get(0);
 	}
 
 	@Override

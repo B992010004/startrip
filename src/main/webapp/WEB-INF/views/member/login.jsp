@@ -5,6 +5,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link href="/startrip/assets/css/bootstrap/botton.css" rel="stylesheet"
+	type="text/css" />
 <script type="text/javascript" src="http://code.jquery.com/*.min.js"></script>
 <script src='https://www.google.com/recaptcha/api.js'></script>
 <script src="https://apis.google.com/js/platform.js" async defer></script>

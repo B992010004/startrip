@@ -1,5 +1,6 @@
 package com.startrip.member.memberModle;
 
+import java.io.Serializable;
 import java.sql.Blob;
 import java.util.Set;
 
@@ -19,24 +20,31 @@ import javax.xml.bind.annotation.XmlTransient;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.startrip.travelPlan.travelAll.model.TravelAllBean;
-import com.startrip.travelPlan.travelView.model.TravelViewBean;
+import com.startrip.travelPlan.model.TravelAllBean;
+import com.startrip.travelPlan.model.TravelViewBean;
 
 
 
 
 @Entity
 @Table(name="Membertable")
-public class MemberBean {
-		
+public class MemberBean implements Serializable{
+
+	private static final long serialVersionUID = 1L;
+
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Integer memberid;	
+	
 	private String mail;
 	private String password;
+	
 	private String username;
 	private String address;
 	private int phone;
 	private String birthday;
 	private String avatar;
+	
 	@JsonIgnore
 	private Blob photo;
 	@Transient
@@ -50,22 +58,20 @@ public class MemberBean {
 		this.photo = photo;
 	}
 	//-------------------------------
-	@OneToMany(mappedBy="viewMail",cascade= {CascadeType.ALL})
-	private Set<TravelViewBean> ViewMB;
+//	@OneToMany(mappedBy="viewMail",cascade= {CascadeType.ALL})
+//	private Set<TravelViewBean> ViewMB;
+////	
+//	@OneToMany(mappedBy="travelMail",cascade= {CascadeType.ALL})
+//	private Set<TravelAllBean> travelMB;
+////	
+//	@ManyToMany
+//	@JoinTable(name="travelCollection",joinColumns=@JoinColumn(name="member_Mail"),inverseJoinColumns=@JoinColumn(name="travel_Id"))
+//	private Set<TravelAllBean> travels;
 //	
-	@OneToMany(mappedBy="travelMail",cascade= {CascadeType.ALL})
-	private Set<TravelAllBean> travelMB;
-//	
-	@ManyToMany
-	@JoinTable(name="travelCollection",joinColumns=@JoinColumn(name="member_Mail"),inverseJoinColumns=@JoinColumn(name="travel_Id"))
-	private Set<TravelAllBean> travels;
-	
 	//--------------------------------
 	
 	
-	@Transient
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int memberid;
+	
 	
 	@XmlTransient
 	public MultipartFile getAvatarImage() {
@@ -75,10 +81,10 @@ public class MemberBean {
 		this.avatarImage = avatarImage;
 	}
 
-	public int getMemberid() {
+	public Integer getMemberid() {
 		return memberid;
 	}
-	public void setMemberid(int memberid) {
+	public void setMemberid(Integer memberid) {
 		this.memberid = memberid;
 	}
 	public String getAvatar() {
@@ -137,12 +143,12 @@ public class MemberBean {
 //		ViewMB = viewMB;
 //	}
 	
-	public Set<TravelAllBean> getTravels() {
-		return travels;
-	}
-	public void setTravels(Set<TravelAllBean> travels) {
-		this.travels = travels;
-	}
+//	public Set<TravelAllBean> getTravels() {
+//		return travels;
+//	}
+//	public void setTravels(Set<TravelAllBean> travels) {
+//		this.travels = travels;
+//	}
 
 	
 	//--------------------------------------------

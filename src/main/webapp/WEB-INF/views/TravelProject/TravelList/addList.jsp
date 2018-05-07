@@ -19,7 +19,7 @@
 </head>
 <body>
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addList">
-  Launch demo modal
+  新增行程
 </button>
 
 
@@ -43,7 +43,7 @@
 	
 	<div class="form-group">
 	<label  class="form-control-label" for="formGroupExampleInput">開始時間</label>
-	    <form:input path="StartTime" placeholder="Selected starttime" type="text" id="starttime" class="form-control"/>
+	    <form:input path="startTime" placeholder="Selected starttime" type="text" id="starttime" class="form-control"/>
 	  
 	</div>
 	
@@ -99,7 +99,7 @@
  $(document).ready(function() {
 	
 		$('#starttime').timepicker();
-		
+		console.log($('#starttime').val());
 		$('#endtime').timepicker();
 		
 		

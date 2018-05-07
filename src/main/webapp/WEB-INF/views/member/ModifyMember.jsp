@@ -132,12 +132,13 @@
 							<form:input type="file" path="avatarImage"
 								id="progressbarTWInput" name="mAvatar"
 								accept="image/gif, image/jpeg, image/png" style="display: none;" />
-						</div>
 						<div class="form-group">
 							<input type="submit" class="btn btn-primary" id="submit"
 								name="submit" value="Sign Up"
 								style='position: absolute; right: 0;'>
 						</div>
+						</div>
+						
 
 					</div>
 				</div>

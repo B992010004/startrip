@@ -5,9 +5,9 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.startrip.restaurant.rtexception.RtDetailsNotFoundException;
 import com.startrip.restaurant.rtinterface.RtDetailsInterface;
 import com.startrip.restaurant.rtmodel.RtDetailsBean;
-import com.starttrip.restaurant.rtexception.RtDetailsNotFoundException;
 
 @Repository
 public class RtDetailsRepository implements RtDetailsInterface {
@@ -17,35 +17,45 @@ public class RtDetailsRepository implements RtDetailsInterface {
 
 	@Override
 	public RtDetailsBean getAllRtDetailsrtName(String rtName) {
-		RtDetailsBean rd = null;
+		RtDetailsBean rdn = null;
 		Session session = factory.getCurrentSession();
-		rd = session.get(RtDetailsBean.class, rtName);
-		if(rd == null) throw new RtDetailsNotFoundException(rtName);
-		return rd;
+		rdn = session.get(RtDetailsBean.class, rtName);
+		if(rdn == null) throw new RtDetailsNotFoundException(rtName);
+		return rdn;
 	}
 
 	@Override
 	public RtDetailsBean getAllRtDetailsrtId(Integer rtId) {
-		return null;
+		RtDetailsBean rdi = null;
+		Session session = factory.getCurrentSession();
+		rdi = session.get(RtDetailsBean.class, rtId);
+		if(rdi == null) throw new RtDetailsNotFoundException(rtId);
+		return rdi;		
 	}
 
 	@Override
 	public RtDetailsBean updateRtDetails(RtDetailsBean bean) {
-		return null;
+		Session session = factory.getCurrentSession();
+		RtDetailsBean rdb = session.get(RtDetailsBean.class, bean.getRtId());
+		session.save(rdb);
+		return rdb;
 	}
 
 	@Override
 	public RtDetailsBean insertRtDetails(RtDetailsBean bean) {
-		return null;
-	}
-
-	@Override
-	public boolean deleteRtDetailsrtName(String rtName) {
-		return false;
+		Session session = factory.getCurrentSession();
+		session.save(bean);
+		return bean;
 	}
 
 	@Override
 	public boolean deleteRtDetailsrtId(Integer rtId) {
+		Session session = factory.getCurrentSession();
+		RtDetailsBean rdi = session.get(RtDetailsBean.class, rtId);
+		if (rdi != null) {
+			session.delete(rdi);
+			return true;
+		}
 		return false;
 	}
 
