@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -200,14 +201,33 @@
                   </tr>
                 </form>
                 <!-- 動態資料產生 -->
-                <tr class="trcontent1">
+                <c:forEach var="roomtype" items="${roomtypelist}" varStatus="count">
+                <tr class="trcontent${count.count}">
                   <td>
-                    <p>總統套房</p>
+                    <p>${roomtype.roomname} <c:if test='${roomtype.roomname == ""}'>(空)</c:if></p>
                   </td>
                   <td>
-                    <p>雙人房</p>
+                    <p>
+                    	<c:choose>
+                    		<c:when test="${roomtype.numberofpeople == 1}">
+                    			單人房
+                    		</c:when>
+                    		<c:when test="${roomtype.numberofpeople == 2}">
+                    			雙人房
+                    		</c:when>
+                    		<c:when test="${roomtype.numberofpeople == 3}">
+                    			三人房
+                    		</c:when>
+                    		<c:when test="${roomtype.numberofpeople == 4}">
+                    			四人房
+                    		</c:when>
+                    		<c:when test="${roomtype.numberofpeople == 5}">
+                    			超過四人
+                    		</c:when>
+                    	</c:choose>
+                    </p>
                     <div class="form-group mr-3" hidden>
-                      <select val="2" id="inputState" class="form-control" name="poeple1">
+                      <select val="${roomtype.numberofpeople}" id="inputState" class="form-control" name="poeple${count.count}">
                         <option value="1">單人房</option>
                         <option value="2">雙人房</option>
                         <option value="3">三人房</option>
@@ -217,23 +237,24 @@
                     </div>
                   </td>
                   <td>
-                    <p>10</p>
+                    <p>${roomtype.numberofrooms}</p>
                   </td>
                   <td>
                     <form action="/startrip/admin/HostConnect_Roomset" method="POST">
-                      <button type="submit"  name="roomid" value="1"  class="btn btn-outline-dark">
+                      <button type="submit"  name="roomid" value="${roomtype.roomid}"  class="btn btn-outline-dark">
                         設定
                       </button>
                     </form>
                   </td>
                   <td>
                     <form action="/startrip/admin/DeleteRoom" method="POST">
-                      <button type="submit" name="roomid" value="1" class="btn btn-outline-dark">
+                      <button type="submit" name="roomid" value="${roomtype.roomid}" class="btn btn-outline-dark">
                         刪除
                       </button>
                     </form>
                   </td>
                 </tr>
+                </c:forEach>
                 <!-- 動態資料結束 -->
               </tbody>
             </table>

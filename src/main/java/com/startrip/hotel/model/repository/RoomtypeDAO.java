@@ -1,5 +1,7 @@
 package com.startrip.hotel.model.repository;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +26,13 @@ public class RoomtypeDAO{
 	
 	public RoomtypeBean selectByPk(Integer roomid) {
 		Session session = factory.getCurrentSession();
-		return session.load(RoomtypeBean.class, roomid);
+		return session.get(RoomtypeBean.class, roomid);
+	}
+	
+	public List<RoomtypeBean> selectByHotelid(Integer hotelid){
+		String hql = "FROM roomtype WHERE hotelid = :hotelid";
+		Session session = factory.getCurrentSession();
+		return session.createQuery(hql, RoomtypeBean.class).setParameter("hotelid", hotelid).list();
 	}
 	
 	

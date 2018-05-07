@@ -62,7 +62,7 @@ INSERT INTO advanceday(advancedayid,advancedayname) values(4, '一年內');
 INSERT INTO advanceday(advancedayid,advancedayname) values(5, '無限制');
 
 CREATE TABLE hotels(
-hotelmanagerid VARCHAR(255) FOREIGN KEY REFERENCES Membertable(memberid),
+hotelmanagerid INT FOREIGN KEY REFERENCES Membertable(memberid),
 hotelid INT IDENTITY NOT NULL  PRIMARY KEY,
 hotelname VARCHAR(30),
 hotelphone VARCHAR(20),
@@ -188,7 +188,7 @@ INSERT INTO orderstate(orderstateid,orderstatename) values(3,'作廢');
 CREATE TABLE memberorder(
 hotelid INT FOREIGN KEY REFERENCES hotels(hotelid),
 orderstateid INT FOREIGN KEY REFERENCES orderstate(orderstateid),
-memberid VARCHAR(255) FOREIGN KEY REFERENCES Membertable(mail),
+memberid INT FOREIGN KEY REFERENCES Membertable(memberid),
 ordernumber BIGINT NOT NULL PRIMARY KEY,
 -- yyyyMMdd + serial number 
 orderdate DATE,

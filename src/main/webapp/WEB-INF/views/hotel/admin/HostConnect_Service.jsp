@@ -137,7 +137,7 @@
               <h5>退款規定：</h5>
               <div class="form-row ml-4">
                 <div class="form-group">
-                  <select  class="form-control" name="refund">
+                  <select  class="form-control" name="refund" hotelrule="${hotel.refundid}">
                     <option value="1">嚴格 - 不可退款</option>
                     <option value="2">寬鬆 - 入住 3 日前可退款</option>
                     <option selected value="3">基本 - 入住 7 日前可退款</option>
@@ -148,7 +148,7 @@
               <h5>可預定時間：</h5>
               <div class="form-row ml-4">
                 <div class="form-group">
-                  <select class="form-control" name="advanceday">
+                  <select class="form-control" name="advanceday" hotelrule="${hotel.advancedayid}">
                     <option value="1">一個月內</option>
                     <option value="2">三個月內</option>
                     <option value="3">六個月內</option>
@@ -355,7 +355,24 @@
     <script src="/startrip/assets/js/main.js"></script>
 
     <script src="/startrip/assets/js/range.js"></script>
-
+	<script>
+	
+	var refundid = $("select[name='refund']").attr("hotelrule")
+	var refund = $("select[name='refund'] option[value="+refundid+"]")
+	if(refundid != refund){
+		var refundselected = $("select[name='refund'] option:selected").attr("selected",false)
+		refund.attr("selected",true)
+	}
+	
+	var advancedayid = $("select[name='advanceday']").attr("hotelrule")
+	var advanceday = $("select[name='advanceday'] option[value="+advancedayid+"]")
+	if(advancedayid != advanceday){
+		var refundselected = $("select[name='advanceday'] option:selected").attr("selected",false)
+		advanceday.attr("selected",true)
+	}
+	
+	
+	</script>
 </body>
 
 </html>

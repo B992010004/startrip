@@ -156,8 +156,14 @@
               </label>
               <div>
                 <c:forEach var="step" begin="1" end="5">
-                <c:if test="${step <= hotelbean.hotelstar}"><img id="idimg${step}" src="/startrip/assets/images/star-on-big.png" /></c:if>
-                <c:if test="${step > hotelbean.hotelstar}"><img id="idimg${step}" src="/startrip/assets/images/star-off-big.png" /></c:if>                
+                <c:choose>
+                	<c:when test="${step <= hotelbean.hotelstar}">
+                		<img id="idimg${step}" src="/startrip/assets/images/star-on-big.png" />
+                	</c:when>
+                	<c:otherwise>
+                		<img id="idimg${step}" src="/startrip/assets/images/star-off-big.png" />
+                	</c:otherwise>
+                </c:choose>          
                 <input hidden type="number" name="star" id="star" value="${hotelbean.hotelstar}">
                 </c:forEach>
               </div>

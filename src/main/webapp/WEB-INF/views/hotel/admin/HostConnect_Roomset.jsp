@@ -148,7 +148,7 @@
               <div class="probootstrap-date-wrap">
                 <label for="probootstrap-date-arrival">
                   <span class="icon ion-calendar"></span>
-                  <input type="text" id="probootstrap-date-arrival" name="checkin" class="form-control" placeholder="預訂起始日">
+                  <input type="text" value="${opendate}" id="probootstrap-date-arrival" name="checkin" class="form-control" placeholder="預訂起始日">
                 </label>
               </div>
             </div>
@@ -158,7 +158,7 @@
               <div class="probootstrap-date-wrap">
                 <label for="probootstrap-date-departure">
                   <span class="icon ion-calendar"></span>
-                  <input type="text" id="probootstrap-date-departure" name="checkout" class="form-control" placeholder="預訂結束日">
+                  <input type="text" value="${enddate}" id="probootstrap-date-departure" name="checkout" class="form-control" placeholder="預訂結束日">
                 </label>
               </div>
             </div>
@@ -170,7 +170,7 @@
             <div class="form-group inputState">
               <label for="price">
                 <input type="number" onkeydown="javascript: return event.keyCode == 69 ? false : true" class="form-control" name="price"
-                  id="price" min="1" placeholder="基本價格">
+                 value="${roomtype.basicprice}" id="price" min="1" placeholder="基本價格">
               </label>
             </div>
           </div>
@@ -180,7 +180,7 @@
           <div class="col-md-6 ml-3">
             <div class="form-row ">
               <div class="form-group col-md">
-                <textarea class="form-control" name="roomnote" rows="4" placeholder="範例：1 張雙人床 / 2 張單人床"></textarea>
+                <textarea class="form-control" name="roomnote" rows="4" placeholder="範例：1 張雙人床 / 2 張單人床">${roomtype.roomnote}</textarea>
               </div>
             </div>
           </div>
