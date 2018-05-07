@@ -24,8 +24,8 @@ public class MemberService implements MemberServiceInterface {
 
 	@Transactional
 	@Override
-	public MemberBean select(String email) {
-		return memberDAO.select(email);
+	public MemberBean select(String mail) {
+		return memberDAO.select(mail);
 	}
 
 	@Transactional

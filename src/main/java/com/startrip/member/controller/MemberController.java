@@ -157,7 +157,7 @@ public class MemberController {
 	}
 	
 	
-	@RequestMapping(value = "/getPicture/{mail}", method = RequestMethod.GET)
+	@RequestMapping(value = "/getPicture/{mail:.+}", method = RequestMethod.GET)
 	public ResponseEntity<byte[]> getPicture(HttpServletRequest resp, @PathVariable String mail) {
 		MemberBean bean = memberservice.select(mail);
 		HttpHeaders headers = new HttpHeaders();
@@ -172,7 +172,7 @@ public class MemberController {
 				throw new RuntimeException("productcontroller的getpicture發生錯誤" + e.getMessage());
 			}
 		} else {
-			InputStream is = context.getResourceAsStream("WEB-INF/views/assets/images/membericon/snop.jpg");
+			InputStream is = context.getResourceAsStream("/WEB-INF/views/assets/images/membericon/snop.jpg");
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			byte[] b = new byte[8192];
 			try {
