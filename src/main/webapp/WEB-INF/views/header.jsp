@@ -25,6 +25,7 @@
 				<li class="nav-item"><a class="nav-link"
 					href="/startrip/Rooms">房型</a></li>
 				<li class="nav-item"><a class="nav-link" href="/startrip/TravelMain">行程規劃</a></li>
+				<li class="nav-item"><a class="nav-link" href="/startrip/restaurant/restaurantHome">餐廳</a></li>
 				<li class="nav-item"><a class="nav-link" href="/startrip/review/UserReviewEdit">寫評論</a></li>
 				<li class="nav-item"><c:if test="${ !empty LoginOK }">
 						<a class="nav-link" href="travel.html">會員專區 </a>

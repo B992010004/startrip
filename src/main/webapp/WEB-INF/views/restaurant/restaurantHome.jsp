@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -22,23 +25,23 @@
 
   <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,700" rel="stylesheet">
 
-  <link rel="stylesheet" href="assets/css/bootstrap/bootstrap.css">
-  <link rel="stylesheet" href="assets/css/animate.css">
-  <link rel="stylesheet" href="assets/fonts/ionicons/css/ionicons.min.css">
+  <link rel="stylesheet" href="/startrip/assets/css/bootstrap/bootstrap.css">
+  <link rel="stylesheet" href="/startrip/assets/css/animate.css">
+  <link rel="stylesheet" href=/startrip/assets/fonts/ionicons/css/ionicons.min.css>
 
-  <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+  <link rel="stylesheet" href="/startrip/assets/css/owl.carousel.min.css">
 
-  <link rel="stylesheet" href="assets/fonts/flaticon/font/flaticon.css">
+  <link rel="stylesheet" href="/startrip/assets/fonts/flaticon/font/flaticon.css">
 
-  <link rel="stylesheet" href="assets/fonts/fontawesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/startrip/assets/fonts/fontawesome/css/font-awesome.min.css">
 
-  <link rel="stylesheet" href="assets/css/select2.css">
+  <link rel="stylesheet" href="/startrip/assets/css/select2.css">
 
 
-  <link rel="stylesheet" href="assets/css/helpers.css">
-  <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="stylesheet" href="assets/css/rthome.css">
-  <link rel="stylesheet" href="assets/css/rthome2.css">
+  <link rel="stylesheet" href="/startrip/assets/css/helpers.css">
+  <link rel="stylesheet" href="/startrip/assets/css/style.css">
+  <link rel="stylesheet" href="/startrip/assets/restaurant/Css/rthome.css">
+  <link rel="stylesheet" href="/startrip/assets/restaurant/Css/rthome2.css">
   <style>
     .probootstrap-cover .overlay {
       position: absolute;
@@ -73,40 +76,13 @@
 
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark probootstrap_navbar" id="probootstrap-navbar">
-    <div class="container">
-      <a class="navbar-brand" href="/">StarTrip</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#probootstrap-menu" aria-controls="probootstrap-menu"
-        aria-expanded="false" aria-label="Toggle navigation">
-        <span>
-          <i class="ion-navicon"></i>
-        </span>
-      </button>
-      <div class="collapse navbar-collapse" id="probootstrap-menu">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="index.html">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="city-guides.html">City Guides</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="services.html">餐廳</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="travel.html">Travel With Us</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="contact.html">Contact</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+    <div>
+			<jsp:include page="/WEB-INF/views/header.jsp" flush="true" />
+	</div>
   <!-- END nav -->
 
 
-  <section class="probootstrap-cover overflow-hidden relative" style="background-image: url('assets/images/03.jpg');" data-stellar-background-ratio="0.5"
+  <section class="probootstrap-cover overflow-hidden relative" style="background-image: url('assets/restaurant/Img/03.jpg');" data-stellar-background-ratio="0.5"
     id="section-home">
     <div class="overlay"></div>
     <div class="container">
@@ -135,12 +111,12 @@
         <div class="col-md-12">
           <h2 class="display-4 border-bottom probootstrap-section-heading">最近瀏覽</h2>
         </div>
-      </div>
+      </div></div>
       <div class="row">
         <div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
-          <a href="#" class="probootstrap-thumbnail">
+          <a href="#" class="probootstrap-thumbnail" >
             <img src="assets/images/01.jpg" alt="Free Template by ProBootstrap.com" class="img-fluid">
-            <div class="probootstrap-text">
+            <div class="">
               <h3>餐廳名稱</h3>
               <span>菜系類別</span>
               <span>餐點類別</span>
@@ -149,11 +125,11 @@
               <span>評分星等</span>
             </div>
           </a>
-        </div>
+        </div></div>
         <div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
           <a href="#" class="probootstrap-thumbnail">
             <img src="assets/images/02.jpg" alt="Free Template by ProBootstrap.com" class="img-fluid">
-            <div class="probootstrap-text">
+            <div class="">
               <h3>餐廳名稱</h3>
               <span>菜系類別</span>
               <span>餐點類別</span>
@@ -371,7 +347,7 @@
                         <div class="col-md-12">
                           <h2 class="display-4 border-bottom probootstrap-section-heading">中等價位</h2>
                         </div>
-                      </div>
+                      </div></div>
                       <div class="row">
                         <div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
                           <a href="#" class="probootstrap-thumbnail">
@@ -385,7 +361,7 @@
                               <span>評分星等</span>
                             </div>
                           </a>
-                        </div>
+                        </div></div>
                         <div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
                           <a href="#" class="probootstrap-thumbnail">
                             <img src="assets/images/img_2.jpg" alt="Free Template by ProBootstrap.com" class="img-fluid">
@@ -430,7 +406,7 @@
                             <div class="col-md-12">
                               <h2 class="display-4 border-bottom probootstrap-section-heading">平價美食</h2>
                             </div>
-                          </div>
+                          </div></div>
                           <div class="row">
                             <div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
                               <a href="#" class="probootstrap-thumbnail">
@@ -444,7 +420,7 @@
                                   <span>評分星等</span>
                                 </div>
                               </a>
-                            </div>
+                            </div></div>
                             <div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
                               <a href="#" class="probootstrap-thumbnail">
                                 <img src="assets/images/img_2.jpg" alt="Free Template by ProBootstrap.com" class="img-fluid">
