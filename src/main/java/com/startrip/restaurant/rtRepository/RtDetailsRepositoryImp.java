@@ -5,8 +5,8 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.startrip.restaurant.rtexception.RtDetailsNotFoundException;
-import com.startrip.restaurant.rtmodel.RtDetailsBean;
+import com.startrip.restaurant.rtException.RtDetailsNotFoundException;
+import com.startrip.restaurant.rtModel.RtDetailsBean;
 
 @Repository
 public class RtDetailsRepositoryImp implements RtDetailsRepository {
