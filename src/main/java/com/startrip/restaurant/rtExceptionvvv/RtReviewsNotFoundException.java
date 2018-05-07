@@ -1,4 +1,4 @@
-package com.startrip.restaurant.rtexception;
+package com.startrip.restaurant.rtExceptionvvv;
 
 public class RtReviewsNotFoundException extends RuntimeException {
 
