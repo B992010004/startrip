@@ -1,27 +1,35 @@
 package com.startrip.restaurant.rtService;
 
-import com.startrip.restaurant.rtModel.RtReviewsBean;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import com.startrip.restaurant.rtModel.RtReviewsBean;
+import com.startrip.restaurant.rtRepository.RtReviewsRepository;
+
+@Service
 public class RtReviewsServiceImp implements RtReviewsService {
+	
+	@Autowired
+	private RtReviewsRepository RtReviewsRepositoryImp;
 
 	@Override
 	public RtReviewsBean getAllRtReviewsrwId(Integer rwId) {
-		return null;
+		return RtReviewsRepositoryImp.getAllRtReviewsrwId(rwId);
 	}
 
 	@Override
 	public RtReviewsBean getAllRtReviewsrtTitle(String rtTitle) {
-		return null;
+		return RtReviewsRepositoryImp.getAllRtReviewsrtTitle(rtTitle);
 	}
 
 	@Override
 	public RtReviewsBean updateRtReviews(RtReviewsBean bean) {
-		return null;
+		return RtReviewsRepositoryImp.updateRtReviews(bean);
 	}
 
 	@Override
 	public RtReviewsBean insertRtReviews(RtReviewsBean bean) {
-		return null;
+		return RtReviewsRepositoryImp.insertRtReviews(bean);
 	}
 
 	@Override
