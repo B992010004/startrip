@@ -21,5 +21,11 @@ HAHAH
 
 </c:forEach>
 
+
+<script>
+
+
+
+</script>
 </body>
 </html>

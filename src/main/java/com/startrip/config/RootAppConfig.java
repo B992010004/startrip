@@ -16,9 +16,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import com.startrip.member.memberModle.MemberBean;
-import com.startrip.travelPlan.travelAll.model.TravelAllBean;
-import com.startrip.travelPlan.travelList.model.TravelListBean;
-import com.startrip.travelPlan.travelView.model.TravelViewBean;
+import com.startrip.travelPlan.model.TravelAllBean;
+import com.startrip.travelPlan.model.TravelListBean;
+import com.startrip.travelPlan.model.TravelViewBean;
 
 @Configuration
 @EnableTransactionManagement
