@@ -1,5 +1,8 @@
 package com.startrip.travelPlan.controller;
 
+import java.sql.Date;
+import java.sql.Time;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.startrip.travelPlan.model.TravelAllBean;
 import com.startrip.travelPlan.model.TravelListBean;
@@ -28,7 +32,10 @@ public class ListController {
 	
 	@RequestMapping(value="Travel/addList",method=RequestMethod.POST)
 	public String travelAdd(@ModelAttribute("TravelListBean") TravelListBean bean) {
-		System.out.println("insert");
+		
+		
+		
+		
 		listservice.insert(bean);
 		return "redirect:/list/All";
 	}		   
