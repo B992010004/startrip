@@ -23,7 +23,7 @@
 				<li class="nav-item active"><a class="nav-link"
 					href="/startrip/">Home</a></li>
 				<li class="nav-item"><a class="nav-link"
-					href="city-guides.html">City Guides</a></li>
+					href="/startrip/Rooms">房型</a></li>
 				<li class="nav-item"><a class="nav-link" href="/startrip/TravelMain">行程規劃</a></li>
 				<li class="nav-item"><a class="nav-link" href="/startrip/review/UserReviewEdit">寫評論</a></li>
 				<li class="nav-item"><c:if test="${ !empty LoginOK }">
