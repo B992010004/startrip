@@ -1,6 +1,6 @@
 package com.startrip.restaurant.rtService;
 
-import com.startrip.restaurant.rtmodel.RtBookingBean;
+import com.startrip.restaurant.rtModel.RtBookingBean;
 
 public interface RtBookingService {
 

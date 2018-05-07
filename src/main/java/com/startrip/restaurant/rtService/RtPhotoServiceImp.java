@@ -1,6 +1,6 @@
 package com.startrip.restaurant.rtService;
 
-import com.startrip.restaurant.rtmodel.RtPhotoBean;
+import com.startrip.restaurant.rtModel.RtPhotoBean;
 
 public class RtPhotoServiceImp implements RtPhotoService {
 
