@@ -8,12 +8,10 @@ import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
-import org.springframework.web.util.UrlPathHelper;
 
 @Configuration
 @EnableWebMvc
@@ -40,8 +38,7 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 
 	//天哪 前端好難喔!
 	@Override
-	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {		
 		
 		registry.addResourceHandler("assets/**").addResourceLocations("/WEB-INF/views/assets/");
 		//------------------------------------------- 
