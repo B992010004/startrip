@@ -1,4 +1,4 @@
-package com.startrip.restaurant.rtModel;
+package com.startrip.restaurant.rtmodel;
 
 import java.util.Date;
 

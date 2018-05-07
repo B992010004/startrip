@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.io.PrintWriter;
 import java.sql.Blob;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -93,11 +94,11 @@ public class MemberController {
 	@RequestMapping(value = "/LoginServlet", method = RequestMethod.POST)
 	public String Login(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		HttpSession session = request.getSession();
+		
 		String mail = request.getParameter("mail");
 		String password = request.getParameter("password");
-
 		MemberBean mm = memberservice.select(mail);
-
+       
 		if (mm != null && password.equals(mm.getPassword())) {
 			session.setAttribute("LoginOK", mm);
 			return "index";
@@ -161,6 +162,7 @@ public class MemberController {
 	public ResponseEntity<byte[]> getPicture(HttpServletRequest resp, @PathVariable String mail) {
 		MemberBean bean = memberservice.select(mail);
 		HttpHeaders headers = new HttpHeaders();
+	
 		Blob blob = bean.getPhoto();
 		int len = 0;
 		byte[] media = null;

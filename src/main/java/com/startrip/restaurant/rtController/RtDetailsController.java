@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.startrip.restaurant.rtModel.RtDetailsBean;
+import com.startrip.restaurant.rtmodel.RtDetailsBean;
 
 @Controller
 public class RtDetailsController {

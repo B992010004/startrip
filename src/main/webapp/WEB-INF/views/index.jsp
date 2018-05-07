@@ -27,8 +27,7 @@
 <link rel="stylesheet" href="/startrip/assets/css/select2.css">
 <link rel="stylesheet" href="/startrip/assets/css/helpers.css">
 <link rel="stylesheet" href="/startrip/assets/css/style.css">
-<link href="/startrip/assets/css/bootstrap/botton.css" rel="stylesheet"
-	type="text/css" />
+
 <script src="/startrip/assets/js/jquery.min.js"></script>
 <script src="/startrip/assets/js/popper.min.js"></script>
 <script src="/startrip/assets/js/bootstrap.min.js"></script>

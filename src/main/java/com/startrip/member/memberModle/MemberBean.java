@@ -1,5 +1,6 @@
 package com.startrip.member.memberModle;
 
+import java.io.Serializable;
 import java.sql.Blob;
 import java.util.Set;
 
@@ -27,17 +28,20 @@ import com.startrip.travelPlan.travelView.model.TravelViewBean;
 
 @Entity
 @Table(name="Membertable")
-public class MemberBean {
-	
+public class MemberBean implements Serializable{
+
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer memberid;	
 	
 	private String mail;
 	private String password;
+	
 	private String username;
 	private String address;
-	private Integer phone;
+	private int phone;
 	private String birthday;
 	private String avatar;
 	
