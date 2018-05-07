@@ -25,6 +25,24 @@
 						href="/startrip/">Home</a></li>
 						<li class="nav-item"><a class="nav-link"
 					href="/startrip/Rooms">房型</a></li>
+<<<<<<< HEAD
+				<li class="nav-item"><a class="nav-link" href="/startrip/TravelMain">行程規劃</a></li>
+				<li class="nav-item"><a class="nav-link" href="/startrip/restaurant/restaurantHome">餐廳</a></li>
+				<li class="nav-item"><a class="nav-link" href="/startrip/review/UserReviewEdit">寫評論</a></li>
+				<li class="nav-item"><c:if test="${ !empty LoginOK }">
+						<a class="nav-link" href="travel.html">會員專區 </a>
+					</c:if></li>
+				<li class="nav-item"><c:if test="${ !empty LoginOK }">
+						<a class="nav-link" href="travel.html"> ${userBean.username} </a>
+					</c:if></li>
+				<li class="nav-item"><c:if test="${ empty LoginOK }">
+						<a class="nav-link" href="/startrip/login" data-toggle="modal"
+							data-target=".bd-example-modal-lg">登入</a>
+					</c:if> <c:if test="${ !empty LoginOK }">
+						<a class="nav-link" href="logout">登出</a>
+					</c:if>
+				
+=======
 					<li class="nav-item"><a class="nav-link"
 						href="/startrip/TravelMain">行程規劃</a></li>
 					<li class="nav-item"><a class="nav-link"
@@ -57,6 +75,7 @@
 
 
 
+>>>>>>> 4f2e27f60adcbb3f313f7612cf13d45b13affda9
 				</ul>
 			</div>
 		</div>
