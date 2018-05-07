@@ -1,9 +1,9 @@
-package com.startrip.restaurant.rtinterface;
+package com.startrip.restaurant.rtService;
 
-import com.startrip.restaurant.rtmodel.RtBookingBean;
+import com.startrip.restaurant.rtModel.RtBookingBean;
 
-public interface RtBookingInterface {
-	
+public interface RtBookingService {
+
 	RtBookingBean getAllRtBookingmail(String mail);
 	
 	RtBookingBean updateRtBooking(RtBookingBean bean);
@@ -13,4 +13,3 @@ public interface RtBookingInterface {
 	boolean deleteRtBookingbgId(Integer bgId);
 	
 }
-

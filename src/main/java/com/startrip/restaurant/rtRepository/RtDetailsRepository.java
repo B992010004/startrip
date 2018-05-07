@@ -1,8 +1,8 @@
-package com.startrip.restaurant.rtinterface;
+package com.startrip.restaurant.rtRepository;
 
-import com.startrip.restaurant.rtmodel.RtDetailsBean;
+import com.startrip.restaurant.rtModel.RtDetailsBean;
 
-public interface RtDetailsInterface {
+public interface RtDetailsRepository {
 
 	RtDetailsBean getAllRtDetailsrtName(String rtName);
 	

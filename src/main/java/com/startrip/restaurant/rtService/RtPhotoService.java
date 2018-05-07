@@ -1,8 +1,8 @@
-package com.startrip.restaurant.rtinterface;
+package com.startrip.restaurant.rtService;
 
-import com.startrip.restaurant.rtmodel.RtPhotoBean;
+import com.startrip.restaurant.rtModel.RtPhotoBean;
 
-public interface RtPhotoInterface {
+public interface RtPhotoService {
 
 	RtPhotoBean getAllRtPhotortId(Integer rtId);
 

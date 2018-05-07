@@ -1,4 +1,4 @@
-package com.startrip.restaurant.rtexception;
+package com.startrip.restaurant.rtException;
 
 public class RtPhotoNotFoundException extends RuntimeException {
 
