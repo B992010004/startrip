@@ -25,5 +25,5 @@ public interface ITravelViewDao {
 	public List<String> getAllOrgClass();
 
 
-	MemberBean getMail(String mail);
+	public MemberBean getMemberId(Integer id) ;
 }

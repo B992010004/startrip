@@ -66,7 +66,7 @@ public class viewCotroller {
 	// return "redirect:/TravelProject/TravelViews/AllViews";
 	//
 	// }
-
+//多張圖片上傳
 	@RequestMapping(value = "Views/add", method = RequestMethod.POST)
 	public String addViewFrom(@ModelAttribute("TravelViewBean") TravelViewBean vb, HttpServletRequest request) {
 

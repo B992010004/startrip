@@ -35,10 +35,11 @@ public class viewService implements ITravelViewService {
 		
 		viewDao.insert(bean);
 	}
-	
-	public MemberBean getMail(String mail) {
+	@Transactional
+	@Override
+	public MemberBean getMail(Integer memberId) {
 		
-		return viewDao.getMail(mail);
+		return viewDao.getMemberId(memberId);
 		
 	}
 	
