@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html >
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -161,19 +161,29 @@
     </div>
 </div>
 
-    <div class="maincontext">
+   
+
+
+<div class="maincontext">
         <div class="search-container">
-            <form action="/action_page.php">
-                <div class="input-group md-form form-sm form-1 pl-0">
-                    <div class="input-group-prepend">
-                    <span class="input-group-text pink lighten-3" id="basic-text1"><i class="fa fa-search text-white" aria-hidden="true"></i></span>
-                    </div>
-                    <input class="form-control my-0 py-1" type="text" placeholder="請輸入搜尋名稱.." aria-label="Search">
-                </div>
-            </form>
         </div>
-        <div id="map"></div>
+        <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+    <div id="map"></div>
+    <input type='text' id='view'>
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -187,19 +197,171 @@ $('timeline-item').click(function(){
 })
 
 </script>
-<script>
-    (function() {
-  var cx = '017643444788069204610:4gvhea_mvga'; // Insert your own Custom Search engine ID here
-  var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
-  gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
-      '//www.google.com/cse/cse.js?cx=' + cx;
-  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
-})();
+ <script>
+        // This example requires the Places library. Include the libraries=places
+        // parameter when you first load the API. For example:
+        // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+      
+        var map;
+        var infowindow;
+  //所在位置--------------------------------
+        
 
-</script>
+  //------------------------------------
+        // var InputName=document.getElementById('view');//由input輸出
+      
+      
+      function initMap() {
+   
 
-  <script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDf6zB19vCK-owPk0xpD9thNJ9LJaE03eo&callback=initMap">
-  </script>
+      var pyrmont = {lat:25.0368706, lng: 121.543766};
+      //建立Map,資訊視窗,服務
+      map = new google.maps.Map(document.getElementById('map'), {
+      center: pyrmont,
+      zoom: 15
+       });
+      infowindow = new google.maps.InfoWindow();
+      service = new google.maps.places.PlacesService(map);
+  
+      var marker = new google.maps.Marker({
+          position: pyrmont,
+          map: map,
+          title: '資策會'})
+       
+    
+  //服務搜尋promont 範圍50000----------------------------------------------------
+        
+          // service.nearbySearch({
+          //   location: pyrmont,
+          //   radius: 50000       
+          // }, callback);
+//-----------------------------------------------
+  // Create the search box and link it to the UI element.
+  var input = document.getElementById('pac-input');
+        var searchBox = new google.maps.places.SearchBox(input);
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+        // Bias the SearchBox results towards current map's viewport.
+        map.addListener('bounds_changed', function() {
+          searchBox.setBounds(map.getBounds());
+        });
+
+        var markers = [];
+        // Listen for the event fired when the user selects a prediction and retrieve
+        // more details for that place.
+        searchBox.addListener('places_changed', function() {
+          var places = searchBox.getPlaces();
+
+          if (places.length == 0) {
+            return;
+          }
+
+          // Clear out the old markers.
+          markers.forEach(function(marker) {
+            marker.setMap(null);
+          });
+          markers = [];
+
+          // For each place, get the icon, name and location.
+          var bounds = new google.maps.LatLngBounds();
+          places.forEach(function(place,index) {
+            if (!place.geometry) {
+              console.log("Returned place contains no geometry");
+              return;
+            }
+            var icon = {
+              url: place.icon,
+              size: new google.maps.Size(71, 71),
+              //mark位置
+              origin: new google.maps.Point(-25, 0),
+              anchor: new google.maps.Point(17, 34),
+              scaledSize: new google.maps.Size(25, 25)
+            };
+
+            // Create a marker for each place.
+          
+            markers.push(
+              new google.maps.Marker({
+                map: map,
+                icon: icon,
+                title: place.name,
+                position: place.geometry.location
+              }));
+          google.maps.event.addListener(markers[index], 'click', function() {
+                    infowindow.setContent('<div><strong>' + place.name + '</strong><br>' 
+                  + place.formatted_phone_number+'<br>'
+                  +place.rating +'<br>'
+                  +place.website  +'<br>'
+                  + place.formatted_address + '</div>'
+                  +"<img src="+place.photos[0].getUrl({'maxWidth': 100, 'maxHeight': 100})+'>');
+                    infowindow.open(map, this);
+              });
+
+
+
+            if (place.geometry.viewport) {
+              // Only geocodes have viewport.
+              bounds.union(place.geometry.viewport);
+            } else {
+              bounds.extend(place.geometry.location);
+            }
+
+           
+          });
+
+          
+          map.fitBounds(bounds);
+        });
+//------------------------------------------
+
+        }
+
+      
+       
+        
+       
+        
+        //(回傳直,狀態)
+        function callback(results, status) {
+          if (status === google.maps.places.PlacesServiceStatus.OK) {
+            for (var i = 0; i < results.length; i++) {
+              // console.log(results[i].place_id);
+              var id = results[i].place_id;
+              var service = new google.maps.places.PlacesService(map);
+             //--------------------------------------------
+
+             //------------------------------ 
+              service.getDetails({placeId:id},function(place,status){
+                  if (status === google.maps.places.PlacesServiceStatus.OK) {
+              var photos=place.photos;
+  
+              var marker = new google.maps.Marker({
+              map: map,
+              position: place.geometry.location,
+             
+              });
+
+              //-----------------------------
+              google.maps.event.addListener(marker, 'click', function() {
+  
+              infowindow.setContent('<div><strong>' + place.name + '</strong><br>' 
+              + place.formatted_phone_number+'<br>'
+              +place.rating +'<br>'
+              +place.website  +'<br>'
+              + place.formatted_address + '</div>'
+              +"<img src="+place.photos[0].getUrl({'maxWidth': 100, 'maxHeight': 100})+'>');
+                infowindow.open(map, this);
+              });
+              }
+              });
+  
+              
+            }
+          }
+        }
+       
+      </script>
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDf6zB19vCK-owPk0xpD9thNJ9LJaE03eo&libraries=places&callback=initMap&language=zh-tw&sensor=false" async defer></script>
 </body>
 </html>
