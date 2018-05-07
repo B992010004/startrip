@@ -9,7 +9,7 @@ public interface MemberServiceInterface {
 	
 	List<MemberBean> select();
 
-	MemberBean select(String mail);
+	MemberBean select(String email);
 
 	void update(String mail, String password, String username, String address, int phone, String birthday,
 			String avatar ,Blob photo);

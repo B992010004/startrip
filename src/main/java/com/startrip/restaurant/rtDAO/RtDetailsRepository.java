@@ -9,8 +9,6 @@ import com.startrip.restaurant.rtexception.RtDetailsNotFoundException;
 import com.startrip.restaurant.rtinterface.RtDetailsInterface;
 import com.startrip.restaurant.rtmodel.RtDetailsBean;
 
-
-
 @Repository
 public class RtDetailsRepository implements RtDetailsInterface {
 	
