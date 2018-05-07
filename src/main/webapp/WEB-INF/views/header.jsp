@@ -11,6 +11,7 @@
 	<nav class="navbar navbar-expand-lg navbar-dark probootstrap_navbar"
 		id="probootstrap-navbar">
 
+
 		<div class="container">
 			<a class="navbar-brand" href="/">Places</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -22,8 +23,8 @@
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item active"><a class="nav-link"
 						href="/startrip/">Home</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="city-guides.html">City Guides</a></li>
+						<li class="nav-item"><a class="nav-link"
+					href="/startrip/Rooms">房型</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="/startrip/TravelMain">行程規劃</a></li>
 					<li class="nav-item"><a class="nav-link"
@@ -53,6 +54,7 @@
 							</div>
 
 						</c:if></li>
+
 
 
 				</ul>

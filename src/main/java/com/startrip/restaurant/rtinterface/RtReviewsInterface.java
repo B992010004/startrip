@@ -13,8 +13,6 @@ public interface RtReviewsInterface {
 	RtReviewsBean insertRtReviews(RtReviewsBean bean);
 
 	boolean deleteRtReviewsrwId(Integer rwId);
-
-	boolean deleteRtReviewsrtTitle(String rtTitle);
 	
 }
 
