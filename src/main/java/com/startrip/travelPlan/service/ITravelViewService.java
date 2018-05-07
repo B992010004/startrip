@@ -2,6 +2,7 @@ package com.startrip.travelPlan.service;
 
 import java.util.List;
 
+import com.startrip.member.memberModle.MemberBean;
 import com.startrip.travelPlan.model.TravelViewBean;
 
 
@@ -22,5 +23,8 @@ public interface ITravelViewService {
 	public void delete(int viewId);
 	
 	public List<String> getAllOrgClass();
+
+
+	MemberBean getMail(Integer memberId);
 	
 }

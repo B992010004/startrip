@@ -55,8 +55,9 @@ public class TravelViewDao implements ITravelViewDao {
 	public void insert(TravelViewBean bean) {
 		
 		Session session  =factory.getCurrentSession();
-		MemberBean mb = getMail(bean.getMail());
-		
+		MemberBean mb = getMemberId(bean.getMemberId());
+		bean.setMemberId(mb.getMemberid());
+		System.out.println(bean.toString());
 		session.save(bean);
 		
 	}
@@ -69,11 +70,12 @@ public class TravelViewDao implements ITravelViewDao {
 //	}
 //	
 	@Override
-	public MemberBean getMail(String mail) {
-		MemberBean id = null;
+	public MemberBean getMemberId(Integer id) {
+		MemberBean bean = null;
 		Session session= factory.getCurrentSession();
-		 id = session.get(MemberBean.class, mail);
-		return id;
+		bean = session.get(MemberBean.class, id);
+		
+		return bean;
 		
 	}
 
@@ -113,7 +115,7 @@ public class TravelViewDao implements ITravelViewDao {
 			
 			
 			
-			bean.setMail("1@123");
+			bean.setMemberId(1);
 			bean.setViewName("大屯山");
 			bean.setViewaddr("台北");
 			
