@@ -35,6 +35,28 @@
         <jsp:include page="/WEB-INF/views/header.jsp" flush="true" />
     </div>
     <!-- END nav -->
+    <section class="probootstrap-cover overflow-hidden relative"  style="background-image: url('assets/images/bg_1.jpg');" data-stellar-background-ratio="0.5" id="section-home">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row align-items-center text-center">
+          <div class="col-md">
+            <h2 class="heading mb-2 display-4 font-light probootstrap-animate">Get In Touch</h2>
+             
+            <p class="lead mb-5 probootstrap-animate">
+              
+
+            </p>
+              <a href="https://themewagon.com/theme_tag/free/" target="_blank" role="button" class="btn btn-primary p-3 mr-3 pl-5 pr-5 text-uppercase d-lg-inline d-md-inline d-sm-block d-block mb-3">More Templates Here</a> 
+            </p>
+          </div> 
+        </div>
+      </div>
+    
+    </section>
+    <!-- END section -->
+      
+    
+    
 
 
   

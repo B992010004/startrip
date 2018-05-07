@@ -3,6 +3,8 @@ package com.startrip.travelPlan.travelList.service;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,35 +15,31 @@ import com.startrip.travelPlan.travelList.model.TravelListPK;
 public class TravelListservice implements ListService {
 	@Autowired
 	TravelListDao listDao;
-	
+	@Transactional
 	@Override
 	public TravelListBean Select_ListId(TravelListPK bean) {
 		TravelListBean result = new TravelListBean();
 		result = listDao.Select_PK(bean);
 		return result;
 	}
-
+	@Transactional
 	@Override
 	public List<TravelListBean> selectAllList() {
-		// TODO Auto-generated method stub
 		return null;
 	}
-
+	@Transactional
 	@Override
 	public void insert(TravelListBean bean) {
-		// TODO Auto-generated method stub
 
 	}
-
+	@Transactional
 	@Override
 	public void update(TravelListBean bean) throws SQLException {
-		// TODO Auto-generated method stub
 
 	}
-
+	@Transactional
 	@Override
 	public void delete(int id) {
-		// TODO Auto-generated method stub
 
 	}
 

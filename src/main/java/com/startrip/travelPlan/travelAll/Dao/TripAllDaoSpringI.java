@@ -3,9 +3,13 @@ package com.startrip.travelPlan.travelAll.Dao;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.startrip.member.memberModle.MemberBean;
 import com.startrip.travelPlan.travelAll.model.TravelAllBean;
 
 public interface TripAllDaoSpringI {
+	
+	
+	public TravelAllBean TravelPrimayKey(TravelAllBean travelName);
 
 	public TravelAllBean Select_TravelId(int id);
 
@@ -14,8 +18,10 @@ public interface TripAllDaoSpringI {
 
 	public void insert(TravelAllBean bean);
 
-	public void updateTrip(TravelAllBean bean) throws SQLException;
+	public void update(TravelAllBean bean) throws SQLException;
 
-	public void delete(int id);
+	public void delete(Integer id);
+
+	MemberBean getMail(String mail);
 
 }

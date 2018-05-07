@@ -3,12 +3,14 @@ package com.startrip.restaurant.rtDAO;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.startrip.restaurant.rtexception.RtReviewsNotFoundException;
 import com.startrip.restaurant.rtinterface.RtBookingInterface;
 import com.startrip.restaurant.rtmodel.RtBookingBean;
 import com.startrip.restaurant.rtmodel.RtPhotoBean;
 
+@Repository
 public class RtBookingRepository implements RtBookingInterface {
 	
 	@Autowired

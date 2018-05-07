@@ -15,7 +15,7 @@ public interface TravelAllService {
 
 	public void insert(TravelAllBean bean);
 
-	public void updateTrip(TravelAllBean bean) throws SQLException;
+	public void update(TravelAllBean bean) throws SQLException;
 
 	public void delete(int id);
 }

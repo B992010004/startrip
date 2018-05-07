@@ -1,5 +1,6 @@
 package com.startrip.travelPlan.travelView.model;
 
+import java.util.Arrays;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -33,7 +34,7 @@ public class TravelViewBean {
 	private String imgName;
 	
 
-	private MemberBean mailBean;
+	private MemberBean viewMail;
 	private String mail;
 	private String viewName;
 	private String viewaddr;
@@ -50,6 +51,18 @@ public class TravelViewBean {
 		
 	}
 	
+	
+	
+	@Override
+	public String toString() {
+		return "TravelViewBean [viewid=" + viewid + ", imgSrc=" + Arrays.toString(imgSrc) + ", imgName=" + imgName
+				+ ", viewMail=" + viewMail + ", mail=" + mail + ", viewName=" + viewName + ", viewaddr=" + viewaddr
+				+ ", viewPhone=" + viewPhone + ", orgclass=" + orgclass + ", tdate=" + tdate + ", viewDetail="
+				+ viewDetail + ", travels=" + travels + "]";
+	}
+
+
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY) 
 	public int getViewid() {
@@ -70,13 +83,12 @@ public class TravelViewBean {
 	//關聯MemberBean,
 	//name=本Bean memederId,referencedColumnName=MemberBean的屬性,
 	@ManyToOne
-	@JoinColumn(name="mail",referencedColumnName="mail",insertable=false,updatable=false)
-	public MemberBean getMailBean() {
-		
-		return mailBean;
+	@JoinColumn(name="mail",referencedColumnName="mail",insertable=false,updatable=false,unique=false)
+	public MemberBean getViewMail() {
+		return viewMail;
 	}
-	public void setMailBean(MemberBean mailBean) {
-		this.mailBean = mailBean;
+	public void setViewMail(MemberBean viewMail) {
+		this.viewMail = viewMail;
 	}
 	
 	

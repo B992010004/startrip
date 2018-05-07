@@ -3,6 +3,7 @@ package com.startrip.restaurant.rtmodel;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
@@ -10,6 +11,7 @@ import javax.persistence.Table;
 public class RtBookingBean {
 
 	private String mail;
+	@Id
 	private Integer bgId;
 	private String crName;
 	private String crPhone;

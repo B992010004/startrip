@@ -15,21 +15,23 @@ import com.startrip.travelPlan.travelList.service.ListService;
 
 @Controller
 public class ListController {
+	
 	@Autowired
 	ListService listservice;
-
+						
 	@RequestMapping(value="Travel/addList",method=RequestMethod.GET)
 	public String listNewAdd(Model model) {
 		TravelListBean bean = new TravelListBean();
-		model.addAttribute(bean);
-		return "TravelProject/ravelList/addList";
+		model.addAttribute("TravelListBean",bean);
+		return "TravelProject/TravelList/addList";
 	}
 	
-	@RequestMapping(value="travel/addList",method=RequestMethod.POST)
-	public String travelAdd(@ModelAttribute TravelListBean bean) {
+	@RequestMapping(value="Travel/addList",method=RequestMethod.POST)
+	public String travelAdd(@ModelAttribute("TravelListBean") TravelListBean bean) {
+		System.out.println("insert");
 		listservice.insert(bean);
-		return "redirect:list/All";
-	}
+		return "redirect:/list/All";
+	}		   
 	
 	
 	
@@ -38,7 +40,7 @@ public class ListController {
 	@RequestMapping(value="list/All",method=RequestMethod.GET)
 	public String getAllList(Model model) {
 		List<TravelListBean> list = listservice.selectAllList();
-		model.addAttribute("travels", list);
+		model.addAttribute("Lists", list);
 		return "/TravelProject/TravelList/AllList";
 	}
 	 
