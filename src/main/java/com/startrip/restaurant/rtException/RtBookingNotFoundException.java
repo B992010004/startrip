@@ -1,4 +1,4 @@
-package com.startrip.restaurant.rtExceptionvvv;
+package com.startrip.restaurant.rtException;
 
 public class RtBookingNotFoundException extends RuntimeException {
 
