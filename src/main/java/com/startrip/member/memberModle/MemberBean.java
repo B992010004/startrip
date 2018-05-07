@@ -19,8 +19,8 @@ import javax.xml.bind.annotation.XmlTransient;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.startrip.travelPlan.travelAll.model.TravelAllBean;
-import com.startrip.travelPlan.travelView.model.TravelViewBean;
+import com.startrip.travelPlan.model.TravelAllBean;
+import com.startrip.travelPlan.model.TravelViewBean;
 
 
 
@@ -50,16 +50,16 @@ public class MemberBean {
 		this.photo = photo;
 	}
 	//-------------------------------
-	@OneToMany(mappedBy="viewMail",cascade= {CascadeType.ALL})
-	private Set<TravelViewBean> ViewMB;
+//	@OneToMany(mappedBy="viewMail",cascade= {CascadeType.ALL})
+//	private Set<TravelViewBean> ViewMB;
+////	
+//	@OneToMany(mappedBy="travelMail",cascade= {CascadeType.ALL})
+//	private Set<TravelAllBean> travelMB;
+////	
+//	@ManyToMany
+//	@JoinTable(name="travelCollection",joinColumns=@JoinColumn(name="member_Mail"),inverseJoinColumns=@JoinColumn(name="travel_Id"))
+//	private Set<TravelAllBean> travels;
 //	
-	@OneToMany(mappedBy="travelMail",cascade= {CascadeType.ALL})
-	private Set<TravelAllBean> travelMB;
-//	
-	@ManyToMany
-	@JoinTable(name="travelCollection",joinColumns=@JoinColumn(name="member_Mail"),inverseJoinColumns=@JoinColumn(name="travel_Id"))
-	private Set<TravelAllBean> travels;
-	
 	//--------------------------------
 	
 	
@@ -137,12 +137,12 @@ public class MemberBean {
 //		ViewMB = viewMB;
 //	}
 	
-	public Set<TravelAllBean> getTravels() {
-		return travels;
-	}
-	public void setTravels(Set<TravelAllBean> travels) {
-		this.travels = travels;
-	}
+//	public Set<TravelAllBean> getTravels() {
+//		return travels;
+//	}
+//	public void setTravels(Set<TravelAllBean> travels) {
+//		this.travels = travels;
+//	}
 
 	
 	//--------------------------------------------
