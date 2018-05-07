@@ -1,6 +1,6 @@
-package com.startrip.restaurant.rtInterface;
+package com.startrip.restaurant.rtinterface;
 
-import com.startrip.restaurant.rtModel.RtReviewsBean;
+import com.startrip.restaurant.rtmodel.RtReviewsBean;
 
 public interface RtReviewsInterface {
 
