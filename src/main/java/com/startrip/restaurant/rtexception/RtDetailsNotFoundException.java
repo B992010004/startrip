@@ -1,8 +1,8 @@
-package com.starttrip.restaurant.rtexception;
+package com.startrip.restaurant.rtexception;
 
 public class RtDetailsNotFoundException extends RuntimeException {
 
-	public RtDetailsNotFoundException() {
+	public RtDetailsNotFoundException(Integer rtId) {
 		super();
 	}
 
@@ -23,5 +23,10 @@ public class RtDetailsNotFoundException extends RuntimeException {
 		super(cause);
 	}
 
+	public RtDetailsNotFoundException() {
+		super();
+	}
+
+	
 	
 }

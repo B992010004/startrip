@@ -11,8 +11,6 @@ public interface RtDetailsInterface {
 	RtDetailsBean updateRtDetails(RtDetailsBean bean);
 
 	RtDetailsBean insertRtDetails(RtDetailsBean bean);
-
-	boolean deleteRtDetailsrtName(String rtName);
 	
 	boolean deleteRtDetailsrtId(Integer rtId);
 }

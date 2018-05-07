@@ -1,8 +1,8 @@
-package com.starttrip.restaurant.rtexception;
+package com.startrip.restaurant.rtexception;
 
 public class RtReviewsNotFoundException extends RuntimeException {
 
-	public RtReviewsNotFoundException() {
+	public RtReviewsNotFoundException(Integer rwId) {
 		super();
 	}
 
@@ -21,6 +21,10 @@ public class RtReviewsNotFoundException extends RuntimeException {
 
 	public RtReviewsNotFoundException(Throwable cause) {
 		super(cause);
+	}
+
+	public RtReviewsNotFoundException() {
+		super();
 	}
 
 	
