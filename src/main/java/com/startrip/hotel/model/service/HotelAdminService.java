@@ -101,12 +101,23 @@ public class HotelAdminService {
 	}
 	@Transactional
 	public void deleteFacilitylistByHotelid(Integer hotelid) {
-		facilitylist.delete(hotelid);
+		facilitylist.deleteByHotelid(hotelid);
 	}
 	@Transactional
 	public void insertRoomtype(RoomtypeBean bean) {
 		roomtype.insert(bean);
 	}
+	
+	@Transactional
+	public List<Integer> selectFacilitylistByHotelid(Integer hotelid){
+		return facilitylist.selectByHotelid(hotelid);
+	}
+	
+	@Transactional
+	public List<Integer> selectServicelistByHotelid(Integer hotelid){
+		return servicelist.selectByHotelid(hotelid);
+	}
+	
 	@Transactional
 	public void deleteRoomtype(RoomtypeBean bean) {
 		roomtype.delete(bean);

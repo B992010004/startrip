@@ -165,11 +165,13 @@ public class HotelController {
 	}
 
 	@RequestMapping(value = "/admin/HostConnect_Service", method = RequestMethod.GET)
-	public String hostConnectService(Model model, HttpServletRequest request) {
-
+	public String hostConnectService(Model model,HttpSession session, HttpServletRequest request) {
+		Integer hotelid = (Integer) session.getAttribute("hotelid");
+		
 		request.setAttribute("facilityname", hotelAdminService.selectFacilityname());
 		request.setAttribute("servicename", hotelAdminService.selectServicename());
-
+		request.setAttribute("facilitylist", hotelAdminService.selectFacilitylistByHotelid(hotelid));
+		request.setAttribute("servicelist", hotelAdminService.selectServicelistByHotelid(hotelid));
 		return "hotel/admin/HostConnect_Service";
 	}
 
