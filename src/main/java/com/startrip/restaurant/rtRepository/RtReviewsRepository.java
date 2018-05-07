@@ -1,8 +1,8 @@
-package com.startrip.restaurant.rtinterface;
+package com.startrip.restaurant.rtRepository;
 
 import com.startrip.restaurant.rtmodel.RtReviewsBean;
 
-public interface RtReviewsInterface {
+public interface RtReviewsRepository {
 
 	RtReviewsBean getAllRtReviewsrwId(Integer rwId);
 	

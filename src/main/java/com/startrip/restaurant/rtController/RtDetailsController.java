@@ -15,12 +15,12 @@ public class RtDetailsController {
 	public String getAddNewrestaurantHome(Model model) {
 		RtDetailsBean rdb = new RtDetailsBean();
 		model.addAttribute("RtDetailsBean", rdb);
-		return "restaurantHome";
+		return "restaurant/restaurantHome";
 	}
 	
 	@RequestMapping(value = "/restaurant/restaurantHome", method = RequestMethod.POST)
 	public String processAddNewrestaurantHome(@ModelAttribute("RtDetailsBean") RtDetailsBean rdb) {
-		return "restaurantHome";
+		return "redirect:/";
 	}
 
 }
