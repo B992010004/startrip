@@ -7,26 +7,26 @@
  <title>HotelsSearchResult</title>
 
 
-  <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,700" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,700" rel="stylesheet">
 
-  <link rel="stylesheet" href="/startrip/assets/css/bootstrap/bootstrap.css">
-  <link rel="stylesheet" href="/startrip/assets/css/animate.css">
-  <link rel="stylesheet" href="/startrip/assets/fonts/ionicons/css/ionicons.min.css">
+  <link rel="stylesheet" href="assets/css/bootstrap/bootstrap.css">
+  <link rel="stylesheet" href="assets/css/animate.css">
+  <link rel="stylesheet" href="assets/fonts/ionicons/css/ionicons.min.css">
 
-  <link rel="stylesheet" href="/startrip/assets/css/owl.carousel.min.css">
+  <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
 
-  <link rel="stylesheet" href="/startrip/assets/fonts/flaticon/font/flaticon.css">
+  <link rel="stylesheet" href="assets/fonts/flaticon/font/flaticon.css">
 
-  <link rel="stylesheet" href="/startrip/assets/fonts/fontawesome/css/font-awesome.min.css">
-  <link rel="stylesheet" href="/startrip/assets/css/bootstrap-datepicker.css">
-  <link rel="stylesheet" href="/startrip/assets/css/select2.css">
-
-
-  <link rel="stylesheet" href="/startrip/assets/css/helpers.css">
-  <link rel="stylesheet" href="/startrip/assets/css/style.css">
+  <link rel="stylesheet" href="assets/fonts/fontawesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="assets/css/bootstrap-datepicker.css">
+  <link rel="stylesheet" href="assets/css/select2.css">
 
 
-  <link rel="stylesheet" href="/startrip/assets/css/jquery-ui.css">
+  <link rel="stylesheet" href="assets/css/helpers.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+
+  <link rel="stylesheet" href="assets/css/jquery-ui.css">
 
 
   <style>
@@ -139,7 +139,7 @@
     </div>
   </nav>
   <!-- END nav -->
-  <section class="probootstrap-cover overflow-hidden relative" style="background-image: url('/startrip/assets/images/bg_1.jpg');" data-stellar-background-ratio="0.5"
+  <section class="probootstrap-cover overflow-hidden relative" style="background-image: url('assets/images/bg_1.jpg');" data-stellar-background-ratio="0.5"
     id="section-home">
     <div class="overlay"></div>
   </section>
@@ -433,7 +433,7 @@
   </div>
 
   <!-- 圖片彈出區間 -->
-  <div id="my_popup">
+  <div id="my_popup" hidden>
     <div class="row">
       <div class="col-md popwindow">
         <img src="assets\images\test1.jpg" value="1" title="XX" class="ui-corner-all img-fluid imglist my_popup_close  img-thumbnail">
@@ -534,45 +534,43 @@
   <!-- END footer -->
 
 
-  <script src="/startrip/assets/js/jquery.min.js"></script>
+  <script src="assets/js/jquery.min.js"></script>
 
-  <script src="/startrip/assets/js/popper.min.js"></script>
-  <script src="/startrip/assets/js/bootstrap.min.js"></script>
-  <script src="/startrip/assets/js/owl.carousel.min.js"></script>
+  <script src="assets/js/popper.min.js"></script>
+  <script src="assets/js/bootstrap.min.js"></script>
+  <script src="assets/js/owl.carousel.min.js"></script>
 
-  <script src="/startrip/assets/js/bootstrap-datepicker.js"></script>
-  <script src="/startrip/assets/js/jquery.waypoints.min.js"></script>
-  <script src="/startrip/assets/js/jquery.easing.1.3.js"></script>
+  <script src="assets/js/bootstrap-datepicker.js"></script>
+  <script src="assets/js/jquery.waypoints.min.js"></script>
+  <script src="assets/js/jquery.easing.1.3.js"></script>
 
-  <script src="/startrip/assets/js/select2.min.js"></script>
+  <script src="assets/js/select2.min.js"></script>
 
-  <script src="/startrip/assets/js/main.js"></script>
+  <script src="assets/js/main.js"></script>
 
-  <script src="/startrip/assets/js/range.js"></script>
+  <script src="assets/js/range.js"></script>
 
 
-  <script src="/startrip/assets/js/jquery-ui.js"></script>
-  <script src="/startrip/assets/js/jquery.popupoverlay.js"></script>
+  <script src="assets/js/jquery-ui.js"></script>
+  <script src="assets/js/jquery.popupoverlay.js"></script>
 
 
   <script>
+    $(document).ready(function(){
+      $("#my_popup").attr("hidden",false)
+    })
+
     $('.js-owl-carousel-2').owlCarousel({
       loop: false,
       margin: 20,
-      nav: true,
+      nav: false,
+      autoplay:true,
+      autoplayTimeout:5000,
+      smartSpeed:800,
       stagePadding: 0,
       navText: ["<span class='ion-chevron-left'></span>", "<span class='ion-chevron-right'></span>"],
       responsive: {
         0: {
-          items: 1
-        },
-        600: {
-          items: 1
-        },
-        800: {
-          items: 1
-        },
-        1000: {
           items: 1
         }
       }
@@ -606,7 +604,7 @@
       var b = clickimg.parent().parent().parent()
       b.attr("class", "owl-carousel js-owl-carousel-2 owl-loaded owl-drag owl-grab")
       b.attr("class", "owl-carousel js-owl-carousel-2 owl-loaded owl-drag")
-      b.children().children().css("transition", "0.5s")
+      b.children().children().css("transition", "0.8s")
       var imgwidthstart = clickimg.parent().attr("style").lastIndexOf(": ")
       var imgwidthend = clickimg.parent().attr("style").lastIndexOf("px;")
       var imgwidth = clickimg.parent().attr("style").substr(imgwidthstart + 2, imgwidthend - imgwidthstart - 2)

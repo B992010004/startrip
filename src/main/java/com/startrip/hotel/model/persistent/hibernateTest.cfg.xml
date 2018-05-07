@@ -40,7 +40,6 @@
 		<mapping class="com.startrip.hotel.model.persistent.HotelsBean"></mapping>
 		<mapping class="com.startrip.hotel.model.persistent.RoomtypeBean"></mapping>
 		<mapping class="com.startrip.hotel.model.persistent.RoomstateBean"></mapping>
-		<mapping class="com.startrip.hotel.model.persistent.MemberBean"></mapping>
 		<mapping class="com.startrip.hotel.model.persistent.SinglenightBean"></mapping>
 		<mapping class="com.startrip.hotel.model.persistent.PhotoBean"></mapping>
 		<mapping class="com.startrip.hotel.model.persistent.PhotonameBean"></mapping>
