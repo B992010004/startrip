@@ -31,9 +31,8 @@
 </head>
 
 <body>
-    <div>
-        <jsp:include page="/WEB-INF/views/header.jsp" flush="true" />
-    </div>
+   	<div><jsp:include page="/WEB-INF/views/header.jsp" flush="true" /></div>
+
     <!-- END nav -->
     <section class="probootstrap-cover overflow-hidden relative"  style="background-image: url('assets/images/bg_1.jpg');" data-stellar-background-ratio="0.5" id="section-home">
       <div class="overlay"></div>

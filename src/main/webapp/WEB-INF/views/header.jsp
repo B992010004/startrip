@@ -28,7 +28,7 @@
 						href="/startrip/Rooms">房型</a></li>
 
 					<li class="nav-item"><a class="nav-link"
-						href="/startrip/restaurant/restaurantHome">餐廳</a></li>
+						href="/startrip/restaurantHome">餐廳</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="/startrip/TravelMain">行程規劃</a></li>
 					<li class="nav-item"><a class="nav-link"
@@ -44,7 +44,7 @@
 									data-toggle="dropdown" aria-haspopup="true"
 									aria-expanded="false"> ${LoginOK.username} 
 									<img style="border-radius: 50%;" width="30px" height="30px"
-									src="<c:url value='getPicture/${LoginOK.mail}'/>">
+									src="<c:url value='/getPicture/${LoginOK.mail}'/>">
 								</a>
 								<div class="dropdown-menu " aria-labelledby="dropdownMenuLink">
 									<a class="btn" href="ModifyMember">修改個人資料 </a> 

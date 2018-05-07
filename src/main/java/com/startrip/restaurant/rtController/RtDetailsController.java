@@ -11,14 +11,14 @@ import com.startrip.restaurant.rtmodel.RtDetailsBean;
 public class RtDetailsController {
 
 	
-	@RequestMapping(value = "/restaurant/restaurantHome", method = RequestMethod.GET)
+	@RequestMapping(value = "/restaurantHome", method = RequestMethod.GET)
 	public String getAddNewrestaurantHome(Model model) {
 		RtDetailsBean rdb = new RtDetailsBean();
 		model.addAttribute("RtDetailsBean", rdb);
 		return "restaurantHome";
 	}
 	
-	@RequestMapping(value = "/restaurant/restaurantHome", method = RequestMethod.POST)
+	@RequestMapping(value = "/restaurantHome", method = RequestMethod.POST)
 	public String processAddNewrestaurantHome(@ModelAttribute("RtDetailsBean") RtDetailsBean rdb) {
 		return "restaurantHome";
 	}
