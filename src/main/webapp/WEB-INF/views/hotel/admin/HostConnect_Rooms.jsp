@@ -175,7 +175,7 @@
                     </td>
                     <td>
                       <div class="form-group mr-3">
-                        <select id="inputState" class="form-control" name="people">
+                        <select  class="form-control" name="people">
                           <option value="1">單人房</option>
                           <option selected value="2">雙人房</option>
                           <option value="3">三人房</option>
@@ -202,7 +202,7 @@
                 </form>
                 <!-- 動態資料產生 -->
                 <c:forEach var="roomtype" items="${roomtypelist}" varStatus="count">
-                <tr class="trcontent${count.count}">
+                <tr class="trcontent${count.count}" value="${roomtype.roomid}">
                   <td>
                     <p>${roomtype.roomname} <c:if test='${roomtype.roomname == ""}'>(空)</c:if></p>
                   </td>
@@ -227,7 +227,7 @@
                     	</c:choose>
                     </p>
                     <div class="form-group mr-3" hidden>
-                      <select val="${roomtype.numberofpeople}" id="inputState" class="form-control" name="poeple${count.count}">
+                      <select  val="${roomtype.numberofpeople}" class="form-control" name="poeple${count.count}">
                         <option value="1">單人房</option>
                         <option value="2">雙人房</option>
                         <option value="3">三人房</option>
@@ -239,6 +239,7 @@
                   <td>
                     <p>${roomtype.numberofrooms}</p>
                   </td>
+                  </form>
                   <td>
                     <form action="/startrip/admin/HostConnect_Roomset" method="POST">
                       <button type="submit"  name="roomid" value="${roomtype.roomid}"  class="btn btn-outline-dark">
@@ -395,13 +396,16 @@
             //select修改
             $('.trcontent' + i + ' p:eq(1)').click(roomtype)
             //number修改
-            $('.trcontent' + i + ' p:eq(2)').click(numberofpeople);
+            $('.trcontent' + i + ' p:eq(2)').click(numberofrooms);
           }
         })
 
 
         function roomname() {
           var td = $(this);
+          
+          var roomid = $(this).parents("tr").first().attr("value")
+          
           var text = $(this).text();
           var input = $(
             '<div class="form-group mr-3"><input type="text" class="form-control"' +
@@ -420,11 +424,24 @@
           $(trnum + ' input').blur(function () {
             var nextxt = $(this).val();
             td.html(nextxt ? nextxt : text)
+            
+            var roomname = nextxt ? nextxt : text
+                    
+            $.ajax
+          	 ({ 
+          	    url: '/startrip/admin/AjaxChangeRoomtype',
+          	    data: {"name": roomname , "roomid": roomid},
+          	    type: 'post'
+          	 });
+            
           }); //點任意處變回文字，若空白則恢復原字串
         }
 
         function roomtype() {
           var td = $(this);
+          
+          var roomid = $(this).parents("tr").first().attr("value")
+          
           var text = $(this).text();
           var num = $(this).siblings('div').children('select').attr('val')
           var trnum = '.trcontent' + $(this).parent().parent().attr('class').substr(-1);
@@ -441,6 +458,14 @@
           $(trnum + ' div select').blur(function () {
             var optionvalue = $(this).val();
             // 修改後要傳送的值
+            $.ajax
+  	      	   ({ 
+  	             url: '/startrip/admin/AjaxChangeRoomtype',
+  	             data: {"people": optionvalue , "roomid": roomid},
+  	             type: 'post'
+  	  		   });
+            
+            
             var optiontext = $(trnum + ' div option[value=' + optionvalue + ']').text();
             // 該值對應的文字內容
             $(this).attr('val', optionvalue)
@@ -451,8 +476,11 @@
           });
         }
 
-        function numberofpeople() {
+        function numberofrooms() {
           var td = $(this);
+
+          var roomid = $(this).parents("tr").first().attr("value")
+          
           var text = $(this).text();
           var input = $(
             '<div class="form-group mr-3 roomnumber">' +
@@ -471,9 +499,19 @@
           $(trnum + ' input').blur(function () {
             var nextxt = $(this).val();
             td.html(nextxt ? nextxt : text)
-          }); //點任意處變回文字
+            
+            var people = nextxt ? nextxt : text
+            
+            $.ajax
+  	      	 ({ 
+  	          url: '/startrip/admin/AjaxChangeRoomtype',
+  	          data: {"rooms": people , "roomid": roomid},
+  	          type: 'post'
+  	  		 });
+          }); //點任意處變回文字並傳送資料
         }
 
+        
 
 
       </script>

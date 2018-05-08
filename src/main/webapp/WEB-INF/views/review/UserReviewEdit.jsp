@@ -38,9 +38,8 @@
 </head>
 
 <body>
-    <div>
-        <jsp:include page="/WEB-INF/views/header.jsp" flush="true" />
-    </div>
+   	<div><jsp:include page="/WEB-INF/views/header.jsp" flush="true" /></div>
+
     <!-- END nav -->
     
     <section class="probootstrap_section bg-light" id="section-contact">
