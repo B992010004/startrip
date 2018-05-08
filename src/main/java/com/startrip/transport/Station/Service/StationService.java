@@ -1,15 +1,21 @@
 package com.startrip.transport.Station.Service;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.startrip.transport.Station.modle.StationBean;
-import com.startrip.transport.Station.stationInterface.StationRepositoryInterface;
+import com.startrip.transport.Station.StationInterface.StationRepositoryInterface;
+import com.startrip.transport.Station.StationModle.StationBean;
 
-public class StationService {
+
+
+
+@Service
+public class StationService implements StationServiceInterface{
+
 
 	@Autowired
 	private StationRepositoryInterface stationDAO;
@@ -20,4 +26,31 @@ public class StationService {
 		return stationDAO.select();
 	}
 	
+
+
+
+	@Transactional
+	@Override
+	public void update(String area, String stationName) {
+		
+		stationDAO.update(area,stationName);
+	}
+	
+	@Transactional
+	@Override
+	public void insert(StationBean bean) {
+
+		stationDAO.insert(bean);
+
+	}
+	
+	@Transactional
+	@Override
+	public boolean delete(Integer id) {
+		return stationDAO.delete(id);
+	
 }
+
+	
+}
+
