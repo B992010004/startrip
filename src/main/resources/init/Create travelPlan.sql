@@ -1,6 +1,9 @@
 USE [startrip]
 GO
-
+drop table [travelCollection]
+	drop table [TravelList]
+		drop table [TravelPlan]
+		drop table [TravelView]
 drop table Membertable
 
 CREATE TABLE [dbo].[Membertable](
@@ -13,11 +16,13 @@ CREATE TABLE [dbo].[Membertable](
 	[phone] [int] NOT NULL,
 	[photo] [varbinary](max) NULL,
 	[username] [varchar](255) NULL,
-PRIMARY KEY([mail]) )
+PRIMARY KEY(memberId) )
 
 insert into Membertable (mail,phone)values ('1@123','45688')
+insert into Membertable (mail,phone)values ('4@456','45688')
 
-drop table [TravelView]
+
+
 
 CREATE TABLE [dbo].[TravelView](
 	[viewid] [int] IDENTITY(1,1) NOT NULL primary key,
@@ -28,11 +33,11 @@ CREATE TABLE [dbo].[TravelView](
 	[viewName] [varchar](255) NULL,
 	[viewPhone] [varchar](255) NULL,
 	[viewaddr] [varchar](255) NULL,
-	[mail] [varchar](255) not NULL REFERENCES [dbo].[Membertable] ([mail]))
+	memberId int not NULL REFERENCES membertable (memberId))
 
 	go
 
-	drop table [TravelPlan]
+
 
 CREATE TABLE [dbo].[TravelPlan](
 	[travelId] [int] IDENTITY(1,1) NOT NULL primary key,
@@ -40,11 +45,11 @@ CREATE TABLE [dbo].[TravelPlan](
 	[startDate] [date] NULL,
 	[travelDays] [int] NOT NULL,
 	[travelName] [varchar](255) NULL,
-	[mail] [varchar](255) not NULL REFERENCES [dbo].[Membertable] ([mail]))
+	memberId int not NULL REFERENCES [dbo].[Membertable] (memberId))
 
 GO
 
-	drop table [TravelList]
+
 
 
 CREATE TABLE [dbo].[TravelList](
@@ -63,16 +68,13 @@ UNIQUE(	[travel_Id],	[view_Id]) )
 
 go
 
-	drop table [travelCollection]
+
 
 CREATE TABLE [dbo].[travelCollection](
-	[travel_Id] [int] NOT NULL REFERENCES [dbo].[TravelPlan] ([travelId])
-,
-	[member_Mail] [varchar](255) NOT NULL REFERENCES [dbo].[Membertable] ([mail])
-,
+	[travel_Id] [int] NOT NULL REFERENCES [dbo].[TravelPlan] ([travelId]),
+	member_Id int NOT NULL REFERENCES Membertable (memberId),
 PRIMARY KEY 
-(	[member_Mail] ASC,
-	[travel_Id] ASC
-))
+(	[member_Id] ,
+	[travel_Id] ))
 GO
 
