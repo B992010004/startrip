@@ -12,10 +12,9 @@ import org.springframework.stereotype.Repository;
 import com.startrip.member.MemberInterface.MemberRepositoryinterface;
 import com.startrip.member.memberModle.MemberBean;
 
-
 @Repository
 public class MemberRepository implements MemberRepositoryinterface {
-	
+
 	@Autowired
 	SessionFactory factory;
 
@@ -33,30 +32,34 @@ public class MemberRepository implements MemberRepositoryinterface {
 	@SuppressWarnings("unchecked")
 	@Override
 	public MemberBean select(String mail) {
-		
+
 		String hql = "FROM MemberBean where mail =:mail ";
 		Session session = null;
 		List<MemberBean> list = new ArrayList<>();
 		session = factory.getCurrentSession();
 		list = session.createQuery(hql).setParameter("mail", mail).getResultList();
-		
-		return list.get(0);
+		if (list.size() == 0) {
+			return null;
+		} else {
+			return list.get(0);
+		}
 	}
 
 	@Override
 	public void update(String mail, String password, String username, String address, int phone, String birthday,
-			String avatar,Blob photo) {
+			String avatar, Blob photo) {
 		String hql = "update MemberBean set   password=:password address=:address phone=:phone birthday=:birthday username=:username avatar=:avatar photo=:photo  where mail =:mail";
 		Session session = factory.getCurrentSession();
 		session.createQuery(hql).setParameter("mail", mail).setParameter("password", password)
 				.setParameter("address", address).setParameter("username", username).setParameter("birthday", birthday)
-				.setParameter("password", password).setParameter("avatar", avatar).setParameter("photo", photo).executeUpdate();
+				.setParameter("password", password).setParameter("avatar", avatar).setParameter("photo", photo)
+				.executeUpdate();
 
 	}
 
 	@Override
 	public void insert(MemberBean bean) {
-		Session session = factory.getCurrentSession();		
+		Session session = factory.getCurrentSession();
 		session.save(bean);
 	}
 

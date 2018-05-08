@@ -10,6 +10,7 @@
 	<meta name="description" content="Free Bootstrap 4 Theme by ProBootstrap.com">
 	<meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
 
+
 	<title>StarTrip&mdash;星遊網</title>
 
 	<link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,700" rel="stylesheet">
@@ -41,6 +42,7 @@
 			width: 100%;
 			color: rgb(151, 148, 148)
 		}
+
 
 		.probootstrap-cover .overlay {
 			position: absolute;
