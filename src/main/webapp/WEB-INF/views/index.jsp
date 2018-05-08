@@ -5,63 +5,43 @@
 <html>
 
 <head>
-
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>StarTrip&mdash;星遊網</title>
-	<link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,700" rel="stylesheet">
-	<link rel="stylesheet" href="/startrip/assets/css/bootstrap/bootstrap.css">
-	<link rel="stylesheet" href="/startrip/assets/css/animate.css">
-	<link rel="stylesheet" href="/startrip/assets/fonts/ionicons/css/ionicons.min.css">
-	<link rel="stylesheet" href="/startrip/assets/css/owl.carousel.min.css">
-	<link rel="stylesheet" href="/startrip/assets/fonts/flaticon/font/flaticon.css">
-	<link rel="stylesheet" href="/startrip/assets/fonts/fontawesome/css/font-awesome.min.css">
-	<link rel="stylesheet" href="/startrip/assets/css/bootstrap-datepicker.css">
-	<link rel="stylesheet" href="/startrip/assets/css/select2.css">
-	<link rel="stylesheet" href="/startrip/assets/css/helpers.css">
-	<link rel="stylesheet" href="/startrip/assets/css/style.css">
-
-	<script src="/startrip/assets/js/jquery.min.js"></script>
-	<script src="/startrip/assets/js/popper.min.js"></script>
-	<script src="/startrip/assets/js/bootstrap.min.js"></script>
-	<script src="/startrip/assets/js/owl.carousel.min.js"></script>
-	<script src="/startrip/assets/js/bootstrap-datepicker.js"></script>
-	<script src="/startrip/assets/js/jquery.waypoints.min.js"></script>
-	<script src="/startrip/assets/js/jquery.easing.1.3.js"></script>
-	<script src="/startrip/assets/js/select2.min.js"></script>
-	<script src="/startrip/assets/js/main.js"></script>
-
-
 	<meta name="description" content="Free Bootstrap 4 Theme by ProBootstrap.com">
 	<meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
 
-	<script>
-		document.addEventListener("DOMContentLoaded", function () {
-			document.getElementById("nameid").addEventListener("blur", ckname);
-			document.getElementById("idPwd").addEventListener("blur", chkPassword);
-		})
-		function ckname() {
-			var getname = document.getElementById("nameid").value;
-			if (getname == "") {
-				document.getElementById("nname").innerHTML = "請輸入帳號"
-			} else {
-				document.getElementById("nname").innerHTML = ""
-			}
-		}
+	<title>StarTrip&mdash;星遊網</title>
 
-		function chkPassword() {
+	<link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,700" rel="stylesheet">
 
-			var getPwd = document.getElementById("idPwd").value;
+	<link rel="stylesheet" href="/startrip/assets/css/bootstrap/bootstrap.css">
+	<link rel="stylesheet" href="/startrip/assets/css/animate.css">
+	<link rel="stylesheet" href="/startrip/assets/fonts/ionicons/css/ionicons.min.css">
 
-			if (getPwd == "") {
-				document.getElementById("pswid").innerHTML = "請輸入密碼"
-			} else {
-				document.getElementById("pswid").innerHTML = ""
-			}
-		}
-	</script>
+	<link rel="stylesheet" href="/startrip/assets/css/owl.carousel.min.css">
 
+	<link rel="stylesheet" href="/startrip/assets/fonts/flaticon/font/flaticon.css">
+
+	<link rel="stylesheet" href="/startrip/assets/fonts/fontawesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/startrip/assets/css/bootstrap-datepicker.css">
+	<link rel="stylesheet" href="/startrip/assets/css/select2.css">
+
+
+	<link rel="stylesheet" href="/startrip/assets/css/helpers.css">
+	<link rel="stylesheet" href="/startrip/assets/css/style.css">
 	<style>
+		#inputState {
+			height: 46px;
+			color: rgb(151, 148, 148)
+		}
+
+		.inputState label,
+		.inputState select {
+			height: 46px;
+			width: 100%;
+			color: rgb(151, 148, 148)
+		}
+
 		.probootstrap-cover .overlay {
 			position: absolute;
 			background: rgba(0, 0, 0, 0.2);
@@ -71,9 +51,7 @@
 			bottom: 0;
 		}
 	</style>
-
 </head>
-
 
 <body>
 
@@ -86,7 +64,7 @@
 		<div class="container">
 			<div class="row align-items-center">
 				<div class="col-md probootstrap-animate">
-					<form action="HotelsSearchResult.html" class="probootstrap-form">
+					<form action="HotelsSearchResult.html" class="probootstrap-form" style="border-radius:125px;">
 						<div class="form-group">
 							<div class="row">
 								<!-- place -->
@@ -172,7 +150,7 @@
 
 	</section>
 	<!-- END section -->
-	
+
 	<section class="probootstrap_section" id="section-city-guides">
 		<div class="container">
 			<div class="row text-center mb-5 probootstrap-animate">
@@ -211,53 +189,69 @@
 		</div>
 	</section>
 	<!-- END section -->
-	
+
 	<section class="probootstrap_section bg-light">
-    <div class="container">
-      <div class="row text-center mb-5 probootstrap-animate">
-        <div class="col-md-12">
-          <h4 class="display-4 probootstrap-section-heading">精選推薦2</h4>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
-          <a href="#" class="probootstrap-thumbnail">
-            <img src="/startrip/assets/images/img_1.jpg" alt="Free Template by ProBootstrap.com" class="img-fluid">
-            <div class="probootstrap-text">
-              <h3>5</h3>
-            </div>
-          </a>
-        </div>
-        <div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
-          <a href="#" class="probootstrap-thumbnail">
-            <img src="/startrip/assets/images/img_2.jpg" alt="Free Template by ProBootstrap.com" class="img-fluid">
-            <h3>6</h3>
-          </a>
-        </div>
-        <div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
-          <a href="#" class="probootstrap-thumbnail">
-            <img src="/startrip/assets/images/img_3.jpg" alt="Free Template by ProBootstrap.com" class="img-fluid">
-            <h3>7</h3>
-          </a>
-        </div>
-        <div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
-          <a href="#" class="probootstrap-thumbnail">
-            <img src="/startrip/assets/images/img_4.jpg" alt="Free Template by ProBootstrap.com" class="img-fluid">
-            <h3>8</h3>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- END section -->
-	
-		
+		<div class="container">
+			<div class="row text-center mb-5 probootstrap-animate">
+				<div class="col-md-12">
+					<h4 class="display-4 probootstrap-section-heading">精選推薦2</h4>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
+					<a href="#" class="probootstrap-thumbnail">
+						<img src="/startrip/assets/images/img_1.jpg" alt="Free Template by ProBootstrap.com" class="img-fluid">
+						<div class="probootstrap-text">
+							<h3>5</h3>
+						</div>
+					</a>
+				</div>
+				<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
+					<a href="#" class="probootstrap-thumbnail">
+						<img src="/startrip/assets/images/img_2.jpg" alt="Free Template by ProBootstrap.com" class="img-fluid">
+						<h3>6</h3>
+					</a>
+				</div>
+				<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
+					<a href="#" class="probootstrap-thumbnail">
+						<img src="/startrip/assets/images/img_3.jpg" alt="Free Template by ProBootstrap.com" class="img-fluid">
+						<h3>7</h3>
+					</a>
+				</div>
+				<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
+					<a href="#" class="probootstrap-thumbnail">
+						<img src="/startrip/assets/images/img_4.jpg" alt="Free Template by ProBootstrap.com" class="img-fluid">
+						<h3>8</h3>
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- END section -->
+
+
 	<div>
 		<jsp:include page="/WEB-INF/views/footer.jsp" flush="true" />
 	</div>
 	<div>
 		<jsp:include page="/WEB-INF/views/member/login.jsp" flush="true" />
 	</div>
+	<!-- END footer -->
+
+	<script src="/startrip/assets/js/jquery.min.js"></script>
+
+	<script src="/startrip/assets/js/popper.min.js"></script>
+	<script src="/startrip/assets/js/bootstrap.min.js"></script>
+	<script src="/startrip/assets/js/owl.carousel.min.js"></script>
+
+	<script src="/startrip/assets/js/bootstrap-datepicker.js"></script>
+	<script src="/startrip/assets/js/jquery.waypoints.min.js"></script>
+	<script src="/startrip/assets/js/jquery.easing.1.3.js"></script>
+
+	<script src="/startrip/assets/js/select2.min.js"></script>
+
+	<script src="/startrip/assets/js/main.js"></script>
+
 </body>
 
 </html>
