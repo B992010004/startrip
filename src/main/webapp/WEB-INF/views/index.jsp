@@ -44,31 +44,6 @@
 <meta name="keywords"
 	content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
 
-<script>
-	document.addEventListener("DOMContentLoaded", function() {
-		document.getElementById("nameid").addEventListener("blur", ckname);
-		document.getElementById("idPwd").addEventListener("blur", chkPassword);
-	})
-	function ckname() {
-		var getname = document.getElementById("nameid").value;
-		if (getname == "") {
-			document.getElementById("nname").innerHTML = "請輸入帳號"
-		} else {
-			document.getElementById("nname").innerHTML = ""
-		}
-	}
-
-	function chkPassword() {
-
-		var getPwd = document.getElementById("idPwd").value;
-
-		if (getPwd == "") {
-			document.getElementById("pswid").innerHTML = "請輸入密碼"
-		} else {
-			document.getElementById("pswid").innerHTML = ""
-		}
-	}
-</script>
 </head>
 
 

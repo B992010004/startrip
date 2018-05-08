@@ -7,8 +7,6 @@ import java.io.InputStream;
 import java.io.PrintWriter;
 import java.sql.Blob;
 import java.sql.SQLException;
-import java.util.List;
-
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,7 +26,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.startrip.member.Service.MemberServiceInterface;
 import com.startrip.member.memberModle.MemberBean;
 
@@ -52,7 +49,6 @@ public class MemberController {
 	public String logout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		session.removeAttribute("LoginOK");
-
 		return "index";
 	}
 
@@ -92,23 +88,24 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/LoginServlet", method = RequestMethod.POST)
-	public String Login(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		HttpSession session = request.getSession();
-		
+	public void Login(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		HttpSession session = request.getSession();		
 		String mail = request.getParameter("mail");
 		String password = request.getParameter("password");
 		MemberBean mm = memberservice.select(mail);
+		
 		if (mm != null && password.equals(mm.getPassword())) {
 			session.setAttribute("LoginOK", mm);
-			return "index";
+			response.sendRedirect("index");
 
 		} else {
 			response.setContentType("text/plain;charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.print("帳號或密碼錯誤");
-			return "redirect:/";
+			
+//			out.print("$('#modal').dialog('open')");
+			out.print("<font color=\"red\">帳號或密碼錯誤</font>");		
+			
 		}
-
 	}
 
 	@RequestMapping(value = "/ModifyMember", method = RequestMethod.GET)
@@ -157,7 +154,7 @@ public class MemberController {
 	}
 	
 	
-	@RequestMapping(value = "/getPicture/{mail:.+}", method = RequestMethod.GET)
+	@RequestMapping(value = "/getPicture/{mail:.+}")
 	public ResponseEntity<byte[]> getPicture(HttpServletRequest resp, @PathVariable String mail) {
 		MemberBean bean = memberservice.select(mail);
 		
@@ -191,4 +188,20 @@ public class MemberController {
 		ResponseEntity<byte[]> responseEntity = new ResponseEntity<>(media, headers, HttpStatus.OK);
 		return responseEntity;
 	}
+	
+	@RequestMapping(value = "/checkid",method = RequestMethod.GET)
+    public void repeat(HttpServletRequest request, HttpServletResponse response) throws IOException{
+		 String mail = request.getParameter("mail");
+		MemberBean mm = memberservice.select(mail);	
+		response.setContentType("text/html; charset=utf-8"); 
+		PrintWriter writer = response.getWriter();
+		if(mm==null){			  
+			writer.println("<font color=\"green\">恭喜您，可以注册！</font>");		
+        }else {
+        	writer.println("<font color=\"red\">您输入的用户名存在！请重新输入！</font>");
+       }    
+    }
+
+	
+	
 }
