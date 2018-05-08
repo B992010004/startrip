@@ -1,4 +1,4 @@
-package com.startrip.restaurant.rtmodel;
+package com.startrip.restaurant.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

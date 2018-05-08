@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.startrip.restaurant.exception.RtReviewsNotFoundException;
-import com.startrip.restaurant.rtmodel.RtPhotoBean;
+import com.startrip.restaurant.model.RtPhotoBean;
 
 @Repository
 public class RtPhotoRepositoryImp implements RtPhotoRepository {

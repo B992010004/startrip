@@ -1,10 +1,10 @@
-package com.startrip.restaurant.rtService;
+package com.startrip.restaurant.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.startrip.restaurant.model.RtPhotoBean;
 import com.startrip.restaurant.repository.RtPhotoRepository;
-import com.startrip.restaurant.rtmodel.RtPhotoBean;
 
 @Service
 public class RtPhotoServiceImp implements RtPhotoService {
