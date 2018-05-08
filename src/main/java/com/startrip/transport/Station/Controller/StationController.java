@@ -10,8 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.startrip.member.Service.MemberServiceInterface;
 import com.startrip.transport.Station.Service.StationServiceInterface;
+import com.startrip.transport.Station.StationModle.StationBean;
 
 @Controller
 public class StationController {

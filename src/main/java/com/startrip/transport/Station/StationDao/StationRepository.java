@@ -8,9 +8,8 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.startrip.transport.Station.StationModle.StationBean;
-import com.startrip.member.memberModle.MemberBean;
 import com.startrip.transport.Station.StationInterface.StationRepositoryInterface;
+import com.startrip.transport.Station.StationModle.StationBean;
 
 @Repository
 public class StationRepository implements StationRepositoryInterface{
@@ -58,25 +57,14 @@ public class StationRepository implements StationRepositoryInterface{
 	
 	@Override
 	public void update(String area, String stationName) {
-		String hql = "update StationBean set   password=:password address=:address phone=:phone birthday=:birthday username=:username avatar=:avatar photo=:photo  where mail =:mail";
-		Session session = factory.getCurrentSession();
-		session.createQuery(hql).setParameter("mail", mail).setParameter("password", password)
-				.setParameter("address", address).setParameter("username", username).setParameter("birthday", birthday)
-				.setParameter("password", password).setParameter("avatar", avatar).setParameter("photo", photo)
-				.executeUpdate();
+//		String hql = "update StationBean set   password=:password address=:address phone=:phone birthday=:birthday username=:username avatar=:avatar photo=:photo  where mail =:mail";
+//		Session session = factory.getCurrentSession();
+//		session.createQuery(hql).setParameter("mail", mail).setParameter("password", password)
+//				.setParameter("address", address).setParameter("username", username).setParameter("birthday", birthday)
+//				.setParameter("password", password).setParameter("avatar", avatar).setParameter("photo", photo)
+//				.executeUpdate();
 	}
-	
-	 
-	
-	
-	
-	
 
-	@Override
-	public StationBean select(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 
 	@Override
@@ -85,10 +73,7 @@ public class StationRepository implements StationRepositoryInterface{
 		
 	}
 
-	@Override
-	public boolean delete(Integer id) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+
+
 
 }
