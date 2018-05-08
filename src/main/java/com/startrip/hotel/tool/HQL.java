@@ -15,7 +15,7 @@ public enum HQL {
 	public String execute() {
 		switch (this) {
 		case SELECT_ROOMTYPE_BY_HOTELID:
-			HQL = "FROM roomtype WHERE hotelid = :hotelid";
+			HQL = "FROM roomtype WHERE hotelid = :hotelid ORDER BY roomid DESC";
 			break;
 		case DELETE_FACILITY_BY_HOTELID:
 			HQL = "DELETE facilitylist WHERE hotelid = :hotelid";
