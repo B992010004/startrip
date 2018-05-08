@@ -143,13 +143,16 @@
         </nav>
       </div>
       <div class="col-md-10">
-        <form action="" method="">
-          <input type="file" style="visibility:hidden;" class="form-control-file" value="" accept="image/*" name="photo" id="photo">
+        <form id="form1" action="" method=""  enctype='multipart/form-data' >
+          <input type="file" id="imgInp" name="photo" multiple="multiple" style="visibility:hidden;" class="form-control-file"  accept="image/*">
           <div class="form-row">
             <div class="form-group">
-              <label for="photo" class="btn btn-outline-primary">上傳更多圖片</label>
+              <label for="imgInp" class="btn btn-outline-primary">上傳更多圖片</label>
             </div>
           </div>
+          
+		  <img id="blah" src="#" alt="your image" />
+		  
           <hr>
           <h5>設定圖片資訊與顯示順序：</h5>
           <input type="hidden" value="" name="image">
@@ -349,6 +352,28 @@
       function hiddendelete() {
         $(this).children("div").children("a").attr("hidden", true)
       }
+      
+      
+      $("#imgInp").change(function() {
+          readURL(this);
+       });
+      
+
+      
+      function readURL(input) {
+    	  
+    	  
+    	  if (input.files && input.files[0]) {
+    	    var reader = new FileReader();
+
+    	     reader.onload = function(e) {
+    	        $('#blah').attr('src', e.target.result);
+    	     }
+    	     reader.readAsDataURL(input.files[0]);
+    	  }
+      }
+      
+
     </script>
 </body>
 
