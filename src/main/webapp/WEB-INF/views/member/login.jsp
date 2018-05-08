@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
@@ -49,7 +50,7 @@
 </head>
 <body>
 	<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
-		aria-labelledby="myLargeModalLabel" aria-hidden="true">
+		aria-labelledby="myLargeModalLabel" aria-hidden="true" id="modal">
 		<div class="modal-dialog modal-md">
 
 			<div class="probootstrap-form">
@@ -59,19 +60,18 @@
 					<div class="col-md">
 						<H2 class="col-md" style="text-align: center">Login in</h2>
 
-						<form method="POST" action="<c:url value='/LoginServlet' />" class="form-group" name="loginform"">
+						<form method="POST" action="<c:url value="/LoginServlet"/>"
+						 class="form-group" name="loginform">
 							<div class="form-group">
-							
-								<input  type="text" id="nameid"
-									style="width: 75%" class="form-control" name="mail"
-									placeholder="請輸入信箱" ></input>
-								<span id="nname" class="errorDiv"></span>
+
+								<input type="text" style="width: 75%" id="mail"
+									class="form-control" name="mail" placeholder="請輸入信箱"></input> <span
+									id="nname" class="errorDiv"></span>
 							</div>
 							<div class="form-group">
-								<input  type="password" id="idPwd"
-									style="width: 75%" class="form-control" name="password"
-									placeholder="請輸入密碼" />
-								<span id="pswid" class="errorDiv"></span>
+								<input type="password" style="width: 75%" id="password"
+									class="form-control" name="password" placeholder="請輸入密碼" /> <span
+									id="pswid" class="errorDiv"></span>
 							</div>
 
 							<div class="g-recaptcha" style="width: 85%"
@@ -80,6 +80,7 @@
 								<span id="errorMsg"></span> <a href="#" class="text-center"
 									style="text-align: right;">忘記密碼?</a>
 							</div>
+							<span id="tips">12333</span>
 							<!-- /.col -->
 							<div class="form-group" style="margin: 15px">
 								<button type="submit" id="loginSubmit"
@@ -119,6 +120,30 @@
 				radioClass : 'iradio_square-blue',
 				increaseArea : '20%' // optional
 			});
+		});
+	</script>
+	<script>
+		$(document).ready(function() {
+			checkUserName();
+		});
+		$(function () {
+			$("#loginSubmit").click(function() {
+                var ajaxdata = {
+				mail : $('#mail').val(),
+				password : $('#password').val()
+			}
+				$.ajax({
+				url : "/startrip/LoginServlet",
+				type : "POST",
+				data : ajaxdata,
+				success : function(responseText) {
+				$("#tips").html(responseText);
+				}				
+				error : function() {
+				alert("error");
+				}
+				});
+				});
 		});
 	</script>
 

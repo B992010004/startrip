@@ -30,15 +30,12 @@
 						<a class="nav-link" href="/startrip/Rooms">房型</a>
 					</li>
 
-					<li class="nav-item">
-						<a class="nav-link" href="/startrip/restaurant/restaurantHome">餐廳</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="/startrip/TravelMain">行程規劃</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="/startrip/review/UserReviewEdit">寫評論</a>
-					</li>
+					<li class="nav-item"><a class="nav-link"
+						href="/startrip/restaurantHome">餐廳</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/startrip/TravelMain">行程規劃</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/startrip/review/UserReviewEdit">寫評論</a></li>										
 					<li class="nav-item">
 						<a class="nav-link" href="/startrip/restaurant/insertupdate">餐廳資料修改</a>
 					</li>
@@ -48,9 +45,8 @@
 						</c:if>
 					</li>
 					<li class="nav-item">
-						<c:if test="${ !empty LoginOK }">
-							<div class="dropdown show">
-								<a class="nav-link" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<c:if test="${ !empty LoginOK }">								
+			              <a class="nav-link" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								${LoginOK.username}
 									<img style="border-radius: 50%;" width="30px" height="30px" src="<c:url value='getPicture/${LoginOK.mail}'/>">
 								</a>
@@ -60,8 +56,8 @@
 									<a class="btn" href="logout">登出</a>
 
 								</div>
-							</div>
-						</c:if>
+							</c:if>
+						
 					</li>
 				</ul>
 			</div>

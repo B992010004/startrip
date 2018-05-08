@@ -45,6 +45,11 @@
 	margin: 10px;
 }
 </style>
+
+
+
+
+
 </head>
 <body>
 
@@ -91,8 +96,9 @@
 					<div class="col-md-6  probootstrap-animate">
 						<div class="form-group">
 							<label>信箱:</label>
-							 <form:input type="text" class="form-control"
-								name="mEmail" path='mail' placeholder="請輸入" autofocus="autofocus"  required="required" ></form:input>
+							 <form:input type="text" class="form-control" id="mail"
+								name="mail" path='mail' placeholder="請輸入" autofocus="autofocus"  required="required" ></form:input>
+						<span id="tips">1231</span>
 						</div>
 
 						<div class="form-group">
@@ -176,5 +182,31 @@
 			}
 		}
 	</script>
+	<script>
+$(document).ready(function(){
+    checkUserName();
+});
+$(function(){
+	 $("#mail").blur(function(){
+        var ajaxdata = {
+                mail : $('#mail').val()       
+            }
+        $.ajax({
+            url :"/startrip/checkid",
+            type : "GET",
+            data : ajaxdata,
+            success : function(responseText, textStatus){
+            	
+            	$("#tips").html(responseText);
+            
+            },
+            error : function(){
+                alert("error");
+            }
+        });
+    });
+});
+
+</script>
 </body>
 </html>

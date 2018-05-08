@@ -26,7 +26,7 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 		resolver.setViewClass(JstlView.class);
 		resolver.setPrefix("/WEB-INF/views/");
 		resolver.setSuffix(".jsp");
-
+		
 		return resolver;
 	}
 

@@ -38,9 +38,8 @@
 </head>
 
 <body>
-    <div>
-        <jsp:include page="/WEB-INF/views/header.jsp" flush="true" />
-    </div>
+   	<div><jsp:include page="/WEB-INF/views/header.jsp" flush="true" /></div>
+
     <!-- END nav -->
     
     <section class="probootstrap_section bg-light" id="section-contact">
@@ -404,7 +403,6 @@
                     var imgObj = document.createElement("img");  //<img>
                     imgObj.setAttribute("src", fileContent);  //<img src="....
                     imgObj.setAttribute("class", "thumb"); //<img src="... class="....
-console.log("進來了");
                     document.getElementById("dropZone").appendChild(imgObj);
                 }
             }
