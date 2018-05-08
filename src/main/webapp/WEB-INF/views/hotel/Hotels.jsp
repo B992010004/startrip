@@ -248,7 +248,7 @@
     </div>
   </section>
   <!-- END section -->
-  <div class="title_text">評論  </div>
+
   
   <!-- END section -->
     <div>

@@ -1,6 +1,9 @@
 package com.startrip.reviews.repository;
 
+
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -43,8 +46,8 @@ public class ReviewRepositoryImp implements ReviewRepository {
 	@Override
 	public void addReview(ReviewBean review) {
 		Session session = sessionFacory.getCurrentSession();
+		review.setUpdateTime(new Timestamp(new Date().getTime()));
 		session.save(review);
-
 	}
 
 	@Override
