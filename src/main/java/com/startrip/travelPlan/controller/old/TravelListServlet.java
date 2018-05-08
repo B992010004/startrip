@@ -1,4 +1,4 @@
-package com.startrip.travelPlan.controller;
+package com.startrip.travelPlan.controller.old;
 //package com.startrip.travelPlan.travelList.controller;
 //
 //import java.io.IOException;
