@@ -3,8 +3,8 @@ package com.startrip.restaurant.rtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.startrip.restaurant.rtModel.RtBookingBean;
 import com.startrip.restaurant.rtRepository.RtBookingRepository;
+import com.startrip.restaurant.rtmodel.RtBookingBean;
 
 @Service
 public class RtBookingServiceImp implements RtBookingService {

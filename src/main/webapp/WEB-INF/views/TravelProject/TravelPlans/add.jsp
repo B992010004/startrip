@@ -18,7 +18,7 @@
 
 
 
-	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addList">
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addList" data-show="true">
   新增行程
 </button>
 
