@@ -7,7 +7,7 @@ import com.startrip.reviews.model.ReviewBean;
 public interface ReviewService {
 	List<ReviewBean> getAllReviews();
 	List<ReviewBean> getReviewsByHotelId(int hotelId);
-	List<Integer> getRankByHotelId(int hotelId);
+	List<Long> getRankByHotelId(int hotelId);
 	
 	void addReview(ReviewBean review);
 
