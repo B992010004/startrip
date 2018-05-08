@@ -1,8 +1,11 @@
 package com.startrip.hotel.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
+import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +19,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import com.startrip.hotel.model.persistent.FacilitylistBean;
 import com.startrip.hotel.model.persistent.HotelsBean;
@@ -23,17 +29,18 @@ import com.startrip.hotel.model.persistent.RoomtypeBean;
 import com.startrip.hotel.model.persistent.ServicelistBean;
 import com.startrip.hotel.model.service.HotelAdminService;
 import com.startrip.hotel.model.service.HotelService;
+import com.startrip.reviews.model.ReviewBean;
+import com.startrip.reviews.service.ReviewService;
 
 @Controller
 public class HotelAdminController {
-
+	@Autowired
+	ReviewService reviewService;
 	@Autowired
 	HotelAdminService hotelAdminService;
 
 	@Autowired
 	ServletContext context;
-
-	
 
 	// 以下功能會員專用
 	@RequestMapping(value = "/admin/HostManage")
@@ -182,25 +189,26 @@ public class HotelAdminController {
 
 		return "redirect:/admin/HostConnect_Rooms";
 	}
+
 	@RequestMapping(value = "/admin/AjaxChangeRoomtype", method = RequestMethod.POST)
-	@ResponseBody
-	public void hostConnectRoomsChange(@RequestParam Integer roomid,Model model, HttpServletRequest request,HttpServletResponse response, HttpSession session) {
+	public void hostConnectRoomsChange(@RequestParam Integer roomid, Model model, HttpServletRequest request,
+			HttpServletResponse response, HttpSession session) {
 		Integer hotelid = (Integer) session.getAttribute("hotelid");
 		System.out.println("get request from ajax");
-		
+
 		String name = request.getParameter("name");
-		if("(空)".equals(name)) {
+		if ("(空)".equals(name)) {
 			name = null;
 		}
-	
+
 		Integer people = null;
 		Integer rooms = null;
 		String peopletemp = request.getParameter("people");
-		if(peopletemp != null) {
+		if (peopletemp != null) {
 			people = Integer.valueOf(peopletemp);
 		}
 		String roomstemp = request.getParameter("rooms");
-		if(roomstemp != null) {
+		if (roomstemp != null) {
 			rooms = Integer.valueOf(roomstemp);
 		}
 		hotelAdminService.updateRoomtype(roomid, name, people, rooms);
@@ -213,6 +221,7 @@ public class HotelAdminController {
 			e.printStackTrace();
 		}
 	}
+
 	@RequestMapping(value = "/admin/HostConnect_Rooms", method = RequestMethod.GET)
 	public String hostConnectRooms(Model model, HttpServletRequest request, HttpSession session) {
 		Integer hotelid = (Integer) session.getAttribute("hotelid");
@@ -254,11 +263,11 @@ public class HotelAdminController {
 
 		RoomtypeBean bean = hotelAdminService.selectRoomtypeByPk(roomid);
 
-		if(bean.getOpendate() != null && bean.getEnddate() != null) {
+		if (bean.getOpendate() != null && bean.getEnddate() != null) {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/M/d");
 			model.addAttribute("roomtype", bean);
 			model.addAttribute("opendate", sdf.format(bean.getOpendate()));
-			model.addAttribute("enddate", sdf.format(bean.getEnddate()));			
+			model.addAttribute("enddate", sdf.format(bean.getEnddate()));
 		}
 
 		return "hotel/admin/HostConnect_Roomset";
@@ -284,9 +293,62 @@ public class HotelAdminController {
 		return "hotel/admin/HostConnect_Bookingday";
 	}
 
-	@RequestMapping(value = "/admin/HostConnect_Bookingdetail")
-	public String hostConnectBookingdetail(Model model) {
-		return "hotel/admin/HostConnect_Bookingdetail";
+	@RequestMapping(value = "/admin/AjaxImageUpload", method = RequestMethod.POST)
+	public String hostConnectImageUpload(Model model, HttpServletRequest request) {
+		System.out.println("開始上傳圖片");
+
+		CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(
+				request.getSession().getServletContext());
+
+		System.out.println(multipartResolver.isMultipart(request));
+
+		if (multipartResolver.isMultipart(request)) {
+			MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest) request;
+			List<MultipartFile> photos = multiRequest.getFiles("photos[]");
+			for (MultipartFile photo : photos) {
+				if (photo.isEmpty() || !photo.getContentType().startsWith("image")) {
+					System.out.println("無法找到文件或不是照片類型");
+				} else {
+					System.out.println("文件長度: " + photo.getSize());
+					System.out.println("文件類型: " + photo.getContentType());
+					System.out.println("文件名稱: " + photo.getName());
+					System.out.println("文件原名: " + photo.getOriginalFilename());
+					System.out.println("========================================");
+					
+
+					String fileurl = "";
+					StringBuffer fileNameBuffer = new StringBuffer();
+					String rootDirectory = request.getSession().getServletContext().getRealPath("/");
+					System.out.println(rootDirectory);
+					int i = photo.getOriginalFilename().lastIndexOf(".");// 返回最後一個點的位置
+
+					String extension = photo.getOriginalFilename().substring(i + 1);// 取出擴展名
+					String filename = UUID.randomUUID().toString() + "." + extension;
+					fileurl = filename;
+					fileNameBuffer.append(filename+";");
+					try {
+						File imageFolder = new File(rootDirectory, "reviewUpload");
+						if (!imageFolder.exists()) {
+							imageFolder.mkdirs();
+						}
+						File file = new File(imageFolder, fileurl);
+						photo.transferTo(file);
+						ReviewBean rb = new ReviewBean();
+						rb.setPhotoPath(fileNameBuffer.toString());
+
+						reviewService.addReview(rb);
+					} catch (IllegalStateException e) {
+						e.printStackTrace();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+
+				}
+			}
+
+		}
+
+		return "hotel/admin/HostConnect_Image";
 	}
 
 	@RequestMapping(value = "/admin/HostConnect_Image")
