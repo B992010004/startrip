@@ -35,7 +35,7 @@
 					<li class="nav-item"><a class="nav-link"
 						href="/startrip/TravelMain">行程規劃</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="/startrip/review/UserReviewEdit">寫評論</a></li>										
+						href="/startrip/review/UserReviewEdit/1">寫評論</a></li>										
 					<li class="nav-item">
 						<c:if test="${ empty LoginOK }">
 							<a class="nav-link" href="/startrip/login" data-toggle="modal" data-target=".bd-example-modal-lg">登入</a>

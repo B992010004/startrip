@@ -440,7 +440,7 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <a href="/startrip/review/UserReviewEdit" class="btn btn-primary">發表評論</a>
+                        <a href="/startrip/review/UserReviewEdit/1" class="btn btn-primary">發表評論</a>
                     </div>
                 </div>
 				<div class="row">

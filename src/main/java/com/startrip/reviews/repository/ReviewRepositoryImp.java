@@ -58,4 +58,19 @@ public class ReviewRepositoryImp implements ReviewRepository {
 //				.executeUpdate();
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Integer> getRankByHotelId(int hotelId) {
+		String hql = "SELECT count(overallRank) FROM ReviewBean rb WHERE rb.hotelId = :hotelId GROUP BY rb.overallRank";
+		Session session = sessionFacory.getCurrentSession();
+		List<Integer> list = new ArrayList<>();
+		list = session.createQuery(hql).setParameter("hotelId", hotelId).list();
+//		System.out.println(list);
+		return list;		
+	}
+
+
+
+
+
 }
