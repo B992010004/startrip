@@ -36,11 +36,15 @@ public class ReviewController {
 	public String getAddNewUserReviewEdit(@PathVariable("hotelId") Integer hotelId, Model model) {
 		ReviewBean rb = new ReviewBean();
 		model.addAttribute("reviewBean", rb);
-		List<Integer> repo = reviewService.getRankByHotelId(hotelId);
+		List<Long> ranks = reviewService.getRankByHotelId(hotelId);
 
-		// ReviewRepository repo = new ReviewRepositoryImp();
-		// repo.getRankByHotelId(hotelId);
-		model.addAttribute("repo", repo);
+		Long rankSize = (long) 0.0;
+		for (Long rank : ranks) {
+			rankSize += rank;
+		}
+
+		model.addAttribute("rankSize", rankSize);
+		model.addAttribute("ranks", ranks);
 		return "review/UserReviewEdit";
 	}
 
