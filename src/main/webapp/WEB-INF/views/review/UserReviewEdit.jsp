@@ -27,6 +27,13 @@
     <link rel="stylesheet" href="/startrip/assets/css/select2.css">
     <link rel="stylesheet" href="/startrip/assets/css/helpers.css">
     <link rel="stylesheet" href="/startrip/assets/css/style.css">
+    
+    <style>
+
+        .thumb {
+ 	             height:75px;margin:5px;
+	    }
+    </style>
 
 </head>
 
@@ -34,33 +41,7 @@
    	<div><jsp:include page="/WEB-INF/views/header.jsp" flush="true" /></div>
 
     <!-- END nav -->
-    <section class="probootstrap-cover overflow-hidden relative"  style="background-image: url('assets/images/bg_1.jpg');" data-stellar-background-ratio="0.5" id="section-home">
-      <div class="overlay"></div>
-      <div class="container">
-        <div class="row align-items-center text-center">
-          <div class="col-md">
-            <h2 class="heading mb-2 display-4 font-light probootstrap-animate">Get In Touch</h2>
-             
-            <p class="lead mb-5 probootstrap-animate">
-              
-
-            </p>
-              <a href="https://themewagon.com/theme_tag/free/" target="_blank" role="button" class="btn btn-primary p-3 mr-3 pl-5 pr-5 text-uppercase d-lg-inline d-md-inline d-sm-block d-block mb-3">More Templates Here</a> 
-            </p>
-          </div> 
-        </div>
-      </div>
     
-    </section>
-    <!-- END section -->
-      
-    
-    
-
-
-  
-
-
     <section class="probootstrap_section bg-light" id="section-contact">
         <div class="container">
 
@@ -111,19 +92,19 @@
                         <label class="form-group sr-only-focusable">此次隨行的同伴是？</label>
                         <div class=" form-group btn-group btn-group-toggle" data-toggle="buttons">
                             <label class="btn btn-outline-primary active">
-                                <form:radiobutton path="tripType" autocomplete="off" checked="checked" value="商務" /> 商務
+                                <form:radiobutton path="tripType" autocomplete="off" checked="checked" value="商務" class="form-control" /> 商務
                             </label>
                             <label class="btn btn-outline-primary">
-                                <form:radiobutton path="tripType" autocomplete="off" value="伴侶旅行" /> 伴侶旅行
+                                <form:radiobutton path="tripType" autocomplete="off" value="伴侶旅行" class="form-control" /> 伴侶旅行
                             </label>
                             <label class="btn btn-outline-primary">
-                                <form:radiobutton path="tripType" autocomplete="off" value="家庭" /> 家庭
+                                <form:radiobutton path="tripType" autocomplete="off" value="家庭" class="form-control" /> 家庭
                             </label>
                             <label class="btn btn-outline-primary">
-                                <form:radiobutton path="tripType" autocomplete="off" value="朋友" /> 朋友
+                                <form:radiobutton path="tripType" autocomplete="off" value="朋友" class="form-control" /> 朋友
                             </label>
                             <label class="btn btn-outline-primary">
-                                <form:radiobutton path="tripType" autocomplete="off" value="單獨旅行" /> 單獨旅行
+                                <form:radiobutton path="tripType" autocomplete="off" value="單獨旅行" class="form-control" /> 單獨旅行
                             </label>
                         </div>
 
@@ -164,9 +145,11 @@
 <!--                         可以一次上傳多個檔案!!! -->
                         <div>
                         	<label class="btn btn-primary" for="files">上傳相片</label>
-                        	<form:input path="multipartFiles" type="file" class="btn btn-primary" id="files" name="files" value="Send Review" multiple="multiple" style="display:none;" />
+                        	<form:input path="multipartFiles" type="file" class="form-control-file" id="files" name="files" value="Send Review" multiple="multiple" style="display:none;" accept="image/*" onchange="fileViewer()"/>
                         </div>
+                        <div id="dropZone"></div>
 
+						<br>
                         <div class="form-group">
                             <input type="submit" class="btn btn-primary" id="submit" name="submit" value="Send Review">
                         </div>
@@ -405,6 +388,28 @@
         }
 	
 	</script>
+	
+<!-- 	預覽上傳相片 -->
+	<script>
+        function fileViewer() {
+            var theFiles = document.getElementById("files").files;
+            for (var i = 0; i < theFiles.length; i++) {
+                
+                var reader = new FileReader();
+                reader.readAsDataURL(theFiles[i]);
+                reader.onload = function (e) {
+                    var fileContent = e.target.result;
+                    
+                    var imgObj = document.createElement("img");  //<img>
+                    imgObj.setAttribute("src", fileContent);  //<img src="....
+                    imgObj.setAttribute("class", "thumb"); //<img src="... class="....
+console.log("進來了");
+                    document.getElementById("dropZone").appendChild(imgObj);
+                }
+            }
+        }
+    </script>
+	
         
 </body>
 

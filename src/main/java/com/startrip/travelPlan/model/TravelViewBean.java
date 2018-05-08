@@ -33,7 +33,7 @@ public class TravelViewBean {
 	private String imgName;
 	
 
-	private String mail;
+	private Integer memberId;
 	private String viewName;
 	private String viewaddr;
 	private String viewPhone;
@@ -71,13 +71,13 @@ public class TravelViewBean {
 		this.viewid = viewid;
 	}
 	
-	@Transient
-	public String getMail() {
-		return mail;
+	
+	public Integer getMemberId() {
+		return memberId;
 	}
 
-	public void setMail(String mail) {
-		this.mail = mail;
+	public void setMemberId(Integer memberId) {
+		this.memberId = memberId;
 	}
 	
 	
@@ -141,6 +141,18 @@ public class TravelViewBean {
 	public void setImgName(String imgName) {
 		this.imgName = imgName;
 	}
+
+
+
+	@Override
+	public String toString() {
+		return "TravelViewBean [viewid=" + viewid + ", imgSrc=" + Arrays.toString(imgSrc) + ", imgName=" + imgName
+				+ ", memberId=" + memberId + ", viewName=" + viewName + ", viewaddr=" + viewaddr + ", viewPhone="
+				+ viewPhone + ", orgclass=" + orgclass + ", viewDetail=" + viewDetail + "]";
+	}
+	
+	
+	
 //	public Set<MemberBean> getMails() {
 //		return mails;
 //	}

@@ -85,8 +85,32 @@ public class HotelAdminService {
 		bean.setRoomnote(roomnote);
 		bean.setRoomstate(true);
 	}
+	@Transactional
+	public void updateRoomtype(Integer roomid,String name,Integer people,Integer rooms) {
+		RoomtypeBean bean = roomtype.selectByPk(roomid);
+		if(name != null) {
+			bean.setRoomname(name);
+		}
+		if(people != null) {
+			bean.setNumberofpeople(people);
+		}
+		if(rooms != null) {
+			bean.setNumberofrooms(rooms);
+		}
+	}
+	
 
 	
+	@Transactional
+	public RoomtypeBean selectRoomtypeByPk(Integer roomid) {
+		return roomtype.selectByPk(roomid);
+	}
+	
+	@Transactional
+	public List<RoomtypeBean> selectRoomtypeByHotelid(Integer hotelid){
+		return roomtype.selectByHotelid(hotelid);
+	}
+
 	@Transactional
 	public void insertServicelist(ServicelistBean bean) {
 		servicelist.insert(bean);

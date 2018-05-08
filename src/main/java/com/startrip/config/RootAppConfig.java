@@ -11,14 +11,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
-import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
-import com.startrip.member.memberModle.MemberBean;
-import com.startrip.travelPlan.model.TravelAllBean;
-import com.startrip.travelPlan.model.TravelListBean;
-import com.startrip.travelPlan.model.TravelViewBean;
 
 @Configuration
 @EnableTransactionManagement
