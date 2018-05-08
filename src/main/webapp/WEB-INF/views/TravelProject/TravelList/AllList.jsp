@@ -12,11 +12,11 @@
 <link rel="stylesheet" href="/startrip/assets/Travel/css/style.css">
 </head>
 <body>
-<div class="switch">
-        <button type="button" class="btn btn-outline-primary switch">切換</button>
-    </div>
+	<div class="switch">
+	        	<button type="button" class="btn btn-outline-primary switch">切換</button>
+	    	</div>
     <div class="aside1">
-        <div class="listcard">
+          <div class="listcard">
             <div class="card" style="width: 18rem;">
                 <img class="card-img-top" src="..." alt="Card image cap">
                 <div class="card-body">
@@ -60,7 +60,9 @@
     </div>
 </div>
     <div class="aside">
+    
         <div id="tripContext">
+	       
             <h3 id="travelName">tripname</h3>
             <div class="timestyle col-5">
                 <span id ="startDate" class="time contex">2015/02/08</span>
@@ -69,94 +71,91 @@
                 <br>
                 <span id="endDate"  class="time contex">2015/02/13</span>
             </div>
+             
         </div>
     <div class ="triplist">
-    
-    
-    
-    
-    
-    
-    
     <section id="travelList" class="timeline">
-<!--         <div class="timeline-item day"> -->
-<!--             <div class="timeline-img"></div> -->
-<!--             <div class="timeline-content1 " > -->
-<!--             	<h4>Day1</h4> -->
-<!--             </div> -->
-<!--         </div>    -->
+        <div class="timeline-item day">
+            <div class="timeline-img"></div>
+            <div class="timeline-content1 " >
+            	<h4>Day1</h4>
+            </div>
+        </div>   
             
-<!--         <div class="day1"> -->
-<!--             <div class="timeline-item" > -->
-<!--             <div class="timeline-img" ></div> -->
-<!--             <div class="timeline-content timeline-card " > -->
+        <div class="day1">
+            <div class="timeline-item" >
+            <div class="timeline-img" ></div>
+            <div class="timeline-content timeline-card " >
 
-<!--                 <div class="timeline-img-header"> -->
-<!--                     <h2>Card Title</h2> -->
-<!--                 </div> -->
-<!--                 <div class="date">08:30</div> -->
-<!--                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime ipsa ratione omnis alias cupiditate saepe atque totam aperiam sed nulla voluptatem recusandae dolor, nostrum excepturi amet in dolores. Alias, ullam.</p> -->
-<!--                 <a class="bnt-more" href="javascript:void(0)">More</a> -->
-<!--             </div> -->
-<!--             </div>    -->
+                <div class="timeline-img-header">
+                    <h2>Card Title</h2>
+                </div>
+                <div class="date">08:30</div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime ipsa ratione omnis alias cupiditate saepe atque totam aperiam sed nulla voluptatem recusandae dolor, nostrum excepturi amet in dolores. Alias, ullam.</p>
+                <a class="bnt-more" href="javascript:void(0)">More</a>
+            </div>
+            </div>   
        
-<!--         <div class="timeline-item"> -->
-<!--             <div class="timeline-img" ></div> -->
-<!--             <div class="timeline-content timeline-card "> -->
+        <div class="timeline-item">
+            <div class="timeline-img" ></div>
+            <div class="timeline-content timeline-card ">
 
-<!--                 <div class="timeline-img-header"> -->
-<!--                 <h2>Card Title</h2> -->
-<!--                 </div> -->
-<!--                 <div class="date">25 MAY 2016</div> -->
-<!--             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime ipsa ratione omnis alias cupiditate saepe atque totam aperiam sed nulla voluptatem recusandae dolor, nostrum excepturi amet in dolores. Alias, ullam.</p> -->
-<!--             <a class="bnt-more" href="javascript:void(0)">More</a> -->
-<!--             </div> -->
-<!--         </div>    -->
+                <div class="timeline-img-header">
+                <h2>Card Title</h2>
+                </div>
+                <div class="date">25 MAY 2016</div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime ipsa ratione omnis alias cupiditate saepe atque totam aperiam sed nulla voluptatem recusandae dolor, nostrum excepturi amet in dolores. Alias, ullam.</p>
+            <a class="bnt-more" href="javascript:void(0)">More</a>
+            </div>
+        </div>   
         
     
       
-<!--         <div class="timeline-item" > -->
-<!--         <div class="timeline-img"></div> -->
-<!--             <div class="timeline-content timeline-card "> -->
-<!--                 <div class="timeline-img-header"> -->
-<!--                 <h2>Card Title</h2> -->
-<!--                 </div> -->
-<!--         	<div class="date">10 JULY 2016</div> -->
-<!--             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime ipsa ratione omnis alias cupiditate saepe atque totam aperiam sed nulla voluptatem recusandae dolor, nostrum excepturi amet in dolores. Alias, ullam.</p> -->
-<!--             <a class="bnt-more" href="javascript:void(0)">More</a> -->
-<!--             </div> -->
-<!--         </div>    -->
+        <div class="timeline-item" >
+        <div class="timeline-img"></div>
+            <div class="timeline-content timeline-card ">
+                <div class="timeline-img-header">
+                <h2>Card Title</h2>
+                </div>
+        	<div class="date">10 JULY 2016</div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime ipsa ratione omnis alias cupiditate saepe atque totam aperiam sed nulla voluptatem recusandae dolor, nostrum excepturi amet in dolores. Alias, ullam.</p>
+            <a class="bnt-more" href="javascript:void(0)">More</a>
+            </div>
+        </div>   
  
-<!--     <div class="timeline-item"> -->
-<!--         <div class="timeline-img"></div> -->
-<!--         <div class="timeline-content timeline-card "> -->
-<!--         	<div class="timeline-img-header"> -->
-<!--           	<h2>Card Title</h2> -->
-<!--         	</div> -->
-<!--         	<div class="date">30 JULY 2016</div> -->
-<!--           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime ipsa ratione omnis alias cupiditate saepe atque totam aperiam sed nulla voluptatem recusandae dolor, nostrum excepturi amet in dolores. Alias, ullam.</p> -->
-<!--           <a class="bnt-more" href="javascript:void(0)">More</a> -->
-<!--         </div> -->
-<!--     </div>   -->
-<!-- </div>  -->
+    <div class="timeline-item">
+        <div class="timeline-img"></div>
+        <div class="timeline-content timeline-card ">
+        	<div class="timeline-img-header">
+          	<h2>Card Title</h2>
+        	</div>
+        	<div class="date">30 JULY 2016</div>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime ipsa ratione omnis alias cupiditate saepe atque totam aperiam sed nulla voluptatem recusandae dolor, nostrum excepturi amet in dolores. Alias, ullam.</p>
+          <a class="bnt-more" href="javascript:void(0)">More</a>
+        </div>
+    </div>  
+</div> 
     
-<!--     <div class="timeline-item"> -->
-<!--         <div class="timeline-img"></div> -->
-<!--         <div class="timeline-content timeline-card "> -->
-<!--         	<div class="timeline-img-header"> -->
-<!--           	<h2>Card Title</h2> -->
-<!--         	</div> -->
-<!--         	<div class="date">19 AUG 2016</div> -->
-<!--           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime ipsa ratione omnis alias cupiditate saepe atque totam aperiam sed nulla voluptatem recusandae dolor, nostrum excepturi amet in dolores. Alias, ullam.</p> -->
-<!--           <a class="bnt-more" href="javascript:void(0)">More</a> -->
-<!--         </div> -->
-<!--     </div>   -->
+    <div class="timeline-item">
+        <div class="timeline-img"></div>
+        <div class="timeline-content timeline-card ">
+        	<div class="timeline-img-header">
+          	<h2>Card Title</h2>
+        	</div>
+        	<div class="date">19 AUG 2016</div>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime ipsa ratione omnis alias cupiditate saepe atque totam aperiam sed nulla voluptatem recusandae dolor, nostrum excepturi amet in dolores. Alias, ullam.</p>
+          <a class="bnt-more" href="javascript:void(0)">More</a>
+        </div>
+    </div>  
       
     
-<!-- </div>   -->
+</div>  
 </section>
     <div class="foot ">
-        <div class="foot main"><center><button type="button" class="btn btn-outline-primary fmain">+新增天數</button></center></div>
+        <div class="foot main"><center><button type="button" class="btn btn-outline-primary fmain">+新增天數</button>
+        </center>
+        
+        </div>
     </div>
 </div>
 
@@ -168,7 +167,7 @@
         </div>
         <input id="pac-input" class="controls" type="text" placeholder="Search Box">
     <div id="map"></div>
-    <input type='text' id='view'>
+   
     </div>
 
 
@@ -208,10 +207,29 @@ $(function(){
 		contentType: "application/json; charset=utf-8",
 		success:function(data){
 			
+// 			  <div id="tripContext">
+// 	            <h3 id="travelName">tripname</h3>
+// 	            <div class="timestyle col-5">
+// 	                <span id ="startDate" class="time contex">2015/02/08</span>
+// 	                <br>  
+// 	                <span style="margin:50px;">|</span>
+// 	                <br>
+// 	                <span id="endDate"  class="time contex">2015/02/13</span>
+// 	            </div>
+// 	        </div>
+			
 			console.log(data.Name);
-		$('#travelName').text(data.Name.travelName);
-		$('#startDate').text(data.startDate);
-		$('#endDate').text(data.endDate);
+			$('#tripContext').empty();
+			var travelNmae = $("<h3 id='travelName'>"+data.Name.travelName+"</h3>");
+			var col =$("<div class='timestyle col-5'></div>");
+			var starttime = $('<span id ="startDate" class="time contex">'+data.startDate+'</span><br>')
+			var line=$("<span style='margin:50px;''>|</span><br>");
+			var endtime=$("<span id='endDate'  class='time contex'>"+data.endDate+"</span>")
+			col.html([starttime,line,endtime]);
+			$('#tripContext').html([travelNmae,col])
+// 		$('#travelName').text(data.Name.travelName);
+// 		$('#startDate').text(data.startDate);
+// 		$('#endDate').text(data.endDate);
 		
 		// 		<div class="timeline-item day">
 		//         <div class="timeline-img"></div>
@@ -224,7 +242,7 @@ $(function(){
 	$('.timeline-content.timeline-card').empty();
 			var docFrag = $(document.createDocumentFragment());
 			
-			for( i = 0;i<=data.Name.travelDays;i++){
+			for( i = 0;i<=20;i++){
 				//---天數新增
 				var day=$("<div class='timeline-item day'></div>");
 				var listImg=$("<div class='timeline-img'></div>");
