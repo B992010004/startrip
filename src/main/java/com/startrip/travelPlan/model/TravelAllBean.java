@@ -16,6 +16,7 @@ public class TravelAllBean {
 	private java.sql.Date endDate;
 	private int travelDays;
 	private String mail;
+	private Integer memberId;
 
 //	private MemberBean travelMail;// fk
 //	private Set<TravelViewBean> Views;
@@ -75,12 +76,24 @@ public class TravelAllBean {
 		this.mail = mail;
 	}
 
+
+	public Integer getMemberId() {
+		return memberId;
+	}
+
+	public void setMemberId(Integer memberId) {
+		this.memberId = memberId;
+	}
+
+	public void setTravelId(Integer travelId) {
+		this.travelId = travelId;
+	}
+	
 	@Override
 	public String toString() {
 		return "TravelAllBean [travelId=" + travelId + ", travelName=" + travelName + ", startDate=" + startDate
 				+ ", endDate=" + endDate + ", travelDays=" + travelDays + ", mail=" + mail + "]";
 	}
-	
 	
 	
 	
