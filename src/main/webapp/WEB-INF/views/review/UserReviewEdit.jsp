@@ -393,6 +393,11 @@
 	<script>
         function fileViewer() {
             var theFiles = document.getElementById("files").files;
+
+            var dropZone = document.getElementById("dropZone")
+            dropZone.innerHTML=""
+			// 修正圖片未被清除的BUG
+            
             for (var i = 0; i < theFiles.length; i++) {
                 
                 var reader = new FileReader();
@@ -403,7 +408,9 @@
                     var imgObj = document.createElement("img");  //<img>
                     imgObj.setAttribute("src", fileContent);  //<img src="....
                     imgObj.setAttribute("class", "thumb"); //<img src="... class="....
-                    document.getElementById("dropZone").appendChild(imgObj);
+                    
+                    dropZone.appendChild(imgObj);
+					// 移出getElementById
                 }
             }
         }
