@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.startrip.hotel.model.persistent.ServicelistBean;
+import com.startrip.hotel.tool.HQL;
+import com.startrip.hotel.tool.HQLQuery;
 
 @Repository
 public class ServicelistDAO{
@@ -20,16 +22,13 @@ public class ServicelistDAO{
 	}
 	
 	public void delete(Integer hotelid) {
-		String hql = "DELETE servicelist WHERE hotelid = :hotelid";
 		Session session = factory.getCurrentSession();
-		session.createQuery(hql).setParameter("hotelid", hotelid).executeUpdate();
+		session.createQuery(HQLQuery.get(HQL.DELETE_SERVICE_BY_HOTELID)).setParameter("hotelid", hotelid).executeUpdate();
 		
 	}
 	
 	public List<Integer> selectByHotelid(Integer hotelid){
-		String hql = "SELECT serviceid FROM servicelist WHERE hotelid = :hotelid";
-		Session session = factory.getCurrentSession();
-		
-		return session.createQuery(hql, Integer.class).setParameter("hotelid", hotelid).list();
+		Session session = factory.getCurrentSession();		
+		return session.createQuery(HQLQuery.get(HQL.SELECT_SERVICE_BY_HOTELID), Integer.class).setParameter("hotelid", hotelid).list();
 	}
 }
