@@ -29,7 +29,7 @@ public class RtBookingServiceImp implements RtBookingService {
 
 	@Override
 	public boolean deleteRtBookingbgId(Integer bgId) {
-		return false;
+		return RtBookingRepositoryImp.deleteRtBookingbgId(bgId);
 	}
 
 }

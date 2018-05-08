@@ -165,7 +165,7 @@
 <!--                         可以一次上傳多個檔案!!! -->
                         <div>
                         	<label class="btn btn-primary" for="files">上傳相片</label>
-                        	<form:input path="multipartFiles" type="file" class="btn btn-primary" id="files" name="files" value="Send Review" multiple="multiple" style="display:none;" />
+                        	<form:input path="multipartFiles" type="file" class="form-control-file" id="files" name="files" value="Send Review" multiple="multiple" style="display:none;" />
                         </div>
 
                         <div class="form-group">

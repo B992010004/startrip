@@ -29,7 +29,7 @@ public class RtPhotoServiceImp implements RtPhotoService {
 
 	@Override
 	public boolean deleteRtPhotopoId(Integer poId) {
-		return false;
+		return RtPhotoRepositoryImp.deleteRtPhotopoId(poId);
 	}
 
 }

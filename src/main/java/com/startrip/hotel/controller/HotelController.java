@@ -1,5 +1,7 @@
 package com.startrip.hotel.controller;
 
+import java.text.SimpleDateFormat;
+
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -92,20 +94,20 @@ public class HotelController {
 
 	@RequestMapping(value = "/admin/HostConnect_Hotel")
 	public String hostConnectHotel(Model model, HttpServletRequest request, HttpSession session) {
-		
+
 		String hotelidtemp = request.getParameter("hotelid");
 		if (hotelidtemp != null) {
 			Integer hotelid = Integer.valueOf(hotelidtemp);
 			System.out.println("hotelid = " + hotelid);
 			request.setAttribute("hotelbean", hotelAdminService.selectHotelByPk(hotelid));
 			session.setAttribute("hotelid", hotelid);
-		}else {
+		} else {
 			Integer hotelid = (Integer) session.getAttribute("hotelid");
-			if(hotelid != null) {
+			if (hotelid != null) {
 				request.setAttribute("hotelbean", hotelAdminService.selectHotelByPk(hotelid));
-				
+
 			}
-		
+
 		}
 
 		return "hotel/admin/HostConnect_Hotel";
@@ -138,11 +140,11 @@ public class HotelController {
 	}
 
 	@RequestMapping(value = "/admin/HostConnect_Info", method = RequestMethod.GET)
-	public String hostConnectInfo(Model model,HttpSession session,HttpServletRequest request) {
-		 Integer hotelid = (Integer) session.getAttribute("hotelid");
-		 HotelsBean bean = hotelAdminService.selectHotelByPk(hotelid);
-		 request.setAttribute("hotelbean",bean);
-		 
+	public String hostConnectInfo(Model model, HttpSession session, HttpServletRequest request) {
+		Integer hotelid = (Integer) session.getAttribute("hotelid");
+		HotelsBean bean = hotelAdminService.selectHotelByPk(hotelid);
+		request.setAttribute("hotelbean", bean);
+
 		return "hotel/admin/HostConnect_Info";
 	}
 
@@ -154,24 +156,25 @@ public class HotelController {
 		for (String s : note.split("\\n")) {
 			System.out.println(s);
 			sb.append(s);
-			sb.append("-----");
+			sb.append("<br>");
 		}
 		note = sb.toString();
 
-		if (hotelid != null) {
-			hotelAdminService.updateHotel(hotelid, info, note);
-		}
+		hotelAdminService.updateHotel(hotelid, info, note);
+
 		return "redirect:/admin/HostConnect_Service";
 	}
 
 	@RequestMapping(value = "/admin/HostConnect_Service", method = RequestMethod.GET)
-	public String hostConnectService(Model model,HttpSession session, HttpServletRequest request) {
+	public String hostConnectService(Model model, HttpSession session, HttpServletRequest request) {
 		Integer hotelid = (Integer) session.getAttribute("hotelid");
-		
+
 		request.setAttribute("facilityname", hotelAdminService.selectFacilityname());
 		request.setAttribute("servicename", hotelAdminService.selectServicename());
 		request.setAttribute("facilitylist", hotelAdminService.selectFacilitylistByHotelid(hotelid));
 		request.setAttribute("servicelist", hotelAdminService.selectServicelistByHotelid(hotelid));
+		request.setAttribute("hotel", hotelAdminService.selectHotelByPk(hotelid));
+
 		return "hotel/admin/HostConnect_Service";
 	}
 
@@ -215,7 +218,11 @@ public class HotelController {
 	}
 
 	@RequestMapping(value = "/admin/HostConnect_Rooms", method = RequestMethod.GET)
-	public String hostConnectRooms(Model model) {
+	public String hostConnectRooms(Model model, HttpServletRequest request, HttpSession session) {
+		Integer hotelid = (Integer) session.getAttribute("hotelid");
+
+		request.setAttribute("roomtypelist", hotelAdminService.selectRoomtypeByHotelid(hotelid));
+
 		return "hotel/admin/HostConnect_Rooms";
 	}
 
@@ -248,6 +255,16 @@ public class HotelController {
 	public String hostConnectRoomset(Model model, @RequestParam Integer roomid) {
 		System.out.println("roomid = " + roomid);
 		model.addAttribute("roomid", roomid);
+
+		RoomtypeBean bean = hotelAdminService.selectRoomtypeByPk(roomid);
+
+		if(bean.getOpendate() != null && bean.getEnddate() != null) {
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/M/d");
+			model.addAttribute("roomtype", bean);
+			model.addAttribute("opendate", sdf.format(bean.getOpendate()));
+			model.addAttribute("enddate", sdf.format(bean.getEnddate()));			
+		}
+
 		return "hotel/admin/HostConnect_Roomset";
 	}
 

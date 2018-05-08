@@ -34,7 +34,7 @@ public class RtDetailsServiceImp implements RtDetailsService {
 
 	@Override
 	public boolean deleteRtDetailsrtId(Integer rtId) {
-		return false;
+		return RtDetailsRepositoryImp.deleteRtDetailsrtId(rtId);
 	}
 
 }
