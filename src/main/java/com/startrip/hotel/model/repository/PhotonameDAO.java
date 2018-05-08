@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.startrip.hotel.model.persistent.PhotonameBean;
+import com.startrip.hotel.tool.HQL;
+import com.startrip.hotel.tool.HQLQuery;
 
 @Repository
 public class PhotonameDAO{
@@ -16,9 +18,8 @@ public class PhotonameDAO{
 	SessionFactory factory;
 	
 	public List<PhotonameBean> select(){
-		String hql = "FROM photoname";
 		Session session = factory.getCurrentSession();
-		List<PhotonameBean> result= session.createQuery(hql, PhotonameBean.class).list();
+		List<PhotonameBean> result= session.createQuery(HQLQuery.get(HQL.SELECT_PHOTONAME), PhotonameBean.class).list();
 		
 		return result;
 	}

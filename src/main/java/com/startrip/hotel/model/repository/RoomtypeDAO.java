@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.startrip.hotel.model.persistent.RoomtypeBean;
+import com.startrip.hotel.tool.HQL;
+import com.startrip.hotel.tool.HQLQuery;
 
 @Repository
 public class RoomtypeDAO{
@@ -30,9 +32,8 @@ public class RoomtypeDAO{
 	}
 	
 	public List<RoomtypeBean> selectByHotelid(Integer hotelid){
-		String hql = "FROM roomtype WHERE hotelid = :hotelid";
 		Session session = factory.getCurrentSession();
-		return session.createQuery(hql, RoomtypeBean.class).setParameter("hotelid", hotelid).list();
+		return session.createQuery(HQLQuery.get(HQL.SELECT_ROOMTYPE_BY_HOTELID), RoomtypeBean.class).setParameter("hotelid", hotelid).list();
 	}
 	
 	
