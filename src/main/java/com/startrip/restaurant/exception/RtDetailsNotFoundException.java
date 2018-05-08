@@ -1,4 +1,4 @@
-package com.startrip.restaurant.rtexception;
+package com.startrip.restaurant.exception;
 
 public class RtDetailsNotFoundException extends RuntimeException {
 

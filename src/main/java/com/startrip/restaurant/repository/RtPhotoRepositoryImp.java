@@ -1,11 +1,11 @@
-package com.startrip.restaurant.rtRepository;
+package com.startrip.restaurant.repository;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.startrip.restaurant.rtexception.RtReviewsNotFoundException;
+import com.startrip.restaurant.exception.RtReviewsNotFoundException;
 import com.startrip.restaurant.rtmodel.RtPhotoBean;
 
 @Repository

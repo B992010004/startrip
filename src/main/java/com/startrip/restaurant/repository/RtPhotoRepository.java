@@ -1,4 +1,4 @@
-package com.startrip.restaurant.rtRepository;
+package com.startrip.restaurant.repository;
 
 import com.startrip.restaurant.rtmodel.RtPhotoBean;
 

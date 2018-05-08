@@ -1,4 +1,4 @@
-package com.startrip.restaurant.rtController;
+package com.startrip.restaurant.controller;
 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
