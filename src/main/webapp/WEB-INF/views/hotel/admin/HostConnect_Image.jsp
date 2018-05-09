@@ -173,7 +173,7 @@
                   
                     <option value="0">選擇圖片描述</option>
                 	   <c:forEach var="name" items="${namelist}">
-                   		   <option value="${name.photonameid}">${name.photoname}</option>
+                   		   <option <c:if test="${photo.photonameid eq name.photonameid}">selected</c:if> value="${name.photonameid}">${name.photoname}</option>
                  	   </c:forEach>
                   </select>
                 </div>

@@ -155,10 +155,17 @@ public class HotelAdminService {
 	public void deletePhotoByPk(PhotoBean bean) {
 		photo.deleteByPk(bean);
 	}
-	public void updatePhoto(Integer photoid,Integer photonameid) {
+	public void updatePhoto(Integer photoid,Integer photonameid,Integer sort) {
 		PhotoBean bean = photo.selectByPk(photoid);
-		bean.setPhotonameid(photonameid);
+		if(bean != null) {
+			
+			photonameid = (photonameid == null)?photoname.selectPhotonameidForOther():photonameid;
+			
+			bean.setPhotonameid(photonameid);
+			bean.setPhotosorting(sort);
+		}
 	}
+	
 	public void deleteRoomtype(RoomtypeBean bean) {
 		roomtype.delete(bean);
 	}
