@@ -464,14 +464,19 @@ public class HotelAdminController {
 
 	@RequestMapping(value = "/admin/HostConnect_Onsale",method = RequestMethod.POST)
 	public String hostConnectOnsaleNextPage(Model model,@RequestParam Integer[] sort,HttpServletRequest request) {
+		int i = 1;
 		for(Integer photoid:sort) {
-			String s = request.getParameter("photoname"+photoid);
-			if(s != null && !"0".equals(s)) {
-				Integer photonameid = Integer.valueOf(s);				
+			String temp = request.getParameter("photoname"+photoid);
+			Integer photonameid = null;
+			if(temp != null && !"0".equals(temp)) {
+				 photonameid = Integer.valueOf(temp);				
 				System.out.println(photonameid);
+			}else {
+				
 			}
 			System.out.println(photoid);
 			System.out.println("--------");
+			hotelAdminService.updatePhoto(photoid, photonameid,i++);
 			
 			
 		}

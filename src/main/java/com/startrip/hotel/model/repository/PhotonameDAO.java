@@ -23,4 +23,8 @@ public class PhotonameDAO{
 		
 		return result;
 	}
+	public Integer selectPhotonameidForOther() {
+		Session session = factory.getCurrentSession();
+		return session.createQuery(HQLQuery.get(HQL.SELECT_PHOTOID_FOR_OTHER),Integer.class).setParameter("photoname", "其他").uniqueResult();
+	}
 }
