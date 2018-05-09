@@ -1,41 +1,53 @@
 package com.startrip.hotel.controller;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.CacheControl;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
+import com.google.gson.Gson;
 import com.startrip.hotel.model.persistent.FacilitylistBean;
 import com.startrip.hotel.model.persistent.HotelsBean;
+import com.startrip.hotel.model.persistent.PhotoBean;
+import com.startrip.hotel.model.persistent.PhotonameBean;
 import com.startrip.hotel.model.persistent.RoomtypeBean;
 import com.startrip.hotel.model.persistent.ServicelistBean;
 import com.startrip.hotel.model.service.HotelAdminService;
-import com.startrip.hotel.model.service.HotelService;
-import com.startrip.reviews.model.ReviewBean;
-import com.startrip.reviews.service.ReviewService;
 
 @Controller
 public class HotelAdminController {
-	@Autowired
-	ReviewService reviewService;
+
 	@Autowired
 	HotelAdminService hotelAdminService;
 
@@ -294,7 +306,9 @@ public class HotelAdminController {
 	}
 
 	@RequestMapping(value = "/admin/AjaxImageUpload", method = RequestMethod.POST)
-	public String hostConnectImageUpload(Model model, HttpServletRequest request) {
+	public void hostConnectImageUpload(Model model, HttpServletRequest request, HttpServletResponse response,
+			HttpSession session) {
+		Integer hotelid = (Integer) session.getAttribute("hotelid");
 		System.out.println("開始上傳圖片");
 
 		CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(
@@ -305,6 +319,9 @@ public class HotelAdminController {
 		if (multipartResolver.isMultipart(request)) {
 			MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest) request;
 			List<MultipartFile> photos = multiRequest.getFiles("photos[]");
+
+			List<Map<String, String>> photoList = new ArrayList<>();
+
 			for (MultipartFile photo : photos) {
 				if (photo.isEmpty() || !photo.getContentType().startsWith("image")) {
 					System.out.println("無法找到文件或不是照片類型");
@@ -314,29 +331,48 @@ public class HotelAdminController {
 					System.out.println("文件名稱: " + photo.getName());
 					System.out.println("文件原名: " + photo.getOriginalFilename());
 					System.out.println("========================================");
-					
 
 					String fileurl = "";
 					StringBuffer fileNameBuffer = new StringBuffer();
-					String rootDirectory = request.getSession().getServletContext().getRealPath("/");
+//					 String rootDirectory =
+//					 request.getSession().getServletContext().getRealPath("/");
+					 String rootDirectory = "C:/temp/hotels";
 					System.out.println(rootDirectory);
 					int i = photo.getOriginalFilename().lastIndexOf(".");// 返回最後一個點的位置
 
 					String extension = photo.getOriginalFilename().substring(i + 1);// 取出擴展名
 					String filename = UUID.randomUUID().toString() + "." + extension;
 					fileurl = filename;
-					fileNameBuffer.append(filename+";");
+					//fileNameBuffer.append(filename + ";");
+
 					try {
-						File imageFolder = new File(rootDirectory, "reviewUpload");
+						//File imageFolder = new File(rootDirectory, "hotelid_" + hotelid);
+						File imageFolder = new File(rootDirectory, "hotelid_"+hotelid);
+						//測試時不分資料夾
 						if (!imageFolder.exists()) {
 							imageFolder.mkdirs();
 						}
 						File file = new File(imageFolder, fileurl);
 						photo.transferTo(file);
-						ReviewBean rb = new ReviewBean();
-						rb.setPhotoPath(fileNameBuffer.toString());
 
-						reviewService.addReview(rb);
+						PhotoBean bean = new PhotoBean();
+						bean.setHotelid(hotelid);
+						//String temp = fileNameBuffer.toString();
+						bean.setFilename("hotelid_" + hotelid + "/" + filename);
+						
+						hotelAdminService.insertPhoto(bean);
+
+						Integer count = hotelAdminService.countPhotoByHotelid(hotelid);
+						bean.setPhotosorting(count + 1);
+						hotelAdminService.updatePhotoSort(bean);
+
+						System.out.println(bean.getPhotoid() + " : " + bean.getPhotosorting());
+						Map<String, String> photoMap = new TreeMap<>();
+						photoMap.put("photoid", bean.getPhotoid().toString());
+						photoMap.put("photopath", bean.getFilename());
+						photoMap.put("photosorting", bean.getPhotosorting().toString());
+						photoList.add(photoMap);
+
 					} catch (IllegalStateException e) {
 						e.printStackTrace();
 					} catch (IOException e) {
@@ -345,15 +381,65 @@ public class HotelAdminController {
 
 				}
 			}
+			Gson gson = new Gson();
+			String photoJson = gson.toJson(photoList);
+			System.out.println(photoJson);
+			PrintWriter out;
+			try {
+				out = response.getWriter();
+				out.write(photoJson);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 
 		}
 
-		return "hotel/admin/HostConnect_Image";
 	}
 
 	@RequestMapping(value = "/admin/HostConnect_Image")
-	public String hostConnectImage(Model model) {
+	public String hostConnectImage(Model model,HttpSession session,HttpServletRequest request) {
+		Integer hotelid = (Integer) session.getAttribute("hotelid");
+		
+		List<PhotonameBean> namelist = hotelAdminService.selectPhotoname();
+		request.setAttribute("namelist", namelist);
+		
+		List<PhotoBean> photos = hotelAdminService.selectPhotoByHotelid(hotelid);
+		request.setAttribute("photos", photos);
+		
 		return "hotel/admin/HostConnect_Image";
+	}
+	@RequestMapping(value="/admin/photo/{photoid}")
+	public ResponseEntity<byte[]> hostConnectImageIO(Model model,@PathVariable Integer photoid,HttpSession session,HttpServletRequest request,HttpServletResponse response) {
+		Integer hotelid = (Integer) session.getAttribute("hotelid");
+		
+		
+		System.out.println("photoid = "+photoid);
+		PhotoBean bean = hotelAdminService.selectPhotoByPk(photoid);
+		System.out.println("photobean = " + bean);
+		System.out.println("filename = "+ bean.getFilename());
+
+		HttpHeaders headers = new HttpHeaders();
+		ByteArrayOutputStream baos = null;
+		int len = 0;
+		byte[] media = null;
+		
+		try (InputStream is = new FileInputStream("C:/temp/hotels/"+bean.getFilename())){
+		    baos = new ByteArrayOutputStream();
+			byte[] b = new byte[8192];
+			
+			while((len = is.read(b)) != -1 ) {
+				baos.write(b, 0, len);
+			}
+		} catch (IOException e) {
+			throw new RuntimeException("ProductController 的  getPicture() 發生 IOException:" + e.getMessage());
+		}
+		media = baos.toByteArray();
+		headers.setCacheControl(CacheControl.noCache().getHeaderValue());
+		headers.setContentType(MediaType.IMAGE_JPEG);
+
+		ResponseEntity<byte[]> responseEntity = new ResponseEntity<>(media, headers, HttpStatus.OK);
+		return responseEntity;
+		
 	}
 
 	@RequestMapping(value = "/admin/HostConnect_Onsale")

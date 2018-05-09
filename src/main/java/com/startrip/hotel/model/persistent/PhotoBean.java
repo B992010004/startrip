@@ -33,7 +33,6 @@ public class PhotoBean implements Serializable{
 		
 		PhotoBean bean = new PhotoBean();
 		bean.setPhotonameid(1);
-		bean.setPhotoepath("ssss");
 		session.save(bean);
 		System.out.println("---------------");
 		PhotoBean temp = session.get(PhotoBean.class, 1);
@@ -48,7 +47,7 @@ public class PhotoBean implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer photoid;
-	private String photoepath;
+	private String filename;
 	// yyyyMMdd + hotelid + serial number
 	
 	private Integer photosorting;
@@ -72,11 +71,13 @@ public class PhotoBean implements Serializable{
 	public void setPhotoid(Integer photoid) {
 		this.photoid = photoid;
 	}
-	public String getPhotoepath() {
-		return photoepath;
+
+	
+	public String getFilename() {
+		return filename;
 	}
-	public void setPhotoepath(String photoepath) {
-		this.photoepath = photoepath;
+	public void setFilename(String filename) {
+		this.filename = filename;
 	}
 	public Integer getPhotosorting() {
 		return photosorting;
@@ -86,11 +87,9 @@ public class PhotoBean implements Serializable{
 	}
 	@Override
 	public String toString() {
-		return "PhotoBean [hotelid=" + hotelid + ", photonameid=" + photonameid + ", photoid=" + photoid
-				+ ", photoepath=" + photoepath + ", photosorting=" + photosorting + "]";
+		return "PhotoBean [hotelid=" + hotelid + ", photonameid=" + photonameid + ", photoid=" + photoid + ", filename="
+				+ filename + ", photosorting=" + photosorting + "]";
 	}
-	
-	
-	
+
 	
 }
