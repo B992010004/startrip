@@ -1,5 +1,7 @@
 package com.startrip.restaurant.service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +40,11 @@ public class RtDetailsServiceImp implements RtDetailsService {
 	@Override
 	public boolean deleteRtDetailsrtId(Integer rtId) {
 		return RtDetailsRepositoryImp.deleteRtDetailsrtId(rtId);
+	}
+
+	@Override
+	public List<RtDetailsBean> getAll() {
+		return RtDetailsRepositoryImp.getAll();
 	}
 
 }

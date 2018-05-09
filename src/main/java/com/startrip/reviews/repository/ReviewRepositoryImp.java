@@ -38,8 +38,7 @@ public class ReviewRepositoryImp implements ReviewRepository {
 		String hql = "FROM ReviewBean WHERE hotelId = :id";
 		Session session = sessionFacory.getCurrentSession();
 		list = session.createQuery(hql).setParameter("id", hotelId).getResultList();
-//		if (bb == null)
-//			throw new ProductNotFoundException(productId);
+
 		return list;
 	}
 
