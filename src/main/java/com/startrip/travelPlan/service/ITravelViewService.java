@@ -27,4 +27,6 @@ public interface ITravelViewService {
 
 	MemberBean getMail(Integer memberId);
 	
+	List<TravelViewBean> getAddress(String address);
+	
 }

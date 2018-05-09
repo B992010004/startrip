@@ -6,11 +6,11 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.startrip.hotel.model.persistent.FacilitylistBean;
 import com.startrip.hotel.model.persistent.FacilitynameBean;
 import com.startrip.hotel.model.persistent.HotelsBean;
+import com.startrip.hotel.model.persistent.PhotoBean;
 import com.startrip.hotel.model.persistent.PhotonameBean;
 import com.startrip.hotel.model.persistent.RoomtypeBean;
 import com.startrip.hotel.model.persistent.ServicelistBean;
@@ -18,6 +18,7 @@ import com.startrip.hotel.model.persistent.ServicenameBean;
 import com.startrip.hotel.model.repository.FacilitylistDAO;
 import com.startrip.hotel.model.repository.FacilitynameDAO;
 import com.startrip.hotel.model.repository.HotelsDAO;
+import com.startrip.hotel.model.repository.PhotoDAO;
 import com.startrip.hotel.model.repository.PhotonameDAO;
 import com.startrip.hotel.model.repository.RoomtypeDAO;
 import com.startrip.hotel.model.repository.ServicelistDAO;
@@ -30,6 +31,8 @@ public class HotelAdminService {
 	HotelsDAO hotels;
 	@Autowired
 	PhotonameDAO photoname;
+	@Autowired
+	PhotoDAO photo;
 	@Autowired
 	FacilitynameDAO facilityname;
 	@Autowired
@@ -133,7 +136,36 @@ public class HotelAdminService {
 	public List<Integer> selectServicelistByHotelid(Integer hotelid){
 		return servicelist.selectByHotelid(hotelid);
 	}
-
+	
+	public void insertPhoto(PhotoBean bean) {
+		photo.insert(bean);
+	}
+	
+	public Integer countPhotoByHotelid(Integer hotelid) {
+		return photo.countByHotelid(hotelid);
+	}
+	
+	public List<PhotoBean> selectPhotoByHotelid(Integer hotelid){
+		return photo.selectByHotelid(hotelid);
+	}
+	
+	public PhotoBean selectPhotoByPk(Integer photoid) {
+		return photo.selectByPk(photoid);
+	}
+	public void deletePhotoByPk(PhotoBean bean) {
+		photo.deleteByPk(bean);
+	}
+	public void updatePhoto(Integer photoid,Integer photonameid,Integer sort) {
+		PhotoBean bean = photo.selectByPk(photoid);
+		if(bean != null) {
+			
+			photonameid = (photonameid == null)?photoname.selectPhotonameidForOther():photonameid;
+			
+			bean.setPhotonameid(photonameid);
+			bean.setPhotosorting(sort);
+		}
+	}
+	
 	public void deleteRoomtype(RoomtypeBean bean) {
 		roomtype.delete(bean);
 	}
@@ -149,5 +181,6 @@ public class HotelAdminService {
 	public List<PhotonameBean> selectPhotoname() {
 		return photoname.select();
 	}
+
 	
 }

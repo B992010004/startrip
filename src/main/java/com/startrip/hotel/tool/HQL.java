@@ -6,9 +6,12 @@ public enum HQL {
 	SELECT_FACILITY_BY_HOTELID,
 	DELETE_SERVICE_BY_HOTELID,
 	SELECT_SERVICE_BY_HOTELID,
-	SELECT_PHOTONAME,
 	SELECT_FACILITYNAME,
-	SELECT_SERVICENAME;
+	SELECT_SERVICENAME,
+	SELECT_PHOTONAME,
+	SELECT_PHOTO_BY_HOTELID,
+	SELECT_PHOTOID_FOR_OTHER,
+	COUNT_PHOTO_BY_HOTELID;
 
 	private String HQL;
 
@@ -16,6 +19,15 @@ public enum HQL {
 		switch (this) {
 		case SELECT_ROOMTYPE_BY_HOTELID:
 			HQL = "FROM roomtype WHERE hotelid = :hotelid ORDER BY roomid DESC";
+			break;
+		case SELECT_PHOTOID_FOR_OTHER:
+			HQL = "SELECT photonameid FROM photoname WHERE photoname = :photoname";
+			break;
+		case SELECT_PHOTO_BY_HOTELID:
+			HQL = "FROM photo WHERE hotelid = :hotelid ORDER BY photosorting ASC";
+			break;
+		case COUNT_PHOTO_BY_HOTELID:
+			HQL = "SELECT COUNT(photoid) FROM photo WHERE hotelid = :hotelid AND photosorting IS NOT NULL";
 			break;
 		case DELETE_FACILITY_BY_HOTELID:
 			HQL = "DELETE facilitylist WHERE hotelid = :hotelid";

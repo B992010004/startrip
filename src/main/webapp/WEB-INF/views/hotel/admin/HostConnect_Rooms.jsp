@@ -506,7 +506,10 @@
   	      	 ({ 
   	          url: '/startrip/admin/AjaxChangeRoomtype',
   	          data: {"rooms": people , "roomid": roomid},
-  	          type: 'post'
+  	          type: 'post',
+  	          success:function(info){
+  	          console.log(info);
+  	          },
   	  		 });
           }); //點任意處變回文字並傳送資料
         }

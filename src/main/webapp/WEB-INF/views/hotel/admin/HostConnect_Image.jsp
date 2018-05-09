@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -143,8 +144,8 @@
         </nav>
       </div>
       <div class="col-md-10">
-        <form id="form1" action="" method="" enctype='multipart/form-data'>
-          <input type="file" id="imgInp" name="photo" multiple="multiple" style="visibility:hidden;" class="form-control-file" accept="image/*">
+        <input type="file" id="imgInp" name="photo" multiple="multiple" style="visibility:hidden;" class="form-control-file" accept="image/*">
+        <form id="form1" action="/startrip/admin/HostConnect_Onsale" method="POST" enctype='multipart/form-data'>
           <div class="form-row">
             <div class="form-group">
               <label for="imgInp" class="btn btn-outline-primary">上傳更多圖片</label>
@@ -152,73 +153,47 @@
           </div>
 
 
-          <div id="imgdiv">
-          </div>
+<!--           <div id="imgdiv"> -->
+<!--           </div> -->
 
           <hr>
           <h5>設定圖片資訊與顯示順序：</h5>
           <input type="hidden" value="" name="image">
           <br>
           <ul id="sortable">
+          
+          <c:forEach var="photo" items="${photos}" varStatus="status">
             <li class="ui-state-default">
               <div class="img-wrap">
-                <a hidden class="close" href="">x</a>
-                <img src="/startrip/assets/images/test1.jpg" class="img-thumbnail">
+                <a hidden class="close" onclick="return false" href="/startrip/admin/deletephoto/${photo.photoid}" id="deletephoto${status.index}">x</a>
+                <img src="/startrip/admin/photo/${photo.photoid}" class="img-thumbnail">
                 <div class="form-group">
-                  <select class="form-control" name="photoname">
-                    <option value="1">單人房</option>
-                    <option selected value="2">雙人房</option>
-                    <option value="3">三人房</option>
-                    <option value="4">四人房</option>
-                    <option value="5">超過四人</option>
+                <input hidden type="text" name="sort" value="${photo.photoid}">
+                  <select class="form-control" name="photoname${photo.photoid}">
+                  
+                    <option value="0">選擇圖片描述</option>
+                	   <c:forEach var="name" items="${namelist}">
+                   		   <option <c:if test="${photo.photonameid eq name.photonameid}">selected</c:if> value="${name.photonameid}">${name.photoname}</option>
+                 	   </c:forEach>
                   </select>
                 </div>
               </div>
             </li>
-            <li class="ui-state-default">
-              <div class="img-wrap">
-                <a hidden class="close" href="">x</a>
-                <img src="/startrip/assets/images/test1.jpg" class="img-thumbnail">
-                <div class="form-group">
-                  <select class="form-control" name="photoname">
-                    <option value="1">單人房</option>
-                    <option selected value="2">雙人房</option>
-                    <option value="3">三人房</option>
-                    <option value="4">四人房</option>
-                    <option value="5">超過四人</option>
-                  </select>
-                </div>
-              </div>
-            </li>
-            <li class="ui-state-default">
-              <div class="img-wrap">
-                <a hidden class="close" href="">x</a>
-                <img src="/startrip/assets/images/test1.jpg" class="img-thumbnail">
-                <div class="form-group">
-                  <select class="form-control" name="photoname">
-                    <option value="1">單人房</option>
-                    <option selected value="2">雙人房</option>
-                    <option value="3">三人房</option>
-                    <option value="4">四人房</option>
-                    <option value="5">超過四人</option>
-                  </select>
-                </div>
-              </div>
-            </li>
-          </ul>
-
+            
+          </c:forEach>
+		  </ul>
           <hr class="bottomrow">
-          <div class="row">
-            <div class="col-md-3">
-              <a href="HostManage.">儲存並離開</a>
-            </div>
+           <div class="row">
+          <div class="col-md-3">
+            <a href="HostManage">儲存並離開</a>
+          </div>
             <div class="col-md-2">
-              <button type="submit" class="btn btn-outline-secondary">上一步</button>
+             <a href="/startrip/admin/HostConnect_Bookingday" class="btn btn-outline-secondary">上一步</a>
             </div>
             <div class="col-md-2">
               <button type="submit" class="btn btn-outline-primary">下一步</button>
             </div>
-          </div>
+        </div>
         </form>
       </div>
     </div>
@@ -335,17 +310,28 @@
 
     <script src="/startrip/assets/js/jquery-ui.js"></script>
     <script>
+
       $(function () {
         $("#sortable").sortable();
         $("#sortable").disableSelection();
 
-        var imgcount = 3;
-        for (var i = 0; i < 3; i++) {
+        var imgcount = ${count};
+        for (var i = 0; i < imgcount; i++) {
           $("#sortable li:eq(" + i + ")").mouseover(clicktodelete)
           $("#sortable li:eq(" + i + ")").mouseout(hiddendelete)
+          $("#deletephoto"+i).click(deletephoto)
         }
 
       });
+      function deletephoto(){
+    	  var a = $(this)
+    	  var href = a.attr("href")
+    	  $.post(href,function(e){
+    		  console.log(e)
+    		  var li = a.parents("li").first().attr("hidden",true)
+    		  console.log(li)
+    	  })
+      }
 
       function clicktodelete() {
         $(this).children("div").children("a").attr("hidden", false)
@@ -356,11 +342,9 @@
 
 
 
-
-
       $("#imgInp").change(function () {
         sendImage(this);
-        readImage(this);
+//         readImage(this);
       });
 
       function sendImage(input) {
@@ -377,34 +361,38 @@
           url: "/startrip/admin/AjaxImageUpload",
           method: "POST",
           data: formData,
-          async: false,
+//           async: false,
           cache: false,
           contentType: false,
           processData: false,
-
+          success:function(){
+        	  window.location.reload();
+          },
         });
-
+        
       }
+      
 
-      function readImage(input) {
-        var files = input.files;
-        var len = files.length;
-        var imgdiv = document.getElementById("imgdiv")
+//       function readImage(input) {
+//         var files = input.files;
+//         var len = files.length;
+//         var imgdiv = document.getElementById("imgdiv")
 
-        for (var i = 0; i < len; i++) {
-          if (files && files[i]) {
-            var reader = new FileReader();
+//         for (var i = 0; i < len; i++) {
+//           if (files && files[i]) {
+//             var reader = new FileReader();
 
-            reader.readAsDataURL(files[i]);
-            reader.onload = function (e) {
-              var img = document.createElement("img")
-              img.setAttribute("src", e.target.result)
-              img.setAttribute("class", "img-thumbnail")
-              imgdiv.appendChild(img)
-            }
-          }
-        }
-      }
+//             reader.readAsDataURL(files[i]);
+//             reader.onload = function (e) {
+//               var img = document.createElement("img")
+//               img.setAttribute("src", e.target.result)
+//               img.setAttribute("class", "img-thumbnail")
+//               imgdiv.appendChild(img)
+//             }
+//           }
+//         }
+//       }
+      
     </script>
 </body>
 

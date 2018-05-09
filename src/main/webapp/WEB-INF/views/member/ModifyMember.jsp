@@ -107,6 +107,7 @@
 							<form:input type="text" class="form-control" name="mPhone"
 								path="phone" value="${LoginOK.phone}" placeholder="請輸入"
 								autofocus="autofocus" required="required" />
+								<span id="err"></span>
 						</div>
 					</div>
 					<div class="col-md-6  probootstrap-animate">
@@ -182,6 +183,18 @@
 				reader.readAsDataURL(input.files[0]);
 			}
 		}
+		$(function() {
+			$("#phone").blur(function() {
+				
+				if($('#phone').val().match(/^09[0-9]{8}$/))
+					{
+					$("#err").html("")
+					}else{
+						$("#err").html("<font color=\'red\'>請輸入正確的手機</font> ");
+					}
+			})
+		});
+
 	</script>
 </body>
 </html>

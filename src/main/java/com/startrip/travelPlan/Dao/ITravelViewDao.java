@@ -26,4 +26,7 @@ public interface ITravelViewDao {
 
 
 	public MemberBean getMemberId(Integer id) ;
+
+
+	List<TravelViewBean> getAddress(String address);
 }
