@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -160,53 +161,29 @@
           <input type="hidden" value="" name="image">
           <br>
           <ul id="sortable">
+          
+          <c:forEach var="photo" items="${photos}">
+          
             <li class="ui-state-default">
               <div class="img-wrap">
                 <a hidden class="close" href="">x</a>
-                <img src="/startrip/assets/images/test1.jpg" class="img-thumbnail">
+                <img src="/startrip/admin/photo/${photo.photoid}" class="img-thumbnail">
                 <div class="form-group">
                   <select class="form-control" name="photoname">
-                    <option value="1">單人房</option>
-                    <option selected value="2">雙人房</option>
-                    <option value="3">三人房</option>
-                    <option value="4">四人房</option>
-                    <option value="5">超過四人</option>
-                  </select>
-                </div>
-              </div>
-            </li>
-            <li class="ui-state-default">
-              <div class="img-wrap">
-                <a hidden class="close" href="">x</a>
-                <img src="/startrip/assets/images/test1.jpg" class="img-thumbnail">
-                <div class="form-group">
-                  <select class="form-control" name="photoname">
-                    <option value="1">單人房</option>
-                    <option selected value="2">雙人房</option>
-                    <option value="3">三人房</option>
-                    <option value="4">四人房</option>
-                    <option value="5">超過四人</option>
-                  </select>
-                </div>
-              </div>
-            </li>
-            <li class="ui-state-default">
-              <div class="img-wrap">
-                <a hidden class="close" href="">x</a>
-                <img src="/startrip/assets/images/test1.jpg" class="img-thumbnail">
-                <div class="form-group">
-                  <select class="form-control" name="photoname">
-                    <option value="1">單人房</option>
-                    <option selected value="2">雙人房</option>
-                    <option value="3">三人房</option>
-                    <option value="4">四人房</option>
-                    <option value="5">超過四人</option>
-                  </select>
-                </div>
-              </div>
-            </li>
-          </ul>
+                  
+                    <option>選擇圖片描述</option>
+                	   <c:forEach var="name" items="${namelist}">
+                   		   <option value="${name.photonameid}">${name.photoname}</option>
+                 	   </c:forEach>
 
+
+                  </select>
+                </div>
+              </div>
+            </li>
+            
+          </c:forEach>
+		  </ul>
           <hr class="bottomrow">
           <div class="row">
             <div class="col-md-3">
@@ -335,6 +312,7 @@
 
     <script src="/startrip/assets/js/jquery-ui.js"></script>
     <script>
+
       $(function () {
         $("#sortable").sortable();
         $("#sortable").disableSelection();
@@ -353,8 +331,6 @@
       function hiddendelete() {
         $(this).children("div").children("a").attr("hidden", true)
       }
-
-
 
 
 
@@ -381,10 +357,13 @@
           cache: false,
           contentType: false,
           processData: false,
-
+          success:function(info){
+              console.log(info);
+          },
         });
-
+        
       }
+      
 
       function readImage(input) {
         var files = input.files;
@@ -405,6 +384,7 @@
           }
         }
       }
+      
     </script>
 </body>
 

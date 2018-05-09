@@ -117,7 +117,7 @@ CREATE TABLE photo(
 hotelid INT FOREIGN KEY REFERENCES hotels(hotelid),
 photonameid INT FOREIGN KEY REFERENCES photoname(photonameid),
 photoid INT IDENTITY NOT NULL PRIMARY KEY,
-photoepath VARCHAR(100),
+[filename] VARCHAR(255),
 -- yyyyMMdd + hotelid + serial number
 photosorting INT,
 );

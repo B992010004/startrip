@@ -54,7 +54,8 @@
 
 
 <link rel="stylesheet" href="/startrip/assets/restaurant/Css/rthome.css">
-<link rel="stylesheet" href="/startrip/assets/restaurant/Css/rthome2.css">
+<link rel="stylesheet"
+	href="/startrip/assets/restaurant/Css/rthome2.css">
 
 
 
@@ -70,7 +71,6 @@
 }
 
 .bigheadline1 {
-	padding-top: 3%;
 	padding-bottom: 3%;
 	text-align: center;
 }
@@ -88,6 +88,10 @@
 .img-fluid {
 	width: 255px;
 	height: 200px;
+}
+
+.col-md-12 {
+	padding: 2%;
 }
 </style>
 
@@ -131,321 +135,129 @@
 				<div class="col-md-12">
 					<h2 class="display-4 border-bottom probootstrap-section-heading">最近瀏覽</h2>
 				</div>
+				<div class="row">
+					<c:forEach var='rtDetails' items='${RtDetails}'>
+						<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
+							<a href="#" class="probootstrap-thumbnail"> <img
+								src="/startrip/assets/images/01.jpg"
+								alt="Free Template by ProBootstrap.com" class="img-fluid">
+
+								<h3>${rtDetails.rtName}</h3> <span>${rtDetails.rtCuisine}</span>
+								<span>${rtDetails.teCategory}</span> <span>${rtDetails.rtPricepount}</span>
+								<span>${rtDetails.rtCounty}</span> <span>評分星等</span>
+							</a>
+						</div>
+					</c:forEach>
+				</div>
 			</div>
-			<div class="row">
-				<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
-					<a href="#" class="probootstrap-thumbnail"> <img
-						src="/startrip/assets/images/01.jpg"
-						alt="Free Template by ProBootstrap.com" class="img-fluid">
+		</div>
+		<div class="container">
+			<div class="row text-center mb-5 probootstrap-animate">
+				<div class="col-md-12">
+					<h2 class="display-4 border-bottom probootstrap-section-heading">熱門餐廳</h2>
+				</div>
+				<div class="row">
+					<c:forEach var='rtDetails' items='${RtDetails}'>
+						<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
+							<a href="#" class="probootstrap-thumbnail"> <img
+								src="/startrip/assets/images/01.jpg"
+								alt="Free Template by ProBootstrap.com" class="img-fluid">
 
-						<div class="probootstrap-text">
-							<h3>餐廳名稱</h3>
-							<span>菜系類別</span> <span>餐點類別</span> <span>價位類別</span> <span>縣市分類</span>
-							<span>評分星等</span>
+								<h3>${rtDetails.rtName}</h3> <span>${rtDetails.rtCuisine}</span>
+								<span>${rtDetails.teCategory}</span> <span>${rtDetails.rtPricepount}</span>
+								<span>${rtDetails.rtCounty}</span> <span>評分星等</span>
+							</a>
 						</div>
-					</a>
+					</c:forEach>
 				</div>
-				<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
-					<a href="#" class="probootstrap-thumbnail"> <img
-						src="/startrip/assets/images/02.jpg"
-						alt="Free Template by ProBootstrap.com" class="img-fluid">
+			</div>
+		</div>
+		<div class="container">
+			<div class="row text-center mb-5 probootstrap-animate">
+				<div class="col-md-12">
+					<h2 class="display-4 border-bottom probootstrap-section-heading">附近餐廳</h2>
+				</div>
+				<div class="row">
+					<c:forEach var='rtDetails' items='${RtDetails}'>
+						<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
+							<a href="#" class="probootstrap-thumbnail"> <img
+								src="/startrip/assets/images/01.jpg"
+								alt="Free Template by ProBootstrap.com" class="img-fluid">
 
-						<div class="probootstrap-text">
-							<h3>餐廳名稱</h3>
-							<span>菜系類別</span> <span>餐點類別</span> <span>價位類別</span> <span>縣市分類</span>
-							<span>評分星等</span>
+								<h3>${rtDetails.rtName}</h3> <span>${rtDetails.rtCuisine}</span>
+								<span>${rtDetails.teCategory}</span> <span>${rtDetails.rtPricepount}</span>
+								<span>${rtDetails.rtCounty}</span> <span>評分星等</span>
+							</a>
 						</div>
-					</a>
+					</c:forEach>
 				</div>
-				<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
-					<a href="#" class="probootstrap-thumbnail"> <img
-						src="/startrip/assets/images/img_3.jpg"
-						alt="Free Template by ProBootstrap.com" class="img-fluid">
-						<div class="probootstrap-text">
-							<h3>餐廳名稱</h3>
-							<span>菜系類別</span> <span>餐點類別</span> <span>價位類別</span> <span>縣市分類</span>
-							<span>評分星等</span>
-						</div>
-					</a>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row text-center mb-5 probootstrap-animate">
+				<div class="col-md-12">
+					<h2 class="display-4 border-bottom probootstrap-section-heading">高級餐廳</h2>
 				</div>
-				<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
-					<a href="#" class="probootstrap-thumbnail"> <img
-						src="/startrip/assets/images/img_4.jpg"
-						alt="Free Template by ProBootstrap.com" class="img-fluid">
-						<div class="probootstrap-text">
-							<h3>餐廳名稱</h3>
-							<span>菜系類別</span> <span>餐點類別</span> <span>價位類別</span> <span>縣市分類</span>
-							<span>評分星等</span>
+				<div class="row">
+					<c:forEach var='rtDetails' items='${RtDetails}'>
+						<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
+							<a href="#" class="probootstrap-thumbnail"> <img
+								src="/startrip/assets/images/01.jpg"
+								alt="Free Template by ProBootstrap.com" class="img-fluid">
+
+								<h3>${rtDetails.rtName}</h3> <span>${rtDetails.rtCuisine}</span>
+								<span>${rtDetails.teCategory}</span> <span>${rtDetails.rtPricepount}</span>
+								<span>${rtDetails.rtCounty}</span> <span>評分星等</span>
+							</a>
 						</div>
-					</a>
+					</c:forEach>
 				</div>
-				<div class="container">
-					<div class="row text-center mb-5 probootstrap-animate">
-						<div class="col-md-12">
-							<h2 class="display-4 border-bottom probootstrap-section-heading">熱門餐廳</h2>
-						</div>
-					</div>
-					<div class="row">
+			</div>
+		</div>
+		<div class="container">
+			<div class="row text-center mb-5 probootstrap-animate">
+				<div class="col-md-12">
+					<h2 class="display-4 border-bottom probootstrap-section-heading">中等價位</h2>
+				</div>
+				<div class="row">
+					<c:forEach var='rtDetails' items='${RtDetails}'>
 						<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
 							<a href="#" class="probootstrap-thumbnail"> <img
-								src="/startrip/assets/images/img_1.jpg"
+								src="/startrip/assets/images/01.jpg"
 								alt="Free Template by ProBootstrap.com" class="img-fluid">
-								<div class="probootstrap-text">
-									<h3>餐廳名稱</h3>
-									<span>菜系類別</span> <span>餐點類別</span> <span>價位類別</span> <span>縣市分類</span>
-									<span>評分星等</span>
-								</div>
+
+								<h3>${rtDetails.rtName}</h3> <span>${rtDetails.rtCuisine}</span>
+								<span>${rtDetails.teCategory}</span> <span>${rtDetails.rtPricepount}</span>
+								<span>${rtDetails.rtCounty}</span> <span>評分星等</span>
 							</a>
 						</div>
+					</c:forEach>
+				</div>
+			</div>
+		</div>
+			<div class="container">
+			<div class="row text-center mb-5 probootstrap-animate">
+				<div class="col-md-12">
+					<h2 class="display-4 border-bottom probootstrap-section-heading">平價美食</h2>
+				</div>
+				<div class="row">
+					<c:forEach var='rtDetails' items='${RtDetails}'>
 						<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
 							<a href="#" class="probootstrap-thumbnail"> <img
-								src="/startrip/assets/images/img_2.jpg"
+								src="/startrip/assets/images/01.jpg"
 								alt="Free Template by ProBootstrap.com" class="img-fluid">
-								<div class="probootstrap-text">
-									<h3>餐廳名稱</h3>
-									<span>菜系類別</span> <span>餐點類別</span> <span>價位類別</span> <span>縣市分類</span>
-									<span>評分星等</span>
-								</div>
+
+								<h3>${rtDetails.rtName}</h3> <span>${rtDetails.rtCuisine}</span>
+								<span>${rtDetails.teCategory}</span> <span>${rtDetails.rtPricepount}</span>
+								<span>${rtDetails.rtCounty}</span> <span>評分星等</span>
 							</a>
 						</div>
-						<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
-							<a href="#" class="probootstrap-thumbnail"> <img
-								src="/startrip/assets/images/img_3.jpg"
-								alt="Free Template by ProBootstrap.com" class="img-fluid">
-								<div class="probootstrap-text">
-									<h3>餐廳名稱</h3>
-									<span>菜系類別</span> <span>餐點類別</span> <span>價位類別</span> <span>縣市分類</span>
-									<span>評分星等</span>
-								</div>
-							</a>
-						</div>
-						<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
-							<a href="#" class="probootstrap-thumbnail"> <img
-								src="/startrip/assets/images/img_4.jpg"
-								alt="Free Template by ProBootstrap.com" class="img-fluid">
-								<div class="probootstrap-text">
-									<h3>餐廳名稱</h3>
-									<span>菜系類別</span> <span>餐點類別</span> <span>價位類別</span> <span>縣市分類</span>
-									<span>評分星等</span>
-								</div>
-							</a>
-						</div>
-						<div class="container">
-							<div class="row text-center mb-5 probootstrap-animate">
-								<div class="col-md-12">
-									<h2
-										class="display-4 border-bottom probootstrap-section-heading">附近餐廳</h2>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
-									<a href="#" class="probootstrap-thumbnail"> <img
-										src="/startrip/assets/images/img_1.jpg"
-										alt="Free Template by ProBootstrap.com" class="img-fluid">
-										<div class="probootstrap-text">
-											<h3>餐廳名稱</h3>
-											<span>菜系類別</span> <span>餐點類別</span> <span>價位類別</span> <span>縣市分類</span>
-											<span>評分星等</span>
-										</div>
-									</a>
-								</div>
-								<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
-									<a href="#" class="probootstrap-thumbnail"> <img
-										src="/startrip/assets/images/img_2.jpg"
-										alt="Free Template by ProBootstrap.com" class="img-fluid">
-										<div class="probootstrap-text">
-											<h3>餐廳名稱</h3>
-											<span>菜系類別</span> <span>餐點類別</span> <span>價位類別</span> <span>縣市分類</span>
-											<span>評分星等</span>
-										</div>
-									</a>
-								</div>
-								<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
-									<a href="#" class="probootstrap-thumbnail"> <img
-										src="/startrip/assets/images/img_3.jpg"
-										alt="Free Template by ProBootstrap.com" class="img-fluid">
-										<div class="probootstrap-text">
-											<h3>餐廳名稱</h3>
-											<span>菜系類別</span> <span>餐點類別</span> <span>價位類別</span> <span>縣市分類</span>
-											<span>評分星等</span>
-										</div>
-									</a>
-								</div>
-								<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
-									<a href="#" class="probootstrap-thumbnail"> <img
-										src="/startrip/assets/images/img_4.jpg"
-										alt="Free Template by ProBootstrap.com" class="img-fluid">
-										<div class="probootstrap-text">
-											<h3>餐廳名稱</h3>
-											<span>菜系類別</span> <span>餐點類別</span> <span>價位類別</span> <span>縣市分類</span>
-											<span>評分星等</span>
-										</div>
-									</a>
-								</div>
-								<div class="container">
-									<div class="row text-center mb-5 probootstrap-animate">
-										<div class="col-md-12">
-											<h2
-												class="display-4 border-bottom probootstrap-section-heading">高級餐廳</h2>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
-											<a href="#" class="probootstrap-thumbnail"> <img
-												src="/startrip/assets/images/img_1.jpg"
-												alt="Free Template by ProBootstrap.com" class="img-fluid">
-												<div class="probootstrap-text">
-													<h3>餐廳名稱</h3>
-													<span>菜系類別</span> <span>餐點類別</span> <span>價位類別</span> <span>縣市分類</span>
-													<span>評分星等</span>
-												</div>
-											</a>
-										</div>
-										<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
-											<a href="#" class="probootstrap-thumbnail"> <img
-												src="/startrip/assets/images/img_2.jpg"
-												alt="Free Template by ProBootstrap.com" class="img-fluid">
-												<div class="probootstrap-text">
-													<h3>餐廳名稱</h3>
-													<span>菜系類別</span> <span>餐點類別</span> <span>價位類別</span> <span>縣市分類</span>
-													<span>評分星等</span>
-												</div>
-											</a>
-										</div>
-										<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
-											<a href="#" class="probootstrap-thumbnail"> <img
-												src="/startrip/assets/images/img_3.jpg"
-												alt="Free Template by ProBootstrap.com" class="img-fluid">
-												<div class="probootstrap-text">
-													<h3>餐廳名稱</h3>
-													<span>菜系類別</span> <span>餐點類別</span> <span>價位類別</span> <span>縣市分類</span>
-													<span>評分星等</span>
-												</div>
-											</a>
-										</div>
-										<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
-											<a href="#" class="probootstrap-thumbnail"> <img
-												src="/startrip/assets/images/img_4.jpg"
-												alt="Free Template by ProBootstrap.com" class="img-fluid">
-												<div class="probootstrap-text">
-													<h3>餐廳名稱</h3>
-													<span>菜系類別</span> <span>餐點類別</span> <span>價位類別</span> <span>縣市分類</span>
-													<span>評分星等</span>
-												</div>
-											</a>
-										</div>
-										<div class="container">
-											<div class="row text-center mb-5 probootstrap-animate">
-												<div class="col-md-12">
-													<h2
-														class="display-4 border-bottom probootstrap-section-heading">中等價位</h2>
-												</div>
-											</div>
-											<div class="row">
-												<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
-													<a href="#" class="probootstrap-thumbnail"> <img
-														src="/startrip/assets/images/img_1.jpg"
-														alt="Free Template by ProBootstrap.com" class="img-fluid">
-														<div class="probootstrap-text">
-															<h3>餐廳名稱</h3>
-															<span>菜系類別</span> <span>餐點類別</span> <span>價位類別</span> <span>縣市分類</span>
-															<span>評分星等</span>
-														</div>
-													</a>
-												</div>
-												<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
-													<a href="#" class="probootstrap-thumbnail"> <img
-														src="/startrip/assets/images/img_2.jpg"
-														alt="Free Template by ProBootstrap.com" class="img-fluid">
-														<div class="probootstrap-text">
-															<h3>餐廳名稱</h3>
-															<span>菜系類別</span> <span>餐點類別</span> <span>價位類別</span> <span>縣市分類</span>
-															<span>評分星等</span>
-														</div>
-													</a>
-												</div>
-												<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
-													<a href="#" class="probootstrap-thumbnail"> <img
-														src="/startrip/assets/images/img_3.jpg"
-														alt="Free Template by ProBootstrap.com" class="img-fluid">
-														<div class="probootstrap-text">
-															<h3>餐廳名稱</h3>
-															<span>菜系類別</span> <span>餐點類別</span> <span>價位類別</span> <span>縣市分類</span>
-															<span>評分星等</span>
-														</div>
-													</a>
-												</div>
-												<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
-													<a href="#" class="probootstrap-thumbnail"> <img
-														src="/startrip/assets/images/img_4.jpg"
-														alt="Free Template by ProBootstrap.com" class="img-fluid">
-														<div class="probootstrap-text">
-															<h3>餐廳名稱</h3>
-															<span>菜系類別</span> <span>餐點類別</span> <span>價位類別</span> <span>縣市分類</span>
-															<span>評分星等</span>
-														</div>
-													</a>
-												</div>
-												<div class="container">
-													<div class="row text-center mb-5 probootstrap-animate">
-														<div class="col-md-12">
-															<h2
-																class="display-4 border-bottom probootstrap-section-heading">平價美食</h2>
-														</div>
-													</div>
-													<div class="row">
-														<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
-															<a href="#" class="probootstrap-thumbnail"> <img
-																src="/startrip/assets/images/img_1.jpg"
-																alt="Free Template by ProBootstrap.com"
-																class="img-fluid">
-																<div class="probootstrap-text">
-																	<h3>餐廳名稱</h3>
-																	<span>菜系類別</span> <span>餐點類別</span> <span>價位類別</span> <span>縣市分類</span>
-																	<span>評分星等</span>
-																</div>
-															</a>
-														</div>
-														<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
-															<a href="#" class="probootstrap-thumbnail"> <img
-																src="/startrip/assets/images/img_2.jpg"
-																alt="Free Template by ProBootstrap.com"
-																class="img-fluid">
-																<div class="probootstrap-text">
-																	<h3>餐廳名稱</h3>
-																	<span>菜系類別</span> <span>餐點類別</span> <span>價位類別</span> <span>縣市分類</span>
-																	<span>評分星等</span>
-																</div>
-															</a>
-														</div>
-														<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
-															<a href="#" class="probootstrap-thumbnail"> <img
-																src="/startrip/assets/images/img_3.jpg"
-																alt="Free Template by ProBootstrap.com"
-																class="img-fluid">
-																<div class="probootstrap-text">
-																	<h3>餐廳名稱</h3>
-																	<span>菜系類別</span> <span>餐點類別</span> <span>價位類別</span> <span>縣市分類</span>
-																	<span>評分星等</span>
-																</div>
-															</a>
-														</div>
-														<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
-															<a href="#" class="probootstrap-thumbnail"> <img
-																src="/startrip/assets/images/img_4.jpg"
-																alt="Free Template by ProBootstrap.com"
-																class="img-fluid">
-																<div class="probootstrap-text">
-																	<h3>餐廳名稱</h3>
-																	<span>菜系類別</span> <span>餐點類別</span> <span>價位類別</span> <span>縣市分類</span>
-																	<span>評分星等</span>
-																</div>
-															</a>
-														</div>
+					</c:forEach>
+				</div>
+			</div>
+		</div>
+
 	</section>
-
-
-
 	<!-- END section -->
 
 
@@ -636,7 +448,8 @@
 			</div>
 		</div>
 	</footer>
-
+	<div><jsp:include page="/WEB-INF/views/member/login.jsp"
+			flush="true" /></div>
 
 	<script src="/startrip/assets/js/jquery.min.js"></script>
 

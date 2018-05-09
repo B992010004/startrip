@@ -1,5 +1,8 @@
 package com.startrip.restaurant.repository;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,6 +59,17 @@ public class RtDetailsRepositoryImp implements RtDetailsRepository {
 			return true;
 		}
 		return false;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<RtDetailsBean> getAll() {
+		String hql="FROM RtDetailsBean";
+		Session session = null;
+		List<RtDetailsBean> list = new ArrayList<>();
+		session = factory.getCurrentSession();
+		list = session.createQuery(hql).setMaxResults(4).getResultList();
+		return list;
 	}
 
 

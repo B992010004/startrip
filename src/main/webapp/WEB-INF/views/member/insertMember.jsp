@@ -88,7 +88,7 @@
 			<form:form method="post" modelAttribute="MemberBean"
 				class="probootstrap-form probootstrap-form-box mb60"
 				enctype="multipart/form-data">
-			
+
 				<H2 class="display-4 border-bottom probootstrap-section-heading"
 					style="text-align: center">Sign Up</H2>
 				<div class="row">
@@ -96,42 +96,55 @@
 					<div class="col-md-6  probootstrap-animate">
 						<div class="form-group">
 							<label>信箱:</label>
-							 <form:input type="text" class="form-control" id="mail"
-								name="mail" path='mail' placeholder="請輸入" autofocus="autofocus"  required="required" ></form:input>
-						<span id="tips">1231</span>
+							<form:input type="text" class="form-control" id="mail"
+								name="mail" path='mail' placeholder="請輸入" autofocus="autofocus"
+								required="required"></form:input>
+							<span id="tips"></span>
 						</div>
 
 						<div class="form-group">
-							<label>密碼:</label> <form:input type="password" class="form-control"
-								name="mPwd" path="password" placeholder="請輸入" autofocus="autofocus"  required="required" />
+							<label>密碼:</label>
+							<form:input type="password" class="form-control" name="mPwd"
+								path="password" placeholder="請輸入" autofocus="autofocus"
+								required="required" />
 						</div>
 						<div class="form-group">
-							<label>姓名:</label> <form:input type="text" class="form-control"
-								name="mName" path="username" placeholder="請輸入"  autofocus="autofocus"  required="required" />
+							<label>姓名:</label>
+							<form:input type="text" class="form-control" name="mName"
+								path="username" placeholder="請輸入" autofocus="autofocus"
+								required="required" />
 						</div>
 						<div class="form-group">
-							<label>地址:</label> <form:input type="text" class="form-control"
-								name="mAdd" path="address" placeholder="請輸入"  autofocus="autofocus"  required="required" /> 
+							<label>地址:</label>
+							<form:input type="text" class="form-control" name="mAdd"
+								path="address" placeholder="請輸入" autofocus="autofocus"
+								required="required" />
 						</div>
 						<div class="form-group">
-							<label>電話:</label> <form:input type="text" class="form-control"
-								name="mPhone" path="phone" placeholder="請輸入"   autofocus="autofocus"  required="required"/>
+							<label>電話:</label>
+							<form:input type="tel" class="form-control" id="phone"
+								name="mPhone" path="phone" placeholder="請輸入"
+								autofocus="autofocus" required="required" />
+								<span id="err"></span>
 						</div>
 
 					</div>
 					<div class="col-md-6  probootstrap-animate">
 						<div class="form-group">
-							<label>生日:</label> <form:input type="text" class="form-control"
-								name="mbday" path="birthday" placeholder="請輸入"  autofocus="autofocus"  required="required" />
+							<label>生日:</label>
+							<form:input type="text" class="form-control" name="mbday"
+								path="birthday" placeholder="請輸入" autofocus="autofocus"
+								required="required" />
 						</div>
 
 						<div class="form-group">
-							<img id="preview_progressbarTW_img" class="img1" value=""
-								src="/startrip/assets/images/membericon/snop.jpg" />
-								 <label for="progressbarTWInput" class="btn btn-primary"> input
-								file</label> 
-								<form:input type="file" path="avatarImage" id="progressbarTWInput" name="mAvatar"
-								accept="image/gif, image/jpeg, image/png"  style="display: none;" />
+							<img id="preview_progressbarTW_img" class="img1"
+								src="/startrip/assets/images/membericon/user.jpg" /> <label
+								for="progressbarTWInput" class="btn btn-primary"> input
+								file</label>
+							<form:input type="file" path="avatarImage"
+								id="progressbarTWInput" name="mAvatar"
+								accept="image/gif, image/jpeg, image/png" style="display: none;" />
 						</div>
 						<div class="form-group">
 							<input type="submit" class="btn btn-primary" id="submit"
@@ -183,30 +196,59 @@
 		}
 	</script>
 	<script>
-$(document).ready(function(){
-    checkUserName();
-});
-$(function(){
-	 $("#mail").blur(function(){
-        var ajaxdata = {
-                mail : $('#mail').val()       
-            }
-        $.ajax({
-            url :"/startrip/checkid",
-            type : "GET",
-            data : ajaxdata,
-            success : function(responseText, textStatus){
-            	
-            	$("#tips").html(responseText);
-            
-            },
-            error : function(){
-                alert("error");
-            }
-        });
-    });
-});
+		$(document).ready(function() {
+			checkUserName();
+		});
+		$(function() {
+			$("#phone").blur(function() {
+				
+				if($('#phone').val().match(/^09[0-9]{8}$/))
+					{
+					$("#err").html("")
+					}else{
+						$("#err").html("<font color=\'red\'>請輸入正確的手機</font> ");
+					}
+			})
+		});
 
-</script>
+		$(function() {
+			$("#mail")
+					.blur(
+							function() {
+								var ajaxdata = {
+									mail : $('#mail').val()
+								}
+								var aa = $('#mail').val();
+								var aa1 = aa.match('@gmail.com');
+								var aa2 = aa.match('@yahoo.com.tw');
+								var aa3 = aa.match('@outlook.com');
+
+								if (aa == "") {
+									$("#tips").html(
+											"<font color=\'red\'>請輸入帳號</font>");
+								} else if (aa1 != null || aa2 != null
+										|| aa3 != null) {
+									$.ajax({
+										url : "/startrip/checkid",
+										type : "GET",
+										data : ajaxdata,
+										success : function(responseText,
+												textStatus) {
+
+											$("#tips").html(responseText);
+
+										},
+										error : function() {
+											alert("error");
+										}
+									});
+								} else {
+									$("#tips")
+											.html(
+													" <font color=\'red\'>信箱格式不正確  請使用Google，Yahoo或者outlook信箱</font> ");
+								}
+							});
+		});
+	</script>
 </body>
 </html>
