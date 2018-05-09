@@ -30,7 +30,7 @@ public class MemberService implements MemberServiceInterface {
 
 	@Transactional
 	@Override
-	public void update(String mail, String password, String username, String address, int phone, String birthday,
+	public void update(String mail, String password, String username, String address, String phone, String birthday,
 			String avatar, Blob photo) {
 
 		memberDAO.update(mail, password, username, address, phone, birthday, avatar, photo);

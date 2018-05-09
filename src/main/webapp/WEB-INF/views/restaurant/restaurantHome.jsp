@@ -428,7 +428,8 @@
 			</div>
 		</div>
 	</footer>
-
+	<div><jsp:include page="/WEB-INF/views/member/login.jsp"
+			flush="true" /></div>
 
 	<script src="/startrip/assets/js/jquery.min.js"></script>
 
