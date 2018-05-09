@@ -122,9 +122,10 @@
 						</div>
 						<div class="form-group">
 							<label>電話:</label>
-							<form:input type="tel" class="form-control" name="mPhone"
-								path="phone" placeholder="請輸入" autofocus="autofocus"
-								required="required" />
+							<form:input type="tel" class="form-control" id="phone"
+								name="mPhone" path="phone" placeholder="請輸入"
+								autofocus="autofocus" required="required" />
+								<span id="err"></span>
 						</div>
 
 					</div>
@@ -197,6 +198,17 @@
 	<script>
 		$(document).ready(function() {
 			checkUserName();
+		});
+		$(function() {
+			$("#phone").blur(function() {
+				
+				if($('#phone').val().match(/^09[0-9]{8}$/))
+					{
+					$("#err").html("")
+					}else{
+						$("#err").html("<font color=\'red\'>請輸入正確的手機</font> ");
+					}
+			})
 		});
 
 		$(function() {

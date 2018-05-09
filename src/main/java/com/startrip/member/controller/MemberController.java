@@ -7,11 +7,13 @@ import java.io.InputStream;
 import java.io.PrintWriter;
 import java.sql.Blob;
 import java.sql.SQLException;
+
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.rowset.serial.SerialBlob;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.CacheControl;
 import org.springframework.http.HttpHeaders;
@@ -20,12 +22,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
+
 import com.startrip.member.Service.MemberServiceInterface;
+import com.startrip.member.exception.NotFoundException;
 import com.startrip.member.memberModle.MemberBean;
 
 @Controller
@@ -103,7 +109,7 @@ public class MemberController {
 		MemberBean mm = memberservice.select(mail);
 		if (mm != null && password.equals(mm.getPassword())) {
 			session.setAttribute("LoginOK", mm);
-			return "/index";
+			return "redirect:/";
 		} else {
 			return null;
 		}
@@ -111,16 +117,16 @@ public class MemberController {
 
 	@RequestMapping(value = "/chickpassword", method = RequestMethod.POST)
 	public void chickpassword(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
 		String mail = request.getParameter("mail");
-		String password = request.getParameter("password");
-		MemberBean mm = memberservice.select(mail);
+		String password = request.getParameter("password");		
+		MemberBean mm = memberservice.select(mail);		
 		response.setContentType("text/plain;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		if (mm != null && password.equals(mm.getPassword())) {
-			out.print(0);
+			out.print(0);		
 		} else {
 			out.print(1);
+			
 		}
 	}
 
@@ -168,11 +174,11 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/getPicture/{mail:.+}")
-	public ResponseEntity<byte[]> getPicture(HttpServletRequest resp, @PathVariable String mail) {
+	public ResponseEntity<byte[]> getPicture(@PathVariable String mail) {
 		MemberBean bean = memberservice.select(mail);
 		HttpHeaders headers = new HttpHeaders();
 		Blob blob = bean.getPhoto();
-	System.out.println(blob);
+	
 		int len = 0;
 		byte[] media = null;
 		if (blob != null) {
@@ -212,5 +218,14 @@ public class MemberController {
 			writer.println("<font color=\"red\">您输入的用户名存在！请重新输入！</font>");
 		}
 	}
-
+	@ExceptionHandler(NotFoundException.class)
+	public ModelAndView handleError(HttpServletRequest request,
+			NotFoundException exception) {
+		ModelAndView mv=new ModelAndView();
+		mv.addObject("invalidBookId",exception.getMail());
+		mv.addObject("exception",exception);
+		mv.addObject("url",request.getRequestURI()+"?"+request.getQueryString());
+		mv.setViewName("/index");	               
+		return mv;
+	}
 }

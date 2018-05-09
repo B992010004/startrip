@@ -46,7 +46,7 @@ public class MemberRepository implements MemberRepositoryinterface {
 	}
 
 	@Override
-	public void update(String mail, String password, String username, String address, int phone, String birthday,
+	public void update(String mail, String password, String username, String address, String phone, String birthday,
 			String avatar, Blob photo) {
 		String hql = "update MemberBean set   password=:password address=:address phone=:phone birthday=:birthday username=:username avatar=:avatar photo=:photo  where mail =:mail";
 		Session session = factory.getCurrentSession();

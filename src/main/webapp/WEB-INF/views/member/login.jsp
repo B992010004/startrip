@@ -43,12 +43,12 @@
 							class="form-group" name="loginform">
 							<div class="form-group">
 
-								<input type="text" style="width: 85%" id="mail"
+								<input type="text" style="width: 85%" id="loginmail"
 									class="form-control" name="mail" placeholder="請輸入信箱"></input>
 									 <span id="nname" class="errorDiv"></span>
 							</div>
 							<div class="form-group">
-								<input type="password" style="width: 85%" id="password"
+								<input type="password" style="width: 85%" id="loginpassword"
 									class="form-control" name="password" placeholder="請輸入密碼" /> <span
 									id="pswid" class="errorDiv"></span>
 							</div>
@@ -104,8 +104,8 @@
 	</script>
 	<script>
 		document.addEventListener("DOMContentLoaded", function() {
-			document.getElementById("mail").addEventListener("blur", ckname);
-			document.getElementById("password").addEventListener("blur",
+			document.getElementById("loginmail").addEventListener("blur", ckname);
+			document.getElementById("loginpassword").addEventListener("blur",
 					chkPassword);
 			document.getElementById("loginSubmit").addEventListener("click",
 					checkUserName);
@@ -118,7 +118,7 @@
 			document.getElementById("errorMsg").innerHTML = "";
 		}
 		function ckname() {
-			var getname = document.getElementById("mail").value;
+			var getname = document.getElementById("loginmail").value;
 			if (getname == "") {
 				document.getElementById("nname").innerHTML = "請輸入帳號"
 			} else {
@@ -128,7 +128,7 @@
 
 		function chkPassword() {
 
-			var getPwd = document.getElementById("password").value;
+			var getPwd = document.getElementById("loginpassword").value;
 
 			if (getPwd == "") {
 				document.getElementById("pswid").innerHTML = "請輸入密碼"
@@ -138,8 +138,8 @@
 		}
 		function checkUserName() {
 			var ajaxdata = {
-				mail : $('#mail').val(),
-				password : $('#password').val()
+				mail : $('#loginmail').val(),
+				password : $('#loginpassword').val()
 			}
 			$.ajax({
 				url : "/startrip/chickpassword",
@@ -147,7 +147,7 @@
 				data : ajaxdata,
 				async : false,
 				success : function(responseText, textStatus) {
-					if (responseText == "0") {
+					if (responseText == 0) {
 						document.loginform.submit();
 					} else {
 						document.getElementById("errorMsg").innerHTML = "帳號或密碼錯誤"
