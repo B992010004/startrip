@@ -31,8 +31,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.startrip.member.Service.MemberServiceInterface;
-import com.startrip.member.exception.NotFoundException;
 import com.startrip.member.memberModle.MemberBean;
+
+import javassist.NotFoundException;
 
 @Controller
 public class MemberController {
@@ -218,14 +219,14 @@ public class MemberController {
 			writer.println("<font color=\"red\">您输入的用户名存在！请重新输入！</font>");
 		}
 	}
-	@ExceptionHandler(NotFoundException.class)
-	public ModelAndView handleError(HttpServletRequest request,
-			NotFoundException exception) {
-		ModelAndView mv=new ModelAndView();
-		mv.addObject("invalidBookId",exception.getMail());
-		mv.addObject("exception",exception);
-		mv.addObject("url",request.getRequestURI()+"?"+request.getQueryString());
-		mv.setViewName("/index");	               
-		return mv;
-	}
+//	@ExceptionHandler(NotFoundException.class)
+//	public ModelAndView handleError(HttpServletRequest request,
+//			NotFoundException exception) {
+//		ModelAndView mv=new ModelAndView();
+//		mv.addObject("invalidBookId",exception.getMail());
+//		mv.addObject("exception",exception);
+//		mv.addObject("url",request.getRequestURI()+"?"+request.getQueryString());
+//		mv.setViewName("/index");	               
+//		return mv;
+//	}
 }

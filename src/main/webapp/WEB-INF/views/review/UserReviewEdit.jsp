@@ -195,10 +195,10 @@
     </section>
     <!-- END section -->
     
-<%--     <c:forEach var='rank' items='${ranks}'> --%>
-<%-- 	<h1>${ranks}</h1> --%>
-<%-- 	<h1>${rankSize}</h1> --%>
-<%--     </c:forEach> --%>
+    <c:forEach var='rank' items='${ranks}'>
+	<h1>${ranks}</h1>
+	<h1>${rankSize}</h1>
+    </c:forEach>
 				<div class="container">
 					<label class="sr-only-focusable">旅客評等</label>
                         <div class="travler-rank" >                            
@@ -236,7 +236,7 @@
 			<div class="col-md-8">
 			<div class="probootstrap_font-18">${review.title}</div>
 			<div class="">${review.content }</div>
-			<div>照片</div>
+			<div><img src="/startrip/getPicture/reviewUpload/4f04d103-46db-426d-b468-7bf9a151e258.jpg" /></div>
 			</div>
 		</c:forEach>
 		</div>
