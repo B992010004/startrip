@@ -93,6 +93,7 @@
 .col-md-12 {
 	padding: 2%;
 }
+
 </style>
 
 </head>
@@ -129,27 +130,6 @@
 			<h1 class="headline2">Star</h1>
 			<h1 class="headline1">Trip</h1>
 			<p>在 StarTrip 內總共為您準備了超過 10000 筆的餐廳資訊、價格以及評分，協助尋找最適合您的餐廳喜好。</p>
-		</div>
-		<div class="container">
-			<div class="row text-center mb-5 probootstrap-animate">
-				<div class="col-md-12">
-					<h2 class="display-4 border-bottom probootstrap-section-heading">最近瀏覽</h2>
-				</div>
-				<div class="row">
-					<c:forEach var='rtDetails' items='${RtDetails}'>
-						<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
-							<a href="#" class="probootstrap-thumbnail"> <img
-								src="/startrip/assets/images/01.jpg"
-								alt="Free Template by ProBootstrap.com" class="img-fluid">
-
-								<h3>${rtDetails.rtName}</h3> <span>${rtDetails.rtCuisine}</span>
-								<span>${rtDetails.teCategory}</span> <span>${rtDetails.rtPricepount}</span>
-								<span>${rtDetails.rtCounty}</span> <span>評分星等</span>
-							</a>
-						</div>
-					</c:forEach>
-				</div>
-			</div>
 		</div>
 		<div class="container">
 			<div class="row text-center mb-5 probootstrap-animate">

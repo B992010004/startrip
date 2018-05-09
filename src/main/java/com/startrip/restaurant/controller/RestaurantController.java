@@ -14,10 +14,11 @@ import com.startrip.restaurant.service.RtDetailsService;
 public class RestaurantController {
 
 	
-	//只能瀏覽
-	
 	@Autowired
 	RtDetailsService rtDetailsService;
+	
+	
+	//只能瀏覽全部
 	
 	@RequestMapping(value = "/restaurantHome")
 	public String getAllListRtDetails(Model model) {
@@ -27,6 +28,20 @@ public class RestaurantController {
 		model.addAttribute("HIGH",list2);
 		return "restaurant/restaurantHome";
 	}
+	
+	//只能瀏覽個別測試
+	
+	@RequestMapping(value = "/Individualdetails")
+	public String getAll(Model model) {
+		return "restaurant/Individualdetails";
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	//只能瀏覽，留言，訂位
