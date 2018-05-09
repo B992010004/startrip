@@ -35,13 +35,13 @@ public class RestaurantAdminController {
 	}
 	
 	
-	@RequestMapping(value = "/insertupdate",method = RequestMethod.POST)
+	@RequestMapping(value = "/insertupdate1",method = RequestMethod.POST)
 	public String InsertRtDetails(@ModelAttribute("RtDetailsBean") RtDetailsBean rdb) {
 		return "restaurant/insertupdate";
 	}
 	
 	
-	@RequestMapping(value = "/insertupdate")
+	@RequestMapping(value = "/insertupdate2")
 	public String deleteRtDetails(Model model) {
 		RtDetailsBean rdb = new RtDetailsBean();
 		model.addAttribute("RtDetailsBean", rdb);
