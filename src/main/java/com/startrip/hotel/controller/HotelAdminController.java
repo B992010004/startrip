@@ -464,14 +464,16 @@ public class HotelAdminController {
 
 	@RequestMapping(value = "/admin/HostConnect_Onsale",method = RequestMethod.POST)
 	public String hostConnectOnsaleNextPage(Model model,@RequestParam Integer[] sort,HttpServletRequest request) {
-		for(Integer i:sort) {
-			String s = request.getParameter("photoname"+i);
+		for(Integer photoid:sort) {
+			String s = request.getParameter("photoname"+photoid);
 			if(s != null && !"0".equals(s)) {
-				Integer photoinfo = Integer.valueOf(s);				
-				System.out.println(photoinfo);
+				Integer photonameid = Integer.valueOf(s);				
+				System.out.println(photonameid);
 			}
-			System.out.println(i);
+			System.out.println(photoid);
 			System.out.println("--------");
+			
+			
 		}
 		return "redirect:/admin/HostConnect_Onsale";
 	}
