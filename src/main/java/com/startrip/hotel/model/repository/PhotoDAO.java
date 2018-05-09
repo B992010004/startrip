@@ -21,10 +21,6 @@ public class PhotoDAO {
 		session.save(bean);
 	}
 
-	public void update(PhotoBean bean) {
-		Session session = factory.getCurrentSession();
-		session.update(bean);
-	}
 
 	public Integer countByHotelid(Integer hotelid) {
 		Session session = factory.getCurrentSession();
@@ -40,5 +36,10 @@ public class PhotoDAO {
 	public PhotoBean selectByPk(Integer photoid) {
 		Session session = factory.getCurrentSession();
 		return session.get(PhotoBean.class, photoid);
+	}
+	
+	public void deleteByPk(PhotoBean bean) {
+		Session session = factory.getCurrentSession();
+		session.delete(bean);
 	}
 }

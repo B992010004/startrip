@@ -219,6 +219,7 @@ public class MemberController {
 			writer.println("<font color=\"red\">您输入的用户名存在！请重新输入！</font>");
 		}
 	}
+
 //	@ExceptionHandler(NotFoundException.class)
 //	public ModelAndView handleError(HttpServletRequest request,
 //			NotFoundException exception) {
