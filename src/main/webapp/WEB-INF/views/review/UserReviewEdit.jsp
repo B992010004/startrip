@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE HTML>
@@ -30,6 +31,11 @@
     
     <style>
 
+	    #section-home {
+            padding-top: 45px;
+            padding-bottom: 45px;
+        }
+        
         .thumb {
  	             height:75px;margin:5px;
 	    }
@@ -47,8 +53,10 @@
 	    width: 300px; 
 	    
 	    }
-
 	    
+
+
+
     </style>
 
 </head>
@@ -57,6 +65,11 @@
    	<div><jsp:include page="/WEB-INF/views/header.jsp" flush="true" /></div>
 
     <!-- END nav -->
+    <section id="section-home" class="probootstrap-cover overflow-hidden relative" style="background-image: url('/startrip/assets/images/bg_1.jpg');"
+        data-stellar-background-ratio="0.5" >
+        <div class="overlay"></div>
+    </section>
+    <!-- END section -->
     
     <section class="probootstrap_section bg-light" id="section-contact">
         <div class="container">
@@ -182,35 +195,35 @@
     </section>
     <!-- END section -->
 <%--     <c:forEach var='rank' items='${ranks}'> --%>
-	<h1>${ranks}</h1>
-	<h1>${rankSize}</h1>
+<%-- 	<h1>${ranks}</h1> --%>
+<%-- 	<h1>${rankSize}</h1> --%>
 <%--     </c:forEach> --%>
 				<div class="container">
 					<label class="sr-only-focusable">旅客評等</label>
-                        <div class="travler-rank" >
-                            <div class="progress-label">很棒</div>
+                        <div class="travler-rank" >                            
                             <div class="progress">
-								<div class="progress-bar" role="progressbar" style="width: ${ranks[0]/rankSize *100}%"aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-							</div>
+                            	<span class="progress-label">很棒</span>
+								<div class="progress-bar" role="progressbar" style="width: ${ranks[0]/rankSize *100}%"aria-valuenow="${ranks[0]/rankSize *100}" aria-valuemin="0" aria-valuemax="100"><fmt:formatNumber type="number" value="${ranks[0]/rankSize *100}" maxFractionDigits="0"/>%</div>
+							</div>							
 							
-							<div class="progress-label">非常好</div>
-							<div class="progress">							  							  
-							  <div class="progress-bar" role="progressbar" style="width: ${ranks[1]/rankSize *100}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-							</div>
-					
-							<div class="progress-label">普通</div>
-							<div class="progress">							  		
-							  <div class="progress-bar" role="progressbar" style="width: ${ranks[2]/rankSize *100}%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-							</div>
-							
-							<div class="progress-label">差</div>
 							<div class="progress">
-							  <div class="progress-bar" role="progressbar" style="width: ${ranks[3]/rankSize *100}%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-							</div>
+								<span class="progress-label">非常好</span>							  							  
+							  	<div class="progress-bar" role="progressbar" style="width: ${ranks[1]/rankSize *100}%" aria-valuenow="${ranks[1]/rankSize *100}" aria-valuemin="0" aria-valuemax="100"><fmt:formatNumber type="number" value="${ranks[1]/rankSize *100}" maxFractionDigits="0"/>%</div>
+							</div>					
 							
-							<div class="progress-label">糟透了</div>
 							<div class="progress">
-							  <div class="progress-bar" role="progressbar" style="width: ${ranks[4]/rankSize *100}%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+								<span class="progress-label">普通</span>							  		
+							  	<div class="progress-bar" role="progressbar" style="width: ${ranks[2]/rankSize *100}%" aria-valuenow="${ranks[2]/rankSize *100}" aria-valuemin="0" aria-valuemax="100"><fmt:formatNumber type="number" value="${ranks[2]/rankSize *100}" maxFractionDigits="0"/>%</div>
+							</div>							
+							
+							<div class="progress">
+								<span class="progress-label">差</span>
+								<div class="progress-bar" role="progressbar" style="width: ${ranks[3]/rankSize *100}%" aria-valuenow="${ranks[3]/rankSize *100}" aria-valuemin="0" aria-valuemax="100"><fmt:formatNumber type="number" value="${ranks[3]/rankSize *100}" maxFractionDigits="0"/>%</div>
+							</div>						
+							
+							<div class="progress">
+								<span class="progress-label">糟透了</span>
+							  	<div class="progress-bar" role="progressbar" style="width: ${ranks[4]/rankSize *100}%" aria-valuenow="${ranks[4]/rankSize *100}" aria-valuemin="0" aria-valuemax="100"><fmt:formatNumber type="number" value="${ranks[4]/rankSize *100}" maxFractionDigits="0"/>%</div>
 							</div>       
 						</div>
 				</div>
