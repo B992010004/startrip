@@ -7,6 +7,9 @@ import java.io.InputStream;
 import java.io.PrintWriter;
 import java.sql.Blob;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,6 +29,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
+
 import com.startrip.member.Service.MemberServiceInterface;
 import com.startrip.member.memberModle.MemberBean;
 
@@ -88,26 +92,33 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/LoginServlet", method = RequestMethod.POST)
-	public void Login(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	public String Login(HttpServletRequest request, HttpServletResponse response) throws IOException {	
 		HttpSession session = request.getSession();		
+		session.removeAttribute("error");
 		String mail = request.getParameter("mail");
 		String password = request.getParameter("password");
 		MemberBean mm = memberservice.select(mail);
-		
-		if (mm != null && password.equals(mm.getPassword())) {
-			session.setAttribute("LoginOK", mm);
-			response.sendRedirect("index");
-
+		if (mm != null && password.equals(mm.getPassword())) {		
+			session.setAttribute("LoginOK", mm);		
+			return"/index";
 		} else {
-			response.setContentType("text/plain;charset=UTF-8");
-			PrintWriter out = response.getWriter();
-			
-//			out.print("$('#modal').dialog('open')");
-			out.print("<font color=\"red\">帳號或密碼錯誤</font>");		
-			
+			return null;
 		}
 	}
-
+	@RequestMapping(value = "/chickpassword", method = RequestMethod.POST)
+	public void chickpassword(HttpServletRequest request, HttpServletResponse response) throws IOException {		
+	
+		String mail = request.getParameter("mail");
+		String password = request.getParameter("password");
+		MemberBean mm = memberservice.select(mail);
+		response.setContentType("text/plain;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		if (mm != null && password.equals(mm.getPassword())) {		
+			out.print(0);		
+		} else {
+			out.print(1);		
+		}
+	}
 	@RequestMapping(value = "/ModifyMember", method = RequestMethod.GET)
 	public String ModifyMember(Model model) {
 		MemberBean mb = new MemberBean();
