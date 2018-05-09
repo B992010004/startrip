@@ -54,8 +54,15 @@ public class MemberController {
 	public String InsertMember(@ModelAttribute("MemberBean") MemberBean mb, BindingResult result,
 			HttpServletRequest request) {
 		MultipartFile avatarImage = mb.getAvatarImage();
+		System.out.println(avatarImage);
 		if (avatarImage != null) {
 			String originalFilename = avatarImage.getOriginalFilename();
+			if(originalFilename=="") {
+				mb.setPhoto(null);
+				mb.setAvatar("");
+				memberservice.insert(mb);
+				return "index";
+			}
 			String ext = originalFilename.substring(originalFilename.lastIndexOf("."));
 			String rootDirectory = request.getSession().getServletContext().getRealPath("/");
 			try {
@@ -82,10 +89,7 @@ public class MemberController {
 				throw new RuntimeException("檔案上傳發生異常" + e.getMessage());
 			}
 			return "index";
-		} else {
-			mb.setPhoto(null);
-			mb.setAvatar(null);
-			memberservice.insert(mb);
+		} else {			
 			return "index";
 		}
 	}
@@ -130,9 +134,7 @@ public class MemberController {
 	@RequestMapping(value = "/ModifyMember", method = RequestMethod.POST)
 	public String ModifyMember(@ModelAttribute("MemberBean") MemberBean mb, BindingResult result,
 			HttpServletRequest request) {
-
 		MultipartFile avatarImage = mb.getAvatarImage();
-
 		String originalFilename = avatarImage.getOriginalFilename();
 		System.out.println(originalFilename);
 		String ext = originalFilename.substring(originalFilename.lastIndexOf("."));
@@ -168,10 +170,9 @@ public class MemberController {
 	@RequestMapping(value = "/getPicture/{mail:.+}")
 	public ResponseEntity<byte[]> getPicture(HttpServletRequest resp, @PathVariable String mail) {
 		MemberBean bean = memberservice.select(mail);
-
 		HttpHeaders headers = new HttpHeaders();
-
 		Blob blob = bean.getPhoto();
+	System.out.println(blob);
 		int len = 0;
 		byte[] media = null;
 		if (blob != null) {
@@ -182,7 +183,7 @@ public class MemberController {
 				throw new RuntimeException("productcontroller的getpicture發生錯誤" + e.getMessage());
 			}
 		} else {
-			InputStream is = context.getResourceAsStream("WEB-INF/views/assets/images/membericon/snop.jpg");
+			InputStream is = context.getResourceAsStream("/resources/images/user.jpg");
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			byte[] b = new byte[8192];
 			try {
