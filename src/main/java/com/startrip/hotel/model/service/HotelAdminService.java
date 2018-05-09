@@ -152,11 +152,9 @@ public class HotelAdminService {
 	public PhotoBean selectPhotoByPk(Integer photoid) {
 		return photo.selectByPk(photoid);
 	}
-	
-	public void updatePhotoSort(PhotoBean bean) {
-		photo.update(bean);
+	public void deletePhotoByPk(PhotoBean bean) {
+		photo.deleteByPk(bean);
 	}
-
 	public void deleteRoomtype(RoomtypeBean bean) {
 		roomtype.delete(bean);
 	}
@@ -172,5 +170,6 @@ public class HotelAdminService {
 	public List<PhotonameBean> selectPhotoname() {
 		return photoname.select();
 	}
+
 	
 }

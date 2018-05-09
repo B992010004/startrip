@@ -47,7 +47,9 @@ import com.startrip.hotel.model.service.HotelAdminService;
 
 @Controller
 public class HotelAdminController {
-
+	
+	private static String fileRootPath = "C:/temp/hotels/";
+	
 	@Autowired
 	HotelAdminService hotelAdminService;
 
@@ -320,7 +322,7 @@ public class HotelAdminController {
 			MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest) request;
 			List<MultipartFile> photos = multiRequest.getFiles("photos[]");
 
-			List<Map<String, String>> photoList = new ArrayList<>();
+//			List<Map<String, String>> photoList = new ArrayList<>();
 
 			for (MultipartFile photo : photos) {
 				if (photo.isEmpty() || !photo.getContentType().startsWith("image")) {
@@ -336,7 +338,7 @@ public class HotelAdminController {
 					StringBuffer fileNameBuffer = new StringBuffer();
 //					 String rootDirectory =
 //					 request.getSession().getServletContext().getRealPath("/");
-					 String rootDirectory = "C:/temp/hotels";
+					 String rootDirectory = fileRootPath;
 					System.out.println(rootDirectory);
 					int i = photo.getOriginalFilename().lastIndexOf(".");// 返回最後一個點的位置
 
@@ -348,7 +350,7 @@ public class HotelAdminController {
 					try {
 						//File imageFolder = new File(rootDirectory, "hotelid_" + hotelid);
 						File imageFolder = new File(rootDirectory, "hotelid_"+hotelid);
-						//測試時不分資料夾
+						
 						if (!imageFolder.exists()) {
 							imageFolder.mkdirs();
 						}
@@ -359,19 +361,18 @@ public class HotelAdminController {
 						bean.setHotelid(hotelid);
 						//String temp = fileNameBuffer.toString();
 						bean.setFilename("hotelid_" + hotelid + "/" + filename);
+						Integer count = hotelAdminService.countPhotoByHotelid(hotelid);
+						bean.setPhotosorting(count + 1);
 						
 						hotelAdminService.insertPhoto(bean);
 
-						Integer count = hotelAdminService.countPhotoByHotelid(hotelid);
-						bean.setPhotosorting(count + 1);
-						hotelAdminService.updatePhotoSort(bean);
 
-						System.out.println(bean.getPhotoid() + " : " + bean.getPhotosorting());
-						Map<String, String> photoMap = new TreeMap<>();
-						photoMap.put("photoid", bean.getPhotoid().toString());
-						photoMap.put("photopath", bean.getFilename());
-						photoMap.put("photosorting", bean.getPhotosorting().toString());
-						photoList.add(photoMap);
+//						System.out.println(bean.getPhotoid() + " : " + bean.getPhotosorting());
+//						Map<String, String> photoMap = new TreeMap<>();
+//						photoMap.put("photoid", bean.getPhotoid().toString());
+//						photoMap.put("photopath", bean.getFilename());
+//						photoMap.put("photosorting", bean.getPhotosorting().toString());
+//						photoList.add(photoMap);
 
 					} catch (IllegalStateException e) {
 						e.printStackTrace();
@@ -381,16 +382,16 @@ public class HotelAdminController {
 
 				}
 			}
-			Gson gson = new Gson();
-			String photoJson = gson.toJson(photoList);
-			System.out.println(photoJson);
-			PrintWriter out;
-			try {
-				out = response.getWriter();
-				out.write(photoJson);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+//			Gson gson = new Gson();
+//			String photoJson = gson.toJson(photoList);
+//			System.out.println(photoJson);
+//			PrintWriter out;
+//			try {
+//				out = response.getWriter();
+//				out.write(photoJson);
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//			}
 
 		}
 
@@ -400,6 +401,9 @@ public class HotelAdminController {
 	public String hostConnectImage(Model model,HttpSession session,HttpServletRequest request) {
 		Integer hotelid = (Integer) session.getAttribute("hotelid");
 		
+		Integer count = hotelAdminService.countPhotoByHotelid(hotelid);
+		request.setAttribute("count", count);
+		
 		List<PhotonameBean> namelist = hotelAdminService.selectPhotoname();
 		request.setAttribute("namelist", namelist);
 		
@@ -407,6 +411,22 @@ public class HotelAdminController {
 		request.setAttribute("photos", photos);
 		
 		return "hotel/admin/HostConnect_Image";
+	}
+	
+	@RequestMapping(value="/admin/deletephoto/{photoid}",method = RequestMethod.POST)
+	public void hostConnectDeleteImage(Model model,@PathVariable Integer photoid,HttpServletResponse response) {
+		System.out.println("Delete photo by id = " + photoid);
+		PhotoBean bean = new PhotoBean();
+		bean.setPhotoid(photoid);
+		hotelAdminService.deletePhotoByPk(bean);
+		
+		 PrintWriter out;
+		try {
+			out = response.getWriter();
+			out.write("delete ok");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	@RequestMapping(value="/admin/photo/{photoid}")
 	public ResponseEntity<byte[]> hostConnectImageIO(Model model,@PathVariable Integer photoid,HttpSession session,HttpServletRequest request,HttpServletResponse response) {
@@ -423,7 +443,7 @@ public class HotelAdminController {
 		int len = 0;
 		byte[] media = null;
 		
-		try (InputStream is = new FileInputStream("C:/temp/hotels/"+bean.getFilename())){
+		try (InputStream is = new FileInputStream(fileRootPath+bean.getFilename())){
 		    baos = new ByteArrayOutputStream();
 			byte[] b = new byte[8192];
 			
@@ -442,10 +462,26 @@ public class HotelAdminController {
 		
 	}
 
-	@RequestMapping(value = "/admin/HostConnect_Onsale")
+	@RequestMapping(value = "/admin/HostConnect_Onsale",method = RequestMethod.POST)
+	public String hostConnectOnsaleNextPage(Model model,@RequestParam Integer[] sort,HttpServletRequest request) {
+		for(Integer i:sort) {
+			String s = request.getParameter("photoname"+i);
+			if(s != null && !"0".equals(s)) {
+				Integer photoinfo = Integer.valueOf(s);				
+				System.out.println(photoinfo);
+			}
+			System.out.println(i);
+			System.out.println("--------");
+		}
+		return "redirect:/admin/HostConnect_Onsale";
+	}
+	
+	@RequestMapping(value = "/admin/HostConnect_Onsale",method = RequestMethod.GET)
 	public String hostConnectOnsale(Model model) {
 		return "hotel/admin/HostConnect_Onsale";
 	}
+	
+	
 	// 以上功能會員專用
 
 }

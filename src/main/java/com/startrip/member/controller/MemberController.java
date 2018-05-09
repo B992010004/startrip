@@ -31,8 +31,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.startrip.member.Service.MemberServiceInterface;
-import com.startrip.member.exception.NotFoundException;
 import com.startrip.member.memberModle.MemberBean;
+
+import javassist.NotFoundException;
 
 @Controller
 public class MemberController {
@@ -222,7 +223,7 @@ public class MemberController {
 	public ModelAndView handleError(HttpServletRequest request,
 			NotFoundException exception) {
 		ModelAndView mv=new ModelAndView();
-		mv.addObject("invalidBookId",exception.getMail());
+//		mv.addObject("invalidBookId",exception.getMail());
 		mv.addObject("exception",exception);
 		mv.addObject("url",request.getRequestURI()+"?"+request.getQueryString());
 		mv.setViewName("/index");	               
