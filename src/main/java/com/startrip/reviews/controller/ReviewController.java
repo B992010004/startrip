@@ -42,9 +42,12 @@ public class ReviewController {
 		for (Long rank : ranks) {
 			rankSize += rank;
 		}
-
 		model.addAttribute("rankSize", rankSize);
 		model.addAttribute("ranks", ranks);
+		
+		List<ReviewBean> reviews = reviewService.getReviewsByHotelId(hotelId);
+		model.addAttribute("reviews", reviews);
+		
 		return "review/UserReviewEdit";
 	}
 
