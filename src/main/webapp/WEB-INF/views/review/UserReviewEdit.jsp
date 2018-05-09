@@ -194,6 +194,7 @@
 <!--             結束 -->                
     </section>
     <!-- END section -->
+    
 <%--     <c:forEach var='rank' items='${ranks}'> --%>
 <%-- 	<h1>${ranks}</h1> --%>
 <%-- 	<h1>${rankSize}</h1> --%>
@@ -227,6 +228,19 @@
 							</div>       
 						</div>
 				</div>
+				
+		
+		<div class="container">
+		<div class="row">
+		<c:forEach var='review' items='${reviews}'>
+			<div class="col-md-8">
+			<div class="probootstrap_font-18">${review.title}</div>
+			<div class="">${review.content }</div>
+			<div>照片</div>
+			</div>
+		</c:forEach>
+		</div>
+		</div>
 
 
 

@@ -30,6 +30,7 @@
 
 	<link rel="stylesheet" href="/startrip/assets/css/helpers.css">
 	<link rel="stylesheet" href="/startrip/assets/css/style.css">
+	
 	<style>
 		#inputState {
 			height: 46px;
