@@ -1,5 +1,7 @@
 package com.startrip.restaurant.service;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -7,6 +9,7 @@ import com.startrip.restaurant.model.RtReviewsBean;
 import com.startrip.restaurant.repository.RtReviewsRepository;
 
 @Service
+@Transactional
 public class RtReviewsServiceImp implements RtReviewsService {
 	
 	@Autowired

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE HTML>
@@ -30,9 +31,32 @@
     
     <style>
 
+	    #section-home {
+            padding-top: 45px;
+            padding-bottom: 45px;
+        }
+        
         .thumb {
  	             height:75px;margin:5px;
 	    }
+	    
+	    .progress-bar {
+/* 	    	margin-top: 10px; */
+ 	    	
+	    }
+	    
+	    .progress-label{
+	    	margin-top: 5px;
+	    	width: 50px; 
+	    }
+	    .travler-rank{
+	    width: 300px; 
+	    
+	    }
+	    
+
+
+
     </style>
 
 </head>
@@ -41,6 +65,11 @@
    	<div><jsp:include page="/WEB-INF/views/header.jsp" flush="true" /></div>
 
     <!-- END nav -->
+    <section id="section-home" class="probootstrap-cover overflow-hidden relative" style="background-image: url('/startrip/assets/images/bg_1.jpg');"
+        data-stellar-background-ratio="0.5" >
+        <div class="overlay"></div>
+    </section>
+    <!-- END section -->
     
     <section class="probootstrap_section bg-light" id="section-contact">
         <div class="container">
@@ -79,7 +108,6 @@
                         <div class="form-group">
                             <label for="content" class="sr-only-focusable">您的評論內容</label>
                             <form:textarea cols="30" rows="10" path="content" class="form-control" id="content" name="content" placeholder="跟大家分享您的體驗: 客房、交通位置、設施?"></form:textarea>
-
                         </div>
 
                         <div class="form-group">
@@ -158,14 +186,49 @@
                         <form:input id="serviceRating" path="serviceRating" type="hidden" class="form-control" placeholder="服務評分用(隱藏欄位)" />
                         <form:input id="valueRating" path="valueRating" type="hidden" class="form-control" placeholder="衛生評分用(隱藏欄位)" />
                         <form:input id="roomsRating" path="roomsRating" type="hidden" class="form-control" placeholder="睡眠評分用(隱藏欄位)" />
-                    </form:form>
+                    </form:form>                  
+                    
                 </div>
             </div>
-        </div>
+     	</div>
+<!--             結束 -->                
     </section>
     <!-- END section -->
+<%--     <c:forEach var='rank' items='${ranks}'> --%>
+<%-- 	<h1>${ranks}</h1> --%>
+<%-- 	<h1>${rankSize}</h1> --%>
+<%--     </c:forEach> --%>
+				<div class="container">
+					<label class="sr-only-focusable">旅客評等</label>
+                        <div class="travler-rank" >                            
+                            <div class="progress">
+                            	<span class="progress-label">很棒</span>
+								<div class="progress-bar" role="progressbar" style="width: ${ranks[0]/rankSize *100}%"aria-valuenow="${ranks[0]/rankSize *100}" aria-valuemin="0" aria-valuemax="100"><fmt:formatNumber type="number" value="${ranks[0]/rankSize *100}" maxFractionDigits="0"/>%</div>
+							</div>							
+							
+							<div class="progress">
+								<span class="progress-label">非常好</span>							  							  
+							  	<div class="progress-bar" role="progressbar" style="width: ${ranks[1]/rankSize *100}%" aria-valuenow="${ranks[1]/rankSize *100}" aria-valuemin="0" aria-valuemax="100"><fmt:formatNumber type="number" value="${ranks[1]/rankSize *100}" maxFractionDigits="0"/>%</div>
+							</div>					
+							
+							<div class="progress">
+								<span class="progress-label">普通</span>							  		
+							  	<div class="progress-bar" role="progressbar" style="width: ${ranks[2]/rankSize *100}%" aria-valuenow="${ranks[2]/rankSize *100}" aria-valuemin="0" aria-valuemax="100"><fmt:formatNumber type="number" value="${ranks[2]/rankSize *100}" maxFractionDigits="0"/>%</div>
+							</div>							
+							
+							<div class="progress">
+								<span class="progress-label">差</span>
+								<div class="progress-bar" role="progressbar" style="width: ${ranks[3]/rankSize *100}%" aria-valuenow="${ranks[3]/rankSize *100}" aria-valuemin="0" aria-valuemax="100"><fmt:formatNumber type="number" value="${ranks[3]/rankSize *100}" maxFractionDigits="0"/>%</div>
+							</div>						
+							
+							<div class="progress">
+								<span class="progress-label">糟透了</span>
+							  	<div class="progress-bar" role="progressbar" style="width: ${ranks[4]/rankSize *100}%" aria-valuenow="${ranks[4]/rankSize *100}" aria-valuemin="0" aria-valuemax="100"><fmt:formatNumber type="number" value="${ranks[4]/rankSize *100}" maxFractionDigits="0"/>%</div>
+							</div>       
+						</div>
+				</div>
 
-    
+
 
     <div>
         <jsp:include page="/WEB-INF/views/footer.jsp" flush="true" />
@@ -393,6 +456,11 @@
 	<script>
         function fileViewer() {
             var theFiles = document.getElementById("files").files;
+
+            var dropZone = document.getElementById("dropZone")
+            dropZone.innerHTML=""
+			// 修正圖片未被清除的BUG
+            
             for (var i = 0; i < theFiles.length; i++) {
                 
                 var reader = new FileReader();
@@ -403,8 +471,9 @@
                     var imgObj = document.createElement("img");  //<img>
                     imgObj.setAttribute("src", fileContent);  //<img src="....
                     imgObj.setAttribute("class", "thumb"); //<img src="... class="....
-console.log("進來了");
-                    document.getElementById("dropZone").appendChild(imgObj);
+                    
+                    dropZone.appendChild(imgObj);
+					// 移出getElementById
                 }
             }
         }

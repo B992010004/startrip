@@ -42,4 +42,10 @@ public class ReviewServiceImp implements ReviewService {
 
 	}
 
+	@Transactional
+	@Override
+	public List<Long> getRankByHotelId(int hotelId) {
+		return reviewRepositoryImp.getRankByHotelId(hotelId);
+	}
+
 }

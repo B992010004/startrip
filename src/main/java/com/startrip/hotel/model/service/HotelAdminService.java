@@ -24,6 +24,7 @@ import com.startrip.hotel.model.repository.ServicelistDAO;
 import com.startrip.hotel.model.repository.ServicenameDAO;
 
 @Service
+@Transactional
 public class HotelAdminService {
 	@Autowired
 	HotelsDAO hotels;
@@ -40,16 +41,15 @@ public class HotelAdminService {
 	@Autowired
 	RoomtypeDAO roomtype;
 	
-	@Transactional
 	public HotelsBean selectHotelByPk(Integer hotelid) {
 		return hotels.selectByPk(hotelid);
 	}
-	@Transactional
+
 	public int insertHotel(HotelsBean bean) {
 		System.out.println("開始新增飯店基本資料");
 		return hotels.insert(bean);
 	}
-	@Transactional
+	
 	public void updateHotel(Integer hotelid, String name,  String phone,
 			 String address,  Integer star) {
 		System.out.println("開始更新飯店基本資料");
@@ -61,14 +61,14 @@ public class HotelAdminService {
 		bean.setHotelstar(star);
 		
 	}
-	@Transactional
+
 	public void updateHotel(Integer hotelid,String info,String note) {
 		System.out.println("開始更新飯店介紹與政策提示");
 		HotelsBean bean = hotels.selectByPk(hotelid);
 		bean.setHotelinfo(info);
 		bean.setHotelrulenote(note);		
 	}
-	@Transactional
+
 	public void updateHotel(Integer hotelid, Integer refund, Integer advanceday) {
 		System.out.println("開始更新飯店介紹與政策提示");
 		HotelsBean bean = hotels.selectByPk(hotelid);
@@ -76,7 +76,6 @@ public class HotelAdminService {
 		bean.setAdvancedayid(advanceday);		
 	}
 
-	@Transactional
 	public void updateRoomtype(Integer roomid,java.sql.Date checkin,java.sql.Date checkout,Integer price,String roomnote) {
 		RoomtypeBean bean = roomtype.selectByPk(roomid);
 		bean.setOpendate(checkin);
@@ -85,7 +84,7 @@ public class HotelAdminService {
 		bean.setRoomnote(roomnote);
 		bean.setRoomstate(true);
 	}
-	@Transactional
+
 	public void updateRoomtype(Integer roomid,String name,Integer people,Integer rooms) {
 		RoomtypeBean bean = roomtype.selectByPk(roomid);
 		if(name != null) {
@@ -99,63 +98,54 @@ public class HotelAdminService {
 		}
 	}
 	
-
-	
-	@Transactional
 	public RoomtypeBean selectRoomtypeByPk(Integer roomid) {
 		return roomtype.selectByPk(roomid);
 	}
 	
-	@Transactional
 	public List<RoomtypeBean> selectRoomtypeByHotelid(Integer hotelid){
 		return roomtype.selectByHotelid(hotelid);
 	}
 
-	@Transactional
 	public void insertServicelist(ServicelistBean bean) {
 		servicelist.insert(bean);
 	}
-	@Transactional
+
 	public void deleteServicelistByHotelid(Integer hotelid) {
 		servicelist.delete(hotelid);
 	}
-	@Transactional
+
 	public void insertFacilitylist(FacilitylistBean bean) {
 		facilitylist.insert(bean);
 	}
-	@Transactional
+
 	public void deleteFacilitylistByHotelid(Integer hotelid) {
 		facilitylist.deleteByHotelid(hotelid);
 	}
-	@Transactional
+
 	public void insertRoomtype(RoomtypeBean bean) {
 		roomtype.insert(bean);
 	}
-	
-	@Transactional
+
 	public List<Integer> selectFacilitylistByHotelid(Integer hotelid){
 		return facilitylist.selectByHotelid(hotelid);
 	}
-	
-	@Transactional
+
 	public List<Integer> selectServicelistByHotelid(Integer hotelid){
 		return servicelist.selectByHotelid(hotelid);
 	}
-	
-	@Transactional
+
 	public void deleteRoomtype(RoomtypeBean bean) {
 		roomtype.delete(bean);
 	}
-	@Transactional
+	
 	public List<ServicenameBean> selectServicename() {
 		return servicename.select();
 	}
-	@Transactional
+
 	public List<FacilitynameBean> selectFacilityname() {
 		return facilityname.select();
 	}
-	
-	@Transactional
+
 	public List<PhotonameBean> selectPhotoname() {
 		return photoname.select();
 	}

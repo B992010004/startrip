@@ -1,6 +1,9 @@
 package com.startrip.reviews.repository;
 
+
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -43,8 +46,8 @@ public class ReviewRepositoryImp implements ReviewRepository {
 	@Override
 	public void addReview(ReviewBean review) {
 		Session session = sessionFacory.getCurrentSession();
+		review.setUpdateTime(new Timestamp(new Date().getTime()));
 		session.save(review);
-
 	}
 
 	@Override
@@ -54,5 +57,20 @@ public class ReviewRepositoryImp implements ReviewRepository {
 //		int n = session.createQuery(hql).setParameter("newQuantity", newQuantity).setParameter("id", productId)
 //				.executeUpdate();
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Long> getRankByHotelId(int hotelId) {
+		String hql = "SELECT count(overallRank) FROM ReviewBean rb WHERE rb.hotelId = :hotelId GROUP BY rb.overallRank";
+		Session session = sessionFacory.getCurrentSession();
+		List<Long> list = new ArrayList<>();
+		list = session.createQuery(hql).setParameter("hotelId", hotelId).list();
+//		System.out.println(list);
+		return list;		
+	}
+
+
+
+
 
 }
