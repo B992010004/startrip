@@ -19,35 +19,27 @@ public class RestaurantAdminController {
 	@Autowired
 	RtDetailsService rtDetailsService;
 	
-<<<<<<< HEAD
+
 	@RequestMapping(value = "/insertupdate1")
 	public String selectRtDetails(Model model) {
 		RtDetailsBean rdb = new RtDetailsBean();
 		model.addAttribute("RtDetailsBean", rdb);
 		return "restaurant/insertupdate";
 	}
-=======
+
 	//可以新刪修
->>>>>>> a887b2d2094dcd69a2fbde6531f6176fd76973c1
+
 	
 	//新增
 	
 	@RequestMapping(value = "/insertupdate", method = RequestMethod.GET)
 	public String insertRtDetails(Model model) {
 		RtDetailsBean rdb = new RtDetailsBean();
-<<<<<<< HEAD
 		model.addAttribute("RtDetailsBean", rdb);
 		return "restaurant/insertupdate";
 	}
 	
 	
-	@RequestMapping(value = "/insertupdate",method = RequestMethod.POST)
-	public String InsertRtDetails(@ModelAttribute("RtDetailsBean") RtDetailsBean rdb) {
-=======
-		model.addAttribute("RtDetailsBean",rdb);
->>>>>>> a887b2d2094dcd69a2fbde6531f6176fd76973c1
-		return "restaurant/insertupdate";
-	}
 	
 	@RequestMapping(value = "/insertRestaurant", method = RequestMethod.POST)
 	public String insertRtDetails(@ModelAttribute("RtDetailsBean")RtDetailsBean rdb,BindingResult result,HttpServletRequest request) {
