@@ -33,6 +33,8 @@
 					<li class="nav-item"><a class="nav-link"
 						href="/startrip/restaurantHome">餐廳</a></li>
 					<li class="nav-item"><a class="nav-link"
+						href="/startrip/station/index">大眾運輸</a></li>
+					<li class="nav-item"><a class="nav-link"
 						href="/startrip/TravelMain">行程規劃</a></li>
 					<li class="nav-item"><a class="nav-link"														
 						href="/startrip/review/UserReviewEdit/1">寫評論</a></li>	
@@ -42,23 +44,23 @@
 
 					<li class="nav-item">
 						<c:if test="${ empty LoginOK }">
-							<a class="nav-link" href="/startrip/login" data-toggle="modal" data-target=".bd-example-modal-lg">登入</a>
+							<a class="nav-link" href="#" data-toggle="modal" data-target=".bd-example-modal-lg">登入</a>
 						</c:if>
 					</li>
 					<li class="nav-item">
 						<c:if test="${ !empty LoginOK }">								
-			              <a class="nav-link" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			            <div class="dropdown show">
+					<a class="nav-link" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">		
 								${LoginOK.username}
-									<img style="border-radius: 50%;" width="30px" height="30px" src="<c:url value='getPicture/${LoginOK.mail}'/>">
+									<img style="border-radius: 50%;" width="30px" height="30px" src="<c:url value='/getPicture/${LoginOK.mail}'/>">
 								</a>
-								<div class="dropdown-menu " aria-labelledby="dropdownMenuLink">
+								  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 									<a class="btn" href="ModifyMember">修改個人資料 </a>
 									<a class="btn" href="#">Another action</a>
 									<a class="btn" href="logout">登出</a>
-
+								</div>
 								</div>
 							</c:if>
-						
 					</li>
 				</ul>
 			</div>

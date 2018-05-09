@@ -30,6 +30,7 @@
 
 	<link rel="stylesheet" href="/startrip/assets/css/helpers.css">
 	<link rel="stylesheet" href="/startrip/assets/css/style.css">
+	
 	<style>
 		#inputState {
 			height: 46px;
@@ -66,7 +67,7 @@
 		<div class="container">
 			<div class="row align-items-center">
 				<div class="col-md probootstrap-animate">
-					<form action="HotelsSearchResult.html" class="probootstrap-form" style="border-radius:125px;">
+					<form action="HotelsSearchResult.html" class="probootstrap-form" style="border-radius:30px;">
 						<div class="form-group">
 							<div class="row">
 								<!-- place -->
