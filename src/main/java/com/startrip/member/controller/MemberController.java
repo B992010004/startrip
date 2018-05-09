@@ -219,14 +219,15 @@ public class MemberController {
 			writer.println("<font color=\"red\">您输入的用户名存在！请重新输入！</font>");
 		}
 	}
-	@ExceptionHandler(NotFoundException.class)
-	public ModelAndView handleError(HttpServletRequest request,
-			NotFoundException exception) {
-		ModelAndView mv=new ModelAndView();
+
+//	@ExceptionHandler(NotFoundException.class)
+//	public ModelAndView handleError(HttpServletRequest request,
+//			NotFoundException exception) {
+//		ModelAndView mv=new ModelAndView();
 //		mv.addObject("invalidBookId",exception.getMail());
-		mv.addObject("exception",exception);
-		mv.addObject("url",request.getRequestURI()+"?"+request.getQueryString());
-		mv.setViewName("/index");	               
-		return mv;
-	}
+//		mv.addObject("exception",exception);
+//		mv.addObject("url",request.getRequestURI()+"?"+request.getQueryString());
+//		mv.setViewName("/index");	               
+//		return mv;
+//	}
 }

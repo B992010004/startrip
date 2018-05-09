@@ -5,10 +5,12 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.NativeQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -21,11 +23,11 @@ import com.startrip.travelPlan.model.TravelAllBean;
 import com.startrip.travelPlan.model.TravelViewBean;
 @Repository
 public class TravelViewDao implements ITravelViewDao {
-	
-//	//測試-----	
-//		SessionFactory factory = HibernateUtil.getSessionFactory();
-//	//------
 //	
+//	//測試-----	
+//		SessionFactory factory = HibernateUtil_SQLServer.getSessionFactory();
+//	//------
+	
 	
 	
 	@Autowired
@@ -103,50 +105,58 @@ public class TravelViewDao implements ITravelViewDao {
 		String hql = "SELECT DISTINCT orgclass From TravelViewBean ";
 		List<String> list = new ArrayList<>();
 		Session session = factory.getCurrentSession();
-		list = session.createQuery(hql).getResultList();
+		list = session.createQuery(hql).list();
+		return list;
+	}
+	@Override
+	public List<TravelViewBean> getAddress(String address){
+		String sql = "Select * from TravelView where viewaddr like '%"+address+"%'";
+		List<TravelViewBean> list = new ArrayList<>();
+		 list =factory.getCurrentSession().createNativeQuery(sql,TravelViewBean.class).getResultList();
 		return list;
 	}
 	
+	
+	
+	
 	//測試-----		
 	public static void main (String args[]){
-		HibernateUtil.getSessionFactory().getCurrentSession().beginTransaction();
+		HibernateUtil_SQLServer.getSessionFactory().getCurrentSession().beginTransaction();
 			TravelViewDao dao = new TravelViewDao();
 			TravelViewBean bean =  new TravelViewBean();
-			
-			
-			
-			bean.setMemberId(1);
-			bean.setViewName("大屯山");
-			bean.setViewaddr("台北");
-			
 			try {
-				 System.out.println(bean.toString());
-			dao.insert(bean);
+				List<TravelViewBean> list  =dao.getAddress("海岸");
+			if(list.isEmpty()) {
+				System.out.println("null");
+			}
+			for(TravelViewBean bean1 :list) {
+//				TravelViewBean tvb = (TravelViewBean)bean1;
+				System.out.println("bean = "+bean1.getViewName());
+			}
+//			
+//			bean.setMemberId(1);
+//			bean.setViewName("大屯山");
+//			bean.setViewaddr("台北");
+//			
+//			try {
+//				 System.out.println(bean.toString());
+//			dao.insert(bean);
 //			
 //			
-//					 bean = dao.Select_TravelId(1);
+//					 bean = dao.select_ViewId(2);
 //					 System.out.println(bean.toString());
 //					 
-//					 bean.setMail("456@gamil.com");
-//					 try {
-//						bean.toString();
-//						dao.update(bean);
-//					} catch (SQLException e) {
-//						e.printStackTrace();
-//					}
-//					 List<TravelAllBean> list= dao.selectAllTravel();
-//					for(TravelAllBean result : list) {
-//						System.out.println(result.toString());
-//					}
-////					dao.TravelPrimayKey(bean);
+//					
+//					 bean.toString();
+//					dao.update(bean);
 					
 					
 //					System.out.println(bean.getTravelId());
 //					dao.delete(bean.getTravelId());
-			HibernateUtil.getSessionFactory().getCurrentSession().getTransaction().commit();
+			HibernateUtil_SQLServer.getSessionFactory().getCurrentSession().getTransaction().commit();
 			}finally {
-				if(HibernateUtil.getSessionFactory()!=null) {
-					HibernateUtil.close();
+				if(HibernateUtil_SQLServer.getSessionFactory()!=null) {
+					HibernateUtil_SQLServer.close();
 				}
 			}
 	}

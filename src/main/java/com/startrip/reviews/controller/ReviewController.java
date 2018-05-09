@@ -1,14 +1,25 @@
 package com.startrip.reviews.controller;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.io.InputStream;
+import java.sql.Blob;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.UUID;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.CacheControl;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,8 +30,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.startrip.reviews.model.ReviewBean;
-import com.startrip.reviews.repository.ReviewRepository;
-import com.startrip.reviews.repository.ReviewRepositoryImp;
 import com.startrip.reviews.service.ReviewService;
 
 @Controller
@@ -29,25 +38,34 @@ public class ReviewController {
 	@Autowired
 	ReviewService reviewService;
 
-	// @Autowired
-	// private ReviewBean reviewBean;
+	@Autowired
+	ServletContext context;
 
 	@RequestMapping(value = "/review/UserReviewEdit/{hotelId}", method = RequestMethod.GET)
 	public String getAddNewUserReviewEdit(@PathVariable("hotelId") Integer hotelId, Model model) {
+		// bug紀錄: 這段程式碼有分數有空缺會有問題
+
 		ReviewBean rb = new ReviewBean();
 		model.addAttribute("reviewBean", rb);
 		List<Long> ranks = reviewService.getRankByHotelId(hotelId);
 
-		Long rankSize = (long) 0.0;
+		Integer rankSize = 0;
 		for (Long rank : ranks) {
-			rankSize += rank;
+			Integer tmp = rank.intValue();
+			rankSize += tmp;
 		}
+
+		// 避免0/0
+		if (rankSize == 0) {
+			rankSize = -1;
+		}
+
 		model.addAttribute("rankSize", rankSize);
 		model.addAttribute("ranks", ranks);
-		
+
 		List<ReviewBean> reviews = reviewService.getReviewsByHotelId(hotelId);
 		model.addAttribute("reviews", reviews);
-		
+
 		return "review/UserReviewEdit";
 	}
 
@@ -75,7 +93,9 @@ public class ReviewController {
 				System.out.println("文件名稱: " + avata.getName());
 				System.out.println("文件原名: " + avata.getOriginalFilename());
 				System.out.println("========================================");
-				String rootDirectory = request.getSession().getServletContext().getRealPath("/");
+				// String rootDirectory =
+				// request.getSession().getServletContext().getRealPath("/");
+				String rootDirectory = "C:\\temp\\";
 				System.out.println(rootDirectory);
 				int i = avata.getOriginalFilename().lastIndexOf(".");// 返回最後一個點的位置
 
@@ -120,6 +140,35 @@ public class ReviewController {
 		reviewService.addReview(rb);
 		System.out.println("準備return");
 		return "redirect:/";
+	}
+
+	// 處理照片請求
+	@RequestMapping(value = "/getPicture/reviewUpload/{photoName:.+}", method = RequestMethod.GET)
+	public ResponseEntity<byte[]> getPicture(HttpServletResponse resp, @PathVariable String photoName) {
+
+		HttpHeaders headers = new HttpHeaders();
+		ByteArrayOutputStream baos = null;
+		int len = 0;
+		byte[] media = null;
+
+		try (InputStream is = new FileInputStream("C:/temp/reviewUpload/" + photoName)) {
+			baos = new ByteArrayOutputStream();
+			byte[] b = new byte[8192];
+
+			while ((len = is.read(b)) != -1) {
+				baos.write(b, 0, len);
+			}
+		} catch (IOException e) {
+			throw new RuntimeException("ProductController 的  getPicture() 發生 IOException:" + e.getMessage());
+		}
+		media = baos.toByteArray();
+		headers.setCacheControl(CacheControl.noCache().getHeaderValue());
+		String mimeType = context.getMimeType(photoName);
+//		headers.setContentType(MediaType.IMAGE_JPEG);
+		headers.setContentType(MediaType.parseMediaType(mimeType));
+		ResponseEntity<byte[]> responseEntity = new ResponseEntity<>(media, headers, HttpStatus.OK);
+
+		return responseEntity;
 	}
 
 	private boolean isImage(MultipartFile file) {
