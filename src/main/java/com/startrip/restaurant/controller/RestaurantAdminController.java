@@ -19,7 +19,7 @@ public class RestaurantAdminController {
 	//可以新刪修
 	
 	
-	@RequestMapping(value = "/insertupdate")
+	@RequestMapping(value = "/insertupdate1")
 	public String selectRtDetails(Model model) {
 		RtDetailsBean rdb = new RtDetailsBean();
 		model.addAttribute("RtDetailsBean", rdb);
@@ -35,7 +35,7 @@ public class RestaurantAdminController {
 	}
 	
 	
-	@RequestMapping(value = "/insertupdate1",method = RequestMethod.POST)
+	@RequestMapping(value = "/insertupdate",method = RequestMethod.POST)
 	public String InsertRtDetails(@ModelAttribute("RtDetailsBean") RtDetailsBean rdb) {
 		return "restaurant/insertupdate";
 	}

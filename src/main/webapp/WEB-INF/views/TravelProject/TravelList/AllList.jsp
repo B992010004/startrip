@@ -16,47 +16,47 @@
 	        	<button type="button" class="btn btn-outline-primary switch">切換</button>
 	    	</div>
     <div class="aside1">
-          <div class="listcard">
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="..." alt="Card image cap">
-                <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="..." alt="Card image cap">
-                <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="..." alt="Card image cap">
-                <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="..." alt="Card image cap">
-                <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="..." alt="Card image cap">
-                <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
+          <div class="listcard" id="views">
+<!--           	<h5 class="card-title">Card title</h5> -->
+<!--             <div class="card" style="width: 18rem;"> -->
+              
+<!--                 <img class="card-img-top" src="..." alt="Card image cap"> -->
+<!--                 <div class="card-body"> -->
+           
+<!--                 </div> -->
+<!--             </div> -->
+<!--             <h5 class="card-title">Card title</h5> -->
+<!--             <div class="card" style="width: 18rem;"> -->
+              
+<!--                 <img class="card-img-top" src="..." alt="Card image cap"> -->
+<!--                 <div class="card-body"> -->
+           
+<!--                 </div> -->
+<!--             </div> -->
+<!--             <h5 class="card-title">Card title</h5> -->
+<!--             <div class="card" style="width: 18rem;"> -->
+              
+<!--                 <img class="card-img-top" src="..." alt="Card image cap"> -->
+<!--                 <div class="card-body"> -->
+           
+<!--                 </div> -->
+<!--             </div> -->
+<!--             <h5 class="card-title">Card title</h5> -->
+<!--             <div class="card" style="width: 18rem;"> -->
+              
+<!--                 <img class="card-img-top" src="..." alt="Card image cap"> -->
+<!--                 <div class="card-body"> -->
+           
+<!--                 </div> -->
+<!--             </div> -->
+<!--             <h5 class="card-title">Card title</h5> -->
+<!--             <div class="card" style="width: 18rem;"> -->
+              
+<!--                 <img class="card-img-top" src="..." alt="Card image cap"> -->
+<!--                 <div class="card-body"> -->
+           
+<!--                 </div> -->
+<!--             </div> -->
     </div>
 </div>
     <div class="aside">
@@ -242,7 +242,7 @@ $(function(){
 	$('.timeline-content.timeline-card').empty();
 			var docFrag = $(document.createDocumentFragment());
 			
-			for( i = 0;i<=20;i++){
+			for( i = 0;i<=data.Name.travelDays;i++){
 				//---天數新增
 				var day=$("<div class='timeline-item day'></div>");
 				var listImg=$("<div class='timeline-img'></div>");
@@ -425,6 +425,56 @@ $(function(){
         }
        
       </script>
+<script type="text/javascript">
+//推薦景點
+$(function(){
+	var value = {};
+	value.address= '海岸';
+	encode =encodeURI(encodeURI(value));
+	
+console.log(value);
+	$.ajax({
+		url:"/startrip/TravelView/place",
+		type:"GET",
+		dataType:"json",
+		data:value,
+		contentType: "application/json; charset=UTF-8",
+		success:function(data){
+// 			<h5 class="card-title">Card title</h5>
+//             <div class="card" style="width: 18rem;">
+              
+//                 <img class="card-img-top" src="..." alt="Card image cap">
+//                 <div class="card-body">
+           
+//                 </div>
+//             </div>
+				$('#views').empty();
+		console.log(data[0])
+		 console.log(data[1])
+			var length = data.length;
+				var docFrag = $(document.createDocumentFragment());
+			for(var i=0;i<length;i++){
+				
+				var split =data[i].imgName.split(";");
+				
+				var img = $('<img class="card-img-top"  alt="Card image cap">').attr("src",'/showImage/'+split[0]);
+																							
+				console.log("c:/111/"+split[0]);
+				console.log(split);
+				var body = $('<div class="card-body"></div>');
+				var card = $('<div class="card" style="width: 18rem;"></div>');
+				var title = $('<h5 class="card-title">'+data[i].viewName+'</h5>');
+				card.html([img,body])
+				docFrag.html([title,card])
+			}
+			$('#views').html(docFrag);
+		
+		} 
+	})
+})
+
+</script>
+
 
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDf6zB19vCK-owPk0xpD9thNJ9LJaE03eo&libraries=places&callback=initMap&language=zh-tw&sensor=false" async defer></script>
 </body>

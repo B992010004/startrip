@@ -1,10 +1,17 @@
 package com.startrip.travelPlan.controller;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -12,7 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -37,6 +44,9 @@ public class TravelPlanController {
 
 	@Autowired
 	ITravelViewService viewService;
+	
+	@Autowired
+	ServletContext ctx;
 	
 	//新增行程-------------------------------------------
 	@RequestMapping(value="Travel/addPlan",method=RequestMethod.GET)
@@ -75,7 +85,7 @@ public class TravelPlanController {
 //		Integer id =bean.getTravelId();
 		System.out.println(id);
 		TravelAllBean tb = travelservice.Select_TravelId(id);
-		
+	
 		HashMap<String, Object> result = new HashMap<>();
 		result.put("Name", tb);
 		result.put("startDate", tb.getStartDate().toString());
@@ -176,16 +186,17 @@ public class TravelPlanController {
 			String ext = originalFile.substring(originalFile.indexOf("."));
 			//取原始路徑
 			String rootDirectory = request.getSession().getServletContext().getRealPath("/");
-
+//			System.out.println(request.getServletContext().getRealPath("/")+"/assets/images");
 			try {
 				//建立root目錄
-				File imgFolder = new File(rootDirectory, "images");
+				String path = "E:/temp/images";
+				File imgFolder = new File(path, "travel");
 				if (!imgFolder.exists())
 					//建立目錄
 					imgFolder.mkdirs();
 				//建立檔案
-				File file = new File(imgFolder, originalFile + ext);
-				
+				File file = new File(imgFolder, originalFile);
+				System.out.println(imgFolder+originalFile);
 				img.transferTo(file);
 
 			} catch (Exception e) {
@@ -199,17 +210,71 @@ public class TravelPlanController {
 		return "redirect:/TravelViews/all";
 
 	}
-
+  
 	@ModelAttribute("orgclassList")
 	public List<String> getOrgClass() {
 		return viewService.getAllOrgClass();
 	}
 
 	@RequestMapping(value = "TravelViews/all", method = RequestMethod.GET)
-	public String AllViews(Model model) {
+	public String allViews(Model model) {
 		List<TravelViewBean> list = viewService.select();
 		model.addAttribute("views", list);
 		return "TravelProject/TravelViews/AllViews";
 	}
+	
+	
+	@RequestMapping(value="TravelView/place",method=RequestMethod.GET)
+	@ResponseBody
+//	public ArrayList<HashMap<String, Object>> placeViews(String address) {
+		public ArrayList<TravelViewBean> placeViews(String address) {
+//		String name =java.net.URLDecoder.decode(address);
+		
+		HashMap<String, Object> result = new HashMap<>();
+		TravelViewBean bean = new TravelViewBean();
+		List<TravelViewBean> lists = viewService.getAddress(address);
+		ArrayList<TravelViewBean> all = new ArrayList<>();
+		for(int i =0;i<lists.size();i++) {
+		bean=lists.get(i);
+		
+//		result.put(String.valueOf(i), bean);
+//		result.put("size",lists.size());
+		all.add(bean);
+		}
+		
+		return all;
+	}
 
+	@RequestMapping(value="/showImage/{fileName}.{suffix}" ,method =RequestMethod.GET)
+	public void showImage(@PathVariable("fileName") String fileName,
+			@PathVariable("suffix") String suffix,HttpServletResponse response) {
+		String path = "E:/temp/images/";
+		File imgFile = new File(path+fileName+suffix);
+		System.out.println(path+fileName+suffix);
+		responseFile(response,imgFile);
+	}
+	
+	private void responseFile(HttpServletResponse response,File imgFile) {
+		try {
+			InputStream is = new FileInputStream(imgFile);
+			OutputStream os = response.getOutputStream();
+			byte[] buffer = new byte[8192];
+			while(is.read(buffer)!=-1) {
+				os.write(buffer);
+			}
+				os.flush();
+				os.close();
+				is.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			
+		
+		
+	}
+	
 }
