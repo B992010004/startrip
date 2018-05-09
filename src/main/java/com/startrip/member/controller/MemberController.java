@@ -7,15 +7,11 @@ import java.io.InputStream;
 import java.io.PrintWriter;
 import java.sql.Blob;
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.rowset.serial.SerialBlob;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.CacheControl;
 import org.springframework.http.HttpHeaders;
@@ -29,10 +25,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.startrip.member.Service.MemberServiceInterface;
 import com.startrip.member.memberModle.MemberBean;
-
 
 @Controller
 public class MemberController {
@@ -60,65 +54,72 @@ public class MemberController {
 	public String InsertMember(@ModelAttribute("MemberBean") MemberBean mb, BindingResult result,
 			HttpServletRequest request) {
 		MultipartFile avatarImage = mb.getAvatarImage();
-		
-		String originalFilename = avatarImage.getOriginalFilename();
-		String ext = originalFilename.substring(originalFilename.lastIndexOf("."));
-		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
 		if (avatarImage != null) {
+			String originalFilename = avatarImage.getOriginalFilename();
+			String ext = originalFilename.substring(originalFilename.lastIndexOf("."));
+			String rootDirectory = request.getSession().getServletContext().getRealPath("/");
 			try {
 				byte[] b = avatarImage.getBytes();
 				Blob blob = new SerialBlob(b);
 				mb.setPhoto(blob);
-				
+
 			} catch (Exception e) {
 				e.printStackTrace();
 				throw new RuntimeException("檔案上傳發生異常" + e.getMessage());
 			}
-		}
-		mb.setAvatar(mb.getMail() + ext);
-		memberservice.insert(mb);
 
-		try {
-			File imageFolder = new File(rootDirectory, "membericon");
-			if (!imageFolder.exists())
-				imageFolder.mkdirs();
-			File file = new File(imageFolder, mb.getMail() + ext);
-			avatarImage.transferTo(file);
+			mb.setAvatar(mb.getMail() + ext);
+			memberservice.insert(mb);
 
-		} catch (Exception e) {
-			throw new RuntimeException("檔案上傳發生異常" + e.getMessage());
+			try {
+				File imageFolder = new File(rootDirectory, "membericon");
+				if (!imageFolder.exists())
+					imageFolder.mkdirs();
+				File file = new File(imageFolder, mb.getMail() + ext);
+				avatarImage.transferTo(file);
+
+			} catch (Exception e) {
+				throw new RuntimeException("檔案上傳發生異常" + e.getMessage());
+			}
+			return "index";
+		} else {
+			mb.setPhoto(null);
+			mb.setAvatar(null);
+			memberservice.insert(mb);
+			return "index";
 		}
-		return "index";
 	}
 
 	@RequestMapping(value = "/LoginServlet", method = RequestMethod.POST)
-	public String Login(HttpServletRequest request, HttpServletResponse response) throws IOException {	
-		HttpSession session = request.getSession();		
+	public String Login(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		HttpSession session = request.getSession();
 		session.removeAttribute("error");
 		String mail = request.getParameter("mail");
 		String password = request.getParameter("password");
 		MemberBean mm = memberservice.select(mail);
-		if (mm != null && password.equals(mm.getPassword())) {		
-			session.setAttribute("LoginOK", mm);		
-			return"/index";
+		if (mm != null && password.equals(mm.getPassword())) {
+			session.setAttribute("LoginOK", mm);
+			return "/index";
 		} else {
 			return null;
 		}
 	}
+
 	@RequestMapping(value = "/chickpassword", method = RequestMethod.POST)
-	public void chickpassword(HttpServletRequest request, HttpServletResponse response) throws IOException {		
-	
+	public void chickpassword(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
 		String mail = request.getParameter("mail");
 		String password = request.getParameter("password");
 		MemberBean mm = memberservice.select(mail);
 		response.setContentType("text/plain;charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		if (mm != null && password.equals(mm.getPassword())) {		
-			out.print(0);		
+		if (mm != null && password.equals(mm.getPassword())) {
+			out.print(0);
 		} else {
-			out.print(1);		
+			out.print(1);
 		}
 	}
+
 	@RequestMapping(value = "/ModifyMember", method = RequestMethod.GET)
 	public String ModifyMember(Model model) {
 		MemberBean mb = new MemberBean();
@@ -142,7 +143,7 @@ public class MemberController {
 				byte[] b = avatarImage.getBytes();
 				Blob blob = new SerialBlob(b);
 				mb.setPhoto(blob);
-				
+
 			} catch (Exception e) {
 				e.printStackTrace();
 				throw new RuntimeException("檔案上傳發生異常" + e.getMessage());
@@ -163,15 +164,13 @@ public class MemberController {
 		}
 		return "index";
 	}
-	
-	
+
 	@RequestMapping(value = "/getPicture/{mail:.+}")
 	public ResponseEntity<byte[]> getPicture(HttpServletRequest resp, @PathVariable String mail) {
 		MemberBean bean = memberservice.select(mail);
-		
-	
+
 		HttpHeaders headers = new HttpHeaders();
-	
+
 		Blob blob = bean.getPhoto();
 		int len = 0;
 		byte[] media = null;
@@ -199,20 +198,18 @@ public class MemberController {
 		ResponseEntity<byte[]> responseEntity = new ResponseEntity<>(media, headers, HttpStatus.OK);
 		return responseEntity;
 	}
-	
-	@RequestMapping(value = "/checkid",method = RequestMethod.GET)
-    public void repeat(HttpServletRequest request, HttpServletResponse response) throws IOException{
-		 String mail = request.getParameter("mail");
-		MemberBean mm = memberservice.select(mail);	
-		response.setContentType("text/html; charset=utf-8"); 
-		PrintWriter writer = response.getWriter();
-		if(mm==null){			  
-			writer.println("<font color=\"green\">恭喜您，可以注册！</font>");		
-        }else {
-        	writer.println("<font color=\"red\">您输入的用户名存在！请重新输入！</font>");
-       }    
-    }
 
-	
-	
+	@RequestMapping(value = "/checkid", method = RequestMethod.GET)
+	public void repeat(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		String mail = request.getParameter("mail");
+		MemberBean mm = memberservice.select(mail);
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter writer = response.getWriter();
+		if (mm == null) {
+			writer.println("<font color=\"green\">恭喜您，可以注册！</font>");
+		} else {
+			writer.println("<font color=\"red\">您输入的用户名存在！请重新输入！</font>");
+		}
+	}
+
 }

@@ -27,6 +27,7 @@
 
 </head>
 <body>
+	
 	<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
 		aria-labelledby="myLargeModalLabel" aria-hidden="true" id="modal">
 		<div class="modal-dialog modal-md">
@@ -92,6 +93,7 @@
 			<!-- /.login-box -->
 		</div>
 	</div>
+	
 	<script>
 		$('#modal').modal('hide')
 		$(function() {
@@ -109,8 +111,14 @@
 					chkPassword);
 			document.getElementById("loginSubmit").addEventListener("click",
 					checkUserName);
-
+			document.getElementById("modal").addEventListener("blur",
+					reset);
 		})
+		function reset() {
+			document.getElementById("nname").innerHTML = "";
+			document.getElementById("pswid").innerHTML = "";
+			document.getElementById("errorMsg").innerHTML = "";
+		}
 		function ckname() {
 			var getname = document.getElementById("mail").value;
 			if (getname == "") {
