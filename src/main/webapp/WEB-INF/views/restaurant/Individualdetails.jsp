@@ -123,7 +123,6 @@ tbody th img {
 }
 
 .probootstrap-section-heading {
-	border-top: #00CA4C 5px solid;
 	border-bottom: #00CA4C 5px solid;
 	padding: 1%;
 }
