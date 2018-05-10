@@ -47,24 +47,7 @@ public class ReviewController {
 
 		ReviewBean rb = new ReviewBean();
 		model.addAttribute("reviewBean", rb);
-		List<Long> ranks = reviewService.getRankByHotelId(hotelId);
 
-		Integer rankSize = 0;
-		for (Long rank : ranks) {
-			Integer tmp = rank.intValue();
-			rankSize += tmp;
-		}
-
-		// 避免0/0
-		if (rankSize == 0) {
-			rankSize = -1;
-		}
-
-		model.addAttribute("rankSize", rankSize);
-		model.addAttribute("ranks", ranks);
-
-		List<ReviewBean> reviews = reviewService.getReviewsByHotelId(hotelId);
-		model.addAttribute("reviews", reviews);
 
 		return "review/UserReviewEdit";
 	}
@@ -110,7 +93,7 @@ public class ReviewController {
 					}
 					File file = new File(imageFolder, fileurl);
 					avata.transferTo(file);
-					rb.setPhotoPath(fileNameBuffer.toString());
+					rb.setPhotoPaths(fileNameBuffer.toString());
 				} catch (IllegalStateException e) {
 					e.printStackTrace();
 				} catch (IOException e) {
@@ -164,7 +147,7 @@ public class ReviewController {
 		media = baos.toByteArray();
 		headers.setCacheControl(CacheControl.noCache().getHeaderValue());
 		String mimeType = context.getMimeType(photoName);
-//		headers.setContentType(MediaType.IMAGE_JPEG);
+		// headers.setContentType(MediaType.IMAGE_JPEG);
 		headers.setContentType(MediaType.parseMediaType(mimeType));
 		ResponseEntity<byte[]> responseEntity = new ResponseEntity<>(media, headers, HttpStatus.OK);
 
