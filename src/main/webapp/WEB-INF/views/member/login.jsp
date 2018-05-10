@@ -17,15 +17,14 @@
 .errorMsg {
 	text-align: center;
 	font-family: 標楷體;
-	padding-left:150px;
-	color:red;
-	font-size:14px;
+	padding-left: 150px;
+	color: red;
+	font-size: 14px;
 }
 </style>
-
 </head>
 <body>
-	
+
 	<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
 		aria-labelledby="myLargeModalLabel" aria-hidden="true" id="modal">
 		<div class="modal-dialog modal-md">
@@ -44,31 +43,35 @@
 							<div class="form-group">
 
 								<input type="text" style="width: 85%" id="loginmail"
-									class="form-control" name="mail" placeholder="請輸入信箱"></input>
-									 <span id="nname" class="errorDiv"></span>
+									class="form-control" name="mail" placeholder="請輸入信箱"
+									value="${rememberme.cookiemail}"></input> <span id="nname"
+									class="errorDiv"></span>
 							</div>
 							<div class="form-group">
 								<input type="password" style="width: 85%" id="loginpassword"
-									class="form-control" name="password" placeholder="請輸入密碼" /> <span
-									id="pswid" class="errorDiv"></span>
+									class="form-control" name="password" placeholder="請輸入密碼"
+									value="${rememberme.cookiepassword}" /> <span id="pswid"
+									class="errorDiv"></span>
 							</div>
 
 							<div class="g-recaptcha" style="width: 100%"
 								data-sitekey="6LfjZ04UAAAAANYVbrm9fNL517kNiqrXlaU9UqFw"></div>
-							<div style="text-align: right;">
-								<a href="#" class="text-center" style="text-align: right;">忘記密碼?</a>
+
+							<div class="form-group" style="margin: 0px">
+								<input type="checkbox" id="remember" name="remember"
+									${rememberme.cookieremember}> <label for="remember">記住我</label>
+								<a href="#" class="text-center" style="padding-left: 280px">忘記密碼?</a>
 							</div>
-							<span id="errorMsg" class="errorMsg" style="color:red;"></span>
+							<span id="errorMsg" class="errorMsg" style="color: red;"></span>
 							<!-- /.col -->
-							<div class="form-group" style="margin: 15px">
+							<div class="form-group">
 								<input type="submit" id="loginSubmit"
 									class="btn btn-primary btn-block btn-flat" value="登入">
 							</div>
 							<!-- /.col -->
 						</form>
-
 						<div class="social-auth-links text-center">
-							<p class="mr-5" style="text-align: center">或使用其他方式登入</p>
+							<p class="mr-5" style="padding-left: 30px">或使用其他方式登入</p>
 							<a href="#"
 								class="btn btn-block btn-social btn-facebook btn-flat"> <i
 								class="fa fa-facebook"></i>Facebook 登 入
@@ -80,9 +83,10 @@
 						<!-- /.social-auth-links -->
 
 						<p>
-							還沒加入會員嗎? 立即<a href="insertMember" class="text-center"
+							還沒加入會員嗎? 立即<a href="/startrip/insertMember" class="text-center"
 								style="text-align: right">加入會員</a>
 						</p>
+
 					</div>
 					<!-- /.login-box-body -->
 
@@ -91,7 +95,7 @@
 			<!-- /.login-box -->
 		</div>
 	</div>
-	
+
 	<script>
 		$('#modal').modal('hide')
 		$(function() {
@@ -104,13 +108,13 @@
 	</script>
 	<script>
 		document.addEventListener("DOMContentLoaded", function() {
-			document.getElementById("loginmail").addEventListener("blur", ckname);
+			document.getElementById("loginmail").addEventListener("blur",
+					ckname);
 			document.getElementById("loginpassword").addEventListener("blur",
 					chkPassword);
 			document.getElementById("loginSubmit").addEventListener("click",
 					checkUserName);
-			document.getElementById("modal").addEventListener("blur",
-					reset);
+			document.getElementById("modal").addEventListener("blur", reset);
 		})
 		function reset() {
 			document.getElementById("nname").innerHTML = "";
@@ -141,22 +145,24 @@
 				mail : $('#loginmail').val(),
 				password : $('#loginpassword').val()
 			}
-			$.ajax({
-				url : "/startrip/chickpassword",
-				type : "POST",
-				data : ajaxdata,
-				async : false,
-				success : function(responseText, textStatus) {
-					if (responseText == 0) {
-						document.loginform.submit();
-					} else {
-						document.getElementById("errorMsg").innerHTML = "帳號或密碼錯誤"
-					}
-				},
-				error : function() {
 
-				}
-			});
+			$
+					.ajax({
+						url : "/startrip/chickpassword",
+						type : "POST",
+						data : ajaxdata,
+						async : false,
+						success : function(responseText, textStatus) {
+							if (responseText == 0) {
+								document.loginform.submit();
+							} else {
+								document.getElementById("errorMsg").innerHTML = "帳號或密碼錯誤"
+							}
+						},
+						error : function() {
+
+						}
+					});
 
 		}
 	</script>

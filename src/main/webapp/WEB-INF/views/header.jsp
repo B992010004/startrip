@@ -39,7 +39,7 @@
 
 					<li class="nav-item">
 						<c:if test="${ empty LoginOK }">
-							<a class="nav-link" href="#" data-toggle="modal" data-target=".bd-example-modal-lg">登入</a>
+							<a class="nav-link" href="" data-toggle="modal" data-target=".bd-example-modal-lg">登入</a>
 						</c:if>
 					</li>
 					<li class="nav-item">
