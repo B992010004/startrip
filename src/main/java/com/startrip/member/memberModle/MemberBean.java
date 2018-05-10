@@ -2,11 +2,14 @@ package com.startrip.member.memberModle;
 
 import java.io.Serializable;
 import java.sql.Blob;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlTransient;
@@ -14,10 +17,7 @@ import javax.xml.bind.annotation.XmlTransient;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
-
-
-
+import com.startrip.reviews.model.ReviewBean;
 
 @Entity
 @Table(name="Membertable")
@@ -50,6 +50,14 @@ public class MemberBean implements Serializable{
 	public void setPhoto(Blob photo) {
 		this.photo = photo;
 	}
+	
+	@OneToMany(
+			cascade={CascadeType.REMOVE},
+			mappedBy="memberBean"
+	)
+	private Set<ReviewBean> reviewBeans;
+	
+	
 	//-------------------------------
 //	@OneToMany(mappedBy="viewMail",cascade= {CascadeType.ALL})
 //	private Set<TravelViewBean> ViewMB;
