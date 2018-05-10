@@ -53,31 +53,11 @@ public class HotelAdminService {
 		return hotels.insert(bean);
 	}
 	
-	public void updateHotel(Integer hotelid, String name,  String phone,
-			 String address,  Integer star) {
-		System.out.println("開始更新飯店基本資料");
-
-		HotelsBean bean = hotels.selectByPk(hotelid);
-		bean.setHotelname(name);
-		bean.setHotelphone(phone);
-		bean.setHoteladdress(address);
-		bean.setHotelstar(star);
-		
-	}
-
-	public void updateHotel(Integer hotelid,String info,String note) {
+	public void updateHotel(HotelsBean bean) {
 		System.out.println("開始更新飯店介紹與政策提示");
-		HotelsBean bean = hotels.selectByPk(hotelid);
-		bean.setHotelinfo(info);
-		bean.setHotelrulenote(note);		
+		hotels.update(bean);
 	}
 
-	public void updateHotel(Integer hotelid, Integer refund, Integer advanceday) {
-		System.out.println("開始更新飯店介紹與政策提示");
-		HotelsBean bean = hotels.selectByPk(hotelid);
-		bean.setRefundid(refund);
-		bean.setAdvancedayid(advanceday);		
-	}
 
 	public void updateRoomtype(Integer roomid,java.sql.Date checkin,java.sql.Date checkout,Integer price,String roomnote) {
 		RoomtypeBean bean = roomtype.selectByPk(roomid);

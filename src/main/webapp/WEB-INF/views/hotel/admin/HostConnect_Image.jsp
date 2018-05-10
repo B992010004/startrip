@@ -34,7 +34,7 @@
       padding-bottom: 8px;
     }
 
-    a:visited,
+    a,a:visited,
     a:active {
       color: #afafaf;
     }
@@ -80,6 +80,11 @@
       z-index: 100;
       color: red;
     }
+    .photolist{
+    overflow:auto
+    }
+    
+
   </style>
 
 
@@ -160,6 +165,7 @@
           <h5>設定圖片資訊與顯示順序：</h5>
           <input type="hidden" value="" name="image">
           <br>
+          <div class="photolist">
           <ul id="sortable">
           
           <c:forEach var="photo" items="${photos}" varStatus="status">
@@ -182,6 +188,7 @@
             
           </c:forEach>
 		  </ul>
+          </div>
           <hr class="bottomrow">
            <div class="row">
           <div class="col-md-3">
@@ -312,7 +319,11 @@
     <script>
 
       $(function () {
-        $("#sortable").sortable();
+    	  $('#sortable').sortable({
+    		  helper: 'clone'
+    		});
+      
+      
         $("#sortable").disableSelection();
 
         var imgcount = ${count};

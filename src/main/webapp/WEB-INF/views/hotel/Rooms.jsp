@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 
@@ -10,24 +12,24 @@
 
     <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,700" rel="stylesheet">
 
-    <link rel="stylesheet" href="assets/css/bootstrap/bootstrap.css">
-    <link rel="stylesheet" href="assets/css/animate.css">
-    <link rel="stylesheet" href="assets/fonts/ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="/startrip/assets/css/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="/startrip/assets/css/animate.css">
+    <link rel="stylesheet" href="/startrip/assets/fonts/ionicons/css/ionicons.min.css">
 
-    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/startrip/assets/css/owl.carousel.min.css">
 
-    <link rel="stylesheet" href="assets/fonts/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="/startrip/assets/fonts/flaticon/font/flaticon.css">
 
-    <link rel="stylesheet" href="assets/fonts/fontawesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="assets/css/select2.css">
-
-
-    <link rel="stylesheet" href="assets/css/helpers.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="/startrip/assets/fonts/fontawesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/startrip/assets/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="/startrip/assets/css/select2.css">
 
 
-    <link rel="stylesheet" href="assets/css/jquery-ui.css">
+    <link rel="stylesheet" href="/startrip/assets/css/helpers.css">
+    <link rel="stylesheet" href="/startrip/assets/css/style.css">
+
+
+    <link rel="stylesheet" href="/startrip/assets/css/jquery-ui.css">
 
 
     <style>
@@ -93,60 +95,37 @@
             max-width: 180px;
             height: 130px;
         }
+        
+        .progress-bar {
+/* 	    	margin-top: 10px; */
+ 	    	
+	    }
+	    
+	    .progress-label{
+	    	margin-top: 5px;
+	    	width: 50px; 
+	    }
+	    .travler-rank{
+	    	width: 300px; 
+	    
+	    }
+	    
+	    .review-image{
+	    	 height:120px;
+	    	 margin:5px;
+	    }
     </style>
 
 
 </head>
 
 <body>
-    <!--   <nav class="navbar navbar-expand-lg navbar-dark probootstrap_navbar" id="probootstrap-navbar"> -->
-    <!--     <div class="container"> -->
-    <!--       <a class="navbar-brand" href="#">TRIP_LOGO</a> -->
-    <!--       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#probootstrap-menu" aria-controls="probootstrap-menu" -->
-    <!--         aria-expanded="false" aria-label="Toggle navigation"> -->
-    <!--         <span> -->
-    <!--           <i class="ion-navicon"></i> -->
-    <!--         </span> -->
-    <!--       </button> -->
-    <!--       <div class="collapse navbar-collapse" id="probootstrap-menu"> -->
-    <!--         <ul class="navbar-nav ml-auto"> -->
-    <!--           <li class="nav-item active"> -->
-    <!--             <a class="nav-link" href="#">飯店</a> -->
-    <!--           </li> -->
-    <!--           <li class="nav-item"> -->
-    <!--             <a class="nav-link" href="#">交通</a> -->
-    <!--           </li> -->
-    <!--           <li class="nav-item"> -->
-    <!--             <a class="nav-link" href="#">景點</a> -->
-    <!--           </li> -->
-    <!--           <li class="nav-item"> -->
-    <!--             <a class="nav-link" href="#">餐廳</a> -->
-    <!--           </li> -->
-    <!--           <li class="nav-item"> -->
-    <!--             <a class="nav-link" href="#">討論區</a> -->
-    <!--           </li> -->
-    <!--           <li class="nav-item"> -->
-    <!--             <a class="nav-link" href="#">管理</a> -->
-    <!--           </li> -->
-    <!--           <li class="nav-item"> -->
-    <!--             <a class="nav-link" href="#">登入</a> -->
-    <!--           </li> -->
-    <!--         </ul> -->
-    <!--       </div> -->
-    <!--     </div> -->
-    <!--   </nav> -->
+
     <div>
         <jsp:include page="/WEB-INF/views/header.jsp" flush="true" />
     </div>
 
     <!-- END nav -->
-
-
-
-
-
-    
-    <!-- END section -->
 
     <div class="container">
         <p></p>
@@ -272,21 +251,21 @@
                                             <!-- photo slide item -->
                                             <div>
                                                 <div class="media probootstrap-media d-block align-items-stretch imgmaxsize">
-                                                    <img src="assets\images\test1.jpg" value="1" name="XX" class="img-fluid mainimg">
+                                                    <img src="/startrip/assets/images/test1.jpg" value="1" name="XX" class="img-fluid mainimg">
                                                 </div>
                                             </div>
                                             <!-- END photo slide item -->
                                             <!-- photo slide item -->
                                             <div>
                                                 <div class="media probootstrap-media d-block align-items-stretch imgmaxsize">
-                                                    <img src="assets\images\sq_img_1.jpg" value="2" name="AA" class="img-fluid mainimg">
+                                                    <img src="/startrip/assets/images/sq_img_1.jpg" value="2" name="AA" class="img-fluid mainimg">
                                                 </div>
                                             </div>
                                             <!-- END photo slide item -->
                                             <!-- photo slide item -->
                                             <div>
                                                 <div class="media probootstrap-media d-block align-items-stretch imgmaxsize">
-                                                    <img src="assets\images\sq_img_2.jpg" value="3" name="BB" class="img-fluid mainimg">
+                                                    <img src="/startrip/assets/images/sq_img_2.jpg" value="3" name="BB" class="img-fluid mainimg">
                                                 </div>
                                             </div>
                                             <!-- END photo slide item -->
@@ -345,7 +324,7 @@
                                 <!-- 房間資料起始 -->
                                 <tr>
                                     <th scope="row">
-                                        <img src="assets\images\sq_img_2.jpg">
+                                        <img src="/startrip/assets/images/sq_img_2.jpg">
                                         <br> 豪華雙人房
                                     </th>
                                     <td>附早餐
@@ -441,11 +420,37 @@
                     </div>
                 </div>
 				<div class="row">
-                        <br>
                         <!-- 旅客評等 -->
-                        <p class="col-md-3">旅客評等</p>
+						<!-- <p class="col-md-3">旅客評等</p> -->
+						<label class="sr-only-focusable">旅客評等</label>
                         <!-- 旅客評等 -->
-                        
+                                <div class="travler-rank col-md-3" >                            
+		                            <div class="progress">
+		                            	<span class="progress-label">很棒</span>
+										<div class="progress-bar" role="progressbar" style="width: ${ranks[0]/rankSize *100}%"aria-valuenow="${ranks[0]/rankSize *100}" aria-valuemin="0" aria-valuemax="100"><fmt:formatNumber type="number" value="${ranks[0]/rankSize *100}" maxFractionDigits="0"/>%</div>
+									</div>							
+									
+									<div class="progress">
+										<span class="progress-label">非常好</span>							  							  
+									  	<div class="progress-bar" role="progressbar" style="width: ${ranks[1]/rankSize *100}%" aria-valuenow="${ranks[1]/rankSize *100}" aria-valuemin="0" aria-valuemax="100"><fmt:formatNumber type="number" value="${ranks[1]/rankSize *100}" maxFractionDigits="0"/>%</div>
+									</div>					
+									
+									<div class="progress">
+										<span class="progress-label">普通</span>							  		
+									  	<div class="progress-bar" role="progressbar" style="width: ${ranks[2]/rankSize *100}%" aria-valuenow="${ranks[2]/rankSize *100}" aria-valuemin="0" aria-valuemax="100"><fmt:formatNumber type="number" value="${ranks[2]/rankSize *100}" maxFractionDigits="0"/>%</div>
+									</div>							
+									
+									<div class="progress">
+										<span class="progress-label">差</span>
+										<div class="progress-bar" role="progressbar" style="width: ${ranks[3]/rankSize *100}%" aria-valuenow="${ranks[3]/rankSize *100}" aria-valuemin="0" aria-valuemax="100"><fmt:formatNumber type="number" value="${ranks[3]/rankSize *100}" maxFractionDigits="0"/>%</div>
+									</div>						
+									
+									<div class="progress">
+										<span class="progress-label">糟透了</span>
+									  	<div class="progress-bar" role="progressbar" style="width: ${ranks[4]/rankSize *100}%" aria-valuenow="${ranks[4]/rankSize *100}" aria-valuemin="0" aria-valuemax="100"><fmt:formatNumber type="number" value="${ranks[4]/rankSize *100}" maxFractionDigits="0"/>%</div>
+									</div>       
+								</div>
+						
                         <!-- 旅客類型 -->
                         <p class="col-md-3">旅客類型</p>
                         <!-- 旅客類型 -->
@@ -457,14 +462,30 @@
                 </div>
             </div>
         </div>
+        <div class="container" >
+			<c:forEach var='review' items='${reviews}'>
+	        
+				<div class="row" style="margin:16px;">
+					<div class="col">
+						<div class="probootstrap_font-18"><h5>${review.title}</h5></div>
+						<div class="">${review.content }</div>
+						<c:if test="${not empty review.photoPathList }">
+							<c:forEach var="photoPath" items="${review.photoPathList }">
+								<img src="/startrip/getPicture/reviewUpload/${photoPath }" class="review-image"/>
+							</c:forEach>
+						</c:if>					
+					</div>
+				</div>
+			</c:forEach>
+		</div>
         
         <!-- 圖片彈出區間 -->
-        <div id="my_popup" hidden>
+        <div id="my_popup">
             <div class="row">
                 <div class="col-md popwindow">
-                    <img src="assets\images\test1.jpg" value="1" title="XX" class="ui-corner-all img-fluid imglist my_popup_close  img-thumbnail">
-                    <img src="assets\images\sq_img_1.jpg" value="2" title="AA" class="ui-corner-all img-fluid imglist my_popup_close img-thumbnail">
-                    <img src="assets\images\sq_img_2.jpg" value="3" title="BB" class="ui-corner-all img-fluid imglist my_popup_close img-thumbnail">
+                    <img src="/startrip/assets/images/test1.jpg" value="1" title="XX" class="ui-corner-all img-fluid imglist my_popup_close  img-thumbnail">
+                    <img src="/startrip/assets/images/sq_img_1.jpg" value="2" title="AA" class="ui-corner-all img-fluid imglist my_popup_close img-thumbnail">
+                    <img src="/startrip/assets/images/sq_img_2.jpg" value="3" title="BB" class="ui-corner-all img-fluid imglist my_popup_close img-thumbnail">
                 </div>
             </div>
         </div>
@@ -480,25 +501,25 @@
         </div>
         <!-- END footer -->
 
-        <script src="assets/js/jquery.min.js"></script>
+        <script src="/startrip/assets/js/jquery.min.js"></script>
 
-        <script src="assets/js/popper.min.js"></script>
-        <script src="assets/js/bootstrap.min.js"></script>
-        <script src="assets/js/owl.carousel.min.js"></script>
+        <script src="/startrip/assets/js/popper.min.js"></script>
+        <script src="/startrip/assets/js/bootstrap.min.js"></script>
+        <script src="/startrip/assets/js/owl.carousel.min.js"></script>
 
-        <script src="assets/js/bootstrap-datepicker.js"></script>
-        <script src="assets/js/jquery.waypoints.min.js"></script>
-        <script src="assets/js/jquery.easing.1.3.js"></script>
+        <script src="/startrip/assets/js/bootstrap-datepicker.js"></script>
+        <script src="/startrip/assets/js/jquery.waypoints.min.js"></script>
+        <script src="/startrip/assets/js/jquery.easing.1.3.js"></script>
 
-        <script src="assets/js/select2.min.js"></script>
+        <script src="/startrip/assets/js/select2.min.js"></script>
 
-        <script src="assets/js/main.js"></script>
+        <script src="/startrip/assets/js/main.js"></script>
 
-        <script src="assets/js/range.js"></script>
+        <script src="/startrip/assets/js/range.js"></script>
 
 
-        <script src="assets/js/jquery-ui.js"></script>
-        <script src="assets/js/jquery.popupoverlay.js"></script>
+        <script src="/startrip/assets/js/jquery-ui.js"></script>
+        <script src="/startrip/assets/js/jquery.popupoverlay.js"></script>
 
 
         <script>

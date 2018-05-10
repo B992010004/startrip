@@ -1,14 +1,18 @@
 package com.startrip.hotel.controller;
 
+import java.util.List;
+
 import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.startrip.hotel.model.service.HotelAdminService;
 import com.startrip.hotel.model.service.HotelService;
+import com.startrip.reviews.model.ReviewBean;
+import com.startrip.reviews.service.ReviewService;
 
 @Controller
 public class HotelController {
@@ -19,6 +23,10 @@ public class HotelController {
 	
 	@Autowired
 	ServletContext context;
+	
+	//評論內容
+	@Autowired
+	ReviewService reviewService;
 	
 	// 以下非會員也可瀏覽
 		@RequestMapping(value = "/Hotels")
@@ -32,8 +40,27 @@ public class HotelController {
 			return "hotel/HotelsSearchResult";
 		}
 
-		@RequestMapping(value = "/Rooms")
-		public String rooms(Model model) {
+		@RequestMapping(value = "/Rooms/{hotelId}")
+		public String rooms(@PathVariable("hotelId") Integer hotelId, Model model) {
+			
+			
+			
+//			review			
+			List<Long> ranks = reviewService.getRankByHotelId(hotelId);
+			Integer rankSize = 0;
+			for (Long rank : ranks) {
+				Integer tmp = rank.intValue();
+				rankSize += tmp;
+			}
+			// 避免0/0
+			if (rankSize == 0) {
+				rankSize = -1;
+			}
+			model.addAttribute("rankSize", rankSize);
+			model.addAttribute("ranks", ranks);
+			List<ReviewBean> reviews = reviewService.getReviewsByHotelId(hotelId);
+			model.addAttribute("reviews", reviews);
+			
 			return "hotel/Rooms";
 		}
 

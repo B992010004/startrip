@@ -24,7 +24,7 @@
 					<li class="nav-item"><a class="nav-link"
 						href="/startrip/restaurantHome">餐廳</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="/startrip/station/index">大眾運輸</a></li>
+						href="/station/select">大眾運輸</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="/startrip/TravelMain">行程規劃</a></li>
 					<li class="nav-item"><a class="nav-link"														
