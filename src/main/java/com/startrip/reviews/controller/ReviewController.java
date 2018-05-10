@@ -48,7 +48,6 @@ public class ReviewController {
 		ReviewBean rb = new ReviewBean();
 		model.addAttribute("reviewBean", rb);
 
-
 		return "review/UserReviewEdit";
 	}
 
@@ -122,10 +121,11 @@ public class ReviewController {
 
 		reviewService.addReview(rb);
 		System.out.println("準備return");
-		return "redirect:/";
+		return "redirect:/Rooms/" + hotelId;
 	}
 
 	// 處理照片請求
+	// 相片都保存在C:\\temp\\
 	@RequestMapping(value = "/getPicture/reviewUpload/{photoName:.+}", method = RequestMethod.GET)
 	public ResponseEntity<byte[]> getPicture(HttpServletResponse resp, @PathVariable String photoName) {
 

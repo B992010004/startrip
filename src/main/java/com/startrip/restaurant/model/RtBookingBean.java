@@ -22,7 +22,7 @@ public class RtBookingBean {
 	private String bgDate;
 	private String bgPeriod;
 	private Integer cnChair;
-	private Integer cnTable;
+	private Integer cnPeople;
 	private String bgNote;
 	private Date reTime;
 	
@@ -30,7 +30,7 @@ public class RtBookingBean {
 	public String toString() {
 		return "RtBookingBean [mail=" + mail + ", bgId=" + bgId + ", crName=" + crName + ", crPhone=" + crPhone
 				+ ", bgPeople=" + bgPeople + ", bgDate=" + bgDate + ", bgPeriod=" + bgPeriod + ", cnChair=" + cnChair
-				+ ", cnTable=" + cnTable + ", bgNote=" + bgNote + ", reTime=" + reTime + "]";
+				+ ", cnTable=" + cnPeople + ", bgNote=" + bgNote + ", reTime=" + reTime + "]";
 	}
 
 	public RtBookingBean(String mail, Integer bgId, String crName, String crPhone, Integer bgPeople, String bgDate,
@@ -44,7 +44,7 @@ public class RtBookingBean {
 		this.bgDate = bgDate;
 		this.bgPeriod = bgPeriod;
 		this.cnChair = cnChair;
-		this.cnTable = cnTable;
+		this.cnPeople = cnTable;
 		this.bgNote = bgNote;
 		this.reTime = reTime;
 	}
@@ -118,11 +118,11 @@ public class RtBookingBean {
 	}
 
 	public Integer getCnTable() {
-		return cnTable;
+		return cnPeople;
 	}
 
 	public void setCnTable(Integer cnTable) {
-		this.cnTable = cnTable;
+		this.cnPeople = cnTable;
 	}
 
 	public String getBgNote() {

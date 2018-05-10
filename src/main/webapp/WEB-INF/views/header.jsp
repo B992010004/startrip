@@ -42,6 +42,7 @@
                     <!-- 測試 --><li class="nav-item"><a class="nav-link"
 						href="/startrip/Individualdetails">o測試o個別餐廳資料o</a></li><!-- 測試 -->
 
+
 					<li class="nav-item">
 						<c:if test="${ empty LoginOK }">
 							<a class="nav-link" href="" data-toggle="modal" data-target=".bd-example-modal-lg">登入</a>

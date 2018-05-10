@@ -11,7 +11,7 @@
 <title>站名編號查詢</title>
 </head>
 <body>
-
+<a href="/startrip/stationEdit">新增車站</a>
 
 <table border="1" cellpadding="10" cellspacing="0">
 <tr>

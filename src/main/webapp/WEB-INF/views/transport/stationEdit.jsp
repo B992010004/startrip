@@ -10,6 +10,16 @@
 <title>Insert title here</title>
 </head>
 <body>
+<!-- action="transport/stationEdit" -->
+<form:form  method="post" modelAttribute="inputStation">
+
+地區:<form:input path="area"/>
+<br>
+站名:<form:input path="stationName"/>
+<br>
+<input type="button" value="Submit">
+</form:form>
+
 
 </body>
 </html>
