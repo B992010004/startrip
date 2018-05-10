@@ -4,11 +4,10 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.startrip.travelPlan.model.TravelListBean;
-import com.startrip.travelPlan.model.TravelListPK;
 
 public interface ITravelListService {
 	
-	public TravelListBean Select_ListId(TravelListPK bean);
+	List<TravelListBean> Select_travelid(Integer id);
 
 	public List<TravelListBean> selectAllList();
 

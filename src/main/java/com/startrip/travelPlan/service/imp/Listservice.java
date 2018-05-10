@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import com.startrip.travelPlan.Dao.imp.TravelListDao;
 import com.startrip.travelPlan.model.TravelListBean;
-import com.startrip.travelPlan.model.TravelListPK;
 import com.startrip.travelPlan.service.ITravelListService;
 @Service
 public class Listservice implements ITravelListService {
@@ -18,10 +17,8 @@ public class Listservice implements ITravelListService {
 	TravelListDao listDao;
 	@Transactional
 	@Override
-	public TravelListBean Select_ListId(TravelListPK bean) {
-		TravelListBean result = new TravelListBean();
-		result = listDao.Select_PK(bean);
-		return result;
+	public	List<TravelListBean> Select_travelid(Integer id) {
+		return listDao.Select_travelid(id);
 	}
 	@Transactional
 	@Override

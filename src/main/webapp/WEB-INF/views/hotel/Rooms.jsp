@@ -114,6 +114,14 @@
 	    	 height:120px;
 	    	 margin:5px;
 	    }
+	    
+	     .review-memberphoto {
+            /* 照片圓圈大小倚靠各div的class設定 */
+            
+           	width: 80px;
+           	height: 80px; 
+           	border-radius: 50%;
+        }
     </style>
 
 
@@ -124,9 +132,13 @@
     <div>
         <jsp:include page="/WEB-INF/views/header.jsp" flush="true" />
     </div>
-
     <!-- END nav -->
-
+  	<section class="probootstrap-cover overflow-hidden relative" style="background-image: url('/startrip/assets/images/bg_1.jpg');" data-stellar-background-ratio="0.5"
+    	id="section-home">
+		<div class="overlay"></div>
+  	</section>
+  <!-- END section -->
+    
     <div class="container">
         <p></p>
         <div class="row">
@@ -407,6 +419,7 @@
                         </table>
                     </div>
                 </div>
+                
                 <!--評論 -->
                 <hr>
                 <div class="row justify-content-between">
@@ -460,13 +473,14 @@
                         <!-- 月份 -->
                     </div>                    
                 </div>
-            </div>
-        </div>
-        <div class="container" >
-			<c:forEach var='review' items='${reviews}'>
-	        
+            </div>     
+			<c:forEach var='review' items='${reviews}'>	        
 				<div class="row" style="margin:16px;">
-					<div class="col">
+					<div class="col-md-1">
+						<div class="row justify-content-center" style="margin:16px;"><img class="review-memberphoto" src="<c:url value='/getPicture/${review.memberBean.mail}'/>"></div>
+						<div class="row justify-content-center"><div><h6>${review.memberBean.username }</h6></div></div>
+					</div>
+					<div class="col-md-9">
 						<div class="probootstrap_font-18"><h5>${review.title}</h5></div>
 						<div class="">${review.content }</div>
 						<c:if test="${not empty review.photoPathList }">
@@ -475,12 +489,15 @@
 							</c:forEach>
 						</c:if>					
 					</div>
-				</div>
+				</div>				
 			</c:forEach>
 		</div>
+		
+		
+		
         
         <!-- 圖片彈出區間 -->
-        <div id="my_popup">
+        <div id="my_popup" hidden="hidden">
             <div class="row">
                 <div class="col-md popwindow">
                     <img src="/startrip/assets/images/test1.jpg" value="1" title="XX" class="ui-corner-all img-fluid imglist my_popup_close  img-thumbnail">

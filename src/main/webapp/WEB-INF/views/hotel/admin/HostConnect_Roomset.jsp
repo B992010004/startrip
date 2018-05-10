@@ -65,6 +65,9 @@
       width: 100%;
       color: rgb(151, 148, 148)
     }
+      button{
+    cursor: pointer; 
+    }
   </style>
 
 

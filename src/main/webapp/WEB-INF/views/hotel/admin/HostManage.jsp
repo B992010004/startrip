@@ -33,6 +33,9 @@
     .img-thumbnail {
       height: 60px;
     }
+      button{
+    cursor: pointer; 
+    }
   </style>
 
 
