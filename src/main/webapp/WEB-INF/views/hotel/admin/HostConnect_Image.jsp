@@ -83,7 +83,9 @@
     .photolist{
     overflow:auto
     }
-    
+      button{
+    cursor: pointer; 
+    }
 
   </style>
 
