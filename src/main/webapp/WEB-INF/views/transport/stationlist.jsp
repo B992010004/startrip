@@ -18,9 +18,9 @@
 	<th>Station_Name</th>
 </tr>
 
-<c:forEach items="${requestScope.stations }" var="/transport/station">
+<c:forEach items="${Station}" var="/transport/station">
 	<tr>
-		<td>${sta.Station_id} </td>	
+		<td>${sta.StationId} </td>	
 		<td>${sta.Area} </td>	
 		<td>${sta.Station_Name} </td>		
 	</tr>

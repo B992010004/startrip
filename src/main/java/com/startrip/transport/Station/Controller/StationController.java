@@ -23,17 +23,23 @@ public class StationController {
 	@Autowired
 	ServletContext context;
 	
-	@RequestMapping(value="/station/select", method=RequestMethod.GET)
+	@RequestMapping(value="station/select", method=RequestMethod.GET)
 	public String select(Model model) {
 		List<StationBean> all = StationService.select();
 		System.out.println(all);
 		for(StationBean stationBean:all) {
 			System.out.println( "getStationName="+stationBean.getStationName());
-			System.out.println(stationBean.getStationId());			System.out.println(stationBean.getArea());
-		}
+			System.out.println(stationBean.getStationId());			
+			System.out.println(stationBean.getArea());		}
 		model.addAttribute("stationList", all);
-		return "/transport/stationlist";
+		return "transport/select";
 	}
+	
+//	@RequestMapping(value="station/list")
+//	public String selectStation(Model model) {
+//		}
+	
+	
 	@RequestMapping(value="/station/log")
 	public String log(HttpServletRequest request) {
 		HttpSession session = request.getSession();
