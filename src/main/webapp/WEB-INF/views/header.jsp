@@ -18,7 +18,7 @@
 						<a class="nav-link" href="/startrip/">Home</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="/startrip/Rooms">房型</a>
+						<a class="nav-link" href="/startrip/Rooms/1">房型</a>
 					</li>
 
 					<li class="nav-item"><a class="nav-link"
