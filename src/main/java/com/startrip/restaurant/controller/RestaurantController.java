@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.startrip.restaurant.model.RtDetailsBean;
+import com.startrip.restaurant.service.RtBookingService;
 import com.startrip.restaurant.service.RtDetailsService;
 
 @Controller
@@ -17,6 +18,8 @@ public class RestaurantController {
 	@Autowired
 	RtDetailsService rtDetailsService;
 	
+	@Autowired
+	RtBookingService rtBookingService;
 	
 	//只能瀏覽全部
 	
@@ -29,13 +32,25 @@ public class RestaurantController {
 		return "restaurant/restaurantHome";
 	}
 	
-	//只能瀏覽個別測試
+	
+	
+	//---------測試------------------------測試------------------測試----------------測試-------------
+	
+	//只能瀏覽個別
 	
 	@RequestMapping(value = "/Individualdetails")
 	public String getAll(Model model) {
 		return "restaurant/Individualdetails";
 	}
 	
+	//新增訂單頁面 樣板
+	
+	@RequestMapping(value = "/reservation")
+	public String insertdbooking(Model model) {
+		return "/restaurant/reservation";
+	}
+	
+	//---------測試------------------------測試------------------測試----------------測試-------------
 	
 	
 	
@@ -44,7 +59,6 @@ public class RestaurantController {
 	
 	
 	
-	//只能瀏覽，留言，訂位
-	
+
 	
 }

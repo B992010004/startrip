@@ -94,6 +94,21 @@
 	padding: 2%;
 }
 
+.probootstrap_section2 {
+  padding-bottom: 3em;
+  float: left;
+  width: 100%; }
+  .probootstrap_section.bg-light {
+    background: #ECECEC !important; }
+    
+.probootstrap_section3 {
+  padding-top:6%;
+  float: left;
+  width: 100%; }
+  .probootstrap_section.bg-light {
+    background: #ECECEC !important; }
+
+
 </style>
 
 </head>
@@ -124,7 +139,7 @@
 	</section>
 	<!-- END section -->
 
-	<section class="probootstrap_section" id="section-city-guides">
+	<section class="probootstrap_section3" id="section-city-guides">
 		<div class="bigheadline1">
 			<h1 class="headline1">搜尋美食盡在</h1>
 			<h1 class="headline2">Star</h1>
@@ -241,7 +256,7 @@
 	<!-- END section -->
 
 
-	<section class="probootstrap_section">
+	<section class="probootstrap_section2">
 		<div class="container">
 			<div class="row text-center mb-5 probootstrap-animate">
 				<div class="col-md-12">
