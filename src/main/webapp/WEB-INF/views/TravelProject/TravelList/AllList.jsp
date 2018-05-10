@@ -11,30 +11,36 @@
 <link href="https://fonts.googleapis.com/css?family=Roboto:100i,300,400,500,700" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Allura" rel="stylesheet">
 <link rel="stylesheet" href="/startrip/assets/Travel/css/style.css">
+<!-- <link rel="stylesheet" href="/startrip/assets/Travel/css/lightbox.css"> -->
 </head>
 <body>
+
+<!-- 	<div class="nav"> -->
+<%-- 		<jsp:include page="/WEB-INF/views/header.jsp" flush="true" /> --%>
+<!-- 	</div> -->
+<!-- 	<section class="probootstrap_section bg-dark" id="section-contact"> -->
+<!-- 	</section> -->
+
+<div class="main"> 
 	<div class="switch">
-	        	<button type="button" class="btn btn-outline-primary switch">切換</button>
-	    	</div>
+	    <button type="button" class="btn btn-outline-primary switch">切換</button>
+	</div>
+    
     <div class="aside1">
           <div class="listcard" id="views">
-<%--           <c:forEach var="" items=""> --%>
-          	<h5 class="card-title">Card title</h5>
-            <div class="card" style="width: 18rem;">
-              
-                <img class="card-img-top" src="..." alt="Card image cap">
-                <div class="card-body">
-           
-                </div>
+			<div id="view">
+	          	<h5 class="card-title">Card title</h5>
+	            <div class="card" style="width: 18rem;">
+	                <img class="card-img-top"  alt="Card image cap">
+	                <div class="card-body">
+	                </div>
+	            </div>
             </div>
-<%--           </c:forEach>	 --%>
-         
-    </div>
-</div>
+    	</div>
+	</div>
+	
     <div class="aside">
-    
         <div id="tripContext">
-	       
             <h3 id="travelName">tripname</h3>
             <div class="timestyle col-5">
                 <span id ="startDate" class="time contex">2015/02/08</span>
@@ -43,7 +49,6 @@
                 <br>
                 <span id="endDate"  class="time contex">2015/02/13</span>
             </div>
-             
         </div>
     <div class ="triplist">
     <section id="travelList" class="timeline">
@@ -131,46 +136,55 @@
     </div>
 </div>
 
-   
+ </div>  
 
 
-<div class="maincontext">
+	<div class="maincontext">
         <div class="search-container">
         </div>
-        <input id="pac-input" class="controls" type="text" placeholder="Search Box">
-    <div id="map"></div>
-   
+	    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+	    <div id="map"></div>
+	   <div id="viewList">
+	   
+	   <div class="card" id="viewMain" >
+		  <img class="card-img-top" src="..." alt="Card image cap">
+		  <div class="card-body">
+		    <h5 class="card-title">Card title</h5>
+		    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+		  </div>
+		  <ul class="list-group list-group-flush">
+		    <li class="list-group-item">Cras justo odio</li>
+		    <li class="list-group-item">Dapibus ac facilisis in</li>
+		    <li class="list-group-item">Vestibulum at eros</li>
+		  </ul>
+		  <div class="card-body">
+		    <a href="#" class="card-link">Card link</a>
+		    <a href="#" class="card-link">Another link</a>
+		  </div>
+		</div>
+	   
+	   
+	   
+	   </div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> 
-
     <script src='https://cdn.jsdelivr.net/scrollreveal.js/3.3.1/scrollreveal.min.js'></script>
     <script src="/startrip/assets/Travel/js/index.js"></script>
+<!--     <script src="/startrip/assets/Travel/js/lightbox.js"></script> -->
 <script>
 // $(document).ready(function(){
 // 	$('.timeline-item.day').empty();
 // 	$('.timeline-content.timeline-card').empty();
 // });
-
+//-----------------------------------
+//行程天數生成
 $(function(){
 	var value = {};
 	value.id=2;
-	console.log(value);
 	$.ajax({
 		url:"/startrip/travel/id",
 		type:"GET",
@@ -178,7 +192,6 @@ $(function(){
 		data:value,
 		contentType: "application/json; charset=utf-8",
 		success:function(data){
-			
 // 			  <div id="tripContext">
 // 	            <h3 id="travelName">tripname</h3>
 // 	            <div class="timestyle col-5">
@@ -189,8 +202,6 @@ $(function(){
 // 	                <span id="endDate"  class="time contex">2015/02/13</span>
 // 	            </div>
 // 	        </div>
-			
-			console.log(data.Name);
 			$('#tripContext').empty();
 			var travelNmae = $("<h3 id='travelName'>"+data.Name.travelName+"</h3>");
 			var col =$("<div class='timestyle col-5'></div>");
@@ -216,12 +227,13 @@ $(function(){
 			
 			for( i = 0;i<=data.Name.travelDays;i++){
 				//---天數新增
-				var day=$("<div class='timeline-item day'></div>");
+				var day=$("<div class='timeline-item day' id='daybody"+(i+1)+"'></div>");
 				var listImg=$("<div class='timeline-img'></div>");
-				var titlecontent=$("<div class='timeline-content1'></div>");
-				var title=$("<h4 class='daytitle' id='Day"+i+"'>Day"+i+"</h4>");
-				
-				titlecontent.html(title);
+				var titlecontent=$("<div class='timeline-content1' id='Day"+(i+1)+"'></div>");
+				var title=$("<h4 class='daytitle' >Day"+(i+1)+"</h4>");
+// 				var main =$('<div class="listmain" >i</div>');
+// 				var main =$('<div class="listmain" >i</div>');
+				titlecontent.html([title]);
 				day.html([listImg,titlecontent]);
 				docFrag.append(day);
 			}
@@ -229,6 +241,85 @@ $(function(){
 			
 		}
 		
+	})
+	 
+//------------------------------------------
+//查詢行程景點
+	var travel={};
+	travel.id=1
+	$.ajax({
+		url:"/startrip/list/travelId",
+		type:"GET",
+		dataType:"json",
+		data:travel,
+		contentType: "application/json; charset=utf-8",
+		success: function(data){
+			var len = data.length;
+			console.log(len)
+			for(var i = 0;i<len;i++){
+				var card=$('<div class="card"></div>')
+				var body = $('<div class="card-body"></div>')
+				var title = $('<div class="card-header listTitle">'+data[i].viewName+'</div>');
+				var start = $('<div class="start">'+data[i].startTime+'</div>');
+				var end = $('<div class="end">'+data[i].endTime+'</div>');
+				body.append([title,start,end])
+				card.append(body)
+				var day=data[i].tripday
+				
+				
+				var tag = "daybody"+day
+				
+				$("#travelList").find("#"+tag).append(card);
+				}
+			console.log(data)
+		}
+			
+		
+	})
+//-----------------------------------------------------
+//推薦景點
+	var value = {};
+	value.address= '陽明山';
+	$.ajax({
+		url:"/startrip/TravelView/place",
+		type:"GET",
+		dataType:"json",
+		data:value,
+		contentType: "application/json; charset=UTF-8",
+		success:function(data){
+// 			<div id="view">
+// 				<h5 class="card-title">Card title</h5>
+//             <div class="card" style="width: 18rem;">
+//                 <img class="card-img-top" src="..." alt="Card image cap">
+//                 <div class="card-body">
+//                 </div>
+//             </div>
+// 			</div>
+				$('#views').empty();
+		console.log(data[0])
+		 console.log(data[1])
+			var length = data.length;
+				var docFrag = $(document.createDocumentFragment());
+				
+			for(var i=0;i<length;i++){
+				var split =data[i].imgName.split(";");
+				var img = $('<img class="card-img-top hover-shadow"  alt="Card image cap">').attr("src",'/startrip/showImage/'+split[0]);
+				var body = $('<div class="card-body view"></div>');
+				var del = $('<img class="iconImg" src = http://localhost:8080/startrip/assets/Travel/img/close2.png>');
+					del.css({"margin-left":"2em","float":"right"})
+				var insert = $('<img class="iconImg" src = http://localhost:8080/startrip/assets/Travel/img/interface.png>');
+					insert.css({"margin-left":"2em","float":"right"})
+					body.html([insert,del]);
+				var card = $('<div class="card" style="width: 18rem;"></div>');
+				var title = $('<h5 class="card-title"><strong>'+data[i].viewName+'</strong></h5>');
+				var view = $('<div class="view"></div>');
+				card.html([img,body])
+
+				view.html([title,card])
+				docFrag.html(view);
+			}
+			$('#views').html(docFrag);
+		} 
 	})
 })
 
@@ -397,60 +488,6 @@ $(function(){
         }
        
       </script>
-<script type="text/javascript">
-//推薦景點
-$(function(){
-	var value = {};
-	value.address= '海岸';
-	encode =encodeURI(encodeURI(value));
-	
-console.log(value);
-	$.ajax({
-		url:"/startrip/TravelView/place",
-		type:"GET",
-		dataType:"json",
-		data:value,
-		contentType: "application/json; charset=UTF-8",
-		success:function(data){
-// 			<h5 class="card-title">Card title</h5>
-//             <div class="card" style="width: 18rem;">
-              
-//                 <img class="card-img-top" src="..." alt="Card image cap">
-//                 <div class="card-body">
-           
-//                 </div>
-//             </div>
-				$('#views').empty();
-		console.log(data[0])
-		 console.log(data[1])
-			var length = data.length;
-				var docFrag = $(document.createDocumentFragment());
-			for(var i=0;i<length;i++){
-				
-				var split =data[i].imgName.split(";");
-				
-				var img = $('<img class="card-img-top"  alt="Card image cap">').attr("src",'/startrip/showImage/'+split[0]);
-				var img1 = $('<img class="card-img-top"  alt="Card image cap">').attr("src",'/startrip/showImage/'+split[1]);
-				var img2 = $('<img class="card-img-top"  alt="Card image cap">').attr("src",'/startrip/showImage/'+split[2]);
-				var img3 = $('<img class="card-img-top"  alt="Card image cap">').attr("src",'/startrip/showImage/'+split[3]);
-				var img4 = $('<img class="card-img-top"  alt="Card image cap">').attr("src",'/startrip/showImage/'+split[4]);
-																							
-				
-				var body = $('<div class="card-body"></div>');
-				var card = $('<div class="card" style="width: 18rem;"></div>');
-				var title = $('<h5 class="card-title">'+data[i].viewName+'</h5>');
-				card.html([img,img1,img2,img3,img4,body])
-				docFrag.html([title,card])
-			}
-			$('#views').html(docFrag);
-		
-		} 
-	})
-})
-
-</script>
-
-
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDf6zB19vCK-owPk0xpD9thNJ9LJaE03eo&libraries=places&callback=initMap&language=zh-tw&sensor=false" async defer></script>
 </body>
 </html>

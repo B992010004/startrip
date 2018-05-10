@@ -354,7 +354,7 @@ blockquote {
       border: 1px solid #ffca28;
   }
   .maincontext{
-      z-index: 15;
+      z-index: 3;
       position: fixed;
       left:370px;
       top:0;
@@ -400,9 +400,29 @@ blockquote {
   height: 2em;
 }
 
+.card-header.listTitle{
+	font-size: 3em;
+	background-color: #54b7f1;
+	border-radius: 25px;
+	border:1px solid black;
+}
+.start{
+	font-size: 3em;
+}
+.end{
+	font-size: 3em;
+}
+.iconImg:hover{
+	height:35px;
+	width:35px;
+}
 
-
-
+.view{
+	
+}
+.viewList{
+	padding:30px;
+}
 
 
 
@@ -435,3 +455,6 @@ blockquote {
     border-color: transparent #f5f5f5 transparent transparent;
   }
 }
+
+
+

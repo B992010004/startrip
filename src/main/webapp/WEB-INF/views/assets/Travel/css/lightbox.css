@@ -1,18 +1,18 @@
-.row > .column {
-  padding: 0 8px;
-}
+/* .row > .column { */
+/*   padding: 0 8px; */
+/* } */
 
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
+/* .row:after { */
+/*   content: ""; */
+/*   display: table; */
+/*   clear: both; */
+/* } */
 
 /* Create four equal columns that floats next to eachother */
-.column {
-  float: left;
-  width: 25%;
-}
+/* .column { */
+/*   float: left; */
+/*   width: 25%; */
+/* } */
 
 /* The Modal (background) */
 .modal {
