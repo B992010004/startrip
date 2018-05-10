@@ -29,6 +29,11 @@
 						href="/startrip/TravelMain">行程規劃</a></li>
 					<li class="nav-item"><a class="nav-link"														
 						href="/startrip/review/UserReviewEdit/1">寫評論</a></li>	
+						
+					<c:if test="${not empty LoginOK}">
+					<li class="nav-item"><a class="nav-link"														
+						href="/startrip/admin/HostManage">住宿管理</a></li>	
+					</c:if>
 					
 					<li class="nav-item"><a class="nav-link"
 						href="/startrip/insertupdate">餐廳資料修改</a></li>

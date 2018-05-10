@@ -1,6 +1,7 @@
 package com.startrip.hotel.tool;
 
 public enum HQL {
+	SELECT_HOTELS_BY_MEMBERID,
 	SELECT_ROOMTYPE_BY_HOTELID,
 	DELETE_FACILITY_BY_HOTELID,
 	SELECT_FACILITY_BY_HOTELID,
@@ -17,6 +18,9 @@ public enum HQL {
 
 	public String execute() {
 		switch (this) {
+		case SELECT_HOTELS_BY_MEMBERID:
+			HQL = "FROM hotels WHERE hotelmanagerid = :memberid ORDER BY hotelid DESC";
+			break;
 		case SELECT_ROOMTYPE_BY_HOTELID:
 			HQL = "FROM roomtype WHERE hotelid = :hotelid ORDER BY roomid DESC";
 			break;
@@ -56,6 +60,8 @@ public enum HQL {
 		case SELECT_PHOTONAME:
 			HQL = "FROM photoname";
 			// 搜尋配置在DB的相片名稱
+			break;
+		default:
 			break;
 
 		}
