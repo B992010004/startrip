@@ -39,23 +39,6 @@
         .thumb {
  	             height:75px;margin:5px;
 	    }
-	    
-	    .progress-bar {
-/* 	    	margin-top: 10px; */
- 	    	
-	    }
-	    
-	    .progress-label{
-	    	margin-top: 5px;
-	    	width: 50px; 
-	    }
-	    .travler-rank{
-	    width: 300px; 
-	    
-	    }
-	    
-
-
 
     </style>
 
@@ -186,6 +169,7 @@
                         <form:input id="serviceRating" path="serviceRating" type="hidden" class="form-control" placeholder="服務評分用(隱藏欄位)" />
                         <form:input id="valueRating" path="valueRating" type="hidden" class="form-control" placeholder="衛生評分用(隱藏欄位)" />
                         <form:input id="roomsRating" path="roomsRating" type="hidden" class="form-control" placeholder="睡眠評分用(隱藏欄位)" />
+                        <form:input id="memberPk" path="memberId" type="hidden" class="form-control" placeholder="會員Pk" value="${LoginOK.memberid }"/>
                     </form:form>                  
                     
                 </div>
@@ -194,55 +178,6 @@
 <!--             結束 -->                
     </section>
     <!-- END section -->
-    
-    <c:forEach var='rank' items='${ranks}'>
-	<h1>${ranks}</h1>
-	<h1>${rankSize}</h1>
-    </c:forEach>
-				<div class="container">
-					<label class="sr-only-focusable">旅客評等</label>
-                        <div class="travler-rank" >                            
-                            <div class="progress">
-                            	<span class="progress-label">很棒</span>
-								<div class="progress-bar" role="progressbar" style="width: ${ranks[0]/rankSize *100}%"aria-valuenow="${ranks[0]/rankSize *100}" aria-valuemin="0" aria-valuemax="100"><fmt:formatNumber type="number" value="${ranks[0]/rankSize *100}" maxFractionDigits="0"/>%</div>
-							</div>							
-							
-							<div class="progress">
-								<span class="progress-label">非常好</span>							  							  
-							  	<div class="progress-bar" role="progressbar" style="width: ${ranks[1]/rankSize *100}%" aria-valuenow="${ranks[1]/rankSize *100}" aria-valuemin="0" aria-valuemax="100"><fmt:formatNumber type="number" value="${ranks[1]/rankSize *100}" maxFractionDigits="0"/>%</div>
-							</div>					
-							
-							<div class="progress">
-								<span class="progress-label">普通</span>							  		
-							  	<div class="progress-bar" role="progressbar" style="width: ${ranks[2]/rankSize *100}%" aria-valuenow="${ranks[2]/rankSize *100}" aria-valuemin="0" aria-valuemax="100"><fmt:formatNumber type="number" value="${ranks[2]/rankSize *100}" maxFractionDigits="0"/>%</div>
-							</div>							
-							
-							<div class="progress">
-								<span class="progress-label">差</span>
-								<div class="progress-bar" role="progressbar" style="width: ${ranks[3]/rankSize *100}%" aria-valuenow="${ranks[3]/rankSize *100}" aria-valuemin="0" aria-valuemax="100"><fmt:formatNumber type="number" value="${ranks[3]/rankSize *100}" maxFractionDigits="0"/>%</div>
-							</div>						
-							
-							<div class="progress">
-								<span class="progress-label">糟透了</span>
-							  	<div class="progress-bar" role="progressbar" style="width: ${ranks[4]/rankSize *100}%" aria-valuenow="${ranks[4]/rankSize *100}" aria-valuemin="0" aria-valuemax="100"><fmt:formatNumber type="number" value="${ranks[4]/rankSize *100}" maxFractionDigits="0"/>%</div>
-							</div>       
-						</div>
-				</div>
-				
-		
-		<div class="container">
-		<div class="row">
-		<c:forEach var='review' items='${reviews}'>
-			<div class="col-md-8">
-			<div class="probootstrap_font-18">${review.title}</div>
-			<div class="">${review.content }</div>
-			<div><img src="/startrip/getPicture/reviewUpload/4f04d103-46db-426d-b468-7bf9a151e258.jpg" /></div>
-			</div>
-		</c:forEach>
-		</div>
-		</div>
-
-
 
     <div>
         <jsp:include page="/WEB-INF/views/footer.jsp" flush="true" />

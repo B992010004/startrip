@@ -18,13 +18,13 @@
 						<a class="nav-link" href="/startrip/">Home</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="/startrip/Rooms">房型</a>
+						<a class="nav-link" href="/startrip/Rooms/1">房型</a>
 					</li>
 
 					<li class="nav-item"><a class="nav-link"
 						href="/startrip/restaurantHome">餐廳</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="/startrip/station/index">大眾運輸</a></li>
+						href="/startrip/select">大眾運輸</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="/startrip/TravelMain">行程規劃</a></li>
 					<li class="nav-item"><a class="nav-link"														
@@ -39,7 +39,7 @@
 
 					<li class="nav-item">
 						<c:if test="${ empty LoginOK }">
-							<a class="nav-link" href="#" data-toggle="modal" data-target=".bd-example-modal-lg">登入</a>
+							<a class="nav-link" href="" data-toggle="modal" data-target=".bd-example-modal-lg">登入</a>
 						</c:if>
 					</li>
 					<li class="nav-item">

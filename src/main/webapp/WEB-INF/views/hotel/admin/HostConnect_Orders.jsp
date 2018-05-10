@@ -39,7 +39,7 @@
       padding-bottom: 8px;
     }
 
-    a:visited,
+    a,a:visited,
     a:active {
       color: #afafaf;
     }
@@ -50,6 +50,9 @@
 
     a:hover {
       color: rgb(23, 156, 0);
+    }
+      button{
+    cursor: pointer; 
     }
   </style>
 

@@ -39,7 +39,7 @@
       padding-bottom: 8px;
     }
 
-    a:visited,
+    a,a:visited,
     a:active {
       color: #afafaf;
     }
@@ -64,6 +64,9 @@
       height: 46px;
       width: 100%;
       color: rgb(151, 148, 148)
+    }
+      button{
+    cursor: pointer; 
     }
   </style>
 

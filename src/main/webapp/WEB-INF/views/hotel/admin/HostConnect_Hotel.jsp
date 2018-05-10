@@ -39,7 +39,7 @@
       padding-bottom: 8px;
     }
 
-    a:visited,
+    a,a:visited,
     a:active {
       color: #afafaf;
     }
@@ -56,6 +56,9 @@
     .form-group {
       margin-right: 30px;
 
+    }
+      button{
+    cursor: pointer; 
     }
   </style>
 

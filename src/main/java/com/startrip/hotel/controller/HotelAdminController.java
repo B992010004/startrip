@@ -5,17 +5,12 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -36,7 +31,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
-import com.google.gson.Gson;
 import com.startrip.hotel.model.persistent.FacilitylistBean;
 import com.startrip.hotel.model.persistent.HotelsBean;
 import com.startrip.hotel.model.persistent.PhotoBean;
@@ -83,18 +77,11 @@ public class HotelAdminController {
 	public String hostConnectHotel(Model model, HttpServletRequest request, HttpSession session) {
 
 		String hotelidtemp = request.getParameter("hotelid");
+		
 		if (hotelidtemp != null) {
 			Integer hotelid = Integer.valueOf(hotelidtemp);
 			System.out.println("hotelid = " + hotelid);
-			request.setAttribute("hotelbean", hotelAdminService.selectHotelByPk(hotelid));
-			session.setAttribute("hotelid", hotelid);
-		} else {
-			Integer hotelid = (Integer) session.getAttribute("hotelid");
-			if (hotelid != null) {
-				request.setAttribute("hotelbean", hotelAdminService.selectHotelByPk(hotelid));
-
-			}
-
+			session.setAttribute("hotelbean", hotelAdminService.selectHotelByPk(hotelid));
 		}
 
 		return "hotel/admin/HostConnect_Hotel";
@@ -106,21 +93,26 @@ public class HotelAdminController {
 
 		System.out.println("name=" + name + ", phone=" + phone + ", address=" + address + ", star=" + star);
 
-		Integer hotelid = (Integer) session.getAttribute("hotelid");
+		HotelsBean bean =  (HotelsBean) session.getAttribute("hotelbean");
 
-		if (hotelid != null) {
+		if (bean != null) {
 			System.out.println("變更飯店基本資料");
-			hotelAdminService.updateHotel(hotelid, name, phone, address, star);
+			bean.setHotelname(name);
+			bean.setHotelphone(phone);
+			bean.setHoteladdress(address);
+			bean.setHotelstar(star);
+			hotelAdminService.updateHotel(bean);
 		} else {
-			HotelsBean bean = new HotelsBean();
+			bean = new HotelsBean();
 			bean.setHotelname(name);
 			bean.setHotelphone(phone);
 			bean.setHoteladdress(address);
 			bean.setHotelstar(star);
 			bean.setHotelstate(1);
 			System.out.println("新增飯店基本資料");
-			session.setAttribute("hotelid", hotelAdminService.insertHotel(bean));
-
+			Integer pk = hotelAdminService.insertHotel(bean);
+			bean.setHotelid(pk);
+			session.setAttribute("hotelbean", bean);
 		}
 
 		return "redirect:/admin/HostConnect_Info";
@@ -128,9 +120,7 @@ public class HotelAdminController {
 
 	@RequestMapping(value = "/admin/HostConnect_Info", method = RequestMethod.GET)
 	public String hostConnectInfo(Model model, HttpSession session, HttpServletRequest request) {
-		Integer hotelid = (Integer) session.getAttribute("hotelid");
-		HotelsBean bean = hotelAdminService.selectHotelByPk(hotelid);
-		request.setAttribute("hotelbean", bean);
+
 
 		return "hotel/admin/HostConnect_Info";
 	}
@@ -138,24 +128,50 @@ public class HotelAdminController {
 	@RequestMapping(value = "/admin/HostConnect_Service", method = RequestMethod.POST)
 	public String hostConnectServiceNextPage(Model model, HttpSession session, @RequestParam String info,
 			@RequestParam String note) {
-		Integer hotelid = (Integer) session.getAttribute("hotelid");
+		HotelsBean bean = (HotelsBean) session.getAttribute("hotelbean");
+		
 		StringBuilder sb = new StringBuilder();
-		for (String s : note.split("\\n")) {
+		
+		
+		String[] infos =info.split("\\n\\n");
+		int i = 1;
+		for (String s : infos) {
 			System.out.println(s);
 			sb.append(s);
-			sb.append("<br>");
+			if(i != infos.length) {
+				sb.append("<br>");
+				i++;
+			}
+		}
+		
+		String[] notes = note.split("\\n\\n");
+		i = 1;
+		for (String s : notes) {
+			System.out.println(s);
+			sb.append(s);
+			if(i != notes.length) {
+				sb.append("<br>");
+				i++;
+			}
 		}
 		note = sb.toString();
+		
+		bean.setHotelinfo(info);
+		bean.setHotelrulenote(note);
 
-		hotelAdminService.updateHotel(hotelid, info, note);
-
+		hotelAdminService.updateHotel(bean);
+		String rulenote = note.replaceAll("<br>", "&#10;").replaceAll(" ", "");
+		String hotelinfo = info.replaceAll("<br>", "&#10;").replaceAll(" ", "");
+		bean.setHotelrulenote(rulenote);
+		bean.setHotelinfo(hotelinfo);
 		return "redirect:/admin/HostConnect_Service";
 	}
 
 	@RequestMapping(value = "/admin/HostConnect_Service", method = RequestMethod.GET)
 	public String hostConnectService(Model model, HttpSession session, HttpServletRequest request) {
-		Integer hotelid = (Integer) session.getAttribute("hotelid");
-
+		 HotelsBean bean = (HotelsBean) session.getAttribute("hotelbean");
+		 Integer hotelid = bean.getHotelid();
+		 
 		request.setAttribute("facilityname", hotelAdminService.selectFacilityname());
 		request.setAttribute("servicename", hotelAdminService.selectServicename());
 		request.setAttribute("facilitylist", hotelAdminService.selectFacilitylistByHotelid(hotelid));
@@ -168,11 +184,13 @@ public class HotelAdminController {
 	@RequestMapping(value = "/admin/HostConnect_Rooms", method = RequestMethod.POST)
 	public String hostConnectRoomsNextPage(Model model, HttpServletRequest request, HttpSession session,
 			@RequestParam Integer refund, @RequestParam Integer advanceday) {
+		HotelsBean bean = (HotelsBean) session.getAttribute("hotelbean");
+		bean.setAdvancedayid(advanceday);
+		bean.setRefundid(refund);
 
-		Integer hotelid = (Integer) session.getAttribute("hotelid");
+		hotelAdminService.updateHotel(bean);
 
-		hotelAdminService.updateHotel(hotelid, refund, advanceday);
-
+		Integer hotelid = bean.getHotelid();
 		String[] service = request.getParameterValues("service");
 		hotelAdminService.deleteServicelistByHotelid(hotelid);
 		if (service != null) {
@@ -207,7 +225,8 @@ public class HotelAdminController {
 	@RequestMapping(value = "/admin/AjaxChangeRoomtype", method = RequestMethod.POST)
 	public void hostConnectRoomsChange(@RequestParam Integer roomid, Model model, HttpServletRequest request,
 			HttpServletResponse response, HttpSession session) {
-		Integer hotelid = (Integer) session.getAttribute("hotelid");
+		HotelsBean bean = (HotelsBean) session.getAttribute("hotelbean");
+
 		System.out.println("get request from ajax");
 
 		String name = request.getParameter("name");
@@ -238,8 +257,9 @@ public class HotelAdminController {
 
 	@RequestMapping(value = "/admin/HostConnect_Rooms", method = RequestMethod.GET)
 	public String hostConnectRooms(Model model, HttpServletRequest request, HttpSession session) {
-		Integer hotelid = (Integer) session.getAttribute("hotelid");
-
+		HotelsBean bean = (HotelsBean) session.getAttribute("hotelbean");
+		Integer hotelid = bean.getHotelid();
+		
 		request.setAttribute("roomtypelist", hotelAdminService.selectRoomtypeByHotelid(hotelid));
 
 		return "hotel/admin/HostConnect_Rooms";
@@ -248,15 +268,17 @@ public class HotelAdminController {
 	@RequestMapping(value = "/admin/AddRoom", method = RequestMethod.POST)
 	public String hostConnectRoomsAddRoom(Model model, HttpSession session, @RequestParam String name,
 			@RequestParam Integer people, @RequestParam Integer rooms) {
-		Integer hotelid = (Integer) session.getAttribute("hotelid");
+		HotelsBean bean = (HotelsBean) session.getAttribute("hotelbean");
+		Integer hotelid = bean.getHotelid();
 		System.out.println(hotelid);
-		RoomtypeBean bean = new RoomtypeBean();
-		bean.setHotelid(hotelid);
-		bean.setRoomname(name);
-		bean.setNumberofpeople(people);
-		bean.setNumberofrooms(rooms);
-		bean.setRoomstate(false);
-		hotelAdminService.insertRoomtype(bean);
+		
+		RoomtypeBean room = new RoomtypeBean();
+		room.setHotelid(hotelid);
+		room.setRoomname(name);
+		room.setNumberofpeople(people);
+		room.setNumberofrooms(rooms);
+		room.setRoomstate(false);
+		hotelAdminService.insertRoomtype(room);
 
 		return "redirect:/admin/HostConnect_Rooms";
 	}
@@ -310,7 +332,8 @@ public class HotelAdminController {
 	@RequestMapping(value = "/admin/AjaxImageUpload", method = RequestMethod.POST)
 	public void hostConnectImageUpload(Model model, HttpServletRequest request, HttpServletResponse response,
 			HttpSession session) {
-		Integer hotelid = (Integer) session.getAttribute("hotelid");
+		HotelsBean bean = (HotelsBean) session.getAttribute("hotelbean");
+		Integer hotelid = bean.getHotelid();
 		System.out.println("開始上傳圖片");
 
 		CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(
@@ -323,7 +346,7 @@ public class HotelAdminController {
 			List<MultipartFile> photos = multiRequest.getFiles("photos[]");
 
 //			List<Map<String, String>> photoList = new ArrayList<>();
-
+			Integer count = hotelAdminService.countPhotoByHotelid(hotelid);
 			for (MultipartFile photo : photos) {
 				if (photo.isEmpty() || !photo.getContentType().startsWith("image")) {
 					System.out.println("無法找到文件或不是照片類型");
@@ -335,7 +358,7 @@ public class HotelAdminController {
 					System.out.println("========================================");
 
 					String fileurl = "";
-					StringBuffer fileNameBuffer = new StringBuffer();
+//					StringBuffer fileNameBuffer = new StringBuffer();
 //					 String rootDirectory =
 //					 request.getSession().getServletContext().getRealPath("/");
 					 String rootDirectory = fileRootPath;
@@ -357,14 +380,14 @@ public class HotelAdminController {
 						File file = new File(imageFolder, fileurl);
 						photo.transferTo(file);
 
-						PhotoBean bean = new PhotoBean();
-						bean.setHotelid(hotelid);
+						PhotoBean photobean = new PhotoBean();
+						photobean.setHotelid(hotelid);
 						//String temp = fileNameBuffer.toString();
-						bean.setFilename("hotelid_" + hotelid + "/" + filename);
-						Integer count = hotelAdminService.countPhotoByHotelid(hotelid);
-						bean.setPhotosorting(count + 1);
+						photobean.setFilename("hotelid_" + hotelid + "/" + filename);
 						
-						hotelAdminService.insertPhoto(bean);
+						photobean.setPhotosorting(count + 1);
+						
+						hotelAdminService.insertPhoto(photobean);
 
 
 //						System.out.println(bean.getPhotoid() + " : " + bean.getPhotosorting());
@@ -399,7 +422,8 @@ public class HotelAdminController {
 
 	@RequestMapping(value = "/admin/HostConnect_Image")
 	public String hostConnectImage(Model model,HttpSession session,HttpServletRequest request) {
-		Integer hotelid = (Integer) session.getAttribute("hotelid");
+		HotelsBean bean = (HotelsBean) session.getAttribute("hotelbean");
+		Integer hotelid = bean.getHotelid();
 		
 		Integer count = hotelAdminService.countPhotoByHotelid(hotelid);
 		request.setAttribute("count", count);
@@ -416,34 +440,45 @@ public class HotelAdminController {
 	@RequestMapping(value="/admin/deletephoto/{photoid}",method = RequestMethod.POST)
 	public void hostConnectDeleteImage(Model model,@PathVariable Integer photoid,HttpServletResponse response) {
 		System.out.println("Delete photo by id = " + photoid);
-		PhotoBean bean = new PhotoBean();
-		bean.setPhotoid(photoid);
+		
+		PhotoBean bean = hotelAdminService.selectPhotoByPk(photoid);
+		String filename = bean.getFilename();
+		
+		
 		hotelAdminService.deletePhotoByPk(bean);
 		
-		 PrintWriter out;
+		File file = new File(fileRootPath + filename);
+		if(file.exists()) {
+			System.out.println("開始刪除檔案  ==> " + file.getName());
+			file.delete();
+		}
+		
+		PrintWriter out;
 		try {
 			out = response.getWriter();
 			out.write("delete ok");
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 	@RequestMapping(value="/admin/photo/{photoid}")
 	public ResponseEntity<byte[]> hostConnectImageIO(Model model,@PathVariable Integer photoid,HttpSession session,HttpServletRequest request,HttpServletResponse response) {
-		Integer hotelid = (Integer) session.getAttribute("hotelid");
+		HotelsBean bean = (HotelsBean) session.getAttribute("hotelbean");
+		Integer hotelid = bean.getHotelid();
 		
 		
 		System.out.println("photoid = "+photoid);
-		PhotoBean bean = hotelAdminService.selectPhotoByPk(photoid);
-		System.out.println("photobean = " + bean);
-		System.out.println("filename = "+ bean.getFilename());
+		PhotoBean photobean = hotelAdminService.selectPhotoByPk(photoid);
+		System.out.println("photobean = " + photobean);
+		System.out.println("filename = "+ photobean.getFilename());
 
 		HttpHeaders headers = new HttpHeaders();
 		ByteArrayOutputStream baos = null;
 		int len = 0;
 		byte[] media = null;
 		
-		try (InputStream is = new FileInputStream(fileRootPath+bean.getFilename())){
+		try (InputStream is = new FileInputStream(fileRootPath+photobean.getFilename())){
 		    baos = new ByteArrayOutputStream();
 			byte[] b = new byte[8192];
 			
