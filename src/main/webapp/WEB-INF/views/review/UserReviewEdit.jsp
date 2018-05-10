@@ -169,6 +169,7 @@
                         <form:input id="serviceRating" path="serviceRating" type="hidden" class="form-control" placeholder="服務評分用(隱藏欄位)" />
                         <form:input id="valueRating" path="valueRating" type="hidden" class="form-control" placeholder="衛生評分用(隱藏欄位)" />
                         <form:input id="roomsRating" path="roomsRating" type="hidden" class="form-control" placeholder="睡眠評分用(隱藏欄位)" />
+                        <form:input id="memberPk" path="memberId" type="hidden" class="form-control" placeholder="會員Pk" value="${LoginOK.memberid }"/>
                     </form:form>                  
                     
                 </div>
@@ -177,17 +178,6 @@
 <!--             結束 -->                
     </section>
     <!-- END section -->
-    
-    <c:forEach var='rank' items='${ranks}'>
-	<h1>${ranks}</h1>
-	<h1>${rankSize}</h1>
-    </c:forEach>
-				
-				
-		
-
-
-
 
     <div>
         <jsp:include page="/WEB-INF/views/footer.jsp" flush="true" />

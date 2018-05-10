@@ -42,10 +42,9 @@ public class HotelController {
 
 		@RequestMapping(value = "/Rooms/{hotelId}")
 		public String rooms(@PathVariable("hotelId") Integer hotelId, Model model) {
-			
-			
-			
-//			review			
+						
+			//review
+			//評等
 			List<Long> ranks = reviewService.getRankByHotelId(hotelId);
 			Integer rankSize = 0;
 			for (Long rank : ranks) {
@@ -58,6 +57,7 @@ public class HotelController {
 			}
 			model.addAttribute("rankSize", rankSize);
 			model.addAttribute("ranks", ranks);
+			//評論bean
 			List<ReviewBean> reviews = reviewService.getReviewsByHotelId(hotelId);
 			model.addAttribute("reviews", reviews);
 			

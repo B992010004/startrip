@@ -124,9 +124,13 @@
     <div>
         <jsp:include page="/WEB-INF/views/header.jsp" flush="true" />
     </div>
-
     <!-- END nav -->
-
+  	<section class="probootstrap-cover overflow-hidden relative" style="background-image: url('/startrip/assets/images/bg_1.jpg');" data-stellar-background-ratio="0.5"
+    	id="section-home">
+		<div class="overlay"></div>
+  	</section>
+  <!-- END section -->
+    
     <div class="container">
         <p></p>
         <div class="row">
@@ -463,8 +467,7 @@
             </div>
         </div>
         <div class="container" >
-			<c:forEach var='review' items='${reviews}'>
-	        
+			<c:forEach var='review' items='${reviews}'>	        
 				<div class="row" style="margin:16px;">
 					<div class="col">
 						<div class="probootstrap_font-18"><h5>${review.title}</h5></div>
@@ -476,11 +479,14 @@
 						</c:if>					
 					</div>
 				</div>
+				${review.memberBean.username}
 			</c:forEach>
 		</div>
+		
+		
         
         <!-- 圖片彈出區間 -->
-        <div id="my_popup">
+        <div id="my_popup" hidden="hidden">
             <div class="row">
                 <div class="col-md popwindow">
                     <img src="/startrip/assets/images/test1.jpg" value="1" title="XX" class="ui-corner-all img-fluid imglist my_popup_close  img-thumbnail">

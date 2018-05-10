@@ -78,6 +78,10 @@
     td {
       height: 79px;
     }
+      button{
+    cursor: pointer; 
+    }
+
   </style>
 
 
@@ -270,7 +274,9 @@
              <a href="/startrip/admin/HostConnect_Service" class="btn btn-outline-secondary">上一步</a>
             </div>
           <div class="col-md-2">
-            <a href="/startrip/admin/HostConnect_Bookingday" class="btn btn-outline-primary">下一步</a>
+          	<form action="/startrip/admin/HostConnect_Bookingday">
+              <button type="submit" class="btn btn-outline-primary">下一步</button>
+          	</form>
           </div>
         </div>
       </div>

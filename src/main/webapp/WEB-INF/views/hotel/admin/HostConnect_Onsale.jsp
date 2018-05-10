@@ -47,6 +47,9 @@
     a:hover {
       color: rgb(23, 156, 0);
     }
+      button{
+    cursor: pointer; 
+    }
   </style>
 
 
@@ -103,13 +106,13 @@
     <div class="row">
       <div class="col-md-2">
         <nav class="nav flex-column subnav">
-          <a class="nav-link" href="/startrip/admin/HostConnect_Hotel.html">基本資訊</a>
-          <a class="nav-link" href="/startrip/admin/HostConnect_Info.html">住宿簡介</a>
-          <a class="nav-link" href="/startrip/admin/HostConnect_Service.html">服務與設施</a>
-          <a class="nav-link" href="/startrip/admin/HostConnect_Rooms.html">設定房型</a>
-          <a class="nav-link" href="/startrip/admin/HostConnect_Bookingday.html">設定可訂房期間</a>
-          <a class="nav-link" href="/startrip/admin/HostConnect_Image.html">照片</a>
-          <a class="nav-link active" href="/startrip/admin/HostConnect_Onsale.html">上線販售</a>
+          <a class="nav-link" href="/startrip/admin/HostConnect_Hotel">基本資訊</a>
+          <a class="nav-link" href="/startrip/admin/HostConnect_Info">住宿簡介</a>
+          <a class="nav-link" href="/startrip/admin/HostConnect_Service">服務與設施</a>
+          <a class="nav-link" href="/startrip/admin/HostConnect_Rooms">設定房型</a>
+          <a class="nav-link" href="/startrip/admin/HostConnect_Bookingday">設定可訂房期間</a>
+          <a class="nav-link" href="/startrip/admin/HostConnect_Image">照片</a>
+          <a class="nav-link active" href="/startrip/admin/HostConnect_Onsale">上線販售</a>
         </nav>
       </div>
       <div class="col-md-10">
@@ -118,7 +121,7 @@
           <hr>
           <div class="row">
             <div class="col-md-3">
-              <a href="HostManage.html">儲存並離開</a>
+              <a href="HostManage">儲存並離開</a>
             </div>
             <div class="col-md-2">
               <button type="submit" class="btn btn-outline-secondary">上一步</button>
