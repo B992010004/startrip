@@ -35,7 +35,7 @@
       padding-bottom: 8px;
     }
 
-    a:visited,
+    a,a:visited,
     a:active {
       color: #afafaf;
     }
