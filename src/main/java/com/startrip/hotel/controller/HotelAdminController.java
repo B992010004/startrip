@@ -5,17 +5,12 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -36,7 +31,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
-import com.google.gson.Gson;
 import com.startrip.hotel.model.persistent.FacilitylistBean;
 import com.startrip.hotel.model.persistent.HotelsBean;
 import com.startrip.hotel.model.persistent.PhotoBean;
@@ -137,10 +131,28 @@ public class HotelAdminController {
 		HotelsBean bean = (HotelsBean) session.getAttribute("hotelbean");
 		
 		StringBuilder sb = new StringBuilder();
-		for (String s : note.split("\\n")) {
+		
+		
+		String[] infos =info.split("\\n\\n");
+		int i = 1;
+		for (String s : infos) {
 			System.out.println(s);
 			sb.append(s);
-			sb.append("<br>");
+			if(i != infos.length) {
+				sb.append("<br>");
+				i++;
+			}
+		}
+		
+		String[] notes = note.split("\\n\\n");
+		i = 1;
+		for (String s : notes) {
+			System.out.println(s);
+			sb.append(s);
+			if(i != notes.length) {
+				sb.append("<br>");
+				i++;
+			}
 		}
 		note = sb.toString();
 		
@@ -148,7 +160,10 @@ public class HotelAdminController {
 		bean.setHotelrulenote(note);
 
 		hotelAdminService.updateHotel(bean);
-
+		String rulenote = note.replaceAll("<br>", "&#10;").replaceAll(" ", "");
+		String hotelinfo = info.replaceAll("<br>", "&#10;").replaceAll(" ", "");
+		bean.setHotelrulenote(rulenote);
+		bean.setHotelinfo(hotelinfo);
 		return "redirect:/admin/HostConnect_Service";
 	}
 
