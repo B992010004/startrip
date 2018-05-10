@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+   <%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html >
 <html>
 <head>
@@ -17,46 +18,17 @@
 	    	</div>
     <div class="aside1">
           <div class="listcard" id="views">
-<!--           	<h5 class="card-title">Card title</h5> -->
-<!--             <div class="card" style="width: 18rem;"> -->
+<%--           <c:forEach var="" items=""> --%>
+          	<h5 class="card-title">Card title</h5>
+            <div class="card" style="width: 18rem;">
               
-<!--                 <img class="card-img-top" src="..." alt="Card image cap"> -->
-<!--                 <div class="card-body"> -->
+                <img class="card-img-top" src="..." alt="Card image cap">
+                <div class="card-body">
            
-<!--                 </div> -->
-<!--             </div> -->
-<!--             <h5 class="card-title">Card title</h5> -->
-<!--             <div class="card" style="width: 18rem;"> -->
-              
-<!--                 <img class="card-img-top" src="..." alt="Card image cap"> -->
-<!--                 <div class="card-body"> -->
-           
-<!--                 </div> -->
-<!--             </div> -->
-<!--             <h5 class="card-title">Card title</h5> -->
-<!--             <div class="card" style="width: 18rem;"> -->
-              
-<!--                 <img class="card-img-top" src="..." alt="Card image cap"> -->
-<!--                 <div class="card-body"> -->
-           
-<!--                 </div> -->
-<!--             </div> -->
-<!--             <h5 class="card-title">Card title</h5> -->
-<!--             <div class="card" style="width: 18rem;"> -->
-              
-<!--                 <img class="card-img-top" src="..." alt="Card image cap"> -->
-<!--                 <div class="card-body"> -->
-           
-<!--                 </div> -->
-<!--             </div> -->
-<!--             <h5 class="card-title">Card title</h5> -->
-<!--             <div class="card" style="width: 18rem;"> -->
-              
-<!--                 <img class="card-img-top" src="..." alt="Card image cap"> -->
-<!--                 <div class="card-body"> -->
-           
-<!--                 </div> -->
-<!--             </div> -->
+                </div>
+            </div>
+<%--           </c:forEach>	 --%>
+         
     </div>
 </div>
     <div class="aside">
@@ -457,14 +429,17 @@ console.log(value);
 				
 				var split =data[i].imgName.split(";");
 				
-				var img = $('<img class="card-img-top"  alt="Card image cap">').attr("src",'/showImage/'+split[0]);
+				var img = $('<img class="card-img-top"  alt="Card image cap">').attr("src",'/startrip/showImage/'+split[0]);
+				var img1 = $('<img class="card-img-top"  alt="Card image cap">').attr("src",'/startrip/showImage/'+split[1]);
+				var img2 = $('<img class="card-img-top"  alt="Card image cap">').attr("src",'/startrip/showImage/'+split[2]);
+				var img3 = $('<img class="card-img-top"  alt="Card image cap">').attr("src",'/startrip/showImage/'+split[3]);
+				var img4 = $('<img class="card-img-top"  alt="Card image cap">').attr("src",'/startrip/showImage/'+split[4]);
 																							
-				console.log("c:/111/"+split[0]);
-				console.log(split);
+				
 				var body = $('<div class="card-body"></div>');
 				var card = $('<div class="card" style="width: 18rem;"></div>');
 				var title = $('<h5 class="card-title">'+data[i].viewName+'</h5>');
-				card.html([img,body])
+				card.html([img,img1,img2,img3,img4,body])
 				docFrag.html([title,card])
 			}
 			$('#views').html(docFrag);

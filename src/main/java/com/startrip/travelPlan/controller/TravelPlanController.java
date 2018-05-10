@@ -1,8 +1,10 @@
 package com.startrip.travelPlan.controller;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FilterOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -16,6 +18,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.CacheControl;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -58,7 +65,7 @@ public class TravelPlanController {
 	
 	@RequestMapping(value="Travel/addPlan",method=RequestMethod.POST)
 	public String travelAdd(@ModelAttribute("TravelALLBean") TravelAllBean bean) {
-		System.out.println(bean.toString());
+//		System.out.println(bean.toString());
 		//天數計算----------------
 		int days = 0;
 		Date start = bean.getStartDate();
@@ -83,14 +90,14 @@ public class TravelPlanController {
 	@ResponseBody
 	public HashMap<String, Object> travelBean(Integer id) {
 //		Integer id =bean.getTravelId();
-		System.out.println(id);
+//		System.out.println(id);
 		TravelAllBean tb = travelservice.Select_TravelId(id);
 	
 		HashMap<String, Object> result = new HashMap<>();
 		result.put("Name", tb);
 		result.put("startDate", tb.getStartDate().toString());
 		result.put("endDate", tb.getEndDate().toString());
-		System.out.println(result);
+//		System.out.println(result);
 		return result;
 	}
 	
@@ -196,7 +203,7 @@ public class TravelPlanController {
 					imgFolder.mkdirs();
 				//建立檔案
 				File file = new File(imgFolder, originalFile);
-				System.out.println(imgFolder+originalFile);
+//				System.out.println(imgFolder+originalFile);
 				img.transferTo(file);
 
 			} catch (Exception e) {
@@ -246,35 +253,45 @@ public class TravelPlanController {
 	}
 
 	@RequestMapping(value="/showImage/{fileName}.{suffix}" ,method =RequestMethod.GET)
-	public void showImage(@PathVariable("fileName") String fileName,
-			@PathVariable("suffix") String suffix,HttpServletResponse response) {
-		String path = "E:/temp/images/";
-		File imgFile = new File(path+fileName+suffix);
-		System.out.println(path+fileName+suffix);
-		responseFile(response,imgFile);
-	}
-	
-	private void responseFile(HttpServletResponse response,File imgFile) {
+	public ResponseEntity<byte[]> showImage(
+			@PathVariable("fileName") String fileName,
+			@PathVariable("suffix") String suffix,HttpServletRequest request 
+			,HttpServletResponse response) {
+		System.out.println("img loading");
+		String path = "c:/temp/travel/";
+		String imgFile =path+fileName+"."+suffix;
+		
+		File file = new File(imgFile);
+		if(file.exists())
+			System.out.println("true;"+file.getName());
+		System.out.println(path+fileName+"."+suffix);
+		int len = 0;
+		byte[] media = null;
+		ByteArrayOutputStream baos =null;
+		HttpHeaders headers = new HttpHeaders();
+		InputStream is=null;
 		try {
-			InputStream is = new FileInputStream(imgFile);
-			OutputStream os = response.getOutputStream();
-			byte[] buffer = new byte[8192];
-			while(is.read(buffer)!=-1) {
-				os.write(buffer);
-			}
-				os.flush();
-				os.close();
-				is.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			 is = new FileInputStream(file);
+//			System.out.println(is.read());
+		baos = new ByteArrayOutputStream() ;
+		byte[] b = new byte[8192];
+		while((len = is.read(b))!=-1) {
+			baos.write(b, 0, len);
 		}
-			
+		baos.close();
+		is.close();
+	} catch (Exception e) {
+		e.printStackTrace();
+	} 
+	media=baos.toByteArray();
+	headers.setCacheControl(CacheControl.noCache().getHeaderValue());
+	headers.setContentType(MediaType.IMAGE_JPEG);
+	ResponseEntity<byte[]> responseEntity = new ResponseEntity<byte[]>(media, headers, HttpStatus.OK);
+		return responseEntity;
+		
 		
 		
 	}
 	
+
 }
