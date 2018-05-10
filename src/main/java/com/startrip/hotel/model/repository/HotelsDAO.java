@@ -22,5 +22,10 @@ public class HotelsDAO{
 		Session session = factory.getCurrentSession();
 		return session.get(HotelsBean.class, hotelid);
 	}
+	
+	public void update(HotelsBean bean) {
+		Session session = factory.getCurrentSession();
+		session.update(bean);
+	}
 
 }
