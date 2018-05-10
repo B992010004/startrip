@@ -23,7 +23,7 @@ public class StationController {
 	@Autowired
 	ServletContext context;
 	
-	@RequestMapping(value="station/select", method=RequestMethod.GET)
+	@RequestMapping(value="/select", method=RequestMethod.GET)
 	public String select(Model model) {
 		List<StationBean> all = StationService.select();
 		System.out.println(all);
@@ -32,6 +32,7 @@ public class StationController {
 			System.out.println(stationBean.getStationId());			
 			System.out.println(stationBean.getArea());		}
 		model.addAttribute("stationList", all);
+		
 		return "transport/select";
 	}
 	
