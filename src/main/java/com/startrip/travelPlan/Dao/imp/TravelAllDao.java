@@ -81,11 +81,12 @@ public class TravelAllDao implements ITripAllDao {
 	}
 
 	@Override
-	public void update(TravelAllBean bean) throws SQLException {
-		String hql = "UPDATE TravelAllBean SET mail = :mail WHERE travelId = :travelId";
+	public void updateDays(TravelAllBean bean) throws SQLException {
+		String hql = "UPDATE TravelAllBean SET travelDays = :travelDays WHERE travelId = :travelId AND memberId=:memberId";
 		System.out.println(bean.toString());
-		getSession().createQuery(hql).setParameter("mail", bean.getMail())
-									 .setParameter("travelId", bean.getTravelId()).executeUpdate();
+		getSession().createQuery(hql).setParameter("travelDays", bean.getTravelDays())
+									 .setParameter("travelId", bean.getTravelId())
+									 .setParameter("memberId", bean.getMemberId()).executeUpdate();
 		
 		
 		
@@ -136,16 +137,16 @@ public class TravelAllDao implements ITripAllDao {
 //					 
 //			System.out.println(bean.toString());		
 			//----------------------------------------------------		 
-//					 
-//						bean.setTravelId(2);
-//						bean.setMail("4@456");
-//					 
-//						try {
-//							dao.update(bean);
-//						} catch (SQLException e) {
-//							// TODO Auto-generated catch block
-//							e.printStackTrace();
-//						}
+					bean = dao.Select_TravelId(1);
+						bean.setTravelDays(4);
+						bean.setMemberId(1);
+					 bean.setTravelDays(5);
+						try {
+							dao.updateDays(bean);
+						} catch (SQLException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 //						
 //						
 //					
@@ -157,8 +158,8 @@ public class TravelAllDao implements ITripAllDao {
 //					}
 //					dao.TravelPrimayKey(bean);
 					
-					bean.setTravelId(2);
-					dao.delete(bean.getTravelId());
+//					bean.setTravelId(2);
+//					dao.delete(bean.getTravelId());
 			HibernateUtil_SQLServer.getSessionFactory().getCurrentSession().getTransaction().commit();
 			}finally {
 				if(HibernateUtil_SQLServer.getSessionFactory()!=null) {

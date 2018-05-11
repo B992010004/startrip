@@ -52,14 +52,7 @@
 
 <form:form method='POST' modelAttribute="TravelAllBean">
 		<div class="modal-body">
-			<div class="form-group">
-				<label class="form-control-label" for="formGroupExampleInput">memberId:</label>
-				<form:input path="memberId" placeholder="請輸入行程名稱" type="text" id="memberId"
-					class="form-control" />
-
-			</div>
-
-
+			
 			<div class="form-group">
 				<label class="form-control-label" for="formGroupExampleInput">travelName:</label>
 				<form:input path="travelName" placeholder="請輸入行程名稱" type="text"
@@ -76,7 +69,7 @@
 				<form:input path="endDate" placeholder="請輸入行程名稱" type="text"
 					name="endDate" id="endDate" class="form-control" />
 			</div>
-
+				
 
 		</div>
 

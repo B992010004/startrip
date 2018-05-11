@@ -19,8 +19,9 @@ CREATE TABLE Membertable(
 	username varchar(255) NULL,
 PRIMARY KEY(memberId) )
 
-insert into Membertable (mail,phone)values ('1@123','45688')
-insert into Membertable (mail,phone)values ('4@456','45688')
+insert into Membertable (mail,password,phone)values ('2@123','1','11')
+insert into Membertable (mail,password,phone)values ('6@456','1','22')
+insert into Membertable (mail,password,phone)values ('5@456','1','33')
 
 
 
