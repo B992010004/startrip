@@ -47,14 +47,9 @@ public class MemberRepository implements MemberRepositoryinterface {
 	}
 
 	@Override
-	public void update(String mail, String password, String username, String address, String phone, String birthday,
-			String avatar, Blob photo, Date registerDate, String validataCode) {
-		String hql = "update MemberBean set password =:password address =:address phone =:phone birthday =:birthday username =:username avatar =:avatar photo =:photo validataCode =:validataCode registerDate =:registerDate where mail =:mail";
+	public void update(MemberBean bean) {
 		Session session = factory.getCurrentSession();
-		session.createQuery(hql).setParameter("mail", mail).setParameter("password", password)
-				.setParameter("address", address).setParameter("username", username).setParameter("birthday", birthday)
-				.setParameter("password", password).setParameter("avatar", avatar).setParameter("photo", photo)
-				.setParameter("validataCode", validataCode).setParameter("registerDate", registerDate).executeUpdate();
+		session.update(bean);
 
 	}
 

@@ -167,41 +167,32 @@ public class MemberController {
 	public String ModifyMember(@ModelAttribute("MemberBean") MemberBean mb, BindingResult result,
 			HttpServletRequest request) {
 		MultipartFile avatarImage = mb.getAvatarImage();
-
-		String originalFilename = avatarImage.getOriginalFilename();
-		if (originalFilename != "") {
-			String ext = originalFilename.substring(originalFilename.lastIndexOf("."));
-			String rootDirectory = request.getSession().getServletContext().getRealPath("/");
-			mb.setAvatar(mb.getMail() + ext);
-			try {
-				File imageFolder = new File(rootDirectory, "images");
-				if (!imageFolder.exists())
-					imageFolder.mkdirs();
-				File file = new File(imageFolder, mb.getMail() + ext);
-				avatarImage.transferTo(file);
-
-			} catch (Exception e) {
-				throw new RuntimeException("檔案上傳發生異常" + e.getMessage());
-			}
-		}
-		mb.setAvatar(mb.getMail());
-		Timestamp outDate = new Timestamp(System.currentTimeMillis()+30*60*1000);//30分钟后过期				
-		 mb.setRegisterDate(outDate);
+		String originalFilename = avatarImage.getOriginalFilename();	
 		if (avatarImage != null) {
-			try {
-				byte[] b = avatarImage.getBytes();
-				Blob blob = new SerialBlob(b);
-				mb.setPhoto(blob);
-
-			} catch (Exception e) {
-				e.printStackTrace();
-				throw new RuntimeException("檔案上傳發生異常" + e.getMessage());
+			if (originalFilename == "") {				
+				mb.setAvatar(mb.getAvatar());
+				MemberBean ma=memberservice.select(mb.getMail());
+				mb.setPhoto(ma.getPhoto());
+			} else {
+				String ext = originalFilename.substring(originalFilename.lastIndexOf("."));
+				mb.setAvatar(mb.getMail()+ext);
+				try {
+					byte[] b = avatarImage.getBytes();
+					Blob blob = new SerialBlob(b);
+					mb.setPhoto(blob);
+				} catch (Exception e) {
+					e.printStackTrace();
+					throw new RuntimeException("檔案上傳發生異常" + e.getMessage());
+				}
 			}
 		}
-		memberservice.update(mb.getMail(), mb.getPassword(), mb.getUsername(), mb.getAddress(), mb.getPhone(),
-				mb.getBirthday(), mb.getAvatar(), mb.getPhoto(), mb.getRegisterDate(), mb.getValidataCode());
-
 		
+		Timestamp outDate = new Timestamp(System.currentTimeMillis() + 30 * 60 * 1000);// 30分钟后过期
+		mb.setRegisterDate(outDate);
+		mb.setValidataCode(null);
+		System.out.println(mb);
+		memberservice.update(mb);
+
 		return "index";
 	}
 

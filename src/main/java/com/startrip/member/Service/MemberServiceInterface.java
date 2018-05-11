@@ -12,8 +12,7 @@ public interface MemberServiceInterface {
 
 	MemberBean select(String email);
 
-	void update(String mail, String password, String username, String address, String phone, String birthday,
-			String avatar ,Blob photo,Date registerDate,String validataCode);
+	void update(MemberBean bean);
 
 	void insert(MemberBean bean);
 

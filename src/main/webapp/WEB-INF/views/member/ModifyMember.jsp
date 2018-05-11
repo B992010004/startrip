@@ -87,9 +87,7 @@
 				<H2 class="display-4 border-bottom probootstrap-section-heading"
 					style="text-align: center">Sign Up</H2>
 				<div class="row">
-
 					<div class="col-md-6  probootstrap-animate">
-
 						<div class="form-group">
 							<label>姓名:</label>
 							<form:input type="text" class="form-control" name="mName"
@@ -107,11 +105,7 @@
 							<form:input type="text" class="form-control" name="mPhone"
 								path="phone" value="${LoginOK.phone}" placeholder="請輸入"
 								autofocus="autofocus" required="required" />
-							<span id="err"></span>
-							<form:input type="text" path='validataCode' value="${LoginOK.validataCode}"
-								style="display: none;" />
-							<form:input type="text" path='registerDate' value="${LoginOK.registerDate}"
-								style="display: none;" />
+							<span id="err"></span>						
 						</div>
 					</div>
 					<div class="col-md-6  probootstrap-animate">
@@ -126,9 +120,28 @@
 								path='mail' style="display: none;" value="${LoginOK.mail}"></form:input>
 						</div>
 						<div class="form-group">
-							<form:input type="password" class="form-control" name="mPwd"
+							<form:input type="text" class="form-control" 
+								path="memberid" style="display: none;"
+								value="${LoginOK.memberid}" />
+							<form:input type="password" class="form-control" 
 								path="password" style="display: none;"
 								value="${LoginOK.password}" />
+						</div><div class="form-group">
+							<form:input type="text" class="form-control" 
+								path="validataCode" style="display: none;"
+								value="${LoginOK.validataCode}" />
+						</div><div class="form-group">
+							<form:input type="text" class="form-control" 
+								path="registerDate" style="display: none;"
+								value="${LoginOK.registerDate}" />
+						</div><div class="form-group">
+							<form:input type="text" class="form-control" 
+								path="photo" style="display: none;"
+								value="${LoginOK.photo}" />
+						</div><div class="form-group">
+							<form:input type="text" class="form-control" 
+								path="avatar" style="display: none;"
+								value="${LoginOK.avatar}" />
 						</div>
 						<div class="form-group">
 							<img id="preview_progressbarTW_img" class="img1" value=""

@@ -35,7 +35,6 @@ public class MemberBean implements Serializable {
 	private String phone;
 	private String birthday;
 	private String avatar;
-
 	private Date registerDate;
 	private String validataCode;
 
@@ -112,8 +111,9 @@ public class MemberBean implements Serializable {
 
 	@Override
 	public String toString() {
-		return "memberBaen [ password=" + password + ", username=" + username + ", address=" + address + ", phone="
-				+ phone + ", birthday=" + birthday + ", mail=" + mail + "]";
+		return "MemberBean [mail=" + mail + ", password=" + password + ", username=" + username + ", address=" + address
+				+ ", phone=" + phone + ", birthday=" + birthday + ", avatar=" + avatar + ", registerDate="
+				+ registerDate + ", validataCode=" + validataCode + ", photo=" + photo + "]";
 	}
 
 	public String getPassword() {

@@ -31,10 +31,9 @@ public class MemberService implements MemberServiceInterface {
 
 	@Transactional
 	@Override
-	public void update(String mail, String password, String username, String address, String phone, String birthday,
-			String avatar, Blob photo,Date registerDate,String validataCode) {
+	public void update(MemberBean bean) {
 
-		memberDAO.update(mail, password, username, address, phone, birthday, avatar, photo,registerDate,validataCode);
+		memberDAO.update(bean);
 
 	}
 
