@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -123,17 +125,9 @@
 
   <div class="container">
     <div class="row">
-      <div class="col-md-2">
-        <nav class="nav flex-column subnav">
-          <a class="nav-link" href="/startrip/admin/HostConnect_Hotel">基本資訊</a>
-          <a class="nav-link" href="/startrip/admin/HostConnect_Info">住宿簡介</a>
-          <a class="nav-link" href="/startrip/admin/HostConnect_Service">服務與設施</a>
-          <a class="nav-link" href="/startrip/admin/HostConnect_Rooms">設定房型</a>
-          <a class="nav-link active" href="/startrip/admin/HostConnect_Bookingday">設定可訂房期間</a>
-          <a class="nav-link" href="/startrip/admin/HostConnect_Image">照片</a>
-          <a class="nav-link" href="/startrip/admin/HostConnect_Onsale">上線販售</a>
-        </nav>
-      </div>
+      
+		<%@ include file="/WEB-INF/views/hotel/admin/HotelAdminNav.jsp" %>
+      
       <div class="col-md-10">
         <br>
         <div class="row">
@@ -323,6 +317,7 @@
 
 
     <script>
+    $("#adminnav").children().eq(4).attr("class","nav-link active")
 
       $(document).ready(function () {
 

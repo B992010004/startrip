@@ -136,17 +136,9 @@
 
   <div class="container">
     <div class="row">
-      <div class="col-md-2">
-        <nav class="nav flex-column subnav">
-          <a class="nav-link" href="/startrip/admin/HostConnect_Hotel">基本資訊</a>
-          <a class="nav-link" href="/startrip/admin/HostConnect_Info">住宿簡介</a>
-          <a class="nav-link" href="/startrip/admin/HostConnect_Service">服務與設施</a>
-          <a class="nav-link active" href="/startrip/admin/HostConnect_Rooms">設定房型</a>
-          <a class="nav-link" href="/startrip/admin/HostConnect_Bookingday">設定可訂房期間</a>
-          <a class="nav-link" href="/startrip/admin/HostConnect_Image">照片</a>
-          <a class="nav-link" href="/startrip/admin/HostConnect_Onsale">上線販售</a>
-        </nav>
-      </div>
+    
+		<%@ include file="/WEB-INF/views/hotel/admin/HotelAdminNav.jsp" %>
+      
       <div class="col-md-10">
         <br>
         <div class="row">
@@ -391,7 +383,7 @@
 
       <script>
 
-
+      $("#adminnav").children().eq(3).attr("class","nav-link active")
 
         $(function () {
           var trlength = $('tbody tr:last').attr('class').substr(-1)

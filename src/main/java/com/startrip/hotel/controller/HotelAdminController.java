@@ -241,7 +241,7 @@ public class HotelAdminController {
 		}
 		bean.setAdvancedayid(advanceday);
 		bean.setRefundid(refund);
-		bean.setHotelstate(bean.getHotelstate() + 1);
+		
 		Integer state = bean.getHotelstate();
 		if (state == 2) {
 			bean.setHotelstate(3);
