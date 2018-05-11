@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -58,42 +60,9 @@
 <body>
 
 
-  <nav class="navbar navbar-expand-lg navbar-dark probootstrap_navbar" id="probootstrap-navbar">
-    <div class="container">
-      <a class="navbar-brand" href="#">TRIP_LOGO</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#probootstrap-menu" aria-controls="probootstrap-menu"
-        aria-expanded="false" aria-label="Toggle navigation">
-        <span>
-          <i class="ion-navicon"></i>
-        </span>
-      </button>
-      <div class="collapse navbar-collapse" id="probootstrap-menu">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">飯店</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">交通</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">景點</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">餐廳</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">討論區</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">管理</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">登入</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+   
+<jsp:include page="/WEB-INF/views/header.jsp" flush="true" />
+		
   <!-- END nav -->
   <section class="probootstrap-cover overflow-hidden relative" style="background-image: url('/startrip/assets/images/bg_1.jpg');"
     data-stellar-background-ratio="0.5" id="section-home">
@@ -104,19 +73,11 @@
 
   <div class="container">
     <div class="row">
-      <div class="col-md-2">
-        <nav class="nav flex-column subnav">
-          <a class="nav-link" href="/startrip/admin/HostConnect_Hotel">基本資訊</a>
-          <a class="nav-link" href="/startrip/admin/HostConnect_Info">住宿簡介</a>
-          <a class="nav-link" href="/startrip/admin/HostConnect_Service">服務與設施</a>
-          <a class="nav-link" href="/startrip/admin/HostConnect_Rooms">設定房型</a>
-          <a class="nav-link" href="/startrip/admin/HostConnect_Bookingday">設定可訂房期間</a>
-          <a class="nav-link" href="/startrip/admin/HostConnect_Image">照片</a>
-          <a class="nav-link active" href="/startrip/admin/HostConnect_Onsale">上線販售</a>
-        </nav>
-      </div>
+    
+		<%@ include file="/WEB-INF/views/hotel/admin/HotelAdminNav.jsp" %>
+      
       <div class="col-md-10">
-        <form action="">
+        <form action="/startrip/admin/HostManage">
             使用者合約 用 checkbox 確認
           <hr>
           <div class="row">
@@ -124,10 +85,10 @@
               <a href="HostManage">儲存並離開</a>
             </div>
             <div class="col-md-2">
-              <button type="submit" class="btn btn-outline-secondary">上一步</button>
+             <a href="/startrip/admin/HostConnect_Image" class="btn btn-outline-secondary">上一步</a>
             </div>
             <div class="col-md-2">
-              <button type="submit" class="btn btn-outline-primary">完成</button>
+              <button type="submit" class="btn btn-outline-primary"> &nbsp;完成&nbsp;</button>
             </div>
           </div>
         </form>
@@ -137,95 +98,12 @@
 
 
 
-
-
-    <footer class="probootstrap_section probootstrap-border-top">
-      <div class="container">
-        <div class="row mb-5">
-          <div class="col-md-3">
-            <h3 class="probootstrap_font-18 mb-3">Quick Links</h3>
-            <ul class="list-unstyled">
-              <li>
-                <a href="#" target="_blank">Home</a>
-              </li>
-              <li>
-                <a href="#" target="_blank">About</a>
-              </li>
-              <li>
-                <a href="#" target="_blank">Services</a>
-              </li>
-              <li>
-                <a href="#" target="_blank">Contact</a>
-              </li>
-            </ul>
-          </div>
-          <div class="col-md-3">
-            <h3 class="probootstrap_font-18 mb-3">Quick Links</h3>
-            <ul class="list-unstyled">
-              <li>
-                <a href="#" target="_blank">Home</a>
-              </li>
-              <li>
-                <a href="#" target="_blank">About</a>
-              </li>
-              <li>
-                <a href="#" target="_blank">Services</a>
-              </li>
-              <li>
-                <a href="#" target="_blank">Contact</a>
-              </li>
-            </ul>
-          </div>
-          <div class="col-md-3">
-            <h3 class="probootstrap_font-18 mb-3">Quick Links</h3>
-            <ul class="list-unstyled">
-              <li>
-                <a href="#" target="_blank">Home</a>
-              </li>
-              <li>
-                <a href="#" target="_blank">About</a>
-              </li>
-              <li>
-                <a href="#" target="_blank">Services</a>
-              </li>
-              <li>
-                <a href="#" target="_blank">Contact</a>
-              </li>
-            </ul>
-          </div>
-          <div class="col-md-3">
-            <h3 class="probootstrap_font-18 mb-3">Quick Links</h3>
-            <ul class="list-unstyled">
-              <li>
-                <a href="#" target="_blank">Home</a>
-              </li>
-              <li>
-                <a href="#" target="_blank">About</a>
-              </li>
-              <li>
-                <a href="#" target="_blank">Services</a>
-              </li>
-              <li>
-                <a href="#" target="_blank">Contact</a>
-              </li>
-            </ul>
-          </div>
+        <div>
+            <jsp:include page="/WEB-INF/views/footer.jsp" flush="true" />
         </div>
-        <div class="row pt-5">
-          <div class="col-md-12 text-center">
-            <p class="probootstrap_font-14">&copy; 2017. All Rights Reserved.
-              <br> Designed &amp; Developed by
-              <a href="#" target="_blank">ProBootstrap</a>
-              <small> (Don't remove credit link on this footer. See
-                <a href="#">license</a>)</small>
-            </p>
-            <p class="probootstrap_font-14">Demo Images:
-              <a href="#" target="_blank">Unsplash</a>
-            </p>
-          </div>
+        <div>
+            <jsp:include page="/WEB-INF/views/member/login.jsp" flush="true" />
         </div>
-      </div>
-    </footer>
     <!-- END footer -->
 
 
@@ -244,6 +122,10 @@
     <script src="/startrip/assets/js/main.js"></script>
 
     <script src="/startrip/assets/js/range.js"></script>
+    
+    <script>
+    $("#adminnav").children().eq(6).attr("class","nav-link active")
+    </script>
 
 </body>
 

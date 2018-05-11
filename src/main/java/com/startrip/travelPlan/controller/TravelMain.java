@@ -11,7 +11,10 @@ public class TravelMain {
 		return "TravelProject/Main";
 	}
 	
-	
+	@RequestMapping("/TravelMain/test")
+	public String test() {
+		return "TravelProject/TravelList/listproject";
+	}
 	
 	
 	
