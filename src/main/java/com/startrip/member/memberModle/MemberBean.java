@@ -2,11 +2,12 @@ package com.startrip.member.memberModle;
 
 import java.io.Serializable;
 import java.sql.Blob;
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlTransient;
@@ -38,6 +39,9 @@ public class MemberBean implements Serializable{
 	private String birthday;
 	private String avatar;
 	
+	private Date registerDate;
+	private String validataCode;
+	
 	@JsonIgnore
 	private Blob photo;
 	@Transient
@@ -46,6 +50,18 @@ public class MemberBean implements Serializable{
 	@XmlTransient
 	public Blob getPhoto() {
 		return photo;
+	}
+	public Date getRegisterDate() {
+		return registerDate;
+	}
+	public void setRegisterDate(Date registerDate) {
+		this.registerDate = registerDate;
+	}
+	public String getValidataCode() {
+		return validataCode;
+	}
+	public void setValidataCode(String validataCode) {
+		this.validataCode = validataCode;
 	}
 	public void setPhoto(Blob photo) {
 		this.photo = photo;

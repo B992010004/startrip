@@ -2,6 +2,7 @@ package com.startrip.member.MemberDao;
 
 import java.sql.Blob;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -47,13 +48,13 @@ public class MemberRepository implements MemberRepositoryinterface {
 
 	@Override
 	public void update(String mail, String password, String username, String address, String phone, String birthday,
-			String avatar, Blob photo) {
-		String hql = "update MemberBean set   password=:password address=:address phone=:phone birthday=:birthday username=:username avatar=:avatar photo=:photo  where mail =:mail";
+			String avatar, Blob photo, Date registerDate, String validataCode) {
+		String hql = "update MemberBean set password =:password address =:address phone =:phone birthday =:birthday username =:username avatar =:avatar photo =:photo validataCode =:validataCode registerDate =:registerDate where mail =:mail";
 		Session session = factory.getCurrentSession();
 		session.createQuery(hql).setParameter("mail", mail).setParameter("password", password)
 				.setParameter("address", address).setParameter("username", username).setParameter("birthday", birthday)
 				.setParameter("password", password).setParameter("avatar", avatar).setParameter("photo", photo)
-				.executeUpdate();
+				.setParameter("validataCode", validataCode).setParameter("registerDate", registerDate).executeUpdate();
 
 	}
 
