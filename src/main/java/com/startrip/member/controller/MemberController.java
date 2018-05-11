@@ -8,8 +8,6 @@ import java.io.PrintWriter;
 import java.sql.Blob;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
@@ -35,6 +33,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.startrip.member.Service.MemberServiceInterface;
+import com.startrip.member.controller.md5.MD5Util;
 import com.startrip.member.memberModle.MemberBean;
 
 @Controller
@@ -167,15 +166,15 @@ public class MemberController {
 	public String ModifyMember(@ModelAttribute("MemberBean") MemberBean mb, BindingResult result,
 			HttpServletRequest request) {
 		MultipartFile avatarImage = mb.getAvatarImage();
-		String originalFilename = avatarImage.getOriginalFilename();	
+		String originalFilename = avatarImage.getOriginalFilename();
 		if (avatarImage != null) {
-			if (originalFilename == "") {				
+			if (originalFilename == "") {
 				mb.setAvatar(mb.getAvatar());
-				MemberBean ma=memberservice.select(mb.getMail());
+				MemberBean ma = memberservice.select(mb.getMail());
 				mb.setPhoto(ma.getPhoto());
 			} else {
 				String ext = originalFilename.substring(originalFilename.lastIndexOf("."));
-				mb.setAvatar(mb.getMail()+ext);
+				mb.setAvatar(mb.getMail() + ext);
 				try {
 					byte[] b = avatarImage.getBytes();
 					Blob blob = new SerialBlob(b);
@@ -186,7 +185,7 @@ public class MemberController {
 				}
 			}
 		}
-		
+
 		Timestamp outDate = new Timestamp(System.currentTimeMillis() + 30 * 60 * 1000);// 30分钟后过期
 		mb.setRegisterDate(outDate);
 		mb.setValidataCode(null);
@@ -252,86 +251,81 @@ public class MemberController {
 	// mv.setViewName("/index");
 	// return mv;
 	// }
-
-	// @RequestMapping(value = "/user/i_forget_password")
-	// @ResponseBody
-	// public Map forgetPass(HttpServletRequest request,String mail){
-	// MemberBean mb = memberservice.select(mail);
-	// Map map = new HashMap<String ,String >();
-	// String msg = "";
-	// if(mb.getMail() == null){ //用户名不存在
-	// msg = "用户名不存在,你不会忘记用户名了吧?";
-	// map.put("msg",msg);
-	// return map;
-	// }
-	// try{
-	// String secretKey= UUID.randomUUID().toString(); //密钥
-	// Timestamp outDate = new
-	// Timestamp(System.currentTimeMillis()+30*60*1000);//30分钟后过期
-	// long date = outDate.getTime()/1000*1000; //忽略毫秒数
-	// mb.setValidataCode(secretKey);
-	// mb.setRegisterDate(outDate);
-	// userService.update(); //保存到数据库
-	// String key = users.getUserName()+"$"+date+"$"+secretKey;
-	// String digitalSignature = MD5.MD5Encode(key); //数字签名
-	//
-	// String emailTitle = "有方云密码找回";
-	// String path = request.getContextPath();
-	// String basePath =
-	// request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-	// String resetPassHref =
-	// basePath+"user/reset_password?sid="+digitalSignature+"&userName="+users.getUserName();
-	// String emailContent = "请勿回复本邮件.点击下面的链接,重设密码<br/><a href="+resetPassHref +"
-	// target='_BLANK'>点击我重新设置密码</a>" +
-	// "<br/>tips:本邮件超过30分钟,链接将会失效，需要重新申请'找回密码'"+key+"\t"+digitalSignature;
-	// System.out.print(resetPassHref);
-	// SendMail.getInstatnce().sendHtmlMail(emailTitle,emailContent,users.getEmail());
-	// msg = "操作成功,已经发送找回密码链接到您邮箱。请在30分钟内重置密码";
-	// logInfo(request,userName,"申请找回密码");
-	// }catch (Exception e){
-	// e.printStackTrace();
-	// msg="邮箱不存在？未知错误,联系管理员吧。";
-	// }
-	// map.put("msg",msg);
-	// return map;
-	// }
-	// @RequestMapping(value = "/user/reset_password",method = RequestMethod.GET)
-	// public ModelAndView checkResetLink(String sid,String userName){
-	// ModelAndView model = new ModelAndView("error");
-	// String msg = "";
-	// if(sid.equals("") || userName.equals("")){
-	// msg="链接不完整,请重新生成";
-	// model.addObject("msg",msg) ;
-	// logInfo(userName,"找回密码链接失效");
-	// return model;
-	// }
-	// Users users = userService.findUserByName(userName);
-	// if(users == null){
-	// msg = "链接错误,无法找到匹配用户,请重新申请找回密码.";
-	// model.addObject("msg",msg) ;
-	// logInfo(userName,"找回密码链接失效");
-	// return model;
-	// }
-	// Timestamp outDate = users.getRegisterDate();
-	// if(outDate.getTime() <= System.currentTimeMillis()){ //表示已经过期
-	// msg = "链接已经过期,请重新申请找回密码.";
-	// model.addObject("msg",msg) ;
-	// logInfo(userName,"找回密码链接失效");
-	// return model;
-	// }
-	// String key =
-	// users.getUserName()+"$"+outDate.getTime()/1000*1000+"$"+users.getValidataCode();
-	// //数字签名
-	// String digitalSignature = MD5.MD5Encode(key);
-	// System.out.println(key+"\t"+digitalSignature);
-	// if(!digitalSignature.equals(sid)) {
-	// msg = "链接不正确,是否已经过期了?重新申请吧";
-	// model.addObject("msg",msg) ;
-	// logInfo(userName,"找回密码链接失效");
-	// return model;
-	// }
-	// model.setViewName("user/reset_password"); //返回到修改密码的界面
-	// model.addObject("userName",userName);
-	// return model;
-	// }
+	@RequestMapping(value = "/member/forgetpassword", method = RequestMethod.GET)
+	public String forgetPass(Model model) {
+		MemberBean mb = new MemberBean();
+		model.addAttribute("MemberBean", mb);
+		return "/member/forgetpassword";
+	}
+	 @RequestMapping(value = "/member/forgetpassword",method = RequestMethod.POST)
+	 @ResponseBody
+	 public void forgetPass(HttpServletRequest request,HttpServletResponse response) throws IOException{
+	 String mail = request.getParameter("mail");
+	 MemberBean mb = memberservice.select(mail);
+	 response.setContentType("text/html; charset=utf-8");
+	 PrintWriter writer = response.getWriter();
+	 if(mb== null){ //用户名不存在
+		 writer.println(1);	
+	 }
+	 else { try{
+	 String secretKey= UUID.randomUUID().toString(); //密钥
+	 Timestamp outDate = new Timestamp(System.currentTimeMillis()+30*60*1000);//30分钟后过期
+	 long date = outDate.getTime()/1000*1000; //忽略毫秒数
+	 mb.setValidataCode(secretKey);
+	 mb.setRegisterDate(outDate);
+	 memberservice.update(mb); //保存到数据库
+	 String key = mb.getMail()+"$"+date+"$"+secretKey;
+	 String digitalSignature = MD5Util.MD5Encode(key,"UTF-8"); //数字签名
+	
+	 String emailTitle = "StarTrip";
+	 String path = request.getContextPath();
+	 String basePath =
+	 request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+	 String resetPassHref =
+	 basePath+"member/changepassword?sid="+digitalSignature+"&mail="+mb.getMail();
+	 String emailContent = "點選下方連結重設密碼"+resetPassHref+
+	 " 30分鐘後郵件失效，感謝您對StarTrip的支持";
+	 System.out.print(resetPassHref);
+	 sendmail send=new sendmail();
+	 send.sendemail(emailTitle,emailContent,mb.getMail());
+	 writer.println(0);	
+	 }catch (Exception e){
+	 e.printStackTrace();
+	 writer.println(2);
+	 }	 }
+	 }
+	 @RequestMapping(value = "/member/changepassword",method = RequestMethod.GET)
+	 public String checkResetLink(Model model,String sid,String mail){	 	 
+     String msg="";
+	 if(sid.equals("") || mail.equals("")){
+	 msg="連結網址不正確，請重新申請找回密碼，將於五秒後返回首頁";
+	 model.addAttribute("msg",msg);
+	 return "/member/error";
+	 }
+	 MemberBean mb = memberservice.select(mail);
+   
+	 if(mb == null){
+	 msg = "連結網址不正確，請重新申請找回密碼，將於五秒後返回首頁";
+	 model.addAttribute("msg",msg);
+	 return "/member/error";
+	 }
+	 Timestamp outDate = (Timestamp) mb.getRegisterDate();
+	 if(outDate.getTime() <= System.currentTimeMillis()){ //表示已经过期
+	 msg = "連結網址已過期，請重新申請找回密碼，將於五秒後返回首頁";
+	model.addAttribute("msg",msg);
+	return "/member/error";
+	 }
+	 String key =
+	 mb.getMail()+"$"+outDate.getTime()/1000*1000+"$"+mb.getValidataCode();
+	 //数字签名
+	String digitalSignature = MD5Util.MD5Encode(key,"UTF-8");
+	 System.out.println(key+"\t"+digitalSignature);
+	 if(!digitalSignature.equals(sid)) {
+	 msg = "連結網址不正確，請重新申請找回密碼，將於五秒後返回首頁";
+	 model.addAttribute("msg",msg);
+	 return "/member/error";
+	 }
+	 model.addAttribute("change",mb);
+	 return "/member/changepassword";
+	 }
 }

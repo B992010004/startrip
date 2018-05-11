@@ -17,7 +17,7 @@ import javax.mail.internet.MimeMessage;
 public class sendmail {
 
 			
-	public void sendmail() throws AddressException, MessagingException {
+	public void sendemail(String emailTitle,String emailContent,String sendWho) throws AddressException, MessagingException {
 		
 		Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
 		final String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
@@ -40,9 +40,9 @@ public class sendmail {
 		Message msg = new MimeMessage(session);
 		// -- Set the FROM and TO fields --
 		msg.setFrom(new InternetAddress(username + "@gmail.com"));
-		msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse("startrip00@gmail.com", false));
-		msg.setSubject("Hello");//標頭
-		msg.setText("How are you");//內文
+		msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(sendWho, false));
+		msg.setSubject(emailTitle);//標頭
+		msg.setText(emailContent);//內文
 		msg.setSentDate(new Date());//日期
 		Transport.send(msg);
 		System.out.println(msg);

@@ -6,7 +6,6 @@
 
 <link href="/startrip/assets/css/bootstrap/botton.css" rel="stylesheet"
 	type="text/css" />
-<script type="text/javascript" src="http://code.jquery.com/*.min.js"></script>
 <script src='https://www.google.com/recaptcha/api.js'></script>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
@@ -60,7 +59,7 @@
 							<div class="form-group" style="margin: 0px">
 								<input type="checkbox" id="remember" name="remember"
 									${rememberme.cookieremember}> <label for="remember">記住我</label>
-								<a href="#" class="text-center" style="padding-left: 280px">忘記密碼?</a>
+								<a href="/startrip/member/forgetpassword" class="text-center" style="padding-left: 280px">忘記密碼?</a>
 							</div>
 							<span id="errorMsg" class="errorMsg" style="color: red;"></span>
 							<!-- /.col -->
@@ -146,8 +145,7 @@
 				password : $('#loginpassword').val()
 			}
 
-			$
-					.ajax({
+			$.ajax({
 						url : "/startrip/chickpassword",
 						type : "POST",
 						data : ajaxdata,
