@@ -100,7 +100,7 @@
   <!-- END nav -->
   <section class="probootstrap-cover overflow-hidden relative" style="background-image: url('/startrip/assets/images/bg_1.jpg');" data-stellar-background-ratio="0.5"
     id="section-home">
-    <div class="overlay"></div>
+    <div class="overlay" style="height:300px;"></div>
   </section>
   <!-- END section -->
   <div class="container">

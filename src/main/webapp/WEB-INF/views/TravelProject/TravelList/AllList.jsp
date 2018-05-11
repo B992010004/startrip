@@ -8,30 +8,46 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+<link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,700" rel="stylesheet">
+    <link rel="stylesheet" href="/startrip/assets/css/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="/startrip/assets/css/animate.css">
+    <link rel="stylesheet" href="/startrip/assets/fonts/ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="/startrip/assets/css/bootstrap/botton.css" type="text/css" />
+    <link rel="stylesheet" href="/startrip/assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/startrip/assets/fonts/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="/startrip/assets/fonts/fontawesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/startrip/assets/css/select2.css">
+    <link rel="stylesheet" href="/startrip/assets/css/helpers.css">
+    <link rel="stylesheet" href="/startrip/assets/css/style.css">
+
+
+
 <link href="https://fonts.googleapis.com/css?family=Roboto:100i,300,400,500,700" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Allura" rel="stylesheet">
 <link rel="stylesheet" href="/startrip/assets/Travel/css/style.css">
+
 <!-- <link rel="stylesheet" href="/startrip/assets/Travel/css/lightbox.css"> -->
 </head>
-<body>
+<body> 
 
-<!-- 	<div class="nav"> -->
-<%-- 		<jsp:include page="/WEB-INF/views/header.jsp" flush="true" /> --%>
-<!-- 	</div> -->
-<!-- 	<section class="probootstrap_section bg-dark" id="section-contact"> -->
-<!-- 	</section> -->
-
-<div class="main"> 
-	<div class="switch">
-	    <button type="button" class="btn btn-outline-primary switch">切換</button>
+	<div class="nav" >
+		<jsp:include page="/WEB-INF/views/header.jsp" flush="true" />
 	</div>
+	<section class="probootstrap_section bg-dark"  id="section-contact">
+	</section>
+
+	<div class="main" >
+		<div class="switch">
+		    <button id="switch"type="button" class="btn btn-outline-primary switch">切換</button>
+		     <button id="goback" type="button" class="btn btn-outline-primary switch">返回</button>
+		</div>
     
     <div class="aside1">
           <div class="listcard" id="views">
 			<div id="view">
-	          	<h5 class="card-title">Card title</h5>
+	          	<h5 class="card-title">card title</h5>
 	            <div class="card" style="width: 18rem;">
-	                <img class="card-img-top"  alt="Card image cap">
+	                <img class="card-img-top"  alt="card image cap">
 	                <div class="card-body">
 	                </div>
 	            </div>
@@ -40,101 +56,49 @@
 	</div>
 	
     <div class="aside">
-        <div id="tripContext">
-            <h3 id="travelName">tripname</h3>
+        <div id="tripcontext">
+            <h3 id="travelname">tripname</h3>
             <div class="timestyle col-5">
-                <span id ="startDate" class="time contex">2015/02/08</span>
+                <span id ="startdate" class="time contex">2015/02/08</span>
                 <br>  
                 <span style="margin:50px;">|</span>
                 <br>
-                <span id="endDate"  class="time contex">2015/02/13</span>
+                <span id="enddate"  class="time contex">2015/02/13</span>
             </div>
         </div>
     <div class ="triplist">
-    <section id="travelList" class="timeline">
-        <div class="timeline-item day">
-            <div class="timeline-img"></div>
-            <div class="timeline-content1 " >
-            	<h4>Day1</h4>
-            </div>
-        </div>   
-            
-        <div class="day1">
-            <div class="timeline-item" >
-            <div class="timeline-img" ></div>
-            <div class="timeline-content timeline-card " >
-
-                <div class="timeline-img-header">
-                    <h2>Card Title</h2>
-                </div>
-                <div class="date">08:30</div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime ipsa ratione omnis alias cupiditate saepe atque totam aperiam sed nulla voluptatem recusandae dolor, nostrum excepturi amet in dolores. Alias, ullam.</p>
-                <a class="bnt-more" href="javascript:void(0)">More</a>
-            </div>
-            </div>   
-       
-        <div class="timeline-item">
-            <div class="timeline-img" ></div>
-            <div class="timeline-content timeline-card ">
-
-                <div class="timeline-img-header">
-                <h2>Card Title</h2>
-                </div>
-                <div class="date">25 MAY 2016</div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime ipsa ratione omnis alias cupiditate saepe atque totam aperiam sed nulla voluptatem recusandae dolor, nostrum excepturi amet in dolores. Alias, ullam.</p>
-            <a class="bnt-more" href="javascript:void(0)">More</a>
-            </div>
-        </div>   
-        
-    
-      
-        <div class="timeline-item" >
-        <div class="timeline-img"></div>
-            <div class="timeline-content timeline-card ">
-                <div class="timeline-img-header">
-                <h2>Card Title</h2>
-                </div>
-        	<div class="date">10 JULY 2016</div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime ipsa ratione omnis alias cupiditate saepe atque totam aperiam sed nulla voluptatem recusandae dolor, nostrum excepturi amet in dolores. Alias, ullam.</p>
-            <a class="bnt-more" href="javascript:void(0)">More</a>
-            </div>
-        </div>   
- 
-    <div class="timeline-item">
-        <div class="timeline-img"></div>
-        <div class="timeline-content timeline-card ">
-        	<div class="timeline-img-header">
-          	<h2>Card Title</h2>
-        	</div>
-        	<div class="date">30 JULY 2016</div>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime ipsa ratione omnis alias cupiditate saepe atque totam aperiam sed nulla voluptatem recusandae dolor, nostrum excepturi amet in dolores. Alias, ullam.</p>
-          <a class="bnt-more" href="javascript:void(0)">More</a>
-        </div>
-    </div>  
-</div> 
-    
-    <div class="timeline-item">
-        <div class="timeline-img"></div>
-        <div class="timeline-content timeline-card ">
-        	<div class="timeline-img-header">
-          	<h2>Card Title</h2>
-        	</div>
-        	<div class="date">19 AUG 2016</div>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime ipsa ratione omnis alias cupiditate saepe atque totam aperiam sed nulla voluptatem recusandae dolor, nostrum excepturi amet in dolores. Alias, ullam.</p>
-          <a class="bnt-more" href="javascript:void(0)">More</a>
-        </div>
-    </div>  
-      
-    
-</div>  
-</section>
+		<div class="timeline" >
+		
+		  <div class="container1 right1">
+		  	<div class="contentDay">
+		  		<h2 class="title">2017</h2>
+		  	</div>
+		  </div>
+		  
+		  <div class="container1 right">
+		    <div class="content">
+		      <h2 class=title>2017</h2>
+		      <p  class=detail>body</p>
+		    </div>
+		  </div>
+		  
+		  <div class="container1 right">
+			<div class="content">
+			      <h2>2016</h2>
+			      <p>body</p>
+			</div>
+		 </div>
+		</div>
+	</div>
+	
     <div class="foot ">
-        <div class="foot main"><center><button type="button" class="btn btn-outline-primary fmain">+新增天數</button>
+        <div class="foot main">
+        <center><button type="button" class="btn btn-outline-primary fmain">+新增天數</button>
         </center>
         
         </div>
     </div>
-</div>
+
 
  </div>  
 
@@ -142,24 +106,24 @@
 	<div class="maincontext">
         <div class="search-container">
         </div>
-	    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+	    <input id="pac-input" class="controls" type="text" placeholder="search box">
 	    <div id="map"></div>
-	   <div id="viewList">
+	   <div id="viewlist">
 	   
-	   <div class="card" id="viewMain" >
-		  <img class="card-img-top" src="..." alt="Card image cap">
+	   <div class="card" id="viewmain" >
+		  <img class="card-img-top" src="..." alt="card image cap">
 		  <div class="card-body">
-		    <h5 class="card-title">Card title</h5>
-		    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+		    <h5 class="card-title">card title</h5>
+		    <p class="card-text">some quick example text to build on the card title and make up the bulk of the card's content.</p>
 		  </div>
 		  <ul class="list-group list-group-flush">
-		    <li class="list-group-item">Cras justo odio</li>
-		    <li class="list-group-item">Dapibus ac facilisis in</li>
-		    <li class="list-group-item">Vestibulum at eros</li>
+		    <li class="list-group-item">cras justo odio</li>
+		    <li class="list-group-item">dapibus ac facilisis in</li>
+		    <li class="list-group-item">vestibulum at eros</li>
 		  </ul>
 		  <div class="card-body">
-		    <a href="#" class="card-link">Card link</a>
-		    <a href="#" class="card-link">Another link</a>
+		    <a href="#" class="card-link">card link</a>
+		    <a href="#" class="card-link">another link</a>
 		  </div>
 		</div>
 	   
@@ -167,6 +131,17 @@
 	   
 	   </div>
     </div>
+
+	<script src="/startrip/assets/js/jquery.min.js"></script>
+    <script src="/startrip/assets/js/popper.min.js"></script>
+    <script src="/startrip/assets/js/bootstrap.min.js"></script>
+    <script src="/startrip/assets/js/owl.carousel.min.js"></script>
+    <script src="/startrip/assets/js/jquery.waypoints.min.js"></script>
+    <script src="/startrip/assets/js/jquery.easing.1.3.js"></script>
+    <script src="/startrip/assets/js/select2.min.js"></script>
+    <script src="/startrip/assets/js/main.js"></script>
+
+
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -192,7 +167,7 @@ $(function(){
 		data:value,
 		contentType: "application/json; charset=utf-8",
 		success:function(data){
-// 			  <div id="tripContext">
+// 			  <div id="tripcontext">
 // 	            <h3 id="travelName">tripname</h3>
 // 	            <div class="timestyle col-5">
 // 	                <span id ="startDate" class="time contex">2015/02/08</span>
@@ -202,42 +177,36 @@ $(function(){
 // 	                <span id="endDate"  class="time contex">2015/02/13</span>
 // 	            </div>
 // 	        </div>
-			$('#tripContext').empty();
+			$('#tripcontext').empty();
 			var travelNmae = $("<h3 id='travelName'>"+data.Name.travelName+"</h3>");
-			var col =$("<div class='timestyle col-5'></div>");
-			var starttime = $('<span id ="startDate" class="time contex">'+data.startDate+'</span><br>')
-			var line=$("<span style='margin:50px;''>|</span><br>");
+			var col =$("<div class='timestyle col-3'></div>");
+			var starttime = $('<span id ="startDate" class="time contex">'+data.startDate+'</span>')
+			var line=$("<div style='margin-left:25px;'>|</div>");
 			var endtime=$("<span id='endDate'  class='time contex'>"+data.endDate+"</span>")
 			col.html([starttime,line,endtime]);
-			$('#tripContext').html([travelNmae,col])
-// 		$('#travelName').text(data.Name.travelName);
-// 		$('#startDate').text(data.startDate);
-// 		$('#endDate').text(data.endDate);
-		
-		// 		<div class="timeline-item day">
-		//         <div class="timeline-img"></div>
-		//         <div class="timeline-content1 " >
-		//         	<h4>Day1</h4>
-		//         </div>
-		//     </div>   
+			$('#tripcontext').html([travelNmae,col])
+// 		<div class="container1 right1">
+// 		  	<div class="contentDay">
+// 		  		<h2 class="title">2017</h2>
+// 		  	</div>
+// 		 </div>
 		//清空清單 並建立清單項目
-	$('.timeline-item.day').empty();
-	$('.timeline-content.timeline-card').empty();
+		$('.timeline').empty();
+		console.log("天數"+data.Name.travelDays)
 			var docFrag = $(document.createDocumentFragment());
-			
-			for( i = 0;i<=data.Name.travelDays;i++){
+			var main =$(".timeline");
+			for( var i = 1,day=data.Name.travelDays;i<=day;i++){
 				//---天數新增
-				var day=$("<div class='timeline-item day' id='daybody"+(i+1)+"'></div>");
-				var listImg=$("<div class='timeline-img'></div>");
-				var titlecontent=$("<div class='timeline-content1' id='Day"+(i+1)+"'></div>");
-				var title=$("<h4 class='daytitle' >Day"+(i+1)+"</h4>");
-// 				var main =$('<div class="listmain" >i</div>');
-// 				var main =$('<div class="listmain" >i</div>');
-				titlecontent.html([title]);
-				day.html([listImg,titlecontent]);
-				docFrag.append(day);
+				var title=$('<h2 class="title">Day'+i+'</h2>');
+				var daycontent=$('<div class="contentDay"></div>');
+				var right1 = $("<div class='container1 right1' id='daybody"+i+"'></div>");
+ 
+					daycontent.html(title);
+					right1.html(daycontent);
+				
+					docFrag.append(right1);
 			}
-				$("#travelList").append(docFrag);
+				main.append(docFrag);
 			
 		}
 		
@@ -245,6 +214,14 @@ $(function(){
 	 
 //------------------------------------------
 //查詢行程景點
+
+//  <div class="container1 right">
+// 		    <div class="content">
+// 		      <h2 class=title>2017</h2>
+// 		      <p  class=detail>body</p>
+// 		    </div>
+// 		  </div>
+
 	var travel={};
 	travel.id=1
 	$.ajax({
@@ -257,19 +234,18 @@ $(function(){
 			var len = data.length;
 			console.log(len)
 			for(var i = 0;i<len;i++){
-				var card=$('<div class="card"></div>')
-				var body = $('<div class="card-body"></div>')
-				var title = $('<div class="card-header listTitle">'+data[i].viewName+'</div>');
+				var right=$('<div class="container1 right"></div>')
+				var content = $('<div class="content"></div>')
+				var title = $('<h2 class="title">'+data[i].viewName+'</h2>');
 				var start = $('<div class="start">'+data[i].startTime+'</div>');
 				var end = $('<div class="end">'+data[i].endTime+'</div>');
-				body.append([title,start,end])
-				card.append(body)
+				content.append([title,start,end])
+				right.append(content)
 				var day=data[i].tripday
 				
-				
 				var tag = "daybody"+day
-				
-				$("#travelList").find("#"+tag).append(card);
+				console.log(tag)
+				$(".timeline").find("#"+tag).append(right);
 				}
 			console.log(data)
 		}
@@ -306,9 +282,9 @@ $(function(){
 				var img = $('<img class="card-img-top hover-shadow"  alt="Card image cap">').attr("src",'/startrip/showImage/'+split[0]);
 				var body = $('<div class="card-body view"></div>');
 				var del = $('<img class="iconImg" src = http://localhost:8080/startrip/assets/Travel/img/close2.png>');
-					del.css({"margin-left":"2em","float":"right"})
+// 					del.css({"margin-left":"2em","float":"right"})
 				var insert = $('<img class="iconImg" src = http://localhost:8080/startrip/assets/Travel/img/interface.png>');
-					insert.css({"margin-left":"2em","float":"right"})
+// 					insert.css({"margin-left":"2em","float":"right"})
 					body.html([insert,del]);
 				var card = $('<div class="card" style="width: 18rem;"></div>');
 				var title = $('<h5 class="card-title"><strong>'+data[i].viewName+'</strong></h5>');
