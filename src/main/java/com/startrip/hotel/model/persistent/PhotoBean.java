@@ -48,7 +48,8 @@ public class PhotoBean implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer photoid;
 	private String filename;
-	// yyyyMMdd + hotelid + serial number
+	private Integer roomid;
+	private Boolean hotelmainphoto;
 	
 	private Integer photosorting;
 
@@ -85,11 +86,26 @@ public class PhotoBean implements Serializable{
 	public void setPhotosorting(Integer photosorting) {
 		this.photosorting = photosorting;
 	}
+	public Integer getRoomid() {
+		return roomid;
+	}
+	public void setRoomid(Integer roomid) {
+		this.roomid = roomid;
+	}
+	public Boolean getHotelmainphoto() {
+		return hotelmainphoto;
+	}
+	public void setHotelmainphoto(Boolean hotelmainphoto) {
+		this.hotelmainphoto = hotelmainphoto;
+	}
 	@Override
 	public String toString() {
 		return "PhotoBean [hotelid=" + hotelid + ", photonameid=" + photonameid + ", photoid=" + photoid + ", filename="
-				+ filename + ", photosorting=" + photosorting + "]";
+				+ filename + ", roomid=" + roomid + ", hotelmainphoto=" + hotelmainphoto + ", photosorting="
+				+ photosorting + "]";
 	}
+
+
 
 	
 }
