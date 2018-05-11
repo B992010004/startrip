@@ -39,42 +39,9 @@
 <body>
 
 
-  <nav class="navbar navbar-expand-lg navbar-dark probootstrap_navbar" id="probootstrap-navbar">
-    <div class="container">
-      <a class="navbar-brand" href="#">TRIP_LOGO</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#probootstrap-menu" aria-controls="probootstrap-menu"
-        aria-expanded="false" aria-label="Toggle navigation">
-        <span>
-          <i class="ion-navicon"></i>
-        </span>
-      </button>
-      <div class="collapse navbar-collapse" id="probootstrap-menu">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">飯店</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">交通</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">景點</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">餐廳</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">討論區</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">管理</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">登入</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+    
+<jsp:include page="/WEB-INF/views/header.jsp" flush="true" />
+		
   <!-- END nav -->
   <section class="probootstrap-cover overflow-hidden relative" style="background-image: url('/startrip/assets/images/bg_1.jpg');" data-stellar-background-ratio="0.5"
     id="section-home">

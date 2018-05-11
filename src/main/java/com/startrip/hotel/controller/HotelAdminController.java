@@ -553,11 +553,15 @@ public class HotelAdminController {
 		Integer count = hotelAdminService.countPhotoByHotelid(hotelid);
 		request.setAttribute("count", count);
 
+		List<RoomtypeBean> roomlist = hotelAdminService.selectRoomtypeByHotelid(hotelid);
+		request.setAttribute("roomlist", roomlist);
+		
 		List<PhotonameBean> namelist = hotelAdminService.selectPhotoname();
 		request.setAttribute("namelist", namelist);
-
+		
 		List<PhotoBean> photos = hotelAdminService.selectPhotoByHotelid(hotelid);
 		request.setAttribute("photos", photos);
+		
 
 		return "hotel/admin/HostConnect_Image";
 	}
@@ -643,12 +647,16 @@ public class HotelAdminController {
 		if (mb == null || bean == null) {
 			return REDIRECT_ROOT_PATH;
 		}
+		
+		Integer hotelid = bean.getHotelid();
 
 		Integer state = bean.getHotelstate();
 		if (state == 5) {
 			bean.setHotelstate(6);
 		}
 		hotelAdminService.updateHotel(bean);
+		
+		
 
 		String[] sort = request.getParameterValues("sort");
 
@@ -656,17 +664,32 @@ public class HotelAdminController {
 			int i = 1;
 			for (String s : sort) {
 				Integer photoid = Integer.valueOf(s);
+				
 				String temp = request.getParameter("photoname" + photoid);
 				Integer photonameid = null;
+				Integer roomid = null;
+				Boolean hotelmainphoto = null;
 				
-				if (temp != null && !"0".equals(temp)) {
+				if (temp != null && !"0".equals(temp) && temp.matches("\\d")) {
 					photonameid = Integer.valueOf(temp);
 					System.out.println(photonameid);
+				}else if("0".equals(temp)) {
+					photonameid = hotelAdminService.selectPhotonameidForOther();
+				}else {
+					//main photo zone					
+					Integer mainphototemp = Integer.valueOf(temp.replaceAll("m", ""));
+					
+					if(mainphototemp == 0) {
+						hotelmainphoto = true;
+					}else {
+						roomid = mainphototemp;
+					}
 				}
+				
 				
 				System.out.println(photoid);
 				System.out.println("--------");
-				hotelAdminService.updatePhoto(photoid, photonameid, i++);
+				hotelAdminService.updatePhoto(photoid, photonameid, i++,roomid,hotelmainphoto);
 
 			}
 		}
