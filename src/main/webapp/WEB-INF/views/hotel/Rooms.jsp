@@ -430,6 +430,7 @@
                     </div>
                     <div class="col-md-4">
                         <a href="/startrip/review/UserReviewEdit/1" class="btn btn-primary">發表評論</a>
+                        <a href="" class="btn btn-outline-primary">即時客服</a>
                     </div>
                 </div>
 				<div class="row">
@@ -493,7 +494,23 @@
 			</c:forEach>
 		</div>
 		
-		
+		<!-- 訊息聊天框 
+		<div class="dropdown dropup">
+        <button class="btn btn-secondary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            按鈕名字
+        </button>
+        <div class="dropdown-menu" style="padding:0px">
+            <div style="color: #fff;background-color: #00CA4C;
+            border-color: #00CA4C;"> 對方帳號名</div>
+            <div style="width:200px;height:250px;">訊息顯示框</div>
+            <div class="dropdown-divider "></div>
+            <div>
+                <textarea rows="1 " cols="20 " style="resize:none;overflow-y:visible; " placeholder="請輸入訊息"></textarea>
+            </div>
+            <a class=" dropdown-item " href="# ">送出</a>
+        </div>
+
+    </div> -->
 		
         
         <!-- 圖片彈出區間 -->
@@ -537,11 +554,54 @@
 
         <script src="/startrip/assets/js/jquery-ui.js"></script>
         <script src="/startrip/assets/js/jquery.popupoverlay.js"></script>
+        
+<!-- -------------------------------------------------------------------------- -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.0.3/sockjs.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 
+<!--
+<button id="stop">Stop</button>
+    
+	<script>
+	
+  	  var url = 'http://'+ window.location.host +'/startrip/messaging';
+      var sock = new SockJS(url);
+      var stomp = Stomp.over(sock);
+      var payload = JSON.stringify({'message':'Marco!'});
+      stomp.connect('guest', 'guest', function(frame) {
+      console.log('*****  Connected  *****');
 
+      stomp.subscribe("/topic/mc", handleSpittle);
+//         stomp.subscribe("/topic/spittlefeed", handleSpittle);
+//         stomp.subscribe("/user/queue/notifications", handleNotification);
+      stomp.send("/app/mc", {}, payload);
+      });
+      
+      function handleSpittle(message) {
+    	  console.log('Spittle:', message);
+    	  $('#output').append("<b>Received spittle: " + JSON.parse(message.body).message + "</b><br/>");
+      }
+      
+      function handleNotification(message) {
+        console.log('Notification: ', message);
+        $('#output').append("<b>Received: " + 
+            JSON.parse(message.body).message + "</b><br/>")
+      }
+      
+      function sendSpittle(text) {
+        console.log('Sending Spittle');
+        stomp.send("/app/spittle", {}, 
+            JSON.stringify({ 'text': text }));
+      }
+
+      $('#stop').click(function() {sock.close()});
+	</script>
+    
+    <div id="output"></div>
+-->      
+      
+<!-- ------------------------------------------       -->
         <script>
-
-
             $(document).ready(function () {
                 $("#my_popup").attr("hidden", false)
             })
@@ -624,7 +684,6 @@
                     }
                 });
             });
-
         </script>
 </body>
 
