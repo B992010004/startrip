@@ -12,12 +12,16 @@ public enum HQL {
 	SELECT_PHOTONAME,
 	SELECT_PHOTO_BY_HOTELID,
 	SELECT_PHOTOID_FOR_OTHER,
+	SELECT_MAINPHOTO,
 	COUNT_PHOTO_BY_HOTELID;
 
 	private String HQL;
 
 	public String execute() {
 		switch (this) {
+		case SELECT_MAINPHOTO:
+			HQL = "FROM mainphoto WHERE hotelid = :hotelid";
+			break;
 		case SELECT_HOTELS_BY_MEMBERID:
 			HQL = "FROM hotels WHERE hotelmanagerid = :memberid ORDER BY hotelid DESC";
 			break;

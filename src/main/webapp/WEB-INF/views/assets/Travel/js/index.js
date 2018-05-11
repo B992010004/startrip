@@ -14,7 +14,7 @@ var map;
       
       }
 
-			$(".btn-outline-primary.switch").click(
+			$("#switch").click(
 				function(){
 				 
 						$(".aside").toggle();
@@ -22,6 +22,11 @@ var map;
 				
 				
 		);
+			$("#goback").click(
+					function(){
+				history.go("http://localhost:8080/startrip/");}
+			);
+			
 		$("#btnday1").click(
 			function(){
 				$(".day1").fadeToggle(300,0);

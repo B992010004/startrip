@@ -44,9 +44,9 @@
 
 <body>
 
-	<div>
-		<jsp:include page="/WEB-INF/views/header.jsp" flush="true" />
-	</div>
+
+	<jsp:include page="/WEB-INF/views/header.jsp" flush="true" />
+
 <!--   <nav class="navbar navbar-expand-lg navbar-dark probootstrap_navbar" id="probootstrap-navbar"> -->
 <!--     <div class="container"> -->
 <!--       <a class="navbar-brand" href="#">TRIP_LOGO</a> -->

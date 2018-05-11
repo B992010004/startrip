@@ -40,8 +40,8 @@ public class AllServiceImp implements ITravelAllService {
 
 	@Transactional
 	@Override
-	public void update(TravelAllBean bean) throws SQLException {
-		travelDao.update(bean);
+	public void updateDays(TravelAllBean bean) throws SQLException {
+		travelDao.updateDays(bean);
 	}
 	@Transactional
 	@Override

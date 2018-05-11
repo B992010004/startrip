@@ -39,7 +39,7 @@
 	<div class="main" >
 		<div class="switch">
 		    <button id="switch"type="button" class="btn btn-outline-primary switch">切換</button>
-		     <button id="goback" type="button" class="btn btn-outline-primary switch">返回</button>
+		     <a id="goback"  type="button" href="/startrip/" class="btn btn-outline-primary switch">返回</a>
 		</div>
     
     <div class="aside1">
@@ -69,7 +69,7 @@
     <div class ="triplist">
 		<div class="timeline" >
 		
-		  <div class="container1 right1">
+		  <div class="container1 right1" >
 		  	<div class="contentDay">
 		  		<h2 class="title">2017</h2>
 		  	</div>
@@ -77,7 +77,7 @@
 		  
 		  <div class="container1 right">
 		    <div class="content">
-		      <h2 class=title>2017</h2>
+		      <h2 class=listtitle>2017</h2>
 		      <p  class=detail>body</p>
 		    </div>
 		  </div>
@@ -93,7 +93,7 @@
 	
     <div class="foot ">
         <div class="foot main">
-        <center><button type="button" class="btn btn-outline-primary fmain">+新增天數</button>
+        <center><button id=insertday type="button" class="btn btn-outline-primary fmain">+新增天數</button>
         </center>
         
         </div>
@@ -151,15 +151,62 @@
     <script src="/startrip/assets/Travel/js/index.js"></script>
 <!--     <script src="/startrip/assets/Travel/js/lightbox.js"></script> -->
 <script>
-// $(document).ready(function(){
-// 	$('.timeline-item.day').empty();
-// 	$('.timeline-content.timeline-card').empty();
-// });
+$(function(){
+	searchDays();
+	searchList();
+	searchView();
+	
+	
+$('#'+event.target.id).hover(function(){
+	
+})
+	
+})
+
+
+
+function changetype(){
+var k = event.target.id;
+	
+	$('#'+k).parent().parent().find('.right').slideToggle();
+	
+}
+
+
+
+
+
+
+
+
+var add={}
+
+$('#insertday').on('click',function(){
+	
+	
+	add.mail="${LoginOK.mail}"
+
+		$.ajax({
+			url:"/startrip/travel/add/day",
+			type:"GET",
+			dataType:"json",
+			data:add,
+			contentType: "application/json; charset=utf-8",
+			success:function(data){
+				console.log(data.travelDays)
+				searchDays();
+			}
+		})
+	
+})
+</script>
+<script>
+
 //-----------------------------------
 //行程天數生成
-$(function(){
+function searchDays(){
 	var value = {};
-	value.id=2;
+	value.mail="${LoginOK.mail}";
 	$.ajax({
 		url:"/startrip/travel/id",
 		type:"GET",
@@ -197,9 +244,9 @@ $(function(){
 			var main =$(".timeline");
 			for( var i = 1,day=data.Name.travelDays;i<=day;i++){
 				//---天數新增
-				var title=$('<h2 class="title">Day'+i+'</h2>');
+				var title=$('<h2 class="title" onclick="changetype()" id="day'+i+'" >Day'+i+'</h2>');
 				var daycontent=$('<div class="contentDay"></div>');
-				var right1 = $("<div class='container1 right1' id='daybody"+i+"'></div>");
+				var right1 = $("<div class='container1 right1' id='daybody"+i+"' ></div>");
  
 					daycontent.html(title);
 					right1.html(daycontent);
@@ -211,7 +258,7 @@ $(function(){
 		}
 		
 	})
-	 
+} 
 //------------------------------------------
 //查詢行程景點
 
@@ -221,9 +268,9 @@ $(function(){
 // 		      <p  class=detail>body</p>
 // 		    </div>
 // 		  </div>
-
+function searchList(){
 	var travel={};
-	travel.id=1
+	travel.mail="${LoginOK.mail}"
 	$.ajax({
 		url:"/startrip/list/travelId",
 		type:"GET",
@@ -234,9 +281,9 @@ $(function(){
 			var len = data.length;
 			console.log(len)
 			for(var i = 0;i<len;i++){
-				var right=$('<div class="container1 right"></div>')
+				var right=$('<div class="container1 right"  id="dayTile'+i+'"> </div>')
 				var content = $('<div class="content"></div>')
-				var title = $('<h2 class="title">'+data[i].viewName+'</h2>');
+				var title = $('<h2 class="listtitle">'+data[i].viewName+'</h2>');
 				var start = $('<div class="start">'+data[i].startTime+'</div>');
 				var end = $('<div class="end">'+data[i].endTime+'</div>');
 				content.append([title,start,end])
@@ -246,14 +293,16 @@ $(function(){
 				var tag = "daybody"+day
 				console.log(tag)
 				$(".timeline").find("#"+tag).append(right);
-				}
+				} 
 			console.log(data)
 		}
 			
 		
 	})
+}
 //-----------------------------------------------------
 //推薦景點
+function searchView(){
 	var value = {};
 	value.address= '陽明山';
 	$.ajax({
@@ -297,7 +346,9 @@ $(function(){
 			$('#views').html(docFrag);
 		} 
 	})
-})
+}
+
+
 
 </script>
  <script>

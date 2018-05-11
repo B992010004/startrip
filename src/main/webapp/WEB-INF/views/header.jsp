@@ -41,6 +41,8 @@
 
                     <!-- 測試 --><li class="nav-item"><a class="nav-link"
 						href="/startrip/Individualdetails">o測試o個別餐廳資料o</a></li><!-- 測試 -->
+						<!-- 測試 --><li class="nav-item"><a class="nav-link"
+						href="/startrip/RtAllList">o測試o餐廳種覽o</a></li><!-- 測試 -->
 
 
 					<li class="nav-item">

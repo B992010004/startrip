@@ -3,12 +3,9 @@ package com.startrip.travelPlan.controller;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FilterOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -29,9 +26,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.startrip.member.Service.MemberServiceInterface;
+import com.startrip.member.memberModle.MemberBean;
 import com.startrip.travelPlan.model.TravelAllBean;
 import com.startrip.travelPlan.model.TravelListBean;
 import com.startrip.travelPlan.model.TravelViewBean;
@@ -41,6 +41,8 @@ import com.startrip.travelPlan.service.ITravelViewService;
 
 @Controller
 public class TravelPlanController {
+	@Autowired
+	MemberServiceInterface memberservice;
 	
 	@Autowired
 	ITravelAllService travelservice;
@@ -56,15 +58,16 @@ public class TravelPlanController {
 	ServletContext ctx;
 	
 	//新增行程-------------------------------------------
-	@RequestMapping(value="Travel/addPlan",method=RequestMethod.GET)
+	@RequestMapping(value="Travel/addPlan/{mail}",method=RequestMethod.GET)
 	public String travelNewAdd(Model model) {
 		TravelAllBean bean = new TravelAllBean();
+		
 		model.addAttribute("TravelAllBean",bean);
 		return "TravelProject/TravelPlans/add";
 	}
 	
-	@RequestMapping(value="Travel/addPlan",method=RequestMethod.POST)
-	public String travelAdd(@ModelAttribute("TravelALLBean") TravelAllBean bean) {
+	@RequestMapping(value="Travel/addPlan/{mail}",method=RequestMethod.POST)
+	public String travelAdd(@ModelAttribute("TravelALLBean") TravelAllBean bean,@PathVariable("mail")String mail) {
 //		-----------------------------------------------------
 		//天數計算----------------
 		int days = 0;
@@ -75,6 +78,10 @@ public class TravelPlanController {
 		days = (int) ((end.getTime()- start.getTime()) / (1000 * 60 * 60 * 24));
 		bean.setTravelDays(days);
 		//------------------
+		MemberBean mb =memberservice.select(mail);
+		Integer id =mb.getMemberid();
+		bean.setMail(mail);
+		bean.setMemberId(id);
 		travelservice.insert(bean);
 		return "redirect:/list/All";
 	}
@@ -88,7 +95,9 @@ public class TravelPlanController {
 	//查詢行程資料
 	@RequestMapping(value="travel/id",method=RequestMethod.GET)
 	@ResponseBody
-	public HashMap<String, Object> travelBean(Integer id) {
+	public HashMap<String, Object> travelBean(String mail) {
+		MemberBean mb = memberservice.select(mail);
+		Integer id =mb.getMemberid();
 		TravelAllBean tb = travelservice.Select_TravelId(id);
 		HashMap<String, Object> result = new HashMap<>();
 		result.put("Name", tb);
@@ -96,8 +105,27 @@ public class TravelPlanController {
 		result.put("endDate", tb.getEndDate().toString());
 		return result;
 	}
-	
-	
+	@RequestMapping(value="/travel/add/day",method=RequestMethod.GET)
+	@ResponseBody
+	public TravelAllBean addDay(Model model,String mail) {
+		System.out.println(mail);
+		TravelAllBean bean = new TravelAllBean();
+		MemberBean mb = new MemberBean();
+		
+		Integer id =memberservice.select(mail).getMemberid(); 
+		bean = travelservice.Select_TravelId(id);
+		Integer days =bean.getTravelDays();
+		System.out.println(days);
+		
+		bean.setTravelDays(days+1);
+		try {
+			travelservice.updateDays(bean);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		System.out.println();
+		return bean;
+	}
 	
 	
 	//List相關控制-------------------------------------
@@ -129,7 +157,9 @@ public class TravelPlanController {
 	//取得所有清單行程的
 	@RequestMapping(value="list/travelId",method=RequestMethod.GET)
 	@ResponseBody
-	public ArrayList<TravelListBean> getTravelList(int id){
+	public ArrayList<TravelListBean> getTravelList(String mail){
+		MemberBean mb = memberservice.select(mail);
+		Integer id =mb.getMemberid();
 		TravelListBean bean = new TravelListBean();
 		List<TravelListBean> result  =listservice.Select_travelid(id);
 		System.out.println(result.size());
