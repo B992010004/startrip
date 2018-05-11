@@ -58,7 +58,7 @@
 								  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 									<a class="btn" href="ModifyMember">修改個人資料 </a>
 									<a class="btn" href="#">Another action</a>
-									<a class="btn" href="logout">登出</a>
+									<a class="btn" href="/startrip/logout">登出</a>
 								</div>
 								</div>
 							</c:if>

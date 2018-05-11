@@ -1,6 +1,7 @@
 package com.startrip.member.Service;
 
 import java.sql.Blob;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,10 +31,9 @@ public class MemberService implements MemberServiceInterface {
 
 	@Transactional
 	@Override
-	public void update(String mail, String password, String username, String address, String phone, String birthday,
-			String avatar, Blob photo) {
+	public void update(MemberBean bean) {
 
-		memberDAO.update(mail, password, username, address, phone, birthday, avatar, photo);
+		memberDAO.update(bean);
 
 	}
 

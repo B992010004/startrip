@@ -101,7 +101,10 @@
 								required="required"></form:input>
 							<span id="tips"></span>
 						</div>
-
+						<form:input type="text" path='validataCode' value=""
+							style="display: none;" />
+						<form:input type="text" path='registerDate' value=""
+							style="display: none;" />
 						<div class="form-group">
 							<label>密碼:</label>
 							<form:input type="password" class="form-control" name="mPwd"
@@ -125,7 +128,7 @@
 							<form:input type="tel" class="form-control" id="phone"
 								name="mPhone" path="phone" placeholder="請輸入"
 								autofocus="autofocus" required="required" />
-								<span id="err"></span>
+							<span id="err"></span>
 						</div>
 
 					</div>
@@ -201,13 +204,12 @@
 		});
 		$(function() {
 			$("#phone").blur(function() {
-				
-				if($('#phone').val().match(/^09[0-9]{8}$/))
-					{
+
+				if ($('#phone').val().match(/^09[0-9]{8}$/)) {
 					$("#err").html("")
-					}else{
-						$("#err").html("<font color=\'red\'>請輸入正確的手機</font> ");
-					}
+				} else {
+					$("#err").html("<font color=\'red\'>請輸入正確的手機</font> ");
+				}
 			})
 		});
 

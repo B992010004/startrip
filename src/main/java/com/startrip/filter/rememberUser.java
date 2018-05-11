@@ -52,7 +52,7 @@ public class rememberUser implements Filter {
 					remember1.put("cookiemail", cookiemail);
 					remember1.put("cookiepassword", cookiepassword);
 					session.setAttribute("rememberme", remember1);
-					System.out.println("---------------------");
+					
 				}
 			}
 		}
