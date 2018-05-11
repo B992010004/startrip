@@ -41,6 +41,7 @@
 <link rel="stylesheet" href="/startrip/assets/css/rthome2.css">
 <link rel="stylesheet" href="/startrip/assets/css/rthome3.css">
 <link rel="stylesheet" href="/startrip/assets/css/rthome4.css">
+<link rel="stylesheet" href="/startrip/assets/css/jquery-ui.css">
 
 <style>
 .probootstrap-cover .overlay {
@@ -54,6 +55,10 @@
 
 .col-md-123 {
 	padding: 1%;
+}
+
+.col-md{
+text-align: left;
 }
 
 .border-bottom {
@@ -70,17 +75,13 @@
 	padding: 2%;
 }
 
-.row2 {
-	padding-top: 15%;
-}
-
 .headline1 {
 	color: #00CA4C;
 	display: inline;
 }
 
 .bigheadline1 {
-	padding-bottom:4%;
+	padding-bottom: 4%;
 }
 
 .headline2 {
@@ -110,16 +111,30 @@
 	margin: 0px auto
 }
 
-.review{
-	text-align:right;
-	padding-right: 2%;
+.review {
+	text-align: right;
+	padding: 2%;
 }
 
-.probootstrap_section{
-	padding-top:1%;
-	padding-bottom:1%;
+.probootstrap_section {
+	padding-top: 1%;
+	padding-bottom: 1%;
 }
 
+.bookingbutton {
+	text-align: center;
+}
+
+.form-group {
+	text-align: left;
+}
+
+
+
+.ion-calendar {
+	text-align: right;
+	padding-right: 78%;
+}
 </style>
 
 </head>
@@ -151,7 +166,8 @@
 
 	<!-- END section -->
 	<section class="probootstrap_section">
-		<form> <!--  method="post" modelAttribute="RtDetailsBean" action="insertRestaurant" -->
+		<form>
+			<!--  method="post" modelAttribute="RtDetailsBean" action="insertRestaurant" -->
 			<div class="intermediate">
 				<div class="container">
 					<div class="bigheadline1">
@@ -159,110 +175,98 @@
 					</div>
 
 
-					<div class="input-group mb-3">
-						<input path="" type="text" class="form-control"
-							placeholder="餐廳名稱" aria-label="Recipient's username"
-							aria-describedby="basic-addon2" />
+					<div class="form-group">
+						<label>訂位者姓名&nbsp;:&nbsp;</label> <input type="text"
+							class="form-control" name="" path="" placeholder="王大明等..."
+							autofocus="autofocus" />
+						<!-- required="required" -->
 					</div>
-					<div class="input-group mb-3">
-						<input path="" type="text" class="form-control"
-							placeholder="電話" aria-label="Recipient's username"
-							aria-describedby="basic-addon2" />
+					<div class="form-group">
+						<label>連絡電話&nbsp;:&nbsp;</label> <input type="text"
+							class="form-control" name="" path="" placeholder="09XX-XXXXXX"
+							autofocus="autofocus" />
+						<!-- required="required" -->
 					</div>
-					<div class="input-group mb-3">
-						<input path="" type="text" class="form-control"
-							placeholder="網址" aria-label="Recipient's username"
-							aria-describedby="basic-addon2" />
-					</div>
-					<div class="input-group mb-3">
-						<input path="" type="text" class="form-control"
-							placeholder="E-mail" aria-label="Recipient's username"
-							aria-describedby="basic-addon2" />
-					</div>
-					<div class="input-group mb-3">
-						<input path="" type="text"
-							class="form-control" placeholder="營業時間"
-							aria-label="Recipient's username" aria-describedby="basic-addon2" />
-					</div>
-					<div class="input-group mb-3">
-						<input path="" type="text" class="form-control"
-							placeholder="地址" aria-label="Recipient's username"
-							aria-describedby="basic-addon2" />
-					</div>
+
+					<div class="form-group">大人幾位&nbsp;:&nbsp;</div>
+					<select path="" class="js-states form-control" id="id_label_single"
+						style="width: 100%;">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+					</select>
 					<br>
-					<div>
-						<label for="id_label_single">餐點類別</label> <label
-							for="id_label_single" style="width: 100%;"> <select
-								path="" class="js-states form-control"
-								id="id_label_single" style="width: 100%;">
-								<option value="早餐">早餐<option>
-								<option value="早午餐">早午餐<option>
-								<option value="午餐">午餐<option>
-								<option value="下午茶">下午茶<option>
-								<option value="晚餐">晚餐<option>
-								<option value="宵夜">宵夜<option>
-							</select>
-						</label> <label for="id_label_single">餐點菜系</label> <label
-							for="id_label_single" style="width: 100%;"> <select
-								path="" class="js-states form-control"
-								id="id_label_single" style="width: 100%;">
-								<option value="中式料理">中式料理</option>
-								<option value="日式料理">日式料理</option>
-								<option value="港式料理">港式料理</option>
-								<option value="韓式料理">韓式料理</option>
-								<option value="泰式料理">泰式料理</option>
-								<option value="法式料理">法式料理</option>
-								<option value="印度料理">印度料理</option>
-								<option value="南洋料理">南洋料理</option>
-								<option value="墨西哥料理">墨西哥料理</option>
-								<option value="新疆料理">新疆料理</option>
-								<option value="四川料理">四川料理</option>
-								<option value="美式料理">美式料理</option>
-								<option value="英式料理">英式料理</option>
-								<option value="台式料理">台式料理</option>
-								<option value="素食料理">素食料理</option>
-							</select>
-						</label> <label for="id_label_single">價位</label> <label
-							for="id_label_single" style="width: 100%;"> <select
-								path="" class="js-states form-control"
-								id="id_label_single" style="width: 100%;">
-								<option value="高級餐廳">高級餐廳</option>
-								<option value="中等價位">中等價位</option>
-								<option value="平價美食">平價美食</option>
-							</select>
-						</label> <label for="id_label_single">縣市</label> <label
-							for="id_label_single" style="width: 100%;"> <select
-								path="" class="js-states form-control"
-								id="id_label_single" style="width: 100%;">
-								<option value="高級餐廳">高級餐廳<option>
-							</select>
-						</label> <label for="id_label_single">區域</label> <label
-							for="id_label_single" style="width: 100%;"> <select
-								path="" class="js-states form-control"
-								id="id_label_single" style="width: 100%;">
-								<option value="高級餐廳">高級餐廳<option>
-							</select>
-						</label>
-
+					<div class="form-group">小孩幾位&nbsp;:&nbsp;</div>
+					<select path="" class="js-states form-control" id="id_label_single"
+						style="width: 100%;">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+					</select>
+					<br>
+					<div class="form-group">兒童專用座椅&nbsp;:&nbsp;</div>
+					<select path="" class="js-states form-control" id="id_label_single"
+						style="width: 100%;">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+					</select>
+<br>
+					<div class="form-group">用餐日期&nbsp;:&nbsp;</div>
+					<div class="form-group inputState">
+						<div class="probootstrap-date-wrap">
+							<label for="probootstrap-date-arrival"> <span
+								class="icon ion-calendar"></span> <input type="text"
+								id="probootstrap-date-arrival" name="checkin"
+								class="form-control" placeholder="日期">
+							</label>
+						</div>
 					</div>
+					<div class="form-group">用餐時段&nbsp;:&nbsp;</div>
+					<select path="" class="js-states form-control" id="id_label_single"
+						style="width: 100%;">
+						<option value="1">11:00</option>
+						<option value="2">11:30</option>
+						<option value="3">12:00</option>
+						<option value="4">12:30</option>
+						<option value="5">13:00</option>
+						<option value="6">13:30</option>
+						<option value="7">14:00</option>
+						<option value="8">14:30</option>
+						<option value="1">17:00</option>
+						<option value="2">17:30</option>
+						<option value="3">18:00</option>
+						<option value="4">18:30</option>
+						<option value="5">19:00</option>
+						<option value="6">19:30</option>
+						<option value="7">20:00</option>
+						<option value="8">20:30</option>
+						<option value="5">21:00</option>
+						<option value="6">21:30</option>
+						<option value="7">22:00</option>
+					</select>
 
-					<div class="col-md">
-						<input type="submit"
-							value="完&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;成&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;訂&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;位"
-							class="btn btn-primary btn-block">
-					</div>
-				</div>
-			</div>
-		</form>
-	</section>
 
-	<!-- END section -->
-	<!-- 政策提示： -->
 
-	<div class="container">
+<div class="container">
 
 		<div class="row">
-			<div class="row2">
+
 				<div class="col-md">
 					<!-- 規定 -->
 					<br>
@@ -299,16 +303,63 @@
 						</tbody>
 					</table>
 				</div>
-			</div>
+
 		</div>
 	</div>
 	<!-- 規定 -->
+					<!-- Button trigger modal -->
+					<div class="bookingbutton">
 
+
+						<input type="submit"
+							value="確&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;認&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;訂&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;位"
+							class="btn btn-primary btn-block">
+						<!-- 						<button type="button" class="btn btn-primary" data-toggle="modal" -->
+						<!-- 							data-target="#exampleModalCenter"> -->
+						<!-- 							確&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;認&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;訂&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;位 -->
+						<!-- 						</button> -->
+
+
+					</div>
+					<!-- Modal -->
+					<!-- 					<div class="modal fade" id="exampleModalCenter" tabindex="-1" -->
+					<!-- 						role="dialog" aria-labelledby="exampleModalCenterTitle" -->
+					<!-- 						aria-hidden="true"> -->
+					<!-- 						<div class="modal-dialog modal-dialog-centered" role="document"> -->
+					<!-- 							<div class="modal-content"> -->
+					<!-- 								<div class="modal-header" -->
+					<!-- 									style="border-bottom: #00CA4C 3px solid;"> -->
+					<!-- 									<h5 class="modal-title" id="exampleModalLongTitle">Star -->
+					<!-- 										Trip 感謝您</h5> -->
+					<!-- 								</div> -->
+					<!-- 								<div class="modal-body"> -->
+					<!-- 									<h3>餐廳名稱</h3> -->
+					<!-- 									<br>已訂位完成 -->
+					<!-- 								</div> -->
+					<!-- 								<div class="modal-footer"> -->
+					<!-- 									<div class="container"> -->
+					<!-- 										<div class="review"> -->
+					<!-- 											<a href="/startrip/" class="btn btn-primary">回首頁</a> -->
+					<!-- 										</div> -->
+					<!-- 									</div> -->
+					<!-- 								</div> -->
+					<!-- 							</div> -->
+					<!-- 						</div> -->
+					<!-- 					</div> -->
+				</div>
+			</div>
+		</form>
+		
+			<!-- 政策提示： -->
+	
+	</section>
+
+	<!-- END section -->
 
 	<!--評論 -->
 	<div class="container">
 		<div class="review">
-			<a href="/startrip/restaurantHome" class="btn btn-primary" >回餐廳首頁</a>
+			<a href="/startrip/restaurantHome" class="btn btn-primary">回餐廳首頁</a>
 		</div>
 	</div>
 
@@ -339,12 +390,19 @@
 	<script src="/startrip/assets/js/bootstrap.min.js"></script>
 	<script src="/startrip/assets/js/owl.carousel.min.js"></script>
 
+	<script src="/startrip/assets/js/bootstrap-datepicker.js"></script>
 	<script src="/startrip/assets/js/jquery.waypoints.min.js"></script>
 	<script src="/startrip/assets/js/jquery.easing.1.3.js"></script>
 
 	<script src="/startrip/assets/js/select2.min.js"></script>
 
 	<script src="/startrip/assets/js/main.js"></script>
+
+	<script src="/startrip/assets/js/range.js"></script>
+
+
+	<script src="/startrip/assets/js/jquery-ui.js"></script>
+	<script src="/startrip/assets/js/jquery.popupoverlay.js"></script>
 
 
 </body>

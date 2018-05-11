@@ -22,29 +22,20 @@
 	content="Free Bootstrap 4 Theme by ProBootstrap.com">
 <meta name="keywords"
 	content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
-
-
 <link
 	href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,700"
 	rel="stylesheet">
-
 <link rel="stylesheet"
 	href="/startrip/assets/css/bootstrap/bootstrap.css">
 <link rel="stylesheet" href="/startrip/assets/css/animate.css">
 <link rel="stylesheet"
 	href="/startrip/assets/fonts/ionicons/css/ionicons.min.css">
-
 <link rel="stylesheet" href="/startrip/assets/css/owl.carousel.min.css">
-
 <link rel="stylesheet"
 	href="/startrip/assets/fonts/flaticon/font/flaticon.css">
-
 <link rel="stylesheet"
 	href="/startrip/assets/fonts/fontawesome/css/font-awesome.min.css">
-
 <link rel="stylesheet" href="/startrip/assets/css/select2.css">
-
-
 <link rel="stylesheet" href="/startrip/assets/css/helpers.css">
 <link rel="stylesheet" href="/startrip/assets/css/style.css">
 <link rel="stylesheet" href="/startrip/assets/css/rthome.css">
@@ -87,6 +78,7 @@
 }
 
 .probootstrap_section {
+	padding-top:2%;
 	text-align: center;
 }
 
@@ -269,7 +261,6 @@
 					Demo Images: <a href="https://unsplash.com/" target="_blank">Unsplash</a>
 				</p>
 			</div>
-		</div>
 		</div>
 	</footer>
 	<div><jsp:include page="/WEB-INF/views/member/login.jsp"
