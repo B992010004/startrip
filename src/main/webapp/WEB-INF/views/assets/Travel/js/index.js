@@ -1,25 +1,5 @@
 
-/*   表單隨者螢幕移動*/
-$(function() {
-	$(window).scroll(function() {
-			if ($(this).scrollTop() > 0)  {          /* 要滑動到選單的距離 */
-		 $('.btn-outline-primary.switch').addClass('navFixedSwitch');   /* 幫選單加上固定效果 */
-	} else {
-		$('.btn-outline-primary.switch').removeClass('navFixedSwitch'); /* 移除選單固定效果 */
-	}
 
-	if ($(this).scrollTop() > 0)  {          /* 要滑動到選單的距離 */
-		 $('#tripContext').addClass('navFixedTop');   /* 幫選單加上固定效果 */
-	} else {
-		$('#tripContext').removeClass('navFixedTop'); /* 移除選單固定效果 */
-	}
-	if ($(this).scrollTop() > 0)  {          /* 要滑動到選單的距離 */
-		 $('.foot').addClass('navFixedBottom');   /* 幫選單加上固定效果 */
-	} else {
-		$('.foot').removeClass('navFixedBottom'); /* 移除選單固定效果 */
-	}
-});
-});
 
 var map;
     function initMap() {

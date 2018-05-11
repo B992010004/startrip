@@ -3,6 +3,7 @@ package com.startrip.travelPlan.model;
 import java.sql.Date;
 import java.sql.Time;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
@@ -12,6 +13,12 @@ import javax.persistence.Table;
 @Table(name="TravelList")
 public class TravelListBean {
 	
+	@Override
+	public String toString() {
+		return "TravelListBean [viewName=" + viewName + ", StartTime=" + StartTime + ", endTime=" + endTime
+				+ ", travelType=" + travelType + ", travelName=" + travelName + ", listId=" + listId + ", travelId="
+				+ travelId + ", viewid=" + viewid + ", tripday=" + tripday + "]";
+	}
 	private String viewName;
 	private String  StartTime;
 	private String  endTime;
@@ -19,7 +26,6 @@ public class TravelListBean {
 	private String travelName;
 	private Integer listId;
 	
-
 
 	private int travelId;
 	
@@ -42,8 +48,8 @@ public class TravelListBean {
 		this.endTime = endTime;
 		this.travelType = tripType;
 		this.travelName = tripname;
-		this.travelId = travelId;
 		this.tripday = tripday;
+		this.travelId = travelId;
 		this.viewid = viewid;
 	}
 	public String getViewName() {

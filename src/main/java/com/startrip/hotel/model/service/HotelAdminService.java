@@ -47,6 +47,9 @@ public class HotelAdminService {
 	public HotelsBean selectHotelByPk(Integer hotelid) {
 		return hotels.selectByPk(hotelid);
 	}
+	public List<HotelsBean> selectHotelsByMemberid(Integer memberid){
+		return hotels.selectByMemberid(memberid);
+	}
 
 	public int insertHotel(HotelsBean bean) {
 		System.out.println("開始新增飯店基本資料");

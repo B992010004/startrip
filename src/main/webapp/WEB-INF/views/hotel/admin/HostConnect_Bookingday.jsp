@@ -45,11 +45,11 @@
       color: #afafaf;
     }
 
-    .subnav .active {
+    .subnav .active{
       color: rgb(23, 156, 0);
     }
 
-    a:hover {
+    a:hover,nextpage{
       color: rgb(23, 156, 0);
     }
 
@@ -65,6 +65,9 @@
     #calendar {
       max-width: 900px;
       margin: 0 auto;
+    }
+    button{
+    cursor: pointer; 
     }
   </style>
 
@@ -189,9 +192,19 @@
         </div>
 
         <hr>
-        <form action="/startrip/admin/HostConnect_Bookingday">
-          <button type="submit" class="btn btn-outline-primary mr-5">儲存</button>
-        </form>
+           <div class="row">
+          <div class="col-md-3">
+            <a href="HostManage">儲存並離開</a>
+          </div>
+            <div class="col-md-2">
+             <a href="/startrip/admin/HostConnect_Rooms" class="btn btn-outline-secondary">上一步</a>
+            </div>
+            <div class="col-md-2">
+            <form action="/startrip/admin/HostConnect_Image">
+              <button type="submit" class="btn btn-outline-primary">下一步</button>
+          	</form>
+            </div>
+        </div>
       </div>
     </div>
    </div>

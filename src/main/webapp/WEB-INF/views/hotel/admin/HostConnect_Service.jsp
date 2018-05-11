@@ -57,6 +57,9 @@
     .roomnumber {
       width: 112px;
     }
+      button{
+    cursor: pointer; 
+    }
   </style>
 
 

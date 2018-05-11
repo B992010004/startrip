@@ -1,8 +1,10 @@
 package com.startrip.travelPlan.controller;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FilterOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -16,6 +18,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.CacheControl;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -58,7 +65,7 @@ public class TravelPlanController {
 	
 	@RequestMapping(value="Travel/addPlan",method=RequestMethod.POST)
 	public String travelAdd(@ModelAttribute("TravelALLBean") TravelAllBean bean) {
-		System.out.println(bean.toString());
+//		-----------------------------------------------------
 		//天數計算----------------
 		int days = 0;
 		Date start = bean.getStartDate();
@@ -78,19 +85,15 @@ public class TravelPlanController {
 		model.addAttribute("travels", list);
 		return "TravelProject/Main";
 	}
-	
+	//查詢行程資料
 	@RequestMapping(value="travel/id",method=RequestMethod.GET)
 	@ResponseBody
 	public HashMap<String, Object> travelBean(Integer id) {
-//		Integer id =bean.getTravelId();
-		System.out.println(id);
 		TravelAllBean tb = travelservice.Select_TravelId(id);
-	
 		HashMap<String, Object> result = new HashMap<>();
 		result.put("Name", tb);
 		result.put("startDate", tb.getStartDate().toString());
 		result.put("endDate", tb.getEndDate().toString());
-		System.out.println(result);
 		return result;
 	}
 	
@@ -98,6 +101,7 @@ public class TravelPlanController {
 	
 	
 	//List相關控制-------------------------------------
+	//新增清單--------------------------------------
 	@RequestMapping(value="Travel/addList",method=RequestMethod.GET)
 	public String listNewAdd(Model model) {
 		TravelListBean bean = new TravelListBean();
@@ -107,27 +111,46 @@ public class TravelPlanController {
 	
 	@RequestMapping(value="Travel/addList",method=RequestMethod.POST)
 	public String travelAdd(@ModelAttribute("TravelListBean") TravelListBean bean) {
-		
-		
-		
-		
 		listservice.insert(bean);
 		return "redirect:/list/All";
 	}		   
+//--------------------------------------------------	
 	
 	
 	
-	
-	//getAllList
+	//getAllList 取得所有清單
 	@RequestMapping(value="list/All",method=RequestMethod.GET)
 	public String getAllList(Model model) {
 		List<TravelListBean> list = listservice.selectAllList();
 		model.addAttribute("Lists", list);
 		return "/TravelProject/TravelList/AllList";
 	}
+	
+	//取得所有清單行程的
+	@RequestMapping(value="list/travelId",method=RequestMethod.GET)
+	@ResponseBody
+	public ArrayList<TravelListBean> getTravelList(int id){
+		TravelListBean bean = new TravelListBean();
+		List<TravelListBean> result  =listservice.Select_travelid(id);
+		System.out.println(result.size());
+		ArrayList<TravelListBean> all = new ArrayList<>();
+		for(int i =0;i<result.size();i++) {
+		bean=result.get(i);
+		bean.setViewName(viewService.select_ViewId(bean.getViewid()).getViewName());
+		bean.setTravelName(travelservice.Select_TravelId(bean.getTravelId()).getTravelName());
+		System.out.println(bean.toString());
+		all.add(bean);
+		}
+		
+		
+		return all;
+	}
+	
+	
 	//----------------------------------------------------
 	//view相關控制
 	//-----------------------------------------------------
+	//查詢所有風景--------------------
 	@RequestMapping(value = "Views/add", method = RequestMethod.GET)
 	public String getNewAddviewFrom(Model model) {
 		TravelViewBean vb = new TravelViewBean();
@@ -196,7 +219,7 @@ public class TravelPlanController {
 					imgFolder.mkdirs();
 				//建立檔案
 				File file = new File(imgFolder, originalFile);
-				System.out.println(imgFolder+originalFile);
+//				System.out.println(imgFolder+originalFile);
 				img.transferTo(file);
 
 			} catch (Exception e) {
@@ -210,12 +233,12 @@ public class TravelPlanController {
 		return "redirect:/TravelViews/all";
 
 	}
-  
+  //分類--------------------------/
 	@ModelAttribute("orgclassList")
 	public List<String> getOrgClass() {
 		return viewService.getAllOrgClass();
 	}
-
+	//查詢所有景點
 	@RequestMapping(value = "TravelViews/all", method = RequestMethod.GET)
 	public String allViews(Model model) {
 		List<TravelViewBean> list = viewService.select();
@@ -223,58 +246,64 @@ public class TravelPlanController {
 		return "TravelProject/TravelViews/AllViews";
 	}
 	
-	
+	//查詢viewList景點
 	@RequestMapping(value="TravelView/place",method=RequestMethod.GET)
 	@ResponseBody
 //	public ArrayList<HashMap<String, Object>> placeViews(String address) {
 		public ArrayList<TravelViewBean> placeViews(String address) {
 //		String name =java.net.URLDecoder.decode(address);
 		
-		HashMap<String, Object> result = new HashMap<>();
 		TravelViewBean bean = new TravelViewBean();
 		List<TravelViewBean> lists = viewService.getAddress(address);
 		ArrayList<TravelViewBean> all = new ArrayList<>();
 		for(int i =0;i<lists.size();i++) {
 		bean=lists.get(i);
-		
-//		result.put(String.valueOf(i), bean);
-//		result.put("size",lists.size());
 		all.add(bean);
 		}
 		
 		return all;
 	}
-
+	//輸出景點圖片
 	@RequestMapping(value="/showImage/{fileName}.{suffix}" ,method =RequestMethod.GET)
-	public void showImage(@PathVariable("fileName") String fileName,
-			@PathVariable("suffix") String suffix,HttpServletResponse response) {
-		String path = "E:/temp/images/";
-		File imgFile = new File(path+fileName+suffix);
-		System.out.println(path+fileName+suffix);
-		responseFile(response,imgFile);
-	}
-	
-	private void responseFile(HttpServletResponse response,File imgFile) {
+	public ResponseEntity<byte[]> showImage(
+			@PathVariable("fileName") String fileName,
+			@PathVariable("suffix") String suffix,HttpServletRequest request 
+			,HttpServletResponse response) {
+//		System.out.println("img loading");
+		String path = "c:/temp/travel/";
+		String imgFile =path+fileName+"."+suffix;
+		
+		File file = new File(imgFile);
+//		if(file.exists())
+//		System.out.println("true;"+file.getName());
+//		System.out.println(path+fileName+"."+suffix);
+		int len = 0;
+		byte[] media = null;
+		ByteArrayOutputStream baos =null;
+		HttpHeaders headers = new HttpHeaders();
+		InputStream is=null;
 		try {
-			InputStream is = new FileInputStream(imgFile);
-			OutputStream os = response.getOutputStream();
-			byte[] buffer = new byte[8192];
-			while(is.read(buffer)!=-1) {
-				os.write(buffer);
-			}
-				os.flush();
-				os.close();
-				is.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			 is = new FileInputStream(file);
+//			System.out.println(is.read());
+		baos = new ByteArrayOutputStream() ;
+		byte[] b = new byte[8192];
+		while((len = is.read(b))!=-1) {
+			baos.write(b, 0, len);
 		}
-			
+		baos.close();
+		is.close();
+	} catch (Exception e) {
+		e.printStackTrace();
+	} 
+	media=baos.toByteArray();
+	headers.setCacheControl(CacheControl.noCache().getHeaderValue());
+	headers.setContentType(MediaType.IMAGE_JPEG);
+	ResponseEntity<byte[]> responseEntity = new ResponseEntity<byte[]>(media, headers, HttpStatus.OK);
+		return responseEntity;
+		
 		
 		
 	}
 	
+
 }

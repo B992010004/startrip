@@ -5,17 +5,12 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -36,7 +31,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
-import com.google.gson.Gson;
 import com.startrip.hotel.model.persistent.FacilitylistBean;
 import com.startrip.hotel.model.persistent.HotelsBean;
 import com.startrip.hotel.model.persistent.PhotoBean;
@@ -44,11 +38,13 @@ import com.startrip.hotel.model.persistent.PhotonameBean;
 import com.startrip.hotel.model.persistent.RoomtypeBean;
 import com.startrip.hotel.model.persistent.ServicelistBean;
 import com.startrip.hotel.model.service.HotelAdminService;
+import com.startrip.member.memberModle.MemberBean;
 
 @Controller
 public class HotelAdminController {
 	
-	private static String fileRootPath = "C:/temp/hotels/";
+	private static final String FILE_ROOT_PATH = "C:/temp/hotels/";
+	private static final String REDIRECT_ROOT_PATH = "redirect:/";
 	
 	@Autowired
 	HotelAdminService hotelAdminService;
@@ -57,23 +53,49 @@ public class HotelAdminController {
 	ServletContext context;
 
 	// 以下功能會員專用
-	@RequestMapping(value = "/admin/HostManage")
-	public String hostManage(Model model, HttpSession session) {
-
-		return "hotel/admin/HostManage";
+	@RequestMapping(value = "/admin/HostManage",method = RequestMethod.GET)
+	public String hostManage(Model model,HttpSession session,HttpServletRequest request) {
+		MemberBean mb = (MemberBean) session.getAttribute("LoginOK");
+		System.out.println(mb);
+		
+		if(mb != null) {
+			Integer memberid = mb.getMemberid();
+			List<HotelsBean> hotelList = hotelAdminService.selectHotelsByMemberid(memberid);	
+			System.out.println(hotelList);
+			if(hotelList != null) {
+				request.setAttribute("hotelList", hotelList);				
+			}			
+			
+			return "hotel/admin/HostManage";
+		}else {
+			return REDIRECT_ROOT_PATH;
+		}
 	}
 
 	@RequestMapping(value = "/admin/HostConnect_Orders")
-	public String hostConnectOrders(Model model) {
+	public String hostConnectOrders(Model model,HttpSession session) {
+		
+		MemberBean mb = (MemberBean) session.getAttribute("LoginOK");
+		HotelsBean bean =  (HotelsBean) session.getAttribute("hotelbean");
+		if(mb == null || bean == null) {
+			return REDIRECT_ROOT_PATH;
+		}
+		
+		
 		return "hotel/admin/HostConnect_Orders";
 	}
 
 	@RequestMapping(value = "/admin/HostConnect_AddHotel")
 	public String hostConnectCheckHotel(Model model, HttpServletRequest request, HttpSession session) {
-		Integer temp = (Integer) session.getAttribute("hotelid");
-		if (temp != null) {
-			session.removeAttribute("hotelid");
-			System.out.println("新增前刪除已存在的hotelid");
+		MemberBean mb = (MemberBean) session.getAttribute("LoginOK");
+		if(mb == null) {
+			return REDIRECT_ROOT_PATH;
+		}
+		
+		HotelsBean bean =  (HotelsBean) session.getAttribute("hotelbean");
+		if (bean != null) {
+			session.removeAttribute("hotelbean");
+			System.out.println("新增前刪除已存在的hotelbean");
 		}
 		System.out.println("add hotel");
 		return "redirect:/admin/HostConnect_Hotel";
@@ -81,7 +103,10 @@ public class HotelAdminController {
 
 	@RequestMapping(value = "/admin/HostConnect_Hotel")
 	public String hostConnectHotel(Model model, HttpServletRequest request, HttpSession session) {
-
+		MemberBean mb = (MemberBean) session.getAttribute("LoginOK");
+		if(mb == null) {
+			return REDIRECT_ROOT_PATH;
+		}
 		String hotelidtemp = request.getParameter("hotelid");
 		
 		if (hotelidtemp != null) {
@@ -96,8 +121,10 @@ public class HotelAdminController {
 	@RequestMapping(value = "/admin/HostConnect_Info", method = RequestMethod.POST)
 	public String hostConnectInfoNextPage(Model model, @RequestParam String name, @RequestParam String phone,
 			@RequestParam String address, @RequestParam Integer star, HttpSession session) {
-
-		System.out.println("name=" + name + ", phone=" + phone + ", address=" + address + ", star=" + star);
+		MemberBean mb = (MemberBean) session.getAttribute("LoginOK");
+		if(mb == null) {
+			return REDIRECT_ROOT_PATH;
+		}
 
 		HotelsBean bean =  (HotelsBean) session.getAttribute("hotelbean");
 
@@ -110,6 +137,7 @@ public class HotelAdminController {
 			hotelAdminService.updateHotel(bean);
 		} else {
 			bean = new HotelsBean();
+			bean.setHotelmanagerid(mb.getMemberid());
 			bean.setHotelname(name);
 			bean.setHotelphone(phone);
 			bean.setHoteladdress(address);
@@ -126,7 +154,11 @@ public class HotelAdminController {
 
 	@RequestMapping(value = "/admin/HostConnect_Info", method = RequestMethod.GET)
 	public String hostConnectInfo(Model model, HttpSession session, HttpServletRequest request) {
-
+		MemberBean mb = (MemberBean) session.getAttribute("LoginOK");
+		HotelsBean bean =  (HotelsBean) session.getAttribute("hotelbean");
+		if(mb == null || bean == null) {
+			return REDIRECT_ROOT_PATH;
+		}
 
 		return "hotel/admin/HostConnect_Info";
 	}
@@ -134,13 +166,35 @@ public class HotelAdminController {
 	@RequestMapping(value = "/admin/HostConnect_Service", method = RequestMethod.POST)
 	public String hostConnectServiceNextPage(Model model, HttpSession session, @RequestParam String info,
 			@RequestParam String note) {
-		HotelsBean bean = (HotelsBean) session.getAttribute("hotelbean");
+		MemberBean mb = (MemberBean) session.getAttribute("LoginOK");
+		HotelsBean bean =  (HotelsBean) session.getAttribute("hotelbean");
+		if(mb == null || bean == null) {
+			return REDIRECT_ROOT_PATH;
+		}
 		
 		StringBuilder sb = new StringBuilder();
-		for (String s : note.split("\\n")) {
+		
+		
+		String[] infos =info.split("\\n\\n");
+		int i = 1;
+		for (String s : infos) {
 			System.out.println(s);
 			sb.append(s);
-			sb.append("<br>");
+			if(i != infos.length) {
+				sb.append("<br>");
+				i++;
+			}
+		}
+		
+		String[] notes = note.split("\\n\\n");
+		i = 1;
+		for (String s : notes) {
+			System.out.println(s);
+			sb.append(s);
+			if(i != notes.length) {
+				sb.append("<br>");
+				i++;
+			}
 		}
 		note = sb.toString();
 		
@@ -148,13 +202,20 @@ public class HotelAdminController {
 		bean.setHotelrulenote(note);
 
 		hotelAdminService.updateHotel(bean);
-
+		String rulenote = note.replaceAll("<br>", "&#10;").replaceAll(" ", "");
+		String hotelinfo = info.replaceAll("<br>", "&#10;").replaceAll(" ", "");
+		bean.setHotelrulenote(rulenote);
+		bean.setHotelinfo(hotelinfo);
 		return "redirect:/admin/HostConnect_Service";
 	}
 
 	@RequestMapping(value = "/admin/HostConnect_Service", method = RequestMethod.GET)
 	public String hostConnectService(Model model, HttpSession session, HttpServletRequest request) {
-		 HotelsBean bean = (HotelsBean) session.getAttribute("hotelbean");
+		MemberBean mb = (MemberBean) session.getAttribute("LoginOK");
+		HotelsBean bean =  (HotelsBean) session.getAttribute("hotelbean");
+		if(mb == null || bean == null) {
+			return REDIRECT_ROOT_PATH;
+		}
 		 Integer hotelid = bean.getHotelid();
 		 
 		request.setAttribute("facilityname", hotelAdminService.selectFacilityname());
@@ -169,7 +230,11 @@ public class HotelAdminController {
 	@RequestMapping(value = "/admin/HostConnect_Rooms", method = RequestMethod.POST)
 	public String hostConnectRoomsNextPage(Model model, HttpServletRequest request, HttpSession session,
 			@RequestParam Integer refund, @RequestParam Integer advanceday) {
-		HotelsBean bean = (HotelsBean) session.getAttribute("hotelbean");
+		MemberBean mb = (MemberBean) session.getAttribute("LoginOK");
+		HotelsBean bean =  (HotelsBean) session.getAttribute("hotelbean");
+		if(mb == null || bean == null) {
+			return REDIRECT_ROOT_PATH;
+		}
 		bean.setAdvancedayid(advanceday);
 		bean.setRefundid(refund);
 
@@ -210,7 +275,12 @@ public class HotelAdminController {
 	@RequestMapping(value = "/admin/AjaxChangeRoomtype", method = RequestMethod.POST)
 	public void hostConnectRoomsChange(@RequestParam Integer roomid, Model model, HttpServletRequest request,
 			HttpServletResponse response, HttpSession session) {
-		HotelsBean bean = (HotelsBean) session.getAttribute("hotelbean");
+		
+		MemberBean mb = (MemberBean) session.getAttribute("LoginOK");
+		HotelsBean bean =  (HotelsBean) session.getAttribute("hotelbean");
+		if(mb == null || bean == null) {
+			return;
+		}
 
 		System.out.println("get request from ajax");
 
@@ -242,7 +312,13 @@ public class HotelAdminController {
 
 	@RequestMapping(value = "/admin/HostConnect_Rooms", method = RequestMethod.GET)
 	public String hostConnectRooms(Model model, HttpServletRequest request, HttpSession session) {
-		HotelsBean bean = (HotelsBean) session.getAttribute("hotelbean");
+		
+		MemberBean mb = (MemberBean) session.getAttribute("LoginOK");
+		HotelsBean bean =  (HotelsBean) session.getAttribute("hotelbean");
+		if(mb == null || bean == null) {
+			return REDIRECT_ROOT_PATH;
+		}
+		
 		Integer hotelid = bean.getHotelid();
 		
 		request.setAttribute("roomtypelist", hotelAdminService.selectRoomtypeByHotelid(hotelid));
@@ -253,7 +329,14 @@ public class HotelAdminController {
 	@RequestMapping(value = "/admin/AddRoom", method = RequestMethod.POST)
 	public String hostConnectRoomsAddRoom(Model model, HttpSession session, @RequestParam String name,
 			@RequestParam Integer people, @RequestParam Integer rooms) {
-		HotelsBean bean = (HotelsBean) session.getAttribute("hotelbean");
+		
+		MemberBean mb = (MemberBean) session.getAttribute("LoginOK");
+		HotelsBean bean =  (HotelsBean) session.getAttribute("hotelbean");
+		if(mb == null || bean == null) {
+			return REDIRECT_ROOT_PATH;
+		}
+		
+		
 		Integer hotelid = bean.getHotelid();
 		System.out.println(hotelid);
 		
@@ -270,33 +353,53 @@ public class HotelAdminController {
 
 	@RequestMapping(value = "/admin/DeleteRoom", method = RequestMethod.POST)
 	public String hostConnectRoomsDeleteRoom(Model model, HttpSession session, @RequestParam Integer roomid) {
-
-		RoomtypeBean bean = new RoomtypeBean();
-		bean.setRoomid(roomid);
-		hotelAdminService.deleteRoomtype(bean);
+		
+		MemberBean mb = (MemberBean) session.getAttribute("LoginOK");
+		HotelsBean bean =  (HotelsBean) session.getAttribute("hotelbean");
+		if(mb == null || bean == null) {
+			return REDIRECT_ROOT_PATH;
+		}
+		
+		RoomtypeBean roombean = new RoomtypeBean();
+		roombean.setRoomid(roomid);
+		hotelAdminService.deleteRoomtype(roombean);
 		return "redirect:/admin/HostConnect_Rooms";
 	}
 
 	@RequestMapping(value = "/admin/HostConnect_Roomset")
-	public String hostConnectRoomset(Model model, @RequestParam Integer roomid) {
+	public String hostConnectRoomset(Model model, @RequestParam Integer roomid,HttpSession session) {
+		
+		MemberBean mb = (MemberBean) session.getAttribute("LoginOK");
+		HotelsBean bean =  (HotelsBean) session.getAttribute("hotelbean");
+		if(mb == null || bean == null) {
+			return REDIRECT_ROOT_PATH;
+		}
+		
 		System.out.println("roomid = " + roomid);
 		model.addAttribute("roomid", roomid);
 
-		RoomtypeBean bean = hotelAdminService.selectRoomtypeByPk(roomid);
+		RoomtypeBean roombean = hotelAdminService.selectRoomtypeByPk(roomid);
 
-		if (bean.getOpendate() != null && bean.getEnddate() != null) {
+		if (roombean.getOpendate() != null && roombean.getEnddate() != null) {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/M/d");
-			model.addAttribute("roomtype", bean);
-			model.addAttribute("opendate", sdf.format(bean.getOpendate()));
-			model.addAttribute("enddate", sdf.format(bean.getEnddate()));
+			model.addAttribute("roomtype", roombean);
+			model.addAttribute("opendate", sdf.format(roombean.getOpendate()));
+			model.addAttribute("enddate", sdf.format(roombean.getEnddate()));
 		}
 
 		return "hotel/admin/HostConnect_Roomset";
 	}
 
 	@RequestMapping(value = "/admin/Roomsetting", method = RequestMethod.POST)
-	public String hostConnectRoomsetSave(Model model, HttpServletRequest request, @RequestParam Integer roomid,
+	public String hostConnectRoomsetSave(Model model,HttpSession session, HttpServletRequest request, @RequestParam Integer roomid,
 			@RequestParam Integer price, @RequestParam String roomnote) {
+		
+		MemberBean mb = (MemberBean) session.getAttribute("LoginOK");
+		HotelsBean bean =  (HotelsBean) session.getAttribute("hotelbean");
+		if(mb == null || bean == null) {
+			return REDIRECT_ROOT_PATH;
+		}
+		
 		System.out.println("setting roomid = " + roomid);
 		String checkintemp = request.getParameter("checkin").replaceAll("/", "-");
 		String checkouttemp = request.getParameter("checkout").replaceAll("/", "-");
@@ -310,14 +413,27 @@ public class HotelAdminController {
 	}
 
 	@RequestMapping(value = "/admin/HostConnect_Bookingday")
-	public String hostConnectBookingday(Model model) {
+	public String hostConnectBookingday(Model model,HttpSession session) {
+		
+		MemberBean mb = (MemberBean) session.getAttribute("LoginOK");
+		HotelsBean bean =  (HotelsBean) session.getAttribute("hotelbean");
+		if(mb == null || bean == null) {
+			return REDIRECT_ROOT_PATH;
+		}
+		
 		return "hotel/admin/HostConnect_Bookingday";
 	}
 
 	@RequestMapping(value = "/admin/AjaxImageUpload", method = RequestMethod.POST)
 	public void hostConnectImageUpload(Model model, HttpServletRequest request, HttpServletResponse response,
 			HttpSession session) {
-		HotelsBean bean = (HotelsBean) session.getAttribute("hotelbean");
+		
+		MemberBean mb = (MemberBean) session.getAttribute("LoginOK");
+		HotelsBean bean =  (HotelsBean) session.getAttribute("hotelbean");
+		if(mb == null || bean == null) {
+			return;
+		}
+		
 		Integer hotelid = bean.getHotelid();
 		System.out.println("開始上傳圖片");
 
@@ -346,7 +462,7 @@ public class HotelAdminController {
 //					StringBuffer fileNameBuffer = new StringBuffer();
 //					 String rootDirectory =
 //					 request.getSession().getServletContext().getRealPath("/");
-					 String rootDirectory = fileRootPath;
+					 String rootDirectory = FILE_ROOT_PATH;
 					System.out.println(rootDirectory);
 					int i = photo.getOriginalFilename().lastIndexOf(".");// 返回最後一個點的位置
 
@@ -407,7 +523,13 @@ public class HotelAdminController {
 
 	@RequestMapping(value = "/admin/HostConnect_Image")
 	public String hostConnectImage(Model model,HttpSession session,HttpServletRequest request) {
-		HotelsBean bean = (HotelsBean) session.getAttribute("hotelbean");
+
+		MemberBean mb = (MemberBean) session.getAttribute("LoginOK");
+		HotelsBean bean =  (HotelsBean) session.getAttribute("hotelbean");
+		if(mb == null || bean == null) {
+			return REDIRECT_ROOT_PATH;
+		}
+		
 		Integer hotelid = bean.getHotelid();
 		
 		Integer count = hotelAdminService.countPhotoByHotelid(hotelid);
@@ -423,16 +545,22 @@ public class HotelAdminController {
 	}
 	
 	@RequestMapping(value="/admin/deletephoto/{photoid}",method = RequestMethod.POST)
-	public void hostConnectDeleteImage(Model model,@PathVariable Integer photoid,HttpServletResponse response) {
+	public void hostConnectDeleteImage(Model model,@PathVariable Integer photoid,HttpSession session,HttpServletResponse response) {
 		System.out.println("Delete photo by id = " + photoid);
 		
-		PhotoBean bean = hotelAdminService.selectPhotoByPk(photoid);
-		String filename = bean.getFilename();
+		MemberBean mb = (MemberBean) session.getAttribute("LoginOK");
+		HotelsBean bean =  (HotelsBean) session.getAttribute("hotelbean");
+		if(mb == null || bean == null) {
+			return ;
+		}
+		
+		PhotoBean photobean = hotelAdminService.selectPhotoByPk(photoid);
+		String filename = photobean.getFilename();
 		
 		
-		hotelAdminService.deletePhotoByPk(bean);
+		hotelAdminService.deletePhotoByPk(photobean);
 		
-		File file = new File(fileRootPath + filename);
+		File file = new File(FILE_ROOT_PATH + filename);
 		if(file.exists()) {
 			System.out.println("開始刪除檔案  ==> " + file.getName());
 			file.delete();
@@ -449,7 +577,13 @@ public class HotelAdminController {
 	}
 	@RequestMapping(value="/admin/photo/{photoid}")
 	public ResponseEntity<byte[]> hostConnectImageIO(Model model,@PathVariable Integer photoid,HttpSession session,HttpServletRequest request,HttpServletResponse response) {
-		HotelsBean bean = (HotelsBean) session.getAttribute("hotelbean");
+		
+		MemberBean mb = (MemberBean) session.getAttribute("LoginOK");
+		HotelsBean bean =  (HotelsBean) session.getAttribute("hotelbean");
+		if(mb == null || bean == null) {
+			return null;
+		}
+		
 		Integer hotelid = bean.getHotelid();
 		
 		
@@ -463,7 +597,7 @@ public class HotelAdminController {
 		int len = 0;
 		byte[] media = null;
 		
-		try (InputStream is = new FileInputStream(fileRootPath+photobean.getFilename())){
+		try (InputStream is = new FileInputStream(FILE_ROOT_PATH+photobean.getFilename())){
 		    baos = new ByteArrayOutputStream();
 			byte[] b = new byte[8192];
 			
@@ -483,7 +617,14 @@ public class HotelAdminController {
 	}
 
 	@RequestMapping(value = "/admin/HostConnect_Onsale",method = RequestMethod.POST)
-	public String hostConnectOnsaleNextPage(Model model,@RequestParam Integer[] sort,HttpServletRequest request) {
+	public String hostConnectOnsaleNextPage(Model model,@RequestParam Integer[] sort,HttpSession session,HttpServletRequest request) {
+		
+		MemberBean mb = (MemberBean) session.getAttribute("LoginOK");
+		HotelsBean bean =  (HotelsBean) session.getAttribute("hotelbean");
+		if(mb == null || bean == null) {
+			return REDIRECT_ROOT_PATH;
+		}
+		
 		int i = 1;
 		for(Integer photoid:sort) {
 			String temp = request.getParameter("photoname"+photoid);
@@ -504,7 +645,13 @@ public class HotelAdminController {
 	}
 	
 	@RequestMapping(value = "/admin/HostConnect_Onsale",method = RequestMethod.GET)
-	public String hostConnectOnsale(Model model) {
+	public String hostConnectOnsale(Model model,HttpSession session) {
+		MemberBean mb = (MemberBean) session.getAttribute("LoginOK");
+		HotelsBean bean =  (HotelsBean) session.getAttribute("hotelbean");
+		if(mb == null || bean == null) {
+			return REDIRECT_ROOT_PATH;
+		}
+		
 		return "hotel/admin/HostConnect_Onsale";
 	}
 	

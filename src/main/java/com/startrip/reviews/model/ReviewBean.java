@@ -8,10 +8,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import org.springframework.web.multipart.MultipartFile;
+
+import com.startrip.member.memberModle.MemberBean;
 
 @Entity
 @Table
@@ -44,6 +48,18 @@ public class ReviewBean implements Serializable {
 	private String photoPaths;
 	private String videoPath;
 	private String filePath;
+	
+	@ManyToOne
+	@JoinColumn(name = "memberId", referencedColumnName = "memberid", insertable = false, updatable = false)
+	private MemberBean memberBean;
+	
+	public MemberBean getMemberBean() {
+		return memberBean;
+	}
+
+	public void setMemberBean(MemberBean memberBean) {
+		this.memberBean = memberBean;
+	}
 
 	// 接收相片上傳
 	@Transient
@@ -60,12 +76,14 @@ public class ReviewBean implements Serializable {
 	// 讀取相片
 	@Transient
 	private String[] photoPathList;
-	//我居然在Bean裡面寫程式了 我有點無法原諒自己
+
+	// 我居然在Bean裡面寫程式了 我有點無法原諒自己
 	public String[] getPhotoPathList() {
-		String[] photoPathList = getPhotoPaths().split(";");
+		if (getPhotoPaths() != null) {
+			return photoPathList = getPhotoPaths().split(";");
+		}
 		return photoPathList;
 	}
-
 
 	public Integer getNo() {
 		return no;

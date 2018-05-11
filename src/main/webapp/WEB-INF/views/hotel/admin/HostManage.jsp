@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -33,6 +34,9 @@
     .img-thumbnail {
       height: 60px;
     }
+      button{
+    cursor: pointer; 
+    }
   </style>
 
 
@@ -40,49 +44,53 @@
 
 <body>
 
-
-  <nav class="navbar navbar-expand-lg navbar-dark probootstrap_navbar" id="probootstrap-navbar">
-    <div class="container">
-      <a class="navbar-brand" href="#">TRIP_LOGO</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#probootstrap-menu" aria-controls="probootstrap-menu"
-        aria-expanded="false" aria-label="Toggle navigation">
-        <span>
-          <i class="ion-navicon"></i>
-        </span>
-      </button>
-      <div class="collapse navbar-collapse" id="probootstrap-menu">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">飯店</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">交通</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">景點</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">餐廳</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">討論區</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">管理</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">登入</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+	<div>
+		<jsp:include page="/WEB-INF/views/header.jsp" flush="true" />
+	</div>
+<!--   <nav class="navbar navbar-expand-lg navbar-dark probootstrap_navbar" id="probootstrap-navbar"> -->
+<!--     <div class="container"> -->
+<!--       <a class="navbar-brand" href="#">TRIP_LOGO</a> -->
+<!--       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#probootstrap-menu" aria-controls="probootstrap-menu" -->
+<!--         aria-expanded="false" aria-label="Toggle navigation"> -->
+<!--         <span> -->
+<!--           <i class="ion-navicon"></i> -->
+<!--         </span> -->
+<!--       </button> -->
+<!--       <div class="collapse navbar-collapse" id="probootstrap-menu"> -->
+<!--         <ul class="navbar-nav ml-auto"> -->
+<!--           <li class="nav-item active"> -->
+<!--             <a class="nav-link" href="#">飯店</a> -->
+<!--           </li> -->
+<!--           <li class="nav-item"> -->
+<!--             <a class="nav-link" href="#">交通</a> -->
+<!--           </li> -->
+<!--           <li class="nav-item"> -->
+<!--             <a class="nav-link" href="#">景點</a> -->
+<!--           </li> -->
+<!--           <li class="nav-item"> -->
+<!--             <a class="nav-link" href="#">餐廳</a> -->
+<!--           </li> -->
+<!--           <li class="nav-item"> -->
+<!--             <a class="nav-link" href="#">討論區</a> -->
+<!--           </li> -->
+<!--           <li class="nav-item"> -->
+<!--             <a class="nav-link" href="#">管理</a> -->
+<!--           </li> -->
+<!--           <li class="nav-item"> -->
+<!--             <a class="nav-link" href="#">登入</a> -->
+<!--           </li> -->
+<!--         </ul> -->
+<!--       </div> -->
+<!--     </div> -->
+<!--   </nav> -->
   <!-- END nav -->
   <section class="probootstrap-cover overflow-hidden relative" style="background-image: url('/startrip/assets/images/bg_1.jpg');"
     data-stellar-background-ratio="0.5" id="section-home">
     <div class="overlay"></div>
   </section>
   <!-- END section -->
+  
+  
 
   <div class="container">
     <div class="row">
@@ -116,6 +124,8 @@
           <br>
           <!-- 資料表格起始 -->
           <div class="row">
+         <c:if test="${empty hotelList}"><h5>立刻新增您的住宿，加入我們的行列！</h5></c:if>
+         <c:if test="${not empty hotelList}">
             <table class="table table-hover">
               <thead>
                 <tr>
@@ -129,21 +139,20 @@
                 </tr>
               </thead>
               <!-- 動態資料產生 -->
-
+	
               <tbody>
+         <c:forEach var="hotel" items="${hotelList}">
                 <tr>
                   <th scope="row">
                     <img src="/startrip/assets/images/test1.jpg" class="img-thumbnail" />
                   </th>
-                  <td>
-                    台北君悅酒店
-                  </td>
-                  <td>02-12345678</td>
-                  <td>5</td>
-                  <td>台北市信義區松壽路2號</td>
+                  <td>${hotel.hotelname}</td>
+                  <td>${hotel.hotelphone}</td>
+                  <td>${hotel.hotelstar}</td>
+                  <td>${hotel.hoteladdress}</td>
                   <td>
                     <form action="/startrip/admin/HostConnect_Hotel" method="POST">
-                      <button type="submit" value="1" name="hotelid"  class="btn btn-outline-dark">
+                      <button type="submit" value="${hotel.hotelid}" name="hotelid"  class="btn btn-outline-dark">
                         管理
                       </button>
                     </form>
@@ -156,9 +165,11 @@
                     </form>
                   </td>
                 </tr>
+         </c:forEach>
               </tbody>
               <!-- 動態資料結束 -->
             </table>
+         </c:if>
           </div>
         </div>
       </div>
@@ -166,93 +177,12 @@
   </div>
 
 
-  <footer class="probootstrap_section probootstrap-border-top">
-    <div class="container">
-      <div class="row mb-5">
-        <div class="col-md-3">
-          <h3 class="probootstrap_font-18 mb-3">Quick Links</h3>
-          <ul class="list-unstyled">
-            <li>
-              <a href="#" target="_blank">Home</a>
-            </li>
-            <li>
-              <a href="#" target="_blank">About</a>
-            </li>
-            <li>
-              <a href="#" target="_blank">Services</a>
-            </li>
-            <li>
-              <a href="#" target="_blank">Contact</a>
-            </li>
-          </ul>
-        </div>
-        <div class="col-md-3">
-          <h3 class="probootstrap_font-18 mb-3">Quick Links</h3>
-          <ul class="list-unstyled">
-            <li>
-              <a href="#" target="_blank">Home</a>
-            </li>
-            <li>
-              <a href="#" target="_blank">About</a>
-            </li>
-            <li>
-              <a href="#" target="_blank">Services</a>
-            </li>
-            <li>
-              <a href="#" target="_blank">Contact</a>
-            </li>
-          </ul>
-        </div>
-        <div class="col-md-3">
-          <h3 class="probootstrap_font-18 mb-3">Quick Links</h3>
-          <ul class="list-unstyled">
-            <li>
-              <a href="#" target="_blank">Home</a>
-            </li>
-            <li>
-              <a href="#" target="_blank">About</a>
-            </li>
-            <li>
-              <a href="#" target="_blank">Services</a>
-            </li>
-            <li>
-              <a href="#" target="_blank">Contact</a>
-            </li>
-          </ul>
-        </div>
-        <div class="col-md-3">
-          <h3 class="probootstrap_font-18 mb-3">Quick Links</h3>
-          <ul class="list-unstyled">
-            <li>
-              <a href="#" target="_blank">Home</a>
-            </li>
-            <li>
-              <a href="#" target="_blank">About</a>
-            </li>
-            <li>
-              <a href="#" target="_blank">Services</a>
-            </li>
-            <li>
-              <a href="#" target="_blank">Contact</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="row pt-5">
-        <div class="col-md-12 text-center">
-          <p class="probootstrap_font-14">&copy; 2017. All Rights Reserved.
-            <br> Designed &amp; Developed by
-            <a href="#" target="_blank">ProBootstrap</a>
-            <small> (Don't remove credit link on this footer. See
-              <a href="#">license</a>)</small>
-          </p>
-          <p class="probootstrap_font-14">Demo Images:
-            <a href="#" target="_blank">Unsplash</a>
-          </p>
-        </div>
-      </div>
-    </div>
-  </footer>
+	<div>
+		<jsp:include page="/WEB-INF/views/footer.jsp" flush="true" />
+	</div>
+	<div>
+		<jsp:include page="/WEB-INF/views/member/login.jsp" flush="true" />
+	</div>
   <!-- END footer -->
 
 

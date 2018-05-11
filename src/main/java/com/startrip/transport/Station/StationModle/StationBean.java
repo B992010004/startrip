@@ -9,56 +9,46 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-	@Table(name="STATION")
-	public class StationBean implements Serializable{
+@Table(name = "STATION")
+public class StationBean implements Serializable {
 
-		 
+	private static final long serialVersionUID = 1L;
 
-			private static final long serialVersionUID = 1L;
-			
-			@Id
-			@GeneratedValue(strategy=GenerationType.IDENTITY)
-			private Integer stationId;
-			
-			private String area;
-			
-			private String stationName;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer stationId;
 
-			
-			
-			
-			@Override
-			public String toString() {
-				return "StationBean [stationId=" + stationId + ", area=" + area + ", stationName=" + stationName + "]";
-			}
+	private String area;
 
-			public Integer getStationId() {
-				return stationId;
-			}
+	private String stationName;
 
-			public void setStationId(Integer stationId) {
-				this.stationId = stationId;
-			}
+	@Override
+	public String toString() {
+		return "StationBean [stationId=" + stationId + ", area=" + area + ", stationName=" + stationName + "]";
+	}
 
-			public String getArea() {
-				return area;
-			}
+	public Integer getStationId() {
+		return stationId;
+	}
 
-			public void setArea(String area) {
-				this.area = area;
-			}
+	public void setStationId(Integer stationId) {
+		this.stationId = stationId;
+	}
 
-			public String getStationName() {
-				return stationName;
-			}
+	public String getArea() {
+		return area;
+	}
 
-			public void setStationName(String stationName) {
-				this.stationName = stationName;
-			}
+	public void setArea(String area) {
+		this.area = area;
+	}
 
-			
-			
-			
-			
-	
+	public String getStationName() {
+		return stationName;
+	}
+
+	public void setStationName(String stationName) {
+		this.stationName = stationName;
+	}
+
 }

@@ -18,17 +18,22 @@
 						<a class="nav-link" href="/startrip/">Home</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="/startrip/Rooms">房型</a>
+						<a class="nav-link" href="/startrip/Rooms/1">房型</a>
 					</li>
 
 					<li class="nav-item"><a class="nav-link"
 						href="/startrip/restaurantHome">餐廳</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="/station/select">大眾運輸</a></li>
+						href="/startrip/select">大眾運輸</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="/startrip/TravelMain">行程規劃</a></li>
 					<li class="nav-item"><a class="nav-link"														
 						href="/startrip/review/UserReviewEdit/1">寫評論</a></li>	
+						
+					<c:if test="${not empty LoginOK}">
+					<li class="nav-item"><a class="nav-link"														
+						href="/startrip/admin/HostManage">住宿管理</a></li>	
+					</c:if>
 					
 					<li class="nav-item"><a class="nav-link"
 						href="/startrip/insertupdate">餐廳資料修改</a></li>
@@ -36,6 +41,7 @@
 
                     <!-- 測試 --><li class="nav-item"><a class="nav-link"
 						href="/startrip/Individualdetails">o測試o個別餐廳資料o</a></li><!-- 測試 -->
+
 
 					<li class="nav-item">
 						<c:if test="${ empty LoginOK }">
@@ -52,7 +58,7 @@
 								  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 									<a class="btn" href="ModifyMember">修改個人資料 </a>
 									<a class="btn" href="#">Another action</a>
-									<a class="btn" href="logout">登出</a>
+									<a class="btn" href="/startrip/logout">登出</a>
 								</div>
 								</div>
 							</c:if>

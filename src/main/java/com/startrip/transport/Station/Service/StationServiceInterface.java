@@ -3,7 +3,7 @@ package com.startrip.transport.Station.Service;
 import java.sql.Blob;
 import java.util.List;
 
-import com.startrip.member.memberModle.MemberBean;
+
 import com.startrip.transport.Station.StationModle.StationBean;
 
 public interface StationServiceInterface {

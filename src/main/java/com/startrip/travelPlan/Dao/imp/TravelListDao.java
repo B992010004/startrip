@@ -10,17 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.startrip.travelPlan.Dao.ITravelListDao;
-import com.startrip.travelPlan.Tool.HibernateUtil;
 import com.startrip.travelPlan.controller.HibernateUtil_SQLServer;
-import com.startrip.travelPlan.model.TravelAllBean;
 import com.startrip.travelPlan.model.TravelListBean;
-import com.startrip.travelPlan.model.TravelListPK;
-import com.startrip.travelPlan.model.TravelViewBean;
 @Repository
 public class TravelListDao implements ITravelListDao  {
 
 //	//測試-----	
-//		SessionFactory factory = HibernateUtil.getSessionFactory();
+//		SessionFactory factory = HibernateUtil_SQLServer.getSessionFactory();
 //	//------
 	
 	
@@ -35,11 +31,13 @@ public class TravelListDao implements ITravelListDao  {
 	
 	
 	@Override
-	public TravelListBean Select_PK(TravelListPK bean) {
-		TravelListPK pk = new TravelListPK(bean.getViewid(), bean.getTravelId());
+	public List<TravelListBean> Select_travelid(Integer id) {
+		String sql = "select * from TravelList where travelId=:travelId order by tripday asc,LEFT(starttime,2)";
 			Session session = factory.getCurrentSession();
-			TravelListBean result = new TravelListBean();
-			result = session.get(TravelListBean.class, pk);
+		List<TravelListBean> result = session.createNativeQuery(sql,TravelListBean.class)
+				.setParameter("travelId", id).getResultList();
+		
+			System.out.println(result);
 		return result;
 	}
 	@Override
@@ -84,6 +82,11 @@ public class TravelListDao implements ITravelListDao  {
 			TravelListDao dao = new TravelListDao();
 			TravelListBean bean =  new TravelListBean();
 			try {
+				
+				List<TravelListBean> list= dao.Select_travelid(1);
+				for(TravelListBean result : list) {
+					System.out.println(result.toString());
+				}
 //			//----------------------------------------------
 //			bean.set
 //			bean.setTravelName("大屯山");
@@ -120,8 +123,8 @@ public class TravelListDao implements ITravelListDao  {
 //					}
 //					dao.TravelPrimayKey(bean);
 					
-					bean.setTravelId(2);
-					dao.delete(bean.getTravelId());
+//					bean.setTravelId(2);
+//					dao.delete(bean.getTravelId());
 			HibernateUtil_SQLServer.getSessionFactory().getCurrentSession().getTransaction().commit();
 			}finally {
 				if(HibernateUtil_SQLServer.getSessionFactory()!=null) {
