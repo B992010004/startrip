@@ -501,15 +501,15 @@
         <button class="btn btn-secondary" type="button" id="dropdownMessageButton" onclick="slideFrame()">
             按鈕名字
         </button>
-        <div id="dropdownMessage" class="" style="padding:0px;display:none;">
+        <div id="dropdownMessage" style="padding:0px;display:none;border:#F8F8FF 1px solid">
             <div style="color: #fff;background-color: #00CA4C;
             border-color: #00CA4C;"> 對方帳號名</div>
-            <div style="width:200px;height:250px;">訊息顯示框</div>
+            <div id="displayMessage" style="width:250px;height:250px;overflow-y:auto;"></div>
             <div class="dropdown-divider "></div>
             <div>
-                <textarea id="messages" rows="1 " cols="20 " style="resize:none;overflow-y:visible; " placeholder="請輸入訊息"></textarea>
+                <textarea id="messages" rows="1" cols="25;" style="resize:none;" placeholder="請輸入訊息" maxlength="250"></textarea>
             </div>
-            <div class="btn btn-secondary" onclick="sendMessage()">送出</div>
+            <div class="btn btn-secondary" onclick="sendMessage(${LoginOK.memberid }, 20)">送出</div>
         </div>
 
 	</div>
@@ -563,37 +563,48 @@
 <!-- 即時聊天 -->
  
 	<script>
-//現在只測試4號傳2號	
+//現在只測試傳20號	
 	function slideFrame(){
-		$('#dropdownMessage').slideToggle();
+		$('#dropdownMessage').slideToggle(200);
 	}
 	
-	function sendMessage(){
-  	  var url = 'http://'+ window.location.host +'/startrip/chat';
-      var sock = new SockJS(url);
-      var stomp = Stomp.over(sock);
-//       var payload = JSON.stringify({'message':'Marco!'});
-      var payload = JSON.stringify({"message":$('#messages').val()});
-      console.log($('#messages').val());
-      stomp.connect('guest', 'guest', function(frame) {
-      console.log('*****  Connected  *****');
-
-      stomp.subscribe("/target/message/4/2", handleSpittle);
-//         stomp.subscribe("/topic/spittlefeed", handleSpittle);
-//         stomp.subscribe("/user/queue/notifications", handleNotification);
-      stomp.send("/app/chatRoom/4/2", {}, payload);
-      });
-	}
+	   function sendMessage(senderPk, receiverPk){
+	  	  var url = 'http://'+ window.location.host +'/startrip/chat';
+	      var sock = new SockJS(url);
+	      var stomp = Stomp.over(sock);
+	      
+	      //先檢查是否有值
+	   if($('#messages').val()){
+	      
+	      //清空輸入欄 並加入文字至上方顯示窗
+	      var message = $('#messages').val();    
+	      $('#messages').val("");
+	      var myText = $("<span class='myText' style='color:#FFFFFF;text-align:center;'></span>").text(message);
+	      var myTextdiv = $("<div class='myTextDiv' style='border-radius:10px;background-color:#0066FF;float:right;clear:both;max-width:146px;word-wrap: break-word;margin-bottom:5px;'></div>").append(myText);
+	      $('#displayMessage').append(myTextdiv);
+	      
+	//       var payload = JSON.stringify({'message':'Marco!'});
+	      var payload = JSON.stringify({"message":message});
+	      stomp.connect('guest', 'guest', function(frame) {
+	      console.log('*****  Connected  *****');
 	
-      function handleSpittle(message) {
-    	  console.log('Spittle:', message);
-    	  $('#output').append("<b>Received spittle: " + JSON.parse(message.body).message + "</b><br/>");
-      }
+	//       stomp.subscribe("/user/queue/notifications", handleNotification);
+	//       stomp.subscribe("/target/message/4/2", handleSpittle);
+	      stomp.subscribe("/target/message/" + senderPk + "/" + receiverPk, handleText);
+	//       stomp.send("/app/chatRoom/4/2", {}, payload);
+	      stomp.send("/app/chatRoom/" + senderPk + "/" + receiverPk, {}, payload);
+	      });
+	    }
+	  }
+	
+      function handleText(message) {
+    	  
+    	  console.log('message:', message);
+//     	  $('#output').append("<b>Received spittle: " + JSON.parse(message.body).message + "</b><br/>");
+    	  var callBackText = $("<span class='callBackText' style='text-align:center;'></span>").text(JSON.parse(message.body).message);
+	      var callBackTextdiv = $("<div class='callBackTextDiv' style='border-radius:10px;background-color:#DDDDDD;float:left;clear:both;max-width:146px;word-wrap:break-word;margin-bottom:5px;'></div>").html(callBackText);
+	      $('#displayMessage').append(callBackTextdiv);
       
-      function handleNotification(message) {
-        console.log('Notification: ', message);
-        $('#output').append("<b>Received: " + 
-            JSON.parse(message.body).message + "</b><br/>")
       }
       
       function sendSpittle(text) {

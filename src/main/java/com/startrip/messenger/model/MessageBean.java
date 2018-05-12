@@ -21,6 +21,12 @@ public class MessageBean {
 	private String messageStatus;
 	private String message;
 	
+	@Override
+	public String toString() {
+		return "MessageBean [no=" + no + ", messageArticle=" + messageArticle + ", senderAccount=" + senderAccount
+				+ ", receiverAccount=" + receiverAccount + ", messageDate=" + messageDate + ", messageStatus="
+				+ messageStatus + ", message=" + message + "]";
+	}
 	public String getMessage() {
 		return message;
 	}

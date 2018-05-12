@@ -12,21 +12,19 @@ import com.startrip.messenger.model.MessageBean;
 public class MessengerController extends AbstractWebSocketHandler {
 
 	@MessageMapping("/chatRoom/{senderPk}/{receiverPk}")
-//	@SendTo("/topic/shout")
+	// @SendTo("/topic/shout")
 	@SendTo("/target/message/{senderPk}/{receiverPk}")
-	public MessageBean handleShout(MessageBean messageBean,
-			@DestinationVariable("senderPk") String senderPk,
-			@DestinationVariable("receiverPk") String receiverPk
-			) {
+	public MessageBean handleShout(MessageBean messageBean, @DestinationVariable("senderPk") String senderPk,
+			@DestinationVariable("receiverPk") String receiverPk) {
 		
 		System.out.println("----------------------------------------------------------------");
 		System.out.println(senderPk);
 		System.out.println(receiverPk);
 		System.out.println("----------------------------------------------------------------");
 		System.out.println("broadcastMessage");
-		
+
 		MessageBean outgoing = new MessageBean();
-		outgoing.setMessage("Polo!");
+		outgoing.setMessage(messageBean.getMessage());
 		return outgoing;
 	}
 }
