@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+  <%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <meta charset="utf-8">
@@ -47,12 +48,30 @@
 		<!-- 		  <li class="list-group-item"></li> -->
 				</ul>
 			</div>
-			<div class="col-md-9">
-				<div class="card" style="width: 18rem;">
+			
+			
+			<div class="col-md-9" id= "travels">
+			<div class="row" id= "row">
+				<div class="card col-md-6" style="width: 18rem;">
 				  <img class="card-img-top" src="..." alt="Card image cap">
 				  <div class="card-body">
-				    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+				    <p class="card-text">${travel.travelName}</p>
 				  </div>
+				</div>
+				
+				<div class="card  col-md-6" style="width: 18rem;">
+				  <img class="card-img-top" src="..." alt="Card image cap">
+				  <div class="card-body">
+				    <p class="card-text">${travel.travelName}</p>
+				  </div>
+				</div>
+				
+				<div class="card  col-md-6" style="width: 18rem;">
+				  <img class="card-img-top" src="..." alt="Card image cap">
+				  <div class="card-body">
+				    <p class="card-text">${travel.travelName}</p>
+				  </div>
+				</div>
 				</div>
 			</div>
 		</div>
@@ -80,17 +99,94 @@
     <script src="/startrip/assets/js/jquery.easing.1.3.js"></script>
     <script src="/startrip/assets/js/select2.min.js"></script>
     <script src="/startrip/assets/js/main.js"></script>
+  
+  
+  
      
    <script type="text/javascript">
+   
+  
   $( function () {
+	  searchTravels();
+	  
 	$('.list-group-item').hover(function(e){
 		$(e.target).addClass('active');
-	})
-	
-	$('.list-group-item').mouseleave(function(e){
+	},function(e){
 		$(e.target).removeClass('active');
 	})
-})
+	
+	$(document).on("click",".icon",function(e){
+// 		alert(e.target.id)
+		var del={}
+		del.email="${LoginOK.mail}";
+		del.id =$('#'+e.target.id).parent().parent().find('.id').text();
+		$.ajax({
+			  url:"/startrip/travel/all",
+				type:"GET",
+				dataType:"json",
+				data:del,
+				contentType: "application/json; charset=utf-8",
+				success:function(data){
+					
+				}
+	})
+  })
+	
+ 
+function searchTravels(){
+var all={};
+all.mail = "${LoginOK.mail}";
+
+  
+  $.ajax({
+	  url:"/startrip/travel/all",
+		type:"GET",
+		dataType:"json",
+		data:all,
+		contentType: "application/json; charset=utf-8",
+		success:function(data){
+			$('#row').empty();
+			console.log(data)
+// 			<div class="card" style="width: 18rem;">
+// 			  <img class="card-img-top" src="..." alt="Card image cap">
+// 			  <div class="card-body">
+// 			    <p class="card-text">${travel.travelName}</p>
+// 			  </div>
+// 			</div>
+		var docFrag = $(document.createDocumentFragment());
+		var start; 
+		var end;
+		for(var i =0,len=data.length;i<len;i++){
+		var card = $('<div class="card col-6" style="width: 18rem;"></div>')
+		var imgrow =$('<div class="row"></div>');
+		var img = $('<img id="travelimg" class="card-img-top col-8" src="/startrip/show/'+data[i].img+'" alt="Card image cap"><img src = http://localhost:8080/startrip/assets/Travel/img/marker.png class="icon col-2" id="update"><img id="del'+(i+1)+'" class="icon col-2" src = http://localhost:8080/startrip/assets/Travel/img/close2.png>')
+		var body = $('<div class="card-body"></div>')
+		var title=$('<h5 class="card-title">'+data[i].travelName+'</h5><div class="id">'+data[i].travelId+'</div>')
+		
+		start = new Date(data[i].startDate);
+		StartDate =	format(start);
+		end = new Date(data[i].endDate);
+		endDate =	format(end);
+		var text = $('<p class="card-text">'+StartDate+'-'+endDate+'</p>')
+		body.append([title,text]);
+		imgrow.append(img)
+		card.append([imgrow,body])
+			docFrag.append(card)
+		}
+		$('#row').append(docFrag);
+  		} 
+  
+  })
+
+  }
+  
+  function format(time){
+	  var y = time.getFullYear();
+	  var M = time.getMonth();
+	  var d = time.getDate();
+	  return y+'/'+M+'/'+d;
+  }
+
    </script>
 </body>
 </html>

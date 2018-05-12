@@ -99,6 +99,18 @@ public class TravelAllDao implements ITripAllDao {
 		this.getSession().delete(bean);;
 	}
 
+	@Override
+	public List<TravelAllBean> select_mail(Integer id) {
+		String sql = "Select * from travelplan where memberId=:memberId";
+		List<TravelAllBean> list = getSession().createNativeQuery(sql,TravelAllBean.class)
+									.setParameter("memberId", id).getResultList();
+		
+		return list;
+	}
+	
+	
+	
+	
 	//測試-----		
 	public static void main (String args[]){
 		HibernateUtil_SQLServer.getSessionFactory().getCurrentSession().beginTransaction();
@@ -168,5 +180,6 @@ public class TravelAllDao implements ITripAllDao {
 			}
 	}
 	//--------------------------------------------------------------
+
 	
 }
