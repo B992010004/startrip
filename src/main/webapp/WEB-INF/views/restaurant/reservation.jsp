@@ -129,12 +129,23 @@ text-align: left;
 	text-align: left;
 }
 
-
-
 .ion-calendar {
 	text-align: right;
 	padding-right: 78%;
 }
+
+.button1{
+	text-align: right;
+	padding-yop:4%;
+	padding-bottom:2%;
+}
+
+.modal-title{
+	color:#FF3333;
+	text-align:center;
+	border-bottom: #00CA4C 2px solid;
+}
+
 </style>
 
 </head>
@@ -356,7 +367,6 @@ text-align: left;
 
 	<!-- END section -->
 
-	<!--評論 -->
 	<div class="container">
 		<div class="review">
 			<a href="/startrip/restaurantHome" class="btn btn-primary">回餐廳首頁</a>
@@ -364,7 +374,39 @@ text-align: left;
 	</div>
 
 
+
+
+<!-- Button trigger modal -->
+
+<!-- <div class="container"> -->
+<!-- <div class="button1"> -->
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"> -->
+<!--   回餐廳首頁 -->
+<!-- </button> -->
+<!-- </div> -->
+
+<!-- <!-- Modal --> -->
+<!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"> -->
+<!--   <div class="modal-dialog" role="document"> -->
+<!--     <div class="modal-content"> -->
+<!--       <div class="modal-header">  -->
+<!--         <h5 class="modal-title">警語&nbsp;&nbsp;!&nbsp;&nbsp;!&nbsp;&nbsp;!</h5> -->
+<!--       </div> -->
+<!--       <div class="modal-body"> -->
+<!--       <p>離開此頁面，資料將消失</p> -->
+<!--       <p>如需再次訂位，須重填您的資料</p> -->
+<!--       </div> -->
+<!--       <div class="modal-footer"> -->
+<!--         <button type="button" class="btn btn-secondary" href="/startrip/">繼續離開</button> -->
+<!--         <button type="button" class="btn btn-primary" data-dismiss="modal">返回訂位</button> -->
+<!--       </div> -->
+<!--     </div> -->
+<!--   </div> -->
+<!-- </div> -->
+<!-- </div> -->
+
 	<!-- END section -->
+
 
 	<footer class="probootstrap_section probootstrap-border-top">
 		<div class="row pt-5">
