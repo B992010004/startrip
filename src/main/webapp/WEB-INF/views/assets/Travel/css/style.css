@@ -142,7 +142,7 @@
     padding: 10px 40px;
     position: relative;
     background-color: inherit;
-    width: 50%;
+    width: 100%;
 }
 
 /* The circles on the timeline */
@@ -162,7 +162,7 @@
 
 /* Place the container to the right */
 .right {
-    left: -47%;
+       left: -16%
 }
 
 
@@ -172,7 +172,7 @@
     content: " ";
     height: 0;
     position: absolute;
-    top: 22px;
+    top: 17%;
     width: 0;
     z-index: 1;
     left: 30px;
@@ -201,6 +201,7 @@
     background-color: white;
     position: relative;
     border-radius: 6px;
+       
 }
 
 .timeline-content1 {

@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="/startrip/assets/css/helpers.css">
     <link rel="stylesheet" href="/startrip/assets/css/style.css">
     
+    <link rel="stylesheet" href="/startrip/assets/Travel/css/MainStyle.css">
     
 </head>
 <body>
@@ -31,17 +32,38 @@
 	</div>
 	
 	 <section class="probootstrap_section bg-dark" id="section-contact">
-        <div class="container">
-
-   			 <hr>
-    	<a class="nav-link" style="border: 1px solid"href="Travel/addPlan/${LoginOK.mail}">新增行程</a><br>
-    	<a class="nav-link" style="border: 1px solid"href="Travel/addList">新增清單</a><br>
-		<a class="nav-link" style="border: 1px solid"href="Views/add">新增景點</a><br>
-		<a class="nav-link" style="border: 1px solid" href="TravelViews/all">查詢景點</a><br>
-		<a class="nav-link" style="border: 1px solid" href="list/All">查詢行程</a><br>
-		<a class="nav-link"	href="/startrip/TravelMain/test">行程規劃</a>
-		</div>
+        
 		</section>
+		
+		<section class="probootstrap_section" id="section-feature-testimonial">
+		<div class="row">
+			<div class="col-md-3" style="background-color: blcak;">
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item " align="center"><a  href="Travel/addPlan/${LoginOK.mail}">新增行程</a></li>
+				  	<li class="list-group-item "  align="center"><a  href="Travel/addList">新增清單</a></li>
+				  	<li class="list-group-item "  align="center"><a  href="Views/add">新增景點</a></li>
+				  	<li class="list-group-item "  align="center"><a  href="TravelViews/all">查詢景點</a></li>
+				 	<li class="list-group-item "  align="center"><a  href="list/All">查詢行程</a><br></li>
+		<!-- 		  <li class="list-group-item"></li> -->
+				</ul>
+			</div>
+			<div class="col-md-9">
+				<div class="card" style="width: 18rem;">
+				  <img class="card-img-top" src="..." alt="Card image cap">
+				  <div class="card-body">
+				    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+				  </div>
+				</div>
+			</div>
+		</div>
+		
+		
+		
+		</section>
+
+
+ 
+
 
 	 <div>
         <jsp:include page="/WEB-INF/views/footer.jsp" flush="true" />
@@ -59,6 +81,16 @@
     <script src="/startrip/assets/js/select2.min.js"></script>
     <script src="/startrip/assets/js/main.js"></script>
      
-   
+   <script type="text/javascript">
+  $( function () {
+	$('.list-group-item').hover(function(e){
+		$(e.target).addClass('active');
+	})
+	
+	$('.list-group-item').mouseleave(function(e){
+		$(e.target).removeClass('active');
+	})
+})
+   </script>
 </body>
 </html>
