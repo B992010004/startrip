@@ -187,9 +187,10 @@ text-align: left;
 
 
 					<div class="form-group">
-						<label>訂位者姓名&nbsp;:&nbsp;</label> <input type="text"
-							class="form-control" name="" path="" placeholder="王大明等..."
+						<label for="account">訂位者姓名&nbsp;:&nbsp;</label> <input type="text"
+							class="form-control" name="account" id="account" path="" placeholder="王大明等..."
 							autofocus="autofocus" />
+							<p>(不可空白,至少兩個字且必須為中文字)</p>
 						<!-- required="required" -->
 					</div>
 					<div class="form-group">
@@ -445,6 +446,7 @@ text-align: left;
 
 	<script src="/startrip/assets/js/jquery-ui.js"></script>
 	<script src="/startrip/assets/js/jquery.popupoverlay.js"></script>
+	<script src="/startrip/assets/js/reservation1.js"></script>
 
 
 </body>
