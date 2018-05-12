@@ -14,7 +14,9 @@ public class TravelAllBean {
 	private String travelName;
 	private java.sql.Date startDate;
 	private java.sql.Date endDate;
-	private int travelDays;
+	private Integer travelDays;
+	private String img;
+	
 	private String mail;
 	private Integer memberId;
 
@@ -89,6 +91,14 @@ public class TravelAllBean {
 		this.travelId = travelId;
 	}
 	
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
+	}
+
 	@Override
 	public String toString() {
 		return "TravelAllBean [travelId=" + travelId + ", travelName=" + travelName + ", startDate=" + startDate

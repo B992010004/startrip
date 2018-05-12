@@ -18,4 +18,6 @@ public interface ITravelAllService {
 	public void updateDays(TravelAllBean bean) throws SQLException;
 
 	public void delete(int id);
+	
+	public List<TravelAllBean> select_mail(Integer id);
 }

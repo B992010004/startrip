@@ -49,4 +49,9 @@ public class AllServiceImp implements ITravelAllService {
 		travelDao.delete(id);
 	}
 
+	@Transactional
+	@Override
+	public List<TravelAllBean> select_mail(Integer id){
+		return travelDao.select_mail(id);
+	}
 }
