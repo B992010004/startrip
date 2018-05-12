@@ -151,15 +151,16 @@
     <script src="/startrip/assets/Travel/js/index.js"></script>
 <!--     <script src="/startrip/assets/Travel/js/lightbox.js"></script> -->
 <script>
-$(function(){
+$(function(e){
 	searchDays();
 	searchList();
 	searchView();
 	
 	
-$('#'+event.target.id).hover(function(){
-	
-})
+	$('#'+e.target.id).hover(function(){
+		var del =$('<img class="iconImg" src = http://localhost:8080/startrip/assets/Travel/img/close2.png>');
+		
+	})
 	
 })
 
@@ -246,7 +247,7 @@ function searchDays(){
 				//---天數新增
 				var title=$('<h2 class="title" onclick="changetype()" id="day'+i+'" >Day'+i+'</h2>');
 				var daycontent=$('<div class="contentDay"></div>');
-				var right1 = $("<div class='container1 right1' id='daybody"+i+"' ></div>");
+				var right1 = $("<div class='container1 right1 ' id='daybody"+i+"' ></div>");
  
 					daycontent.html(title);
 					right1.html(daycontent);
