@@ -119,7 +119,16 @@
 // 		alert(e.target.id)
 		var del={}
 		del.email="${LoginOK.mail}";
-		console.log($('#'+e.target.id).parent().parent().find('.id').text());
+		del.id =$('#'+e.target.id).parent().parent().find('.id').text();
+		$.ajax({
+			  url:"/startrip/travel/all",
+				type:"GET",
+				dataType:"json",
+				data:del,
+				contentType: "application/json; charset=utf-8",
+				success:function(data){
+					
+				}
 	})
   })
 	
