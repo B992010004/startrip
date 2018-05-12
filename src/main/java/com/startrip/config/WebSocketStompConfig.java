@@ -11,13 +11,13 @@ import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 public class WebSocketStompConfig extends AbstractWebSocketMessageBrokerConfigurer {
 	@Override
 	public void registerStompEndpoints(StompEndpointRegistry registry) {
-		registry.addEndpoint("/messaging").withSockJS();
+		registry.addEndpoint("/chat").withSockJS();
 	}
 
 	@Override
 	public void configureMessageBroker(MessageBrokerRegistry registry) {
 		// registry.enableStompBrokerRelay("/queue", "/topic");
-		registry.enableSimpleBroker("/topic", "/queue");
+		registry.enableSimpleBroker("/target", "/queue");
 		registry.setApplicationDestinationPrefixes("/app");
 	}
 }

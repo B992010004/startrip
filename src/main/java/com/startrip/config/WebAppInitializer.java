@@ -17,9 +17,9 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
 	// 哪些路徑下有靜態檔案，這些靜態檔案直接由容器傳回給客戶端而不要交給控制器去處理等等。
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
-		return new Class[] { WebAppConfig.class };
+		return new Class[] { WebAppConfig.class, WebSocketStompConfig.class };
 	}
-//	, WebSocketStompConfig.class
+
 	@Override
 	// 說明分派器(DispatcherServlet)要處理所有請求
 	protected String[] getServletMappings() {
@@ -36,8 +36,5 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
 		return new Filter[] { characterEncodingFilter };
 	}
 
-//	@Override
-//	protected void customizeRegistration(Dynamic registration) {
-//		registration.setAsyncSupported(true);
-//	}
+
 }

@@ -495,24 +495,24 @@
 			</c:forEach>
 		</div>
 		
-		<!-- 訊息聊天框 
-		<div class="dropdown dropup">
-        <button class="btn btn-secondary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		<!-- 訊息聊天框  -->
+	<div style="float:right">
+
+        <button class="btn btn-secondary" type="button" id="dropdownMessageButton" onclick="slideFrame()">
             按鈕名字
         </button>
-        <div class="dropdown-menu" style="padding:0px">
+        <div id="dropdownMessage" class="" style="padding:0px;display:none;">
             <div style="color: #fff;background-color: #00CA4C;
             border-color: #00CA4C;"> 對方帳號名</div>
             <div style="width:200px;height:250px;">訊息顯示框</div>
             <div class="dropdown-divider "></div>
             <div>
-                <textarea rows="1 " cols="20 " style="resize:none;overflow-y:visible; " placeholder="請輸入訊息"></textarea>
+                <textarea id="messages" rows="1 " cols="20 " style="resize:none;overflow-y:visible; " placeholder="請輸入訊息"></textarea>
             </div>
-            <a class=" dropdown-item " href="# ">送出</a>
+            <div class="btn btn-secondary" onclick="sendMessage()">送出</div>
         </div>
 
-    </div> -->
-		
+	</div>
         
         <!-- 圖片彈出區間 -->
         <div id="my_popup" hidden="hidden">
@@ -560,24 +560,31 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.0.3/sockjs.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 
-<!--
-<button id="stop">Stop</button>
-    
+<!-- 即時聊天 -->
+ 
 	<script>
+//現在只測試4號傳2號	
+	function slideFrame(){
+		$('#dropdownMessage').slideToggle();
+	}
 	
-  	  var url = 'http://'+ window.location.host +'/startrip/messaging';
+	function sendMessage(){
+  	  var url = 'http://'+ window.location.host +'/startrip/chat';
       var sock = new SockJS(url);
       var stomp = Stomp.over(sock);
-      var payload = JSON.stringify({'message':'Marco!'});
+//       var payload = JSON.stringify({'message':'Marco!'});
+      var payload = JSON.stringify({"message":$('#messages').val()});
+      console.log($('#messages').val());
       stomp.connect('guest', 'guest', function(frame) {
       console.log('*****  Connected  *****');
 
-      stomp.subscribe("/topic/mc", handleSpittle);
+      stomp.subscribe("/target/message/4/2", handleSpittle);
 //         stomp.subscribe("/topic/spittlefeed", handleSpittle);
 //         stomp.subscribe("/user/queue/notifications", handleNotification);
-      stomp.send("/app/mc", {}, payload);
+      stomp.send("/app/chatRoom/4/2", {}, payload);
       });
-      
+	}
+	
       function handleSpittle(message) {
     	  console.log('Spittle:', message);
     	  $('#output').append("<b>Received spittle: " + JSON.parse(message.body).message + "</b><br/>");
@@ -598,9 +605,7 @@
       $('#stop').click(function() {sock.close()});
 	</script>
     
-    <div id="output"></div>
--->      
-      
+     
 <!-- ------------------------------------------       -->
         <script>
             $(document).ready(function () {

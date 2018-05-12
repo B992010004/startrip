@@ -1,18 +1,31 @@
 package com.startrip.messenger.controller;
 
+import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.socket.handler.AbstractWebSocketHandler;
 
-import com.startrip.messenger.model.Shout;
+import com.startrip.messenger.model.MessageBean;
 
 @Controller
 public class MessengerController extends AbstractWebSocketHandler {
 
-	@MessageMapping("/mc")
+	@MessageMapping("/chatRoom/{senderPk}/{receiverPk}")
 //	@SendTo("/topic/shout")
-	public Shout handleShout(Shout incoming) {
-		Shout outgoing = new Shout();
+	@SendTo("/target/message/{senderPk}/{receiverPk}")
+	public MessageBean handleShout(MessageBean messageBean,
+			@DestinationVariable("senderPk") String senderPk,
+			@DestinationVariable("receiverPk") String receiverPk
+			) {
+		
+		System.out.println("----------------------------------------------------------------");
+		System.out.println(senderPk);
+		System.out.println(receiverPk);
+		System.out.println("----------------------------------------------------------------");
+		System.out.println("broadcastMessage");
+		
+		MessageBean outgoing = new MessageBean();
 		outgoing.setMessage("Polo!");
 		return outgoing;
 	}
