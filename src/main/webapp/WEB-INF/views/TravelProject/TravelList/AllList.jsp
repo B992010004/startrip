@@ -196,6 +196,7 @@ $('#insertday').on('click',function(){
 			success:function(data){
 				console.log(data.travelDays)
 				searchDays();
+				searchList();
 			}
 		})
 	

@@ -32,6 +32,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.startrip.member.Service.MemberServiceInterface;
 import com.startrip.member.memberModle.MemberBean;
+import com.startrip.travelPlan.Tool.Tools;
 import com.startrip.travelPlan.model.TravelAllBean;
 import com.startrip.travelPlan.model.TravelListBean;
 import com.startrip.travelPlan.model.TravelViewBean;
@@ -69,6 +70,10 @@ public class TravelPlanController {
 	@RequestMapping(value="Travel/addPlan/{mail}",method=RequestMethod.POST)
 	public String travelAdd(@ModelAttribute("TravelALLBean") TravelAllBean bean,@PathVariable("mail")String mail) {
 //		-----------------------------------------------------
+		//亂數一張圖片
+		Integer img =(int)(Math.random()*10);
+		bean.setImg(img+".jpg");
+		
 		//天數計算----------------
 		int days = 0;
 		Date start = bean.getStartDate();
@@ -87,10 +92,21 @@ public class TravelPlanController {
 	}
 	//查詢ALL Travel-----------------------------------------
 	@RequestMapping(value="travel/all",method=RequestMethod.GET)
-	public String travelAll(Model model) {
-		List<TravelAllBean> list = travelservice.selectAllTravel();
-		model.addAttribute("travels", list);
-		return "TravelProject/Main";
+	@ResponseBody
+	public List<Object> travelAll(Model model,String mail) {
+		HashMap<String , String > map = new HashMap<>();
+		MemberBean mb = memberservice.select(mail);
+		Integer id = mb.getMemberid();
+		List<Object> all = new ArrayList<>();
+		List<TravelAllBean> list = travelservice.select_mail(id);
+		for(TravelAllBean bean :list) {
+			
+			all.add(bean);
+			
+		}
+		
+		
+		return all;
 	}
 	//查詢行程資料
 	@RequestMapping(value="travel/id",method=RequestMethod.GET)
@@ -110,7 +126,7 @@ public class TravelPlanController {
 	public TravelAllBean addDay(Model model,String mail) {
 		System.out.println(mail);
 		TravelAllBean bean = new TravelAllBean();
-		MemberBean mb = new MemberBean();
+		
 		
 		Integer id =memberservice.select(mail).getMemberid(); 
 		bean = travelservice.Select_TravelId(id);
@@ -126,7 +142,42 @@ public class TravelPlanController {
 		System.out.println();
 		return bean;
 	}
-	
+	@RequestMapping(value="/show/{fileName}.{suffix}" ,method =RequestMethod.GET)
+	public ResponseEntity<byte[]> showtravel(
+			@PathVariable("fileName") String fileName,
+			@PathVariable("suffix") String suffix,HttpServletRequest request 
+			,HttpServletResponse response) {
+		String path = "c:/temp/travel/plan/";
+		String imgFile =path+fileName+"."+suffix;
+		
+		File file = new File(imgFile);
+		int len = 0;
+		byte[] media = null;
+		ByteArrayOutputStream baos =null;
+		HttpHeaders headers = new HttpHeaders();
+		InputStream is=null;
+		try {
+			 is = new FileInputStream(file);
+//			System.out.println(is.read());
+		baos = new ByteArrayOutputStream() ;
+		byte[] b = new byte[8192];
+		while((len = is.read(b))!=-1) {
+			baos.write(b, 0, len);
+		}
+		baos.close();
+		is.close();
+	} catch (Exception e) {
+		e.printStackTrace();
+	} 
+	media=baos.toByteArray();
+	headers.setCacheControl(CacheControl.noCache().getHeaderValue());
+	headers.setContentType(MediaType.IMAGE_JPEG);
+	ResponseEntity<byte[]> responseEntity = new ResponseEntity<byte[]>(media, headers, HttpStatus.OK);
+		return responseEntity;
+		
+		
+		
+	}
 	
 	//List相關控制-------------------------------------
 	//新增清單--------------------------------------
@@ -299,14 +350,10 @@ public class TravelPlanController {
 			@PathVariable("fileName") String fileName,
 			@PathVariable("suffix") String suffix,HttpServletRequest request 
 			,HttpServletResponse response) {
-//		System.out.println("img loading");
 		String path = "c:/temp/travel/";
 		String imgFile =path+fileName+"."+suffix;
 		
 		File file = new File(imgFile);
-//		if(file.exists())
-//		System.out.println("true;"+file.getName());
-//		System.out.println(path+fileName+"."+suffix);
 		int len = 0;
 		byte[] media = null;
 		ByteArrayOutputStream baos =null;

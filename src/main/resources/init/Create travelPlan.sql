@@ -49,12 +49,13 @@ CREATE TABLE TravelPlan(
 	startDate date NULL,
 	travelDays int NOT NULL,
 	travelName varchar(255) NULL,
+	img varchar(255) null,
 	memberId int not NULL REFERENCES membertable (memberId))
 
 GO
-insert into TravelPlan (travelName,startDate,endDate,travelDays,memberId)values('花蓮','2015-02-05','2015-02-08',3,1);
-insert into TravelPlan (travelName,startDate,endDate,travelDays,memberId)values('台北','2015-02-07','2015-02-21',14,1);
-insert into TravelPlan (travelName,startDate,endDate,travelDays,memberId)values('台北','2015-02-07','2015-02-21',14,1);
+insert into TravelPlan (travelName,startDate,endDate,travelDays,img,memberId)values('花蓮','2015-02-05','2015-02-08',3,1);
+insert into TravelPlan (travelName,startDate,endDate,travelDays,img,memberId)values('台北','2015-02-07','2015-02-21',14,1);
+insert into TravelPlan (travelName,startDate,endDate,travelDays,img,memberId)values('台北','2015-02-07','2015-02-21',14,1);
 
 
 
