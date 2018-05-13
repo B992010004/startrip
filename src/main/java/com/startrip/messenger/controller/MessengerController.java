@@ -14,17 +14,37 @@ public class MessengerController extends AbstractWebSocketHandler {
 	@MessageMapping("/chatRoom/{senderPk}/{receiverPk}")
 	// @SendTo("/topic/shout")
 	@SendTo("/target/message/{receiverPk}/{senderPk}")
-	public MessageBean handleShout(MessageBean messageBean, @DestinationVariable("senderPk") String senderPk,
+	public MessageBean handleChat(MessageBean messageBean, @DestinationVariable("senderPk") String senderPk,
 			@DestinationVariable("receiverPk") String receiverPk) {
 
 		System.out.println("----------------------------------------------------------------");
 		System.out.println("sender: " + senderPk);
 		System.out.println("receiver: " + receiverPk);
 		System.out.println("----------------------------------------------------------------");
-		System.out.println("broadcastMessage");
+		System.out.println("ChatMessage");
 
 		MessageBean outgoing = new MessageBean();
 		outgoing.setMessage(messageBean.getMessage());
+		return outgoing;
+	}
+	
+	@MessageMapping("/brocast/message/{senderPk}/{receiverPk}")
+	// @SendTo("/topic/shout")
+	@SendTo("/brocast/message/{receiverPk}")
+	public MessageBean handleBrocast(MessageBean messageBean, @DestinationVariable("senderPk") String senderPk,
+			@DestinationVariable("receiverPk") String receiverPk) {
+
+		System.out.println("----------------------------------------------------------------");
+		System.out.println("Brocast  sender: " + senderPk);
+		System.out.println("Brocast  receiver: " + receiverPk);
+		System.out.println("----------------------------------------------------------------");
+		System.out.println("broadcastMessage");
+
+		MessageBean outgoing = new MessageBean();
+		outgoing.setSenderAccount(senderPk);
+		outgoing.setReceiverAccount(receiverPk);
+		outgoing.setMessage(messageBean.getMessage());
+		outgoing.setMessageStatus(messageBean.getMessageStatus());
 		return outgoing;
 	}
 }

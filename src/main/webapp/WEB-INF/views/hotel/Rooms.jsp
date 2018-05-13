@@ -499,7 +499,7 @@
 	<div style="float:right">
 
         <button class="btn btn-secondary" type="button" id="dropdownMessageButton" onclick="slideFrame()">
-            按鈕名字
+            聊天框
         </button>
         <div id="dropdownMessage" style="padding:0px;display:none;border:#F8F8FF 1px solid">
             <div style="color: #fff;background-color: #00CA4C;
@@ -509,8 +509,7 @@
             <div>
                 <textarea id="messages" rows="1" cols="25;" style="resize:none;" placeholder="請輸入訊息" maxlength="250"></textarea>
             </div>
-            <div class="btn btn-secondary" onclick="sendMessage(${LoginOK.memberid }, 2)">送出</div>
-            <div class="btn btn-secondary" onclick="sendMessage(${LoginOK.memberid }, 1)">2傳一</div>
+            <div class="btn btn-secondary" id="sendText" onclick="initChat('${LoginOK.memberid }', 2)">傳二</div>
         </div>
 
 	</div>
@@ -557,34 +556,60 @@
         <script src="/startrip/assets/js/jquery-ui.js"></script>
         <script src="/startrip/assets/js/jquery.popupoverlay.js"></script>
         
-<!-- -------------------------------------------------------------------------- -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.0.3/sockjs.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-
 <!-- 即時聊天 -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.0.3/sockjs.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
  
 	<script>
-//現在測試傳2號	
+//現在測試傳2號
+//不如這樣 自行實作三向交握
+//三向交握成功!!
+//接下來解決 廣播收到後建立聊天框
 	function slideFrame(){
 		$('#dropdownMessage').slideToggle(200);
 	}
+	
 	var subscribedArr = [];
 	
 	 var url = 'http://'+ window.location.host +'/startrip/chat';
      var sock = new SockJS(url);
      var stomp = Stomp.over(sock);
      stomp.connect('guest', 'guest', function(frame) {
-	      console.log('*****  Connected  *****');	      
+	      console.log('*****  Connected  *****');
+// 	      stomp.subscribe("/brocast/message/" + '${LoginOK.memberid }', handleText);
+ 		  //訂閱廣播
+ 		  //一開始大家只有廣播
+	      stomp.subscribe("/brocast/message/" + '${LoginOK.memberid }', handleInitP2P);
 	      });
 	
-	   function sendMessage(senderPk, receiverPk){		   	 
+	   function initChat(senderPk, receiverPk){		   	 
 		   if(!issubscribed(receiverPk)){
 			   stomp.subscribe("/target/message/" + senderPk + "/" + receiverPk, handleText);
 			   subscribedArr.push(receiverPk);
 			   console.log('subscribed!!');
 		   }
-		   
-	       
+		   //檢查是否有值 有值動作
+		   if($('#messages').val()){			  
+		      //清空輸入欄 並加入文字至上方顯示窗
+		      var message = $('#messages').val();    
+		      $('#messages').val("");
+		      var myText = $("<span class='myText' style='color:#FFFFFF;text-align:center;'></span>").text(message);
+		      var myTextdiv = $("<div class='myTextDiv' style='border-radius:10px;background-color:#0066FF;float:right;clear:both;max-width:146px;word-wrap: break-word;margin-bottom:5px;'></div>").append(myText);
+		      $('#displayMessage').append(myTextdiv);		      
+		//       var payload = JSON.stringify({'message':'Marco!'});
+		      var payload = JSON.stringify({"message":message, "messageStatus":"1"});		      
+		      //stomp.send("/app/chatRoom/" + senderPk + "/" + receiverPk, {}, payload);
+		      //一開始先推到對方廣播
+		      stomp.send("/app/brocast/message/" + senderPk + "/" + receiverPk, {}, payload);
+		    }
+	  }
+	   
+	   function sendMessage(senderPk, receiverPk){		   	 
+		   if(!issubscribed(receiverPk)){
+			   stomp.subscribe("/target/message/" + senderPk + "/" + receiverPk, handleText);
+			   subscribedArr.push(receiverPk);
+			   console.log('subscribed!!');
+		   }	       
 		   //檢查是否有值
 		   if($('#messages').val()){			  
 		      //清空輸入欄 並加入文字至上方顯示窗
@@ -596,26 +621,42 @@
 		      
 		//       var payload = JSON.stringify({'message':'Marco!'});
 		      var payload = JSON.stringify({"message":message});		      
-		      stomp.send("/app/chatRoom/" + senderPk + "/" + receiverPk, {}, payload);		    	  
+		      //stomp.send("/app/chatRoom/" + senderPk + "/" + receiverPk, {}, payload);
+		      //點對點通道
+		      stomp.send("/app/chatRoom/" + senderPk + "/" + receiverPk, {}, payload);
 		    }
 	  }
 	
-      function handleText(message) {
-    	  
-    	  console.log('message:', message);
-		  //$('#output').append("<b>Received spittle: " + JSON.parse(message.body).message + "</b><br/>");
-    	  var callBackText = $("<span class='callBackText' style='text-align:center;'></span>").text(JSON.parse(message.body).message);
+      function handleInitP2P(message){
+    	  console.log('handleInitP2P message:', message);
+    	  var object = JSON.parse(message.body);
+    	  //$('#output').append("<b>Received spittle: " + JSON.parse(message.body).message + "</b><br/>");
+		  var callBackText = $("<span class='callBackText' style='text-align:center;'></span>").text(JSON.parse(message.body).message);
 	      var callBackTextdiv = $("<div class='callBackTextDiv' style='border-radius:10px;background-color:#DDDDDD;float:left;clear:both;max-width:146px;word-wrap:break-word;margin-bottom:5px;'></div>").html(callBackText);
 	      $('#displayMessage').append(callBackTextdiv);
-      
+	      //更改訊息發送位置
+	      //硬改改掉 好醜
+	      $('#sendText').attr('onclick', "sendMessage("+ object.receiverAccount + "," + object.senderAccount + ")");
+	      $('#sendText').text("發送至" + object.senderAccount);      
+	      
+	      if(object.messageStatus == 1){
+		      //通知對方 建立點對點通道
+		      var payload = JSON.stringify({"messageStatus":"2"});		      
+		      //stomp.send("/app/chatRoom/" + senderPk + "/" + receiverPk, {}, payload);
+		      //利用brocast通知對方建立點對點通道
+		      stomp.send("/app/brocast/message/" + object.receiverAccount + "/" + object.senderAccount, {}, payload);
+	      }else if(object.messageStatus == 2){
+	    	  console.log("連線成功");
+	      }
       }
       
-      function sendSpittle(text) {
-        console.log('Sending Spittle');
-        stomp.send("/app/spittle", {}, 
-            JSON.stringify({ 'text': text }));
+      function handleText(message) {
+    	  console.log('message:', message);
+		  //$('#output').append("<b>Received spittle: " + JSON.parse(message.body).message + "</b><br/>");
+		  var callBackText = $("<span class='callBackText' style='text-align:center;'></span>").text(JSON.parse(message.body).message);
+	      var callBackTextdiv = $("<div class='callBackTextDiv' style='border-radius:10px;background-color:#DDDDDD;float:left;clear:both;max-width:146px;word-wrap:break-word;margin-bottom:5px;'></div>").html(callBackText);
+	      $('#displayMessage').append(callBackTextdiv);      
       }
-      
       function issubscribed(receiverPk){
     	  if(subscribedArr.indexOf(receiverPk) != -1){
     		  return true;
@@ -623,7 +664,7 @@
     	  return false;
       }
 
-      $('#stop').click(function() {sock.close()});
+      $('#stopSTOMP').click(function() {sock.close()});
 	</script>
     
      
