@@ -66,7 +66,7 @@
     <div class="buttom"></div>
   </form>
    <script>
- // http://blog.shihshih.com/css-filter/
+
  document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("01").addEventListener("onclick",onclick);  //事件繫結，滑鼠滑入
             document.getElementById("01").addEventListener("ondblclick",ondblclick);    //事件繫結，滑鼠滑出
@@ -140,7 +140,7 @@
   </table>
   <div class="Div02">
     路線資訊查詢(地圖選取)
-    <div class="map"> <img src="assets/images/taiwan.png" width="280" height="460" usemap="#Map" id="Image1" border="0">
+    <div class="map"> <img src="/startrip/assets/transport/images/taiwan.png" width="280" height="460" usemap="#Map" id="Image1" border="0">
     <map name="Map" id="Map">
       <area shape="rect"  coords="201,54,248,76"  onclick="city(&#39;新北&#39;);" onmouseover="MM_swapImage(&#39;Image1&#39;,&#39;&#39;,&#39;images/map/map01.png&#39;,1)" onmouseout="MM_swapImgRestore()">
       <area shape="rect" coords="181,23,228,44"  onclick="city(&#39;台北&#39;);" onmouseover="MM_swapImage(&#39;Image1&#39;,&#39;&#39;,&#39;images/map/map02.png&#39;,1)" onmouseout="MM_swapImgRestore()">
