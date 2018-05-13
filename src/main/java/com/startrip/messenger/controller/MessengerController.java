@@ -13,13 +13,13 @@ public class MessengerController extends AbstractWebSocketHandler {
 
 	@MessageMapping("/chatRoom/{senderPk}/{receiverPk}")
 	// @SendTo("/topic/shout")
-	@SendTo("/target/message/{senderPk}/{receiverPk}")
+	@SendTo("/target/message/{receiverPk}/{senderPk}")
 	public MessageBean handleShout(MessageBean messageBean, @DestinationVariable("senderPk") String senderPk,
 			@DestinationVariable("receiverPk") String receiverPk) {
-		
+
 		System.out.println("----------------------------------------------------------------");
-		System.out.println(senderPk);
-		System.out.println(receiverPk);
+		System.out.println("sender: " + senderPk);
+		System.out.println("receiver: " + receiverPk);
 		System.out.println("----------------------------------------------------------------");
 		System.out.println("broadcastMessage");
 

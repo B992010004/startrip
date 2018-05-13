@@ -509,7 +509,8 @@
             <div>
                 <textarea id="messages" rows="1" cols="25;" style="resize:none;" placeholder="請輸入訊息" maxlength="250"></textarea>
             </div>
-            <div class="btn btn-secondary" onclick="sendMessage(${LoginOK.memberid }, 20)">送出</div>
+            <div class="btn btn-secondary" onclick="sendMessage(${LoginOK.memberid }, 2)">送出</div>
+            <div class="btn btn-secondary" onclick="sendMessage(${LoginOK.memberid }, 1)">2傳一</div>
         </div>
 
 	</div>
@@ -563,7 +564,7 @@
 <!-- 即時聊天 -->
  
 	<script>
-//現在只測試傳20號	
+//現在測試傳2號	
 	function slideFrame(){
 		$('#dropdownMessage').slideToggle(200);
 	}
