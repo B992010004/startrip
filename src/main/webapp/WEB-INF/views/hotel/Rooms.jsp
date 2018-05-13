@@ -567,40 +567,42 @@
 	function slideFrame(){
 		$('#dropdownMessage').slideToggle(200);
 	}
+	var subscribedArr = [];
 	
-	   function sendMessage(senderPk, receiverPk){
-	  	  var url = 'http://'+ window.location.host +'/startrip/chat';
-	      var sock = new SockJS(url);
-	      var stomp = Stomp.over(sock);
-	      
-	      //先檢查是否有值
-	   if($('#messages').val()){
-	      
-	      //清空輸入欄 並加入文字至上方顯示窗
-	      var message = $('#messages').val();    
-	      $('#messages').val("");
-	      var myText = $("<span class='myText' style='color:#FFFFFF;text-align:center;'></span>").text(message);
-	      var myTextdiv = $("<div class='myTextDiv' style='border-radius:10px;background-color:#0066FF;float:right;clear:both;max-width:146px;word-wrap: break-word;margin-bottom:5px;'></div>").append(myText);
-	      $('#displayMessage').append(myTextdiv);
-	      
-	//       var payload = JSON.stringify({'message':'Marco!'});
-	      var payload = JSON.stringify({"message":message});
-	      stomp.connect('guest', 'guest', function(frame) {
-	      console.log('*****  Connected  *****');
-	
-	//       stomp.subscribe("/user/queue/notifications", handleNotification);
-	//       stomp.subscribe("/target/message/4/2", handleSpittle);
-	      stomp.subscribe("/target/message/" + senderPk + "/" + receiverPk, handleText);
-	//       stomp.send("/app/chatRoom/4/2", {}, payload);
-	      stomp.send("/app/chatRoom/" + senderPk + "/" + receiverPk, {}, payload);
+	 var url = 'http://'+ window.location.host +'/startrip/chat';
+     var sock = new SockJS(url);
+     var stomp = Stomp.over(sock);
+     stomp.connect('guest', 'guest', function(frame) {
+	      console.log('*****  Connected  *****');	      
 	      });
-	    }
+	
+	   function sendMessage(senderPk, receiverPk){		   	 
+		   if(!issubscribed(receiverPk)){
+			   stomp.subscribe("/target/message/" + senderPk + "/" + receiverPk, handleText);
+			   subscribedArr.push(receiverPk);
+			   console.log('subscribed!!');
+		   }
+		   
+	       
+		   //檢查是否有值
+		   if($('#messages').val()){			  
+		      //清空輸入欄 並加入文字至上方顯示窗
+		      var message = $('#messages').val();    
+		      $('#messages').val("");
+		      var myText = $("<span class='myText' style='color:#FFFFFF;text-align:center;'></span>").text(message);
+		      var myTextdiv = $("<div class='myTextDiv' style='border-radius:10px;background-color:#0066FF;float:right;clear:both;max-width:146px;word-wrap: break-word;margin-bottom:5px;'></div>").append(myText);
+		      $('#displayMessage').append(myTextdiv);
+		      
+		//       var payload = JSON.stringify({'message':'Marco!'});
+		      var payload = JSON.stringify({"message":message});		      
+		      stomp.send("/app/chatRoom/" + senderPk + "/" + receiverPk, {}, payload);		    	  
+		    }
 	  }
 	
       function handleText(message) {
     	  
     	  console.log('message:', message);
-//     	  $('#output').append("<b>Received spittle: " + JSON.parse(message.body).message + "</b><br/>");
+		  //$('#output').append("<b>Received spittle: " + JSON.parse(message.body).message + "</b><br/>");
     	  var callBackText = $("<span class='callBackText' style='text-align:center;'></span>").text(JSON.parse(message.body).message);
 	      var callBackTextdiv = $("<div class='callBackTextDiv' style='border-radius:10px;background-color:#DDDDDD;float:left;clear:both;max-width:146px;word-wrap:break-word;margin-bottom:5px;'></div>").html(callBackText);
 	      $('#displayMessage').append(callBackTextdiv);
@@ -611,6 +613,13 @@
         console.log('Sending Spittle');
         stomp.send("/app/spittle", {}, 
             JSON.stringify({ 'text': text }));
+      }
+      
+      function issubscribed(receiverPk){
+    	  if(subscribedArr.indexOf(receiverPk) != -1){
+    		  return true;
+    	  }
+    	  return false;
       }
 
       $('#stop').click(function() {sock.close()});

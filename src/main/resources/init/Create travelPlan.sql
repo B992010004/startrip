@@ -53,9 +53,9 @@ CREATE TABLE TravelPlan(
 	memberId int not NULL REFERENCES membertable (memberId))
 
 GO
-insert into TravelPlan (travelName,startDate,endDate,travelDays,img,memberId)values('花蓮','2015-02-05','2015-02-08',3,1);
-insert into TravelPlan (travelName,startDate,endDate,travelDays,img,memberId)values('台北','2015-02-07','2015-02-21',14,1);
-insert into TravelPlan (travelName,startDate,endDate,travelDays,img,memberId)values('台北','2015-02-07','2015-02-21',14,1);
+insert into TravelPlan (travelName,startDate,endDate,travelDays,img,memberId)values('花蓮','2015-02-05','2015-02-08',3,'1.jpg',1);
+insert into TravelPlan (travelName,startDate,endDate,travelDays,img,memberId)values('台北','2015-02-07','2015-02-21',14,'2.jpg',1);
+insert into TravelPlan (travelName,startDate,endDate,travelDays,img,memberId)values('台北','2015-02-07','2015-02-21',14,'3.jpg',1);
 
 
 

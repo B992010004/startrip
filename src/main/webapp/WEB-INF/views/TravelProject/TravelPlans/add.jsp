@@ -86,9 +86,8 @@
 	</div>
 	
 	
-<c:forEach var='travel' items='${travels}'>
-<p>${travel.travelName}</p>
-</c:forEach>	
+
+	
 </div></section>	
  <div>
         <jsp:include page="/WEB-INF/views/footer.jsp" flush="true" />
@@ -121,6 +120,7 @@
 	
 	<script>
 	$(function() {
+		//dataPicker
 			var dateFormat = "yy-mm-dd", 
 			startDate = $("#startDate").datepicker({
 				 dateFormat: "yy-mm-dd",
@@ -149,17 +149,17 @@
 			 
 			      return date;
 			    }
+			 //互動視窗狀態
 			 $("#model").modal({
 				 "show":true,
 				 "backdrop": 'static',
 				 "keyboard":false,
-				 
-			 
 				 })
+				返回件
 			 $("#back").click(function(){
-				 history.go(-1);
-			 })
-			  } );
+				 history.go("http://localhost:8080/startrip/TravelMain");
+			 	})
+			  });//end
 	</script>
 	
 </body>

@@ -7,7 +7,7 @@ import com.startrip.travelPlan.model.TravelListBean;
 
 public interface ITravelListService {
 	
-	List<TravelListBean> Select_travelid(Integer id);
+	public List<TravelListBean> Select_travellist(Integer travelId);
 
 	public List<TravelListBean> selectAllList();
 
