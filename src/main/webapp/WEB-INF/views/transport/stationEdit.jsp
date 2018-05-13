@@ -10,6 +10,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 <!-- action="transport/stationEdit" -->
 <form:form  method="post" modelAttribute="inputStation">
 
@@ -41,6 +42,11 @@
 <input type="button" value="新增">
 </form:form>
 
+<br>
+<br>
+<a href="http://localhost:8080//startrip/views/transport/stationInput.jsp">手動選位</a>
+
+
   <script>
 
  document.addEventListener("DOMContentLoaded", function () {
@@ -62,16 +68,16 @@
   <table class="table  table-bordered">
     <tr>
       <td scope="col" style="background-color:burlywood;" cellpadding="5" border="0">門</td>
-      <td id="05" class="hover":hover ><img src="http://localhost:8080//startrip/assets/transport/images/setOff.png"width="20" height="20"></td>
-      <td id="08" class="hover":hover><img src="http://localhost:8080//startrip/assets/transport/images/setOff.png"width="20" height="20"></td>
-      <td id="11" class="hover":hover><img src="http://localhost:8080//startrip/assets/transport/images/setOff.png"width="20" height="20"></td>
-      <td id="12" class="hover":hover><img src="http://localhost:8080//startrip/assets/transport/images/setOff.png"width="20" height="20"></td>
-      <td id="15" class="hover":hover><img src="http://localhost:8080//startrip/assets/transport/images/setOff.png"width="20" height="20"></td>
-      <td id="18" class="hover":hover><img src="http://localhost:8080//startrip/assets/transport/images/setOff.png"width="20" height="20"></td>
-      <td id="21" class="hover":hover><img src="http://localhost:8080//startrip/assets/transport/images/setOff.png"width="20" height="20"></td>
-      <td id="24" class="hover":hover><img src="http://localhost:8080//startrip/assets/transport/images/setOff.png"width="20" height="20"></td>
-      <td id="27" class="hover":hover><img src="http://localhost:8080//startrip/assets/transport/images/setOff.png"width="20" height="20"></td>
-      <td id="31" class="hover":hover><img src="http://localhost:8080//startrip/assets/transport/images/setOff.png"width="20" height="20"></td>
+      <td id="05" class="hover":hover><img src="http://localhost:8080//startrip/assets/transport/images/setOff.jpg"width="20" height="20"></td>
+      <td id="08" class="hover":hover><img src="http://localhost:8080//startrip/assets/transport/images/setOff.jpg"width="20" height="20"></td>
+      <td id="11" class="hover":hover><img src="http://localhost:8080//startrip/assets/transport/images/setOff.jpg"width="20" height="20"></td>
+      <td id="12" class="hover":hover><img src="http://localhost:8080//startrip/assets/transport/images/setOff.jpg"width="20" height="20"></td>
+      <td id="15" class="hover":hover><img src="http://localhost:8080//startrip/assets/transport/images/setOff.jpg"width="20" height="20"></td>
+      <td id="18" class="hover":hover><img src="http://localhost:8080//startrip/assets/transport/images/setOff.jpg"width="20" height="20"></td>
+      <td id="21" class="hover":hover><img src="http://localhost:8080//startrip/assets/transport/images/setOff.jpg"width="20" height="20"></td>
+      <td id="24" class="hover":hover><img src="http://localhost:8080//startrip/assets/transport/images/setOff.jpg"width="20" height="20"></td>
+      <td id="27" class="hover":hover><img src="http://localhost:8080//startrip/assets/transport/images/setOff.jpg"width="20" height="20"></td>
+      <td id="31" class="hover":hover><img src="http://localhost:8080//startrip/assets/transport/images/setOff.jpg"width="20" height="20"></td>
     </tr>
     <tr >
 
@@ -85,33 +91,33 @@
       <td style="background-color:burlywood"></td>
       <td style="background-color:burlywood"></td>
       <td style="background-color:burlywood"></td>
-      <td  id="30" class="hover":hover><img src="http://localhost:8080//startrip/assets/transport/images/setOff.png"width="20" height="20"></td>
+      <td  id="30" class="hover":hover><img src="http://localhost:8080//startrip/assets/transport/images/setOff.jpg"width="20" height="20"></td>
     </tr>
     <tr>
-      <td id="02" class="hover":hover><img src="http://localhost:8080//startrip/assets/transport/images/setOff.png"width="20" height="20"></td>
-      <td id="04" class="hover":hover><img src="http://localhost:8080//startrip/assets/transport/images/setOff.png"width="20" height="20"></td>
-      <td id="07" class="hover":hover><img src="http://localhost:8080//startrip/assets/transport/images/setOff.png"width="20" height="20"></td>
-      <td id="10" class="hover":hover><img src="http://localhost:8080//startrip/assets/transport/images/setOff.png"width="20" height="20"></td>
+      <td id="02" class="hover":hover><img src="http://localhost:8080//startrip/assets/transport/images/setOff.jpg"width="20" height="20"></td>
+      <td id="04" class="hover":hover><img src="http://localhost:8080//startrip/assets/transport/images/setOff.jpg"width="20" height="20"></td>
+      <td id="07" class="hover":hover><img src="http://localhost:8080//startrip/assets/transport/images/setOff.jpg"width="20" height="20"></td>
+      <td id="10" class="hover":hover><img src="http://localhost:8080//startrip/assets/transport/images/setOff.jpg"width="20" height="20"></td>
       <td  scope="col" style="background-color:burlywood"></td>
-      <td id="14" class="hover":hover><img src="http://localhost:8080//startrip/assets/transport/images/setOff.png"width="20" height="20"></td>
-      <td id="17" class="hover":hover><img src="http://localhost:8080//startrip/assets/transport/images/setOff.png"width="20" height="20"></td>
-      <td id="20" class="hover":hover><img src="http://localhost:8080//startrip/assets/transport/images/setOff.png"width="20" height="20"></td>
-      <td id="23" class="hover":hover><img src="http://localhost:8080//startrip/assets/transport/images/setOff.png"width="20" height="20"></td>
-      <td id="26" class="hover":hover><img src="http://localhost:8080//startrip/assets/transport/images/setOff.png"width="20" height="20"></td>
-      <td id="29" class="hover":hover><img src="http://localhost:8080//startrip/assets/transport/images/setOff.png"width="20" height="20"></td>
+      <td id="14" class="hover":hover><img src="http://localhost:8080//startrip/assets/transport/images/setOff.jpg"width="20" height="20"></td>
+      <td id="17" class="hover":hover><img src="http://localhost:8080//startrip/assets/transport/images/setOff.jpg"width="20" height="20"></td>
+      <td id="20" class="hover":hover><img src="http://localhost:8080//startrip/assets/transport/images/setOff.jpg"width="20" height="20"></td>
+      <td id="23" class="hover":hover><img src="http://localhost:8080//startrip/assets/transport/images/setOff.jpg"width="20" height="20"></td>
+      <td id="26" class="hover":hover><img src="http://localhost:8080//startrip/assets/transport/images/setOff.jpg"width="20" height="20"></td>
+      <td id="29" class="hover":hover><img src="http://localhost:8080//startrip/assets/transport/images/setOff.jpg"width="20" height="20"></td>
     </tr>
     <tr>
-      <td id="01" class="hover":hover><img src="http://localhost:8080//startrip/assets/transport/images/setOff.png"width="20" height="20"></td>
-      <td id="03" class="hover":hover><img src="http://localhost:8080//startrip/assets/transport/images/setOff.png"width="20" height="20"></td>
-      <td id="06" class="hover":hover><img src="http://localhost:8080//startrip/assets/transport/images/setOff.png"width="20" height="20"></td>
-      <td id="09" class="hover":hover><img src="http://localhost:8080//startrip/assets/transport/images/setOff.png"width="20" height="20"></td>
+      <td id="01" class="hover":hover><img src="http://localhost:8080//startrip/assets/transport/images/setOff.jpg"width="20" height="20"></td>
+      <td id="03" class="hover":hover><img src="http://localhost:8080//startrip/assets/transport/images/setOff.jpg"width="20" height="20"></td>
+      <td id="06" class="hover":hover><img src="http://localhost:8080//startrip/assets/transport/images/setOff.jpg"width="20" height="20"></td>
+      <td id="09" class="hover":hover><img src="http://localhost:8080//startrip/assets/transport/images/setOff.jpg"width="20" height="20"></td>
       <td scope="col" style="background-color:burlywood"></td>
-      <td id="13" class="hover":hover><img src="http://localhost:8080//startrip/assets/transport/images/setOff.png"width="20" height="20"></td>
-      <td id="16" class="hover":hover><img src="http://localhost:8080//startrip/assets/transport/images/setOff.png"width="20" height="20"></td>
-      <td id="19" class="hover":hover><img src="http://localhost:8080//startrip/assets/transport/images/setOff.png"width="20" height="20"></td>
-      <td id="22" class="hover":hover><img src="http://localhost:8080//startrip/assets/transport/images/setOff.png"width="20" height="20"></td>
-      <td id="25" class="hover":hover><img src="http://localhost:8080//startrip/assets/transport/images/setOff.png"width="20" height="20"></td>
-      <td id="23" class="hover":hover><img src="http://localhost:8080//startrip/assets/transport/images/setOff.png"width="20" height="20"></td>
+      <td id="13" class="hover":hover><img src="http://localhost:8080//startrip/assets/transport/images/setOff.jpg"width="20" height="20"></td>
+      <td id="16" class="hover":hover><img src="http://localhost:8080//startrip/assets/transport/images/setOff.jpg"width="20" height="20"></td>
+      <td id="19" class="hover":hover><img src="http://localhost:8080//startrip/assets/transport/images/setOff.jpg"width="20" height="20"></td>
+      <td id="22" class="hover":hover><img src="http://localhost:8080//startrip/assets/transport/images/setOff.jpg"width="20" height="20"></td>
+      <td id="25" class="hover":hover><img src="http://localhost:8080//startrip/assets/transport/images/setOff.jpg"width="20" height="20"></td>
+      <td id="23" class="hover":hover><img src="http://localhost:8080//startrip/assets/transport/images/setOff.jpg"width="20" height="20"></td>
     </tr>
   </table>
 <div class="Div02">
