@@ -42,31 +42,33 @@ public class TravelAllDao implements ITripAllDao {
 	}
 
 	@Override
-	public TravelAllBean Select_TravelId(int id) {
+	public TravelAllBean Select_Travel(Integer memberId,Integer travelId) {
 		TravelAllBean bean = new TravelAllBean();
-		bean = this.getSession().get(TravelAllBean.class, id);
+		
+		bean = this.getSession().createQuery("From TravelAllBean where memberId=:memberId and travelId=:travelId",TravelAllBean.class)
+				.setParameter("memberId", memberId).setParameter("travelId", travelId).getSingleResult();
 		return bean;
 		
 	}
 
-	private	static final String findAll = "FROM TravelAllBean";
+	private	static final String findAll = "FROM TravelAllBean where state=:state";
 	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<TravelAllBean> selectAllTravel() {
 		
-		return this.getSession().createQuery(findAll).list();
+		return this.getSession().createQuery(findAll).setParameter("state", 1).list();
 		
 	}
 
 	@Override
-	public void insert(TravelAllBean bean) {
+	public Integer insert(TravelAllBean bean) {
 //		MemberBean mb = getMail(bean.getMail());
 //		bean.setMail(mai(l);
-//		
 		System.out.println(bean.toString());
-		getSession().save(bean);
-				
+		Integer pk =(Integer) getSession().save(bean);
+		
+				return pk;
 	}
 	
 	@Override
@@ -101,9 +103,10 @@ public class TravelAllDao implements ITripAllDao {
 
 	@Override
 	public List<TravelAllBean> select_mail(Integer id) {
-		String sql = "Select * from travelplan where memberId=:memberId";
+		String sql = "Select * from travelplan where memberId=:memberId and state=:state" ;
 		List<TravelAllBean> list = getSession().createNativeQuery(sql,TravelAllBean.class)
-									.setParameter("memberId", id).getResultList();
+									.setParameter("memberId", id)
+									.setParameter("state", 1).getResultList();
 		
 		return list;
 	}
@@ -149,7 +152,7 @@ public class TravelAllDao implements ITripAllDao {
 //					 
 //			System.out.println(bean.toString());		
 			//----------------------------------------------------		 
-					bean = dao.Select_TravelId(1);
+					bean = dao.Select_Travel(1,1);
 						bean.setTravelDays(4);
 						bean.setMemberId(1);
 					 bean.setTravelDays(5);

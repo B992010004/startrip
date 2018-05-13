@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-   <%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html >
 <html>
 <head>
@@ -39,7 +39,7 @@
 	<div class="main" >
 		<div class="switch">
 		    <button id="switch"type="button" class="btn btn-outline-primary switch">切換</button>
-		     <a id="goback"  type="button" href="/startrip/" class="btn btn-outline-primary switch">返回</a>
+		     <a id="goback"  type="button" href="/startrip/TravelMain" class="btn btn-outline-primary switch">返回</a>
 		</div>
     
     <div class="aside1">
@@ -157,10 +157,10 @@ $(function(e){
 	searchView();
 	
 	
-	$('#'+e.target.id).hover(function(){
-		var del =$('<img class="iconImg" src = http://localhost:8080/startrip/assets/Travel/img/close2.png>');
+// 	$('#'+e.target.id).hover(function(){
+// 		var del =$('<img class="iconImg" src = http://localhost:8080/startrip/assets/Travel/img/close2.png>');
 		
-	})
+// 	})
 	
 })
 
@@ -186,7 +186,7 @@ $('#insertday').on('click',function(){
 	
 	
 	add.mail="${LoginOK.mail}"
-
+	add.travelId="${Travel.travelId}"
 		$.ajax({
 			url:"/startrip/travel/add/day",
 			type:"GET",
@@ -209,6 +209,7 @@ $('#insertday').on('click',function(){
 function searchDays(){
 	var value = {};
 	value.mail="${LoginOK.mail}";
+	value.travelId="${Travel.travelId}"
 	$.ajax({
 		url:"/startrip/travel/id",
 		type:"GET",
@@ -273,6 +274,7 @@ function searchDays(){
 function searchList(){
 	var travel={};
 	travel.mail="${LoginOK.mail}"
+	travel.travelId="${Travel.travelId}"
 	$.ajax({
 		url:"/startrip/list/travelId",
 		type:"GET",

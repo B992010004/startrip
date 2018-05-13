@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
   <%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>
+  <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
 <html>
 <meta charset="utf-8">
@@ -25,6 +27,8 @@
     <link rel="stylesheet" href="/startrip/assets/css/style.css">
     
     <link rel="stylesheet" href="/startrip/assets/Travel/css/MainStyle.css">
+    
+    <link rel="stylesheet" href="/startrip/assets/Travel/css/jquery-ui.min.css" >
     
 </head>
 <body>
@@ -91,6 +95,60 @@
         <jsp:include page="/WEB-INF/views/member/login.jsp" flush="true" />
     </div>
  
+ 
+ <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" id="model" >
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">新增行程</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+<!-- -------------------------------------------------------- -->
+<form method='POST' name="update">
+		<div class="modal-body">
+			
+			<div class="form-group">
+				<label class="form-control-label" for="formGroupExampleInput">travelName:</label>
+				<input value="請輸入行程名稱" type="text"
+					name="travelName" class="form-control" />
+			</div>
+
+			<div class="form-group">
+				<label class="form-control-label" for="startDate:">startDate:</label>
+				<input placeholder="請輸入行程名稱" type="text"
+					name="startDate" id="startDate" class="form-control" />
+			</div>
+			<div class="form-group">
+				<label class="form-control-label" for="endDate">endDate:</label>
+				<input placeholder="請輸入行程名稱" type="text"
+					name="endDate" id="endDate" class="form-control" />
+			</div>
+				
+
+		</div>
+
+
+
+		<div class="modal-footer">
+			<button type="button" class="btn btn-primary" id="back">返回</button>
+			<button type="submit" class="btn btn-primary">確認</button>
+		</div>
+
+	</form>
+	</div>
+	</div>
+	</div>
+<!--  ----------------------------------------------------------------------- -->
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 	<script src="/startrip/assets/js/jquery.min.js"></script>
     <script src="/startrip/assets/js/popper.min.js"></script>
     <script src="/startrip/assets/js/bootstrap.min.js"></script>
@@ -100,7 +158,7 @@
     <script src="/startrip/assets/js/select2.min.js"></script>
     <script src="/startrip/assets/js/main.js"></script>
   
-  
+  <script src="/startrip/assets/Travel/js/jquery-ui.min.js"></script>
   
      
    <script type="text/javascript">
@@ -108,31 +166,97 @@
   
   $( function () {
 	  searchTravels();
-	  
+	//表單狀態  
 	$('.list-group-item').hover(function(e){
 		$(e.target).addClass('active');
 	},function(e){
 		$(e.target).removeClass('active');
 	})
-	
-	$(document).on("click",".icon",function(e){
-// 		alert(e.target.id)
+	//刪除行程
+	$(document).on("click",".del",function(e){
 		var del={}
 		del.email="${LoginOK.mail}";
 		del.id =$('#'+e.target.id).parent().parent().find('.id').text();
 		$.ajax({
-			  url:"/startrip/travel/all",
+			  url:"/startrip/travel/remove",
 				type:"GET",
 				dataType:"json",
 				data:del,
 				contentType: "application/json; charset=utf-8",
 				success:function(data){
-					
+					$('#'+e.target.id).parent().parent().remove();
 				}
-	})
-  })
-	
- 
+				})
+  	})//click end
+  	
+  	$(document).on("click",".update",function(e){
+		var update={}
+		update.mail="${LoginOK.mail}";
+		update.travelId =$('#'+e.target.id).parent().parent().find('.id').text();
+		$.ajax({
+			  url:"/startrip/travel/id",
+				type:"GET",
+				dataType:"json",
+				data:update,
+				contentType: "application/json; charset=utf-8",
+				success:function(data){
+					console.log(data)
+				$('input[name="travelName"]').val(data.Name.travelName);
+				$('input[name="startDate"]').val(data.startDate);
+				$('input[name="endDate"]').val(data.endDate);
+					
+					var datas=$('form[name="update"]').serialize();
+					console.log(datas);
+					
+					$("#model").modal({
+						 "show":true,
+						 })
+						 
+						 
+						 
+						 
+				}
+				})
+  	})//click end
+  	
+  //dataPicker
+	var dateFormat = "yy-mm-dd", 
+	startDate = $("#startDate").datepicker({
+		 dateFormat: "yy-mm-dd",
+		defaultDate : "+1w",
+		changeMonth : true,
+		numberOfMonths : 1
+	}).on("change", function() {
+		endDate.datepicker("option", "minDate", getDate(this));
+	}), 
+	endDate = $("#endDate").datepicker({
+		dateFormat: "yy-mm-dd",
+		defaultDate : "+1w",
+		changeMonth : true,
+		numberOfMonths : 1
+	}).on("change", function() {
+		startDate.datepicker("option", "maxDate", getDate(this));
+	});
+	 function getDate( element ) {
+	      var date;
+	      try {
+	        date = $.datepicker.parseDate( dateFormat, element.value );
+	      } catch( error ) {
+	        date = null;
+	      }
+	 
+	      return date;
+	    }
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  })//end
+  
+ //搜尋會員行程
 function searchTravels(){
 var all={};
 all.mail = "${LoginOK.mail}";
@@ -157,26 +281,26 @@ all.mail = "${LoginOK.mail}";
 		var start; 
 		var end;
 		for(var i =0,len=data.length;i<len;i++){
-		var card = $('<div class="card col-6" style="width: 18rem;"></div>')
-		var imgrow =$('<div class="row"></div>');
-		var img = $('<img id="travelimg" class="card-img-top col-8" src="/startrip/show/'+data[i].img+'" alt="Card image cap"><img src = http://localhost:8080/startrip/assets/Travel/img/marker.png class="icon col-2" id="update"><img id="del'+(i+1)+'" class="icon col-2" src = http://localhost:8080/startrip/assets/Travel/img/close2.png>')
-		var body = $('<div class="card-body"></div>')
-		var title=$('<h5 class="card-title">'+data[i].travelName+'</h5><div class="id">'+data[i].travelId+'</div>')
-		
-		start = new Date(data[i].startDate);
-		StartDate =	format(start);
-		end = new Date(data[i].endDate);
-		endDate =	format(end);
-		var text = $('<p class="card-text">'+StartDate+'-'+endDate+'</p>')
-		body.append([title,text]);
-		imgrow.append(img)
-		card.append([imgrow,body])
-			docFrag.append(card)
+			var card = $('<div class="card col-6" style="width: 18rem;"></div>')
+			var imgrow =$('<div class="row"></div>');
+			var img = $('<img id="travelimg" class="card-img-top col-8" src="/startrip/show/'+data[i].img+'" alt="Card image cap"><img src = http://localhost:8080/startrip/assets/Travel/img/marker.png class="icon col-2 update" id="update'+(i+1)+'"><img id="del'+(i+1)+'" class="icon col-2 del" src = http://localhost:8080/startrip/assets/Travel/img/close2.png>')
+			var body = $('<div class="card-body"></div>')
+			var title=$('<h5 class="card-title">'+data[i].travelName+'</h5><div class="id">'+data[i].travelId+'</div>')
+			
+			start = new Date(data[i].startDate);
+			StartDate =	format(start);
+			end = new Date(data[i].endDate);
+			endDate =	format(end);
+			var text = $('<p class="card-text">'+StartDate+'-'+endDate+'</p>')
+			body.append([title,text]);
+			imgrow.append(img);
+			card.append([imgrow,body]);
+				docFrag.append(card);
 		}
 		$('#row').append(docFrag);
   		} 
   
-  })
+  	})
 
   }
   

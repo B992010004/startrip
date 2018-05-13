@@ -22,8 +22,8 @@ public class AllServiceImp implements ITravelAllService {
 	
 	@Transactional
 	@Override
-	public TravelAllBean Select_TravelId(int id) {
-		return travelDao.Select_TravelId(id);
+	public TravelAllBean Select_Travel(Integer memberId,Integer travelId){
+		return travelDao.Select_Travel(memberId,travelId);
 	}
 	@Transactional
 	@Override
@@ -32,10 +32,11 @@ public class AllServiceImp implements ITravelAllService {
 	}
 	@Transactional
 	@Override
-	public void insert(TravelAllBean bean) {
+	public Integer insert(TravelAllBean bean) {
 		
 		
-		travelDao.insert(bean);
+		Integer pk =travelDao.insert(bean);
+		return pk;
 	}
 
 	@Transactional
