@@ -568,33 +568,35 @@
 		$('#dropdownMessage').slideToggle(200);
 	}
 	
-	   function sendMessage(senderPk, receiverPk){
-	  	  var url = 'http://'+ window.location.host +'/startrip/chat';
-	      var sock = new SockJS(url);
-	      var stomp = Stomp.over(sock);
-	      
-	      //先檢查是否有值
-	   if($('#messages').val()){
-	      
-	      //清空輸入欄 並加入文字至上方顯示窗
-	      var message = $('#messages').val();    
-	      $('#messages').val("");
-	      var myText = $("<span class='myText' style='color:#FFFFFF;text-align:center;'></span>").text(message);
-	      var myTextdiv = $("<div class='myTextDiv' style='border-radius:10px;background-color:#0066FF;float:right;clear:both;max-width:146px;word-wrap: break-word;margin-bottom:5px;'></div>").append(myText);
-	      $('#displayMessage').append(myTextdiv);
-	      
-	//       var payload = JSON.stringify({'message':'Marco!'});
-	      var payload = JSON.stringify({"message":message});
-	      stomp.connect('guest', 'guest', function(frame) {
+	 var url = 'http://'+ window.location.host +'/startrip/chat';
+     var sock = new SockJS(url);
+     var stomp = Stomp.over(sock);
+     stomp.connect('guest', 'guest', function(frame) {
 	      console.log('*****  Connected  *****');
 	
 	//       stomp.subscribe("/user/queue/notifications", handleNotification);
-	//       stomp.subscribe("/target/message/4/2", handleSpittle);
-	      stomp.subscribe("/target/message/" + senderPk + "/" + receiverPk, handleText);
+	      stomp.subscribe("/target/message/" + ${LoginOK.memberid } + "/" + 20, handleText);
 	//       stomp.send("/app/chatRoom/4/2", {}, payload);
-	      stomp.send("/app/chatRoom/" + senderPk + "/" + receiverPk, {}, payload);
+	      
 	      });
-	    }
+	
+	   function sendMessage(senderPk, receiverPk){
+	  	 
+	      
+	       //先檢查是否有值
+		   if($('#messages').val()){
+		      
+		      //清空輸入欄 並加入文字至上方顯示窗
+		      var message = $('#messages').val();    
+		      $('#messages').val("");
+		      var myText = $("<span class='myText' style='color:#FFFFFF;text-align:center;'></span>").text(message);
+		      var myTextdiv = $("<div class='myTextDiv' style='border-radius:10px;background-color:#0066FF;float:right;clear:both;max-width:146px;word-wrap: break-word;margin-bottom:5px;'></div>").append(myText);
+		      $('#displayMessage').append(myTextdiv);
+		      
+		//       var payload = JSON.stringify({'message':'Marco!'});
+		      var payload = JSON.stringify({"message":message});
+		      stomp.send("/app/chatRoom/" + senderPk + "/" + receiverPk, {}, payload);
+		    }
 	  }
 	
       function handleText(message) {
