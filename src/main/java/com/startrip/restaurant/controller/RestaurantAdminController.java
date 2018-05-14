@@ -15,40 +15,26 @@ import com.startrip.restaurant.service.RtDetailsService;
 
 @Controller
 public class RestaurantAdminController {
-	
+
 	@Autowired
 	RtDetailsService rtDetailsService;
-	
 
-	@RequestMapping(value = "/insertupdate1")
-	public String selectRtDetails(Model model) {
-		RtDetailsBean rdb = new RtDetailsBean();
-		model.addAttribute("RtDetailsBean", rdb);
-		return "restaurant/insertupdate";
-	}
+	// 後台新增餐廳---------------------------------------------------------------------------------------------
 
-	//可以新刪修
-
-	
-	//新增
-	
 	@RequestMapping(value = "/insertupdate", method = RequestMethod.GET)
 	public String insertRtDetails(Model model) {
 		RtDetailsBean rdb = new RtDetailsBean();
 		model.addAttribute("RtDetailsBean", rdb);
 		return "restaurant/insertupdate";
 	}
-	
-	
-	
+
 	@RequestMapping(value = "/insertRestaurant", method = RequestMethod.POST)
-	public String insertRtDetails(@ModelAttribute("RtDetailsBean")RtDetailsBean rdb,BindingResult result,HttpServletRequest request) {
+	public String insertRtDetails(@ModelAttribute("RtDetailsBean") RtDetailsBean rdb, BindingResult result,
+			HttpServletRequest request) {
 		rtDetailsService.insertRtDetails(rdb);
 		return "redirect:/insertupdate";
 	}
-	
 
+	// /後台新增餐廳/---------------------------------------------------------------------------------------------
 
 }
-
-

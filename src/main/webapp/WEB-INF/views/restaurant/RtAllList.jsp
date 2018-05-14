@@ -71,14 +71,13 @@
 	padding: 2%;
 }
 
-.card-text{
-	margin:0%;
+.card-text {
+	margin: 0%;
 }
 
-.btn11{
+.btn11 {
 	text-align: right;
 }
-
 </style>
 
 
@@ -126,7 +125,7 @@
 						<p class="card-text">餐點類別</p>
 						<p class="card-text">評分星等</p>
 						<div class="btn11">
-						<a href="#" class="btn btn-primary">去了解</a>
+							<a href="/startrip/Individualdetails" class="btn btn-primary">去了解</a>
 						</div>
 					</div>
 				</div>
@@ -145,7 +144,7 @@
 						<p class="card-text">餐點類別</p>
 						<p class="card-text">評分星等</p>
 						<div class="btn11">
-						<a href="#" class="btn btn-primary">去了解</a>
+							<a href="/startrip/Individualdetails" class="btn btn-primary">去了解</a>
 						</div>
 					</div>
 				</div>
@@ -164,7 +163,7 @@
 						<p class="card-text">餐點類別</p>
 						<p class="card-text">評分星等</p>
 						<div class="btn11">
-						<a href="#" class="btn btn-primary">去了解</a>
+							<a href="/startrip/Individualdetails" class="btn btn-primary">去了解</a>
 						</div>
 					</div>
 				</div>
@@ -183,7 +182,7 @@
 						<p class="card-text">餐點類別</p>
 						<p class="card-text">評分星等</p>
 						<div class="btn11">
-						<a href="#" class="btn btn-primary">去了解</a>
+							<a href="/startrip/Individualdetails" class="btn btn-primary">去了解</a>
 						</div>
 					</div>
 				</div>
@@ -202,7 +201,7 @@
 						<p class="card-text">餐點類別</p>
 						<p class="card-text">評分星等</p>
 						<div class="btn11">
-						<a href="#" class="btn btn-primary">去了解</a>
+							<a href="/startrip/Individualdetails" class="btn btn-primary">去了解</a>
 						</div>
 					</div>
 				</div>
@@ -221,7 +220,7 @@
 						<p class="card-text">餐點類別</p>
 						<p class="card-text">評分星等</p>
 						<div class="btn11">
-						<a href="#" class="btn btn-primary">去了解</a>
+							<a href="/startrip/Individualdetails" class="btn btn-primary">去了解</a>
 						</div>
 					</div>
 				</div>
@@ -240,7 +239,7 @@
 						<p class="card-text">餐點類別</p>
 						<p class="card-text">評分星等</p>
 						<div class="btn11">
-						<a href="#" class="btn btn-primary">去了解</a>
+							<a href="/startrip/Individualdetails" class="btn btn-primary">去了解</a>
 						</div>
 					</div>
 				</div>
@@ -259,7 +258,7 @@
 						<p class="card-text">餐點類別</p>
 						<p class="card-text">評分星等</p>
 						<div class="btn11">
-						<a href="#" class="btn btn-primary">去了解</a>
+							<a href="/startrip/Individualdetails" class="btn btn-primary">去了解</a>
 						</div>
 					</div>
 				</div>
@@ -273,14 +272,26 @@
 		<div class="form-group">縣市&nbsp;:&nbsp;</div>
 		<select path="" class="js-states form-control" id="id_label_single"
 			style="width: 100%;">
-			<option value="1">1</option>
-			<option value="2">2</option>
-			<option value="3">3</option>
-			<option value="4">4</option>
-			<option value="5">5</option>
-			<option value="6">6</option>
-			<option value="7">7</option>
-			<option value="8">8</option>
+			<option value="臺北市">臺北市</option>
+			<option value="新北市">新北市</option>
+			<option value="桃園市">桃園市</option>
+			<option value="臺中市">臺中市</option>
+			<option value="臺南市">臺南市</option>
+			<option value="高雄市">高雄市</option>
+			<option value="基隆市">基隆市</option>
+			<option value="新竹市">新竹市</option>
+			<option value="嘉義市">嘉義市</option>
+			<option value="新竹縣">新竹縣</option>
+			<option value="苗栗縣">苗栗縣</option>
+			<option value="彰化縣">彰化縣</option>
+			<option value="南投縣">南投縣</option>
+			<option value="雲林縣">雲林縣</option>
+			<option value="嘉義縣">嘉義縣</option>
+			<option value="屏東縣">屏東縣</option>
+			<option value="宜蘭縣">宜蘭縣</option>
+			<option value="花蓮縣">花蓮縣</option>
+			<option value="臺東縣">臺東縣</option>
+			<option value="澎湖縣">澎湖縣</option>
 		</select> <br>
 		<div class="form-group">地區&nbsp;:&nbsp;</div>
 		<select path="" class="js-states form-control" id="id_label_single"
@@ -297,38 +308,38 @@
 		<div class="form-group">菜系類別&nbsp;:&nbsp;</div>
 		<select path="" class="js-states form-control" id="id_label_single"
 			style="width: 100%;">
-			<option value="1">1</option>
-			<option value="2">2</option>
-			<option value="3">3</option>
-			<option value="4">4</option>
-			<option value="5">5</option>
-			<option value="6">6</option>
-			<option value="7">7</option>
-			<option value="8">8</option>
+			<option value="中式料理">中式料理</option>
+			<option value="日式料理">日式料理</option>
+			<option value="港式料理">港式料理</option>
+			<option value="韓式料理">韓式料理</option>
+			<option value="泰式料理">泰式料理</option>
+			<option value="法式料理">法式料理</option>
+			<option value="印度料理">印度料理</option>
+			<option value="南洋料理">南洋料理</option>
+			<option value="墨西哥料理">墨西哥料理</option>
+			<option value="新疆料理">新疆料理</option>
+			<option value="四川料理">四川料理</option>
+			<option value="美式料理">美式料理</option>
+			<option value="英式料理">英式料理</option>
+			<option value="台式料理">台式料理</option>
+			<option value="素食料理">素食料理</option>
 		</select> <br>
 		<div class="form-group">餐點類別&nbsp;:&nbsp;</div>
 		<select path="" class="js-states form-control" id="id_label_single"
 			style="width: 100%;">
-			<option value="1">1</option>
-			<option value="2">2</option>
-			<option value="3">3</option>
-			<option value="4">4</option>
-			<option value="5">5</option>
-			<option value="6">6</option>
-			<option value="7">7</option>
-			<option value="8">8</option>
+			<option value="早餐">早餐</option>
+			<option value="早午餐">早午餐</option>
+			<option value="午餐">午餐</option>
+			<option value="下午茶">下午茶</option>
+			<option value="晚餐">晚餐</option>
+			<option value="宵夜">宵夜</option>
 		</select> <br>
 		<div class="form-group">餐點價位&nbsp;:&nbsp;</div>
 		<select path="" class="js-states form-control" id="id_label_single"
 			style="width: 100%;">
-			<option value="1">1</option>
-			<option value="2">2</option>
-			<option value="3">3</option>
-			<option value="4">4</option>
-			<option value="5">5</option>
-			<option value="6">6</option>
-			<option value="7">7</option>
-			<option value="8">8</option>
+			<option value="高級餐廳">高級餐廳</option>
+			<option value="中等價位">中等價位</option>
+			<option value="平價美食">平價美食</option>
 		</select> <br> <input type="submit"
 			value="搜&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;尋"
 			class="btn btn-primary btn-block">

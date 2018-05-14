@@ -2,11 +2,17 @@ package com.startrip.restaurant.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.startrip.restaurant.model.RtBookingBean;
 import com.startrip.restaurant.model.RtDetailsBean;
 import com.startrip.restaurant.service.RtBookingService;
 import com.startrip.restaurant.service.RtDetailsService;
@@ -20,7 +26,7 @@ public class RestaurantController {
 	@Autowired
 	RtBookingService rtBookingService;
 
-	// 只能瀏覽全部
+	// 前台餐廳首頁---------------------------------------------------------------------------------------------
 
 	@RequestMapping(value = "/restaurantHome")
 	public String getAllListRtDetails(Model model) {
@@ -31,6 +37,46 @@ public class RestaurantController {
 		return "restaurant/restaurantHome";
 	}
 
+	// /前台餐廳首頁/--------------------------------------------------------------------------------------------
+
+	
+	// 前台新增訂單---------------------------------------------------------------------------------------------
+
+	@RequestMapping(value = "/reservation", method = RequestMethod.GET)
+	public String insertRtBooking(Model model) {
+		RtBookingBean rbb = new RtBookingBean();
+		model.addAttribute("RtBookingBean", rbb);
+		return "restaurant/reservation";
+	}
+
+	@RequestMapping(value = "/insertRtBooking", method = RequestMethod.POST)
+	public String insertRtBooking(@ModelAttribute("RtBookingBean") RtBookingBean rbb, BindingResult result,
+			HttpServletRequest request) {
+		rtBookingService.insertRtBooking(rbb);
+		return "redirect:/restaurantHome";
+	}
+
+	// /前台新增訂單/---------------------------------------------------------------------------------------------
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	// ---------測試------------------------測試------------------測試----------------測試-------------
 
 	// 只能瀏覽個別
@@ -38,13 +84,6 @@ public class RestaurantController {
 	@RequestMapping(value = "/Individualdetails")
 	public String getAll(Model model) {
 		return "restaurant/Individualdetails";
-	}
-
-	// 新增訂單頁面 樣板
-
-	@RequestMapping(value = "/reservation")
-	public String insertdbooking(Model model) {
-		return "/restaurant/reservation";
 	}
 
 	// 新增訂單頁面 樣板

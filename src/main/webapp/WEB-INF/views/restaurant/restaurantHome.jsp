@@ -154,7 +154,7 @@
 				<div class="row">
 					<c:forEach var='rtDetails' items='${RtDetails}'>
 						<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
-							<a href="#" class="probootstrap-thumbnail"> <img
+							<a href="/startrip/Individualdetails" class="probootstrap-thumbnail"> <img
 								src="/startrip/assets/images/01.jpg"
 								alt="Free Template by ProBootstrap.com" class="img-fluid">
 
@@ -175,7 +175,7 @@
 				<div class="row">
 					<c:forEach var='rtDetails' items='${RtDetails}'>
 						<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
-							<a href="#" class="probootstrap-thumbnail"> <img
+							<a href="/startrip/Individualdetails" class="probootstrap-thumbnail"> <img
 								src="/startrip/assets/images/01.jpg"
 								alt="Free Template by ProBootstrap.com" class="img-fluid">
 
@@ -196,7 +196,7 @@
 				<div class="row">
 					<c:forEach var='rtDetails' items='${RtDetails}'>
 						<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
-							<a href="#" class="probootstrap-thumbnail"> <img
+							<a href="/startrip/Individualdetails" class="probootstrap-thumbnail"> <img
 								src="/startrip/assets/images/01.jpg"
 								alt="Free Template by ProBootstrap.com" class="img-fluid">
 
@@ -217,7 +217,7 @@
 				<div class="row">
 					<c:forEach var='rtDetails' items='${RtDetails}'>
 						<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
-							<a href="#" class="probootstrap-thumbnail"> <img
+							<a href="/startrip/Individualdetails" class="probootstrap-thumbnail"> <img
 								src="/startrip/assets/images/01.jpg"
 								alt="Free Template by ProBootstrap.com" class="img-fluid">
 
@@ -238,7 +238,7 @@
 				<div class="row">
 					<c:forEach var='rtDetails' items='${RtDetails}'>
 						<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
-							<a href="#" class="probootstrap-thumbnail"> <img
+							<a href="/startrip/Individualdetails" class="probootstrap-thumbnail"> <img
 								src="/startrip/assets/images/01.jpg"
 								alt="Free Template by ProBootstrap.com" class="img-fluid">
 
