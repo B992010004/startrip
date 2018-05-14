@@ -11,28 +11,9 @@
 <title>站名編號查詢</title>
 </head>
 <body>
-	<a href="/startrip/stationEdit">新增車站</a>
+	<a href="/startrip/stationEdit">開始訂位</a>
 
-	<table border="1" cellpadding="10" cellspacing="0">
-		<tr>
-			<th>站名編號</th>
-			<th>地區</th>
-			<th>站名</th>
-		</tr>
-
-		<c:forEach items='${stationList}' var='select'>
-			<tr>
-				<td>${select.stationId}</td>
-				<td>${select.area}</td>
-				<td>${select.stationName}</td>
-			</tr>
-		</c:forEach>
-	</table>
-
-
-	<h1>路線資訊查詢</h1>
-
-	<h2 class="title01">1 起訖地區查詢</h2>
+	<h2 class="title01">1 起迄地區查詢</h2>
 	<div class="search">
 		<form id="form1" name="form1" method="post">
 			<label for="city1" class=""> 起站地區：</label>
@@ -170,21 +151,128 @@
 		<div>
 			<select id="point" name="point" style="width: 120px">
 				<option value="" selected="selected">請選擇</option>
+				
 
 			</select>
 		</div>
+		<input type="submit" value="查詢" name="submit" style="width: 60px">
+	<input type="hidden" id="opt" name="opt" value="search">
 	</div>
 
 
-	<input type="submit" value="查詢" name="submit" style="width: 60px">
-	<input type="hidden" id="opt" name="opt" value="search">
 
 
+	<h1>查詢車站(地圖)</h1>
+	<div class="map">
+		<img src="/startrip/assets/transport/images/taiwan.png" width="280"
+			height="460" usemap="#Map" id="Image1" border="0">
+		<map name="Map" id="Map">
+			<area shape="rect" coords="201,54,248,76"
+				onclick="city(&#39;新北&#39;);"
+				onmouseover="MM_swapImage(&#39;Image1&#39;,&#39;&#39;,&#39;images/map/map01.png&#39;,1)"
+				onmouseout="MM_swapImgRestore()">
+			<area shape="rect" coords="181,23,228,44"
+				onclick="city(&#39;台北&#39;);"
+				onmouseover="MM_swapImage(&#39;Image1&#39;,&#39;&#39;,&#39;images/map/map02.png&#39;,1)"
+				onmouseout="MM_swapImgRestore()">
+			<area shape="rect" coords="229,28,274,52"
+				onclick="city(&#39;基隆&#39;);"
+				onmouseover="MM_swapImage(&#39;Image1&#39;,&#39;&#39;,&#39;images/map/map03.png&#39;,1)"
+				onmouseout="MM_swapImgRestore()">
+			<area shape="rect" coords="122,186,170,208"
+				onclick="city(&#39;南投&#39;);"
+				onmouseover="MM_swapImage(&#39;Image1&#39;,&#39;&#39;,&#39;images/map/map04.png&#39;,1)"
+				onmouseout="MM_swapImgRestore()">
+			<area shape="rect" coords="53,303,100,328"
+				onclick="city(&#39;高雄&#39;);"
+				onmouseover="MM_swapImage(&#39;Image1&#39;,&#39;&#39;,&#39;images/map/map05.png&#39;,1)"
+				onmouseout="MM_swapImgRestore()">
+			<area shape="rect" coords="208,99,260,122"
+				onclick="city(&#39;宜蘭&#39;);"
+				onmouseover="MM_swapImage(&#39;Image1&#39;,&#39;&#39;,&#39;images/map/map06.png&#39;,1)"
+				onmouseout="MM_swapImgRestore()">
+			<area shape="rect" coords="176,196,224,215"
+				onclick="city(&#39;花蓮&#39;);"
+				onmouseover="MM_swapImage(&#39;Image1&#39;,&#39;&#39;,&#39;images/map/map07.png&#39;,1)"
+				onmouseout="MM_swapImgRestore()">
+			<area shape="rect" coords="136,278,185,302"
+				onclick="city(&#39;台東&#39;);"
+				onmouseover="MM_swapImage(&#39;Image1&#39;,&#39;&#39;,&#39;images/map/map08.png&#39;,1)"
+				onmouseout="MM_swapImgRestore()">
+			<area shape="rect" coords="84,335,132,359"
+				onclick="city(&#39;屏東&#39;);"
+				onmouseover="MM_swapImage(&#39;Image1&#39;,&#39;&#39;,&#39;images/map/map09.png&#39;,1)"
+				onmouseout="MM_swapImgRestore()">
+			<area shape="rect" coords="54,260,100,283"
+				onclick="city(&#39;台南&#39;);"
+				onmouseover="MM_swapImage(&#39;Image1&#39;,&#39;&#39;,&#39;images/map/map10.png&#39;,1)"
+				onmouseout="MM_swapImgRestore()">
+			<area shape="rect" coords="37,227,86,252"
+				onclick="city(&#39;嘉義&#39;);"
+				onmouseover="MM_swapImage(&#39;Image1&#39;,&#39;&#39;,&#39;images/map/map11.png&#39;,1)"
+				onmouseout="MM_swapImgRestore()">
+			<area shape="rect" coords="36,193,85,212"
+				onclick="city(&#39;雲林&#39;);"
+				onmouseover="MM_swapImage(&#39;Image1&#39;,&#39;&#39;,&#39;images/map/map12.png&#39;,1)"
+				onmouseout="MM_swapImgRestore()">
+			<area shape="rect" coords="69,161,119,185"
+				onclick="city(&#39;彰化&#39;);"
+				onmouseover="MM_swapImage(&#39;Image1&#39;,&#39;&#39;,&#39;images/map/map13.png&#39;,1)"
+				onmouseout="MM_swapImgRestore()">
+			<area shape="rect" coords="111,137,160,160"
+				onclick="city(&#39;台中&#39;);"
+				onmouseover="MM_swapImage(&#39;Image1&#39;,&#39;&#39;,&#39;images/map/map14.png&#39;,1)"
+				onmouseout="MM_swapImgRestore()">
+			<area shape="rect" coords="92,104,142,128"
+				onclick="city(&#39;苗栗&#39;);"
+				onmouseover="MM_swapImage(&#39;Image1&#39;,&#39;&#39;,&#39;images/map/map15.png&#39;,1)"
+				onmouseout="MM_swapImgRestore()">
+			<area shape="rect" coords="155,93,204,114"
+				onclick="city(&#39;新竹&#39;);"
+				onmouseover="MM_swapImage(&#39;Image1&#39;,&#39;&#39;,&#39;images/map/map16.png&#39;,1)"
+				onmouseout="MM_swapImgRestore()">
+			<area shape="rect" coords="148,44,197,67"
+				onclick="city(&#39;桃園&#39;);"
+				onmouseover="MM_swapImage(&#39;Image1&#39;,&#39;&#39;,&#39;images/map/map17.png&#39;,1)"
+				onmouseout="MM_swapImgRestore()">
+		</map>
+	</div>
+	</div>
+
+	<table border="1" cellpadding="10" cellspacing="0"
+		class="table  table-bordered">
+		<tr>
+			<th>站名編號</th>
+			<th>地區</th>
+			<th>站名</th>
+		</tr>
+
+		<c:forEach items='${stationList}' var='select'>
+			<tr>
+				<td>${select.stationId}</td>
+				<td>${select.area}</td>
+				<td>${select.stationName}</td>
+			</tr>
+		</c:forEach>
+	</table>
 
 
 
 	
 
+
+
+
+
+
+	<script src="/startrip/assets/js/jquery.min.js"></script>
+	<script src="/startrip/assets/js/popper.min.js"></script>
+	<script src="/startrip/assets/js/bootstrap.min.js"></script>
+	<script src="/startrip/assets/js/owl.carousel.min.js"></script>
+	<script src="/startrip/assets/js/jquery.waypoints.min.js"></script>
+	<script src="/startrip/assets/js/jquery.easing.1.3.js"></script>
+	<script src="/startrip/assets/js/select2.min.js"></script>
+	<script src="/startrip/assets/js/main.js"></script>
 
 </body>
 </html>

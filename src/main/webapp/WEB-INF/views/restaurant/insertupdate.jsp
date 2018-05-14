@@ -78,7 +78,7 @@
 }
 
 .probootstrap_section {
-	padding-top:2%;
+	padding-top: 2%;
 	text-align: center;
 }
 
@@ -189,7 +189,7 @@
 								id="id_label_single" style="width: 100%;">
 								<form:option value="中式料理">中式料理</form:option>
 								<form:option value="日式料理">日式料理</form:option>
-								<form:option value="港料理">港式料理</form:option>
+								<form:option value="港式料理">港式料理</form:option>
 								<form:option value="韓式料理">韓式料理</form:option>
 								<form:option value="泰式料理">泰式料理</form:option>
 								<form:option value="法式料理">法式料理</form:option>
@@ -215,7 +215,26 @@
 							for="id_label_single" style="width: 100%;"> <form:select
 								path="rtCounty" class="js-states form-control"
 								id="id_label_single" style="width: 100%;">
-								<form:option value="高級餐廳">高級餐廳</form:option>
+								<form:option value="臺北市">臺北市</form:option>
+								<form:option value="新北市">新北市</form:option>
+								<form:option value="桃園市">桃園市</form:option>
+								<form:option value="臺中市">臺中市</form:option>
+								<form:option value="臺南市">臺南市</form:option>
+								<form:option value="高雄市">高雄市</form:option>
+								<form:option value="基隆市">基隆市</form:option>
+								<form:option value="新竹市">新竹市</form:option>
+								<form:option value="嘉義市">嘉義市</form:option>
+								<form:option value="新竹縣">新竹縣</form:option>
+								<form:option value="苗栗縣">苗栗縣</form:option>
+								<form:option value="彰化縣">彰化縣</form:option>
+								<form:option value="南投縣">南投縣</form:option>
+								<form:option value="雲林縣">雲林縣</form:option>
+								<form:option value="嘉義縣">嘉義縣</form:option>
+								<form:option value="屏東縣">屏東縣</form:option>
+								<form:option value="宜蘭縣">宜蘭縣</form:option>
+								<form:option value="花蓮縣">花蓮縣</form:option>
+								<form:option value="臺東縣">臺東縣</form:option>
+								<form:option value="澎湖縣">澎湖縣</form:option>
 							</form:select>
 						</label> <label for="id_label_single">區域</label> <label
 							for="id_label_single" style="width: 100%;"> <form:select
