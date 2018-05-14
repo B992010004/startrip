@@ -48,7 +48,7 @@
 				  	<li class="list-group-item "  align="center"><a  href="Travel/addList">新增清單</a></li>
 				  	<li class="list-group-item "  align="center"><a  href="Views/add">新增景點</a></li>
 				  	<li class="list-group-item "  align="center"><a  href="TravelViews/all">查詢景點</a></li>
-				 	<li class="list-group-item "  align="center"><a  href="list/All">查詢行程</a><br></li>
+<!-- 				 	<li class="list-group-item "  align="center"><a  href="list/All">查詢行程</a><br></li> -->
 		<!-- 		  <li class="list-group-item"></li> -->
 				</ul>
 			</div>
@@ -194,7 +194,7 @@
 		update.mail="${LoginOK.mail}";
 		update.travelId =$('#'+e.target.id).parent().parent().find('.id').text();
 		$.ajax({
-			  url:"/startrip/travel/id",
+			  	url:"/startrip/travel/id",
 				type:"GET",
 				dataType:"json",
 				data:update,
@@ -218,6 +218,25 @@
 				}
 				})
   	})//click end
+  	
+  	$(document).on('click','#planset',function(e){
+  		var value={}
+  		value.mail= '${LoginOK.mail}'
+//   		value.travelId=
+  		value.travelId=$('#'+e.target.id).prev().prev().text();
+
+  		
+  		$.ajax({
+  			url:"/startrip/list/search",
+			type:"GET",
+			dataType:"json",
+			data:value,
+			contentType: "application/json; charset=utf-8",
+			
+  		})
+  	})
+  	
+  	
   	
   //dataPicker
 	var dateFormat = "yy-mm-dd", 
@@ -281,17 +300,17 @@ all.mail = "${LoginOK.mail}";
 		var start; 
 		var end;
 		for(var i =0,len=data.length;i<len;i++){
-			var card = $('<div class="card col-6" style="width: 18rem;"></div>')
-			var imgrow =$('<div class="row"></div>');
+			var card = $('<div class="card col-6" id="plan" style="width: 18rem;"></div>')
+			var imgrow =$('<div class="row" "></div>');
 			var img = $('<img id="travelimg" class="card-img-top col-8" src="/startrip/show/'+data[i].img+'" alt="Card image cap"><img src = http://localhost:8080/startrip/assets/Travel/img/marker.png class="icon col-2 update" id="update'+(i+1)+'"><img id="del'+(i+1)+'" class="icon col-2 del" src = http://localhost:8080/startrip/assets/Travel/img/close2.png>')
 			var body = $('<div class="card-body"></div>')
-			var title=$('<h5 class="card-title">'+data[i].travelName+'</h5><div class="id">'+data[i].travelId+'</div>')
+			var title=$('<h5 class="card-title">'+data[i].travelName+'</h5><div class="id"  >'+data[i].travelId+'</div>')
 			
 			start = new Date(data[i].startDate);
 			StartDate =	format(start);
 			end = new Date(data[i].endDate);
 			endDate =	format(end);
-			var text = $('<p class="card-text">'+StartDate+'-'+endDate+'</p>')
+			var text = $('<p class="card-text">'+StartDate+'-'+endDate+'</p> <button id="planset" type="button" class="btn btn-primary btn-lg btn-block" id=btn'+i+'>確定</button>')
 			body.append([title,text]);
 			imgrow.append(img);
 			card.append([imgrow,body]);

@@ -244,16 +244,29 @@ public class TravelPlanController {
 		listservice.insert(bean);
 		return "redirect:/list/All";
 	}		   
-//--------------------------------------------------	
-	
-	
-	
+	//--------------------------------------------------	
 	//getAllList 取得所有清單
 	@RequestMapping(value="list/All",method=RequestMethod.GET)
 	public String getAllList(Model model,HttpServletRequest request) {
 		List<TravelListBean> list = listservice.selectAllList();
 		model.addAttribute("Lists", list);
 		return "/TravelProject/TravelList/AllList";
+	}
+	
+	@RequestMapping(value="list/search",method=RequestMethod.GET)
+	public String getSearchList(Model model,HttpServletRequest request
+			,@RequestParam("mail")String mail,@RequestParam("travelId")Integer travelId) {
+		List<TravelListBean> list = listservice.selectAllList();
+		model.addAttribute("Lists", list);
+		
+		Integer memberId =memberservice.select(mail).getMemberid();
+		TravelAllBean tb = new TravelAllBean();
+		tb.setMemberId(memberId);
+		tb.setTravelId(travelId);
+		HttpSession session = request.getSession();
+	
+		session.setAttribute("Travel", tb);
+		return "redirect:/list/All";
 	}
 	
 	//取得所有清單行程的
