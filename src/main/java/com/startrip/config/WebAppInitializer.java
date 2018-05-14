@@ -5,6 +5,8 @@ import javax.servlet.Filter;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
+import com.startrip.filter.DisableCacheFilter;
+
 // 本類別的詳細說明，請參考第一章
 public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 	@Override
@@ -33,7 +35,7 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
 
 		// DelegatingFilterProxy springSecurityFilterChain = new
 		// DelegatingFilterProxy();
-		return new Filter[] { characterEncodingFilter };
+		return new Filter[] { characterEncodingFilter, new DisableCacheFilter() };
 	}
 
 
