@@ -57,8 +57,8 @@
 	padding: 1%;
 }
 
-.col-md{
-text-align: left;
+.col-md {
+	text-align: left;
 }
 
 .border-bottom {
@@ -134,18 +134,17 @@ text-align: left;
 	padding-right: 78%;
 }
 
-.button1{
+.button1 {
 	text-align: right;
-	padding-yop:4%;
-	padding-bottom:2%;
+	padding-yop: 4%;
+	padding-bottom: 2%;
 }
 
-.modal-title{
-	color:#FF3333;
-	text-align:center;
+.modal-title {
+	color: #FF3333;
+	text-align: center;
 	border-bottom: #00CA4C 2px solid;
 }
-
 </style>
 
 </head>
@@ -188,22 +187,22 @@ text-align: left;
 
 
 					<div class="form-group">
-						<label for="account">訂位者姓名&nbsp;:&nbsp;</label> <form:input type="text"
-							class="form-control" path="crName" placeholder="王大明等..."
-							autofocus="autofocus" />
-<!-- 							<p>(不可空白,至少兩個字且必須為中文字)</p> -->
+						<label for="account">訂位者姓名&nbsp;:&nbsp;</label>
+						<form:input type="text" class="form-control" path="crName"
+							placeholder="王大明等..." autofocus="autofocus" />
+						<!-- 							<p>(不可空白,至少兩個字且必須為中文字)</p> -->
 						<!-- required="required" -->
 					</div>
 					<div class="form-group">
-						<label>連絡電話&nbsp;:&nbsp;</label> <form:input type="text"
-							class="form-control" path="crPhone" placeholder="09XX-XXXXXX"
-							autofocus="autofocus" />
+						<label>連絡電話&nbsp;:&nbsp;</label>
+						<form:input type="text" class="form-control" path="crPhone"
+							placeholder="09XX-XXXXXX" autofocus="autofocus" />
 						<!-- required="required" -->
 					</div>
 
 					<div class="form-group">大人幾位&nbsp;:&nbsp;</div>
-					<form:select path="bgPeople" class="js-states form-control" id="id_label_single"
-						style="width: 100%;">
+					<form:select path="bgPeople" class="js-states form-control"
+						id="id_label_single" style="width: 100%;">
 						<form:option value="1">1</form:option>
 						<form:option value="2">2</form:option>
 						<form:option value="3">3</form:option>
@@ -215,8 +214,9 @@ text-align: left;
 					</form:select>
 					<br>
 					<div class="form-group">小孩幾位&nbsp;:&nbsp;</div>
-					<form:select path="cnPeople" class="js-states form-control" id="id_label_single"
-						style="width: 100%;">
+					<form:select path="cnPeople" class="js-states form-control"
+						id="id_label_single" style="width: 100%;">
+						<form:option value="0">0</form:option>
 						<form:option value="1">1</form:option>
 						<form:option value="2">2</form:option>
 						<form:option value="3">3</form:option>
@@ -228,8 +228,9 @@ text-align: left;
 					</form:select>
 					<br>
 					<div class="form-group">兒童專用座椅&nbsp;:&nbsp;</div>
-					<form:select path="cnChair" class="js-states form-control" id="id_label_single"
-						style="width: 100%;">
+					<form:select path="cnChair" class="js-states form-control"
+						id="id_label_single" style="width: 100%;">
+						<form:option value="0">0</form:option>
 						<form:option value="1">1</form:option>
 						<form:option value="2">2</form:option>
 						<form:option value="3">3</form:option>
@@ -239,87 +240,94 @@ text-align: left;
 						<form:option value="7">7</form:option>
 						<form:option value="8">8</form:option>
 					</form:select>
-<br>
+					<br>
 					<div class="form-group">用餐日期&nbsp;:&nbsp;</div>
 					<div class="form-group inputState">
 						<div class="probootstrap-date-wrap">
 							<label for="probootstrap-date-arrival"> <span
-								class="icon ion-calendar"></span> <form:input path="bgDate" type="text"
-								id="probootstrap-date-arrival" name="checkin"
-								class="form-control" placeholder="日期"/>
+								class="icon ion-calendar"></span> <form:input path="bgDate"
+									type="text" id="probootstrap-date-arrival" name="checkin"
+									class="form-control" placeholder="日期" />
 							</label>
 						</div>
 					</div>
 					<div class="form-group">用餐時段&nbsp;:&nbsp;</div>
-					<form:select path="bgPeriod" class="js-states form-control" id="id_label_single"
-						style="width: 100%;">
-						<form:option value="1">11:00</form:option>
-						<form:option value="2">11:30</form:option>
-						<form:option value="3">12:00</form:option>
-						<form:option value="4">12:30</form:option>
-						<form:option value="5">13:00</form:option>
-						<form:option value="6">13:30</form:option>
-						<form:option value="7">14:00</form:option>
-						<form:option value="8">14:30</form:option>
-						<form:option value="1">17:00</form:option>
-						<form:option value="2">17:30</form:option>
-						<form:option value="3">18:00</form:option>
-						<form:option value="4">18:30</form:option>
-						<form:option value="5">19:00</form:option>
-						<form:option value="6">19:30</form:option>
-						<form:option value="7">20:00</form:option>
-						<form:option value="8">20:30</form:option>
-						<form:option value="5">21:00</form:option>
-						<form:option value="6">21:30</form:option>
-						<form:option value="7">22:00</form:option>
+					<form:select path="bgPeriod" class="js-states form-control"
+						id="id_label_single" style="width: 100%;">
+						<form:option value="11:00">11:00</form:option>
+						<form:option value="11:30">11:30</form:option>
+						<form:option value="12:00">12:00</form:option>
+						<form:option value="12:30">12:30</form:option>
+						<form:option value="13:00">13:00</form:option>
+						<form:option value="13:30">13:30</form:option>
+						<form:option value="14:00">14:00</form:option>
+						<form:option value="14:30">14:30</form:option>
+						<form:option value="17:00">17:00</form:option>
+						<form:option value="17:30">17:30</form:option>
+						<form:option value="18:00">18:00</form:option>
+						<form:option value="18:30">18:30</form:option>
+						<form:option value="19:00">19:00</form:option>
+						<form:option value="19:30">19:30</form:option>
+						<form:option value="20:00">20:00</form:option>
+						<form:option value="20:30">20:30</form:option>
+						<form:option value="21:00">21:00</form:option>
+						<form:option value="21:30">21:30</form:option>
+						<form:option value="22:00">22:00</form:option>
 					</form:select>
+					<br>
+					<div class="form-group">
+						<label>其他注意事項&nbsp;:&nbsp;</label>
+						<form:textarea cols="40" rows="8" class="form-control" path="bgNote"
+							placeholder="如需特別告知等..." autofocus="autofocus" />
+						<!-- required="required" -->
+					</div>
 
 
 
-<div class="container">
+					<div class="container">
 
-		<div class="row">
+						<div class="row">
 
-				<div class="col-md">
+							<div class="col-md">
+								<!-- 規定 -->
+								<br>
+								<h5>訂位注意事項：</h5>
+								<br>
+								<table rules="none" class="table table-hover ml-3">
+									<tbody>
+										<tr>
+											<th width="4%" scope="row">1.</th>
+											<td>連絡電話如實填寫，方便通知您</td>
+										</tr>
+										<!-- 政策提示生成起始 -->
+										<tr>
+											<th width="4%" scope="row">2.</th>
+											<td>用餐時間限制請依照餐廳公告為主</td>
+										</tr>
+										<!-- 政策提示生成結束 -->
+										<tr>
+											<th scope="row">3.</th>
+											<td>訂位僅保留15分鐘</td>
+										</tr>
+										<tr>
+											<th scope="row">4.</th>
+											<td>明確標註，「幾位大人幾位小孩」，並寫上「所需兒童椅數量」</td>
+										</tr>
+										<tr>
+											<th scope="row">5.</th>
+											<td>如有特殊需求，標註於「其他注意事項」</td>
+										</tr>
+										<tr>
+											<th scope="row">6.</th>
+											<td>線上訂位完全及無法更改</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+
+						</div>
+					</div>
 					<!-- 規定 -->
-					<br>
-					<h5>訂位注意事項：</h5>
-					<br>
-					<table rules="none" class="table table-hover ml-3">
-						<tbody>
-							<tr>
-								<th width="4%" scope="row">1.</th>
-								<td>連絡電話如實填寫，方便通知您</td>
-							</tr>
-							<!-- 政策提示生成起始 -->
-							<tr>
-								<th width="4%" scope="row">2.</th>
-								<td>用餐時間限制請依照餐廳公告為主</td>
-							</tr>
-							<!-- 政策提示生成結束 -->
-							<tr>
-								<th scope="row">3.</th>
-								<td>訂位僅保留15分鐘</td>
-							</tr>
-							<tr>
-								<th scope="row">4.</th>
-								<td>明確標註，「幾位大人幾位小孩」，並寫上「所需兒童椅數量」</td>
-							</tr>
-							<tr>
-								<th scope="row">5.</th>
-								<td>如有特殊需求，標註於「其他注意事項」</td>
-							</tr>
-							<tr>
-								<th scope="row">6.</th>
-								<td>線上訂位完全及無法更改</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-
-		</div>
-	</div>
-	<!-- 規定 -->
 					<!-- Button trigger modal -->
 					<div class="bookingbutton">
 
@@ -362,9 +370,9 @@ text-align: left;
 				</div>
 			</div>
 		</form:form>
-		
-			<!-- 政策提示： -->
-	
+
+		<!-- 政策提示： -->
+
 	</section>
 
 	<!-- END section -->
@@ -378,34 +386,35 @@ text-align: left;
 
 
 
-<!-- Button trigger modal -->
+	<!-- Button trigger modal -->
 
-<!-- <div class="container"> -->
-<!-- <div class="button1"> -->
-<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"> -->
-<!--   回餐廳首頁 -->
-<!-- </button> -->
-<!-- </div> -->
+	<!-- <div class="container"> -->
+	<!-- <div class="button1"> -->
+	<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"> -->
+	<!--   回餐廳首頁 -->
+	<!-- </button> -->
+	<!-- </div> -->
 
-<!-- <!-- Modal --> -->
-<!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"> -->
-<!--   <div class="modal-dialog" role="document"> -->
-<!--     <div class="modal-content"> -->
-<!--       <div class="modal-header">  -->
-<!--         <h5 class="modal-title">警語&nbsp;&nbsp;!&nbsp;&nbsp;!&nbsp;&nbsp;!</h5> -->
-<!--       </div> -->
-<!--       <div class="modal-body"> -->
-<!--       <p>離開此頁面，資料將消失</p> -->
-<!--       <p>如需再次訂位，須重填您的資料</p> -->
-<!--       </div> -->
-<!--       <div class="modal-footer"> -->
-<!--         <button type="button" class="btn btn-secondary" href="/startrip/">繼續離開</button> -->
-<!--         <button type="button" class="btn btn-primary" data-dismiss="modal">返回訂位</button> -->
-<!--       </div> -->
-<!--     </div> -->
-<!--   </div> -->
-<!-- </div> -->
-<!-- </div> -->
+	<!-- <!-- Modal -->
+	-->
+	<!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"> -->
+	<!--   <div class="modal-dialog" role="document"> -->
+	<!--     <div class="modal-content"> -->
+	<!--       <div class="modal-header">  -->
+	<!--         <h5 class="modal-title">警語&nbsp;&nbsp;!&nbsp;&nbsp;!&nbsp;&nbsp;!</h5> -->
+	<!--       </div> -->
+	<!--       <div class="modal-body"> -->
+	<!--       <p>離開此頁面，資料將消失</p> -->
+	<!--       <p>如需再次訂位，須重填您的資料</p> -->
+	<!--       </div> -->
+	<!--       <div class="modal-footer"> -->
+	<!--         <button type="button" class="btn btn-secondary" href="/startrip/">繼續離開</button> -->
+	<!--         <button type="button" class="btn btn-primary" data-dismiss="modal">返回訂位</button> -->
+	<!--       </div> -->
+	<!--     </div> -->
+	<!--   </div> -->
+	<!-- </div> -->
+	<!-- </div> -->
 
 	<!-- END section -->
 
@@ -447,7 +456,7 @@ text-align: left;
 
 	<script src="/startrip/assets/js/jquery-ui.js"></script>
 	<script src="/startrip/assets/js/jquery.popupoverlay.js"></script>
-<!-- 	<script src="/startrip/assets/js/reservation1.js"></script> -->
+	<!-- 	<script src="/startrip/assets/js/reservation1.js"></script> -->
 
 
 </body>

@@ -5,6 +5,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.startrip.member.memberModle.MemberBean;
 import com.startrip.restaurant.model.RtBookingBean;
 import com.startrip.restaurant.repository.RtBookingRepository;
 
@@ -16,8 +17,8 @@ public class RtBookingServiceImp implements RtBookingService {
 	private RtBookingRepository RtBookingRepositoryImp;
 
 	@Override
-	public RtBookingBean getAllRtBookingmail(String mail) {
-		return RtBookingRepositoryImp.getAllRtBookingmail(mail);
+	public RtBookingBean getAllRtBookingmemberBean(MemberBean memberBean) {
+		return RtBookingRepositoryImp.getAllRtBookingmail(memberBean);
 	}
 
 	@Override

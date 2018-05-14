@@ -32,9 +32,40 @@ public class RestaurantAdminController {
 	public String insertRtDetails(@ModelAttribute("RtDetailsBean") RtDetailsBean rdb, BindingResult result,
 			HttpServletRequest request) {
 		rtDetailsService.insertRtDetails(rdb);
-		return "redirect:/insertupdate";
+		return "redirect:/Individualdetailsmodify";
 	}
 
 	// /後台新增餐廳/---------------------------------------------------------------------------------------------
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// ---------測試------------------------測試------------------測試----------------測試-------------
+
+	// 後台個別修刪
+
+	@RequestMapping(value = "/Individualdetailsmodify")
+	public String modifyRt(Model model) {
+		return "restaurant/Individualdetailsmodify";
+	}
+
+	// ---------測試------------------------測試------------------測試----------------測試-------------
 
 }
