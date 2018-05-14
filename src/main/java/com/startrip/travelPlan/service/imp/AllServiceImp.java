@@ -55,4 +55,9 @@ public class AllServiceImp implements ITravelAllService {
 	public List<TravelAllBean> select_mail(Integer id){
 		return travelDao.select_mail(id);
 	}
+	@Override
+	public void updateTravel(TravelAllBean bean) throws SQLException {
+		travelDao.updateTravel(bean);
+		
+	}
 }

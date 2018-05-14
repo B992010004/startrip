@@ -98,6 +98,16 @@ public class TravelPlanController {
 		session.setAttribute("Travel", bean);
 		return "redirect:/list/All";
 	}
+	
+//	@RequestMapping(value="travel/update",method=RequestMethod.POST)
+//	public String travelAdd(@RequestParam("travelName")String travelName,
+//			@RequestParam("startDate")Date startDate,@RequestParam("endDate")Date endDate,
+//			@RequestParam("mail")String mail,@RequestParam("travelId")Integer travelId) {
+////		-----------------------------------------------------
+//	System.out.println(mail);
+//	return "TravelProject/Main";
+//	}
+	
 	//查詢ALL Travel-----------------------------------------
 	@RequestMapping(value="travel/all",method=RequestMethod.GET)
 	@ResponseBody
@@ -145,20 +155,47 @@ public class TravelPlanController {
 		MemberBean mb = memberservice.select(mail);
 		Integer memberId =mb.getMemberid();
 		TravelAllBean tb = travelservice.Select_Travel(memberId,travelId);
-		System.out.println("--------------------------------------------------------");
-		System.out.println(mail);
-		System.out.println(travelId);
 		
-		System.out.println(tb.toString());
-		
-		System.out.println("--------------------------------------------------------");
-//		
 		HashMap<String, Object> result = new HashMap<>();
 		result.put("Name", tb);
 		result.put("startDate", tb.getStartDate().toString());
 		result.put("endDate", tb.getEndDate().toString());
 		return result;
 	}
+	@RequestMapping(value="travel/update",method=RequestMethod.GET)
+	@ResponseBody
+	public HashMap<String, Object> travelBean(@RequestParam("travelName")String travelName
+			,@RequestParam("startDate")Date startDate,@RequestParam("endDate")Date endDate
+			,@RequestParam("travelId")Integer travelId,@RequestParam("mail")String mail) {
+		System.out.println(travelName+","+startDate+","+endDate+","+travelId+","+mail);
+		MemberBean mb = memberservice.select(mail);
+		Integer memberId =mb.getMemberid();
+		TravelAllBean tb = travelservice.Select_Travel(memberId,travelId);
+		tb.setTravelName(travelName);
+		tb.setStartDate(startDate);
+		tb.setEndDate(endDate);
+		tb.setMail(mail);
+		tb.setMemberId(memberId);
+		tb.setTravelId(travelId);
+		
+		try {
+			travelservice.updateTravel(tb);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		HashMap<String, Object> result = new HashMap<>();
+		result.put("Name", tb);
+		result.put("startDate", tb.getStartDate().toString());
+		result.put("endDate", tb.getEndDate().toString());
+		return result;
+	}
+	
+	
+	
+	
+	
 	//新增行程天數
 	@RequestMapping(value="/travel/add/day",method=RequestMethod.GET)
 	@ResponseBody
@@ -170,8 +207,6 @@ public class TravelPlanController {
 		Integer memberId =memberservice.select(mail).getMemberid(); 
 		bean = travelservice.Select_Travel(memberId,travelId);
 		Integer days =bean.getTravelDays();
-		System.out.println("--------------------------------------------");
-		System.out.println(days);
 		
 		java.util.Date convert = new java.util.Date(bean.getEndDate().getTime());
 		Calendar   calendar = new GregorianCalendar(); 
@@ -253,21 +288,19 @@ public class TravelPlanController {
 		return "/TravelProject/TravelList/AllList";
 	}
 	
-	@RequestMapping(value="list/search",method=RequestMethod.GET)
-	public String getSearchList(Model model,HttpServletRequest request
-			,@RequestParam("mail")String mail,@RequestParam("travelId")Integer travelId) {
-		List<TravelListBean> list = listservice.selectAllList();
-		model.addAttribute("Lists", list);
-		
-		Integer memberId =memberservice.select(mail).getMemberid();
+	@RequestMapping(value="list/All/{mail}/{travelId}",method=RequestMethod.GET)
+	public String getAllList(Model model,HttpServletRequest request,
+			@PathVariable("mail")String mail,@PathVariable("travelId")Integer travelId) {
+		System.out.println(mail+","+travelId);
 		TravelAllBean tb = new TravelAllBean();
-		tb.setMemberId(memberId);
+		tb.setMail(mail);
 		tb.setTravelId(travelId);
 		HttpSession session = request.getSession();
-	
 		session.setAttribute("Travel", tb);
-		return "redirect:/list/All";
+		return "/TravelProject/TravelList/AllList";
 	}
+	
+	
 	
 	//取得所有清單行程的
 	@RequestMapping(value="list/travelId",method=RequestMethod.GET)

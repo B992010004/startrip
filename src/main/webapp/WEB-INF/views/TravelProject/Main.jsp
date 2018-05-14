@@ -107,7 +107,7 @@
 					</button>
 				</div>
 <!-- -------------------------------------------------------- -->
-<form method='POST' name="update">
+<form method='GET' name="update" >
 		<div class="modal-body">
 			
 			<div class="form-group">
@@ -126,7 +126,8 @@
 				<input placeholder="請輸入行程名稱" type="text"
 					name="endDate" id="endDate" class="form-control" />
 			</div>
-				
+			<input name="mail" value="${LoginOK.mail}" type="hidden">
+			<input name="travelId" type="hidden">
 
 		</div>
 
@@ -134,7 +135,7 @@
 
 		<div class="modal-footer">
 			<button type="button" class="btn btn-primary" id="back">返回</button>
-			<button type="submit" class="btn btn-primary">確認</button>
+			<button id="check" type="submit" class="btn btn-primary">確認</button>
 		</div>
 
 	</form>
@@ -204,14 +205,29 @@
 				$('input[name="travelName"]').val(data.Name.travelName);
 				$('input[name="startDate"]').val(data.startDate);
 				$('input[name="endDate"]').val(data.endDate);
+				$('input[name="travelId"]').val(data.Name.travelId);
+				
+				$("#model").modal({
+					 "show":true,
+					 })
+				$(document).on('click',"#check",function(){	 
+				var datas=$('form[name="update"]').serialize();
+					$.ajax({
+						url:"/startrip/travel/update",
+						type:"GET",
+						dataType:"json",
+						data:datas,
+						contentType: "application/json; charset=utf-8",
+						success:function(data){
+							console.log(data)
+						}
+					})
+				})	
 					
-					var datas=$('form[name="update"]').serialize();
-					console.log(datas);
 					
-					$("#model").modal({
-						 "show":true,
-						 })
-						 
+					
+					
+					
 						 
 						 
 						 
@@ -219,23 +235,16 @@
 				})
   	})//click end
   	
-  	$(document).on('click','#planset',function(e){
+  	$(document).on('click','.btn',function(e){
   		var value={}
-  		value.mail= '${LoginOK.mail}'
+  		mail= '${LoginOK.mail}'
 //   		value.travelId=
-  		value.travelId=$('#'+e.target.id).prev().prev().text();
-
-  		
-  		$.ajax({
-  			url:"/startrip/list/search",
-			type:"GET",
-			dataType:"json",
-			data:value,
-			contentType: "application/json; charset=utf-8",
-			
-  		})
+		
+  		travelId=$('#'+e.target.id).prev().prev().text();
+  		console.log($('#'+e.target.id).prev().prev().text())
+  			location.href = "/startrip/list/All/"+mail+"/"+travelId
   	})
-  	
+  	 
   	
   	
   //dataPicker
@@ -289,7 +298,7 @@ all.mail = "${LoginOK.mail}";
 		contentType: "application/json; charset=utf-8",
 		success:function(data){
 			$('#row').empty();
-			console.log(data)
+// 			console.log(data)
 // 			<div class="card" style="width: 18rem;">
 // 			  <img class="card-img-top" src="..." alt="Card image cap">
 // 			  <div class="card-body">
@@ -310,7 +319,7 @@ all.mail = "${LoginOK.mail}";
 			StartDate =	format(start);
 			end = new Date(data[i].endDate);
 			endDate =	format(end);
-			var text = $('<p class="card-text">'+StartDate+'-'+endDate+'</p> <button id="planset" type="button" class="btn btn-primary btn-lg btn-block" id=btn'+i+'>確定</button>')
+			var text = $('<p class="card-text">'+StartDate+'-'+endDate+'</p><button  id="planset'+i+'"  class="btn btn-primary btn-lg btn-block" type="submit" id=btn'+i+'>確定</button>')
 			body.append([title,text]);
 			imgrow.append(img);
 			card.append([imgrow,body]);

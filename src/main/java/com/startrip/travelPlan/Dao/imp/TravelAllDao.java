@@ -89,10 +89,19 @@ public class TravelAllDao implements ITripAllDao {
 		getSession().createQuery(hql).setParameter("travelDays", bean.getTravelDays())
 									 .setParameter("travelId", bean.getTravelId())
 									 .setParameter("memberId", bean.getMemberId()).executeUpdate();
-		
-		
-		
-		
+	}
+	@Override
+	public void updateTravel(TravelAllBean bean) throws SQLException {
+		String hql = "UPDATE TravelAllBean SET travelName = :travelName "
+				+ "startDate = :startDate endDate = :endDate mail = :mail "
+				+ "WHERE travelId = :travelId AND memberId=:memberId";
+		getSession().createQuery(hql)
+		.setParameter("travelName", bean.getTravelName())
+		.setParameter("startDate", bean.getStartDate())
+		.setParameter("endDate", bean.getEndDate())
+		.setParameter("memberId", bean.getMemberId())
+		.setParameter("travelId", bean.getTravelId())
+		 .setParameter("mail", bean.getMail()).executeUpdate();
 	}
 
 	@Override
@@ -183,6 +192,8 @@ public class TravelAllDao implements ITripAllDao {
 			}
 	}
 	//--------------------------------------------------------------
+
+	
 
 	
 }
