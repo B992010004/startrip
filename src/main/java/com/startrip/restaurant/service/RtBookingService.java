@@ -9,7 +9,7 @@ public interface RtBookingService {
 	RtBookingBean updateRtBooking(RtBookingBean bean);
 
 	RtBookingBean insertRtBooking(RtBookingBean bean);
-
+	
 	boolean deleteRtBookingbgId(Integer bgId);
 	
 }

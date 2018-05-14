@@ -38,9 +38,6 @@
 					<li class="nav-item"><a class="nav-link"
 						href="/startrip/insertupdate">餐廳資料修改</a></li>
 					
-
-                    <!-- 測試 --><li class="nav-item"><a class="nav-link"
-						href="/startrip/Individualdetails">o測試o個別餐廳資料o</a></li><!-- 測試 -->
 						<!-- 測試 --><li class="nav-item"><a class="nav-link"
 						href="/startrip/RtAllList">o測試o餐廳種覽o</a></li><!-- 測試 -->
 
@@ -58,7 +55,7 @@
 									<img style="border-radius: 50%;" width="30px" height="30px" src="<c:url value='/getPicture/${LoginOK.mail}'/>">
 								</a>
 								  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-									<a class="btn" href="ModifyMember">修改個人資料 </a>
+									<a class="btn" href="/startrip/ModifyMember">修改個人資料 </a>
 									<a class="btn" href="#">Another action</a>
 									<a class="btn" href="/startrip/logout">登出</a>
 								</div>

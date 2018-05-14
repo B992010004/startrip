@@ -509,7 +509,7 @@
             <div>
                 <textarea id="messages" rows="1" cols="25;" style="resize:none;" placeholder="請輸入訊息" maxlength="250"></textarea>
             </div>
-            <div class="btn btn-secondary" id="sendText" onclick="initChat('${LoginOK.memberid }', 2)">傳二</div>
+            <div class="btn btn-secondary" id="sendText" onclick="initChat('${LoginOK.memberid }', 6)">傳二</div>
         </div>
 
 	</div>

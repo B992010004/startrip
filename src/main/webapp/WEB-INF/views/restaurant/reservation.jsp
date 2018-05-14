@@ -177,7 +177,8 @@ text-align: left;
 
 	<!-- END section -->
 	<section class="probootstrap_section">
-		<form>
+		<form:form method="post" modelAttribute="RtBookingBean"
+			action="insertRtBooking">
 			<!--  method="post" modelAttribute="RtDetailsBean" action="insertRestaurant" -->
 			<div class="intermediate">
 				<div class="container">
@@ -187,91 +188,91 @@ text-align: left;
 
 
 					<div class="form-group">
-						<label for="account">訂位者姓名&nbsp;:&nbsp;</label> <input type="text"
-							class="form-control" name="account" id="account" path="" placeholder="王大明等..."
+						<label for="account">訂位者姓名&nbsp;:&nbsp;</label> <form:input type="text"
+							class="form-control" path="crName" placeholder="王大明等..."
 							autofocus="autofocus" />
-							<p>(不可空白,至少兩個字且必須為中文字)</p>
+<!-- 							<p>(不可空白,至少兩個字且必須為中文字)</p> -->
 						<!-- required="required" -->
 					</div>
 					<div class="form-group">
-						<label>連絡電話&nbsp;:&nbsp;</label> <input type="text"
-							class="form-control" name="" path="" placeholder="09XX-XXXXXX"
+						<label>連絡電話&nbsp;:&nbsp;</label> <form:input type="text"
+							class="form-control" path="crPhone" placeholder="09XX-XXXXXX"
 							autofocus="autofocus" />
 						<!-- required="required" -->
 					</div>
 
 					<div class="form-group">大人幾位&nbsp;:&nbsp;</div>
-					<select path="" class="js-states form-control" id="id_label_single"
+					<form:select path="bgPeople" class="js-states form-control" id="id_label_single"
 						style="width: 100%;">
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
-						<option value="4">4</option>
-						<option value="5">5</option>
-						<option value="6">6</option>
-						<option value="7">7</option>
-						<option value="8">8</option>
-					</select>
+						<form:option value="1">1</form:option>
+						<form:option value="2">2</form:option>
+						<form:option value="3">3</form:option>
+						<form:option value="4">4</form:option>
+						<form:option value="5">5</form:option>
+						<form:option value="6">6</form:option>
+						<form:option value="7">7</form:option>
+						<form:option value="8">8</form:option>
+					</form:select>
 					<br>
 					<div class="form-group">小孩幾位&nbsp;:&nbsp;</div>
-					<select path="" class="js-states form-control" id="id_label_single"
+					<form:select path="cnPeople" class="js-states form-control" id="id_label_single"
 						style="width: 100%;">
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
-						<option value="4">4</option>
-						<option value="5">5</option>
-						<option value="6">6</option>
-						<option value="7">7</option>
-						<option value="8">8</option>
-					</select>
+						<form:option value="1">1</form:option>
+						<form:option value="2">2</form:option>
+						<form:option value="3">3</form:option>
+						<form:option value="4">4</form:option>
+						<form:option value="5">5</form:option>
+						<form:option value="6">6</form:option>
+						<form:option value="7">7</form:option>
+						<form:option value="8">8</form:option>
+					</form:select>
 					<br>
 					<div class="form-group">兒童專用座椅&nbsp;:&nbsp;</div>
-					<select path="" class="js-states form-control" id="id_label_single"
+					<form:select path="cnChair" class="js-states form-control" id="id_label_single"
 						style="width: 100%;">
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
-						<option value="4">4</option>
-						<option value="5">5</option>
-						<option value="6">6</option>
-						<option value="7">7</option>
-						<option value="8">8</option>
-					</select>
+						<form:option value="1">1</form:option>
+						<form:option value="2">2</form:option>
+						<form:option value="3">3</form:option>
+						<form:option value="4">4</form:option>
+						<form:option value="5">5</form:option>
+						<form:option value="6">6</form:option>
+						<form:option value="7">7</form:option>
+						<form:option value="8">8</form:option>
+					</form:select>
 <br>
 					<div class="form-group">用餐日期&nbsp;:&nbsp;</div>
 					<div class="form-group inputState">
 						<div class="probootstrap-date-wrap">
 							<label for="probootstrap-date-arrival"> <span
-								class="icon ion-calendar"></span> <input type="text"
+								class="icon ion-calendar"></span> <form:input path="bgDate" type="text"
 								id="probootstrap-date-arrival" name="checkin"
-								class="form-control" placeholder="日期">
+								class="form-control" placeholder="日期"/>
 							</label>
 						</div>
 					</div>
 					<div class="form-group">用餐時段&nbsp;:&nbsp;</div>
-					<select path="" class="js-states form-control" id="id_label_single"
+					<form:select path="bgPeriod" class="js-states form-control" id="id_label_single"
 						style="width: 100%;">
-						<option value="1">11:00</option>
-						<option value="2">11:30</option>
-						<option value="3">12:00</option>
-						<option value="4">12:30</option>
-						<option value="5">13:00</option>
-						<option value="6">13:30</option>
-						<option value="7">14:00</option>
-						<option value="8">14:30</option>
-						<option value="1">17:00</option>
-						<option value="2">17:30</option>
-						<option value="3">18:00</option>
-						<option value="4">18:30</option>
-						<option value="5">19:00</option>
-						<option value="6">19:30</option>
-						<option value="7">20:00</option>
-						<option value="8">20:30</option>
-						<option value="5">21:00</option>
-						<option value="6">21:30</option>
-						<option value="7">22:00</option>
-					</select>
+						<form:option value="1">11:00</form:option>
+						<form:option value="2">11:30</form:option>
+						<form:option value="3">12:00</form:option>
+						<form:option value="4">12:30</form:option>
+						<form:option value="5">13:00</form:option>
+						<form:option value="6">13:30</form:option>
+						<form:option value="7">14:00</form:option>
+						<form:option value="8">14:30</form:option>
+						<form:option value="1">17:00</form:option>
+						<form:option value="2">17:30</form:option>
+						<form:option value="3">18:00</form:option>
+						<form:option value="4">18:30</form:option>
+						<form:option value="5">19:00</form:option>
+						<form:option value="6">19:30</form:option>
+						<form:option value="7">20:00</form:option>
+						<form:option value="8">20:30</form:option>
+						<form:option value="5">21:00</form:option>
+						<form:option value="6">21:30</form:option>
+						<form:option value="7">22:00</form:option>
+					</form:select>
 
 
 
@@ -360,7 +361,7 @@ text-align: left;
 					<!-- 					</div> -->
 				</div>
 			</div>
-		</form>
+		</form:form>
 		
 			<!-- 政策提示： -->
 	
@@ -446,7 +447,7 @@ text-align: left;
 
 	<script src="/startrip/assets/js/jquery-ui.js"></script>
 	<script src="/startrip/assets/js/jquery.popupoverlay.js"></script>
-	<script src="/startrip/assets/js/reservation1.js"></script>
+<!-- 	<script src="/startrip/assets/js/reservation1.js"></script> -->
 
 
 </body>

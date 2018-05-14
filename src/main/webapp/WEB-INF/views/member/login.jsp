@@ -9,9 +9,7 @@
 <script src='https://www.google.com/recaptcha/api.js'></script>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-<script
-	src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
-	async defer></script>
+<script src="https://www.google.com/recaptcha/api.js"></script>
 <style>
 .errorMsg {
 	text-align: center;
@@ -52,14 +50,14 @@
 									value="${rememberme.cookiepassword}" /> <span id="pswid"
 									class="errorDiv"></span>
 							</div>
-
 							<div class="g-recaptcha" style="width: 100%"
 								data-sitekey="6LfjZ04UAAAAANYVbrm9fNL517kNiqrXlaU9UqFw"></div>
 
 							<div class="form-group" style="margin: 0px">
 								<input type="checkbox" id="remember" name="remember"
 									${rememberme.cookieremember}> <label for="remember">記住我</label>
-								<a href="/startrip/member/forgetpassword" class="text-center" style="padding-left: 280px">忘記密碼?</a>
+								<a href="/startrip/member/forgetpassword" class="text-center"
+									style="padding-left: 280px">忘記密碼?</a>
 							</div>
 							<span id="errorMsg" class="errorMsg" style="color: red;"></span>
 							<!-- /.col -->
@@ -95,16 +93,6 @@
 		</div>
 	</div>
 
-	<script>
-		$('#modal').modal('hide')
-		$(function() {
-			$('input').iCheck({
-				checkboxClass : 'icheckbox_square-blue',
-				radioClass : 'iradio_square-blue',
-				increaseArea : '20%' // optional
-			});
-		});
-	</script>
 	<script>
 		document.addEventListener("DOMContentLoaded", function() {
 			document.getElementById("loginmail").addEventListener("blur",
@@ -142,7 +130,8 @@
 		function checkUserName() {
 			var ajaxdata = {
 				mail : $('#loginmail').val(),
-				password : $('#loginpassword').val()
+				password : $('#loginpassword').val(),
+				recaptcha : grecaptcha.getResponse()
 			}
 
 			$.ajax({
@@ -153,6 +142,8 @@
 						success : function(responseText, textStatus) {
 							if (responseText == 0) {
 								document.loginform.submit();
+							} else if (responseText == 1) {
+								document.getElementById("errorMsg").innerHTML = "請點選我不是機器人"
 							} else {
 								document.getElementById("errorMsg").innerHTML = "帳號或密碼錯誤"
 							}
