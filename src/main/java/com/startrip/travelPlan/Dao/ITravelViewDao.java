@@ -29,4 +29,6 @@ public interface ITravelViewDao {
 
 
 	List<TravelViewBean> getAddress(String address);
+	
+	public TravelViewBean getViewPoint(String viewName) ;
 }

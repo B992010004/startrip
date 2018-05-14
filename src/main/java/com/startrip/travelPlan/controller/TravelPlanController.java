@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -79,11 +80,13 @@ public class TravelPlanController {
 		bean.setImg(img+".jpg");
 		
 		//天數計算----------------
-		int days = 0;
+		
 		Date start = bean.getStartDate();
 		Date end = bean.getEndDate();
-		start.getTime();
-		end.getTime();
+		
+		int days = (int)((end.getTime()-start.getTime())/(1000*60*60*24)+1);
+		
+		
 		bean.setTravelDays(days);
 		//------------------
 		MemberBean mb =memberservice.select(mail);
@@ -177,7 +180,8 @@ public class TravelPlanController {
 		tb.setMail(mail);
 		tb.setMemberId(memberId);
 		tb.setTravelId(travelId);
-		
+		int days = (int)((endDate.getTime()-startDate.getTime())/(1000*60*60*24)+1);
+		tb.setTravelDays(days);
 		try {
 			travelservice.updateTravel(tb);
 		} catch (SQLException e) {
@@ -424,6 +428,25 @@ public class TravelPlanController {
 		List<TravelViewBean> list = viewService.select();
 		model.addAttribute("views", list);
 		return "TravelProject/TravelViews/AllViews";
+	}
+	
+	@RequestMapping(value = "view/search", method = RequestMethod.GET)
+	@ResponseBody
+	public HashMap<String,Object> singleView(Model model,@RequestParam("viewName")String viewName
+			,@RequestParam("mail")String mail,@RequestParam("travelId")Integer travelId) {
+		
+		TravelViewBean tvb = viewService.getViewPoint(viewName);
+		Integer memberId = memberservice.select(mail).getMemberid();
+		TravelAllBean tab = travelservice.Select_Travel(memberId, travelId);
+		
+		 
+		System.out.println(tvb.toString());
+		HashMap<String,Object> result = new HashMap<>();
+		
+		
+		result.put("view", tvb);
+		result.put("travel",tab);
+		return result;
 	}
 	
 	//查詢viewList景點
