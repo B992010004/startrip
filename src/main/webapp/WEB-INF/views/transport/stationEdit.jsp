@@ -13,9 +13,6 @@
 
 <body>
 
-
-
-
     <!-- action="transport/stationEdit" -->
     <form:form method="post" modelAttribute="inputStation">
 
@@ -65,29 +62,20 @@
     <script src="/startrip/assets/js/main.js"></script>
 
     <script>
-        //        document.addEventListener("DOMContentLoaded", function () {
-        //           for (var i = 1; i <= 5; i++) {
-        //               document.getElementById("oR" + i).addEventListener("mouseover", mouseover);  //事件繫結，滑鼠滑入
-        //               document.getElementById("oR" + i).addEventListener("mouseout", mouseOut);
-        // document.getElementById("oR" + i).addEventListener("click", click1);   //事件繫結，滑鼠滑出
-        //           }
-
-        //       });
-
-
 
         document.addEventListener("DOMContentLoaded", function () {
             for (var i = 1; i <= 31; i++) {
                 document.getElementById("idimg" + i).addEventListener("mouseover", mouseover);  //事件繫結，滑鼠滑入
                 document.getElementById("idimg" + i).addEventListener("mouseout", mouseout);
                 document.getElementById("idimg" + i).addEventListener("click", click1);   //事件繫結，滑鼠滑出
+                document.getElementById("idimg" + i).addEventListener("click", click1);   //事件繫結，滑鼠滑出
+                
             }
         });
 
         function mouseover() {			
             this.src = "/startrip/assets/transport/images/setOn.png";
-            this.innerHTML = '您選的座位為' + this.id.substr(5) + '號';
-            $("#QQ").html("<span>"+'您選的座位為'+this.id.substr(5)+'號'+"</span>");
+           
 
         }
         function mouseout() {
@@ -95,15 +83,21 @@
         }
         function click1() {
         	this.src = "/startrip/assets/transport/images/setOn.png";
+        	 this.innerHTML = '您選的座位為' + this.id.substr(5) + '號';
+             $("#QQ").html("<span>"+'您選的座位為'+this.id.substr(5)+'號'+"</span>");
         }
-
+		function getRandom(){
+			return Math.floor(Math.random()*31);
+		}
+			
+		
     </script>
 
 
 
-	<h1 id="QQ">'您選的座位為' + this.id.substr(5) + '號'</h1>
+	<h1 id="QQ"></h1>
     <div class="div">
-        <table class="table  table-bordered">
+  <table class="table  table-bordered">
             <tr>
                 <td scope="col" style="background-color:burlywood;" cellpadding="5" border="0">門</td>
                 <td id="05">
@@ -220,8 +214,15 @@
                 </td>
             </tr>
         </table>
+        <br>
+                  電腦選位
+        
+        
+        
+        
+        
         <div class="Div02">
-            路線資訊查詢(地圖選取)
+           
             
 
 
