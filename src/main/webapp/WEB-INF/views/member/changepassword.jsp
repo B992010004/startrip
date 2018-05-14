@@ -121,14 +121,14 @@
 			var ckpassword = document.getElementById("ckpassword").value;
 
 			if (fgpassword == "" || ckpassword == "") {
-				document.getElementById("errorMsg").innerHTML = "請輸入正確的密碼";
+				document.getElementById("errorMsg").innerHTML = "<font color=\'red\'>請輸入正確的密碼</font>";
 				return false;
 			} else if (fgpassword == ckpassword) {
 				document.getElementById("errorMsg").innerHTML = "";
 				return true;
 				document.ckpassform.submit();
 			} else {
-				document.getElementById("errorMsg").innerHTML = "請輸入相同密碼";
+				document.getElementById("errorMsg").innerHTML = "<font color=\'red\'>請輸入相同密碼</font>";
 				return false;
 			}
 		}

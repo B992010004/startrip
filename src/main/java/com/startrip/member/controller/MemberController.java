@@ -140,19 +140,22 @@ public class MemberController {
 			return null;
 		}
 	}
-
 	@RequestMapping(value = "/chickpassword", method = RequestMethod.POST)
 	public void chickpassword(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String mail = request.getParameter("mail");
-		String password = request.getParameter("password");
+		String password = request.getParameter("password");		
+		String gRecaptchaResponse = request
+				.getParameter("recaptcha");
+		boolean verify = VerifyRecaptcha.verify(gRecaptchaResponse);		
 		MemberBean mm = memberservice.select(mail);
 		response.setContentType("text/plain;charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		if (mm != null && password.equals(mm.getPassword())) {
+		if (verify&&mm != null && password.equals(mm.getPassword())) {
 			out.print(0);
-		} else {
+		} else if(verify==false){
 			out.print(1);
-
+		}else {
+			out.print(2);
 		}
 	}
 
