@@ -18,7 +18,7 @@ public class RtBookingServiceImp implements RtBookingService {
 
 	@Override
 	public RtBookingBean getAllRtBookingmemberBean(MemberBean memberBean) {
-		return RtBookingRepositoryImp.getAllRtBookingmail(memberBean);
+		return RtBookingRepositoryImp.getAllRtBookingmemberBean(memberBean);
 	}
 
 	@Override

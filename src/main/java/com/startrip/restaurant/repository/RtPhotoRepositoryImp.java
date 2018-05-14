@@ -5,12 +5,11 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.startrip.restaurant.exception.RtReviewsNotFoundException;
 import com.startrip.restaurant.model.RtPhotoBean;
 
 @Repository
 public class RtPhotoRepositoryImp implements RtPhotoRepository {
-	
+
 	@Autowired
 	SessionFactory factory;
 
@@ -19,7 +18,7 @@ public class RtPhotoRepositoryImp implements RtPhotoRepository {
 		RtPhotoBean rpi = null;
 		Session session = factory.getCurrentSession();
 		rpi = session.get(RtPhotoBean.class, rtId);
-		if(rpi == null) throw new RtReviewsNotFoundException(rtId);
+		// if(rpi == null) throw new RtReviewsNotFoundException(rtId);
 		return rpi;
 	}
 
@@ -48,7 +47,5 @@ public class RtPhotoRepositoryImp implements RtPhotoRepository {
 		}
 		return false;
 	}
-
-
 
 }
