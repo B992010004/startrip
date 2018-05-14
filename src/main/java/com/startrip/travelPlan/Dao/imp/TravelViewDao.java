@@ -115,7 +115,14 @@ public class TravelViewDao implements ITravelViewDao {
 		 list =factory.getCurrentSession().createNativeQuery(sql,TravelViewBean.class).getResultList();
 		return list;
 	}
-	
+	@Override
+	public TravelViewBean getViewPoint(String viewName) {
+		String sql="select * from TravelView where viewName=:viewName";
+		TravelViewBean tvb =factory.getCurrentSession().createNativeQuery(sql, TravelViewBean.class)
+				.setParameter("viewName", viewName).getSingleResult();
+		
+		return tvb;
+	}
 	
 	
 	
@@ -161,4 +168,6 @@ public class TravelViewDao implements ITravelViewDao {
 			}
 	}
 	//--------------------------------------------------------------
+
+	
 }

@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html >
 <html>
 <head>
@@ -25,6 +27,7 @@
 <link href="https://fonts.googleapis.com/css?family=Roboto:100i,300,400,500,700" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Allura" rel="stylesheet">
 <link rel="stylesheet" href="/startrip/assets/Travel/css/style.css">
+<link rel="stylesheet" href="/startrip/assets/Travel/css/timepicker.min.css">
 
 <!-- <link rel="stylesheet" href="/startrip/assets/Travel/css/lightbox.css"> -->
 </head>
@@ -104,6 +107,28 @@
 
 
 	<div class="maincontext">
+		<div class="viewDetail card" style="width: 18rem;">
+	<div class="card-title">
+	<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button></div>
+    <h5 class="card-title">title</h5>
+<img class="card-img-top" src="...">
+    
+      <ul class="list-group list-group-flush">
+<li class="list-group-item">Cras justo odio</li><li class="list-group-item">Cras justo odio</li>
+    
+    <li class="list-group-item">Cras justo odio</li><li class="list-group-item">Cras justo odio</li>
+    
+    <li class="list-group-item">Cras justo odio</li>
+    <li class="list-group-item">Cras justo odio</li>
+</ul>
+
+
+    
+</div>
+	
         <div class="search-container">
         </div>
 	    <input id="pac-input" class="controls" type="text" placeholder="search box">
@@ -131,6 +156,63 @@
 	   
 	   </div>
     </div>
+    
+   
+    </div>
+    
+    
+    
+    
+ <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" id="addList">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">新增清單</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+	<form method='POST' >
+  <div class="modal-body">     
+	<div class="form-group">
+	<label  class="form-control-label" for="formGroupExampleInput">viewName:</label>
+	    <input placeholder="請輸入行程名稱" type="text" id="viewName" class="form-control"/>
+	  
+	</div>
+	
+	<div class="form-group">
+	<label  class="form-control-label" for="formGroupExampleInput">開始時間</label>
+	    <input  placeholder="Selected starttime" type="text" id="starttime" class="form-control"/>
+	  
+	</div>
+	
+	
+	<div class="form-group">
+	<label class="form-control-label" for="formGroupExampleInput">結束時間</label>
+	    <input  placeholder="Selected endtime" type="text" id="endtime" class="form-control"/>
+	  
+	</div>
+	
+	<div class="form-group" id="type">
+	<label  class="form-control-label" for="formGroupExampleInput" >travelType:</label>
+<!-- 	    <input  placeholder="請選擇類型" type="text" id="TravelType" class="form-control"/> -->
+	  
+	</div>	
+	
+	<div class="form-group" id="days">
+	<label  class="form-control-label" for="formGroupExampleInput" >tripday:</label>
+<!-- 	    <input  placeholder="請輸入行程名稱" type="text" id="travelDay" class="form-control"/> -->
+	</div>	
+	</div>
+	<div class="modal-footer">
+  		<button type="submit" class="btn btn-primary">Submit</button>
+  	</div>
+  </form>
+		</div>
+	</div>
+</div>
+    
+    
 
 	<script src="/startrip/assets/js/jquery.min.js"></script>
     <script src="/startrip/assets/js/popper.min.js"></script>
@@ -201,6 +283,60 @@ $('#insertday').on('click',function(){
 		})
 	
 })
+//查詢景點相關資訊
+$(document).on('click','.card-img-top',function(e){
+	console.log(e.target.id)
+	var viewName=$('#'+e.target.id).parent().prev().text();
+	var mail = "${LoginOK.mail}";
+	var travelId="${Travel.travelId}"
+	$.get("/startrip/view/search",{"viewName":viewName,"mail":mail,"travelId":travelId},function(data){
+		console.log(data);
+		var body=$('.viewDetail');
+		var li = body.find('ul');
+		body.css("display","block")
+		body.find('h5').text(data.view.viewName);
+// 		body.find('img').attr('src',imgName);
+		var Name= $('<li class="list-group-item">'+data.view.viewaddr+'</li>');
+		var phone = $('<li class="list-group-item">'+data.view.viewPhone+'</li>');
+		var orgclass = $('<li class="list-group-item">'+data.view.orgclass+'</li>');
+		var btn = $('<button id="insertList" type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addList" >加入行程</button>');
+		var imgrow = $('<div class="checkview row"></div>');
+		var daysrow = $('<div class="checkview row"></div>');
+		var imgs=$('<div class="orgclass col-3" id="food" src="/startrip/assets/Travel/img/food.png"></div><div id="shop" class="orgclass col-3" src="/startrip/assets/Travel/img/shop.png"></div><div id="travel" class="orgclass col-3" src="/startrip/assets/Travel/img/mountain.png"></div><div id="rest" class="orgclass col-3" src="/startrip/assets/Travel/img/zzz.png"><div><hr>');
+		var docFrag = $(document.createDocumentFragment());
+		for(var i =1;i<=data.travel.travelDays;i++){
+			
+		var selectday=$('<div class="circle col-2" id="chioceday'+i+'">'+i+'</div>')
+		docFrag.append(selectday);
+		}
+		li.empty();
+		li.append(Name);
+		li.append(phone);
+		li.append(orgclass);
+		li.append(btn);
+		
+		imgrow.append(imgs);
+// 		li.append(imgrow);
+		$('#type').append(imgrow)
+		daysrow.append(docFrag);
+// 		li.append(daysrow);
+		$('#days').append(daysrow);
+	})
+	
+})
+
+$(document).on('click','.close',function(){
+	var body=$('.viewDetail');
+	body.css("display","none")
+	}
+)
+
+$(document).mouseup(function(e){
+	  var container =$(".viewDetail"); // 這邊放你想要排除的區塊
+	    if (!container.is(e.target) && container.has(e.target).length === 0) {
+	       container.hide(); 
+	    }
+	  })
 </script>
 <script>
 
@@ -287,7 +423,7 @@ function searchList(){
 			for(var i = 0;i<len;i++){
 				var right=$('<div class="container1 right"  id="dayTile'+i+'"> </div>')
 				var content = $('<div class="content"></div>')
-				var title = $('<h2 class="listtitle">'+data[i].viewName+'</h2>');
+				var title = $('<h3 class="listtitle">'+data[i].viewName+'</h3>');
 				var start = $('<div class="start">'+data[i].startTime+'</div>');
 				var end = $('<div class="end">'+data[i].endTime+'</div>');
 				content.append([title,start,end])
@@ -331,14 +467,13 @@ function searchView(){
 				var docFrag = $(document.createDocumentFragment());
 				
 			for(var i=0;i<length;i++){
+			
 				var split =data[i].imgName.split(";");
-				var img = $('<img class="card-img-top hover-shadow"  alt="Card image cap">').attr("src",'/startrip/showImage/'+split[0]);
+				var img = $('<img class="card-img-top hover-shadow" id="img'+(i+1)+'"  alt="Card image cap">').attr("src",'/startrip/showImage/'+split[0]);
 				var body = $('<div class="card-body view"></div>');
-				var del = $('<img class="iconImg" src = http://localhost:8080/startrip/assets/Travel/img/close2.png>');
-// 					del.css({"margin-left":"2em","float":"right"})
-				var insert = $('<img class="iconImg" src = http://localhost:8080/startrip/assets/Travel/img/interface.png>');
-// 					insert.css({"margin-left":"2em","float":"right"})
-					body.html([insert,del]);
+				var detail = $('<p>'+data[i].viewDetail+'</p>')
+// 			
+					body.html(detail);
 				var card = $('<div class="card" style="width: 18rem;"></div>');
 				var title = $('<h5 class="card-title"><strong>'+data[i].viewName+'</strong></h5>');
 				var view = $('<div class="view"></div>');
@@ -354,7 +489,24 @@ function searchView(){
 
 
 
+
+
 </script>
+<script src="/startrip/assets/Travel/js/timepicker.min.js"></script>
+<script>
+ $(document).ready(function() {
+	
+		$('#starttime').timepicker();
+		console.log($('#starttime').val());
+		$('#endtime').timepicker();
+		
+		
+		$('#myModal').on('shown.bs.modal', function () {
+			  $('#myInput').trigger('focus')
+			})
+
+ }); 
+ </script>        
  <script>
         // This example requires the Places library. Include the libraries=places
         // parameter when you first load the API. For example:
