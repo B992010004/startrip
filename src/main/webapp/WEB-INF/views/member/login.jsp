@@ -96,16 +96,6 @@
 	</div>
 
 	<script>
-		$('#modal').modal('hide')
-		$(function() {
-			$('input').iCheck({
-				checkboxClass : 'icheckbox_square-blue',
-				radioClass : 'iradio_square-blue',
-				increaseArea : '20%' // optional
-			});
-		});
-	</script>
-	<script>
 		document.addEventListener("DOMContentLoaded", function() {
 			document.getElementById("loginmail").addEventListener("blur",
 					ckname);

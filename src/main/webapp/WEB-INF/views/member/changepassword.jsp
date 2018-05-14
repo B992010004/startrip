@@ -57,36 +57,44 @@
 	<section class="probootstrap_section bg-light" id="section-contact">
 		<div class="container">
 			<div style="margin: auto" class="col-md-6  probootstrap-animate">
-				<div class="probootstrap-form probootstrap-form-box mb60">
-					<img
-						style="border-color: #C0C0C0; border-style: solid; border-style: outset; border-radius: 50%; position: absolute; right: 30px;"
-						width="160px" height="160px"
-						src="<c:url value='/getPicture/${change.mail}'/>">
-					<H2>${change.username}您好!</H2>
-					<P>請重新設定您的密碼</P>
-					<div class="col-md-6">
-						<div class="form-group">
-							<label for="fgmail">請輸入密碼:</label> <input type="text"
-								class="form-control" name="fgmail" placeholder="請輸入" id="fgmail"
-								autofocus="autofocus" required="required" />
+				<form id="ckpassform" method="POST"
+					action="<c:url value="/changepassword"/>"
+					onSubmit="return ckpass()">
+					<div class="probootstrap-form probootstrap-form-box mb60">
+						<img
+							style="border-color: #C0C0C0; border-style: solid; border-style: outset; border-radius: 50%; position: absolute; right: 30px;"
+							width="160px" height="160px"
+							src="<c:url value='/getPicture/${change.mail}'/>">
+						<H2>${change.username}您好!</H2>
+						<P>請重新設定您的密碼</P>
+
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="fgpassword">請輸入密碼:</label> <input type="text"
+									class="form-control" name="fgpassword" placeholder="請輸入"
+									id="fgpassword" autofocus="autofocus" required="required" />
+							</div>
+						</div>
+
+						<div class="col-md-6">
+							<div class="form-group">
+								<input type="text" class="form-control" name="ckmail"
+									id="ckmail" style="display: none;" value="${change.mail}"></input>
+							</div>
+							<div class="form-group">
+								<label for="ckpassword">再次確認您的密碼:</label> <input type="text"
+									class="form-control" name="ckpassword" placeholder="請輸入"
+									id="ckpassword" autofocus="autofocus" required="required" />
+							</div>
+							<div class="col-md-10" id="errorMsg"></div>
+						</div>
+						<div>
+							<input type="submit" class="btn btn-primary" id="cksubmit"
+								name="submit" value="確認送出"
+								style='position: absolute; right: 20px; bottom: 20px;'>
 						</div>
 					</div>
-					<div class="col-md-6">
-
-						<div class="form-group">
-							<label for="fgmail">再次確認您的密碼:</label> <input type="text"
-								class="form-control" name="fgmail" placeholder="請輸入" id="fgmail"
-								autofocus="autofocus" required="required" />
-						</div>
-						<div class="col-md-10" id="errorMsg"></div>
-					</div>
-					<div>
-						<input type="submit" class="btn btn-primary" id="submit"
-							name="submit" value="確認送出"
-							style='position: absolute; right: 20px; bottom: 20px;'>
-					</div>
-				</div>
-
+				</form>
 
 			</div>
 		</div>
@@ -104,14 +112,24 @@
 	<script src="/startrip/assets/js/select2.min.js"></script>
 	<script src="/startrip/assets/js/main.js"></script>
 	<script>
-		function check() {
-			with (document.all) {
-				if (input1.value != input2.value) {
-					alert("false")
-					input1.value = "";
-					input2.value = "";
-				} else
-					document.forms[0].submit();
+		document.addEventListener("DOMContentLoaded", function() {
+			document.getElementById("cksubmit").addEventListener("click",
+					ckpass);
+		})
+		function ckpass() {
+			var fgpassword = document.getElementById("fgpassword").value;
+			var ckpassword = document.getElementById("ckpassword").value;
+
+			if (fgpassword == "" || ckpassword == "") {
+				document.getElementById("errorMsg").innerHTML = "請輸入正確的密碼";
+				return false;
+			} else if (fgpassword == ckpassword) {
+				document.getElementById("errorMsg").innerHTML = "";
+				return true;
+				document.ckpassform.submit();
+			} else {
+				document.getElementById("errorMsg").innerHTML = "請輸入相同密碼";
+				return false;
 			}
 		}
 	</script>
