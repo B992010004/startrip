@@ -50,7 +50,7 @@
       position: fixed;
       display: none; 
       overflow-y: auto;
-      height: 100%;
+      height: 695px;
       top:110px;
   }
 
@@ -456,12 +456,67 @@ blockquote {
       #pac-input:focus {
         border-color: #4d90fe;
       }
+      .orgclass{
+      width: 60px;
+      height:60px;
+      padding:auto;
       
+      }
+     
+      .circle{
+      margin:20px 8px;
+      height:79px;
+      background-color: #28b9ff;
+      border-radius: 90px;
+      font-size: 30px;
+      padding:auto;
+      text-align: center;
+      }
+      .circle:hover{
+      color:white;
+      background: #0080ff;
+      }
+      .checkview{
+      padding: auto ;
+      }
       
+      #food{
+      background: url("/startrip/assets/Travel/img/food.png");
+      background-size: 50px;
+      background-repeat: no-repeat;
+      background-position: center;
+      border-radius:  90px;
+        height: 120px;
+      }
+       #shop{
+      background: url("/startrip/assets/Travel/img/shop.png");
+      background-size: 50px;
+      background-repeat: no-repeat;
+      background-position: center;
+      border-radius:  90px;
+      height: 120px;
+      }
+       #travel{
+      background: url("/startrip/assets/Travel/img/mountain.png");
+      background-size: 50px;
+      background-repeat: no-repeat;
+      background-position: center;
+      border-radius:  90px;
+        height: 120px;
+      }
+       #rest{
+      background: url("/startrip/assets/Travel/img/zzz.png");
+      background-size: 50px;
+      background-repeat: no-repeat;
+      background-position: center;
+      border-radius: 90px;
+        height: 120px;
+      }
       
+       #shop:hover,#food:hover,#travel:hover,#rest:hover{
+       background-color: #06aeff;
       
-      
-      
+      }
       
 .card{
   margin-top: 20px;
@@ -475,8 +530,20 @@ blockquote {
 }
 
 
+.viewDetail{
+	 background-color: #f8f9fa;
+    width: 350px;
+    height: 695px;
+    position: fixed;
+    z-index: 2;
+    top:  40px;
+    display:none;
+    padding:40px 30px;
+}
 
-
+.orgclass{
+	margin-top:20px;
+}
 
 
 

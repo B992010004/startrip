@@ -1,8 +1,10 @@
 package com.startrip.restaurant.exception;
 
+import com.startrip.member.memberModle.MemberBean;
+
 public class RtBookingNotFoundException extends RuntimeException {
 
-	public RtBookingNotFoundException() {
+	public RtBookingNotFoundException(MemberBean memberBean) {
 		super();
 	}
 
@@ -13,6 +15,7 @@ public class RtBookingNotFoundException extends RuntimeException {
 
 	public RtBookingNotFoundException(String message, Throwable cause) {
 		super(message, cause);
+
 	}
 
 	public RtBookingNotFoundException(String message) {
@@ -21,6 +24,10 @@ public class RtBookingNotFoundException extends RuntimeException {
 
 	public RtBookingNotFoundException(Throwable cause) {
 		super(cause);
+	}
+
+	public RtBookingNotFoundException() {
+		super();
 	}
 
 	

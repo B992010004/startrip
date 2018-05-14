@@ -67,5 +67,10 @@ public class viewService implements ITravelViewService {
 		
 		return viewDao.getAddress(address);
 	}
-
+	@Transactional
+	@Override
+	public TravelViewBean getViewPoint(String viewName) {
+		return viewDao.getViewPoint(viewName);
+	}
+	
 }

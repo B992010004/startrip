@@ -53,7 +53,7 @@ public class RestaurantController {
 	public String insertRtBooking(@ModelAttribute("RtBookingBean") RtBookingBean rbb, BindingResult result,
 			HttpServletRequest request) {
 		rtBookingService.insertRtBooking(rbb);
-		return "redirect:/restaurantHome";
+		return "redirect:/Individualdetails";
 	}
 
 	// /前台新增訂單/---------------------------------------------------------------------------------------------
