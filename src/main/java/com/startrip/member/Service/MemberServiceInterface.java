@@ -1,7 +1,6 @@
 package com.startrip.member.Service;
 
-import java.sql.Blob;
-import java.util.Date;
+
 import java.util.List;
 
 import com.startrip.member.memberModle.MemberBean;
@@ -17,5 +16,7 @@ public interface MemberServiceInterface {
 	void insert(MemberBean bean);
 
 	boolean delete(String email);
+
+	void changepassword(String mail, String password);
 
 }

@@ -33,6 +33,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.startrip.member.Service.MemberServiceInterface;
+import com.startrip.member.controller.md5.MD5Util;
 //import com.startrip.member.controller.md5.MD5Util;
 import com.startrip.member.memberModle.MemberBean;
 
@@ -139,19 +140,22 @@ public class MemberController {
 			return null;
 		}
 	}
-
 	@RequestMapping(value = "/chickpassword", method = RequestMethod.POST)
 	public void chickpassword(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String mail = request.getParameter("mail");
-		String password = request.getParameter("password");
+		String password = request.getParameter("password");		
+		String gRecaptchaResponse = request
+				.getParameter("recaptcha");
+		boolean verify = VerifyRecaptcha.verify(gRecaptchaResponse);		
 		MemberBean mm = memberservice.select(mail);
 		response.setContentType("text/plain;charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		if (mm != null && password.equals(mm.getPassword())) {
+		if (verify&&mm != null && password.equals(mm.getPassword())) {
 			out.print(0);
-		} else {
+		} else if(verify==false){
 			out.print(1);
-
+		}else {
+			out.print(2);
 		}
 	}
 
@@ -251,6 +255,7 @@ public class MemberController {
 	// mv.setViewName("/index");
 	// return mv;
 	// }
+	
 	@RequestMapping(value = "/member/forgetpassword", method = RequestMethod.GET)
 	public String forgetPass(Model model) {
 		MemberBean mb = new MemberBean();
@@ -275,19 +280,19 @@ public class MemberController {
 	 mb.setRegisterDate(outDate);
 	 memberservice.update(mb); //保存到数据库
 	 String key = mb.getMail()+"$"+date+"$"+secretKey;
-//	 String digitalSignature = MD5Util.MD5Encode(key,"UTF-8"); //数字签名
+	 String digitalSignature = MD5Util.MD5Encode(key,"UTF-8"); //数字签名
 	
 	 String emailTitle = "StarTrip";
 	 String path = request.getContextPath();
 	 String basePath =
 	 request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 	 String resetPassHref =
-//	 basePath+"member/changepassword?sid="+digitalSignature+"&mail="+mb.getMail();
-//	 String emailContent = "點選下方連結重設密碼"+resetPassHref+
+	 basePath+"member/changepassword?sid="+digitalSignature+"&mail="+mb.getMail();
+	 String emailContent = "點選下方連結重設密碼"+resetPassHref+
 	 " 30分鐘後郵件失效，感謝您對StarTrip的支持";
 	 System.out.print(resetPassHref);
 	 sendmail send=new sendmail();
-//	 send.sendemail(emailTitle,emailContent,mb.getMail());
+	 send.sendemail(emailTitle,emailContent,mb.getMail());
 	 writer.println(0);	
 	 }catch (Exception e){
 	 e.printStackTrace();
@@ -318,14 +323,21 @@ public class MemberController {
 	 String key =
 	 mb.getMail()+"$"+outDate.getTime()/1000*1000+"$"+mb.getValidataCode();
 	 //数字签名
-//	String digitalSignature = MD5Util.MD5Encode(key,"UTF-8");
-//	 System.out.println(key+"\t"+digitalSignature);
-//	 if(!digitalSignature.equals(sid)) {
-//	 msg = "連結網址不正確，請重新申請找回密碼，將於五秒後返回首頁";
-//	 model.addAttribute("msg",msg);
-//	 return "/member/error";
-//	 }
-//	 model.addAttribute("change",mb);
+	String digitalSignature = MD5Util.MD5Encode(key,"UTF-8");
+	 System.out.println(key+"\t"+digitalSignature);
+	 if(!digitalSignature.equals(sid)) {
+	 msg = "連結網址不正確，請重新申請找回密碼，將於五秒後返回首頁";
+	 model.addAttribute("msg",msg);
+	 return "/member/error";
+	 }
+	 model.addAttribute("change",mb);
 	 return "/member/changepassword";
+	 }
+	 @RequestMapping(value = "/changepassword", method = RequestMethod.POST)
+		public String changepassword(HttpServletRequest request, HttpServletResponse response) {
+		 String mail = request.getParameter("ckmail");
+		String password = request.getParameter("ckpassword");
+		memberservice.changepassword(mail, password);
+		return "/index";
 	 }
 }

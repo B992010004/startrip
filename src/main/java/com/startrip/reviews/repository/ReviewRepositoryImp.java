@@ -17,7 +17,7 @@ import com.startrip.reviews.model.ReviewBean;
 public class ReviewRepositoryImp implements ReviewRepository {
 
 	@Autowired
-	SessionFactory sessionFacory;
+	SessionFactory sessionFactory;
 	
 	@SuppressWarnings("unchecked")
 	@Override
@@ -25,7 +25,7 @@ public class ReviewRepositoryImp implements ReviewRepository {
 		String hql = "FROM ReviewBean";
 		Session session = null;
 		List<ReviewBean> list = new ArrayList<>();
-		session = sessionFacory.getCurrentSession();
+		session = sessionFactory.getCurrentSession();
 		list = session.createQuery(hql).getResultList();
 		System.out.println(list);
 		return list;
@@ -36,7 +36,7 @@ public class ReviewRepositoryImp implements ReviewRepository {
 	public List<ReviewBean> getReviewsByHotelId(int hotelId) {
 		List<ReviewBean> list = new ArrayList<>();
 		String hql = "FROM ReviewBean WHERE hotelId = :id";
-		Session session = sessionFacory.getCurrentSession();
+		Session session = sessionFactory.getCurrentSession();
 		list = session.createQuery(hql).setParameter("id", hotelId).getResultList();
 
 		return list;
@@ -44,7 +44,7 @@ public class ReviewRepositoryImp implements ReviewRepository {
 
 	@Override
 	public void addReview(ReviewBean review) {
-		Session session = sessionFacory.getCurrentSession();
+		Session session = sessionFactory.getCurrentSession();
 		review.setUpdateTime(new Timestamp(new Date().getTime()));
 		session.save(review);
 	}
@@ -61,7 +61,7 @@ public class ReviewRepositoryImp implements ReviewRepository {
 	@Override
 	public List<Long> getRankByHotelId(int hotelId) {
 		String hql = "SELECT count(overallRank) FROM ReviewBean rb WHERE rb.hotelId = :hotelId GROUP BY rb.overallRank";
-		Session session = sessionFacory.getCurrentSession();
+		Session session = sessionFactory.getCurrentSession();
 		List<Long> list = new ArrayList<>();
 		list = session.createQuery(hql).setParameter("hotelId", hotelId).list();
 //		System.out.println(list);

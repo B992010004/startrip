@@ -5,6 +5,8 @@ import javax.servlet.Filter;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
+import com.startrip.filter.DisableCacheFilter;
+
 // 本類別的詳細說明，請參考第一章
 public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 	@Override
@@ -17,9 +19,9 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
 	// 哪些路徑下有靜態檔案，這些靜態檔案直接由容器傳回給客戶端而不要交給控制器去處理等等。
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
-		return new Class[] { WebAppConfig.class };
+		return new Class[] { WebAppConfig.class, WebSocketStompConfig.class };
 	}
-//	, WebSocketStompConfig.class
+
 	@Override
 	// 說明分派器(DispatcherServlet)要處理所有請求
 	protected String[] getServletMappings() {
@@ -33,11 +35,8 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
 
 		// DelegatingFilterProxy springSecurityFilterChain = new
 		// DelegatingFilterProxy();
-		return new Filter[] { characterEncodingFilter };
+		return new Filter[] { characterEncodingFilter, new DisableCacheFilter() };
 	}
 
-//	@Override
-//	protected void customizeRegistration(Dynamic registration) {
-//		registration.setAsyncSupported(true);
-//	}
+
 }

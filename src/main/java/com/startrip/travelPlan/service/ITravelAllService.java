@@ -8,14 +8,15 @@ import com.startrip.travelPlan.model.TravelAllBean;
 public interface ITravelAllService {
 
 	
-	public TravelAllBean Select_TravelId(int id);
+	public TravelAllBean Select_Travel(Integer memberId,Integer travelId);
 
 	public List<TravelAllBean> selectAllTravel();
 
 
-	public void insert(TravelAllBean bean);
+	public Integer insert(TravelAllBean bean);
 
 	public void updateDays(TravelAllBean bean) throws SQLException;
+	public void updateTravel(TravelAllBean bean) throws SQLException;
 
 	public void delete(int id);
 	

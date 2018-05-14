@@ -19,18 +19,21 @@ public class MessageBean {
 	private String receiverAccount;
 	private Timestamp messageDate;
 	private String messageStatus;
+	private String message;
 	
-	//流水號拿掉
-	public MessageBean(String messageArticle, String senderAccount, String receiverAccount,
-			Timestamp messageDate, String messageStatus) {
-		super();
-//		this.no = no;
-		this.messageArticle = messageArticle;
-		this.senderAccount = senderAccount;
-		this.receiverAccount = receiverAccount;
-		this.messageDate = messageDate;
-		this.messageStatus = messageStatus;
+	@Override
+	public String toString() {
+		return "MessageBean [no=" + no + ", messageArticle=" + messageArticle + ", senderAccount=" + senderAccount
+				+ ", receiverAccount=" + receiverAccount + ", messageDate=" + messageDate + ", messageStatus="
+				+ messageStatus + ", message=" + message + "]";
 	}
+	public String getMessage() {
+		return message;
+	}
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
 	public Integer getNo() {
 		return no;
 	}

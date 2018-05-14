@@ -16,8 +16,8 @@ public class TravelAllBean {
 	private java.sql.Date endDate;
 	private Integer travelDays;
 	private String img;
-	
 	private String mail;
+	private Integer state;
 	private Integer memberId;
 
 //	private MemberBean travelMail;// fk
@@ -99,11 +99,21 @@ public class TravelAllBean {
 		this.img = img;
 	}
 
+	public Integer getState() {
+		return state;
+	}
+
+	public void setState(Integer state) {
+		this.state = state;
+	}
+
 	@Override
 	public String toString() {
 		return "TravelAllBean [travelId=" + travelId + ", travelName=" + travelName + ", startDate=" + startDate
-				+ ", endDate=" + endDate + ", travelDays=" + travelDays + ", mail=" + mail + "]";
+				+ ", endDate=" + endDate + ", travelDays=" + travelDays + ", img=" + img + ", mail=" + mail + ", state="
+				+ state + ", memberId=" + memberId + "]";
 	}
+
 	
 	
 	

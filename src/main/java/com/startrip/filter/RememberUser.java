@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
 @WebFilter(urlPatterns = { "/*" }, 
 dispatcherTypes = { DispatcherType.REQUEST }
 )
-public class rememberUser implements Filter {
+public class RememberUser implements Filter {
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
