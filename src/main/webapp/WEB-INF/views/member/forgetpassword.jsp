@@ -72,12 +72,12 @@
 							<div class="col-md-10" id="errorMsg"></div>
 						</div>
 					</div>
-					
-				</div>
-				<div style="margin: auto" class="col-md-6  probootstrap-animate">
+					<div style="margin: auto" class="col-md-6  probootstrap-animate">
 				<div class="form-group">
 						<button id="submitbutton" class="btn btn-primary">寄送電子郵件</button>
 					</div>
+				</div>
+				
 				</div>
 				
 			</div>

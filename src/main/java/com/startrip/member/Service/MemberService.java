@@ -1,7 +1,6 @@
 package com.startrip.member.Service;
 
-import java.sql.Blob;
-import java.util.Date;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,5 +48,11 @@ public class MemberService implements MemberServiceInterface {
 	public boolean delete(String email) {
 		return memberDAO.delete(email);
 	}
-
+	@Transactional
+	@Override
+	public void changepassword(String mail,String password) {
+		MemberBean bean= memberDAO.select(mail);
+		bean.setPassword(password);
+		memberDAO.update(bean);		
+	}
 }
