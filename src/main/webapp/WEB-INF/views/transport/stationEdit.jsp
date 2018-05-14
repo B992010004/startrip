@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>     
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html">
 <html>
 
 <head>
@@ -50,18 +50,7 @@
     <br>
     <a href="http://localhost:8080//startrip/views/transport/stationInput.jsp">手動選位</a>
 
-	<link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,700" rel="stylesheet">
 
-    <link rel="stylesheet" href="/startrip/assets/css/bootstrap/bootstrap.css">
-    <link rel="stylesheet" href="/startrip/assets/css/animate.css">
-    <link rel="stylesheet" href="/startrip/assets/fonts/ionicons/css/ionicons.min.css">
-    <link rel="stylesheet" href="/startrip/assets/css/bootstrap/botton.css" type="text/css" />
-    <link rel="stylesheet" href="/startrip/assets/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="/startrip/assets/fonts/flaticon/font/flaticon.css">
-    <link rel="stylesheet" href="/startrip/assets/fonts/fontawesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/startrip/assets/css/select2.css">
-    <link rel="stylesheet" href="/startrip/assets/css/helpers.css">
-    <link rel="stylesheet" href="/startrip/assets/css/style.css">
 
     <script src="/startrip/assets/js/jquery.min.js"></script>
     <script src="/startrip/assets/js/popper.min.js"></script>
@@ -82,59 +71,63 @@
 
         //       });
 
+
+
         document.addEventListener("DOMContentLoaded", function () {
             for (var i = 1; i <= 31; i++) {
                 document.getElementById("idimg" + i).addEventListener("mouseover", mouseover);  //事件繫結，滑鼠滑入
                 document.getElementById("idimg" + i).addEventListener("mouseout", mouseout);
-                // document.getElementById("oR" + i).addEventListener("click", click1);   //事件繫結，滑鼠滑出
+                document.getElementById("idimg" + i).addEventListener("click", click1);   //事件繫結，滑鼠滑出
             }
         });
 
-        function mouseover() {
-        	for (var i = 1; i <= this.id; i++) {
-            document.getElementById("idimg" + i).src = "http://localhost:8080//startrip/assets/transport/images/setOn.png";
-        }
-        	document.getElementById("idimg"+i).innerHTML = "'您選的座位為'+i+'號'";
+        function mouseover() {			
+            this.src = "/startrip/assets/transport/images/setOn.png";
+            this.innerHTML = '您選的座位為' + this.id.substr(5) + '號';
+
         }
         function mouseout() {
-            document.getElementById("idimg" + i).src = "http://localhost:8080//startrip/assets/transport/images/setOff.jpg";
+        	this.src = "/startrip/assets/transport/images/setOff.jpg";
+        }
+        function click1() {
+        	this.src = "/startrip/assets/transport/images/setOn.png";
         }
 
     </script>
 
-    
+    <div class="div">
         <table class="table  table-bordered">
             <tr>
                 <td scope="col" style="background-color:burlywood;" cellpadding="5" border="0">門</td>
                 <td id="05">
-                    <img id="idimg5" src="http://localhost:8080//startrip/assets/transport/images/setOff.jpg" width="20" height="20">
+                    <img id="idimg5" src="/startrip/assets/transport/images/setOff.jpg" width="20" height="20">
                 </td>
                 <td id="08">
-                    <img id="idimg8" src="http://localhost:8080//startrip/assets/transport/images/setOff.jpg" width="20" height="20">
+                    <img id="idimg8" src="/startrip/assets/transport/images/setOff.jpg" width="20" height="20">
                 </td>
                 <td id="11">
-                    <img id="idimg11" src="http://localhost:8080//startrip/assets/transport/images/setOff.jpg" width="20" height="20">
+                    <img id="idimg11" src="/startrip/assets/transport/images/setOff.jpg" width="20" height="20">
                 </td>
                 <td id="12">
-                    <img id="idimg12" src="http://localhost:8080//startrip/assets/transport/images/setOff.jpg" width="20" height="20">
+                    <img id="idimg12" src="/startrip/assets/transport/images/setOff.jpg" width="20" height="20">
                 </td>
                 <td id="15">
-                    <img id="idimg15" src="http://localhost:8080//startrip/assets/transport/images/setOff.jpg" width="20" height="20">
+                    <img id="idimg15" src="/startrip/assets/transport/images/setOff.jpg" width="20" height="20">
                 </td>
                 <td id="18">
-                    <img id="idimg18" src="http://localhost:8080//startrip/assets/transport/images/setOff.jpg" width="20" height="20">
+                    <img id="idimg18" src="/startrip/assets/transport/images/setOff.jpg" width="20" height="20">
                 </td>
                 <td id="21">
-                    <img id="idimg21" src="http://localhost:8080//startrip/assets/transport/images/setOff.jpg" width="20" height="20">
+                    <img id="idimg21" src="/startrip/assets/transport/images/setOff.jpg" width="20" height="20">
                 </td>
                 <td id="24">
-                    <img id="idimg24" src="http://localhost:8080//startrip/assets/transport/images/setOff.jpg" width="20" height="20">
+                    <img id="idimg24" src="/startrip/assets/transport/images/setOff.jpg" width="20" height="20">
                 </td>
                 <td id="27">
-                    <img id="idimg27" src="http://localhost:8080//startrip/assets/transport/images/setOff.jpg" width="20" height="20">
+                    <img id="idimg27" src="/startrip/assets/transport/images/setOff.jpg" width="20" height="20">
                 </td>
                 <td id="31">
-                    <img id="idimg31" src="http://localhost:8080//startrip/assets/transport/images/setOff.jpg" width="20" height="20">
+                    <img id="idimg31" src="/startrip/assets/transport/images/setOff.jpg" width="20" height="20">
                 </td>
             </tr>
             <tr>
@@ -150,80 +143,80 @@
                 <td style="background-color:burlywood"></td>
                 <td style="background-color:burlywood"></td>
                 <td id="30" class="hover" :hover>
-                    <img id="idimg30" src="http://localhost:8080//startrip/assets/transport/images/setOff.jpg" width="20" height="20">
+                    <img id="idimg30" src="/startrip/assets/transport/images/setOff.jpg" width="20" height="20">
                 </td>
             </tr>
             <tr>
                 <td id="02">
-                    <img id="idimg2" src="http://localhost:8080//startrip/assets/transport/images/setOff.jpg" width="20" height="20">
+                    <img id="idimg2" src="/startrip/assets/transport/images/setOff.jpg" width="20" height="20">
                 </td>
                 <td id="04">
-                    <img id="idimg4" src="http://localhost:8080//startrip/assets/transport/images/setOff.jpg" width="20" height="20">
+                    <img id="idimg4" src="/startrip/assets/transport/images/setOff.jpg" width="20" height="20">
                 </td>
                 <td id="07">
-                    <img id="idimg7" src="http://localhost:8080//startrip/assets/transport/images/setOff.jpg" width="20" height="20">
+                    <img id="idimg7" src="/startrip/assets/transport/images/setOff.jpg" width="20" height="20">
                 </td>
                 <td id="10">
-                    <img id="idimg10" src="http://localhost:8080//startrip/assets/transport/images/setOff.jpg" width="20" height="20">
+                    <img id="idimg10" src="/startrip/assets/transport/images/setOff.jpg" width="20" height="20">
                 </td>
                 <td scope="col" style="background-color:burlywood"></td>
                 <td id="14">
-                    <img id="idimg14" src="http://localhost:8080//startrip/assets/transport/images/setOff.jpg" width="20" height="20">
+                    <img id="idimg14" src="/startrip/assets/transport/images/setOff.jpg" width="20" height="20">
                 </td>
                 <td id="17">
-                    <img id="idimg17" src="http://localhost:8080//startrip/assets/transport/images/setOff.jpg" width="20" height="20">
+                    <img id="idimg17" src="/startrip/assets/transport/images/setOff.jpg" width="20" height="20">
                 </td>
                 <td id="20">
-                    <img id="idimg20" src="http://localhost:8080//startrip/assets/transport/images/setOff.jpg" width="20" height="20">
+                    <img id="idimg20" src="/startrip/assets/transport/images/setOff.jpg" width="20" height="20">
                 </td>
                 <td id="23">
-                    <img id="idimg23" src="http://localhost:8080//startrip/assets/transport/images/setOff.jpg" width="20" height="20">
+                    <img id="idimg23" src="/startrip/assets/transport/images/setOff.jpg" width="20" height="20">
                 </td>
                 <td id="26">
-                    <img id="idimg26" src="http://localhost:8080//startrip/assets/transport/images/setOff.jpg" width="20" height="20">
+                    <img id="idimg26" src="/startrip/assets/transport/images/setOff.jpg" width="20" height="20">
                 </td>
                 <td id="29">
-                    <img id="idimg29" src="http://localhost:8080//startrip/assets/transport/images/setOff.jpg" width="20" height="20">
+                    <img id="idimg29" src="/startrip/assets/transport/images/setOff.jpg" width="20" height="20">
                 </td>
             </tr>
             <tr>
                 <td id="01">
-                    <img id="idimg1" src="http://localhost:8080//startrip/assets/transport/images/setOff.jpg" width="20" height="20">
+                    <img id="idimg1" src="/startrip/assets/transport/images/setOff.jpg" width="20" height="20">
                 </td>
                 <td id="03">
-                    <img id="idimg3" src="http://localhost:8080//startrip/assets/transport/images/setOff.jpg" width="20" height="20">
+                    <img id="idimg3" src="/startrip/assets/transport/images/setOff.jpg" width="20" height="20">
                 </td>
                 <td id="06">
-                    <img id="idimg6" src="http://localhost:8080//startrip/assets/transport/images/setOff.jpg" width="20" height="20">
+                    <img id="idimg6" src="/startrip/assets/transport/images/setOff.jpg" width="20" height="20">
                 </td>
                 <td id="09">
-                    <img id="idimg9" src="http://localhost:8080//startrip/assets/transport/images/setOff.jpg" width="20" height="20">
+                    <img id="idimg9" src="/startrip/assets/transport/images/setOff.jpg" width="20" height="20">
                 </td>
                 <td scope="col" style="background-color:burlywood"></td>
                 <td id="13">
-                    <img id="idimg13" src="http://localhost:8080//startrip/assets/transport/images/setOff.jpg" width="20" height="20">
+                    <img id="idimg13" src="/startrip/assets/transport/images/setOff.jpg" width="20" height="20">
                 </td>
                 <td id="16">
-                    <img id="idimg16" src="http://localhost:8080//startrip/assets/transport/images/setOff.jpg" width="20" height="20">
+                    <img id="idimg16" src="/startrip/assets/transport/images/setOff.jpg" width="20" height="20">
                 </td>
                 <td id="19">
-                    <img id="idimg19" src="http://localhost:8080//startrip/assets/transport/images/setOff.jpg" width="20" height="20">
+                    <img id="idimg19" src="/startrip/assets/transport/images/setOff.jpg" width="20" height="20">
                 </td>
                 <td id="22">
-                    <img id="idimg22" src="http://localhost:8080//startrip/assets/transport/images/setOff.jpg" width="20" height="20">
+                    <img id="idimg22" src="/startrip/assets/transport/images/setOff.jpg" width="20" height="20">
                 </td>
                 <td id="25">
-                    <img id="idimg25" src="http://localhost:8080//startrip/assets/transport/images/setOff.jpg" width="20" height="20">
+                    <img id="idimg25" src="/startrip/assets/transport/images/setOff.jpg" width="20" height="20">
                 </td>
                 <td id="23">
-                    <img id="idimg23" src="http://localhost:8080//startrip/assets/transport/images/setOff.jpg" width="20" height="20">
+                    <img id="idimg28" src="/startrip/assets/transport/images/setOff.jpg" width="20" height="20">
                 </td>
             </tr>
         </table>
         <div class="Div02">
             路線資訊查詢(地圖選取)
             <div class="map">
-                <img src="http://localhost:8080//startrip/assets/transport/images/taiwan.png" width="280" height="460" usemap="#Map" id="Image1"
+                <img src="/startrip/assets/transport/images/taiwan.png" width="280" height="460" usemap="#Map" id="Image1"
                     border="0">
                 <map name="Map" id="Map">
                     <area shape="rect" coords="201,54,248,76" onclick="city(&#39;新北&#39;);" onmouseover="MM_swapImage(&#39;Image1&#39;,&#39;&#39;,&#39;images/map/map01.png&#39;,1)"
@@ -264,6 +257,15 @@
             </div>
         </div>
 
+
+
+</body>
+
+</html>
+
+    </script>
+
+   
         
 
 </body>
