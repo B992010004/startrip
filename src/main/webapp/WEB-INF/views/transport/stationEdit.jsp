@@ -91,10 +91,10 @@
         });
 
         function mouseover() {
-        	for (var i = 1; i <= this.id.substr(2); i++) {
+        	for (var i = 1; i <= this.id; i++) {
             document.getElementById("idimg" + i).src = "http://localhost:8080//startrip/assets/transport/images/setOn.png";
         }
-        	document.getElementById("oR").innerHTML = "";
+        	document.getElementById("idimg"+i).innerHTML = "'您選的座位為'+i+'號'";
         }
         function mouseout() {
             document.getElementById("idimg" + i).src = "http://localhost:8080//startrip/assets/transport/images/setOff.jpg";
