@@ -65,7 +65,7 @@
                         <div class="form-group">
                             <div class="form-group">
                                 <div class="form-group" id="rating">
-                                    <label class="sr-only-focusable">你對此飯店的整體評價</label>
+                                    <label class="sr-only-focusable">你對此餐廳的整體評價</label>
                                     <p>
                                         <img id="oR1" src="/startrip/assets/images/review/star.gif" width="10%" />
                                         <img id="oR2" src="/startrip/assets/images/review/star.gif" width="10%" />
@@ -90,12 +90,12 @@
 
                         <div class="form-group">
                             <label for="content" class="sr-only-focusable">您的評論內容</label>
-                            <form:textarea cols="30" rows="10" path="content" class="form-control" id="content" name="content" placeholder="跟大家分享您的體驗: 客房、交通位置、設施?"></form:textarea>
+                            <form:textarea cols="30" rows="10" path="content" class="form-control" id="content" name="content" placeholder="跟大家分享您的體驗: 食物、交通位置、服務?"></form:textarea>
                         </div>
 
                         <div class="form-group">
                             <label for="tips" class="sr-only-focusable">分享客房建議給其他旅客</label>
-                            <form:input path="roomTips" type="text" class="form-control" id="tips" name="tips" placeholder="例如:最佳景觀、較安靜的樓層、無障礙等等。" />
+                            <form:input path="roomTips" type="text" class="form-control" id="tips" name="tips" placeholder="例如:最佳景觀、人少時段、無障礙等等。" />
                         </div>
 
 
@@ -120,7 +120,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="sr-only-focusable">你對此飯店的服務</label>
+                            <label class="sr-only-focusable">你對此餐廳的服務</label>
                             <p>
                                 <img id="sR1" src="/startrip/assets/images/review/star.gif" width="10%" />
                                 <img id="sR2" src="/startrip/assets/images/review/star.gif" width="10%" />
@@ -131,7 +131,7 @@
 
                         </div>
                         <div class="form-group">
-                            <label class="sr-only-focusable">你對此飯店的清潔與衛生</label>
+                            <label class="sr-only-focusable">你對此餐廳的清潔與衛生</label>
                             <p>
                                 <img id="vR1" src="/startrip/assets/images/review/star.gif" width="10%" />
                                 <img id="vR2" src="/startrip/assets/images/review/star.gif" width="10%" />
@@ -142,7 +142,7 @@
 
                         </div>
                         <div class="form-group">
-                            <label class="sr-only-focusable">你對此飯店的睡眠品質</label>
+                            <label class="sr-only-focusable">你對此餐廳的餐點美味</label>
                             <p>
                                 <img id="rR1" src="/startrip/assets/images/review/star.gif" width="10%" />
                                 <img id="rR2" src="/startrip/assets/images/review/star.gif" width="10%" />
