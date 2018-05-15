@@ -448,7 +448,7 @@
 		</c:forEach>
 
 	</div>
-
+	<!-- 訊息聊天框  -->
 	<div style="float:right">
 
 		<button class="btn btn-secondary" type="button" id="dropdownMessageButton" onclick="slideFrame()">
@@ -549,24 +549,13 @@
 
 
 
-	<footer class="probootstrap_section probootstrap-border-top">
-		<div class="row pt-5">
-			<div class="col-md-12 text-center">
-				<p class="probootstrap_font-14">
-					&copy; 2017. All Rights Reserved.
-					<br> Designed &amp; Developed by
-					<a href="https://probootstrap.com/" target="_blank">ProBootstrap</a>
-					<small> (Don't remove credit link on this footer. See
-						<a href="https://probootstrap.com/license/">license</a>)
-					</small>
-				</p>
-				<p class="probootstrap_font-14">
-					Demo Images:
-					<a href="https://unsplash.com/" target="_blank">Unsplash</a>
-				</p>
-			</div>
-		</div>
-	</footer>
+	<div>
+		<jsp:include page="/WEB-INF/views/footer.jsp" flush="true" />
+	</div>
+	<div>
+		<jsp:include page="/WEB-INF/views/member/login.jsp" flush="true" />
+	</div>
+	<!-- END footer -->
 
 
 	<script src="/startrip/assets/js/jquery.min.js"></script>
