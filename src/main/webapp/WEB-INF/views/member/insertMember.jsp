@@ -87,7 +87,7 @@
 
 			<form:form method="post" modelAttribute="MemberBean"
 				class="probootstrap-form probootstrap-form-box mb60"
-				enctype="multipart/form-data">
+				enctype="multipart/form-data" id="insertform">
 
 				<H2 class="display-4 border-bottom probootstrap-section-heading"
 					style="text-align: center">Sign Up</H2>
@@ -149,10 +149,11 @@
 								id="progressbarTWInput" name="mAvatar"
 								accept="image/gif, image/jpeg, image/png" style="display: none;" />
 						</div>
+
 						<div class="form-group">
-							<input type="submit" class="btn btn-primary" id="submit"
-								name="submit" value="Sign Up"
-								style='position: absolute; right: 0;'>
+							<input type="button" id="hahaha" class="btn btn-primary"
+								id="hahaha" style='position: absolute; right: 0;'
+								value="Sign Up">
 						</div>
 
 					</div>
@@ -160,6 +161,23 @@
 			</form:form>
 		</div>
 
+		<div class="modal fade" id="chmodel" tabindex="-1" role="dialog"
+			aria-labelledby="exampleModalCenterTitle" aria-hidden="true"
+			data-backdrop="static" data-keyboard="false">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLongTitle">Star Trip</h5>
+					</div>
+					<div class="modal-body" style="text-align: center">成功加入會員
+						，請登入繼續使用</div>
+					<div class="modal-footer">
+						<button type="button"
+								class="btn btn-primary" id="backbutton">回首頁</button>
+					</div>
+				</div>
+			</div>
+		</div>
 	</section>
 	<!-- END section -->
 	<div><jsp:include page="/WEB-INF/views/member/login.jsp"
@@ -199,24 +217,25 @@
 		}
 	</script>
 	<script>
-		$(document).ready(function() {
-			checkUserName();
-		});
-		$(function() {
-			$("#phone").blur(function() {
-
-				if ($('#phone').val().match(/^09[0-9]{8}$/)) {
-					$("#err").html("")
-				} else {
-					$("#err").html("<font color=\'red\'>請輸入正確的手機</font> ");
-				}
+		$(function insertform() {
+			$("#backbutton").click(function() {
+				$("#insertform").submit();
+ 			
 			})
 		});
 
-		$(function() {
-			$("#mail")
-					.blur(
+		$(function insertform() {
+			$("#hahaha")
+					.click(
 							function() {
+
+								if ($('#phone').val().match(/^09[0-9]{8}$/)) {
+									$("#err").html("");
+								} else {
+									$("#err")
+											.html(
+													"<font color=\'red\'>請輸入正確的手機</font> ");
+								}
 								var ajaxdata = {
 									mail : $('#mail').val()
 								}
@@ -230,27 +249,50 @@
 											"<font color=\'red\'>請輸入帳號</font>");
 								} else if (aa1 != null || aa2 != null
 										|| aa3 != null) {
-									$.ajax({
-										url : "/startrip/checkid",
-										type : "GET",
-										data : ajaxdata,
-										success : function(responseText,
-												textStatus) {
+									$
+											.ajax({
+												url : "/startrip/checkid",
+												type : "GET",
+												data : ajaxdata,
+												success : function(
+														responseText,
+														textStatus) {
+													if (responseText == 0
+															&& $('#phone')
+																	.val()
+																	.match(
+																			/^09[0-9]{8}$/)) {
+														$("#tips")
+																.html(
+																		"<font color=\"green\">恭喜，此帳號可以使用！</font>")
+														$("#chmodel").modal({
+															show : true
+														});
 
-											$("#tips").html(responseText);
+													} else if (responseText == 1) {
+														$("#tips")
+																.html(
+																		"<font color=\"red\">帳號已存在，請重新輸入！</font>");
+													} else if (responseText == 0) {
+														$("#tips")
+																.html(
+																		"<font color=\"green\">恭喜，此帳號可以使用！</font>")
+													}
 
-										},
-										error : function() {
-											alert("error");
-										}
-									});
+												},
+												error : function() {
+													alert("error");
+												}
+											});
 								} else {
 									$("#tips")
 											.html(
 													" <font color=\'red\'>信箱格式不正確  請使用Google，Yahoo或者outlook信箱</font> ");
 								}
-							});
+
+							})
 		});
 	</script>
+
 </body>
 </html>

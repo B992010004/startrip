@@ -15,10 +15,7 @@
 	 <script
 	src="http://code.jquery.com/jquery-1.11.3.min.js"></script> <script
 	src="https://www.google.com/recaptcha/api.js"></script> 
-<!-- 	<script> -->
-// function init() {
-// 	  gapi.load('auth2', function() { // Ready. });
-<!-- 	}</script> -->
+
 <style>
 .errorMsg {
 	text-align: center;
@@ -91,7 +88,7 @@
 						<!-- /.social-auth-links -->
 
 						<p>
-							還沒加入會員嗎? 立即<a href="/startrip/insertMember" class="text-center"
+							還沒加入會員嗎? 立即<a href="/startrip/member/insertMember" class="text-center"
 								style="text-align: right">加入會員</a>
 						</p>
 
