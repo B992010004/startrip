@@ -70,7 +70,7 @@
 
 						<div class="col-md-6">
 							<div class="form-group">
-								<label for="fgpassword">請輸入密碼:</label> <input type="text"
+								<label for="fgpassword">請輸入密碼:</label> <input type="password"
 									class="form-control" name="fgpassword" placeholder="請輸入"
 									id="fgpassword" autofocus="autofocus" required="required" />
 							</div>
@@ -78,7 +78,7 @@
 
 						<div class="col-md-6">
 							<div class="form-group">
-								<input type="text" class="form-control" name="ckmail"
+								<input type="password" class="form-control" name="ckmail"
 									id="ckmail" style="display: none;" value="${change.mail}"></input>
 							</div>
 							<div class="form-group">
