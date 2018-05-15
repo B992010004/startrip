@@ -84,13 +84,6 @@
 		</div>
 	</section>
 
-
-
-
-
-
-
-
 	<div><jsp:include page="/WEB-INF/views/member/login.jsp"
 			flush="true" /></div>
 	<div><jsp:include page="/WEB-INF/views/footer.jsp" flush="true" /></div>
