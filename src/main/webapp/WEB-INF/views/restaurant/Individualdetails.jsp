@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
@@ -184,6 +185,33 @@
 		.btn.active {
 			background-image: none;
 		}
+		
+		.progress-bar {
+/* 	    	margin-top: 10px; */
+ 	    	
+	    }
+	    
+	    .progress-label{
+	    	margin-top: 5px;
+	    	width: 50px; 
+	    }
+	    .travler-rank{
+	    	width: 300px; 
+	    
+	    }
+	    
+	    .review-image{
+	    	 height:120px;
+	    	 margin:5px;
+	    }
+	    
+	     .review-memberphoto {
+            /* 照片圓圈大小倚靠各div的class設定 */
+            
+           	width: 80px;
+           	height: 80px; 
+           	border-radius: 50%;
+        }
 	</style>
 
 </head>
