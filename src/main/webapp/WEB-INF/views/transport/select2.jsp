@@ -168,8 +168,7 @@
            
             var areas=document.querySelectorAll("area.imgbut");
             var areasLen=areas.length;
-            console.log(areas);
-            console.log(areasLen);
+        
             for(var i=0;i<areasLen;i++){
                 areas[i].addEventListener("mouseover",mouseOver);
                 areas[i].addEventListener("mouseout",mouseOut);
@@ -179,11 +178,10 @@
 
      
         function mouseOver() {  
-        	console.log(this.id);    
+            alert(this.id);    
             // document.images[0].src = "images/MapTaipei.gif"; 
             console.log("QQQ");
-            document.images[0].src = "/startrip/assets/transport/images/map/map"+ this.id + ".png"; 
-            console.log("/startrip/assets/transport/images/map/map"+ this.id +".png");
+            document.images[0].src = "/startrip/assets/transport/images/map/map"+ this.id.substr(2) +".png"; 
         }
 
 
@@ -202,35 +200,30 @@
 
 
 	<h1>查詢車站(地圖)</h1>
-	<div style=" width:500px;height:500px;" >
-		<img id="imgMap" alt="" src="/startrip/assets/transport/images/taiwan.png"  usemap="#FPMap0" width="280" height="460" usemap="#Map"  border="0">
+	<div class="map" >
+		<img id="imgMap" alt="" src="/startrip/assets/transport/images/taiwan.png"  usemap="#FPMap0" width="280" height="460" usemap="#Map" id="Image1" border="0">
 		<map id="FPMap0" name="FPMap0">
-			<area class=imgbut shape="rect" coords="201,54,248,76" id=01>
-			<area class=imgbut shape="rect" coords="181,23,228,44" id=02>
-			<area class=imgbut shape="rect" coords="229,28,274,52" id=03>
-			<area class=imgbut shape="rect" coords="122,186,170,208" id=04>
-			<area class=imgbut shape="rect" coords="53,303,100,328" id=05>
-			<area class=imgbut shape="rect" coords="208,99,260,122" id=06>
-			<area class=imgbut shape="rect" coords="176,196,224,215" id=07>
-			<area class=imgbut shape="rect" coords="136,278,185,302" id=08>
-			<area class=imgbut shape="rect" coords="84,335,132,359" id=09>
-			<area class=imgbut shape="rect" coords="54,260,100,283" id=10>
-			<area class=imgbut shape="rect" coords="37,227,86,252" id=11>
-			<area class=imgbut shape="rect" coords="36,193,85,212" id=12>
-			<area class=imgbut shape="rect" coords="69,161,119,185" id=13>
-			<area class=imgbut shape="rect" coords="111,137,160,160" id=14>
-			<area class=imgbut shape="rect" coords="92,104,142,128" id=15>
-			<area class=imgbut shape="rect" coords="155,93,204,114" id=16>
-			<area class=imgbut shape="rect" coords="148,44,197,67" id=17>
+			<area class=imgbut shape="poly" coords="201,54,248,76" id=01>
+			<area class=imgbut shape="poly" coords="181,23,228,44" id=02>
+			<area class=imgbut shape="poly" coords="229,28,274,52" id=03>
+			<area class=imgbut shape="poly" coords="122,186,170,208" id=04>
+			<area class=imgbut shape="poly" coords="53,303,100,328" id=05>
+			<area class=imgbut shape="poly" coords="208,99,260,122" id=06>
+			<area class=imgbut shape="poly" coords="176,196,224,215" id=07>
+			<area class=imgbut shape="poly" coords="136,278,185,302" id=08>
+			<area class=imgbut shape="poly" coords="84,335,132,359" id=09>
+			<area class=imgbut shape="poly" coords="54,260,100,283" id=10>
+			<area class=imgbut shape="poly" coords="37,227,86,252" id=11>
+			<area class=imgbut shape="poly" coords="36,193,85,212" id=12>
+			<area class=imgbut shape="poly" coords="69,161,119,185" id=13>
+			<area class=imgbut shape="poly" coords="111,137,160,160" id=14>
+			<area class=imgbut shape="poly" coords="92,104,142,128" id=15>
+			<area class=imgbut shape="poly" coords="155,93,204,114" id=16>
+			<area class=imgbut shape="poly" coords="148,44,197,67" id=17>
 		</map>
 	</div>
 		</div>
-	
-
-
-
-
-<!-- 	<div id="mapdiv" style="float:left;width:auto;height:auto;"></div>	 -->
+<div id="mapdiv" style="float:left;width:auto;height:auto;"></div>	
 
 
 
@@ -264,6 +257,14 @@
 
 
 
+	<script src="/startrip/assets/js/jquery.min.js"></script>
+	<script src="/startrip/assets/js/popper.min.js"></script>
+	<script src="/startrip/assets/js/bootstrap.min.js"></script>
+	<script src="/startrip/assets/js/owl.carousel.min.js"></script>
+	<script src="/startrip/assets/js/jquery.waypoints.min.js"></script>
+	<script src="/startrip/assets/js/jquery.easing.1.3.js"></script>
+<!-- 	<script src="/startrip/assets/js/select2.min.js"></script> -->
+<!-- 	<script src="/startrip/assets/js/main.js"></script> -->
 
 </body>
 </html>
