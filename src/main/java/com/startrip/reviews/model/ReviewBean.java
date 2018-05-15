@@ -38,7 +38,8 @@ public class ReviewBean implements Serializable {
 
 	// tripType寫死好了
 	private String tripType;
-	private Date stayed;
+	private Date visited;
+
 	private Integer overallRank;
 	private Integer serviceRating;
 	private Integer valueRating;
@@ -157,14 +158,6 @@ public class ReviewBean implements Serializable {
 		this.tripType = tripType;
 	}
 
-	public Date getStayed() {
-		return stayed;
-	}
-
-	public void setStayed(Date stayed) {
-		this.stayed = stayed;
-	}
-
 	public Integer getOverallRank() {
 		return overallRank;
 	}
@@ -237,14 +230,21 @@ public class ReviewBean implements Serializable {
 		this.filePath = filePath;
 	}
 
-	@Override
-	public String toString() {
-		return "Review [no=" + no + ", articleId=" + articleId + ", hotelId=" + hotelId + ", memberId=" + memberId
-				+ ", lastname=" + lastname + ", updateTime=" + updateTime + ", title=" + title + ", content=" + content
-				+ ", tripType=" + tripType + ", stayed=" + stayed + ", overallRank=" + overallRank + ", serviceRating="
-				+ serviceRating + ", valueRating=" + valueRating + ", roomsRating=" + roomsRating + ", roomTips="
-				+ roomTips + ", thumbCount=" + thumbCount + ", photoPath=" + photoPaths + ", videoPath=" + videoPath
-				+ ", filePath=" + filePath + "]";
+	public Date getVisited() {
+		return visited;
+	}
+	
+	public void setVisited(Date visited) {
+		this.visited = visited;
 	}
 
+	@Override
+	public String toString() {
+		return "ReviewBean [no=" + no + ", articleId=" + articleId + ", hotelId=" + hotelId + ", memberId=" + memberId
+				+ ", lastname=" + lastname + ", updateTime=" + updateTime + ", title=" + title + ", content=" + content
+				+ ", tripType=" + tripType + ", visited=" + visited + ", overallRank=" + overallRank
+				+ ", serviceRating=" + serviceRating + ", valueRating=" + valueRating + ", roomsRating=" + roomsRating
+				+ ", roomTips=" + roomTips + ", thumbCount=" + thumbCount + ", photoPaths=" + photoPaths
+				+ ", videoPath=" + videoPath + ", filePath=" + filePath + "]";
+	}
 }

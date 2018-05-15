@@ -118,7 +118,7 @@ public class ReviewController {
 
 		reviewService.addReview(rb);
 		System.out.println("準備return");
-		return "redirect:/Rooms/" + hotelId;
+		return "redirect:/restaurant/" + hotelId;
 	}
 
 	// 處理照片請求

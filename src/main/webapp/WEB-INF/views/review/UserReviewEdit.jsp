@@ -77,7 +77,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="title" class="sr-only-focusable">您的評論標題</label>
-                                    <form:input path="title" type="text" class="form-control" id="title" name="title" placeholder="蓋述你的造訪或有趣的細節" />
+                                    <form:input path="title" type="text" class="form-control" id="title" name="title" placeholder="蓋述你的造訪或強調有趣的細節" />
                                 </div>
                             </div>
                             <!-- <div class="col-md-6">
@@ -90,7 +90,7 @@
 
                         <div class="form-group">
                             <label for="content" class="sr-only-focusable">您的評論內容</label>
-                            <form:textarea cols="30" rows="10" path="content" class="form-control" id="content" name="content" placeholder="跟大家分享您的體驗: 食物、交通位置、服務?"></form:textarea>
+                            <form:textarea cols="30" rows="10" path="content" class="form-control" id="content" name="content" placeholder="跟大家分享您的體驗: 食物、氣氛、服務?"></form:textarea>
                         </div>
 
                         <div class="form-group">
@@ -118,6 +118,11 @@
                                 <form:radiobutton path="tripType" autocomplete="off" value="單獨旅行" class="form-control" /> 單獨旅行
                             </label>
                         </div>
+                        
+<!--                         <div class="form-group"> -->
+<!--                             <label for="visited" class="sr-only-focusable">您的造訪日期是？</label> -->
+<%--                             <form:input path="roomTips" type="text" class="form-control" id="visited" name="visited" placeholder="例如:最佳景觀、人少時段、無障礙等等。" /> --%>
+<!--                         </div> -->
 
                         <div class="form-group">
                             <label class="sr-only-focusable">你對此餐廳的服務</label>
@@ -131,7 +136,7 @@
 
                         </div>
                         <div class="form-group">
-                            <label class="sr-only-focusable">你對此餐廳的清潔與衛生</label>
+                            <label class="sr-only-focusable">你對此餐廳的食物</label>
                             <p>
                                 <img id="vR1" src="/startrip/assets/images/review/star.gif" width="10%" />
                                 <img id="vR2" src="/startrip/assets/images/review/star.gif" width="10%" />
@@ -142,7 +147,7 @@
 
                         </div>
                         <div class="form-group">
-                            <label class="sr-only-focusable">你對此餐廳的餐點美味</label>
+                            <label class="sr-only-focusable">你對此餐廳的划算度</label>
                             <p>
                                 <img id="rR1" src="/startrip/assets/images/review/star.gif" width="10%" />
                                 <img id="rR2" src="/startrip/assets/images/review/star.gif" width="10%" />
