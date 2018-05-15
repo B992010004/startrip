@@ -29,7 +29,7 @@ public class ReviewBean implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer no;
 	private Integer articleId;
-	private Integer hotelId;
+	private Integer restaurantId;
 	private Integer memberId;
 	private String lastname;
 	private Timestamp updateTime;
@@ -102,12 +102,12 @@ public class ReviewBean implements Serializable {
 		this.articleId = articleId;
 	}
 
-	public Integer getHotelId() {
-		return hotelId;
+	public Integer getRestaurantId() {
+		return restaurantId;
 	}
 
-	public void setHotelId(Integer hotelId) {
-		this.hotelId = hotelId;
+	public void setRestaurantId(Integer restaurantId) {
+		this.restaurantId = restaurantId;
 	}
 
 	public Integer getMemberId() {
@@ -240,7 +240,7 @@ public class ReviewBean implements Serializable {
 
 	@Override
 	public String toString() {
-		return "ReviewBean [no=" + no + ", articleId=" + articleId + ", hotelId=" + hotelId + ", memberId=" + memberId
+		return "ReviewBean [no=" + no + ", articleId=" + articleId + ", restaurantId=" + restaurantId + ", memberId=" + memberId
 				+ ", lastname=" + lastname + ", updateTime=" + updateTime + ", title=" + title + ", content=" + content
 				+ ", tripType=" + tripType + ", visited=" + visited + ", overallRank=" + overallRank
 				+ ", serviceRating=" + serviceRating + ", valueRating=" + valueRating + ", roomsRating=" + roomsRating

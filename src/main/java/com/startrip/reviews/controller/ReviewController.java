@@ -5,6 +5,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
@@ -12,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.http.CacheControl;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -20,6 +24,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,14 +58,15 @@ public class ReviewController {
 	// 照片存本地
 	// 檔名存資料庫
 	@RequestMapping(value = "/review/UserReviewEdit/{hotelId}", method = RequestMethod.POST)
-	public String processAddNewUserReviewEdit(@PathVariable("hotelId") Integer hotelId,
-			@ModelAttribute("reviewBean") ReviewBean rb, BindingResult result, HttpServletRequest request) {
+	public String processAddNewUserReviewEdit(@PathVariable("hotelId") Integer restaurantId,
+			@ModelAttribute("reviewBean") ReviewBean rb, BindingResult result, HttpServletRequest requset) throws ParseException {
 		// String[] suppressedFields = result.getSuppressedFields();
 		// if (suppressedFields.length > 0) {
 		// throw new RuntimeException("嘗試傳入不允許的欄位: " +
 		// StringUtils.arrayToCommaDelimitedString(suppressedFields));
 		// }
-		rb.setHotelId(hotelId);
+		
+		rb.setRestaurantId(restaurantId);
 		String fileurl = "";
 		StringBuffer fileNameBuffer = new StringBuffer();
 		MultipartFile[] avatas = rb.getMultipartFiles();
@@ -115,10 +122,12 @@ public class ReviewController {
 		// throw new RuntimeException("檔案上傳發生異常: " + e.getMessage());
 		// }
 		// }
-
+		
+		//不知道為什麼無法使用自動注入
+		rb.setVisited(Date.valueOf(requset.getParameter("visited")));		
 		reviewService.addReview(rb);
 		System.out.println("準備return");
-		return "redirect:/restaurant/" + hotelId;
+		return "redirect:/restaurant/" + restaurantId;
 	}
 
 	// 處理照片請求
@@ -149,6 +158,13 @@ public class ReviewController {
 		ResponseEntity<byte[]> responseEntity = new ResponseEntity<>(media, headers, HttpStatus.OK);
 
 		return responseEntity;
+	}
+
+	@InitBinder
+	protected void initBinder(WebDataBinder binder) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM");
+		dateFormat.setLenient(false); // true 它會自動幫你「減」一個月
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));// 第二个参数是控制是否支持传入的值是空，这个值很关键，如果指定为false，那么如果前台没有传值的话就会报错
 	}
 
 	private boolean isImage(MultipartFile file) {

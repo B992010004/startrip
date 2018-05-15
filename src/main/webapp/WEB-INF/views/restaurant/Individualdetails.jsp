@@ -212,6 +212,11 @@
            	height: 80px; 
            	border-radius: 50%;
         }
+        ul li
+        {
+        list-style-type:none;
+        }
+        
 	</style>
 
 </head>
@@ -412,12 +417,22 @@
 			</div>
 
 			<!-- 旅客類型 -->
-			<p class="col-md-3">旅客類型</p>
-			<!-- 旅客類型 -->
-
+			<label class="sr-only-focusable">旅客類型</label>
+				<ul>
+					<li><input type="checkbox" />家庭出遊</li>
+					<li><input type="checkbox" />伴侶旅行</li>
+					<li><input type="checkbox" />單獨旅行</li>
+					<li><input type="checkbox" />商務出差</li>
+					<li><input type="checkbox" />好友旅行</li>				
+				</ul>
 			<!-- 月份 -->
-			<p class="col-md-3">月份</p>
-			<!-- 月份 -->
+			<label class="sr-only-focusable">月份</label>
+				<ul>
+					<li><input type="checkbox" />3 月到 5 月</li>
+					<li><input type="checkbox" />6 月到 8 月</li>
+					<li><input type="checkbox" />9 月到 11 月</li>
+					<li><input type="checkbox" />12 月到 2 月</li>				
+				</ul>			
 		</div>
 
 
