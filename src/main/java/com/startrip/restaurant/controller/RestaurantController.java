@@ -69,7 +69,7 @@ public class RestaurantController {
 
 		// review
 		// 評等
-		List<Long> ranks = reviewService.getRankByHotelId(restaurantId);
+		List<Long> ranks = reviewService.getRankByRestaurantId(restaurantId);
 		Integer rankSize = 0;
 		for (Long rank : ranks) {
 			Integer tmp = rank.intValue();
@@ -82,7 +82,7 @@ public class RestaurantController {
 		model.addAttribute("rankSize", rankSize);
 		model.addAttribute("ranks", ranks);
 		// 評論bean
-		List<ReviewBean> reviews = reviewService.getReviewsByHotelId(restaurantId);
+		List<ReviewBean> reviews = reviewService.getReviewsByRestaurantId(restaurantId);
 		model.addAttribute("reviews", reviews);
 
 		return "/restaurant/Individualdetails";
