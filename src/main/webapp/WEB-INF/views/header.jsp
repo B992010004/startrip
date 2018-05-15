@@ -28,7 +28,7 @@
 					<li class="nav-item"><a class="nav-link"
 						href="/startrip/TravelMain">行程規劃</a></li>
 					<li class="nav-item"><a class="nav-link"														
-						href="/startrip/review/UserReviewEdit/1">寫評論</a></li>	
+						href="/startrip/restaurant/1">個別餐廳</a></li>	
 						
 					<c:if test="${not empty LoginOK}">
 					<li class="nav-item"><a class="nav-link"														

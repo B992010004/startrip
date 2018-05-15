@@ -58,6 +58,7 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 		//-------------------------------------------------
 	}
 
+	//使用Jakarta Commons FileUpload
 	@Bean
 	public CommonsMultipartResolver multipartResolver() {
 		CommonsMultipartResolver resolver = new CommonsMultipartResolver();
