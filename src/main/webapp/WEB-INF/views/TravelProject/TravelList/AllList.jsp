@@ -32,7 +32,9 @@
 <!-- <link rel="stylesheet" href="/startrip/assets/Travel/css/lightbox.css"> -->
 </head>
 <body> 
-
+<c:if test="${ empty LoginOK }">
+			<a class="nav-link" href="" data-toggle="modal" data-target=".bd-example-modal-lg">登入</a>
+	</c:if>
 	<div class="nav" >
 		<jsp:include page="/WEB-INF/views/header.jsp" flush="true" />
 	</div>
@@ -286,7 +288,7 @@ $('#insertday').on('click',function(){
 })
 //查詢景點相關資訊
 $(document).on('click','.card-img-top',function(e){
-	console.log(e.target.id)
+// 	console.log(e.target.id)
 	var viewName=$('#'+e.target.id).parent().prev().text();
 	var mail = "${LoginOK.mail}";
 	var travelId="${Travel.travelId}"
@@ -297,9 +299,9 @@ $(document).on('click','.card-img-top',function(e){
 		body.css("display","block")
 		body.find('h5').text(data.view.viewName);
 // 		body.find('img').attr('src',imgName);
-		var Name= $('<li class="list-group-item">'+data.view.viewaddr+'</li>');
-		var phone = $('<li class="list-group-item">'+data.view.viewPhone+'</li>');
-		var orgclass = $('<li class="list-group-item">'+data.view.orgclass+'</li>');
+		var Name= $('<li class="list-group-item">景點名稱:'+data.view.viewaddr+'</li>');
+		var phone = $('<li class="list-group-item">電話:'+data.view.viewPhone+'</li>');
+		var orgclass = $('<li class="list-group-item">類型'+data.view.orgclass+'</li>');
 		var btn = $('<button id="insertList" type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addList" >加入行程</button>');
 		var imgrow = $('<div class="checkview row"></div>');
 		var daysrow = $('<div class="checkview row"></div>');
@@ -384,9 +386,6 @@ $(document).on('click','#checklist',function(){
 		contentType: "application/json; charset=utf-8",
 		success:function(data){
 			searchList();
-			
-				$("#model").model('hide');
-			
 		}
 	})
 })
@@ -423,7 +422,7 @@ function searchDays(){
 // 	        </div>
 			$('#tripcontext').empty();
 			var travelNmae = $("<h3 id='travelName'>"+data.Name.travelName+"</h3>");
-			var col =$("<div class='timestyle col-3'></div>");
+			var col =$("<div class='timestyle col-4'></div>");
 			var starttime = $('<span id ="startDate" class="time contex">'+data.startDate+'</span>')
 			var line=$("<div style='margin-left:25px;'>|</div>");
 			var endtime=$("<span id='endDate'  class='time contex'>"+data.endDate+"</span>")
@@ -480,7 +479,7 @@ function searchList(){
 			console.log(len)
 			for(var i = 0;i<len;i++){
 				var right=$('<div class="container1 right"  id="dayTile'+i+'"> </div>')
-				var content = $('<div class="content"></div>')
+				var content = $('<div class="content"><div class="closelist" id="closelist'+(i+1)+'" ></div></div>')
 				var title = $('<h3 class="listtitle">'+data[i].viewName+'</h3>');
 				var start = $('<div class="start">'+data[i].startTime+'</div>');
 				var end = $('<div class="end">'+data[i].endTime+'</div>');
@@ -570,31 +569,39 @@ function searchView(){
         // parameter when you first load the API. For example:
         // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
       
-        var map;
-        var infowindow;
   //所在位置--------------------------------
-        
 
   //------------------------------------
         // var InputName=document.getElementById('view');//由input輸出
-      
+        
       
       function initMap() {
-   
-
-      var pyrmont = {lat:25.0368706, lng: 121.543766};
-      //建立Map,資訊視窗,服務
-      map = new google.maps.Map(document.getElementById('map'), {
-      center: pyrmont,
-      zoom: 15
-       });
-      infowindow = new google.maps.InfoWindow();
-      service = new google.maps.places.PlacesService(map);
-  
-      var marker = new google.maps.Marker({
+        var pyrmont = new google.maps.LatLng(25.0337409,121.5416216);
+    	  var map;
+          var infowindow;
+          var icon = {
+                url: '/startrip/assets/Travel/img/local.ico',
+                size: new google.maps.Size(90, 90),
+                //mark位置
+//                 origin: new google.maps.Point(0, 4),
+                anchor: new google.maps.Point(-0, 80),
+                scaledSize: new google.maps.Size(90, 90)
+              };
+     
+	      map = new google.maps.Map(document.getElementById('map'), {
+	      center: pyrmont,
+	      zoom: 10
+	       });
+  		
+       marker = new google.maps.Marker({
           position: pyrmont,
           map: map,
-          title: '資策會'})
+          title: '資策會',
+          icon: icon,
+      })
+       marker.setMap(map);
+      infowindow = new google.maps.InfoWindow();
+      service = new google.maps.places.PlacesService(map);
        
     
   //服務搜尋promont 範圍50000----------------------------------------------------
@@ -637,14 +644,7 @@ function searchView(){
               console.log("Returned place contains no geometry");
               return;
             }
-            var icon = {
-              url: place.icon,
-              size: new google.maps.Size(71, 71),
-              //mark位置
-              origin: new google.maps.Point(-25, 0),
-              anchor: new google.maps.Point(17, 34),
-              scaledSize: new google.maps.Size(25, 25)
-            };
+           
 
             // Create a marker for each place.
           
@@ -653,16 +653,51 @@ function searchView(){
                 map: map,
                 icon: icon,
                 title: place.name,
-                position: place.geometry.location
+                position: place.geometry.location,
+                animation: google.maps.Animation.DROP
               }));
           google.maps.event.addListener(markers[index], 'click', function() {
-                    infowindow.setContent('<div><strong>' + place.name + '</strong><br>' 
-                  + place.formatted_phone_number+'<br>'
-                  +place.rating +'<br>'
-                  +place.website  +'<br>'
-                  + place.formatted_address + '</div>'
-                  +"<img src="+place.photos[0].getUrl({'maxWidth': 100, 'maxHeight': 100})+'>');
-                    infowindow.open(map, this);
+        	  
+        	var body=$('.viewDetail');
+      		var li = body.find('ul');
+      		body.css("display","block")
+      		body.find('h5').text(place.name)
+        	body.find('img').attr('src',place.photos[0].getUrl({'maxWidth': 100, 'maxHeight': 100}));
+      		
+        	var Name= $('<li class="list-group-item">景點評分:'+place.rating +'</li>');
+      		var phone = $('<li class="list-group-item">電話:'+place.formatted_phone_number+'</li>');
+      		var website = $('<li class="list-group-item">網址:'+place.website+'</li>');
+      		var address = $('<li class="list-group-item">地址:'+place.formatted_address+'</li>');
+      		var btn = $('<button id="insertList" type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addList" >加入行程</button>');
+      		var imgrow = $('<div class="checkview row"></div>');
+    		var daysrow = $('<div class="checkview row"></div>');
+    		var imgs=$('<div class="list-group-item col-3" id="food" src="/startrip/assets/Travel/img/food.png"></div><div id="shop" class="list-group-item col-3" src="/startrip/assets/Travel/img/shop.png"></div><div id="travel" class="list-group-item col-3" src="/startrip/assets/Travel/img/mountain.png"></div><div id="rest" class="list-group-item col-3" src="/startrip/assets/Travel/img/zzz.png"><div><hr>');
+    		var docFrag = $(document.createDocumentFragment());
+    		for(var i =1;i<=${list.travelDays};i++){
+    			
+    		var selectday=$('<div class="circle col-2" id="chioceday'+i+'">'+i+'</div>')
+    		docFrag.append(selectday);
+    		}
+    		li.empty();
+    		li.append(Name);
+    		$('#viewName').val(place.name)
+    		li.append(phone);
+    		 
+    		li.append(website);
+    		li.append(address)
+    		li.append(btn);
+    		
+    		imgrow.append(imgs);
+    		$('#type').html(imgrow)
+    		daysrow.append(docFrag);
+    		$('#days').html(daysrow); 
+//               infowindow.setContent('<div><strong>' + place.name + '</strong><br>' 
+//                   + place.formatted_phone_number+'<br>'
+//                   +place.rating +'<br>'
+//                   +place.website  +'<br>'
+//                   + place.formatted_address + '</div>'
+//                   +"<img src="+place.photos[0].getUrl({'maxWidth': 100, 'maxHeight': 100})+'>');
+//                     infowindow.open(map, this);
               });
 
 

@@ -537,7 +537,14 @@ blockquote {
     padding:40px 30px;
 }
 
-
+.closelist{
+	background-image:url("/startrip/assets/Travel/img/close.png");
+	background-size: 1em;
+	height: 16px;
+    float: right;
+    width: 16px;
+   
+}
 
 
 

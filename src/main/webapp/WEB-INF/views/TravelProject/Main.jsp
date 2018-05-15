@@ -36,8 +36,8 @@
 		<jsp:include page="/WEB-INF/views/header.jsp" flush="true" />
 	</div>
 	<c:if test="${ empty LoginOK }">
-							<a class="nav-link" href="" data-toggle="modal" data-target=".bd-example-modal-lg">登入</a>
-						</c:if>
+			<a class="nav-link" href="" data-toggle="modal" data-target=".bd-example-modal-lg">登入</a>
+	</c:if>
 	
 	 <section class="probootstrap_section bg-dark" id="section-contact">
         

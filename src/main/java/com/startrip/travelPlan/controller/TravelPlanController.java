@@ -158,11 +158,13 @@ public class TravelPlanController {
 		MemberBean mb = memberservice.select(mail);
 		Integer memberId =mb.getMemberid();
 		TravelAllBean tb = travelservice.Select_Travel(memberId,travelId);
-		
+		HttpSession session = request.getSession();
+		session.setAttribute("list", tb);
 		HashMap<String, Object> result = new HashMap<>();
 		result.put("Name", tb);
 		result.put("startDate", tb.getStartDate().toString());
 		result.put("endDate", tb.getEndDate().toString());
+		
 		return result;
 	}
 	@RequestMapping(value="travel/update",method=RequestMethod.GET)
