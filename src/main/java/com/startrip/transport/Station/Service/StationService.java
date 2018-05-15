@@ -1,6 +1,6 @@
 package com.startrip.transport.Station.Service;
 
-import java.sql.Blob;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +24,9 @@ public class StationService implements StationServiceInterface{
 	
 	@Transactional
 	@Override
-	public void update(String area, String stationName) {
+	public void update(String area, String stationName,String Address) {
 		
-		stationDAO.update(area,stationName);
+		stationDAO.update(area,stationName,Address);
 	}
 	
 	@Transactional

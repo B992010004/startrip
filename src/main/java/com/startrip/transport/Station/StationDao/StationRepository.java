@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.startrip.transport.Station.StationInterface.StationRepositoryInterface;
 import com.startrip.transport.Station.StationModle.StationBean;
 
+
 @Repository
 public class StationRepository implements StationRepositoryInterface{
 	@Autowired
@@ -56,7 +57,7 @@ public class StationRepository implements StationRepositoryInterface{
 	
 	
 	@Override
-	public void update(String area, String stationName) {
+	public void update(String area, String stationName,String Address) {
 //		String hql = "update StationBean set   password=:password address=:address phone=:phone birthday=:birthday username=:username avatar=:avatar photo=:photo  where mail =:mail";
 //		Session session = factory.getCurrentSession();
 //		session.createQuery(hql).setParameter("mail", mail).setParameter("password", password)

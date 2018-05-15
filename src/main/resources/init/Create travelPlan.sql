@@ -53,8 +53,7 @@ CREATE TABLE TravelList(
 	startTime varchar(255) NULL,
 	travelType varchar(255) NULL,
 	tripday int NOT NULL,
-	state int not null,
-UNIQUE(	travelId,	viewId ))
+	state int not null)
 
 go
 insert into TravelList (tripday,startTime,endTime,viewId,travelId ,travelType,state)

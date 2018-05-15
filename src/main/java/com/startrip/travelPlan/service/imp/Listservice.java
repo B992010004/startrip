@@ -27,8 +27,9 @@ public class Listservice implements ITravelListService {
 	}
 	@Transactional
 	@Override
-	public void insert(TravelListBean bean) {
-
+	public Integer insert(TravelListBean bean) {
+		Integer pk = listDao.insert(bean);
+		return pk;
 	}
 	@Transactional
 	@Override

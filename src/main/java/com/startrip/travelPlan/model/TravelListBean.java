@@ -5,6 +5,8 @@ import java.sql.Time;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.Table;
@@ -13,11 +15,12 @@ import javax.persistence.Table;
 @Table(name="TravelList")
 public class TravelListBean {
 	
+	
 	@Override
 	public String toString() {
 		return "TravelListBean [viewName=" + viewName + ", StartTime=" + StartTime + ", endTime=" + endTime
 				+ ", travelType=" + travelType + ", travelName=" + travelName + ", listId=" + listId + ", travelId="
-				+ travelId + ", viewid=" + viewid + ", tripday=" + tripday + "]";
+				+ travelId + ", viewid=" + viewid + ", tripday=" + tripday + ", state=" + state + "]";
 	}
 	private String viewName;
 	private String  StartTime;
@@ -27,31 +30,35 @@ public class TravelListBean {
 	private Integer listId;
 	
 
-	private int travelId;
+	private Integer travelId;
 	
 	
-	private int viewid;
+	private Integer viewid;
 	
-	private int tripday;
-	
+	private Integer tripday;
+	private Integer state;
 	
 	
 	
 	public TravelListBean() {
 		
 	}
-	public TravelListBean(String viewName, String startTime, String endTime, String tripType, String tripname, int travelId,
-			int tripday, int viewid) {
 	
+	public TravelListBean(String viewName, String startTime, String endTime, String travelType, String travelName,
+			Integer listId, Integer travelId, Integer viewid, Integer tripday, Integer state) {
+		super();
 		this.viewName = viewName;
 		this.StartTime = startTime;
 		this.endTime = endTime;
-		this.travelType = tripType;
-		this.travelName = tripname;
-		this.tripday = tripday;
+		this.travelType = travelType;
+		this.travelName = travelName;
+		this.listId = listId;
 		this.travelId = travelId;
 		this.viewid = viewid;
+		this.tripday = tripday;
+		this.state = state;
 	}
+
 	public String getViewName() {
 		return viewName;
 	}
@@ -83,32 +90,40 @@ public class TravelListBean {
 		this.travelName = travelName;
 	}
 
-	public int getTravelId() {
+	
+	public Integer getTravelId() {
 		return travelId;
 	}
-	public void setTravelId(int travelId) {
+	public void setTravelId(Integer travelId) {
 		this.travelId = travelId;
 	}
-
-	public int getViewid() {
+	public Integer getViewid() {
 		return viewid;
 	}
-	public void setViewid(int viewid) {
+	public void setViewid(Integer viewid) {
 		this.viewid = viewid;
 	}
-	public int getTripday() {
+	public Integer getTripday() {
 		return tripday;
 	}
-	public void setTripday(int tripday) {
+	public void setTripday(Integer tripday) {
 		this.tripday = tripday;
 	}
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Integer getListId() {
 		return listId;
 	}
 	public void setListId(Integer listId) {
 		this.listId = listId;
 	}
+	public Integer getState() {
+		return state;
+	}
+	public void setState(Integer state) {
+		this.state = state;
+	}
+	
 
 	
 	

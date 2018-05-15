@@ -1,6 +1,6 @@
 package com.startrip.transport.Station.Service;
 
-import java.sql.Blob;
+
 import java.util.List;
 
 
@@ -10,7 +10,7 @@ public interface StationServiceInterface {
 
 	List<StationBean> select();
 	
-	void update(String area, String stationName);
+	void update(String area, String stationName,String Address);
 
 	void insert(StationBean bean);
 

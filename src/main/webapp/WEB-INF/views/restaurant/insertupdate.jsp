@@ -110,9 +110,7 @@
 			<div class="bigheadline1">
 				<h1 class="headline1">所有餐廳資料</h1>
 			</div>
-			<input type="submit"
-				value="所&nbsp;&nbsp;&nbsp;&nbsp;有&nbsp;&nbsp;&nbsp;&nbsp;餐&nbsp;&nbsp;&nbsp;&nbsp;廳&nbsp;&nbsp;&nbsp;&nbsp;資&nbsp;&nbsp;&nbsp;&nbsp;料"
-				class="btn btn-primary btn-block">
+				<a href="/startrip/Individualdetailsmodify" class="btn btn-primary btn-block">所&nbsp;&nbsp;&nbsp;&nbsp;有&nbsp;&nbsp;&nbsp;&nbsp;餐&nbsp;&nbsp;&nbsp;&nbsp;廳&nbsp;&nbsp;&nbsp;&nbsp;資&nbsp;&nbsp;&nbsp;&nbsp;料</a>
 		</div>
 		<div class="intermediate">
 			<div class="container">
@@ -240,19 +238,31 @@
 							for="id_label_single" style="width: 100%;"> <form:select
 								path="rtArea" class="js-states form-control"
 								id="id_label_single" style="width: 100%;">
-								<form:option value="高級餐廳">高級餐廳</form:option>
+								<form:option value="花蓮市">花蓮市</form:option>
+								<form:option value="鳳林鎮">玉里鎮</form:option>
+								<form:option value="鳳林鎮">鳳林鎮</form:option>
+								<form:option value="新城鄉">新城鄉</form:option>
+								<form:option value="吉安鄉">吉安鄉</form:option>
+								<form:option value="壽豐鄉">壽豐鄉</form:option>
+								<form:option value="光復鄉">光復鄉</form:option>
+								<form:option value="豐濱鄉">豐濱鄉</form:option>
+								<form:option value="瑞穗鄉">瑞穗鄉</form:option>
+								<form:option value="富里鄉">富里鄉</form:option>
+								<form:option value="秀林鄉">秀林鄉</form:option>
+								<form:option value="萬榮鄉">萬榮鄉</form:option>
+								<form:option value="卓溪鄉">卓溪鄉</form:option>
 							</form:select>
 						</label>
 
 						<!-- -------圖片------------------------------------------------------------- -->
 
-<!-- 						<div> -->
-<!-- 							<label class="btn btn-primary" for="files">上傳相片</label> -->
-<!-- 							<input path="rtImage" type="file" class="form-control-file" -->
-<!-- 								id="files" name="files" value="Send Review" multiple="multiple" -->
-<!-- 								style="display: none;" accept="image/*" onchange="fileViewer()" /> -->
-<!-- 						</div> -->
-<!-- 						<div id="dropZone"></div> -->
+						<!-- 						<div> -->
+						<!-- 							<label class="btn btn-primary" for="files">上傳相片</label> -->
+						<!-- 							<input path="rtImage" type="file" class="form-control-file" -->
+						<!-- 								id="files" name="files" value="Send Review" multiple="multiple" -->
+						<!-- 								style="display: none;" accept="image/*" onchange="fileViewer()" /> -->
+						<!-- 						</div> -->
+						<!-- 						<div id="dropZone"></div> -->
 
 						<!-- -------圖片------------------------------------------------------------- -->
 

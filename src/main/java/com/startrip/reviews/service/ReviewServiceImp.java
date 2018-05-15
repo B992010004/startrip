@@ -24,8 +24,8 @@ public class ReviewServiceImp implements ReviewService {
 
 	@Transactional
 	@Override
-	public List<ReviewBean> getReviewsByHotelId(int restaurantId) {
-		return reviewRepositoryImp.getReviewsByHotelId(restaurantId);
+	public List<ReviewBean> getReviewsByRestaurantId(int restaurantId) {
+		return reviewRepositoryImp.getReviewsByRestaurantId(restaurantId);
 	}
 
 	@Transactional
@@ -44,8 +44,8 @@ public class ReviewServiceImp implements ReviewService {
 
 	@Transactional
 	@Override
-	public List<Long> getRankByHotelId(int restaurantId) {
-		return reviewRepositoryImp.getRankByHotelId(restaurantId);
+	public List<Long> getRankByRestaurantId(int restaurantId) {
+		return reviewRepositoryImp.getRankByRestaurantId(restaurantId);
 	}
 
 }
