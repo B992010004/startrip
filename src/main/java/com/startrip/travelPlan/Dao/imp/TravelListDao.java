@@ -52,11 +52,11 @@ public class TravelListDao implements ITravelListDao  {
 	}
 
 	@Override
-	public void insert(TravelListBean bean) {
+	public Integer insert(TravelListBean bean) {
 		Session session = factory.getCurrentSession();
 		
-		session.save(bean);
-		
+		Integer pk =(int)session.save(bean);
+		return pk;
 	}
 
 	

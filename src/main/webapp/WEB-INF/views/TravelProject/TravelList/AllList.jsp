@@ -172,42 +172,43 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-	<form method='POST' >
-  <div class="modal-body">     
-	<div class="form-group">
-	<label  class="form-control-label" for="formGroupExampleInput">viewName:</label>
-	    <input placeholder="請輸入行程名稱" type="text" id="viewName" class="form-control"/>
-	  
-	</div>
-	
-	<div class="form-group">
-	<label  class="form-control-label" for="formGroupExampleInput">開始時間</label>
-	    <input  placeholder="Selected starttime" type="text" id="starttime" class="form-control"/>
-	  
-	</div>
-	
-	
-	<div class="form-group">
-	<label class="form-control-label" for="formGroupExampleInput">結束時間</label>
-	    <input  placeholder="Selected endtime" type="text" id="endtime" class="form-control"/>
-	  
-	</div>
-	
-	<div class="form-group" id="type">
-	<label  class="form-control-label" for="formGroupExampleInput" >travelType:</label>
-<!-- 	    <input  placeholder="請選擇類型" type="text" id="TravelType" class="form-control"/> -->
-	  
-	</div>	
-	
-	<div class="form-group" id="days">
-	<label  class="form-control-label" for="formGroupExampleInput" >tripday:</label>
-<!-- 	    <input  placeholder="請輸入行程名稱" type="text" id="travelDay" class="form-control"/> -->
-	</div>	
+      
+	<form id="insertlist">
+	  <div class="modal-body">     
+		<div class="form-group">
+		<label  class="form-control-label" for="formGroupExampleInput">viewName:</label>
+		    <input placeholder="請輸入行程名稱" type="text" id="viewName" class="form-control"/>
+		  
+		</div>
+		
+		<div class="form-group">
+		<label  class="form-control-label" for="formGroupExampleInput">開始時間</label>
+		    <input  placeholder="Selected starttime" type="text" id="starttime" class="form-control"/>
+		  
+		</div>
+		
+		
+		<div class="form-group">
+		<label class="form-control-label" for="formGroupExampleInput">結束時間</label>
+		    <input  placeholder="Selected endtime" type="text" id="endtime" class="form-control"/>
+		  
+		</div>
+		
+		<div class="form-group" id="type">
+		<label  class="form-control-label" for="formGroupExampleInput" >travelType:</label>
+		    <input  type="hidden" id="travelType" class="form-control"/>
+		  
+		</div>	
+		
+		<div class="form-group" id="days">
+		<label  class="form-control-label" for="formGroupExampleInput" >tripday:</label>
+		    <input  type="hidden" id="travelDay" class="form-control"/>
+		</div>	
 	</div>
 	<div class="modal-footer">
-  		<button type="submit" class="btn btn-primary">Submit</button>
+  		<button  type="button" id="checklist"  class="btn btn-primary" data-dismiss="modal">加入行程</button>
   	</div>
-  </form>
+	</form>
 		</div>
 	</div>
 </div>
@@ -302,7 +303,7 @@ $(document).on('click','.card-img-top',function(e){
 		var btn = $('<button id="insertList" type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addList" >加入行程</button>');
 		var imgrow = $('<div class="checkview row"></div>');
 		var daysrow = $('<div class="checkview row"></div>');
-		var imgs=$('<div class="orgclass col-3" id="food" src="/startrip/assets/Travel/img/food.png"></div><div id="shop" class="orgclass col-3" src="/startrip/assets/Travel/img/shop.png"></div><div id="travel" class="orgclass col-3" src="/startrip/assets/Travel/img/mountain.png"></div><div id="rest" class="orgclass col-3" src="/startrip/assets/Travel/img/zzz.png"><div><hr>');
+		var imgs=$('<div class="list-group-item col-3" id="food" src="/startrip/assets/Travel/img/food.png"></div><div id="shop" class="list-group-item col-3" src="/startrip/assets/Travel/img/shop.png"></div><div id="travel" class="list-group-item col-3" src="/startrip/assets/Travel/img/mountain.png"></div><div id="rest" class="list-group-item col-3" src="/startrip/assets/Travel/img/zzz.png"><div><hr>');
 		var docFrag = $(document.createDocumentFragment());
 		for(var i =1;i<=data.travel.travelDays;i++){
 			
@@ -311,16 +312,17 @@ $(document).on('click','.card-img-top',function(e){
 		}
 		li.empty();
 		li.append(Name);
+		$('#viewName').val(data.view.viewName)
 		li.append(phone);
+		
 		li.append(orgclass);
+		
 		li.append(btn);
 		
 		imgrow.append(imgs);
-// 		li.append(imgrow);
-		$('#type').append(imgrow)
+		$('#type').html(imgrow)
 		daysrow.append(docFrag);
-// 		li.append(daysrow);
-		$('#days').append(daysrow);
+		$('#days').html(daysrow);
 	})
 	
 })
@@ -337,6 +339,62 @@ $(document).mouseup(function(e){
 	       container.hide(); 
 	    }
 	  })
+	var inputType=$('#travelType');
+$(document).on('click','.list-group-item.col-3',function(e){
+	var all=$('.list-group-item.col-3')
+	all.removeClass('active')
+	var type = $(e.target);
+	
+		type.addClass('active');
+		var listtype =e.target.id
+		inputType.val(listtype)
+		console.log(inputType.val())
+	})
+
+	
+
+	var inputDay = $('#travelDay')
+$(document).on('click','.circle',function(e){
+	var all = $('.circle')
+	all.css({"background-color":"#28b9ff"})
+	
+	var type = $(e.target)
+	type.css({ 'background-color': '#00496c','color':'white'})
+	var day =type.text()
+	inputDay.val(day)
+	console.log(inputDay.val())
+
+})
+
+$(document).on('click','#checklist',function(){
+	var datas={} ;
+	datas.viewName=$('#viewName').val();
+	datas.starttime=$('#starttime').val();
+	datas.endtime=$('#endtime').val();
+	datas.type=inputType.val();
+	datas.day=inputDay.val();
+	datas.travelId='${Travel.travelId}'
+	datas.memberId='${LoginOK.memberid}'
+	
+	$.ajax({
+		url:"/startrip/Travel/add/list",
+		type:"GET",
+		dataType:"json",
+		data:datas,
+		contentType: "application/json; charset=utf-8",
+		success:function(data){
+			searchList();
+			
+				$("#model").model('hide');
+			
+		}
+	})
+})
+
+
+
+
+
 </script>
 <script>
 

@@ -11,7 +11,7 @@ public interface ITravelListDao {
 
 	List<TravelListBean> select();
 
-	void insert(TravelListBean bean);
+	Integer insert(TravelListBean bean);
 
 	void update(TravelListBean bean) throws SQLException;
 
