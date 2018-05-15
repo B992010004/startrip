@@ -48,7 +48,7 @@
 
     <br>
     <br>
-    <a href="http://localhost:8080//startrip/views/transport/stationInput.jsp">手動選位</a>
+    <a href="/startrip/views/transport/stationInput.jsp">手動選位</a>
 
 
 

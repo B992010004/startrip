@@ -296,14 +296,19 @@
 		<div class="form-group">地區&nbsp;:&nbsp;</div>
 		<select path="" class="js-states form-control" id="id_label_single"
 			style="width: 100%;">
-			<option value="1">1</option>
-			<option value="2">2</option>
-			<option value="3">3</option>
-			<option value="4">4</option>
-			<option value="5">5</option>
-			<option value="6">6</option>
-			<option value="7">7</option>
-			<option value="8">8</option>
+			<option value="花蓮市">花蓮市</option>
+			<option value="鳳林鎮">玉里鎮</option>
+			<option value="鳳林鎮">鳳林鎮</option>
+			<option value="新城鄉">新城鄉</option>
+			<option value="吉安鄉">吉安鄉</option>
+			<option value="壽豐鄉">壽豐鄉</option>
+			<option value="光復鄉">光復鄉</option>
+			<option value="豐濱鄉">豐濱鄉</option>
+			<option value="瑞穗鄉">瑞穗鄉</option>
+			<option value="富里鄉">富里鄉</option>
+			<option value="秀林鄉">秀林鄉</option>
+			<option value="萬榮鄉">萬榮鄉</option>
+			<option value="卓溪鄉">卓溪鄉</option>
 		</select> <br>
 		<div class="form-group">菜系類別&nbsp;:&nbsp;</div>
 		<select path="" class="js-states form-control" id="id_label_single"

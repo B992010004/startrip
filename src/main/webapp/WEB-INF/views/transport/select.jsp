@@ -107,6 +107,7 @@
 		</div>
 	</div>
 
+
 	<h2 class="title04">3 營業據點路線列表</h2>
 	<div class="search">
 		<label for="area3" class="">請選擇地區：</label>
@@ -160,7 +161,34 @@
 	</div>
 
 
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    for (var i = 1; i <= 31; i++) {
+        document.getElementById("idimg" + i).addEventListener("mouseover", mouseover);  //事件繫結，滑鼠滑入
+        document.getElementById("idimg" + i).addEventListener("mouseout", mouseout);//事件繫結，滑鼠滑出
+        document.getElementById("idimg" + i).addEventListener("click", click1);   
+        
+    }
+        document.getElementById("random" ).addEventListener("click", getRandom);   
+});
 
+function mouseover() {			
+    this.src = "/startrip/assets/transport/images/setOn.png";
+}
+function mouseout() {
+	this.src = "/startrip/assets/transport/images/setOff.jpg";
+}
+function click1() {
+	this.src = "/startrip/assets/transport/images/setOn.png";
+	 this.innerHTML = '您選的座位為' + this.id.substr(5) + '號';
+     $("#QQ").html("<span>"+'您選的座位為'+this.id.substr(5)+'號'+"</span>");
+}
+function getRandom(){
+	$("#QQ").html("<span>"+'您選的座位為'+Math.floor(Math.random()*31+1)+'號'+"</span>");
+	
+}	
+
+</script>
 
 	<h1>查詢車站(地圖)</h1>
 	<div class="map">
@@ -249,6 +277,7 @@
 			<th>站名編號</th>
 			<th>地區</th>
 			<th>站名</th>
+			<th>車站地址</th>
 		</tr>
 
 		<c:forEach items='${stationList}' var='select'>
@@ -256,6 +285,8 @@
 				<td>${select.stationId}</td>
 				<td>${select.area}</td>
 				<td>${select.stationName}</td>
+				<td>${select.address}</td>
+
 			</tr>
 		</c:forEach>
 	</table>

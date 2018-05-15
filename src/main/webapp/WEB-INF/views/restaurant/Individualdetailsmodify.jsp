@@ -52,35 +52,39 @@
 	bottom: 0;
 }
 
-.active1 {
-	background-color: #00CA4C;
-	text-align: center;
-	font-size: 150%;
+.probootstrap_section {
+	padding-top: 0%;
 }
 
-.list-group {
-	padding-top: 7%;
-	padding-left: 10%;
-	padding-right: 10%;
-	padding-bottom: 5%;
-	color: #000000;
+.portfolio-item {
+	padding-top: 6%;
+	padding-bottom: 2%;
 }
 
-.list-group-item {
-	border-top: 3px #DDDDDD solid;
-	border-left: 3px #DDDDDD solid;
-	border-right: 3px #DDDDDD solid;
+.col-md1 {
+	width: 50%;
+	margin: 0px auto
 }
 
-.col-md {
-	padding-bottom: 5%;
+.bigheadline1 {
+	padding-top: 12%;
+	padding-bottom: 3%;
 	text-align: center;
 }
 
-.padding1{
-	margin-left:5%;
-	margin-right:5%;
+.probootstrap-section-heading {
+	padding: 2%;
+	color: #00CA4C;
 }
+
+.card-text {
+	margin: 0%;
+}
+
+.btn11 {
+	text-align: right;
+}
+
 </style>
 
 </head>
@@ -102,41 +106,275 @@
 	<div class="container">
 
 
-		<ul class="list-group">
-			<li class="list-group-item active1">餐廳名稱</li>
-			<li class="list-group-item">菜系類別&nbsp;:&nbsp;</li>
-			<li class="list-group-item">餐點類別&nbsp;:&nbsp;</li>
-			<li class="list-group-item">地址&nbsp;:&nbsp;</li>
-			<li class="list-group-item">電話&nbsp;:&nbsp;</li>
-			<li class="list-group-item">網址&nbsp;:&nbsp;</li>
-			<li class="list-group-item">價位&nbsp;:&nbsp;</li>
-			<li class="list-group-item">營業時間&nbsp;:&nbsp;</li>
-			<li class="list-group-item">E-mail&nbsp;:&nbsp;</li>
-			<li class="list-group-item">縣市&nbsp;:&nbsp;</li>
-			<li class="list-group-item" style="border-bottom: 3px #DDDDDD solid;">地區&nbsp;:&nbsp;</li>
-		</ul>
-
-		<!-- -------圖片------------------------------------------------------------- -->
-
-		<!-- 						<div> -->
-		<!-- 							<label class="btn btn-primary" for="files">上傳相片</label> -->
-		<!-- 							<input path="rtImage" type="file" class="form-control-file" -->
-		<!-- 								id="files" name="files" value="Send Review" multiple="multiple" -->
-		<!-- 								style="display: none;" accept="image/*" onchange="fileViewer()" /> -->
-		<!-- 						</div> -->
-		<!-- 						<div id="dropZone"></div> -->
-
-		<!-- -------圖片------------------------------------------------------------- -->
-
-		<div class="col-md">
-			<input type="submit"
-				value="修&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;改"
-				class="btn btn-primary padding1"> 
-				<input type="submit"
-				value="刪&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;除"
-				class="btn btn-primary padding1">
+		<div class="col-md1">
+			<div class="bigheadline1">
+				<h2 class="display-4 probootstrap-section-heading">修改餐廳資料</h2>
+			</div>
 		</div>
-		
+
+		<!-- --------------------------------------------------------------------------------------------------- -->
+
+		<div class="row">
+			<div class="col-lg-6 portfolio-item">
+				<div class="card h-100">
+					<a href="#"><img class="card-img-top"
+						src="/startrip/assets/images/01.jpg" alt=""></a>
+					<div class="card-body">
+						<h4 class="card-title">
+							<a href="#">流水號&nbsp;:&nbsp;</a>
+						</h4>
+						<p class="card-text">餐廳名稱&nbsp;:&nbsp;</p>
+						<p class="card-text">菜系類別&nbsp;:&nbsp;</p>
+						<p class="card-text">餐點類別&nbsp;:&nbsp;</p>
+						<p class="card-text">地址&nbsp;:&nbsp;</p>
+						<p class="card-text">電話&nbsp;:&nbsp;</p>
+						<p class="card-text">網址&nbsp;:&nbsp;</p>
+						<p class="card-text">價位&nbsp;:&nbsp;</p>
+						<p class="card-text">營業時間&nbsp;:&nbsp;</p>
+						<p class="card-text">E-mail&nbsp;:&nbsp;</p>
+						<p class="card-text">縣市&nbsp;:&nbsp;</p>
+						<p class="card-text">地區&nbsp;:&nbsp;</p>
+						<div class="btn11">
+							<input type="submit"
+								value="修&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;改"
+								class="btn btn-primary "> <input type="submit"
+								value="刪&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;除"
+								class="btn btn-primary ">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-6 portfolio-item">
+				<div class="card h-100">
+					<a href="#"><img class="card-img-top"
+						src="/startrip/assets/images/01.jpg" alt=""></a>
+					<div class="card-body">
+						<h4 class="card-title">
+							<a href="#">流水號&nbsp;:&nbsp;</a>
+						</h4>
+						<p class="card-text">餐廳名稱&nbsp;:&nbsp;</p>
+						<p class="card-text">菜系類別&nbsp;:&nbsp;</p>
+						<p class="card-text">餐點類別&nbsp;:&nbsp;</p>
+						<p class="card-text">地址&nbsp;:&nbsp;</p>
+						<p class="card-text">電話&nbsp;:&nbsp;</p>
+						<p class="card-text">網址&nbsp;:&nbsp;</p>
+						<p class="card-text">價位&nbsp;:&nbsp;</p>
+						<p class="card-text">營業時間&nbsp;:&nbsp;</p>
+						<p class="card-text">E-mail&nbsp;:&nbsp;</p>
+						<p class="card-text">縣市&nbsp;:&nbsp;</p>
+						<p class="card-text">地區&nbsp;:&nbsp;</p>
+						<div class="btn11">
+							<input type="submit"
+								value="修&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;改"
+								class="btn btn-primary "> <input type="submit"
+								value="刪&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;除"
+								class="btn btn-primary ">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-6 portfolio-item">
+				<div class="card h-100">
+					<a href="#"><img class="card-img-top"
+						src="/startrip/assets/images/01.jpg" alt=""></a>
+					<div class="card-body">
+						<h4 class="card-title">
+							<a href="#">流水號&nbsp;:&nbsp;</a>
+						</h4>
+						<p class="card-text">餐廳名稱&nbsp;:&nbsp;</p>
+						<p class="card-text">菜系類別&nbsp;:&nbsp;</p>
+						<p class="card-text">餐點類別&nbsp;:&nbsp;</p>
+						<p class="card-text">地址&nbsp;:&nbsp;</p>
+						<p class="card-text">電話&nbsp;:&nbsp;</p>
+						<p class="card-text">網址&nbsp;:&nbsp;</p>
+						<p class="card-text">價位&nbsp;:&nbsp;</p>
+						<p class="card-text">營業時間&nbsp;:&nbsp;</p>
+						<p class="card-text">E-mail&nbsp;:&nbsp;</p>
+						<p class="card-text">縣市&nbsp;:&nbsp;</p>
+						<p class="card-text">地區&nbsp;:&nbsp;</p>
+						<div class="btn11">
+							<input type="submit"
+								value="修&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;改"
+								class="btn btn-primary "> <input type="submit"
+								value="刪&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;除"
+								class="btn btn-primary ">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-6 portfolio-item">
+				<div class="card h-100">
+					<a href="#"><img class="card-img-top"
+						src="/startrip/assets/images/01.jpg" alt=""></a>
+					<div class="card-body">
+						<h4 class="card-title">
+							<a href="#">流水號&nbsp;:&nbsp;</a>
+						</h4>
+						<p class="card-text">餐廳名稱&nbsp;:&nbsp;</p>
+						<p class="card-text">菜系類別&nbsp;:&nbsp;</p>
+						<p class="card-text">餐點類別&nbsp;:&nbsp;</p>
+						<p class="card-text">地址&nbsp;:&nbsp;</p>
+						<p class="card-text">電話&nbsp;:&nbsp;</p>
+						<p class="card-text">網址&nbsp;:&nbsp;</p>
+						<p class="card-text">價位&nbsp;:&nbsp;</p>
+						<p class="card-text">營業時間&nbsp;:&nbsp;</p>
+						<p class="card-text">E-mail&nbsp;:&nbsp;</p>
+						<p class="card-text">縣市&nbsp;:&nbsp;</p>
+						<p class="card-text">地區&nbsp;:&nbsp;</p>
+						<div class="btn11">
+							<input type="submit"
+								value="修&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;改"
+								class="btn btn-primary "> <input type="submit"
+								value="刪&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;除"
+								class="btn btn-primary ">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-6 portfolio-item">
+				<div class="card h-100">
+					<a href="#"><img class="card-img-top"
+						src="/startrip/assets/images/01.jpg" alt=""></a>
+					<div class="card-body">
+						<h4 class="card-title">
+							<a href="#">流水號&nbsp;:&nbsp;</a>
+						</h4>
+						<p class="card-text">餐廳名稱&nbsp;:&nbsp;</p>
+						<p class="card-text">菜系類別&nbsp;:&nbsp;</p>
+						<p class="card-text">餐點類別&nbsp;:&nbsp;</p>
+						<p class="card-text">地址&nbsp;:&nbsp;</p>
+						<p class="card-text">電話&nbsp;:&nbsp;</p>
+						<p class="card-text">網址&nbsp;:&nbsp;</p>
+						<p class="card-text">價位&nbsp;:&nbsp;</p>
+						<p class="card-text">營業時間&nbsp;:&nbsp;</p>
+						<p class="card-text">E-mail&nbsp;:&nbsp;</p>
+						<p class="card-text">縣市&nbsp;:&nbsp;</p>
+						<p class="card-text">地區&nbsp;:&nbsp;</p>
+						<div class="btn11">
+							<input type="submit"
+								value="修&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;改"
+								class="btn btn-primary "> <input type="submit"
+								value="刪&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;除"
+								class="btn btn-primary ">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-6 portfolio-item">
+				<div class="card h-100">
+					<a href="#"><img class="card-img-top"
+						src="/startrip/assets/images/01.jpg" alt=""></a>
+					<div class="card-body">
+						<h4 class="card-title">
+							<a href="#">流水號&nbsp;:&nbsp;</a>
+						</h4>
+						<p class="card-text">餐廳名稱&nbsp;:&nbsp;</p>
+						<p class="card-text">菜系類別&nbsp;:&nbsp;</p>
+						<p class="card-text">餐點類別&nbsp;:&nbsp;</p>
+						<p class="card-text">地址&nbsp;:&nbsp;</p>
+						<p class="card-text">電話&nbsp;:&nbsp;</p>
+						<p class="card-text">網址&nbsp;:&nbsp;</p>
+						<p class="card-text">價位&nbsp;:&nbsp;</p>
+						<p class="card-text">營業時間&nbsp;:&nbsp;</p>
+						<p class="card-text">E-mail&nbsp;:&nbsp;</p>
+						<p class="card-text">縣市&nbsp;:&nbsp;</p>
+						<p class="card-text">地區&nbsp;:&nbsp;</p>
+						<div class="btn11">
+							<input type="submit"
+								value="修&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;改"
+								class="btn btn-primary "> <input type="submit"
+								value="刪&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;除"
+								class="btn btn-primary ">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-6 portfolio-item">
+				<div class="card h-100">
+					<a href="#"><img class="card-img-top"
+						src="/startrip/assets/images/01.jpg" alt=""></a>
+					<div class="card-body">
+						<h4 class="card-title">
+							<a href="#">流水號&nbsp;:&nbsp;</a>
+						</h4>
+						<p class="card-text">餐廳名稱&nbsp;:&nbsp;</p>
+						<p class="card-text">菜系類別&nbsp;:&nbsp;</p>
+						<p class="card-text">餐點類別&nbsp;:&nbsp;</p>
+						<p class="card-text">地址&nbsp;:&nbsp;</p>
+						<p class="card-text">電話&nbsp;:&nbsp;</p>
+						<p class="card-text">網址&nbsp;:&nbsp;</p>
+						<p class="card-text">價位&nbsp;:&nbsp;</p>
+						<p class="card-text">營業時間&nbsp;:&nbsp;</p>
+						<p class="card-text">E-mail&nbsp;:&nbsp;</p>
+						<p class="card-text">縣市&nbsp;:&nbsp;</p>
+						<p class="card-text">地區&nbsp;:&nbsp;</p>
+						<div class="btn11">
+							<input type="submit"
+								value="修&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;改"
+								class="btn btn-primary "> <input type="submit"
+								value="刪&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;除"
+								class="btn btn-primary ">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-6 portfolio-item">
+				<div class="card h-100">
+					<a href="#"><img class="card-img-top"
+						src="/startrip/assets/images/01.jpg" alt=""></a>
+					<div class="card-body">
+						<h4 class="card-title">
+							<a href="#">流水號&nbsp;:&nbsp;</a>
+						</h4>
+						<p class="card-text">餐廳名稱&nbsp;:&nbsp;</p>
+						<p class="card-text">菜系類別&nbsp;:&nbsp;</p>
+						<p class="card-text">餐點類別&nbsp;:&nbsp;</p>
+						<p class="card-text">地址&nbsp;:&nbsp;</p>
+						<p class="card-text">電話&nbsp;:&nbsp;</p>
+						<p class="card-text">網址&nbsp;:&nbsp;</p>
+						<p class="card-text">價位&nbsp;:&nbsp;</p>
+						<p class="card-text">營業時間&nbsp;:&nbsp;</p>
+						<p class="card-text">E-mail&nbsp;:&nbsp;</p>
+						<p class="card-text">縣市&nbsp;:&nbsp;</p>
+						<p class="card-text">地區&nbsp;:&nbsp;</p>
+						<div class="btn11">
+							<input type="submit"
+								value="修&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;改"
+								class="btn btn-primary "> <input type="submit"
+								value="刪&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;除"
+								class="btn btn-primary ">
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<!-- --------------------------------------------------------------------------------------------------- -->
+
+
+		<!-- 				<ul class="list-group"> -->
+		<!-- 					<li class="list-group-item active1">餐廳名稱</li> -->
+		<!-- 					<li class="list-group-item">菜系類別&nbsp;:&nbsp;</li> -->
+		<!-- 					<li class="list-group-item">餐點類別&nbsp;:&nbsp;</li> -->
+		<!-- 					<li class="list-group-item">地址&nbsp;:&nbsp;</li> -->
+		<!-- 					<li class="list-group-item">電話&nbsp;:&nbsp;</li> -->
+		<!-- 					<li class="list-group-item">網址&nbsp;:&nbsp;</li> -->
+		<!-- 					<li class="list-group-item">價位&nbsp;:&nbsp;</li> -->
+		<!-- 					<li class="list-group-item">營業時間&nbsp;:&nbsp;</li> -->
+		<!-- 					<li class="list-group-item">E-mail&nbsp;:&nbsp;</li> -->
+		<!-- 					<li class="list-group-item">縣市&nbsp;:&nbsp;</li> -->
+		<!-- 					<li class="list-group-item" style="border-bottom: 3px #DDDDDD solid;">地區&nbsp;:&nbsp;</li> -->
+		<!-- 				</ul> -->
+		<!-- 				<div class="col-md"> -->
+		<!-- 					<input type="submit" -->
+		<!-- 						value="修&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;改" -->
+		<!-- 						class="btn btn-primary padding1">  -->
+		<!-- 						<input type="submit" -->
+		<!-- 						value="刪&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;除" -->
+		<!-- 						class="btn btn-primary padding1"> -->
+		<!-- 				</div> -->
+
 
 	</div>
 
@@ -163,18 +401,13 @@
 
 
 	<script src="/startrip/assets/js/jquery.min.js"></script>
-
 	<script src="/startrip/assets/js/popper.min.js"></script>
 	<script src="/startrip/assets/js/bootstrap.min.js"></script>
 	<script src="/startrip/assets/js/owl.carousel.min.js"></script>
-
 	<script src="/startrip/assets/js/jquery.waypoints.min.js"></script>
 	<script src="/startrip/assets/js/jquery.easing.1.3.js"></script>
-
 	<script src="/startrip/assets/js/select2.min.js"></script>
-
 	<script src="/startrip/assets/js/main.js"></script>
-
 
 </body>
 </html>

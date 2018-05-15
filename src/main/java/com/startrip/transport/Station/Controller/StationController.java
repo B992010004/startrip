@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.startrip.restaurant.model.RtDetailsBean;
+
 import com.startrip.transport.Station.Service.StationServiceInterface;
 import com.startrip.transport.Station.StationModle.StationBean;
 
@@ -32,7 +32,8 @@ public class StationController {
 		for(StationBean stationBean:all) {
 			System.out.println( "getStationName="+stationBean.getStationName());
 			System.out.println(stationBean.getStationId());			
-			System.out.println(stationBean.getArea());		}
+			System.out.println(stationBean.getArea());		
+		System.out.println(stationBean.getAddress());		}
 		model.addAttribute("stationList", all);//標籤名stationList
 		
 		return "transport/select";

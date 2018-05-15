@@ -24,8 +24,8 @@ public class ReviewServiceImp implements ReviewService {
 
 	@Transactional
 	@Override
-	public List<ReviewBean> getReviewsByHotelId(int hotelId) {
-		return reviewRepositoryImp.getReviewsByHotelId(hotelId);
+	public List<ReviewBean> getReviewsByHotelId(int restaurantId) {
+		return reviewRepositoryImp.getReviewsByHotelId(restaurantId);
 	}
 
 	@Transactional
@@ -37,15 +37,15 @@ public class ReviewServiceImp implements ReviewService {
 	//update的方法還沒做
 	@Transactional
 	@Override
-	public void update(int hotelId, ReviewBean review) {
+	public void update(int restaurantId, ReviewBean review) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Transactional
 	@Override
-	public List<Long> getRankByHotelId(int hotelId) {
-		return reviewRepositoryImp.getRankByHotelId(hotelId);
+	public List<Long> getRankByHotelId(int restaurantId) {
+		return reviewRepositoryImp.getRankByHotelId(restaurantId);
 	}
 
 }
