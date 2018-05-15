@@ -5,7 +5,8 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.startrip.restaurant.exception.RtReviewsNotFoundException;
+import com.startrip.member.memberModle.MemberBean;
+import com.startrip.restaurant.exception.RtBookingNotFoundException;
 import com.startrip.restaurant.model.RtBookingBean;
 
 @Repository
@@ -15,11 +16,11 @@ public class RtBookingRepositoryImp implements RtBookingRepository {
 	SessionFactory factory;
 
 	@Override
-	public RtBookingBean getAllRtBookingmail(String mail) {
+	public RtBookingBean getAllRtBookingmemberBean(MemberBean memberBean) {
 		RtBookingBean rbm = null;
 		Session session = factory.getCurrentSession();
-		rbm = session.get(RtBookingBean.class, mail);
-		if(rbm == null) throw new RtReviewsNotFoundException(mail);
+		rbm = session.get(RtBookingBean.class, memberBean);
+		if(rbm == null) throw new RtBookingNotFoundException(memberBean);
 		return rbm;
 	}
 

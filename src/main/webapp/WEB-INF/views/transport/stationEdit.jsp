@@ -8,13 +8,10 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Insert title here</title>
+    <title>訂位系統</title>
 </head>
 
 <body>
-
-
-
 
     <!-- action="transport/stationEdit" -->
     <form:form method="post" modelAttribute="inputStation">
@@ -69,41 +66,37 @@
         //           for (var i = 1; i <= 5; i++) {
         //               document.getElementById("oR" + i).addEventListener("mouseover", mouseover);  //事件繫結，滑鼠滑入
         //               document.getElementById("oR" + i).addEventListener("mouseout", mouseOut);
-        // document.getElementById("oR" + i).addEventListener("click", click1);   //事件繫結，滑鼠滑出
-        //           }
-
-        //       });
-
-
-
+        // document.getElementById("oR" + i).addEven
         document.addEventListener("DOMContentLoaded", function () {
             for (var i = 1; i <= 31; i++) {
                 document.getElementById("idimg" + i).addEventListener("mouseover", mouseover);  //事件繫結，滑鼠滑入
-                document.getElementById("idimg" + i).addEventListener("mouseout", mouseout);
-                document.getElementById("idimg" + i).addEventListener("click", click1);   //事件繫結，滑鼠滑出
+                document.getElementById("idimg" + i).addEventListener("mouseout", mouseout);//事件繫結，滑鼠滑出
+                document.getElementById("idimg" + i).addEventListener("click", click1);   
+                
             }
+                document.getElementById("random" ).addEventListener("click", getRandom);   
         });
 
         function mouseover() {			
             this.src = "/startrip/assets/transport/images/setOn.png";
-            this.innerHTML = '您選的座位為' + this.id.substr(5) + '號';
-            $("#QQ").html("<span>"+'您選的座位為'+this.id.substr(5)+'號'+"</span>");
-
         }
         function mouseout() {
         	this.src = "/startrip/assets/transport/images/setOff.jpg";
         }
         function click1() {
         	this.src = "/startrip/assets/transport/images/setOn.png";
+        	 this.innerHTML = '您選的座位為' + this.id.substr(5) + '號';
+             $("#QQ").html("<span>"+'您選的座位為'+this.id.substr(5)+'號'+"</span>");
         }
-
+		function getRandom(){
+			$("#QQ").html("<span>"+'您選的座位為'+Math.floor(Math.random()*31+1)+'號'+"</span>");
+			
+		}	
     </script>
 
-
-
-	<h1 id="QQ">'您選的座位為' + this.id.substr(5) + '號'</h1>
+	<h1 id="QQ"></h1>
     <div class="div">
-        <table class="table  table-bordered">
+<table class="table  table-bordered">
             <tr>
                 <td scope="col" style="background-color:burlywood;" cellpadding="5" border="0">門</td>
                 <td id="05">
@@ -220,8 +213,12 @@
                 </td>
             </tr>
         </table>
-        <div class="Div02">
-            路線資訊查詢(地圖選取)
+        <br>
+<button id="random" value="submit">電腦選位</button>
+        
+         
+<div class="Div02">
+           
             
 
 

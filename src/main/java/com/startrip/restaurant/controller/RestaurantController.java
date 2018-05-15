@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -16,6 +17,8 @@ import com.startrip.restaurant.model.RtBookingBean;
 import com.startrip.restaurant.model.RtDetailsBean;
 import com.startrip.restaurant.service.RtBookingService;
 import com.startrip.restaurant.service.RtDetailsService;
+import com.startrip.reviews.model.ReviewBean;
+import com.startrip.reviews.service.ReviewService;
 
 @Controller
 public class RestaurantController {
@@ -25,6 +28,9 @@ public class RestaurantController {
 
 	@Autowired
 	RtBookingService rtBookingService;
+
+	@Autowired
+	ReviewService reviewService;
 
 	// 前台餐廳首頁---------------------------------------------------------------------------------------------
 
@@ -39,7 +45,6 @@ public class RestaurantController {
 
 	// /前台餐廳首頁/--------------------------------------------------------------------------------------------
 
-	
 	// 前台新增訂單---------------------------------------------------------------------------------------------
 
 	@RequestMapping(value = "/reservation", method = RequestMethod.GET)
@@ -53,38 +58,37 @@ public class RestaurantController {
 	public String insertRtBooking(@ModelAttribute("RtBookingBean") RtBookingBean rbb, BindingResult result,
 			HttpServletRequest request) {
 		rtBookingService.insertRtBooking(rbb);
-		return "redirect:/restaurantHome";
+		return "redirect:/Individualdetails";
 	}
 
 	// /前台新增訂單/---------------------------------------------------------------------------------------------
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	// ---------測試------------------------測試------------------測試----------------測試-------------
+	// 展示餐廳資訊
+	@RequestMapping(value = "/restaurant/{restaurantId}")
+	public String rooms(@PathVariable("restaurantId") Integer restaurantId, Model model) {
 
-	// 只能瀏覽個別
+		// review
+		// 評等
+		List<Long> ranks = reviewService.getRankByHotelId(restaurantId);
+		Integer rankSize = 0;
+		for (Long rank : ranks) {
+			Integer tmp = rank.intValue();
+			rankSize += tmp;
+		}
+		// 避免0/0
+		if (rankSize == 0) {
+			rankSize = -1;
+		}
+		model.addAttribute("rankSize", rankSize);
+		model.addAttribute("ranks", ranks);
+		// 評論bean
+		List<ReviewBean> reviews = reviewService.getReviewsByHotelId(restaurantId);
+		model.addAttribute("reviews", reviews);
 
-	@RequestMapping(value = "/Individualdetails")
-	public String getAll(Model model) {
-		return "restaurant/Individualdetails";
+		return "/restaurant/Individualdetails";
 	}
+
+	// ---------測試------------------------測試------------------測試----------------測試-------------
 
 	// 新增訂單頁面 樣板
 

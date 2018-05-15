@@ -17,7 +17,7 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<title>餐廳資料修改</title>
+<title>後台-新稱查詢</title>
 <meta name="description"
 	content="Free Bootstrap 4 Theme by ProBootstrap.com">
 <meta name="keywords"
@@ -243,6 +243,18 @@
 								<form:option value="高級餐廳">高級餐廳</form:option>
 							</form:select>
 						</label>
+
+						<!-- -------圖片------------------------------------------------------------- -->
+
+<!-- 						<div> -->
+<!-- 							<label class="btn btn-primary" for="files">上傳相片</label> -->
+<!-- 							<input path="rtImage" type="file" class="form-control-file" -->
+<!-- 								id="files" name="files" value="Send Review" multiple="multiple" -->
+<!-- 								style="display: none;" accept="image/*" onchange="fileViewer()" /> -->
+<!-- 						</div> -->
+<!-- 						<div id="dropZone"></div> -->
+
+						<!-- -------圖片------------------------------------------------------------- -->
 
 					</div>
 

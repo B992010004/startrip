@@ -33,11 +33,11 @@ public class ReviewRepositoryImp implements ReviewRepository {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<ReviewBean> getReviewsByHotelId(int hotelId) {
+	public List<ReviewBean> getReviewsByHotelId(int restaurantId) {
 		List<ReviewBean> list = new ArrayList<>();
 		String hql = "FROM ReviewBean WHERE hotelId = :id";
 		Session session = sessionFactory.getCurrentSession();
-		list = session.createQuery(hql).setParameter("id", hotelId).getResultList();
+		list = session.createQuery(hql).setParameter("id", restaurantId).getResultList();
 
 		return list;
 	}
@@ -50,7 +50,7 @@ public class ReviewRepositoryImp implements ReviewRepository {
 	}
 
 	@Override
-	public void update(int hotelId, ReviewBean review) {
+	public void update(int restaurantId, ReviewBean review) {
 //		String hql = "UPDATE ReviewBean SET stock = :newQuantity WHERE hotelId = :id";
 //		Session session = sessionFacory.getCurrentSession();
 //		int n = session.createQuery(hql).setParameter("newQuantity", newQuantity).setParameter("id", productId)
@@ -59,17 +59,12 @@ public class ReviewRepositoryImp implements ReviewRepository {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Long> getRankByHotelId(int hotelId) {
+	public List<Long> getRankByHotelId(int restaurantId) {
 		String hql = "SELECT count(overallRank) FROM ReviewBean rb WHERE rb.hotelId = :hotelId GROUP BY rb.overallRank";
 		Session session = sessionFactory.getCurrentSession();
 		List<Long> list = new ArrayList<>();
-		list = session.createQuery(hql).setParameter("hotelId", hotelId).list();
+		list = session.createQuery(hql).setParameter("hotelId", restaurantId).list();
 //		System.out.println(list);
 		return list;		
 	}
-
-
-
-
-
 }
