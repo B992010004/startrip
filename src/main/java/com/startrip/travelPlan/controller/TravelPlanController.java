@@ -135,7 +135,7 @@ public class TravelPlanController {
 			MemberBean mb = new MemberBean();
 //			System.out.println(mail);
 			 mb=memberservice.select(mail);
-			System.out.println( mb.toString());
+//			System.out.println( mb.toString());
 			 Integer memberId =mb.getMemberid();
 //			System.out.println(memberId);
 //			System.out.println(memberId);
@@ -170,7 +170,7 @@ public class TravelPlanController {
 	public HashMap<String, Object> travelBean(@RequestParam("travelName")String travelName
 			,@RequestParam("startDate")Date startDate,@RequestParam("endDate")Date endDate
 			,@RequestParam("travelId")Integer travelId,@RequestParam("mail")String mail) {
-		System.out.println(travelName+","+startDate+","+endDate+","+travelId+","+mail);
+//		System.out.println(travelName+","+startDate+","+endDate+","+travelId+","+mail);
 		MemberBean mb = memberservice.select(mail);
 		Integer memberId =mb.getMemberid();
 		TravelAllBean tb = travelservice.Select_Travel(memberId,travelId);
@@ -218,8 +218,8 @@ public class TravelPlanController {
 		calendar.add(calendar.DATE,1); //把日期往后增加一天,整数  往后推,负数往前移动 
 		convert= calendar.getTime(); //这个时间就是日期往后推一天的结果 
 		Date endDate = new java.sql.Date(convert.getTime());
-		System.out.println(endDate);
-		System.out.println("--------------------------------------------");
+//		System.out.println(endDate);
+//		System.out.println("--------------------------------------------");
 		bean.setTravelDays(days+1);
 		bean.setEndDate(endDate);
 		bean.toString();
@@ -228,7 +228,7 @@ public class TravelPlanController {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		System.out.println();
+//		System.out.println();
 		return bean;
 	}
 	//show行程圖片
@@ -271,17 +271,29 @@ public class TravelPlanController {
 	
 	//List相關控制-------------------------------------
 	//新增清單--------------------------------------
-	@RequestMapping(value="Travel/addList",method=RequestMethod.GET)
-	public String listNewAdd(Model model) {
-		TravelListBean bean = new TravelListBean();
-		model.addAttribute("TravelListBean",bean);
-		return "TravelProject/TravelList/addList";
-	}
+//	@RequestMapping(value="Travel/addList",method=RequestMethod.GET)
+//	public String listNewAdd(Model model) {
+//		TravelListBean bean = new TravelListBean();
+//		model.addAttribute("TravelListBean",bean);
+//		return "TravelProject/TravelList/addList";
+//	}
 	
-	@RequestMapping(value="Travel/addList",method=RequestMethod.POST)
-	public String travelAdd(@ModelAttribute("TravelListBean") TravelListBean bean) {
-		listservice.insert(bean);
-		return "redirect:/list/All";
+	@RequestMapping(value="/Travel/add/list",method=RequestMethod.GET)
+	@ResponseBody
+	public TravelListBean travelAdd(@RequestParam("viewName")String viewName,@RequestParam("starttime")String starttime
+			,@RequestParam("endtime")String endtime,@RequestParam("type")String type
+			,@RequestParam("day")Integer day,@RequestParam("travelId")Integer travelId
+			,@RequestParam("memberId")Integer memberId) {
+		System.out.println(viewName+","+starttime+","+ endtime+","+ type+","+ travelId+","+ day);
+		String travelName = travelservice.Select_Travel(memberId, travelId).getTravelName();
+		Integer viewId = viewService.getViewPoint(viewName).getViewid();
+		Integer state = 1;
+		TravelListBean tlb = new TravelListBean(viewName, starttime, endtime, travelName, type, memberId, travelId, viewId, day, state);
+		Integer pk =listservice.insert(tlb);
+		
+		return tlb;
+		
+		
 	}		   
 	//--------------------------------------------------	
 	//getAllList 取得所有清單
@@ -295,7 +307,7 @@ public class TravelPlanController {
 	@RequestMapping(value="list/All/{mail}/{travelId}",method=RequestMethod.GET)
 	public String getAllList(Model model,HttpServletRequest request,
 			@PathVariable("mail")String mail,@PathVariable("travelId")Integer travelId) {
-		System.out.println(mail+","+travelId);
+//		System.out.println(mail+","+travelId);
 		TravelAllBean tb = new TravelAllBean();
 		tb.setMail(mail);
 		tb.setTravelId(travelId);
@@ -440,7 +452,7 @@ public class TravelPlanController {
 		TravelAllBean tab = travelservice.Select_Travel(memberId, travelId);
 		
 		 
-		System.out.println(tvb.toString());
+//		System.out.println(tvb.toString());
 		HashMap<String,Object> result = new HashMap<>();
 		
 		

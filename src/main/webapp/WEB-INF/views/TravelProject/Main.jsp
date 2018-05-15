@@ -35,6 +35,9 @@
  	<div>
 		<jsp:include page="/WEB-INF/views/header.jsp" flush="true" />
 	</div>
+	<c:if test="${ empty LoginOK }">
+							<a class="nav-link" href="" data-toggle="modal" data-target=".bd-example-modal-lg">登入</a>
+						</c:if>
 	
 	 <section class="probootstrap_section bg-dark" id="section-contact">
         
@@ -201,38 +204,29 @@
 				data:update,
 				contentType: "application/json; charset=utf-8",
 				success:function(data){
-					console.log(data)
-				$('input[name="travelName"]').val(data.Name.travelName);
-				$('input[name="startDate"]').val(data.startDate);
-				$('input[name="endDate"]').val(data.endDate);
-				$('input[name="travelId"]').val(data.Name.travelId);
-				
-				$("#model").modal({
-					 "show":true,
-					 })
-				$(document).on('click',"#check",function(){	 
-				var datas=$('form[name="update"]').serialize();
-					$.ajax({
-						url:"/startrip/travel/update",
-						type:"GET",
-						dataType:"json",
-						data:datas,
-						contentType: "application/json; charset=utf-8",
-						success:function(data){
-							console.log(data)
-						}
-					})
-				})	
+					$('input[name="travelName"]').val(data.Name.travelName);
+					$('input[name="startDate"]').val(data.startDate);
+					$('input[name="endDate"]').val(data.endDate);
+					$('input[name="travelId"]').val(data.Name.travelId);
 					
-					
-					
-					
-					
-						 
-						 
-						 
+					$("#model").modal({
+						 "show":true,
+						 })
+					$(document).on('click',"#check",function(){	 
+					var datas=$('form[name="update"]').serialize();
+						$.ajax({
+							url:"/startrip/travel/update",
+							type:"GET",
+							dataType:"json",
+							data:datas,
+							contentType: "application/json; charset=utf-8",
+							success:function(data){
+								console.log(data)
+							}
+						})
+					})	
 				}
-				})
+			})
   	})//click end
   	
   	$(document).on('click','.btn',function(e){

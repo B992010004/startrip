@@ -26,7 +26,7 @@
 					<li class="nav-item"><a class="nav-link"
 						href="/startrip/select">大眾運輸</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="/startrip/TravelMain">行程規劃</a></li>
+						href="/startrip/TravelMain/${LoginOK.mail}">行程規劃</a></li>
 					<li class="nav-item"><a class="nav-link"														
 						href="/startrip/review/UserReviewEdit/1">寫評論</a></li>	
 						

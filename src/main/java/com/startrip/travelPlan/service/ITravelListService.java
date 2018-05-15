@@ -12,7 +12,7 @@ public interface ITravelListService {
 	public List<TravelListBean> selectAllList();
 
 
-	public void insert(TravelListBean bean);
+	public Integer insert(TravelListBean bean);
 
 	public void update(TravelListBean bean) throws SQLException;
 
