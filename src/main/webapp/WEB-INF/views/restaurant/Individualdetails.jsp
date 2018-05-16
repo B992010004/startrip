@@ -203,6 +203,7 @@
 	    .review-image{
 	    	 height:120px;
 	    	 margin:5px;
+	    	 
 	    }
 	    
 	     .review-memberphoto {
@@ -210,7 +211,7 @@
             
            	width: 80px;
            	height: 80px; 
-           	border-radius: 50%;
+            border-radius: 50%; 
         }
         ul li
         {
@@ -417,25 +418,31 @@
 			</div>
 
 			<!-- 旅客類型 -->
-			<label class="sr-only-focusable">旅客類型</label>
-				<ul>
-					<li><input type="checkbox" />家庭出遊</li>
-					<li><input type="checkbox" />伴侶旅行</li>
-					<li><input type="checkbox" />單獨旅行</li>
-					<li><input type="checkbox" />商務出差</li>
-					<li><input type="checkbox" />好友旅行</li>				
-				</ul>
+
+				<div class="travler-rank col-md-2" id="selectCheckBox">
+					<label class="sr-only-focusable">旅客類型</label>
+						<ul>
+							<li><input id="cr1" type="checkbox" name="family" value="家庭">家庭出遊</li>
+							<li><input id="cr2" type="checkbox" name="couple" value="伴侶旅行">伴侶旅行</li>
+							<li><input id="cr3" type="checkbox" name="alone" value="單獨旅行">單獨旅行</li>
+							<li><input id="cr4" type="checkbox" name="business" value="商務">商務出差</li>
+							<li><input id="cr5" type="checkbox" name="friends" value="朋友">好友旅行</li>				
+						</ul>
+				</div>
+
 			<!-- 月份 -->
-			<label class="sr-only-focusable">月份</label>
-				<ul>
-					<li><input type="checkbox" />3 月到 5 月</li>
-					<li><input type="checkbox" />6 月到 8 月</li>
-					<li><input type="checkbox" />9 月到 11 月</li>
-					<li><input type="checkbox" />12 月到 2 月</li>				
-				</ul>			
+			<div class="travler-rank col-md-3">
+				<label class="sr-only-focusable">月份</label>
+					<ul>
+						<li><input type="checkbox" />3 月到 5 月</li>
+						<li><input type="checkbox" />6 月到 8 月</li>
+						<li><input type="checkbox" />9 月到 11 月</li>
+						<li><input type="checkbox" />12 月到 2 月</li>				
+					</ul>
+			</div>		
 		</div>
 
-
+	<div id="displayReview">
 		<c:forEach var='review' items='${reviews}'>
 			<div class="row" style="margin:16px;">
 				<div class="col-md-1">
@@ -452,7 +459,7 @@
 					<div class="probootstrap_font-18">
 						<h5>${review.title}</h5>
 					</div>
-					<div class="">${review.content }</div>
+					<div>${review.content }</div>
 					<c:if test="${not empty review.photoPathList }">
 						<c:forEach var="photoPath" items="${review.photoPathList }">
 							<img src="/startrip/getPicture/reviewUpload/${photoPath }" class="review-image" />
@@ -461,7 +468,7 @@
 				</div>
 			</div>
 		</c:forEach>
-
+	</div>
 	</div>
 	<!-- 訊息聊天框  -->
 	<div style="float:right">
@@ -695,6 +702,116 @@
 		}
 
 		$('#stopSTOMP').click(function () { sock.close() });
+	</script>
+	
+	<script>
+		$(document).ready(function(){
+			for(i=1;i<=5;i++){
+				$('#cr' + i).on('change',function(){
+					selectByCriteria();
+// 					console.log("繫結成功");
+				})
+			}
+		});
+	
+		function selectByCriteria(){
+			var criteriaData = {};
+			
+// 			criteriaData.family = $("#cr1").val();
+// 			criteriaData.couple = $("#cr2").val();
+// 			criteriaData.alone = $("#cr3").val();
+// 			criteriaData.business = $("#cr4").val();
+			
+	 		$("#selectCheckBox input:checked").each(function(idx,checkbox){
+	 			console.log("A");
+	 			console.log(checkbox);
+	 			console.log(checkbox.attributes["name"].value);
+	 			console.log(checkbox.attributes["value"].value);
+	 			console.log("B");
+	 			criteriaData[checkbox.attributes["name"].value] = checkbox.attributes["value"].value;
+	 			console.log("C");
+			});
+
+	 		console.log(criteriaData);
+
+			$.ajax({
+				url : '/startrip/review/selectByCriteria',
+				type : 'GET',
+				data : criteriaData,
+				//enctype: "multipart/form-data",
+				//contentType : false,
+				//processData : false,
+				//dataType:"json",
+				success : function(responce) {
+					$('#displayReview').empty();				
+					console.log(responce);				
+					var docFrag = $(document.createDocumentFragment());
+					for(i=0;i<responce.length;i++){
+						console.log(responce[i].content);
+						//大row
+						var row = $('<div class="row" style="margin:16px;"></div>');
+
+						var col1 = $('<div class="col-md-1"></div>');
+						var innerRow1 = $('<div class="row justify-content-center" style="margin:16px;"></div>');
+							if(responce[i].memberBean.mail != null){
+								var memberImg = $('<img class="review-memberphoto" src="/startrip/getPicture/' + responce[i].memberBean.mail +'" />');
+							}						
+						var innerRow2 = $('<div class="row justify-content-center"></div>');
+						var innerRow2content = $('<div><h6>' + responce[i].memberBean.username + '</h6></div>');
+						innerRow2.append(innerRow2content);
+						innerRow1.append(memberImg);
+						col1.append([innerRow1, innerRow2]);
+
+						var col2 = $('<div class="col-md-9"></div>');
+						var title = $('<div class="probootstrap_font-18"><h5>' + responce[i].title + '</h5></div>');
+						var content = $('<div>' + responce[i].content + '</div>');
+
+						col2.append([title, content]);
+						if(responce[i].photoPathList!=null){
+						$.each(responce[i].photoPathList, function(idx,photoPath){
+							var contentImg = $('<img src="/startrip/getPicture/reviewUpload/' + photoPath + '" class="review-image" />');
+							col2.append(contentImg);
+						});
+						}
+						row.append([col1, col2]);
+						docFrag.append(row);
+					}
+
+					$('#displayReview').html(docFrag);
+
+// 					要生樹
+// 					<div class="row" style="margin:16px;">
+// 					<div class="col-md-1">
+// 						<div class="row justify-content-center" style="margin:16px;">
+// 							<img class="review-memberphoto" src="<c:url value='/getPicture/${review.memberBean.mail}'/>">
+// 						</div>
+// 						<div class="row justify-content-center">
+// 							<div>
+// 								<h6>${review.memberBean.username }</h6>
+// 							</div>
+// 						</div>
+// 					</div>
+
+// 					<div class="col-md-9">
+// 						<div class="probootstrap_font-18">
+// 							<h5>${review.title}</h5>
+// 						</div>
+// 						<div class="">${review.content }</div>
+// 						<c:if test="${not empty review.photoPathList }">
+// 							<c:forEach var="photoPath" items="${review.photoPathList }">
+// 								<img src="/startrip/getPicture/reviewUpload/${photoPath }" class="review-image" />
+// 							</c:forEach>
+// 						</c:if>
+// 					</div>
+// 				</div>				
+					
+				},
+				error:function(e){
+					console.log(e);
+				}
+		
+			});
+		}
 	</script>
 
 </body>

@@ -8,12 +8,11 @@ import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
+import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 @Configuration
 @EnableWebMvc
@@ -68,12 +67,12 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 	}
 	
 		
-//	@Bean
-//	public MappingJackson2JsonView jsonView() {
-//		MappingJackson2JsonView view = new MappingJackson2JsonView();
-//		view.setPrettyPrint(true);
-//		return view;
-//	}
+	@Bean
+	public MappingJackson2JsonView jsonView() {
+		MappingJackson2JsonView view = new MappingJackson2JsonView();
+		view.setPrettyPrint(true);
+		return view;
+	}
 
 //	@Bean
 //	public MarshallingView xmlView() {

@@ -9,6 +9,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -73,7 +74,7 @@ public class RootAppConfig {
 
 //	@Bean
 //	LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource,
-//			HibernateJpaVendorAdapter hibernateJpaVendorAdapter, Environment env) {
+//			HibernateJpaVendorAdapter hibernateJpaVendorAdapter) {
 //		LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
 //		entityManagerFactoryBean.setDataSource(dataSource);
 //		// entityManagerFactoryBean.setJpaVendorAdapter(new
@@ -112,7 +113,7 @@ public class RootAppConfig {
 //
 //		return entityManagerFactoryBean;
 //	}
-//
+	
 //	@Bean
 //	public HibernateJpaVendorAdapter hibernateJpaVendorAdapter() {
 //		HibernateJpaVendorAdapter hibernateJpaVendorAdapter = new HibernateJpaVendorAdapter();
@@ -125,5 +126,28 @@ public class RootAppConfig {
 //		transactionManager.setEntityManagerFactory(entityManagerFactory);
 //		return transactionManager;
 //	}
+	
+//	  @Bean
+//	  public JpaTransactionManager transactionManager() {
+//	    return new JpaTransactionManager(); // does this need an emf???
+//	  }
+	  
+//	  @Bean
+//	  public HibernateJpaVendorAdapter jpaVendorAdapter() {
+//	    HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
+//    adapter.setDatabase(Database.SQL_SERVER);
+//	    adapter.setShowSql(true);
+//	    adapter.setGenerateDdl(true);
+//	    return adapter;
+//	  }
+	  
+//	  @Bean
+//	  public Object emf() {
+//	    LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
+//	    emf.setDataSource(dataSource());
+//	    emf.setPersistenceUnitName("spitter");
+//	    emf.setJpaVendorAdapter(jpaVendorAdapter());
+//	    return emf;
+//	  }
 
 }

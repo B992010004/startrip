@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.startrip.reviews.model.ReviewBean;
+import com.startrip.reviews.model.ReviewSelectCriteria;
 import com.startrip.reviews.repository.ReviewRepository;
 
 @Service
@@ -43,14 +44,20 @@ public class ReviewServiceImp implements ReviewService {
 	@Transactional
 	@Override
 	public void update(int restaurantId, ReviewBean review) {
-//		 reviewRepositoryImp.save(review);
+		// reviewRepositoryImp.save(review);
 	}
 
 	@Transactional
 	@Override
 	public List<Long> getRankByRestaurantId(int restaurantId) {
-		return reviewRepositoryImp.getRankByRestaurantId(restaurantId);
-//		 return reviewRepositoryImp.getRankByRestaurantId(restaurantId);
+//		return reviewRepositoryImp.getRankByRestaurantId(restaurantId);
+		 return reviewRepositoryImp.getRankByRestaurantId(restaurantId);
+	}
+	
+	@Transactional
+	@Override
+	public List<ReviewBean> selectByCriteria(ReviewSelectCriteria reviewSelectCriteria) {
+		return reviewRepositoryImp.selectByCriteria(reviewSelectCriteria);
 	}
 
 }
