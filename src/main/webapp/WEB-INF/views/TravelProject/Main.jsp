@@ -47,6 +47,10 @@
 		<div class="row">
 			<div class="col-md-3" style="background-color: blcak;">
 				<ul class="list-group list-group-flush">
+				
+				
+				  
+					<li class="list-group-item " align="center"><a  href="/startrip/Travel/addPlan/${LoginOK.mail}">新增行程</a></li>
 					<li class="list-group-item " align="center"><a  href="Travel/addPlan/${LoginOK.mail}">新增行程</a></li>
 				  	<li class="list-group-item "  align="center"><a  href="Travel/addList">新增清單</a></li>
 				  	<li class="list-group-item "  align="center"><a  href="Views/add">新增景點</a></li>
@@ -178,6 +182,7 @@
 	})
 	//刪除行程
 	$(document).on("click",".del",function(e){
+		console.log(e.target.id)
 		var del={}
 		del.email="${LoginOK.mail}";
 		del.id =$('#'+e.target.id).parent().parent().find('.id').text();
@@ -188,6 +193,7 @@
 				data:del,
 				contentType: "application/json; charset=utf-8",
 				success:function(data){
+					console.log(e.target.id)
 					$('#'+e.target.id).parent().parent().remove();
 				}
 				})
@@ -232,10 +238,15 @@
   	$(document).on('click','.btn',function(e){
   		var value={}
   		mail= '${LoginOK.mail}'
-//   		value.travelId=
-		
+  		value.mail=mail;
   		travelId=$('#'+e.target.id).prev().prev().text();
-  		console.log($('#'+e.target.id).prev().prev().text())
+//   		console.log($('#'+e.target.id).prev().prev().text())
+  		value.travelId=travelId
+  		
+		$.get("/startrip/travel/id",value,function(data){
+			console.log(data)
+		})
+		
   			location.href = "/startrip/list/All/"+mail+"/"+travelId
   	})
   	 

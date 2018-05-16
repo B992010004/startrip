@@ -16,6 +16,10 @@ import javax.persistence.Table;
 public class TravelListBean {
 	
 	
+	public TravelListBean() {
+		
+	}
+
 	@Override
 	public String toString() {
 		return "TravelListBean [viewName=" + viewName + ", StartTime=" + StartTime + ", endTime=" + endTime
@@ -33,19 +37,17 @@ public class TravelListBean {
 	private Integer travelId;
 	
 	
-	private Integer viewid;
+	private String viewid;
 	
 	private Integer tripday;
 	private Integer state;
 	
 	
 	
-	public TravelListBean() {
-		
-	}
+	
 	
 	public TravelListBean(String viewName, String startTime, String endTime, String travelType, String travelName,
-			Integer listId, Integer travelId, Integer viewid, Integer tripday, Integer state) {
+			Integer listId, Integer travelId, String viewid, Integer tripday, Integer state) {
 		super();
 		this.viewName = viewName;
 		this.StartTime = startTime;
@@ -97,10 +99,10 @@ public class TravelListBean {
 	public void setTravelId(Integer travelId) {
 		this.travelId = travelId;
 	}
-	public Integer getViewid() {
+	public String getViewid() {
 		return viewid;
 	}
-	public void setViewid(Integer viewid) {
+	public void setViewid(String viewid) {
 		this.viewid = viewid;
 	}
 	public Integer getTripday() {

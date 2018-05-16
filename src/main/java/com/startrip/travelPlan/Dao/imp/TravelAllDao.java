@@ -62,13 +62,22 @@ public class TravelAllDao implements ITripAllDao {
 	}
 
 	@Override
-	public Integer insert(TravelAllBean bean) {
+	public String insert(TravelAllBean bean) {
 //		MemberBean mb = getMail(bean.getMail());
 //		bean.setMail(mai(l);
 		System.out.println(bean.toString());
-		Integer pk =(Integer) getSession().save(bean);
+		 getSession().saveOrUpdate(bean);
 		
-				return pk;
+				return "insert OK";
+	}
+	@Override
+	public Integer insert_getprimarykey(TravelAllBean bean) {
+//		MemberBean mb = getMail(bean.getMail());
+//		bean.setMail(mai(l);
+		System.out.println(bean.toString());
+		Integer pk=(Integer) getSession().save(bean);
+		
+		return pk;
 	}
 	
 	@Override
@@ -93,7 +102,7 @@ public class TravelAllDao implements ITripAllDao {
 	@Override
 	public void updateTravel(TravelAllBean bean) throws SQLException {
 		String hql = "UPDATE TravelAllBean SET travelName = :travelName "
-				+ ",startDate = :startDate,endDate = :endDate,mail = :mail "
+				+ ",startDate = :startDate,endDate = :endDate,mail = :mail ,state=:state "
 				+ "WHERE travelId = :travelId AND memberId=:memberId";
 		getSession().createQuery(hql)
 		.setParameter("travelName", bean.getTravelName())
@@ -101,6 +110,7 @@ public class TravelAllDao implements ITripAllDao {
 		.setParameter("endDate", bean.getEndDate())
 		.setParameter("memberId", bean.getMemberId())
 		.setParameter("travelId", bean.getTravelId())
+		.setParameter("state", bean.getState())
 		 .setParameter("mail", bean.getMail()).executeUpdate();
 	}
 

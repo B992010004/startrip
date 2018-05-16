@@ -44,12 +44,16 @@ public class TravelViewDao implements ITravelViewDao {
 	}
 
 	@Override
-	public TravelViewBean select_ViewId(int viewId) {
+	public TravelViewBean select_ViewId(String viewId) {
 		TravelViewBean bean = null;
 		Session session = factory.getCurrentSession();
 		bean = session.get(TravelViewBean.class, viewId);
-		if(bean == null) throw new ViewNotFoundException(viewId);
+		if(bean==null) {
+			return null;
+		}else {
+		
 		return bean;
+		}
 	}
 
 
@@ -83,18 +87,13 @@ public class TravelViewDao implements ITravelViewDao {
 
 	@Override
 	public void update(TravelViewBean bean) {
-		String hql = "UPDATE TravelAllBean SET viewName = :viewName WHERE viewId = :viewId";
-		System.out.println(bean.toString());
-		factory.getCurrentSession().createQuery(hql).setParameter("viewName", bean.getViewName())
-									 .setParameter("viewId", bean.getViewid()).executeUpdate();
-		
-		
+		factory.getCurrentSession().saveOrUpdate(bean);
 		
 		
 	}
 
 	@Override
-	public void delete(int viewId) {
+	public void delete(String viewId) {
 		Session session= factory.getCurrentSession();
 		TravelViewBean bean =session.get(TravelViewBean.class, viewId);
 		session.delete(bean);
@@ -124,7 +123,16 @@ public class TravelViewDao implements ITravelViewDao {
 		return tvb;
 	}
 	
-	
+	@Override
+	public Integer getCount(String viewId) {
+		System.out.println("here-----------------------------------------");
+		String sql = "select * from TravelView where viewId=:viewId";
+		TravelViewBean tvb= factory.getCurrentSession().createNativeQuery(sql, TravelViewBean.class)
+		.setParameter("viewId", viewId).getSingleResult();
+		Integer count =tvb.getCount();
+		return count;
+	}
+
 	
 	//測試-----		
 	public static void main (String args[]){
@@ -168,6 +176,8 @@ public class TravelViewDao implements ITravelViewDao {
 			}
 	}
 	//--------------------------------------------------------------
+
+
 
 	
 }
