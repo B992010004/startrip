@@ -13,12 +13,16 @@ public interface ITravelAllService {
 	public List<TravelAllBean> selectAllTravel();
 
 
-	public Integer insert(TravelAllBean bean);
+	public String insert(TravelAllBean bean);
+	public Integer insert_getprimarykey(TravelAllBean bean); 
+
 
 	public void updateDays(TravelAllBean bean) throws SQLException;
 	public void updateTravel(TravelAllBean bean) throws SQLException;
+	
 
 	public void delete(int id);
 	
 	public List<TravelAllBean> select_mail(Integer id);
+	
 }

@@ -157,7 +157,7 @@
 				 })
 				返回件
 			 $("#back").click(function(){
-				 history.go("http://localhost:8080/startrip/TravelMain");
+				 history.go("/startrip/TravelMain");
 			 	})
 			  });//end
 	</script>

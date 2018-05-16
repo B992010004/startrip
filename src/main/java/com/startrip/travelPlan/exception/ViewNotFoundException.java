@@ -2,18 +2,18 @@ package com.startrip.travelPlan.exception;
 
 public class ViewNotFoundException extends RuntimeException {
 
-	private  int viewId;
+	private  String viewId;
 
-	public ViewNotFoundException(int viewId) {
+	public ViewNotFoundException(String viewId) {
 		super();
 		this.viewId = viewId;
 	}
 
-	public int getViewId() {
+	public String getViewId() {
 		return viewId;
 	}
 
-	public void setViewId(int viewId) {
+	public void setViewId(String viewId) {
 		this.viewId = viewId;
 	}
 	

@@ -82,7 +82,7 @@
 
 			<form:form method="post" modelAttribute="MemberBean"
 				class="probootstrap-form probootstrap-form-box mb60"
-				enctype="multipart/form-data">
+				enctype="multipart/form-data" id="modlifyform">
 
 				<H2 class="display-4 border-bottom probootstrap-section-heading"
 					style="text-align: center">Modify Personal Information</H2>
@@ -105,7 +105,7 @@
 							<form:input type="text" class="form-control" name="mPhone"
 								path="phone" value="${LoginOK.phone}" placeholder="請輸入"
 								autofocus="autofocus" required="required" />
-							<span id="err"></span>						
+							<span id="err"></span>
 						</div>
 					</div>
 					<div class="col-md-6  probootstrap-animate">
@@ -120,28 +120,26 @@
 								path='mail' style="display: none;" value="${LoginOK.mail}"></form:input>
 						</div>
 						<div class="form-group">
-							<form:input type="text" class="form-control" 
-								path="memberid" style="display: none;"
-								value="${LoginOK.memberid}" />
-							<form:input type="password" class="form-control" 
-								path="password" style="display: none;"
-								value="${LoginOK.password}" />
-						</div><div class="form-group">
-							<form:input type="text" class="form-control" 
-								path="validataCode" style="display: none;"
-								value="${LoginOK.validataCode}" />
-						</div><div class="form-group">
-							<form:input type="text" class="form-control" 
-								path="registerDate" style="display: none;"
-								value="${LoginOK.registerDate}" />
-						</div><div class="form-group">
-							<form:input type="text" class="form-control" 
-								path="photo" style="display: none;"
-								value="${LoginOK.photo}" />
-						</div><div class="form-group">
-							<form:input type="text" class="form-control" 
-								path="avatar" style="display: none;"
-								value="${LoginOK.avatar}" />
+							<form:input type="text" class="form-control" path="memberid"
+								style="display: none;" value="${LoginOK.memberid}" />
+							<form:input type="password" class="form-control" path="password"
+								style="display: none;" value="${LoginOK.password}" />
+						</div>
+						<div class="form-group">
+							<form:input type="text" class="form-control" path="validataCode"
+								style="display: none;" value="${LoginOK.validataCode}" />
+						</div>
+						<div class="form-group">
+							<form:input type="text" class="form-control" path="registerDate"
+								style="display: none;" value="${LoginOK.registerDate}" />
+						</div>
+						<div class="form-group">
+							<form:input type="text" class="form-control" path="photo"
+								style="display: none;" value="${LoginOK.photo}" />
+						</div>
+						<div class="form-group">
+							<form:input type="text" class="form-control" path="avatar"
+								style="display: none;" value="${LoginOK.avatar}" />
 						</div>
 						<div class="form-group">
 							<img id="preview_progressbarTW_img" class="img1" value=""
@@ -152,18 +150,31 @@
 								id="progressbarTWInput" name="mAvatar"
 								accept="image/gif, image/jpeg, image/png" style="display: none;" />
 							<div class="form-group">
-								<input type="submit" class="btn btn-primary" id="submit"
-									name="submit" value="Sign Up"
+								<input type="button" class="btn btn-primary" id="modlifysubmit"
+									 value="Sign Up"
 									style='position: absolute; right: 0;'>
 							</div>
 						</div>
-
-
 					</div>
 				</div>
 			</form:form>
 		</div>
-
+		<div class="modal fade" id="modlifymodel" tabindex="-1" role="dialog"
+			aria-labelledby="exampleModalCenterTitle" aria-hidden="true"
+			data-backdrop="static" data-keyboard="false">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLongTitle">Star Trip</h5>
+					</div>
+					<div class="modal-body" style="text-align: center">會員資料修改成功</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary"
+							id="modlifybackbutton">回首頁</button>
+					</div>
+				</div>
+			</div>
+		</div>
 	</section>
 	<!-- END section -->
 	<div><jsp:include page="/WEB-INF/views/member/login.jsp"
@@ -186,6 +197,13 @@
 	<script
 		src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
 		async defer></script>
+	<script>
+		$("#modlifybackbutton").click(function() {		
+			$("#modlifyform").submit();
+		});
+
+	
+	</script>
 
 	<script>
 		$("#progressbarTWInput").change(function() {
@@ -201,11 +219,17 @@
 				reader.readAsDataURL(input.files[0]);
 			}
 		}
+		
+		
+		
 		$(function() {
-			$("#phone").blur(function() {
+			$("#modlifysubmit").click(function() {
 
 				if ($('#phone').val().match(/^09[0-9]{8}$/)) {
-					$("#err").html("")
+					$("#err").html("");
+					$("#modlifymodel").modal({
+						show : true
+					});
 				} else {
 					$("#err").html("<font color=\'red\'>請輸入正確的手機</font> ");
 				}

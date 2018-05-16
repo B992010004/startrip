@@ -1,6 +1,7 @@
 package com.startrip.member.Service;
 
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +54,8 @@ public class MemberService implements MemberServiceInterface {
 	public void changepassword(String mail,String password) {
 		MemberBean bean= memberDAO.select(mail);
 		bean.setPassword(password);
+		Timestamp outDate = new Timestamp(System.currentTimeMillis());
+		bean.setRegisterDate(outDate);
 		memberDAO.update(bean);		
 	}
 }

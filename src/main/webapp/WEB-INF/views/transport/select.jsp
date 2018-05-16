@@ -107,6 +107,7 @@
 		</div>
 	</div>
 
+
 	<h2 class="title04">3 營業據點路線列表</h2>
 	<div class="search">
 		<label for="area3" class="">請選擇地區：</label>
@@ -151,94 +152,85 @@
 		<div>
 			<select id="point" name="point" style="width: 120px">
 				<option value="" selected="selected">請選擇</option>
-				
+
 
 			</select>
 		</div>
 		<input type="submit" value="查詢" name="submit" style="width: 60px">
-	<input type="hidden" id="opt" name="opt" value="search">
+		<input type="hidden" id="opt" name="opt" value="search">
 	</div>
 
+       <a href="/startrip/assets/transport/images/map/map01.png">顯示圖片</a>
 
+<script>
+       
+        document.addEventListener("DOMContentLoaded", function () {
+           
+            var areas=document.querySelectorAll("area.imgbut");
+            var areasLen=areas.length;
+            console.log(areas);
+            console.log(areasLen);
+            for(var i=0;i<areasLen;i++){
+                areas[i].addEventListener("mouseover",mouseOver);
+                areas[i].addEventListener("mouseout",mouseOut);
+                areas[i].addEventListener("click",Click);
+            }
+        });  
+
+     
+        function mouseOver() {  
+        	console.log(this.id);    
+            // document.images[0].src = "images/MapTaipei.gif"; 
+            console.log("QQQ");
+            document.images[0].src = "/startrip/assets/transport/images/map/map"+ this.id + ".png"; 
+            console.log("/startrip/assets/transport/images/map/map"+ this.id +".png");
+        }
+
+
+        function mouseOut() {            
+            document.images[0].src = "/startrip/assets/transport/images/taiwan.png" ;
+        }
+
+
+        function Click() {            
+            // document.getElementById("mapdiv").innerHTML = "<img src='images/Taipei.gif'/>";
+            document.getElementById("mapdiv").innerHTML = 
+            "<img src='images/"+this.id.substr(2)+".gif'/>";
+        }
+        
+    </script>
 
 
 	<h1>查詢車站(地圖)</h1>
-	<div class="map">
-		<img src="/startrip/assets/transport/images/taiwan.png" width="280"
-			height="460" usemap="#Map" id="Image1" border="0">
-		<map name="Map" id="Map">
-			<area shape="rect" coords="201,54,248,76"
-				onclick="city(&#39;新北&#39;);"
-				onmouseover="MM_swapImage(&#39;Image1&#39;,&#39;&#39;,&#39;images/map/map01.png&#39;,1)"
-				onmouseout="MM_swapImgRestore()">
-			<area shape="rect" coords="181,23,228,44"
-				onclick="city(&#39;台北&#39;);"
-				onmouseover="MM_swapImage(&#39;Image1&#39;,&#39;&#39;,&#39;images/map/map02.png&#39;,1)"
-				onmouseout="MM_swapImgRestore()">
-			<area shape="rect" coords="229,28,274,52"
-				onclick="city(&#39;基隆&#39;);"
-				onmouseover="MM_swapImage(&#39;Image1&#39;,&#39;&#39;,&#39;images/map/map03.png&#39;,1)"
-				onmouseout="MM_swapImgRestore()">
-			<area shape="rect" coords="122,186,170,208"
-				onclick="city(&#39;南投&#39;);"
-				onmouseover="MM_swapImage(&#39;Image1&#39;,&#39;&#39;,&#39;images/map/map04.png&#39;,1)"
-				onmouseout="MM_swapImgRestore()">
-			<area shape="rect" coords="53,303,100,328"
-				onclick="city(&#39;高雄&#39;);"
-				onmouseover="MM_swapImage(&#39;Image1&#39;,&#39;&#39;,&#39;images/map/map05.png&#39;,1)"
-				onmouseout="MM_swapImgRestore()">
-			<area shape="rect" coords="208,99,260,122"
-				onclick="city(&#39;宜蘭&#39;);"
-				onmouseover="MM_swapImage(&#39;Image1&#39;,&#39;&#39;,&#39;images/map/map06.png&#39;,1)"
-				onmouseout="MM_swapImgRestore()">
-			<area shape="rect" coords="176,196,224,215"
-				onclick="city(&#39;花蓮&#39;);"
-				onmouseover="MM_swapImage(&#39;Image1&#39;,&#39;&#39;,&#39;images/map/map07.png&#39;,1)"
-				onmouseout="MM_swapImgRestore()">
-			<area shape="rect" coords="136,278,185,302"
-				onclick="city(&#39;台東&#39;);"
-				onmouseover="MM_swapImage(&#39;Image1&#39;,&#39;&#39;,&#39;images/map/map08.png&#39;,1)"
-				onmouseout="MM_swapImgRestore()">
-			<area shape="rect" coords="84,335,132,359"
-				onclick="city(&#39;屏東&#39;);"
-				onmouseover="MM_swapImage(&#39;Image1&#39;,&#39;&#39;,&#39;images/map/map09.png&#39;,1)"
-				onmouseout="MM_swapImgRestore()">
-			<area shape="rect" coords="54,260,100,283"
-				onclick="city(&#39;台南&#39;);"
-				onmouseover="MM_swapImage(&#39;Image1&#39;,&#39;&#39;,&#39;images/map/map10.png&#39;,1)"
-				onmouseout="MM_swapImgRestore()">
-			<area shape="rect" coords="37,227,86,252"
-				onclick="city(&#39;嘉義&#39;);"
-				onmouseover="MM_swapImage(&#39;Image1&#39;,&#39;&#39;,&#39;images/map/map11.png&#39;,1)"
-				onmouseout="MM_swapImgRestore()">
-			<area shape="rect" coords="36,193,85,212"
-				onclick="city(&#39;雲林&#39;);"
-				onmouseover="MM_swapImage(&#39;Image1&#39;,&#39;&#39;,&#39;images/map/map12.png&#39;,1)"
-				onmouseout="MM_swapImgRestore()">
-			<area shape="rect" coords="69,161,119,185"
-				onclick="city(&#39;彰化&#39;);"
-				onmouseover="MM_swapImage(&#39;Image1&#39;,&#39;&#39;,&#39;images/map/map13.png&#39;,1)"
-				onmouseout="MM_swapImgRestore()">
-			<area shape="rect" coords="111,137,160,160"
-				onclick="city(&#39;台中&#39;);"
-				onmouseover="MM_swapImage(&#39;Image1&#39;,&#39;&#39;,&#39;images/map/map14.png&#39;,1)"
-				onmouseout="MM_swapImgRestore()">
-			<area shape="rect" coords="92,104,142,128"
-				onclick="city(&#39;苗栗&#39;);"
-				onmouseover="MM_swapImage(&#39;Image1&#39;,&#39;&#39;,&#39;images/map/map15.png&#39;,1)"
-				onmouseout="MM_swapImgRestore()">
-			<area shape="rect" coords="155,93,204,114"
-				onclick="city(&#39;新竹&#39;);"
-				onmouseover="MM_swapImage(&#39;Image1&#39;,&#39;&#39;,&#39;images/map/map16.png&#39;,1)"
-				onmouseout="MM_swapImgRestore()">
-			<area shape="rect" coords="148,44,197,67"
-				onclick="city(&#39;桃園&#39;);"
-				onmouseover="MM_swapImage(&#39;Image1&#39;,&#39;&#39;,&#39;images/map/map17.png&#39;,1)"
-				onmouseout="MM_swapImgRestore()">
+	<div style=" width:500px;height:500px;" >
+		<img id="imgMap" alt="" src="/startrip/assets/transport/images/taiwan.png"  usemap="#FPMap0" width="280" height="460" usemap="#Map"  border="0">
+		<map id="FPMap0" name="FPMap0">
+			<area class=imgbut shape="rect" coords="201,54,248,76" id=01>
+			<area class=imgbut shape="rect" coords="181,23,228,44" id=02>
+			<area class=imgbut shape="rect" coords="229,28,274,52" id=03>
+			<area class=imgbut shape="rect" coords="122,186,170,208" id=04>
+			<area class=imgbut shape="rect" coords="53,303,100,328" id=05>
+			<area class=imgbut shape="rect" coords="208,99,260,122" id=06>
+			<area class=imgbut shape="rect" coords="176,196,224,215" id=07>
+			<area class=imgbut shape="rect" coords="136,278,185,302" id=08>
+			<area class=imgbut shape="rect" coords="84,335,132,359" id=09>
+			<area class=imgbut shape="rect" coords="54,260,100,283" id=10>
+			<area class=imgbut shape="rect" coords="37,227,86,252" id=11>
+			<area class=imgbut shape="rect" coords="36,193,85,212" id=12>
+			<area class=imgbut shape="rect" coords="69,161,119,185" id=13>
+			<area class=imgbut shape="rect" coords="111,137,160,160" id=14>
+			<area class=imgbut shape="rect" coords="92,104,142,128" id=15>
+			<area class=imgbut shape="rect" coords="155,93,204,114" id=16>
+			<area class=imgbut shape="rect" coords="148,44,197,67" id=17>
 		</map>
 	</div>
-	</div>
+		</div>
+	
 
+
+
+
+<!-- 	<div id="mapdiv" style="float:left;width:auto;height:auto;"></div>	 -->
 
 
 
@@ -249,6 +241,7 @@
 			<th>站名編號</th>
 			<th>地區</th>
 			<th>站名</th>
+			<th>車站地址</th>
 		</tr>
 
 		<c:forEach items='${stationList}' var='select'>
@@ -256,27 +249,21 @@
 				<td>${select.stationId}</td>
 				<td>${select.area}</td>
 				<td>${select.stationName}</td>
+				<td>${select.address}</td>
+
 			</tr>
 		</c:forEach>
 	</table>
 
 
 
-	
 
 
 
 
 
 
-	<script src="/startrip/assets/js/jquery.min.js"></script>
-	<script src="/startrip/assets/js/popper.min.js"></script>
-	<script src="/startrip/assets/js/bootstrap.min.js"></script>
-	<script src="/startrip/assets/js/owl.carousel.min.js"></script>
-	<script src="/startrip/assets/js/jquery.waypoints.min.js"></script>
-	<script src="/startrip/assets/js/jquery.easing.1.3.js"></script>
-	<script src="/startrip/assets/js/select2.min.js"></script>
-	<script src="/startrip/assets/js/main.js"></script>
+
 
 </body>
 </html>

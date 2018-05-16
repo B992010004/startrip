@@ -68,7 +68,8 @@ public class TravelPlanController {
 		TravelAllBean bean = new TravelAllBean();
 		
 		model.addAttribute("TravelAllBean",bean);
-		return "TravelProject/TravelPlans/add";
+		return "TravelProject/TravelPlans/addPlan";
+	
 	}
 	
 	@RequestMapping(value="Travel/addPlan/{mail}",method=RequestMethod.POST)
@@ -94,11 +95,14 @@ public class TravelPlanController {
 		bean.setMail(mail);
 		bean.setMemberId(id);
 		bean.setState(1);
-		int i =travelservice.insert(bean);
+		Integer pk =travelservice.insert_getprimarykey(bean);
+		
+		bean.setTravelId(pk);
 		
 //		System.out.println(i);
 		session = request.getSession();
 		session.setAttribute("Travel", bean);
+		
 		return "redirect:/list/All";
 	}
 	
@@ -129,21 +133,23 @@ public class TravelPlanController {
 	//移除行程
 		@RequestMapping(value="travel/remove" ,method=RequestMethod.GET)
 		@ResponseBody
-		public Boolean removePlan(@RequestParam(value="email")String mail,@RequestParam(value="id")Integer travelId) {
-			
+		public boolean removePlan(@RequestParam(value="email")String mail,@RequestParam(value="id")Integer travelId) {
 			TravelAllBean tb = new TravelAllBean();
 			MemberBean mb = new MemberBean();
-//			System.out.println(mail);
 			 mb=memberservice.select(mail);
-			System.out.println( mb.toString());
 			 Integer memberId =mb.getMemberid();
-//			System.out.println(memberId);
-//			System.out.println(memberId);
-//			System.out.println(memberId);
-//			System.out.println(memberId);
+			System.out.println(memberId);
+			System.out.println(memberId);
+			System.out.println(memberId);
+			System.out.println(memberId);
 			tb = travelservice.Select_Travel(memberId, travelId);
 			tb.setState(0);
-			travelservice.insert(tb);
+			System.out.println(tb.toString());
+			try {
+				travelservice.updateTravel(tb);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 			return true;
 			
 		}
@@ -154,15 +160,18 @@ public class TravelPlanController {
 	@RequestMapping(value="travel/id",method=RequestMethod.GET)
 	@ResponseBody
 	public HashMap<String, Object> travelBean(@RequestParam("mail")String mail,@RequestParam("travelId")Integer travelId,HttpServletRequest request) {
+		HttpSession session = request.getSession();
 		
+		System.out.println(mail+"--------------------"+travelId);
 		MemberBean mb = memberservice.select(mail);
 		Integer memberId =mb.getMemberid();
 		TravelAllBean tb = travelservice.Select_Travel(memberId,travelId);
-		
+		session.setAttribute("listOb", tb);
 		HashMap<String, Object> result = new HashMap<>();
 		result.put("Name", tb);
 		result.put("startDate", tb.getStartDate().toString());
 		result.put("endDate", tb.getEndDate().toString());
+		session.setAttribute("Travel", tb);
 		return result;
 	}
 	@RequestMapping(value="travel/update",method=RequestMethod.GET)
@@ -170,7 +179,7 @@ public class TravelPlanController {
 	public HashMap<String, Object> travelBean(@RequestParam("travelName")String travelName
 			,@RequestParam("startDate")Date startDate,@RequestParam("endDate")Date endDate
 			,@RequestParam("travelId")Integer travelId,@RequestParam("mail")String mail) {
-		System.out.println(travelName+","+startDate+","+endDate+","+travelId+","+mail);
+//		System.out.println(travelName+","+startDate+","+endDate+","+travelId+","+mail);
 		MemberBean mb = memberservice.select(mail);
 		Integer memberId =mb.getMemberid();
 		TravelAllBean tb = travelservice.Select_Travel(memberId,travelId);
@@ -218,8 +227,8 @@ public class TravelPlanController {
 		calendar.add(calendar.DATE,1); //把日期往后增加一天,整数  往后推,负数往前移动 
 		convert= calendar.getTime(); //这个时间就是日期往后推一天的结果 
 		Date endDate = new java.sql.Date(convert.getTime());
-		System.out.println(endDate);
-		System.out.println("--------------------------------------------");
+//		System.out.println(endDate);
+//		System.out.println("--------------------------------------------");
 		bean.setTravelDays(days+1);
 		bean.setEndDate(endDate);
 		bean.toString();
@@ -228,7 +237,7 @@ public class TravelPlanController {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		System.out.println();
+//		System.out.println();
 		return bean;
 	}
 	//show行程圖片
@@ -271,17 +280,29 @@ public class TravelPlanController {
 	
 	//List相關控制-------------------------------------
 	//新增清單--------------------------------------
-	@RequestMapping(value="Travel/addList",method=RequestMethod.GET)
-	public String listNewAdd(Model model) {
-		TravelListBean bean = new TravelListBean();
-		model.addAttribute("TravelListBean",bean);
-		return "TravelProject/TravelList/addList";
-	}
+//	@RequestMapping(value="Travel/addList",method=RequestMethod.GET)
+//	public String listNewAdd(Model model) {
+//		TravelListBean bean = new TravelListBean();
+//		model.addAttribute("TravelListBean",bean);
+//		return "TravelProject/TravelList/addList";
+//	}
 	
-	@RequestMapping(value="Travel/addList",method=RequestMethod.POST)
-	public String travelAdd(@ModelAttribute("TravelListBean") TravelListBean bean) {
-		listservice.insert(bean);
-		return "redirect:/list/All";
+	@RequestMapping(value="/Travel/add/list",method=RequestMethod.GET)
+	@ResponseBody
+	public TravelListBean travelAdd(@RequestParam("viewName")String viewName,@RequestParam("starttime")String starttime
+			,@RequestParam("endtime")String endtime,@RequestParam("type")String type
+			,@RequestParam("day")Integer day,@RequestParam("travelId")Integer travelId
+			,@RequestParam("memberId")Integer memberId) {
+		System.out.println(viewName+","+starttime+","+ endtime+","+ type+","+ travelId+","+ day);
+		String travelName = travelservice.Select_Travel(memberId, travelId).getTravelName();
+		String viewId = viewService.getViewPoint(viewName).getViewid();
+		Integer state = 1;
+		TravelListBean tlb = new TravelListBean(viewName, starttime, endtime, travelName, type, memberId, travelId, viewId, day, state);
+		Integer pk =listservice.insert(tlb);
+		
+		return tlb;
+		
+		
 	}		   
 	//--------------------------------------------------	
 	//getAllList 取得所有清單
@@ -295,12 +316,11 @@ public class TravelPlanController {
 	@RequestMapping(value="list/All/{mail}/{travelId}",method=RequestMethod.GET)
 	public String getAllList(Model model,HttpServletRequest request,
 			@PathVariable("mail")String mail,@PathVariable("travelId")Integer travelId) {
-		System.out.println(mail+","+travelId);
+//		System.out.println(mail+","+travelId);
 		TravelAllBean tb = new TravelAllBean();
 		tb.setMail(mail);
 		tb.setTravelId(travelId);
-		HttpSession session = request.getSession();
-		session.setAttribute("Travel", tb);
+	
 		return "/TravelProject/TravelList/AllList";
 	}
 	
@@ -417,6 +437,31 @@ public class TravelPlanController {
 		return "redirect:/TravelViews/all";
 
 	}
+	
+	@RequestMapping(value = "Travel/add/view", method = RequestMethod.POST )
+	@ResponseBody
+	public Object addViewFrom(@RequestParam("viewName")String viewName
+			,@RequestParam("src")String src,@RequestParam("score")String score
+			,@RequestParam("phone")String phone,@RequestParam("website")String website
+			,@RequestParam("address")String address,@RequestParam("placeId")String placeId
+			,@RequestParam("memberId")Integer memberId) {
+		Integer count;
+		TravelViewBean bean = new TravelViewBean();
+		bean =viewService.select_ViewId(placeId);
+		if(bean == null) {
+			count=1;
+			TravelViewBean tvb = new TravelViewBean(placeId, src, memberId, viewName, address, phone, website, score,count);
+			viewService.insert(tvb);
+			
+			return "insert secess";
+		}else {
+		count= viewService.getCount(placeId);
+		count++;
+		bean.setCount(count);
+		viewService.update(bean);
+		return "count sccuess";
+		}
+	}
   //分類--------------------------/
 //	@ModelAttribute("orgclassList")
 //	public List<String> getOrgClass() {
@@ -440,7 +485,7 @@ public class TravelPlanController {
 		TravelAllBean tab = travelservice.Select_Travel(memberId, travelId);
 		
 		 
-		System.out.println(tvb.toString());
+//		System.out.println(tvb.toString());
 		HashMap<String,Object> result = new HashMap<>();
 		
 		

@@ -4,12 +4,18 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
+<meta name="google-signin-scope" content="profile email">
+<meta name="google-signin-client_id"
+	content="689390388499-b3hifo46ha5ch3l3emcjif9ffphu7etu.apps.googleusercontent.com">
 <link href="/startrip/assets/css/bootstrap/botton.css" rel="stylesheet"
 	type="text/css" />
-<script src='https://www.google.com/recaptcha/api.js'></script>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
-<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-<script src="https://www.google.com/recaptcha/api.js"></script>
+<!-- <script src='https://www.google.com/recaptcha/api.js'></script>  -->
+<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
+	 <script
+	src="http://code.jquery.com/jquery-1.11.3.min.js"></script> <script
+	src="https://www.google.com/recaptcha/api.js"></script> 
+
 <style>
 .errorMsg {
 	text-align: center;
@@ -19,11 +25,11 @@
 	font-size: 14px;
 }
 </style>
-</head>
-<body>
+
+
 
 	<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
-		aria-labelledby="myLargeModalLabel" aria-hidden="true" id="modal">
+		aria-labelledby="myLargeModalLabel" aria-hidden="true" id="loginmodal">
 		<div class="modal-dialog modal-md">
 
 			<div class="probootstrap-form">
@@ -56,8 +62,9 @@
 							<div class="form-group" style="margin: 0px">
 								<input type="checkbox" id="remember" name="remember"
 									${rememberme.cookieremember}> <label for="remember">記住我</label>
-								<a href="/startrip/member/forgetpassword" class="text-center"
-									style="padding-left: 280px">忘記密碼?</a>
+								<div><span><a class="text-center" target="_blank" href="https://privacypolicies.com/privacy/view/KJBiiN">隱私權政策</a></span>	
+								<span style='position: absolute; right: 20px;'><a href="/startrip/member/forgetpassword" class="text-center" 
+									>忘記密碼?</a></span></div>
 							</div>
 							<span id="errorMsg" class="errorMsg" style="color: red;"></span>
 							<!-- /.col -->
@@ -72,15 +79,17 @@
 							<a href="#"
 								class="btn btn-block btn-social btn-facebook btn-flat"> <i
 								class="fa fa-facebook"></i>Facebook 登 入
-							</a> <a href="#"
-								class="btn btn-block btn-social btn-google-plus btn-flat"> <i
-								class="fa fa-google-plus"></i> Google+ 登 入
 							</a>
+							<div class="btn btn-block btn-social btn-google-plus btn-flat"
+								data-onsuccess="onSignIn" data-theme="dark">
+								<i class="fa fa-google-plus"></i> Google+ 登 入
+							</div>
+
 						</div>
 						<!-- /.social-auth-links -->
 
 						<p>
-							還沒加入會員嗎? 立即<a href="/startrip/insertMember" class="text-center"
+							還沒加入會員嗎? 立即<a href="/startrip/member/insertMember" class="text-center"
 								style="text-align: right">加入會員</a>
 						</p>
 
@@ -92,66 +101,81 @@
 			<!-- /.login-box -->
 		</div>
 	</div>
-
 	<script>
-		document.addEventListener("DOMContentLoaded", function() {
-			document.getElementById("loginmail").addEventListener("blur",
-					ckname);
-			document.getElementById("loginpassword").addEventListener("blur",
-					chkPassword);
-			document.getElementById("loginSubmit").addEventListener("click",
-					checkUserName);
-			document.getElementById("modal").addEventListener("blur", reset);
-		})
-		function reset() {
-			document.getElementById("nname").innerHTML = "";
-			document.getElementById("pswid").innerHTML = "";
-			document.getElementById("errorMsg").innerHTML = "";
+      function onSignIn(googleUser) {
+    
+        // Useful data for your client-side scripts:
+        var profile = googleUser.getBasicProfile();
+        alert("ID: " + profile.getId()); // Don't send this directly to your server!
+        alert('Full Name: ' + profile.getName());
+        alert('Given Name: ' + profile.getGivenName());
+        alert('Family Name: ' + profile.getFamilyName());
+        alert("Image URL: " + profile.getImageUrl());
+        alert("Email: " + profile.getEmail());
+        // The ID token you need to pass to your backend:
+        var id_token = googleUser.getAuthResponse().id_token;
+        console.log("ID Token: " + id_token);
+      };
+    </script>
+	<script>
+	document.addEventListener("DOMContentLoaded", function() {
+		document.getElementById("loginmail").addEventListener("blur", ckname);
+		document.getElementById("loginpassword").addEventListener("blur",
+				chkPassword);
+		document.getElementById("loginSubmit").addEventListener("click",
+				checkUserName);
+		document.getElementById("modal").addEventListener("blur", reset);
+	})
+	function reset() {
+		document.getElementById("nname").innerHTML = "";
+		document.getElementById("pswid").innerHTML = "";
+		document.getElementById("errorMsg").innerHTML = "";
+	}
+	function ckname() {
+		var getname = document.getElementById("loginmail").value;
+		if (getname == "") {
+			document.getElementById("nname").innerHTML = "請輸入帳號"
+		} else {
+			document.getElementById("nname").innerHTML = ""
 		}
-		function ckname() {
-			var getname = document.getElementById("loginmail").value;
-			if (getname == "") {
-				document.getElementById("nname").innerHTML = "請輸入帳號"
-			} else {
-				document.getElementById("nname").innerHTML = ""
+	}
+
+	function chkPassword() {
+
+		var getPwd = document.getElementById("loginpassword").value;
+
+		if (getPwd == "") {
+			document.getElementById("pswid").innerHTML = "請輸入密碼"
+		} else {
+			document.getElementById("pswid").innerHTML = ""
+		}
+	}
+	function checkUserName() {
+		var ajaxdata = {
+			mail : $('#loginmail').val(),
+			password : $('#loginpassword').val(),
+			recaptcha : grecaptcha.getResponse()
+		}
+
+		$.ajax({
+			url : "/startrip/chickpassword",
+			type : "POST",
+			data : ajaxdata,
+			async : false,
+			success : function(responseText, textStatus) {
+				if (responseText == 0) {
+					document.loginform.submit();
+				} else if (responseText == 1) {
+					document.getElementById("errorMsg").innerHTML = "請點選我不是機器人"
+				} else {
+					document.getElementById("errorMsg").innerHTML = "帳號或密碼錯誤"
+						grecaptcha.reset();
+				}
+			},
+			error : function() {
+
 			}
-		}
+		});
 
-		function chkPassword() {
-
-			var getPwd = document.getElementById("loginpassword").value;
-
-			if (getPwd == "") {
-				document.getElementById("pswid").innerHTML = "請輸入密碼"
-			} else {
-				document.getElementById("pswid").innerHTML = ""
-			}
-		}
-		function checkUserName() {
-			var ajaxdata = {
-				mail : $('#loginmail').val(),
-				password : $('#loginpassword').val(),
-				recaptcha : grecaptcha.getResponse()
-			}
-
-			$.ajax({
-						url : "/startrip/chickpassword",
-						type : "POST",
-						data : ajaxdata,
-						async : false,
-						success : function(responseText, textStatus) {
-							if (responseText == 0) {
-								document.loginform.submit();
-							} else if (responseText == 1) {
-								document.getElementById("errorMsg").innerHTML = "請點選我不是機器人"
-							} else {
-								document.getElementById("errorMsg").innerHTML = "帳號或密碼錯誤"
-							}
-						},
-						error : function() {
-
-						}
-					});
-
-		}
-	</script>
+	}
+</script>

@@ -45,7 +45,7 @@ public class HotelController {
 						
 			//review
 			//評等
-			List<Long> ranks = reviewService.getRankByHotelId(hotelId);
+			List<Long> ranks = reviewService.getRankByRestaurantId(hotelId);
 			Integer rankSize = 0;
 			for (Long rank : ranks) {
 				Integer tmp = rank.intValue();
@@ -58,7 +58,7 @@ public class HotelController {
 			model.addAttribute("rankSize", rankSize);
 			model.addAttribute("ranks", ranks);
 			//評論bean
-			List<ReviewBean> reviews = reviewService.getReviewsByHotelId(hotelId);
+			List<ReviewBean> reviews = reviewService.getReviewsByRestaurantId(hotelId);
 			model.addAttribute("reviews", reviews);
 			
 			return "hotel/Rooms";

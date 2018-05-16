@@ -58,8 +58,7 @@
 		<div class="container">
 			<div style="margin: auto" class="col-md-6  probootstrap-animate">
 				<form id="ckpassform" method="POST"
-					action="<c:url value="/changepassword"/>"
-					onSubmit="return ckpass()">
+					action="<c:url value="/changepassword"/>">
 					<div class="probootstrap-form probootstrap-form-box mb60">
 						<img
 							style="border-color: #C0C0C0; border-style: solid; border-style: outset; border-radius: 50%; position: absolute; right: 30px;"
@@ -70,7 +69,7 @@
 
 						<div class="col-md-6">
 							<div class="form-group">
-								<label for="fgpassword">請輸入密碼:</label> <input type="text"
+								<label for="fgpassword">請輸入密碼:</label> <input type="password"
 									class="form-control" name="fgpassword" placeholder="請輸入"
 									id="fgpassword" autofocus="autofocus" required="required" />
 							</div>
@@ -78,26 +77,43 @@
 
 						<div class="col-md-6">
 							<div class="form-group">
-								<input type="text" class="form-control" name="ckmail"
+								<input type="password" class="form-control" name="ckmail"
 									id="ckmail" style="display: none;" value="${change.mail}"></input>
 							</div>
 							<div class="form-group">
-								<label for="ckpassword">再次確認您的密碼:</label> <input type="text"
+								<label for="ckpassword">再次確認您的密碼:</label> <input type="password"
 									class="form-control" name="ckpassword" placeholder="請輸入"
 									id="ckpassword" autofocus="autofocus" required="required" />
 							</div>
 							<div class="col-md-10" id="errorMsg"></div>
 						</div>
 						<div>
-							<input type="submit" class="btn btn-primary" id="cksubmit"
-								name="submit" value="確認送出"
+							<input type="button" class="btn btn-primary" id="cksubmit"
+								 value="確認送出"
 								style='position: absolute; right: 20px; bottom: 20px;'>
 						</div>
 					</div>
 				</form>
-
+				
 			</div>
 		</div>
+		<div class="modal fade" id="changemodel" tabindex="-1"
+					role="dialog" aria-labelledby="exampleModalCenterTitle"
+					aria-hidden="true" data-backdrop="static" data-keyboard="false">
+					<div class="modal-dialog modal-dialog-centered" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLongTitle">Star
+									Trip</h5>
+							</div>
+							<div class="modal-body" style="text-align: center">密碼修改成功，請愛惜自己的密碼</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-primary"
+									id="changebackbutton">回首頁</button>
+							</div>
+						</div>
+					</div>
+				</div>
 	</section>
 	<div><jsp:include page="/WEB-INF/views/member/login.jsp"
 			flush="true" /></div>
@@ -116,20 +132,27 @@
 			document.getElementById("cksubmit").addEventListener("click",
 					ckpass);
 		})
+			$("#changebackbutton").click(function() {		
+				
+				$("#ckpassform").submit();
+				});
 		function ckpass() {
 			var fgpassword = document.getElementById("fgpassword").value;
 			var ckpassword = document.getElementById("ckpassword").value;
 
 			if (fgpassword == "" || ckpassword == "") {
 				document.getElementById("errorMsg").innerHTML = "<font color=\'red\'>請輸入正確的密碼</font>";
-				return false;
+				
 			} else if (fgpassword == ckpassword) {
 				document.getElementById("errorMsg").innerHTML = "";
-				return true;
-				document.ckpassform.submit();
+				$("#changemodel").modal({
+					show : true
+				});
+				
+							
 			} else {
 				document.getElementById("errorMsg").innerHTML = "<font color=\'red\'>請輸入相同密碼</font>";
-				return false;
+			
 			}
 		}
 	</script>

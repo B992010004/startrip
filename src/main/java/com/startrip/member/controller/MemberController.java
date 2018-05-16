@@ -21,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.CacheControl;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,13 +46,6 @@ public class MemberController {
 	@Autowired
 	ServletContext context;
 
-	@RequestMapping(value = "/insertMember", method = RequestMethod.GET)
-	public String InsertMember(Model model) {
-		MemberBean mb = new MemberBean();
-		model.addAttribute("MemberBean", mb);
-		return "/member/insertMember";
-	}
-
 	@RequestMapping(value = "/logout")
 	public String logout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
@@ -59,13 +53,18 @@ public class MemberController {
 		return "index";
 	}
 
-	@RequestMapping(value = "/insertMember", method = RequestMethod.POST)
+	@RequestMapping(value = "/member/insertMember", method = RequestMethod.GET)
+	public String InsertMember(Model model) {
+		MemberBean mb = new MemberBean();
+		model.addAttribute("MemberBean", mb);
+		return "/member/insertMember";
+	}
+
+	@RequestMapping(value = "/member/insertMember", method = RequestMethod.POST)
 	public String InsertMember(@ModelAttribute("MemberBean") MemberBean mb, BindingResult result,
 			HttpServletRequest request) {
-
 		MultipartFile avatarImage = mb.getAvatarImage();
 		System.out.println(avatarImage);
-
 		if (avatarImage != null) {
 			String originalFilename = avatarImage.getOriginalFilename();
 			if (originalFilename == "") {
@@ -73,36 +72,37 @@ public class MemberController {
 				mb.setAvatar("");
 				memberservice.insert(mb);
 				return "index";
+			} else {
+				String ext = originalFilename.substring(originalFilename.lastIndexOf("."));
+				String rootDirectory = request.getSession().getServletContext().getRealPath("/");
+				try {
+					byte[] b = avatarImage.getBytes();
+					Blob blob = new SerialBlob(b);
+					mb.setPhoto(blob);
+
+				} catch (Exception e) {
+					e.printStackTrace();
+					throw new RuntimeException("檔案上傳發生異常" + e.getMessage());
+				}
+
+				mb.setAvatar(mb.getMail() + ext);
+				memberservice.insert(mb);
+
+				try {
+					File imageFolder = new File(rootDirectory, "membericon");
+					if (!imageFolder.exists())
+						imageFolder.mkdirs();
+					File file = new File(imageFolder, mb.getMail() + ext);
+					avatarImage.transferTo(file);
+
+				} catch (Exception e) {
+					throw new RuntimeException("檔案上傳發生異常" + e.getMessage());
+
+				}
+				return "index";
 			}
-			String ext = originalFilename.substring(originalFilename.lastIndexOf("."));
-			String rootDirectory = request.getSession().getServletContext().getRealPath("/");
-			try {
-				byte[] b = avatarImage.getBytes();
-				Blob blob = new SerialBlob(b);
-				mb.setPhoto(blob);
-
-			} catch (Exception e) {
-				e.printStackTrace();
-				throw new RuntimeException("檔案上傳發生異常" + e.getMessage());
-			}
-
-			mb.setAvatar(mb.getMail() + ext);
-			memberservice.insert(mb);
-
-			try {
-				File imageFolder = new File(rootDirectory, "membericon");
-				if (!imageFolder.exists())
-					imageFolder.mkdirs();
-				File file = new File(imageFolder, mb.getMail() + ext);
-				avatarImage.transferTo(file);
-
-			} catch (Exception e) {
-				throw new RuntimeException("檔案上傳發生異常" + e.getMessage());
-			}
-			return "index";
-		} else {
-			return "index";
 		}
+		return "index";
 	}
 
 	@RequestMapping(value = "/LoginServlet", method = RequestMethod.POST)
@@ -140,21 +140,21 @@ public class MemberController {
 			return null;
 		}
 	}
+
 	@RequestMapping(value = "/chickpassword", method = RequestMethod.POST)
 	public void chickpassword(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String mail = request.getParameter("mail");
-		String password = request.getParameter("password");		
-		String gRecaptchaResponse = request
-				.getParameter("recaptcha");
-		boolean verify = VerifyRecaptcha.verify(gRecaptchaResponse);		
+		String password = request.getParameter("password");
+		String gRecaptchaResponse = request.getParameter("recaptcha");
+		boolean verify = VerifyRecaptcha.verify(gRecaptchaResponse);
 		MemberBean mm = memberservice.select(mail);
 		response.setContentType("text/plain;charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		if (verify&&mm != null && password.equals(mm.getPassword())) {
+		if (verify && mm != null && password.equals(mm.getPassword())) {
 			out.print(0);
-		} else if(verify==false){
+		} else if (verify == false) {
 			out.print(1);
-		}else {
+		} else {
 			out.print(2);
 		}
 	}
@@ -195,7 +195,6 @@ public class MemberController {
 		mb.setValidataCode(null);
 		System.out.println(mb);
 		memberservice.update(mb);
-
 		return "index";
 	}
 
@@ -228,6 +227,10 @@ public class MemberController {
 			media = baos.toByteArray();
 		}
 		headers.setCacheControl(CacheControl.noCache().getHeaderValue());
+		
+		//為了修正照片問題 by 修盟
+		String mimeType = context.getMimeType(mail);
+		headers.setContentType(MediaType.parseMediaType(mimeType));
 		ResponseEntity<byte[]> responseEntity = new ResponseEntity<>(media, headers, HttpStatus.OK);
 		return responseEntity;
 	}
@@ -239,9 +242,9 @@ public class MemberController {
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter writer = response.getWriter();
 		if (mm == null) {
-			writer.println("<font color=\"green\">恭喜您，可以注册！</font>");
+			writer.println("0");
 		} else {
-			writer.println("<font color=\"red\">您输入的用户名存在！请重新输入！</font>");
+			writer.println("1");
 		}
 	}
 
@@ -255,89 +258,91 @@ public class MemberController {
 	// mv.setViewName("/index");
 	// return mv;
 	// }
-	
+
 	@RequestMapping(value = "/member/forgetpassword", method = RequestMethod.GET)
 	public String forgetPass(Model model) {
 		MemberBean mb = new MemberBean();
 		model.addAttribute("MemberBean", mb);
 		return "/member/forgetpassword";
 	}
-	 @RequestMapping(value = "/member/forgetpassword",method = RequestMethod.POST)
-	 @ResponseBody
-	 public void forgetPass(HttpServletRequest request,HttpServletResponse response) throws IOException{
-	 String mail = request.getParameter("mail");
-	 MemberBean mb = memberservice.select(mail);
-	 response.setContentType("text/html; charset=utf-8");
-	 PrintWriter writer = response.getWriter();
-	 if(mb== null){ //用户名不存在
-		 writer.println(1);	
-	 }
-	 else { try{
-	 String secretKey= UUID.randomUUID().toString(); //密钥
-	 Timestamp outDate = new Timestamp(System.currentTimeMillis()+30*60*1000);//30分钟后过期
-	 long date = outDate.getTime()/1000*1000; //忽略毫秒数
-	 mb.setValidataCode(secretKey);
-	 mb.setRegisterDate(outDate);
-	 memberservice.update(mb); //保存到数据库
-	 String key = mb.getMail()+"$"+date+"$"+secretKey;
-	 String digitalSignature = MD5Util.MD5Encode(key,"UTF-8"); //数字签名
-	
-	 String emailTitle = "StarTrip";
-	 String path = request.getContextPath();
-	 String basePath =
-	 request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-	 String resetPassHref =
-	 basePath+"member/changepassword?sid="+digitalSignature+"&mail="+mb.getMail();
-	 String emailContent = "點選下方連結重設密碼"+resetPassHref+
-	 " 30分鐘後郵件失效，感謝您對StarTrip的支持";
-	 System.out.print(resetPassHref);
-	 sendmail send=new sendmail();
-	 send.sendemail(emailTitle,emailContent,mb.getMail());
-	 writer.println(0);	
-	 }catch (Exception e){
-	 e.printStackTrace();
-	 writer.println(2);
-	 }	 }
-	 }
-	 @RequestMapping(value = "/member/changepassword",method = RequestMethod.GET)
-	 public String checkResetLink(Model model,String sid,String mail){	 	 
-     String msg="";
-	 if(sid.equals("") || mail.equals("")){
-	 msg="連結網址不正確，請重新申請找回密碼，將於五秒後返回首頁";
-	 model.addAttribute("msg",msg);
-	 return "/member/error";
-	 }
-	 MemberBean mb = memberservice.select(mail);
-   
-	 if(mb == null){
-	 msg = "連結網址不正確，請重新申請找回密碼，將於五秒後返回首頁";
-	 model.addAttribute("msg",msg);
-	 return "/member/error";
-	 }
-	 Timestamp outDate = (Timestamp) mb.getRegisterDate();
-	 if(outDate.getTime() <= System.currentTimeMillis()){ //表示已经过期
-	 msg = "連結網址已過期，請重新申請找回密碼，將於五秒後返回首頁";
-	model.addAttribute("msg",msg);
-	return "/member/error";
-	 }
-	 String key =
-	 mb.getMail()+"$"+outDate.getTime()/1000*1000+"$"+mb.getValidataCode();
-	 //数字签名
-	String digitalSignature = MD5Util.MD5Encode(key,"UTF-8");
-	 System.out.println(key+"\t"+digitalSignature);
-	 if(!digitalSignature.equals(sid)) {
-	 msg = "連結網址不正確，請重新申請找回密碼，將於五秒後返回首頁";
-	 model.addAttribute("msg",msg);
-	 return "/member/error";
-	 }
-	 model.addAttribute("change",mb);
-	 return "/member/changepassword";
-	 }
-	 @RequestMapping(value = "/changepassword", method = RequestMethod.POST)
-		public String changepassword(HttpServletRequest request, HttpServletResponse response) {
-		 String mail = request.getParameter("ckmail");
+
+	@RequestMapping(value = "/member/forgetpassword", method = RequestMethod.POST)
+	@ResponseBody
+	public void forgetPass(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		String mail = request.getParameter("mail");
+		MemberBean mb = memberservice.select(mail);
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter writer = response.getWriter();
+		if (mb == null) { // 用户名不存在
+			writer.println(1);
+		} else {
+			try {
+				String secretKey = UUID.randomUUID().toString(); // 密钥
+				Timestamp outDate = new Timestamp(System.currentTimeMillis() + 30 * 60 * 1000);// 30分钟后过期
+				long date = outDate.getTime() / 1000 * 1000; // 忽略毫秒数
+				mb.setValidataCode(secretKey);
+				mb.setRegisterDate(outDate);
+				memberservice.update(mb); // 保存到数据库
+				String key = mb.getMail() + "$" + date + "$" + secretKey;
+				String digitalSignature = MD5Util.MD5Encode(key, "UTF-8"); // 数字签名
+
+				String emailTitle = "StarTrip";
+				String path = request.getContextPath();
+				String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+						+ path + "/";
+				String resetPassHref = basePath + "member/changepassword?sid=" + digitalSignature + "&mail="
+						+ mb.getMail();
+				String emailContent = "點選下方連結重設密碼" + resetPassHref + " 30分鐘後郵件失效，感謝您對StarTrip的支持";
+				System.out.print(resetPassHref);
+				sendmail send = new sendmail();
+				send.sendemail(emailTitle, emailContent, mb.getMail());
+				writer.println(0);
+			} catch (Exception e) {
+				e.printStackTrace();
+				writer.println(2);
+			}
+		}
+	}
+
+	@RequestMapping(value = "/member/changepassword", method = RequestMethod.GET)
+	public String checkResetLink(Model model, String sid, String mail) {
+		String msg = "";
+		if (sid.equals("") || mail.equals("")) {
+			msg = "連結網址不正確，請重新申請找回密碼，將於五秒後返回首頁";
+			model.addAttribute("msg", msg);
+			return "/member/error";
+		}
+		MemberBean mb = memberservice.select(mail);
+
+		if (mb == null) {
+			msg = "連結網址不正確，請重新申請找回密碼，將於五秒後返回首頁";
+			model.addAttribute("msg", msg);
+			return "/member/error";
+		}
+		Timestamp outDate = (Timestamp) mb.getRegisterDate();
+		if (outDate.getTime() <= System.currentTimeMillis()) { // 表示已经过期
+			msg = "連結網址已過期，請重新申請找回密碼，將於五秒後返回首頁";
+			model.addAttribute("msg", msg);
+			return "/member/error";
+		}
+		String key = mb.getMail() + "$" + outDate.getTime() / 1000 * 1000 + "$" + mb.getValidataCode();
+		// 数字签名
+		String digitalSignature = MD5Util.MD5Encode(key, "UTF-8");
+		System.out.println(key + "\t" + digitalSignature);
+		if (!digitalSignature.equals(sid)) {
+			msg = "連結網址不正確，請重新申請找回密碼，將於五秒後返回首頁";
+			model.addAttribute("msg", msg);
+			return "/member/error";
+		}
+		model.addAttribute("change", mb);
+		return "/member/changepassword";
+	}
+
+	@RequestMapping(value = "/changepassword", method = RequestMethod.POST)
+	public String changepassword(HttpServletRequest request, HttpServletResponse response) {
+		String mail = request.getParameter("ckmail");
 		String password = request.getParameter("ckpassword");
 		memberservice.changepassword(mail, password);
 		return "/index";
-	 }
+	}
 }

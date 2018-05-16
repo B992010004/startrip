@@ -119,10 +119,17 @@
                             </label>
                         </div>
                         
-<!--                         <div class="form-group"> -->
-<!--                             <label for="visited" class="sr-only-focusable">您的造訪日期是？</label> -->
-<%--                             <form:input path="roomTips" type="text" class="form-control" id="visited" name="visited" placeholder="例如:最佳景觀、人少時段、無障礙等等。" /> --%>
-<!--                         </div> -->
+                        <div class="form-group">
+                            <label for="visited" class="sr-only-focusable">您的造訪日期是？</label>
+                            <form:select path="visited" id="visited" name="visited">
+							  <form:option value="" id="visitedOpt1"></form:option>
+							  <form:option value="" id="visitedOpt2"></form:option>
+							  <form:option value="" id="visitedOpt3"></form:option>
+							  <form:option value="" id="visitedOpt4"></form:option>
+							  <form:option value="" id="visitedOpt5"></form:option>
+							  <form:option value="" id="visitedOpt6"></form:option>
+							</form:select>
+                        </div>
 
                         <div class="form-group">
                             <label class="sr-only-focusable">你對此餐廳的服務</label>
@@ -225,8 +232,31 @@
                 document.getElementById("rR" + i).addEventListener("mouseout", mouseout4);
                 document.getElementById("rR" + i).addEventListener("click", click4);   //事件繫結，滑鼠滑出
             }
+            console.log("DOMContentLoaded");
+            preparedate();
 
         });
+        
+        function preparedate() {
+            var today = new Date;
+            var year = today.getFullYear();
+            var month = today.getMonth();
+          	//alert(today.getFullYear());
+            //alert(month);
+                       
+            for (i = 1; i <= 6; i++) {
+            		//日期要補1不然 sql.Date無法parse
+            		document.getElementById('visitedOpt' + i).setAttribute("value", year + "-" + (month+1) + "-" + 1);
+            		var node = document.createTextNode(year + "年" + (month+1) + "月");
+            		document.getElementById('visitedOpt' + i).append(node);
+                    month--;
+                    if(month < 0){
+                    	month = 11;
+                    	year--;
+                    }
+				
+            }
+        }
         
         
 	</script>

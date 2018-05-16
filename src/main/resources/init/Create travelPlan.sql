@@ -1,8 +1,8 @@
 USE [startrip]
 GO
 
-drop table [TravelList]
 drop table [travelCollection]
+drop table [TravelList]
 drop table [TravelPlan]
 drop table [TravelView]
 
@@ -11,22 +11,23 @@ drop table [TravelView]
 
 
 CREATE TABLE TravelView(
-	viewid int IDENTITY(1,1) NOT NULL primary key,
+	viewid varchar(255) not null primary key,
 	viewName varchar(255) NULL,
 	imgName varchar(255) NULL,
-	orgclass varchar(255) NULL,
+	website varchar(255) NULL,
 	viewaddr varchar(255) NULL,
 	viewPhone varchar(255) NULL,
 	viewDetail varchar(255) NULL,
+	viewcount int null,
 	tdate date NULL,
 	
 	memberId int not NULL REFERENCES membertable (memberId))
 
 	go
-	insert into TravelView (viewName,imgName,orgclass,viewaddr,viewPhone,viewDetail,tdate,memberId)values('¤j¤Ù¤s','1.jpg;2.jpg;3.jpg','view','¶§©ú¤s','0939-987-456','xxxxxxxxxxxxxxxxxxxxxxxxxxxxx','2015-07-08',1);
-	insert into TravelView (viewName,imgName,orgclass,viewaddr,viewPhone,viewDetail,tdate,memberId)values('¤pªo§|','11.jpg;21.jpg;31.jpg','view','¶§©ú¤s','0939-987-456','xxxxxxxxxxxxxxxxxxxxxxxxxxxxx','2015-07-08',1);
-	insert into TravelView (viewName,imgName,orgclass,viewaddr,viewPhone,viewDetail,tdate,memberId)values('ªo§|','11.jpg;21.jpg;31.jpg','view','¶§©ú¤s','0939-987-456','xxxxxxxxxxxxxxxxxxxxxxxxxxxxx','2015-07-08',1);
-	insert into TravelView (viewName,imgName,orgclass,viewaddr,viewPhone,viewDetail,tdate,memberId)values('¤õ§|','11.jpg;21.jpg;31.jpg','view','¶§©ú¤s','0939-987-456','xxxxxxxxxxxxxxxxxxxxxxxxxxxxx','2015-07-08',1);
+	insert into TravelView (viewId,viewcount,viewName,imgName,website,viewaddr,viewPhone,viewDetail,tdate,memberId)values(1,11,'¤j¤Ù¤s','1.jpg;2.jpg;3.jpg','view','¶§©ú¤s','0939-987-456','xxxxxxxxxxxxxxxxxxxxxxxxxxxxx','2015-07-08',1);
+	insert into TravelView (viewId,viewcount,viewName,imgName,website,viewaddr,viewPhone,viewDetail,tdate,memberId)values(2,2,'¤pªo§|','11.jpg;21.jpg;31.jpg','view','¶§©ú¤s','0939-987-456','xxxxxxxxxxxxxxxxxxxxxxxxxxxxx','2015-07-08',1);
+	insert into TravelView (viewId,viewcount,viewName,imgName,website,viewaddr,viewPhone,viewDetail,tdate,memberId)values(3,3,'ªo§|','11.jpg;21.jpg;31.jpg','view','¶§©ú¤s','0939-987-456','xxxxxxxxxxxxxxxxxxxxxxxxxxxxx','2015-07-08',1);
+	insert into TravelView (viewId,viewcount,viewName,imgName,website,viewaddr,viewPhone,viewDetail,tdate,memberId)values(4,5,'¤õ§|','11.jpg;21.jpg;31.jpg','view','¶§©ú¤s','0939-987-456','xxxxxxxxxxxxxxxxxxxxxxxxxxxxx','2015-07-08',1);
 
 CREATE TABLE TravelPlan(
 	travelId int IDENTITY(1,1) NOT NULL primary key,
@@ -48,13 +49,12 @@ insert into TravelPlan (travelName,startDate,endDate,travelDays,img,state,member
 CREATE TABLE TravelList(
 	listId int IDENTITY(1,1) not Null primary Key,
 	travelId int NOT NULL REFERENCES TravelPlan (travelId) ,
-	viewId int NOT NULL REFERENCES TravelView (viewId),
+	viewId varchar(255) NOT NULL REFERENCES TravelView (viewId),
 	endTime varchar(255) NULL, 
 	startTime varchar(255) NULL,
 	travelType varchar(255) NULL,
 	tripday int NOT NULL,
-	state int not null,
-UNIQUE(	travelId,	viewId ))
+	state int not null)
 
 go
 insert into TravelList (tripday,startTime,endTime,viewId,travelId ,travelType,state)

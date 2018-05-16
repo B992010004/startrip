@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
+
 @Entity
 @Table(name = "STATION")
 public class StationBean implements Serializable {
@@ -21,10 +23,16 @@ public class StationBean implements Serializable {
 	private String area;
 
 	private String stationName;
+	
+	private String Address;
 
+	
+	
+	
 	@Override
 	public String toString() {
-		return "StationBean [stationId=" + stationId + ", area=" + area + ", stationName=" + stationName + "]";
+		return "StationBean [stationId=" + stationId + ", area=" + area + ", stationName=" + stationName + ", Address="
+				+ Address + "]";
 	}
 
 	public Integer getStationId() {
@@ -51,4 +59,14 @@ public class StationBean implements Serializable {
 		this.stationName = stationName;
 	}
 
+	public String getAddress() {
+		return Address;
+	}
+
+	public void setAddress(String address) {
+		Address = address;
+	}
+	
+
+	
 }

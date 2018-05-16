@@ -79,7 +79,7 @@
      width:200px;
   }
   .triplist{
-      height: 450px;
+      height: 640px;
     background-color: #474e5d;
     overflow-y: auto;
     position: fixed;
@@ -456,12 +456,7 @@ blockquote {
       #pac-input:focus {
         border-color: #4d90fe;
       }
-      .orgclass{
-      width: 60px;
-      height:60px;
-      padding:auto;
       
-      }
      
       .circle{
       margin:20px 8px;
@@ -472,10 +467,11 @@ blockquote {
       padding:auto;
       text-align: center;
       }
-      .circle:hover{
+       .circle:hover{
+      background-color: #00496c;
       color:white;
-      background: #0080ff;
       }
+      
       .checkview{
       padding: auto ;
       }
@@ -541,10 +537,18 @@ blockquote {
     padding:40px 30px;
 }
 
-.orgclass{
-	margin-top:20px;
+.closelist{
+	background-image:url("/startrip/assets/Travel/img/close.png");
+	background-size: 1em;
+	height: 16px;
+    float: right;
+    width: 16px;
+   
 }
-
+.placeId{
+	
+	
+}
 
 
 
