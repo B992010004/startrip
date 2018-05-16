@@ -177,7 +177,7 @@
 	<!-- END section -->
 	<section class="probootstrap_section">
 		<form:form method="post" modelAttribute="RtBookingBean"
-			action="insertRtBooking">
+			action="insertRtBooking/">
 			<!--  method="post" modelAttribute="RtDetailsBean" action="insertRestaurant" -->
 			<div class="intermediate">
 				<div class="container">

@@ -155,12 +155,11 @@
 					<c:forEach var='rtDetails' items='${RtDetails}'>
 						<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
 							<a href="/startrip/Individualdetails" class="probootstrap-thumbnail"> <img
-								src="/startrip/assets/images/01.jpg"
+								src="/startrip/getPicture/rtImage/${rtDetails.photoArr[0]}"
 								alt="Free Template by ProBootstrap.com" class="img-fluid">
-
 								<h3>${rtDetails.rtName}</h3> <span>${rtDetails.rtCuisine}</span>
 								<span>${rtDetails.teCategory}</span> <span>${rtDetails.rtPricepount}</span>
-								<span>${rtDetails.rtCounty}</span> <span>評分星等</span>
+								<span>${rtDetails.rtCounty}</span>
 							</a>
 						</div>
 					</c:forEach>
@@ -181,7 +180,7 @@
 
 								<h3>${rtDetails.rtName}</h3> <span>${rtDetails.rtCuisine}</span>
 								<span>${rtDetails.teCategory}</span> <span>${rtDetails.rtPricepount}</span>
-								<span>${rtDetails.rtCounty}</span> <span>評分星等</span>
+								<span>${rtDetails.rtCounty}</span>
 							</a>
 						</div>
 					</c:forEach>
@@ -202,7 +201,7 @@
 
 								<h3>${rtDetails.rtName}</h3> <span>${rtDetails.rtCuisine}</span>
 								<span>${rtDetails.teCategory}</span> <span>${rtDetails.rtPricepount}</span>
-								<span>${rtDetails.rtCounty}</span> <span>評分星等</span>
+								<span>${rtDetails.rtCounty}</span>
 							</a>
 						</div>
 					</c:forEach>
@@ -223,7 +222,7 @@
 
 								<h3>${rtDetails.rtName}</h3> <span>${rtDetails.rtCuisine}</span>
 								<span>${rtDetails.teCategory}</span> <span>${rtDetails.rtPricepount}</span>
-								<span>${rtDetails.rtCounty}</span> <span>評分星等</span>
+								<span>${rtDetails.rtCounty}</span>
 							</a>
 						</div>
 					</c:forEach>
@@ -244,7 +243,7 @@
 
 								<h3>${rtDetails.rtName}</h3> <span>${rtDetails.rtCuisine}</span>
 								<span>${rtDetails.teCategory}</span> <span>${rtDetails.rtPricepount}</span>
-								<span>${rtDetails.rtCounty}</span> <span>評分星等</span>
+								<span>${rtDetails.rtCounty}</span>
 							</a>
 						</div>
 					</c:forEach>
