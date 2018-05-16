@@ -29,7 +29,7 @@
 
 
 	<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
-		aria-labelledby="myLargeModalLabel" aria-hidden="true" id="modal">
+		aria-labelledby="myLargeModalLabel" aria-hidden="true" id="loginmodal">
 		<div class="modal-dialog modal-md">
 
 			<div class="probootstrap-form">
@@ -62,8 +62,9 @@
 							<div class="form-group" style="margin: 0px">
 								<input type="checkbox" id="remember" name="remember"
 									${rememberme.cookieremember}> <label for="remember">記住我</label>
-								<a href="/startrip/member/forgetpassword" class="text-center"
-									style="padding-left: 280px">忘記密碼?</a>
+								<div><span><a class="text-center" target="_blank" href="https://privacypolicies.com/privacy/view/KJBiiN">隱私權政策</a></span>	
+								<span style='position: absolute; right: 20px;'><a href="/startrip/member/forgetpassword" class="text-center" 
+									>忘記密碼?</a></span></div>
 							</div>
 							<span id="errorMsg" class="errorMsg" style="color: red;"></span>
 							<!-- /.col -->
@@ -168,6 +169,7 @@
 					document.getElementById("errorMsg").innerHTML = "請點選我不是機器人"
 				} else {
 					document.getElementById("errorMsg").innerHTML = "帳號或密碼錯誤"
+						grecaptcha.reset();
 				}
 			},
 			error : function() {
