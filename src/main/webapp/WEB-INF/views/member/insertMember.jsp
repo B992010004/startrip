@@ -216,13 +216,11 @@
 			}
 		}
 	</script>
-	<script>
-		$(function insertform() {
+	<script>		
 			$("#backbutton").click(function() {
-				$("#insertform").submit();
- 			
+				$("#insertform").submit();			
 			})
-		});
+		
 
 		$(function insertform() {
 			$("#hahaha")

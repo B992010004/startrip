@@ -44,14 +44,14 @@ public class MemberController {
 	MemberServiceInterface memberservice;
 	@Autowired
 	ServletContext context;
-	
-	
+
 	@RequestMapping(value = "/logout")
 	public String logout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		session.removeAttribute("LoginOK");
 		return "index";
 	}
+
 	@RequestMapping(value = "/member/insertMember", method = RequestMethod.GET)
 	public String InsertMember(Model model) {
 		MemberBean mb = new MemberBean();
@@ -96,10 +96,12 @@ public class MemberController {
 
 				} catch (Exception e) {
 					throw new RuntimeException("檔案上傳發生異常" + e.getMessage());
-				
-				}return "index";
+
+				}
+				return "index";
 			}
-		}return "index";
+		}
+		return "index";
 	}
 
 	@RequestMapping(value = "/LoginServlet", method = RequestMethod.POST)
@@ -164,7 +166,7 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/ModifyMember", method = RequestMethod.POST)
-	public void ModifyMember(@ModelAttribute("MemberBean") MemberBean mb, BindingResult result,
+	public String ModifyMember(@ModelAttribute("MemberBean") MemberBean mb, BindingResult result,
 			HttpServletRequest request) {
 		MultipartFile avatarImage = mb.getAvatarImage();
 		String originalFilename = avatarImage.getOriginalFilename();
@@ -192,7 +194,7 @@ public class MemberController {
 		mb.setValidataCode(null);
 		System.out.println(mb);
 		memberservice.update(mb);
-
+		return "index";
 	}
 
 	@RequestMapping(value = "/getPicture/{mail:.+}")
