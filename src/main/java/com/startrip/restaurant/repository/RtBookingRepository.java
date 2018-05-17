@@ -14,5 +14,6 @@ public interface RtBookingRepository {
 
 	boolean deleteRtBookingbgId(Integer bgId);
 	
+	
 }
 

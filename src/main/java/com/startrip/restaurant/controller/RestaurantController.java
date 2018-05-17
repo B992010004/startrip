@@ -51,17 +51,53 @@ public class RestaurantController {
 	@RequestMapping(value = "/restaurantHome")
 	public String getAllListRtDetails(Model model) {
 		List<RtDetailsBean> list = rtDetailsService.getAll();
-		List<RtDetailsBean> list2 = rtDetailsService.getAll();
+		List<RtDetailsBean> list2 = rtDetailsService.getrtArea();
+		List<RtDetailsBean> list3 = rtDetailsService.getrtPricepountH();
+		List<RtDetailsBean> list4 = rtDetailsService.getrtPricepountM();
+		List<RtDetailsBean> list5 = rtDetailsService.getrtPricepountL();
+		
 		String[] photoArr = null;
+		
 		for (RtDetailsBean bean : list) {
 			if (bean.getPhotoPaths() != null) {
 				photoArr = bean.getPhotoPaths().split(";");
 				bean.setPhotoArr(photoArr);
 			}
 		}
-
+		
+		for (RtDetailsBean bean : list2) {
+			if (bean.getPhotoPaths() != null) {
+				photoArr = bean.getPhotoPaths().split(";");
+				bean.setPhotoArr(photoArr);
+			}
+		}
+		
+		for (RtDetailsBean bean : list3) {
+			if (bean.getPhotoPaths() != null) {
+				photoArr = bean.getPhotoPaths().split(";");
+				bean.setPhotoArr(photoArr);
+			}
+		}
+		
+		for (RtDetailsBean bean : list4) {
+			if (bean.getPhotoPaths() != null) {
+				photoArr = bean.getPhotoPaths().split(";");
+				bean.setPhotoArr(photoArr);
+			}
+		}
+		
+		for (RtDetailsBean bean : list5) {
+			if (bean.getPhotoPaths() != null) {
+				photoArr = bean.getPhotoPaths().split(";");
+				bean.setPhotoArr(photoArr);
+			}
+		}
+		
 		model.addAttribute("RtDetails", list);
-		model.addAttribute("HIGH", list2);
+		model.addAttribute("nearby", list2);
+		model.addAttribute("HH", list3);
+		model.addAttribute("MM", list4);
+		model.addAttribute("LL", list5);
 		return "restaurant/restaurantHome";
 	}
 

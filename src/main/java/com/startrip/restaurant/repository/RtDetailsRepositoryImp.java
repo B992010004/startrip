@@ -77,6 +77,47 @@ public class RtDetailsRepositoryImp implements RtDetailsRepository {
 		return list;
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<RtDetailsBean> getrtArea() {
+		String hql="FROM RtDetailsBean where rtArea = :Area";
+		Session session = null;
+		List<RtDetailsBean> list2 = new ArrayList<>();
+		session = factory.getCurrentSession();
+		list2 = session.createQuery(hql).setParameter("Area", "花蓮市").setMaxResults(4).getResultList();
+		return list2;
+	}
+
+	@Override
+	public List<RtDetailsBean> getrtPricepountH() {
+		String hql="FROM RtDetailsBean where rtPricepount = :H";
+		Session session = null;
+		List<RtDetailsBean> list3 = new ArrayList<>();
+		session = factory.getCurrentSession();
+		list3 = session.createQuery(hql).setParameter("H", "高級餐廳").setMaxResults(4).getResultList();
+		return list3;
+	}
+
+	@Override
+	public List<RtDetailsBean> getrtPricepountM() {
+		String hql="FROM RtDetailsBean where rtPricepount = :M";
+		Session session = null;
+		List<RtDetailsBean> list4 = new ArrayList<>();
+		session = factory.getCurrentSession();
+		list4 = session.createQuery(hql).setParameter("M", "中等價位").setMaxResults(4).getResultList();
+		return list4;
+	}
+
+	@Override
+	public List<RtDetailsBean> getrtPricepountL() {
+		String hql="FROM RtDetailsBean where rtPricepount = :L";
+		Session session = null;
+		List<RtDetailsBean> list5 = new ArrayList<>();
+		session = factory.getCurrentSession();
+		list5 = session.createQuery(hql).setParameter("L", "平價美食").setMaxResults(4).getResultList();
+		return list5;
+	}
+
 
 
 }
