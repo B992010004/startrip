@@ -97,6 +97,7 @@ public class HotelAdminController {
 			System.out.println("新增前刪除已存在的hotelbean");
 		}
 		System.out.println("add hotel");
+		System.out.println("看這");
 		return "redirect:/admin/HostConnect_Hotel";
 	}
 
