@@ -155,7 +155,7 @@
 					<c:forEach var='rtDetails' items='${RtDetails}'>
 						<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
 							<a href="/startrip/Individualdetails" class="probootstrap-thumbnail"> <img
-								src="/startrip/getPicture/rtImage/${rtDetails.photoArr[0]}"
+								src="/startrip/getPicture/rtImage/${rtDetails.photoArr[2]}"
 								alt="Free Template by ProBootstrap.com" class="img-fluid">
 								<h3>${rtDetails.rtName}</h3> <span>${rtDetails.rtCuisine}</span>
 								<span>${rtDetails.teCategory}</span> <span>${rtDetails.rtPricepount}</span>
@@ -172,10 +172,10 @@
 					<h2 class="display-4 border-bottom probootstrap-section-heading">附近餐廳</h2>
 				</div>
 				<div class="row">
-					<c:forEach var='rtDetails' items='${RtDetails}'>
+					<c:forEach var='rtDetails' items='${nearby}'>
 						<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
 							<a href="/startrip/Individualdetails" class="probootstrap-thumbnail"> <img
-								src="/startrip/assets/images/01.jpg"
+								src="/startrip/getPicture/rtImage/${rtDetails.photoArr[1]}"
 								alt="Free Template by ProBootstrap.com" class="img-fluid">
 
 								<h3>${rtDetails.rtName}</h3> <span>${rtDetails.rtCuisine}</span>
@@ -193,10 +193,10 @@
 					<h2 class="display-4 border-bottom probootstrap-section-heading">高級餐廳</h2>
 				</div>
 				<div class="row">
-					<c:forEach var='rtDetails' items='${RtDetails}'>
+					<c:forEach var='rtDetails' items='${HH}'>
 						<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
 							<a href="/startrip/Individualdetails" class="probootstrap-thumbnail"> <img
-								src="/startrip/assets/images/01.jpg"
+								src="/startrip/getPicture/rtImage/${rtDetails.photoArr[3]}"
 								alt="Free Template by ProBootstrap.com" class="img-fluid">
 
 								<h3>${rtDetails.rtName}</h3> <span>${rtDetails.rtCuisine}</span>
@@ -214,10 +214,10 @@
 					<h2 class="display-4 border-bottom probootstrap-section-heading">中等價位</h2>
 				</div>
 				<div class="row">
-					<c:forEach var='rtDetails' items='${RtDetails}'>
+					<c:forEach var='rtDetails' items='${MM}'>
 						<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
 							<a href="/startrip/Individualdetails" class="probootstrap-thumbnail"> <img
-								src="/startrip/assets/images/01.jpg"
+								src="/startrip/getPicture/rtImage/${rtDetails.photoArr[3]}"
 								alt="Free Template by ProBootstrap.com" class="img-fluid">
 
 								<h3>${rtDetails.rtName}</h3> <span>${rtDetails.rtCuisine}</span>
@@ -235,10 +235,10 @@
 					<h2 class="display-4 border-bottom probootstrap-section-heading">平價美食</h2>
 				</div>
 				<div class="row">
-					<c:forEach var='rtDetails' items='${RtDetails}'>
+					<c:forEach var='rtDetails' items='${LL}'>
 						<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
 							<a href="/startrip/Individualdetails" class="probootstrap-thumbnail"> <img
-								src="/startrip/assets/images/01.jpg"
+								src="/startrip/getPicture/rtImage/${rtDetails.photoArr[5]}"
 								alt="Free Template by ProBootstrap.com" class="img-fluid">
 
 								<h3>${rtDetails.rtName}</h3> <span>${rtDetails.rtCuisine}</span>

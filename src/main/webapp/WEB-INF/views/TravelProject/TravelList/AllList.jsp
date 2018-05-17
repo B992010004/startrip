@@ -237,13 +237,12 @@
 <!--     <script src="/startrip/assets/Travel/js/lightbox.js"></script> -->
 <script>
 $(function(){
-	searchDays()
-	searchList();
+	
+	searchDays();
 	searchView();
-	placeroad()
-	console.log($('.listtitle').text())
-	alert($('.listtitle').text())
+
 })
+	
 
 function changetype(){
 var k = event.target.id;
@@ -407,18 +406,13 @@ $(document).on('click','#checklist',function(){
 		contentType: "application/json; charset=utf-8",
 		success:function(data){
 			searchList();
+			
+			
 		}
 	})
 })
 
-function placeroad(){
-	console.log($('.container .listtitle').text())
-	console.log('aaaaa')
-	console.log($('.listtitle').text())
-	alert($('.listtitle').text())
-// 		console.log(index+"="+$(this).text());
-	
-}
+
 
 
 
@@ -464,6 +458,7 @@ function searchDays(){
 			var docFrag = $(document.createDocumentFragment());
 			var main =$(".timeline");
 			for( var i = 1,day=data.Name.travelDays;i<=day;i++){
+				console.log('第'+i+'天')
 				//---天數新增
 				var title=$('<h2 class="title" onclick="changetype()" id="day'+i+'" >Day'+i+'</h2>');
 				var daycontent=$('<div class="contentDay"></div>');
@@ -473,6 +468,9 @@ function searchDays(){
 					right1.html(daycontent);
 				
 					docFrag.append(right1);
+					
+					 searchList(i);
+					
 			}
 				main.append(docFrag);
 			
@@ -483,10 +481,11 @@ function searchDays(){
 //------------------------------------------
 //查詢行程景點
 
-function searchList(){
+function searchList(day){
 	var travel={};
 	travel.mail="${LoginOK.mail}"
 	travel.travelId="${Travel.travelId}"
+	travel.day=day
 	$.ajax({
 		url:"/startrip/list/travelId",
 		type:"GET",
@@ -495,9 +494,13 @@ function searchList(){
 		contentType: "application/json; charset=utf-8",
 		success: 
 			function(data){
-			var len = data.length;
 			
-			for(var i = 0;i<len;i++){
+			var len = data.length;
+			var waypts=[];
+			if(!(data=="")){
+			console.log("清單地點")
+			}
+			for(var i = 0;i<len;i++){//產生天數清單
 				var right=$('<div class="container1 right"  id="dayTile'+(i+1)+'"> </div>')
 				var content = $('<div class="content"><div class="closelist" id="closelist'+(i+1)+'" ></div></div>')
 				var title = $('<h3 class="listtitle" name="title">'+data[i].viewName+'</h3>');
@@ -509,8 +512,29 @@ function searchList(){
 				var tag = "daybody"+day
 // 				console.log(tag)
 				$(".timeline").find("#"+tag).append(right);
-				
-				}
+				waypts.push({
+					location: data[i].viewName,
+					stopover: true
+					})
+				}//for----end
+			
+			  var directionsService = new google.maps.DirectionsService;
+			  var directionsDisplay = new google.maps.DirectionsRenderer({
+		          draggable: true,
+		          map: map,
+		        //   panel: document.getElementById('right-panel')
+		        });
+			//中途點
+			  waypts.splice(0,1);
+			  waypts.pop()
+			//------------------
+			  if(data.length<2){
+				  console.log("只有一個點")
+			  }else{
+			  var road =displayRoute(data[0].viewName, data[len-1].viewName,waypts, directionsService,directionsDisplay);
+			  console.log(road)
+			  }        
+			
 		}
 		
 	})
@@ -563,7 +587,53 @@ function searchView(){
 }
 
 
+function displayRoute(origin, destination,waypts, service,display) {
+	service.route({
+    //起始
+      origin: origin,
+    //目的
+      destination: destination,
+    //中途點
+      waypoints: waypts,
+      
+    //模式
+      travelMode: 'DRIVING'
+//     console.log(status);
+    }, function(response, status) {
+      if (status === 'OK') {
+//           console.log(response)
+// //           console.log(response.routes[0].legs[0].distance.text)
+// //           console.log(response.routes[0].legs[0].duration.text)
+// //           console.log(response.routes[0].legs[0].start_address)
+// //           console.log(response.routes[0].legs[0].end_address)
+// //           console.log(response.routes[0].legs[0].duration.text)
+//           var result=response.routes[0]
+//           len=result.legs.length
+//           console.log(len)
+//           road=[]
+//           if(len<0){
+//         	  console.log("沒有形成")
+//           }else{
+// // 	          for(var i = 0;i<len;i++){
+// // 	        	distance=result.legs[i].distance.text;
+// // 	        	duration=result.legs[i].duration.text;
+// // 	        	road.push({
+// // 	        		distance:distance,
+// // 	        		duration:duration
+// // 	        	})
 
+	         display.setDirections(response);
+	          
+          
+          
+          
+      } else {
+       console.log('Could not display directions due to: ' + status);
+      }
+    });
+    
+  }
+  
 
 </script>
 <script type="text/javascript">
@@ -738,34 +808,38 @@ function initMap() {
 
 
 	  //處理
-	  function displayRoute(origin, destination,waypts, service, display) {
-	      service.route({
-	      //起始
-	        origin: origin,
-	      //目的
-	        destination: destination,
-	      //中途點
-	        waypoints: waypts,
-	      //模式
-	        travelMode: 'DRIVING'
+// 	  function displayRoute(origin, destination,waypts, service, display) {
+// 	      service.route({
+// 	      //起始
+// 	        origin: origin,
+// 	      //目的
+// 	        destination: destination,
+// 	      //中途點
+// 	        waypoints: waypts,
+// 	      //模式
+// 	        travelMode: 'DRIVING'
 	      
-	      }, function(response, status) {
-	        if (status === 'OK') {
-	            console.log(response)
-	            console.log(response.routes[0].legs[0].distance.text)
-	            console.log(response.routes[0].legs[0].duration.text)
-	            console.log(response.routes[0].legs[0].start_address)
-	            console.log(response.routes[0].legs[0].end_address)
-	            console.log(response.routes[0].legs[0].duration.text)
+// 	      }, function(response, status) {
+// 	        if (status === 'OK') {
+// 	            console.log(response)
+// 	            console.log(response.routes[0].legs[0].distance.text)
+// 	            console.log(response.routes[0].legs[0].duration.text)
+// 	            console.log(response.routes[0].legs[0].start_address)
+// 	            console.log(response.routes[0].legs[0].end_address)
+// 	            console.log(response.routes[0].legs[0].duration.text)
 	           
-	          display.setDirections(response);
-	        } else {
-	         console.log('Could not display directions due to: ' + status);
-	        }
-	      });
+// 	          display.setDirections(response);
+// 	        } else {
+// 	         console.log('Could not display directions due to: ' + status);
+// 	        }
+// 	      });
 	      
-	    }
+// 	    }
 	    //displayRoute -------end---
+	     
+	    
+	    
+	    
 	    
 		//	顯示
 // 	    function computeTotalDistance(result) {

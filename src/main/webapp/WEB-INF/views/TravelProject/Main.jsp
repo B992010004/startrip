@@ -46,11 +46,14 @@
 	<div>
 		<jsp:include page="/WEB-INF/views/header.jsp" flush="true" />
 	</div>
-	<section class="probootstrap_section bg-dark" id="section-contact">
 
-	</section>
 
-	<section class="probootstrap_section" id="section-feature-testimonial">
+	 <section class="probootstrap_section bg-dark" id="section-contact">
+        
+		</section>
+		
+		<section class="probootstrap_section" id="section-feature-testimonial">
+
 		<div class="row">
 			<div class="col-md-3" style="background-color: blcak;">
 				<ul class="list-group list-group-flush">
