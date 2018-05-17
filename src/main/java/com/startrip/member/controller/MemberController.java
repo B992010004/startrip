@@ -2,6 +2,7 @@ package com.startrip.member.controller;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
@@ -43,8 +44,10 @@ import com.startrip.restaurant.service.RtBookingService;
 public class MemberController {
 	@Autowired
 	RtBookingService rtBookingService;
+
 	@Autowired
 	MemberServiceInterface memberservice;
+
 	@Autowired
 	ServletContext context;
 
@@ -54,10 +57,12 @@ public class MemberController {
 		session.removeAttribute("LoginOK");
 		return "index";
 	}
+
 	@RequestMapping(value = "/selectdata")
 	public String selectdata(HttpServletRequest request) {
 		return "/member/mydata";
 	}
+
 	@RequestMapping(value = "/member/insertMember", method = RequestMethod.GET)
 	public String InsertMember(Model model) {
 		MemberBean mb = new MemberBean();
@@ -70,16 +75,17 @@ public class MemberController {
 			HttpServletRequest request) {
 		MultipartFile avatarImage = mb.getAvatarImage();
 		System.out.println(avatarImage);
+
 		if (avatarImage != null) {
 			String originalFilename = avatarImage.getOriginalFilename();
 			if (originalFilename == "") {
 				mb.setPhoto(null);
-				mb.setAvatar("");
+				mb.setAvatar("user.jpg");
 				memberservice.insert(mb);
 				return "index";
 			} else {
 				String ext = originalFilename.substring(originalFilename.lastIndexOf("."));
-				String rootDirectory = "C:\\temp\\";
+				// 寫進資料庫
 				try {
 					byte[] b = avatarImage.getBytes();
 					Blob blob = new SerialBlob(b);
@@ -89,15 +95,18 @@ public class MemberController {
 					throw new RuntimeException("檔案上傳發生異常" + e.getMessage());
 				}
 				mb.setAvatar(mb.getMail() + ext);
-				memberservice.insert(mb);			
-				String fileurl=mb.getMail()+ext;								
+				memberservice.insert(mb);
+
+				// 照片存進資料夾
+				String rootDirectory = "C:\\temp\\";
+				String fileurl = mb.getMail() + ext;
 				try {
 					File imageFolder = new File(rootDirectory, "memberIcon");
 					if (!imageFolder.exists()) {
 						imageFolder.mkdirs();
 					}
 					File file = new File(imageFolder, fileurl);
-					avatarImage.transferTo(file);					
+					avatarImage.transferTo(file);
 				} catch (IllegalStateException e) {
 					e.printStackTrace();
 				} catch (IOException e) {
@@ -231,11 +240,55 @@ public class MemberController {
 			media = baos.toByteArray();
 		}
 		headers.setCacheControl(CacheControl.noCache().getHeaderValue());
-		
-		//為了修正照片問題 by 修盟
+
+		// 為了修正照片問題 by 修盟
 		String mimeType = context.getMimeType(mail);
 		headers.setContentType(MediaType.parseMediaType(mimeType));
 		ResponseEntity<byte[]> responseEntity = new ResponseEntity<>(media, headers, HttpStatus.OK);
+		return responseEntity;
+	}
+
+	// 處理照片請求
+	// 相片都保存在C:\\temp\\
+	@RequestMapping(value = "/getPicture/memberIcon/{photoName:.+}", method = RequestMethod.GET)
+	public ResponseEntity<byte[]> getPictureLocal(HttpServletResponse resp, @PathVariable String photoName) {
+
+		HttpHeaders headers = new HttpHeaders();
+		ByteArrayOutputStream baos = null;
+		int len = 0;
+		byte[] media = null;
+		if (!photoName.equalsIgnoreCase("user.jpg")) {
+			try (InputStream is = new FileInputStream("C:/temp/memberIcon/" + photoName)) {
+				baos = new ByteArrayOutputStream();
+				byte[] b = new byte[8192];
+
+				while ((len = is.read(b)) != -1) {
+					baos.write(b, 0, len);
+				}
+			} catch (IOException e) {
+				throw new RuntimeException("ProductController 的  getPicture() 發生 IOException:" + e.getMessage());
+			}
+
+		} else {
+			InputStream is = context.getResourceAsStream("/WEB-INF/views/assets/images/membericon/user.jpg");
+			baos = new ByteArrayOutputStream();
+			byte[] b = new byte[8192];
+			try {
+				while ((len = is.read(b)) != -1) {
+					baos.write(b, 0, len);
+				}
+			} catch (Exception e) {
+				throw new RuntimeException("productcontroller的getpicture發生IOException" + e.getMessage());
+			}
+			media = baos.toByteArray();
+		}
+		media = baos.toByteArray();
+		headers.setCacheControl(CacheControl.noCache().getHeaderValue());
+		String mimeType = context.getMimeType(photoName);
+		// headers.setContentType(MediaType.IMAGE_JPEG);
+		headers.setContentType(MediaType.parseMediaType(mimeType));
+		ResponseEntity<byte[]> responseEntity = new ResponseEntity<>(media, headers, HttpStatus.OK);
+
 		return responseEntity;
 	}
 
@@ -341,11 +394,12 @@ public class MemberController {
 		model.addAttribute("change", mb);
 		return "/member/changepassword";
 	}
+
 	@RequestMapping(value = "/selectrt", method = RequestMethod.POST)
 	public void selectrt(HttpServletRequest request, HttpServletResponse response) {
 
 	}
-	
+
 	@RequestMapping(value = "/changepassword", method = RequestMethod.POST)
 	public String changepassword(HttpServletRequest request, HttpServletResponse response) {
 		String mail = request.getParameter("ckmail");
