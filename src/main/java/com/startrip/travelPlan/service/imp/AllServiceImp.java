@@ -32,11 +32,19 @@ public class AllServiceImp implements ITravelAllService {
 	}
 	@Transactional
 	@Override
-	public Integer insert(TravelAllBean bean) {
+	public String insert(TravelAllBean bean) {
 		
 		
-		Integer pk =travelDao.insert(bean);
-		return pk;
+		return travelDao.insert(bean);
+		
+	}
+	@Transactional
+	@Override
+	public Integer insert_getprimarykey(TravelAllBean bean)  {
+		
+		
+		return travelDao.insert_getprimarykey(bean);
+		
 	}
 
 	@Transactional

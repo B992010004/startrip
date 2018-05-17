@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
@@ -33,6 +34,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.startrip.reviews.model.ReviewBean;
+import com.startrip.reviews.model.ReviewSelectCriteria;
 import com.startrip.reviews.service.ReviewService;
 
 @Controller
@@ -160,13 +162,14 @@ public class ReviewController {
 		return responseEntity;
 	}
 
+	//好像沒發生作用 後來我硬塞
 	@InitBinder
 	protected void initBinder(WebDataBinder binder) {
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM");
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		dateFormat.setLenient(false); // true 它會自動幫你「減」一個月
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));// 第二个参数是控制是否支持传入的值是空，这个值很关键，如果指定为false，那么如果前台没有传值的话就会报错
 	}
-
+	
 	private boolean isImage(MultipartFile file) {
 		return file.getContentType().startsWith("image");
 	}

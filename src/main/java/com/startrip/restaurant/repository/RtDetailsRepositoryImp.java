@@ -17,15 +17,20 @@ public class RtDetailsRepositoryImp implements RtDetailsRepository {
 	@Autowired
 	SessionFactory factory;
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public RtDetailsBean getAllRtDetailsrtName(String rtName) {
-		RtDetailsBean rdn = null;
-		Session session = factory.getCurrentSession();
-		rdn = session.get(RtDetailsBean.class, rtName);
-		if(rdn == null) throw new RtDetailsNotFoundException(rtName);
-		return rdn;
+		String hql = "FROM RtDetailsBean where rtName =:rtName ";
+		Session session = factory.getCurrentSession();		
+		List<RtDetailsBean> list = new ArrayList<>();	
+		list =session.createQuery(hql).setParameter("rtName", rtName).getResultList();;	
+		if (list.size() == 0) {
+			return null;
+		} else {
+			return list.get(0);
+		}
 	}
-
+	
 	@Override
 	public RtDetailsBean getAllRtDetailsrtId(Integer rtId) {
 		RtDetailsBean rdi = null;

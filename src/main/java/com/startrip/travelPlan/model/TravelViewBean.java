@@ -1,8 +1,10 @@
 package com.startrip.travelPlan.model;
 
+import java.sql.Date;
 import java.util.Arrays;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,10 +27,7 @@ import com.startrip.member.memberModle.MemberBean;
 public class TravelViewBean {
 	//pk,流水號,colum=viewid
 	
-	private int viewid;
-	
-	
-	
+	private String viewid;
 	private MultipartFile[] imgSrc;
 	private String imgName;
 	
@@ -37,13 +36,11 @@ public class TravelViewBean {
 	private String viewName;
 	private String viewaddr;
 	private String viewPhone;
-	private String orgclass;
+	private String website;
 	private java.sql.Date tdate;
 	private String viewDetail;
-//	private MemberBean viewMail;
-//	private Set<TravelAllBean> travels;
-//	private Set<MemberBean> mails;
-	
+	private Integer count;
+//
 	
 	
 	public TravelViewBean() {
@@ -52,22 +49,44 @@ public class TravelViewBean {
 	
 	
 	
-//	@Override
-//	public String toString() {
-//		return "TravelViewBean [viewid=" + viewid + ", imgSrc=" + Arrays.toString(imgSrc) + ", imgName=" + imgName
-//				+ ", viewMail=" + viewMail + ", mail=" + mail + ", viewName=" + viewName + ", viewaddr=" + viewaddr
-//				+ ", viewPhone=" + viewPhone + ", orgclass=" + orgclass + ", tdate=" + tdate + ", viewDetail="
-//				+ viewDetail + ", travels=" + travels + "]";
-//	}
+	
+
+	@Override
+	public String toString() {
+		return "TravelViewBean [viewid=" + viewid + ", imgName=" + imgName + ", memberId=" + memberId + ", viewName="
+				+ viewName + ", viewaddr=" + viewaddr + ", viewPhone=" + viewPhone + ", website=" + website
+				+ ", viewDetail=" + viewDetail + ", count=" + count + "]";
+	}
+
+
+
+
+
+	public TravelViewBean(String viewid,  String imgName, Integer memberId, String viewName,
+		String viewaddr, String viewPhone, String website, String viewDetail, Integer count) {
+	super();
+	this.viewid = viewid;
+	this.imgSrc = imgSrc;
+	this.imgName = imgName;
+	this.memberId = memberId;
+	this.viewName = viewName;
+	this.viewaddr = viewaddr;
+	this.viewPhone = viewPhone;
+	this.website = website;
+	this.tdate = tdate;
+	this.viewDetail = viewDetail;
+	this.count = count;
+}
+
+
 
 
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY) 
-	public int getViewid() {
+	public String getViewid() {
 		return viewid;
 	}
-	public void setViewid(int viewid) {
+	public void setViewid(String viewid) {
 		this.viewid = viewid;
 	}
 	
@@ -81,6 +100,30 @@ public class TravelViewBean {
 	}
 	
 	
+	public String getWebsite() {
+		return website;
+	}
+
+
+
+	public void setWebsite(String website) {
+		this.website = website;
+	}
+
+
+	@Column(name="viewcount")
+	public Integer getCount() {
+		return count;
+	}
+
+
+
+	public void setCount(Integer count) {
+		this.count = count;
+	}
+
+
+
 	@Transient
 	@XmlTransient
 	public MultipartFile[] getImgSrc() {
@@ -110,12 +153,7 @@ public class TravelViewBean {
 		this.viewPhone = viewPhone;
 	}
 
-	public String getOrgclass() {
-		return orgclass;
-	}
-	public void setOrgclass(String orgclass) {
-		this.orgclass = orgclass;
-	}
+	
 	
 	public java.sql.Date getTdate() {
 		return tdate;
@@ -144,11 +182,20 @@ public class TravelViewBean {
 
 
 
-	@Override
-	public String toString() {
-		return "TravelViewBean [viewid=" + viewid + ", imgSrc=" + Arrays.toString(imgSrc) + ", imgName=" + imgName
-				+ ", memberId=" + memberId + ", viewName=" + viewName + ", viewaddr=" + viewaddr + ", viewPhone="
-				+ viewPhone + ", orgclass=" + orgclass + ", viewDetail=" + viewDetail + "]";
+	
+
+
+	public TravelViewBean(String viewid, String imgName, Integer memberId, String viewName, String viewaddr,
+			String viewPhone, String website, String viewDetail) {
+		super();
+		this.viewid = viewid;
+		this.imgName = imgName;
+		this.memberId = memberId;
+		this.viewName = viewName;
+		this.viewaddr = viewaddr;
+		this.viewPhone = viewPhone;
+		this.website = website;
+		this.viewDetail = viewDetail;
 	}
 	
 	

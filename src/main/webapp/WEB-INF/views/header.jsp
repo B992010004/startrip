@@ -26,7 +26,7 @@
 					<li class="nav-item"><a class="nav-link"
 						href="/startrip/select">大眾運輸</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="/startrip/TravelMain/${LoginOK.mail}">行程規劃</a></li>
+						href="/startrip/TravelMain/">行程規劃</a></li>
 					<li class="nav-item"><a class="nav-link"														
 						href="/startrip/restaurant/1">個別餐廳</a></li>	
 						
@@ -41,8 +41,7 @@
 						<!-- 測試 --><li class="nav-item"><a class="nav-link"
 						href="/startrip/RtAllList">o測試o餐廳種覽o</a></li><!-- 測試 -->
 						
-						<!-- 測試 --><li class="nav-item"><a class="nav-link"
-						href="/startrip/Individualdetailsmodify">o測試o後台個別修刪o</a></li><!-- 測試 -->
+						
 
 
 					<li class="nav-item">
