@@ -144,14 +144,14 @@
 						<div class="form-group">
 							<img id="preview_progressbarTW_img" class="img1" value=""
 								src="<c:url value='/getPicture/${LoginOK.mail}'/>" /> <label
-								for="progressbarTWInput" class="btn btn-primary"> input
-								file</label>
+								for="progressbarTWInput" class="btn btn-primary"> 選擇您的相片
+						</label>
 							<form:input type="file" path="avatarImage"
 								id="progressbarTWInput" name="mAvatar"
 								accept="image/gif, image/jpeg, image/png" style="display: none;" />
 							<div class="form-group">
 								<input type="button" class="btn btn-primary" id="modlifysubmit"
-									 value="Sign Up"
+									 value="確認修改"
 									style='position: absolute; right: 0;'>
 							</div>
 						</div>

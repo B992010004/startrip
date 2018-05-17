@@ -36,10 +36,12 @@ import com.startrip.member.Service.MemberServiceInterface;
 import com.startrip.member.controller.md5.MD5Util;
 //import com.startrip.member.controller.md5.MD5Util;
 import com.startrip.member.memberModle.MemberBean;
+import com.startrip.restaurant.service.RtBookingService;
 
 @Controller
 public class MemberController {
-
+	@Autowired
+	RtBookingService rtBookingService;
 	@Autowired
 	MemberServiceInterface memberservice;
 	@Autowired
@@ -51,7 +53,10 @@ public class MemberController {
 		session.removeAttribute("LoginOK");
 		return "index";
 	}
-
+	@RequestMapping(value = "/selectdata")
+	public String selectdata(HttpServletRequest request) {
+		return "/member/mydata";
+	}
 	@RequestMapping(value = "/member/insertMember", method = RequestMethod.GET)
 	public String InsertMember(Model model) {
 		MemberBean mb = new MemberBean();
@@ -332,7 +337,11 @@ public class MemberController {
 		model.addAttribute("change", mb);
 		return "/member/changepassword";
 	}
+	@RequestMapping(value = "/selectrt", method = RequestMethod.POST)
+	public void selectrt(HttpServletRequest request, HttpServletResponse response) {
 
+	}
+	
 	@RequestMapping(value = "/changepassword", method = RequestMethod.POST)
 	public String changepassword(HttpServletRequest request, HttpServletResponse response) {
 		String mail = request.getParameter("ckmail");
