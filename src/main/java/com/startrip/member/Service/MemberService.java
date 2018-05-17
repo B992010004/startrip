@@ -28,7 +28,11 @@ public class MemberService implements MemberServiceInterface {
 	public MemberBean select(String email) {
 		return memberDAO.select(email);
 	}
-
+	@Transactional
+	@Override
+	public MemberBean selectbyid(int memberid) {
+		return memberDAO.selectbyid(memberid);
+	}
 	@Transactional
 	@Override
 	public void update(MemberBean bean) {

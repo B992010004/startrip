@@ -1,5 +1,7 @@
 package com.startrip.restaurant.service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +19,7 @@ public class RtBookingServiceImp implements RtBookingService {
 	private RtBookingRepository RtBookingRepositoryImp;
 
 	@Override
-	public RtBookingBean getAllRtBookingmemberBean(MemberBean memberBean) {
+	public List<RtBookingBean> getAllRtBookingmemberBean(MemberBean memberBean) {
 		return RtBookingRepositoryImp.getAllRtBookingmemberBean(memberBean);
 	}
 

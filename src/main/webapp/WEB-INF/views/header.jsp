@@ -40,9 +40,6 @@
 					
 						<!-- 測試 --><li class="nav-item"><a class="nav-link"
 						href="/startrip/RtAllList">o測試o餐廳種覽o</a></li><!-- 測試 -->
-						
-						
-
 
 					<li class="nav-item">
 						<c:if test="${ empty LoginOK }">
@@ -58,7 +55,7 @@
 								</a>
 								  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 									<a class="btn" href="/startrip/ModifyMember">編輯個人資料 </a>
-									<a class="btn" href="/startrip/selectdata">查看我的訂單</a>
+									<a class="btn" href="/startrip/selectdata/${LoginOK.memberid}">查看我的訂單</a>
 									<a class="btn" href="/startrip/logout">登出</a>
 								</div>
 								</div>

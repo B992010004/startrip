@@ -1,5 +1,8 @@
 package com.startrip.restaurant.repository;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,13 +18,20 @@ public class RtBookingRepositoryImp implements RtBookingRepository {
 	@Autowired
 	SessionFactory factory;
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public RtBookingBean getAllRtBookingmemberBean(MemberBean memberBean) {
+	public List<RtBookingBean> getAllRtBookingmemberBean(MemberBean memberBean) {
 		RtBookingBean rbm = null;
-		Session session = factory.getCurrentSession();
-		rbm = session.get(RtBookingBean.class, memberBean);
-		if(rbm == null) throw new RtBookingNotFoundException(memberBean);
-		return rbm;
+		Session session = null;	
+		String hql = "FROM RtBookingBean";
+		List<RtBookingBean> list = new ArrayList<>();	
+		session = factory.getCurrentSession();
+		list = session.createQuery(hql).getResultList();
+		if (list.size() == 0) {
+			return null;
+		} else {
+			return list;
+		}
 	}
 
 	@Override

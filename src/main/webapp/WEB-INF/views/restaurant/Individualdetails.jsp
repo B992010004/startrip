@@ -482,18 +482,17 @@ ul li {
 			</div>
 		</div>
 
-		<div id="displayReview">
-			<c:forEach var='review' items='${reviews}'>
-				<div class="row" style="margin: 16px;">
-					<div class="col-md-1">
-						<div class="row justify-content-center" style="margin: 16px;">
-							<img class="review-memberphoto"
-								src="<c:url value='/getPicture/${review.memberBean.mail}'/>">
-						</div>
-						<div class="row justify-content-center">
-							<div>
-								<h6>${review.memberBean.username }</h6>
-							</div>
+	<div id="displayReview">
+		<c:forEach var='review' items='${reviews}'>
+			<div class="row" style="margin:16px;">
+				<div class="col-md-1">
+					<div class="row justify-content-center" style="margin:16px;">
+						<img class="review-memberphoto" src="<c:url value='/getPicture/memberIcon/${review.memberBean.avatar}'/>">
+					</div>
+					<div class="row justify-content-center">
+						<div>
+							<h6>${review.memberBean.username }</h6>
+
 						</div>
 					</div>
 					<div class="col-md-9">
@@ -777,6 +776,7 @@ ul li {
 
 		function selectByCriteria() {
 			var criteriaData = {};
+<<<<<<< HEAD
 
 			// 			criteriaData.family = $("#cr1").val();
 			// 			criteriaData.couple = $("#cr2").val();
@@ -879,6 +879,64 @@ ul li {
 						},
 						error : function(e) {
 							console.log(e);
+=======
+			
+// 			criteriaData.family = $("#cr1").val();
+// 			criteriaData.couple = $("#cr2").val();
+// 			criteriaData.alone = $("#cr3").val();
+// 			criteriaData.business = $("#cr4").val();
+			
+	 		$("#selectCheckBox input:checked").each(function(idx,checkbox){
+	 			console.log("A");
+	 			console.log(checkbox);
+	 			console.log(checkbox.attributes["name"].value);
+	 			console.log(checkbox.attributes["value"].value);
+	 			console.log("B");
+	 			criteriaData[checkbox.attributes["name"].value] = checkbox.attributes["value"].value;
+	 			console.log("C");
+			});
+
+	 		console.log(criteriaData);
+
+			$.ajax({
+				url : '/startrip/review/selectByCriteria',
+				type : 'GET',
+				data : criteriaData,
+				//enctype: "multipart/form-data",
+				//contentType : false,
+				//processData : false,
+				//dataType:"json",
+				success : function(responce) {
+					$('#displayReview').empty();				
+					console.log(responce);				
+					var docFrag = $(document.createDocumentFragment());
+					for(i=0;i<responce.length;i++){
+						console.log(responce[i].content);
+						//大row
+						var row = $('<div class="row" style="margin:16px;"></div>');
+
+						var col1 = $('<div class="col-md-1"></div>');
+						var innerRow1 = $('<div class="row justify-content-center" style="margin:16px;"></div>');
+							if(responce[i].memberBean.avatar != null){
+								var memberImg = $('<img class="review-memberphoto" src="/startrip/getPicture/memberIcon/' + responce[i].memberBean.avatar +'" />');
+							}						
+						var innerRow2 = $('<div class="row justify-content-center"></div>');
+						var innerRow2content = $('<div><h6>' + responce[i].memberBean.username + '</h6></div>');
+						innerRow2.append(innerRow2content);
+						innerRow1.append(memberImg);
+						col1.append([innerRow1, innerRow2]);
+
+						var col2 = $('<div class="col-md-9"></div>');
+						var title = $('<div class="probootstrap_font-18"><h5>' + responce[i].title + '</h5></div>');
+						var content = $('<div>' + responce[i].content + '</div>');
+
+						col2.append([title, content]);
+						if(responce[i].photoPathList!=null){
+						$.each(responce[i].photoPathList, function(idx,photoPath){
+							var contentImg = $('<img src="/startrip/getPicture/reviewUpload/' + photoPath + '" class="review-image" />');
+							col2.append(contentImg);
+						});
+>>>>>>> 89e8eb102390e2ff44ead1376c8aacc5df43898f
 						}
 
 					});

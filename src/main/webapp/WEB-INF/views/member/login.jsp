@@ -29,7 +29,7 @@
 
 
 	<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
-		aria-labelledby="myLargeModalLabel" aria-hidden="true" id="loginmodal">
+		aria-labelledby="myLargeModalLabel" aria-hidden="true" id="loginmodal" >
 		<div class="modal-dialog modal-md">
 
 			<div class="probootstrap-form">
@@ -124,7 +124,7 @@
 				chkPassword);
 		document.getElementById("loginSubmit").addEventListener("click",
 				checkUserName);
-		document.getElementById("modal").addEventListener("blur", reset);
+		document.getElementById("loginmodal").addEventListener("blur", reset);
 	})
 	function reset() {
 		document.getElementById("nname").innerHTML = "";

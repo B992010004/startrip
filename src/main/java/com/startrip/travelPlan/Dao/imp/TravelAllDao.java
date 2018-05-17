@@ -45,7 +45,7 @@ public class TravelAllDao implements ITripAllDao {
 	public TravelAllBean Select_Travel(Integer memberId,Integer travelId) {
 		TravelAllBean bean = new TravelAllBean();
 		
-		bean = this.getSession().createQuery("From TravelAllBean where memberId=:memberId and travelId=:travelId",TravelAllBean.class)
+		bean = this.getSession().createQuery("From TravelAllBean where memberId=:memberId and travelId=:travelId ",TravelAllBean.class)
 				.setParameter("memberId", memberId).setParameter("travelId", travelId).getSingleResult();
 		return bean;
 		

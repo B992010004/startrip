@@ -45,6 +45,21 @@ public class MemberRepository implements MemberRepositoryinterface {
 			return list.get(0);
 		}
 	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public MemberBean selectbyid(int memberid) {
+
+		String hql = "FROM MemberBean where memberid =:memberid ";
+		Session session = null;
+		List<MemberBean> list = new ArrayList<>();
+		session = factory.getCurrentSession();
+		list = session.createQuery(hql).setParameter("memberid", memberid).getResultList();
+		if (list.size() == 0) {
+			return null;
+		} else {
+			return list.get(0);
+		}
+	}
 
 	@Override
 	public void update(MemberBean bean) {

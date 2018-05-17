@@ -159,9 +159,9 @@ public class TravelPlanController {
 	//查詢行程資料
 	@RequestMapping(value="travel/id",method=RequestMethod.GET)
 	@ResponseBody
-	public HashMap<String, Object> travelBean(@RequestParam("mail")String mail,@RequestParam("travelId")Integer travelId,HttpServletRequest request) {
+	public HashMap<String, Object> travelBean(@RequestParam("mail")String mail
+			,@RequestParam("travelId")Integer travelId,HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		
 		System.out.println(mail+"--------------------"+travelId);
 		MemberBean mb = memberservice.select(mail);
 		Integer memberId =mb.getMemberid();
@@ -329,11 +329,12 @@ public class TravelPlanController {
 	//取得所有清單行程的
 	@RequestMapping(value="list/travelId",method=RequestMethod.GET)
 	@ResponseBody
-	public ArrayList<TravelListBean> getTravelList(@RequestParam("mail")String mail,@RequestParam("travelId")Integer travelId){
+	public ArrayList<TravelListBean> getTravelList(@RequestParam("mail")String mail,@RequestParam("travelId")Integer travelId
+			,@RequestParam("day")Integer day){
 		MemberBean mb = memberservice.select(mail);
 		Integer memberId =mb.getMemberid();
 		TravelListBean bean = new TravelListBean();
-		List<TravelListBean> result  =listservice.Select_travellist(travelId);
+		List<TravelListBean> result  =listservice.Select_travellist(travelId,day);
 //		System.out.println(result.size());
 		ArrayList<TravelListBean> all = new ArrayList<>();
 		for(int i =0;i<result.size();i++) {
@@ -346,7 +347,7 @@ public class TravelPlanController {
 		all.add(bean);
 		}
 		
-		
+		System.out.println(all);
 		return all;
 	}
 	
