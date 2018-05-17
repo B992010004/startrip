@@ -79,30 +79,29 @@ public class MemberController {
 				return "index";
 			} else {
 				String ext = originalFilename.substring(originalFilename.lastIndexOf("."));
-				String rootDirectory = request.getSession().getServletContext().getRealPath("/");
+				String rootDirectory = "C:\\temp\\";
 				try {
 					byte[] b = avatarImage.getBytes();
 					Blob blob = new SerialBlob(b);
 					mb.setPhoto(blob);
-
 				} catch (Exception e) {
 					e.printStackTrace();
 					throw new RuntimeException("檔案上傳發生異常" + e.getMessage());
 				}
-
 				mb.setAvatar(mb.getMail() + ext);
-				memberservice.insert(mb);
-
+				memberservice.insert(mb);			
+				String fileurl=mb.getMail()+ext;								
 				try {
-					File imageFolder = new File(rootDirectory, "membericon");
-					if (!imageFolder.exists())
+					File imageFolder = new File(rootDirectory, "memberIcon");
+					if (!imageFolder.exists()) {
 						imageFolder.mkdirs();
-					File file = new File(imageFolder, mb.getMail() + ext);
-					avatarImage.transferTo(file);
-
-				} catch (Exception e) {
-					throw new RuntimeException("檔案上傳發生異常" + e.getMessage());
-
+					}
+					File file = new File(imageFolder, fileurl);
+					avatarImage.transferTo(file);					
+				} catch (IllegalStateException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
 				}
 				return "index";
 			}
