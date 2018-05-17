@@ -90,6 +90,11 @@
 	width: 50%;
 	margin: 0px auto
 }
+
+.thumb {
+	height: 75px;
+	margin: 5px;
+}
 </style>
 
 </head>
@@ -110,8 +115,12 @@
 			<div class="bigheadline1">
 				<h1 class="headline1">所有餐廳資料</h1>
 			</div>
-				<a href="/startrip/Individualdetailsmodify" class="btn btn-primary btn-block">所&nbsp;&nbsp;&nbsp;&nbsp;有&nbsp;&nbsp;&nbsp;&nbsp;餐&nbsp;&nbsp;&nbsp;&nbsp;廳&nbsp;&nbsp;&nbsp;&nbsp;資&nbsp;&nbsp;&nbsp;&nbsp;料</a>
+			<a href="/startrip/Individualdetailsmodify"
+				class="btn btn-primary btn-block">所&nbsp;&nbsp;&nbsp;&nbsp;有&nbsp;&nbsp;&nbsp;&nbsp;餐&nbsp;&nbsp;&nbsp;&nbsp;廳&nbsp;&nbsp;&nbsp;&nbsp;資&nbsp;&nbsp;&nbsp;&nbsp;料</a>
 		</div>
+
+		<!-- -------------------------------------------------------------------------------------------------- -->
+
 		<div class="intermediate">
 			<div class="container">
 				<div class="bigheadline1">
@@ -129,8 +138,9 @@
 			</div>
 		</div>
 
-		<form:form method="post" modelAttribute="RtDetailsBean"
-			action="insertRestaurant">
+		<!-- -------------------------------------------------------------------------------------------------- -->
+
+		<form:form method="post" modelAttribute="RtDetailsBean" enctype="multipart/form-data">
 			<div class="intermediate">
 				<div class="container">
 					<div class="bigheadline1">
@@ -140,51 +150,52 @@
 
 					<div class="input-group mb-3">
 						<form:input path="rtName" type="text" class="form-control"
-							placeholder="餐廳名稱" aria-label="Recipient's username"
-							aria-describedby="basic-addon2" />
+							placeholder="餐廳名稱" name="rtName"
+							aria-label="Recipient's username" aria-describedby="basic-addon2" />
 					</div>
 					<div class="input-group mb-3">
 						<form:input path="rtPhone" type="text" class="form-control"
-							placeholder="電話" aria-label="Recipient's username"
+							placeholder="電話" name="rtPhone" aria-label="Recipient's username"
 							aria-describedby="basic-addon2" />
 					</div>
 					<div class="input-group mb-3">
 						<form:input path="rtUrl" type="text" class="form-control"
-							placeholder="網址" aria-label="Recipient's username"
+							placeholder="網址" name="rtUrl" aria-label="Recipient's username"
 							aria-describedby="basic-addon2" />
 					</div>
 					<div class="input-group mb-3">
 						<form:input path="rtEmail" type="text" class="form-control"
-							placeholder="E-mail" aria-label="Recipient's username"
-							aria-describedby="basic-addon2" />
+							placeholder="E-mail" name="rtEmail"
+							aria-label="Recipient's username" aria-describedby="basic-addon2" />
 					</div>
 					<div class="input-group mb-3">
 						<form:input path="rtBusinesshours" type="text"
-							class="form-control" placeholder="營業時間"
+							class="form-control" placeholder="營業時間" name="rtBusinesshours"
 							aria-label="Recipient's username" aria-describedby="basic-addon2" />
 					</div>
 					<div class="input-group mb-3">
 						<form:input path="rtAddress" type="text" class="form-control"
-							placeholder="地址" aria-label="Recipient's username"
-							aria-describedby="basic-addon2" />
+							placeholder="地址" name="rtAddress"
+							aria-label="Recipient's username" aria-describedby="basic-addon2" />
 					</div>
 					<br>
 					<div>
 						<label for="id_label_single">餐點類別</label> <label
 							for="id_label_single" style="width: 100%;"> <form:select
-								path="teCategory" class="js-states form-control"
-								id="id_label_single" style="width: 100%;">
+								class="js-states form-control" id="id_label_single"
+								path="teCategory" name="teCategory" style="width: 100%;">
 								<form:option value="早餐">早餐</form:option>
 								<form:option value="早午餐">早午餐</form:option>
 								<form:option value="午餐">午餐</form:option>
 								<form:option value="下午茶">下午茶</form:option>
+								<form:option value="午餐">午晚餐</form:option>
 								<form:option value="晚餐">晚餐</form:option>
 								<form:option value="宵夜">宵夜</form:option>
 							</form:select>
 						</label> <label for="id_label_single">餐點菜系</label> <label
 							for="id_label_single" style="width: 100%;"> <form:select
-								path="rtCuisine" class="js-states form-control"
-								id="id_label_single" style="width: 100%;">
+								class="js-states form-control" id="id_label_single"
+								path="rtCuisine" name="rtCuisine" style="width: 100%;">
 								<form:option value="中式料理">中式料理</form:option>
 								<form:option value="日式料理">日式料理</form:option>
 								<form:option value="港式料理">港式料理</form:option>
@@ -203,16 +214,16 @@
 							</form:select>
 						</label> <label for="id_label_single">價位</label> <label
 							for="id_label_single" style="width: 100%;"> <form:select
-								path="rtPricepount" class="js-states form-control"
-								id="id_label_single" style="width: 100%;">
+								class="js-states form-control" id="id_label_single"
+								path="rtPricepount" name="rtPricepount" style="width: 100%;">
 								<form:option value="高級餐廳">高級餐廳</form:option>
 								<form:option value="中等價位">中等價位</form:option>
 								<form:option value="平價美食">平價美食</form:option>
 							</form:select>
 						</label> <label for="id_label_single">縣市</label> <label
 							for="id_label_single" style="width: 100%;"> <form:select
-								path="rtCounty" class="js-states form-control"
-								id="id_label_single" style="width: 100%;">
+								class="js-states form-control" id="id_label_single"
+								path="rtCounty" name="rtCounty" style="width: 100%;">
 								<form:option value="臺北市">臺北市</form:option>
 								<form:option value="新北市">新北市</form:option>
 								<form:option value="桃園市">桃園市</form:option>
@@ -236,8 +247,8 @@
 							</form:select>
 						</label> <label for="id_label_single">區域</label> <label
 							for="id_label_single" style="width: 100%;"> <form:select
-								path="rtArea" class="js-states form-control"
-								id="id_label_single" style="width: 100%;">
+								class="js-states form-control" id="id_label_single"
+								name="rtArea" path="rtArea" style="width: 100%;">
 								<form:option value="花蓮市">花蓮市</form:option>
 								<form:option value="鳳林鎮">玉里鎮</form:option>
 								<form:option value="鳳林鎮">鳳林鎮</form:option>
@@ -253,20 +264,21 @@
 								<form:option value="卓溪鄉">卓溪鄉</form:option>
 							</form:select>
 						</label>
-
-						<!-- -------圖片------------------------------------------------------------- -->
-
-						<!-- 						<div> -->
-						<!-- 							<label class="btn btn-primary" for="files">上傳相片</label> -->
-						<!-- 							<input path="rtImage" type="file" class="form-control-file" -->
-						<!-- 								id="files" name="files" value="Send Review" multiple="multiple" -->
-						<!-- 								style="display: none;" accept="image/*" onchange="fileViewer()" /> -->
-						<!-- 						</div> -->
-						<!-- 						<div id="dropZone"></div> -->
-
-						<!-- -------圖片------------------------------------------------------------- -->
-
 					</div>
+
+
+					<!--  -------圖片-------------------------------------------------------------   -->
+
+					<div>
+						<label class="btn btn-primary" for="files">上傳相片</label>
+						<form:input path="multipartFiles" type="file"
+							class="form-control-file" id="files" name="files"
+							value="Send Review" multiple="multiple" style="display:none;"
+							accept="image/*" onchange="fileViewer()" />
+					</div>
+					<div id="dropZone"></div>
+
+					<!--  -------圖片-------------------------------------------------------------   -->
 
 					<div class="col-md">
 						<input type="submit"
@@ -276,13 +288,14 @@
 				</div>
 			</div>
 		</form:form>
+
+		<!-- -------------------------------------------------------------------------------------------------- -->
+
 		<div class="col-md1">
 			<div class="bigheadline1">
 				<h1 class="headline1">查看所有餐廳訂單</h1>
 			</div>
-			<input type="submit"
-				value="查&nbsp;&nbsp;&nbsp;&nbsp;看&nbsp;&nbsp;&nbsp;&nbsp;所&nbsp;&nbsp;&nbsp;&nbsp;有&nbsp;&nbsp;&nbsp;&nbsp;餐&nbsp;&nbsp;&nbsp;&nbsp;廳&nbsp;&nbsp;&nbsp;&nbsp;訂&nbsp;&nbsp;&nbsp;&nbsp;單"
-				class="btn btn-primary btn-block">
+			<a href="/startrip/AllListBooking" class="btn btn-primary btn-block">查&nbsp;&nbsp;&nbsp;&nbsp;看&nbsp;&nbsp;&nbsp;&nbsp;所&nbsp;&nbsp;&nbsp;&nbsp;有&nbsp;&nbsp;&nbsp;&nbsp;餐&nbsp;&nbsp;&nbsp;&nbsp;廳&nbsp;&nbsp;&nbsp;&nbsp;訂&nbsp;&nbsp;&nbsp;&nbsp;單</a>
 		</div>
 	</section>
 
@@ -319,6 +332,33 @@
 	<script src="/startrip/assets/js/select2.min.js"></script>
 
 	<script src="/startrip/assets/js/main.js"></script>
+
+	<!-- 	預覽上傳相片 -->
+	<script>
+		function fileViewer() {
+			var theFiles = document.getElementById("files").files;
+
+			var dropZone = document.getElementById("dropZone")
+			dropZone.innerHTML = ""
+			// 修正圖片未被清除的BUG
+
+			for (var i = 0; i < theFiles.length; i++) {
+
+				var reader = new FileReader();
+				reader.readAsDataURL(theFiles[i]);
+				reader.onload = function(e) {
+					var fileContent = e.target.result;
+
+					var imgObj = document.createElement("img"); //<img>
+					imgObj.setAttribute("src", fileContent); //<img src="....
+					imgObj.setAttribute("class", "thumb"); //<img src="... class="....
+
+					dropZone.appendChild(imgObj);
+					// 移出getElementById
+				}
+			}
+		}
+	</script>
 </body>
 
 </html>

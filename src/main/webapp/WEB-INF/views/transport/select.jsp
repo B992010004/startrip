@@ -64,6 +64,57 @@
 			</div>
 		</form>
 	</div>
+<!--以下為起訖站查詢 	-------------------------------------------------------------------------------------------- -->
+
+<!-- 起訖站查詢function -->
+<script>
+       
+        document.addEventListener("DOMContentLoaded", function () {
+           
+            var areas=document.querySelectorAll("area.imgbut");
+            var areasLen=areas.length;
+            console.log(areas);
+            console.log(areasLen);
+            for(var i=0;i<areasLen;i++){
+                areas[i].addEventListener("mouseover",mouseOver);
+                areas[i].addEventListener("mouseout",mouseOut);
+                areas[i].addEventListener("click",Click);
+            }
+        });  
+
+     
+        function mouseOver() {  
+        	console.log(this.id);    
+            // document.images[0].src = "images/MapTaipei.gif"; 
+            //console.log("QQQ");
+            document.images[0].src = "/startrip/assets/transport/images/map/map"+ this.id + ".png"; 
+            //console.log("/startrip/assets/transport/images/map/map"+ this.id +".png");
+        }
+
+
+        function mouseOut() {            
+            document.images[0].src = "/startrip/assets/transport/images/taiwan.png" ;
+        }
+
+
+        function Click() {            
+            // document.getElementById("mapdiv").innerHTML = "<img src='images/Taipei.gif'/>";
+            document.getElementById("mapdiv").innerHTML = 
+            "<img src='images/"+this.id.substr(2)+".gif'/>";
+        }
+        
+    </script>
+
+
+<%-- 		<c:forEach items='${stationList}' var='select'> --%>
+<!-- 			<tr> -->
+<%-- 				<td>${select.stationId}</td> --%>
+<%-- 				<td>${select.area}</td> --%>
+<%-- 				<td>${select.stationName}</td> --%>
+<%-- 				<td>${select.address}</td> --%>
+
+<!-- 			</tr> -->
+<%-- 		</c:forEach> --%>
 
 	<h2 class="title01">2 起迄站查詢</h2>
 	<div class="search">
@@ -95,19 +146,32 @@
 		<div>
 			<select id="origin" name="origin" style="width: 120px">
 				<option value="" selected="selected">請選擇</option>
-
+		<c:forEach items='${stationList}' var='select'>
+				
+				
+				<option value="" >${select.stationName}</option>
+				
+			</c:forEach>
 			</select>
 		</div>
 		<label for="destination" class=""> 下車站：</label>
 		<div>
 			<select id="destination" name="destination" style="width: 120px">
 				<option value="" selected="selected">請選擇</option>
+		<c:forEach items='${stationList}' var='select'>
+				
+				
+				<option value="" >${select.stationName}</option>
+				
+			</c:forEach>
 
 			</select>
 		</div>
 	</div>
+<!-- 以上為起訖站查詢----------------------------- -->
 
 
+<!--      以下為用地區選車站----------- -->
 	<h2 class="title04">3 營業據點路線列表</h2>
 	<div class="search">
 		<label for="area3" class="">請選擇地區：</label>
@@ -152,7 +216,8 @@
 		<div>
 			<select id="point" name="point" style="width: 120px">
 				<option value="" selected="selected">請選擇</option>
-
+				<option value="" selected="selected">請選擇</option>
+				
 
 			</select>
 		</div>
@@ -160,50 +225,48 @@
 		<input type="hidden" id="opt" name="opt" value="search">
 	</div>
 
-       <a href="/startrip/assets/transport/images/map/map01.png">顯示圖片</a>
+<!-- 以上為用地區選車站------------------- -->
 
-<script>
-       
-        document.addEventListener("DOMContentLoaded", function () {
-           
-            var areas=document.querySelectorAll("area.imgbut");
-            var areasLen=areas.length;
-            console.log(areas);
-            console.log(areasLen);
-            for(var i=0;i<areasLen;i++){
-                areas[i].addEventListener("mouseover",mouseOver);
-                areas[i].addEventListener("mouseout",mouseOut);
-                areas[i].addEventListener("click",Click);
-            }
-        });  
+	<script>
+		document.addEventListener("DOMContentLoaded", function() {
 
-     
-        function mouseOver() {  
-        	console.log(this.id);    
-            // document.images[0].src = "images/MapTaipei.gif"; 
-            console.log("QQQ");
-            document.images[0].src = "/startrip/assets/transport/images/map/map"+ this.id + ".png"; 
-            console.log("/startrip/assets/transport/images/map/map"+ this.id +".png");
-        }
+			var areas = document.querySelectorAll("area.imgbut");
+			var areasLen = areas.length;
+			console.log(areas);
+			console.log(areasLen);
+			for (var i = 0; i < areasLen; i++) {
+				areas[i].addEventListener("mouseover", mouseOver);
+				areas[i].addEventListener("mouseout", mouseOut);
+				areas[i].addEventListener("click", Click);
+			}
+		});
 
+		function mouseOver() {
+			console.log(this.id);
+			// document.images[0].src = "images/MapTaipei.gif"; 
+			//console.log("QQQ");
+			document.images[0].src = "/startrip/assets/transport/images/map/map"
+					+ this.id + ".png";
+			//console.log("/startrip/assets/transport/images/map/map"+ this.id +".png");
+		}
 
-        function mouseOut() {            
-            document.images[0].src = "/startrip/assets/transport/images/taiwan.png" ;
-        }
+		function mouseOut() {
+			document.images[0].src = "/startrip/assets/transport/images/taiwan.png";
+		}
 
-
-        function Click() {            
-            // document.getElementById("mapdiv").innerHTML = "<img src='images/Taipei.gif'/>";
-            document.getElementById("mapdiv").innerHTML = 
-            "<img src='images/"+this.id.substr(2)+".gif'/>";
-        }
-        
-    </script>
+		function Click() {
+			// document.getElementById("mapdiv").innerHTML = "<img src='images/Taipei.gif'/>";
+			document.getElementById("mapdiv").innerHTML = "<img src='images/"
+					+ this.id.substr(2) + ".gif'/>";
+		}
+	</script>
 
 
 	<h1>查詢車站(地圖)</h1>
-	<div style=" width:500px;height:500px;" >
-		<img id="imgMap" alt="" src="/startrip/assets/transport/images/taiwan.png"  usemap="#FPMap0" width="280" height="460" usemap="#Map"  border="0">
+	<div style="width: 500px; height: 500px;">
+		<img id="imgMap" alt=""
+			src="/startrip/assets/transport/images/taiwan.png" usemap="#FPMap0"
+			width="280" height="460" usemap="#Map" border="0">
 		<map id="FPMap0" name="FPMap0">
 			<area class=imgbut shape="rect" coords="201,54,248,76" id=01>
 			<area class=imgbut shape="rect" coords="181,23,228,44" id=02>
@@ -224,13 +287,13 @@
 			<area class=imgbut shape="rect" coords="148,44,197,67" id=17>
 		</map>
 	</div>
-		</div>
-	
+	</div>
 
 
 
 
-<!-- 	<div id="mapdiv" style="float:left;width:auto;height:auto;"></div>	 -->
+
+	<!-- 	<div id="mapdiv" style="float:left;width:auto;height:auto;"></div>	 -->
 
 
 
@@ -254,16 +317,6 @@
 			</tr>
 		</c:forEach>
 	</table>
-
-
-
-
-
-
-
-
-
-
 
 </body>
 </html>

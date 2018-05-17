@@ -1,10 +1,16 @@
 package com.startrip.restaurant.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Table(name="RtDetails")
@@ -24,18 +30,29 @@ public class RtDetailsBean {
 	private String rtBusinesshours;
 	private String rtEmail;
 	private String teCategory;
+	private String photoPaths;
 	
-	@Override
-	public String toString() {
-		return "RtDetailsBean [rtId=" + rtId + ", rtName=" + rtName + ", rtCuisine=" + rtCuisine + ", rtPhone="
-				+ rtPhone + ", rtAddress=" + rtAddress + ", rtCounty=" + rtCounty + ", rtArea=" + rtArea + ", rtUrl="
-				+ rtUrl + ", rtPricepount=" + rtPricepount + ", rtBusinesshours=" + rtBusinesshours + ", rtEmail="
-				+ rtEmail + ", teCategory=" + teCategory + "]";
+	@Transient
+	private String photoArr[];
+	
+	
+	public String[] getPhotoArr() {
+		return photoArr;
 	}
+
+	public void setPhotoArr(String[] photoArr) {
+		this.photoArr = photoArr;
+	}
+
+	@Transient
+	private MultipartFile[] multipartFiles;
+	@OneToMany
+	private List<RtBookingBean> rtBookingBean;
+	
 
 	public RtDetailsBean(Integer rtId, String rtName, String rtCuisine, String rtPhone, String rtAddress,
 			String rtCounty, String rtArea, String rtUrl, String rtPricepount, String rtBusinesshours, String rtEmail,
-			String teCategory) {
+			String teCategory, String photoPaths, List<RtBookingBean> rtBookingBean) {
 		super();
 		this.rtId = rtId;
 		this.rtName = rtName;
@@ -49,10 +66,21 @@ public class RtDetailsBean {
 		this.rtBusinesshours = rtBusinesshours;
 		this.rtEmail = rtEmail;
 		this.teCategory = teCategory;
+		this.photoPaths = photoPaths;
+		this.rtBookingBean = rtBookingBean;
 	}
 
 	public RtDetailsBean() {
 		super();
+	}
+
+	@Override
+	public String toString() {
+		return "RtDetailsBean [rtId=" + rtId + ", rtName=" + rtName + ", rtCuisine=" + rtCuisine + ", rtPhone="
+				+ rtPhone + ", rtAddress=" + rtAddress + ", rtCounty=" + rtCounty + ", rtArea=" + rtArea + ", rtUrl="
+				+ rtUrl + ", rtPricepount=" + rtPricepount + ", rtBusinesshours=" + rtBusinesshours + ", rtEmail="
+				+ rtEmail + ", teCategory=" + teCategory + ", photoPaths=" + photoPaths + ", rtBookingBean="
+				+ rtBookingBean + "]";
 	}
 
 	public Integer getRtId() {
@@ -150,8 +178,44 @@ public class RtDetailsBean {
 	public void setTeCategory(String teCategory) {
 		this.teCategory = teCategory;
 	}
+
+	public String getPhotoPaths() {
+		return photoPaths;
+	}
+
+	public void setPhotoPaths(String photoPaths) {
+		this.photoPaths = photoPaths;
+	}
+
+	public List<RtBookingBean> getRtBookingBean() {
+		return rtBookingBean;
+	}
+
+	public void setRtBookingBean(List<RtBookingBean> rtBookingBean) {
+		this.rtBookingBean = rtBookingBean;
+	}
+
+	// 接收相片上傳
 	
 
-	
+	public MultipartFile[] getMultipartFiles() {
+		return multipartFiles;
+	}
+
+	public void setMultipartFiles(MultipartFile[] multipartFiles) {
+		this.multipartFiles = multipartFiles;
+	}
+
+	// 讀取相片
+	@Transient
+	private String[] photoPathList;
+
+	// 我居然在Bean裡面寫程式了 我有點無法原諒自己
+	public String[] getPhotoPathList() {
+		if (getPhotoPaths() != null) {
+			return photoPathList = getPhotoPaths().split(";");
+		}
+		return photoPathList;
+	}
 }
 

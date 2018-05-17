@@ -17,15 +17,20 @@ public class RtDetailsRepositoryImp implements RtDetailsRepository {
 	@Autowired
 	SessionFactory factory;
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public RtDetailsBean getAllRtDetailsrtName(String rtName) {
-		RtDetailsBean rdn = null;
-		Session session = factory.getCurrentSession();
-		rdn = session.get(RtDetailsBean.class, rtName);
-		if(rdn == null) throw new RtDetailsNotFoundException(rtName);
-		return rdn;
+		String hql = "FROM RtDetailsBean where rtName =:rtName ";
+		Session session = factory.getCurrentSession();		
+		List<RtDetailsBean> list = new ArrayList<>();	
+		list =session.createQuery(hql).setParameter("rtName", rtName).getResultList();;	
+		if (list.size() == 0) {
+			return null;
+		} else {
+			return list.get(0);
+		}
 	}
-
+	
 	@Override
 	public RtDetailsBean getAllRtDetailsrtId(Integer rtId) {
 		RtDetailsBean rdi = null;
@@ -70,6 +75,47 @@ public class RtDetailsRepositoryImp implements RtDetailsRepository {
 		session = factory.getCurrentSession();
 		list = session.createQuery(hql).setMaxResults(4).getResultList();
 		return list;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<RtDetailsBean> getrtArea() {
+		String hql="FROM RtDetailsBean where rtArea = :Area";
+		Session session = null;
+		List<RtDetailsBean> list2 = new ArrayList<>();
+		session = factory.getCurrentSession();
+		list2 = session.createQuery(hql).setParameter("Area", "花蓮市").setMaxResults(4).getResultList();
+		return list2;
+	}
+
+	@Override
+	public List<RtDetailsBean> getrtPricepountH() {
+		String hql="FROM RtDetailsBean where rtPricepount = :H";
+		Session session = null;
+		List<RtDetailsBean> list3 = new ArrayList<>();
+		session = factory.getCurrentSession();
+		list3 = session.createQuery(hql).setParameter("H", "高級餐廳").setMaxResults(4).getResultList();
+		return list3;
+	}
+
+	@Override
+	public List<RtDetailsBean> getrtPricepountM() {
+		String hql="FROM RtDetailsBean where rtPricepount = :M";
+		Session session = null;
+		List<RtDetailsBean> list4 = new ArrayList<>();
+		session = factory.getCurrentSession();
+		list4 = session.createQuery(hql).setParameter("M", "中等價位").setMaxResults(4).getResultList();
+		return list4;
+	}
+
+	@Override
+	public List<RtDetailsBean> getrtPricepountL() {
+		String hql="FROM RtDetailsBean where rtPricepount = :L";
+		Session session = null;
+		List<RtDetailsBean> list5 = new ArrayList<>();
+		session = factory.getCurrentSession();
+		list5 = session.createQuery(hql).setParameter("L", "平價美食").setMaxResults(4).getResultList();
+		return list5;
 	}
 
 

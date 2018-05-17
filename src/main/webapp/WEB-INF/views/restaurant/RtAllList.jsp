@@ -76,7 +76,7 @@
 }
 
 .btn11 {
-	text-align: right;
+	text-align: center;
 }
 </style>
 
@@ -125,7 +125,7 @@
 						<p class="card-text">餐點類別</p>
 						<p class="card-text">評分星等</p>
 						<div class="btn11">
-							<a href="/startrip/Individualdetails" class="btn btn-primary">去了解</a>
+							<a href="/startrip/restaurant/1" class="btn btn-primary">去了解</a>
 						</div>
 					</div>
 				</div>
@@ -144,7 +144,7 @@
 						<p class="card-text">餐點類別</p>
 						<p class="card-text">評分星等</p>
 						<div class="btn11">
-							<a href="/startrip/Individualdetails" class="btn btn-primary">去了解</a>
+							<a href="/startrip/restaurant/1" class="btn btn-primary">去了解</a>
 						</div>
 					</div>
 				</div>
@@ -163,7 +163,7 @@
 						<p class="card-text">餐點類別</p>
 						<p class="card-text">評分星等</p>
 						<div class="btn11">
-							<a href="/startrip/Individualdetails" class="btn btn-primary">去了解</a>
+							<a href="/startrip/restaurant/1" class="btn btn-primary">去了解</a>
 						</div>
 					</div>
 				</div>
@@ -182,7 +182,7 @@
 						<p class="card-text">餐點類別</p>
 						<p class="card-text">評分星等</p>
 						<div class="btn11">
-							<a href="/startrip/Individualdetails" class="btn btn-primary">去了解</a>
+							<a href="/startrip/restaurant/1" class="btn btn-primary">去了解</a>
 						</div>
 					</div>
 				</div>
@@ -201,7 +201,7 @@
 						<p class="card-text">餐點類別</p>
 						<p class="card-text">評分星等</p>
 						<div class="btn11">
-							<a href="/startrip/Individualdetails" class="btn btn-primary">去了解</a>
+							<a href="/startrip/restaurant/1" class="btn btn-primary">去了解</a>
 						</div>
 					</div>
 				</div>
@@ -220,7 +220,7 @@
 						<p class="card-text">餐點類別</p>
 						<p class="card-text">評分星等</p>
 						<div class="btn11">
-							<a href="/startrip/Individualdetails" class="btn btn-primary">去了解</a>
+							<a href="/startrip/restaurant/1" class="btn btn-primary">去了解</a>
 						</div>
 					</div>
 				</div>
@@ -239,7 +239,7 @@
 						<p class="card-text">餐點類別</p>
 						<p class="card-text">評分星等</p>
 						<div class="btn11">
-							<a href="/startrip/Individualdetails" class="btn btn-primary">去了解</a>
+							<a href="/startrip/restaurant/1" class="btn btn-primary">去了解</a>
 						</div>
 					</div>
 				</div>
@@ -258,7 +258,7 @@
 						<p class="card-text">餐點類別</p>
 						<p class="card-text">評分星等</p>
 						<div class="btn11">
-							<a href="/startrip/Individualdetails" class="btn btn-primary">去了解</a>
+							<a href="/startrip/restaurant/1" class="btn btn-primary">去了解</a>
 						</div>
 					</div>
 				</div>
@@ -336,6 +336,7 @@
 			<option value="早午餐">早午餐</option>
 			<option value="午餐">午餐</option>
 			<option value="下午茶">下午茶</option>
+			<option value="午餐">午晚餐</option>
 			<option value="晚餐">晚餐</option>
 			<option value="宵夜">宵夜</option>
 		</select> <br>

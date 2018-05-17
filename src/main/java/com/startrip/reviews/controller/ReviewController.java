@@ -8,7 +8,6 @@ import java.io.InputStream;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
@@ -34,7 +33,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.startrip.reviews.model.ReviewBean;
-import com.startrip.reviews.model.ReviewSelectCriteria;
 import com.startrip.reviews.service.ReviewService;
 
 @Controller
