@@ -67,7 +67,7 @@
 	<!-- 以下為訂票功能 -->
 
 	<section class="probootstrap-cover overflow-hidden relative"
-		style="background-image: url('/startrip/assets/transport/images/into.png');"
+		style="background-image: url('/startrip/assets/transport/images/into.jpg');"
 		data-stellar-background-ratio="0.5" id="section-home">
 	<div class="container">
 		<div class="row align-items-center">
@@ -237,8 +237,23 @@
 			// document.getElementById("mapdiv").innerHTML = "<img src='images/Taipei.gif'/>";
 			document.getElementById("mapdiv").innerHTML = "<img src='images/"
 					+ this.id.substr(2) + ".gif'/>";
+					this.innerHTML = '您選的座位為' + this.id.substr(5) + '號';
+			$("#xx").html("<span>"+'您選的座位為'+this.id.substr(5)+'號'+"</span>");
 		}
 	</script>
+	<script>
+	function test(){
+		if($(".tt").text()=="台北"){
+			alert("台北");
+		}else{
+			alert($(".tt").text());
+		}
+			
+		
+	}
+	
+	</script>
+	
 	<!-- 以上為地圖查車站function -->
 
 	<!-- 以下為地圖標註顯示 -->
@@ -251,12 +266,13 @@
 		</div>
 		<div class="row">
 			<div>
-				<a href="#" class="probootstrap-thumbnail"> <img id="imgMap"
+				<a class="probootstrap-thumbnail"> 
+				<img id="imgMap"
 					class="img-fluid" alt="Free Template by ProBootstrap.com"
 					src="/startrip/assets/transport/images/taiwan.png" usemap="#FPMap0"
 					width="280" height="460" usemap="#Map" border="0"> <map
 						id="FPMap0" name="FPMap0">
-						<area class=imgbut shape="rect" coords="201,54,248,76" id=01>
+						<area class=imgbut shape="rect" coords="201,54,248,76" id=01 alt="aa"  onclick="test()">
 						<area class=imgbut shape="rect" coords="181,23,228,44" id=02>
 						<area class=imgbut shape="rect" coords="229,28,274,52" id=03>
 						<area class=imgbut shape="rect" coords="122,186,170,208" id=04>
@@ -275,11 +291,32 @@
 						<area class=imgbut shape="rect" coords="148,44,197,67" id=17>
 					</map>
 					<div>
-						<h3>5</h3>
+						<h3 id="xx"></h3>
 					</div>
 				</a>
 			</div>
+<div>
+<table border="1" cellpadding="10" cellspacing="0"class="table  table-bordered">
+		<tr>
+			
+			<th>地區</th>
+			<th>站名</th>
+			<th>車站地址</th>
+		</tr>
 
+		<c:forEach items='${stationList}' var='select'>
+			<tr class="trr">
+			
+				<td class="tt">${select.area}</td>
+				<td>${select.stationName}</td>
+				<td>${select.address}</td>
+
+			</tr>
+		</c:forEach>
+	</table>
+						<h3>8</h3>
+					</a>
+				</div>
 		</div>
 	</div>
 	</section>
