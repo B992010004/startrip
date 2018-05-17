@@ -68,6 +68,11 @@ tbody th img {
 					<br>
 					<h6>這些是您在 Star Trip 上已經完成的預訂。</h6>
 					<br>
+					
+					<c:if test="${ !empty LoginOK }">
+					<h6>您目前沒有訂單</h6>	
+					</c:if>
+				<c:if test="${ !empty LoginOK }">
 					<h4>飯店</h4>
 					<table class="table table-bordered">
 						<thead>
@@ -95,8 +100,10 @@ tbody th img {
 						</tbody>
 					</table>
 					<br>
+					</c:if>
+				<c:if test="${ !empty LoginOK }">
 					<h4>餐廳</h4>
-					<table class="table table-bordered">
+					<table class="table table-bordered" id="rtTable">
 						<thead>
 							<tr>
 								<th width="20%" scope="col">餐廳名稱</th>
@@ -119,31 +126,12 @@ tbody th img {
 							</tr>
 						</tbody>
 					</table>
+					</c:if>
 				</div>
 			</div>
 		</div>
 	</section>
-	<script type="text/javascript">
-		function loadProduct(id) {
-			$.getJSON('Products', {'memberid' : memberid
-			}, function(datas) {
-				var docFrag = $(document.createDocumentFragment());
-				var tb = $('#productTable>tbody');
-				tb.empty();
-				$.each(datas, function(idx, product) {
-					var cell1 = $('<td></td>').text(product.ProductID);
-					var cell2 = $('<td></td>').text(product.ProductName);
-					var cell3 = $('<td></td>').text(product.UnitPrice);
-					var cell4 = $('<td></td>').text(product.UnitsInStock);
-					var row = $('<tr></tr>').append(
-							[ cell1, cell2, cell3, cell4, cell5 ]);
-					docFrag.append(row);
-				})
-				tb.append(docFrag);
 
-			})
-		}
-	</script>
 
 
 	<div><jsp:include page="/WEB-INF/views/member/login.jsp"

@@ -1,11 +1,13 @@
 package com.startrip.restaurant.service;
 
+import java.util.List;
+
 import com.startrip.member.memberModle.MemberBean;
 import com.startrip.restaurant.model.RtBookingBean;
 
 public interface RtBookingService {
 
-	RtBookingBean getAllRtBookingmemberBean(MemberBean memberBean);
+	List<RtBookingBean> getAllRtBookingmemberBean(MemberBean memberBean);
 	
 	RtBookingBean updateRtBooking(RtBookingBean bean);
 

@@ -38,6 +38,7 @@ import com.startrip.member.Service.MemberServiceInterface;
 import com.startrip.member.controller.md5.MD5Util;
 //import com.startrip.member.controller.md5.MD5Util;
 import com.startrip.member.memberModle.MemberBean;
+import com.startrip.restaurant.model.RtBookingBean;
 import com.startrip.restaurant.service.RtBookingService;
 
 @Controller
@@ -58,8 +59,12 @@ public class MemberController {
 		return "index";
 	}
 
-	@RequestMapping(value = "/selectdata", method = RequestMethod.GET)
-	public String selectdata(HttpServletRequest request) {
+	@RequestMapping(value = "/selectdata/{memberid}", method = RequestMethod.GET)
+	public String selectdata(Model model,HttpServletRequest request,@PathVariable int memberid) {
+		MemberBean mb=memberservice.selectbyid(memberid);
+//		RtBookingBean rb=rtBookingService.getAllRtBookingmemberBean(mb);
+		
+		
 		return "/member/mydata";
 	}
 	
