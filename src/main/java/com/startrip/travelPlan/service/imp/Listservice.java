@@ -41,5 +41,10 @@ public class Listservice implements ITravelListService {
 	public void delete(int id) {
 
 	}
+	@Transactional
+	@Override
+	public List<TravelListBean> select_listday(Integer travelId,Integer tripday){
+		return listDao.select_listday(travelId,  tripday);
+	}
 
 }

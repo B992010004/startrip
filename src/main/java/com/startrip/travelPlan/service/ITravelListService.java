@@ -17,4 +17,6 @@ public interface ITravelListService {
 	public void update(TravelListBean bean) throws SQLException;
 
 	public void delete(int id); 
+	
+	public List<TravelListBean> select_listday(Integer travelId,Integer tripday);
 }
