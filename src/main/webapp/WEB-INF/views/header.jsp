@@ -57,8 +57,8 @@
 									<img style="border-radius: 50%;" width="30px" height="30px" src="<c:url value='/getPicture/${LoginOK.mail}'/>">
 								</a>
 								  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-									<a class="btn" href="/startrip/ModifyMember">修改個人資料 </a>
-									<a class="btn" href="#">Another action</a>
+									<a class="btn" href="/startrip/ModifyMember">編輯個人資料 </a>
+									<a class="btn" href="/startrip/selectdata">查看我的訂單</a>
 									<a class="btn" href="/startrip/logout">登出</a>
 								</div>
 								</div>
