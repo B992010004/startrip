@@ -68,64 +68,73 @@ tbody th img {
 					<br>
 					<h6>這些是您在 Star Trip 上已經完成的預訂。</h6>
 					<br>
-					
-					<c:if test="${ !empty LoginOK }">
-					<h6>您目前沒有訂單</h6>	
+
+					<c:if test="${ empty rtlist }">
+						<h6>您目前沒有訂單</h6>
 					</c:if>
-				<c:if test="${ !empty LoginOK }">
-					<h4>飯店</h4>
-					<table class="table table-bordered">
-						<thead>
-							<tr>
-								<th width="20%" scope="col">房型</th>
-								<th width="25%" scope="col">服務</th>
-								<th width="25%" scope="col">設施</th>
-								<th width="15%" scope="col">每晚平均房價</th>
-							</tr>
-						</thead>
-						<tbody>
+					<c:if test="${ !empty rtlist }">
+						<h4>飯店</h4>
+						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th width="20%" scope="col">房型</th>
+									<th width="25%" scope="col">服務</th>
+									<th width="25%" scope="col">設施</th>
+									<th width="15%" scope="col">每晚平均房價</th>
+								</tr>
+							</thead>
+							<tbody>
 
-							<tr>
-								<th scope="row"><img
-									src="/startrip/assets/images/sq_img_2.jpg"> <br>
-									豪華雙人房</th>
-								<td>附早餐 <br>可加床 <br>不可退款
-								</td>
-								<td>1 張雙人床 / 2 張單人床 <br>室內WIFI
-								</td>
-								<td>3000</td>
+								<tr>
+									<th scope="row"><img
+										src="/startrip/assets/images/sq_img_2.jpg"> <br>
+										豪華雙人房</th>
+									<td>附早餐 <br>可加床 <br>不可退款
+									</td>
+									<td>1 張雙人床 / 2 張單人床 <br>室內WIFI
+									</td>
+									<td>3000</td>
 
-							</tr>
+								</tr>
 
-						</tbody>
-					</table>
-					<br>
+							</tbody>
+						</table>
+						<br>
 					</c:if>
-				<c:if test="${ !empty LoginOK }">
-					<h4>餐廳</h4>
-					<table class="table table-bordered" id="rtTable">
-						<thead>
-							<tr>
-								<th width="20%" scope="col">餐廳名稱</th>
-								<th width="25%" scope="col">用餐日期</th>
-								<th width="25%" scope="col">需求</th>
-								<th width="15%" scope="col">其他注意事項</th>
-							</tr>
-						</thead>
-						<tbody>
+					<c:if test="${ !empty rtlist }">
+						<h4>餐廳</h4>
+						<table class="table table-bordered" id="rtTable">
+							<thead>
+								<tr>
+									<th width="20%" scope="col">餐廳名稱</th>
+									<th width="25%" scope="col">用餐日期</th>
+									<th width="25%" scope="col">需求</th>
+									<th width="15%" scope="col">其他注意事項</th>
+									<th width="15%" scope="col"></th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach var='rtlists' items='${rtlist}'>
+									<tr>
 
-							<tr>
-								<th scope="row"><img
-									src="/startrip/assets/images/sq_img_2.jpg"> <br>
-									ooo餐廳</th>
-								<td>用餐日期:XXX<BR>用餐時段:晚餐
-								</td>
-								<td>訂位人數:2 <br>是否需要兒童專用椅:否 <br>
-								</td>
-								<td>其他注意事項 <br></td>
-							</tr>
-						</tbody>
-					</table>
+
+										<th scope="row">
+											<%-- 								<img src="<c:url value='/getrtPicture/${rtlists.rtDetailsBean.rtId}'/>"> --%>
+											<br> ${rtlists.rtDetailsBean.rtName}
+										</th>
+										<td>用餐日期:${rtlists.bgDate}<BR>用餐時段:${rtlists.reTime}
+										</td>
+										<td>訂位人數:${rtlists.bgPeople} <br>兒童專用椅:${rtlists.cnChair}
+											<br>
+										</td>
+										<td>${rtlists.bgNote}<br></td>
+										<td><input type="button" class="btn btn-primary"
+											id="modlifysubmit" value="取消訂位"></td>
+
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
 					</c:if>
 				</div>
 			</div>
