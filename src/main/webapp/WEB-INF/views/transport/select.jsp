@@ -8,10 +8,192 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Free Bootstrap 4 Theme by ProBootstrap.com">
+<meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,700" rel="stylesheet">
+
+<link rel="stylesheet" href="/startrip/assets/css/bootstrap/bootstrap.css">
+<link rel="stylesheet" href="/startrip/assets/css/animate.css">
+<link rel="stylesheet" href="/startrip/assets/fonts/ionicons/css/ionicons.min.css">
+<link rel="stylesheet" href="/startrip/assets/css/owl.carousel.min.css">
+<link rel="stylesheet" href="/startrip/assets/fonts/flaticon/font/flaticon.css">
+<link rel="stylesheet" href="/startrip/assets/fonts/fontawesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/startrip/assets/css/bootstrap-datepicker.css">
+<link rel="stylesheet" href="/startrip/assets/css/select2.css">
+<link rel="stylesheet" href="/startrip/assets/css/helpers.css">
+<link rel="stylesheet" href="/startrip/assets/css/style.css">
+<style>
+		#inputState {
+			height: 46px;
+			color: rgb(151, 148, 148)
+		}
+
+		.inputState label,
+		.inputState select {
+			height: 46px;
+			width: 100%;
+			color: rgb(151, 148, 148)
+		}
+
+
+		.probootstrap-cover .overlay {
+			position: absolute;
+			background: rgba(0, 0, 0, 0.2);
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+		}
+	</style>
 <title>站名編號查詢</title>
 </head>
 <body>
-	<a href="/startrip/stationEdit">開始訂位</a>
+	<div>
+		<jsp:include page="/WEB-INF/views/header.jsp" flush="true" />
+	</div>
+
+
+
+
+
+<section class="probootstrap-cover overflow-hidden relative" style="background-image: url('/startrip/assets/transport/images/into.jpg');"
+	 data-stellar-background-ratio="0.5" id="section-home">
+<div class="container">
+			<div class="row align-items-center">
+				<div class="col-md probootstrap-animate">
+					<form action="stationEdit" class="probootstrap-form" style="border-radius:30px;">
+						<div class="form-group">
+							<div class="row">
+<!-- 							選擇出發日期 -->
+							<div class="col-md">
+									<div class="form-group inputState">
+										<div class="probootstrap-date-wrap">
+											<label for="probootstrap-date-arrival">
+												<span class="icon ion-calendar"></span>
+												<input type="text" id="probootstrap-date-arrival" 
+												name="checkin" class="form-control" placeholder="請選擇出發日期">
+											</label>
+										</div>
+									</div>
+								</div>
+<!-- 							選擇出發日期 -->
+							
+							<!-- 選擇出發地點 -->
+								<div class="col-md">
+									<div class="form-group inputState">
+										<label for="id_label_people">
+											<select id="inputState" class="form-control" name="poeple">
+												<option value="">請選擇出發地點</option>
+					<option value="基隆">基隆</option>
+					<option value="台北">台北</option>
+					<option value="新北">新北</option>
+					<option value="桃園">桃園</option>
+					<option value="新竹">新竹</option>
+					<option value="苗栗">苗栗</option>
+					<option value="台中">台中</option>
+					<option value="彰化">彰化</option>
+					<option value="南投">南投</option>
+					<option value="雲林">雲林</option>
+					<option value="嘉義">嘉義</option>
+					<option value="台南">台南</option>
+					<option value="高雄">高雄</option>
+					<option value="屏東">屏東</option>
+					<option value="宜蘭">宜蘭</option>
+					<option value="花蓮">花蓮</option>
+					<option value="台東">台東</option>
+											</select>
+										</label>
+									</div>
+								</div>
+								
+								<!-- 選擇出發地點 -->
+								<!-- 選擇出發站名 -->
+								<div class="col-md">
+									<div class="form-group inputState">
+										<label for="id_label_people">
+											<select id="inputState" class="form-control" name="poeple">
+												
+					<option value="" selected="selected">選擇出發車站</option>
+		<c:forEach items='${stationList}' var='select'>
+				
+				
+				<option value="" >${select.stationName}</option>
+				
+			</c:forEach>
+											</select>
+										</label>
+									</div>
+								</div>
+								<!-- 選擇出發站名 -->
+								<!-- 選擇到達地點 -->
+								<div class="col-md">
+									<div class="form-group inputState">
+										<label for="id_label_people">
+											<select id="inputState" class="form-control" name="poeple">
+												<option value="">請選擇前往地點</option>
+					<option value="基隆">基隆</option>
+					<option value="台北">台北</option>
+					<option value="新北">新北</option>
+					<option value="桃園">桃園</option>
+					<option value="新竹">新竹</option>
+					<option value="苗栗">苗栗</option>
+					<option value="台中">台中</option>
+					<option value="彰化">彰化</option>
+					<option value="南投">南投</option>
+					<option value="雲林">雲林</option>
+					<option value="嘉義">嘉義</option>
+					<option value="台南">台南</option>
+					<option value="高雄">高雄</option>
+					<option value="屏東">屏東</option>
+					<option value="宜蘭">宜蘭</option>
+					<option value="花蓮">花蓮</option>
+					<option value="台東">台東</option>
+											</select>
+										</label>
+									</div>
+								</div>
+								<!-- 選擇到達地點 -->
+								<!-- 選擇到達車站 -->
+								<div class="col-md">
+									<div class="form-group inputState">
+										<label for="id_label_people">
+											<select id="inputState" class="form-control" name="poeple">
+												<option value="">請選擇目的車站</option>
+					
+		<c:forEach items='${stationList}' var='select'>
+				
+				
+				<option value="" >${select.stationName}</option>
+				
+			</c:forEach>
+											</select>
+										</label>
+									</div>
+								</div>
+								<!-- 選擇到達車站 -->
+<!-- 							送出 -->
+<!-- summit -->
+								<div class="col-md">
+									<div class="form-group">
+										<div class="col-md">
+											<input type="submit" value="送出" class="btn btn-primary btn-block" >
+										</div>
+									</div>
+								</div>
+								<!-- summit -->
+
+<!-- 							送出 -->
+
+</div>
+</div>
+</form>
+</div>
+</div>
+</section>
+
+<a href="/startrip/stationEdit">開始選位</a>>
 
 	<h2 class="title01">1 起迄地區查詢</h2>
 	<div class="search">
@@ -105,17 +287,6 @@
         
     </script>
 
-
-<%-- 		<c:forEach items='${stationList}' var='select'> --%>
-<!-- 			<tr> -->
-<%-- 				<td>${select.stationId}</td> --%>
-<%-- 				<td>${select.area}</td> --%>
-<%-- 				<td>${select.stationName}</td> --%>
-<%-- 				<td>${select.address}</td> --%>
-
-<!-- 			</tr> -->
-<%-- 		</c:forEach> --%>
-
 	<h2 class="title01">2 起迄站查詢</h2>
 	<div class="search">
 
@@ -173,6 +344,37 @@
 
 <!--      以下為用地區選車站----------- -->
 	<h2 class="title04">3 營業據點路線列表</h2>
+	
+<script>	
+document.addEventListener("DOMContentLoaded", function () {
+document.getElementById("area3").addEventListener("change", createStation);
+	
+
+function setdisplay() {
+	var y = document.getElementById("idSelectYear").value;
+	document.getElementById("area3").innerHTML = ${select.stationName};
+	
+}
+
+function prepareyear() {
+    for (i = 2010; i <= 2020; i++) {   //新增年
+        var opt = document.createElement("option");
+        opt.setAttribute("value", i);
+        var optTxt = document.createTextNode(i);
+        opt.appendChild(optTxt);
+
+        document.getElementById('point').appendChild(opt);
+
+    }
+    function createday() {
+    	 var y = document.getElementById("point").value;
+    	
+    }
+}
+	
+	
+	
+</script>	
 	<div class="search">
 		<label for="area3" class="">請選擇地區：</label>
 		<div>
@@ -221,6 +423,7 @@
 
 			</select>
 		</div>
+			
 		<input type="submit" value="查詢" name="submit" style="width: 60px">
 		<input type="hidden" id="opt" name="opt" value="search">
 	</div>
@@ -317,6 +520,52 @@
 			</tr>
 		</c:forEach>
 	</table>
+
+<meta name="description"
+	content="Free Bootstrap 4 Theme by ProBootstrap.com">
+<meta name="keywords"
+	content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
+
+<link
+	href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,700"
+	rel="stylesheet">
+
+<link rel="stylesheet"
+	href="/startrip/assets/css/bootstrap/bootstrap.css">
+<link rel="stylesheet" href="/startrip/assets/css/animate.css">
+<link rel="stylesheet"
+	href="/startrip/assets/fonts/ionicons/css/ionicons.min.css">
+
+<link rel="stylesheet" href="/startrip/assets/css/owl.carousel.min.css">
+
+<link rel="stylesheet"
+	href="/startrip/assets/fonts/flaticon/font/flaticon.css">
+
+<link rel="stylesheet"
+	href="/startrip/assets/fonts/fontawesome/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="/startrip/assets/css/select2.css">
+
+
+<link rel="stylesheet" href="/startrip/assets/css/helpers.css">
+<link rel="stylesheet" href="/startrip/assets/css/style.css">
+<link rel="stylesheet" href="/startrip/assets/css/rthome.css">
+<link rel="stylesheet" href="/startrip/assets/css/rthome2.css">
+<link rel="stylesheet" href="/startrip/assets/css/rthome3.css">
+<link rel="stylesheet" href="/startrip/assets/css/rthome4.css">
+ <script src="/startrip/assets/js/jquery.min.js"></script>
+
+	<script src="/startrip/assets/js/popper.min.js"></script>
+	<script src="/startrip/assets/js/bootstrap.min.js"></script>
+	<script src="/startrip/assets/js/owl.carousel.min.js"></script>
+
+	<script src="/startrip/assets/js/bootstrap-datepicker.js"></script>
+	<script src="/startrip/assets/js/jquery.waypoints.min.js"></script>
+	<script src="/startrip/assets/js/jquery.easing.1.3.js"></script>
+
+	<script src="/startrip/assets/js/select2.min.js"></script>
+
+	<script src="/startrip/assets/js/main.js"></script>
 
 </body>
 </html>

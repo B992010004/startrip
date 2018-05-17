@@ -13,6 +13,8 @@
 
 <body>
 
+
+<a href="/startrip/select">車站查詢</a>
     <!-- action="transport/stationEdit" -->
     <form:form method="post" modelAttribute="inputStation">
 
@@ -217,7 +219,7 @@
 <button id="random" value="submit">電腦選位</button>
         
          
-<div class="Div02">
+
            
             
 
