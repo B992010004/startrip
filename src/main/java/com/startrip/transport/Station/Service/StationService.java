@@ -44,5 +44,10 @@ public class StationService implements StationServiceInterface{
 	
 }
 
+	@Override
+	public List<StationBean> selectArea(String ar) {
+		return stationDAO.selectArea(ar);
+	}
+
 	
 }

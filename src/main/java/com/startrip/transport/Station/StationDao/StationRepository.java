@@ -25,7 +25,14 @@ public class StationRepository implements StationRepositoryInterface{
 		list = session.createQuery(hql, StationBean.class).getResultList();//StationBean.class指定查詢一定是StationBean.class
 		return list;
 	}
-	
+	@Override
+	public List<StationBean> selectArea (String ar) {
+		String hql = "FROM StationBean where area= :sa";
+		Session session = factory.getCurrentSession();
+		List<StationBean> list = new ArrayList<>();
+		list = session.createQuery(hql, StationBean.class).setParameter("sa", ar).getResultList();//StationBean.class指定查詢一定是StationBean.class
+		return list;
+	}
 	
 	
 	@Override

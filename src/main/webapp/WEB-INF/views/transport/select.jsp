@@ -254,6 +254,8 @@
 	
 	</script>
 	
+	
+
 	<!-- 以上為地圖查車站function -->
 
 	<!-- 以下為地圖標註顯示 -->
@@ -272,33 +274,35 @@
 					src="/startrip/assets/transport/images/taiwan.png" usemap="#FPMap0"
 					width="280" height="460" usemap="#Map" border="0"> <map
 						id="FPMap0" name="FPMap0">
-						<area class=imgbut shape="rect" coords="201,54,248,76" id=01 alt="aa"  onclick="test()">
-						<area class=imgbut shape="rect" coords="181,23,228,44" id=02>
-						<area class=imgbut shape="rect" coords="229,28,274,52" id=03>
-						<area class=imgbut shape="rect" coords="122,186,170,208" id=04>
-						<area class=imgbut shape="rect" coords="53,303,100,328" id=05>
-						<area class=imgbut shape="rect" coords="208,99,260,122" id=06>
-						<area class=imgbut shape="rect" coords="176,196,224,215" id=07>
-						<area class=imgbut shape="rect" coords="136,278,185,302" id=08>
-						<area class=imgbut shape="rect" coords="84,335,132,359" id=09>
-						<area class=imgbut shape="rect" coords="54,260,100,283" id=10>
-						<area class=imgbut shape="rect" coords="37,227,86,252" id=11>
-						<area class=imgbut shape="rect" coords="36,193,85,212" id=12>
-						<area class=imgbut shape="rect" coords="69,161,119,185" id=13>
-						<area class=imgbut shape="rect" coords="111,137,160,160" id=14>
-						<area class=imgbut shape="rect" coords="92,104,142,128" id=15>
-						<area class=imgbut shape="rect" coords="155,93,204,114" id=16>
-						<area class=imgbut shape="rect" coords="148,44,197,67" id=17>
+						<area class=imgbut shape="rect" coords="201,54,248,76" id=01 name="新北">
+						<area class=imgbut shape="rect" coords="181,23,228,44" id=02 name="台北" onclick="test()">
+						<area class=imgbut shape="rect" coords="229,28,274,52" id=03 name="基隆">
+						<area class=imgbut shape="rect" coords="122,186,170,208" id=04 name="南投">
+						<area class=imgbut shape="rect" coords="53,303,100,328" id=05 name="高雄" >
+						<area class=imgbut shape="rect" coords="208,99,260,122" id=06 name="宜蘭">
+						<area class=imgbut shape="rect" coords="176,196,224,215" id=07 name="花蓮">
+						<area class=imgbut shape="rect" coords="136,278,185,302" id=08 name="台東">
+						<area class=imgbut shape="rect" coords="84,335,132,359" id=09 name="屏東">
+						<area class=imgbut shape="rect" coords="54,260,100,283" id=10 name="台南">
+						<area class=imgbut shape="rect" coords="37,227,86,252" id=11 name="嘉義">
+						<area class=imgbut shape="rect" coords="36,193,85,212" id=12 name="雲林">
+						<area class=imgbut shape="rect" coords="69,161,119,185" id=13 name="彰化">
+						<area class=imgbut shape="rect" coords="111,137,160,160" id=14 name="台中">
+						<area class=imgbut shape="rect" coords="92,104,142,128" id=15 name="苗栗">
+						<area class=imgbut shape="rect" coords="155,93,204,114" id=16 name="新竹">
+						<area class=imgbut shape="rect" coords="148,44,197,67" id=17 name="桃園">
 					</map>
 					<div>
 						<h3 id="xx"></h3>
 					</div>
 				</a>
 			</div>
+
+
+	<!-- 以上為地圖顯示區塊 -->
 <div>
 <table border="1" cellpadding="10" cellspacing="0"class="table  table-bordered">
 		<tr>
-			
 			<th>地區</th>
 			<th>站名</th>
 			<th>車站地址</th>
@@ -307,7 +311,7 @@
 		<c:forEach items='${stationList}' var='select'>
 			<tr class="trr">
 			
-				<td class="tt">${select.area}</td>
+				<td>${select.area}</td>
 				<td>${select.stationName}</td>
 				<td>${select.address}</td>
 
@@ -322,7 +326,6 @@
 	</section>
 
 
-	<!-- 以上為地圖顯示區塊 -->
 
 	<h2 class="title01">1 起迄地區查詢</h2>
 	<div class="search">

@@ -19,6 +19,8 @@ List<StationBean> select();
 	void insert(StationBean bean);
 	
 	boolean delete(Integer id);
+
+	List<StationBean> selectArea(String ar);
 	
 	
 }
