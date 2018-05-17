@@ -125,7 +125,7 @@ tbody th img {
 	</section>
 	<script type="text/javascript">
 		function loadProduct(id) {
-			$.getJSON('Products', {'categoryID' : id
+			$.getJSON('Products', {'memberid' : memberid
 			}, function(datas) {
 				var docFrag = $(document.createDocumentFragment());
 				var tb = $('#productTable>tbody');

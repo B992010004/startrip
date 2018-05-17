@@ -54,10 +54,11 @@ public class MemberController {
 		session.removeAttribute("LoginOK");
 		return "index";
 	}
-	@RequestMapping(value = "/selectdata")
+	@RequestMapping(value = "/selectdata", method = RequestMethod.GET)
 	public String selectdata(HttpServletRequest request) {
 		return "/member/mydata";
 	}
+	
 	@RequestMapping(value = "/member/insertMember", method = RequestMethod.GET)
 	public String InsertMember(Model model) {
 		MemberBean mb = new MemberBean();
@@ -207,7 +208,6 @@ public class MemberController {
 		MemberBean bean = memberservice.select(mail);
 		HttpHeaders headers = new HttpHeaders();
 		Blob blob = bean.getPhoto();
-
 		int len = 0;
 		byte[] media = null;
 		if (blob != null) {
@@ -233,8 +233,8 @@ public class MemberController {
 		headers.setCacheControl(CacheControl.noCache().getHeaderValue());
 		
 		//為了修正照片問題 by 修盟
-		String mimeType = context.getMimeType(mail);
-		headers.setContentType(MediaType.parseMediaType(mimeType));
+//		String mimeType = context.getMimeType(mail);
+//		headers.setContentType(MediaType.parseMediaType(mimeType));
 		ResponseEntity<byte[]> responseEntity = new ResponseEntity<>(media, headers, HttpStatus.OK);
 		return responseEntity;
 	}
