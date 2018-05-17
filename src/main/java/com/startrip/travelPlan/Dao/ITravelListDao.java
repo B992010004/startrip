@@ -17,6 +17,6 @@ public interface ITravelListDao {
 
 	void delete(Integer id);
 
-	public List<TravelListBean> Select_travellist(Integer travelId);
+	public List<TravelListBean> Select_travellist(Integer travelId,Integer day);
 
 }

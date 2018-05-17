@@ -17,8 +17,8 @@ public class Listservice implements ITravelListService {
 	TravelListDao listDao;
 	@Transactional
 	@Override
-	public List<TravelListBean> Select_travellist(Integer travelId) {
-		return listDao.Select_travellist(travelId);
+	public List<TravelListBean> Select_travellist(Integer travelId,Integer day) {
+		return listDao.Select_travellist(travelId,day);
 	}
 	@Transactional
 	@Override

@@ -31,12 +31,13 @@ public class TravelListDao implements ITravelListDao  {
 	
 	
 	@Override
-	public List<TravelListBean> Select_travellist(Integer travelId) {
-		String sql = "select * from TravelList where travelId=:travelId  order by tripday asc,LEFT(starttime,2)";
+	public List<TravelListBean> Select_travellist(Integer travelId,Integer day) {
+		String sql = "select * from TravelList where travelId=:travelId and tripday=:tripday  order by tripday asc,LEFT(starttime,2)";
 			Session session = factory.getCurrentSession();
 		List<TravelListBean> result = session.createNativeQuery(sql,TravelListBean.class)
-
-				.setParameter("travelId", travelId).getResultList();
+				.setParameter("travelId", travelId)
+				.setParameter("tripday", day)
+				.getResultList();
 		
 			System.out.println(result);
 		return result;
@@ -84,7 +85,7 @@ public class TravelListDao implements ITravelListDao  {
 			TravelListBean bean =  new TravelListBean();
 			try {
 				
-				List<TravelListBean> list= dao.Select_travellist(1);
+				List<TravelListBean> list= dao.Select_travellist(1,1);
 				for(TravelListBean result : list) {
 					System.out.println(result.toString());
 				}
