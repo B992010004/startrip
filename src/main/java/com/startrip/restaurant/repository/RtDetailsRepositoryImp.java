@@ -88,6 +88,7 @@ public class RtDetailsRepositoryImp implements RtDetailsRepository {
 		return list2;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<RtDetailsBean> getrtPricepountH() {
 		String hql="FROM RtDetailsBean where rtPricepount = :H";
@@ -98,6 +99,7 @@ public class RtDetailsRepositoryImp implements RtDetailsRepository {
 		return list3;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<RtDetailsBean> getrtPricepountM() {
 		String hql="FROM RtDetailsBean where rtPricepount = :M";
@@ -108,6 +110,7 @@ public class RtDetailsRepositoryImp implements RtDetailsRepository {
 		return list4;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<RtDetailsBean> getrtPricepountL() {
 		String hql="FROM RtDetailsBean where rtPricepount = :L";

@@ -154,7 +154,7 @@
 				<div class="row">
 					<c:forEach var='rtDetails' items='${RtDetails}'>
 						<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
-							<a href="/startrip/Individualdetails" class="probootstrap-thumbnail"> <img
+							<a href="/startrip/restaurant/${rtDetails.rtId}" class="probootstrap-thumbnail"> <img
 								src="/startrip/getPicture/rtImage/${rtDetails.photoArr[2]}"
 								alt="Free Template by ProBootstrap.com" class="img-fluid">
 								<h3>${rtDetails.rtName}</h3> <span>${rtDetails.rtCuisine}</span>
@@ -174,7 +174,7 @@
 				<div class="row">
 					<c:forEach var='rtDetails' items='${nearby}'>
 						<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
-							<a href="/startrip/Individualdetails" class="probootstrap-thumbnail"> <img
+							<a href="/startrip/restaurant/${rtDetails.rtId}" class="probootstrap-thumbnail"> <img
 								src="/startrip/getPicture/rtImage/${rtDetails.photoArr[1]}"
 								alt="Free Template by ProBootstrap.com" class="img-fluid">
 
@@ -195,7 +195,7 @@
 				<div class="row">
 					<c:forEach var='rtDetails' items='${HH}'>
 						<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
-							<a href="/startrip/Individualdetails" class="probootstrap-thumbnail"> <img
+							<a href="/startrip/restaurant/${rtDetails.rtId}" class="probootstrap-thumbnail"> <img
 								src="/startrip/getPicture/rtImage/${rtDetails.photoArr[3]}"
 								alt="Free Template by ProBootstrap.com" class="img-fluid">
 
@@ -216,7 +216,7 @@
 				<div class="row">
 					<c:forEach var='rtDetails' items='${MM}'>
 						<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
-							<a href="/startrip/Individualdetails" class="probootstrap-thumbnail"> <img
+							<a href="/startrip/restaurant/${rtDetails.rtId}" class="probootstrap-thumbnail"> <img
 								src="/startrip/getPicture/rtImage/${rtDetails.photoArr[3]}"
 								alt="Free Template by ProBootstrap.com" class="img-fluid">
 
@@ -237,7 +237,7 @@
 				<div class="row">
 					<c:forEach var='rtDetails' items='${LL}'>
 						<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
-							<a href="/startrip/Individualdetails" class="probootstrap-thumbnail"> <img
+							<a href="/startrip/restaurant/${rtDetails.rtId}" class="probootstrap-thumbnail"> <img
 								src="/startrip/getPicture/rtImage/${rtDetails.photoArr[5]}"
 								alt="Free Template by ProBootstrap.com" class="img-fluid">
 
