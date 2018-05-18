@@ -9,6 +9,7 @@ import java.io.PrintWriter;
 import java.sql.Blob;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
@@ -36,16 +37,18 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.startrip.member.Service.MemberServiceInterface;
 import com.startrip.member.controller.md5.MD5Util;
-//import com.startrip.member.controller.md5.MD5Util;
 import com.startrip.member.memberModle.MemberBean;
 import com.startrip.restaurant.model.RtBookingBean;
+import com.startrip.restaurant.model.RtDetailsBean;
 import com.startrip.restaurant.service.RtBookingService;
+import com.startrip.restaurant.service.RtDetailsService;
 
 @Controller
 public class MemberController {
 	@Autowired
 	RtBookingService rtBookingService;
-
+	@Autowired
+	RtDetailsService rtDetailsService;
 	@Autowired
 	MemberServiceInterface memberservice;
 
@@ -60,14 +63,42 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/selectdata/{memberid}", method = RequestMethod.GET)
-	public String selectdata(Model model,HttpServletRequest request,@PathVariable int memberid) {
-		MemberBean mb=memberservice.selectbyid(memberid);
-//		RtBookingBean rb=rtBookingService.getAllRtBookingmemberBean(mb);
-		
+	public String selectdata(Model model, HttpServletRequest request, @PathVariable int memberid) {
+		MemberBean mb = memberservice.selectbyid(memberid);
+		List<RtBookingBean> rbList = rtBookingService.getAllRtBookingmemberBean(mb);		
+		model.addAttribute("rtlist", rbList);
 		
 		return "/member/mydata";
 	}
-	
+
+//	@RequestMapping(value = "/getrtPicture/{rtId}", method = RequestMethod.GET)
+//	public ResponseEntity<byte[]> getrtPicture(HttpServletResponse resp, @PathVariable int rtId) {
+//		RtDetailsBean rtbean = rtDetailsService.getAllRtDetailsrtId(rtId);
+//		String photoName = rtbean.getPhotoPaths();
+//		HttpHeaders headers = new HttpHeaders();
+//		ByteArrayOutputStream baos = null;
+//		int len = 0;
+//		byte[] media = null;
+//
+//		try (InputStream is = new FileInputStream("C:/temp/rtImage/" + photoName)) {
+//			baos = new ByteArrayOutputStream();
+//			byte[] b = new byte[8192];
+//
+//			while ((len = is.read(b)) != -1) {
+//				baos.write(b, 0, len);
+//			}
+//		} catch (IOException e) {
+//			throw new RuntimeException("ProductController 的  getPicture() 發生 IOException:" + e.getMessage());
+//		}
+//		media = baos.toByteArray();
+//		headers.setCacheControl(CacheControl.noCache().getHeaderValue());
+//		String mimeType = context.getMimeType(photoName);
+//		// headers.setContentType(MediaType.IMAGE_JPEG);
+//		headers.setContentType(MediaType.parseMediaType(mimeType));
+//		ResponseEntity<byte[]> responseEntity = new ResponseEntity<>(media, headers, HttpStatus.OK);
+//
+//		return responseEntity;
+//	}
 
 	@RequestMapping(value = "/member/insertMember", method = RequestMethod.GET)
 	public String InsertMember(Model model) {
@@ -246,10 +277,9 @@ public class MemberController {
 		}
 		headers.setCacheControl(CacheControl.noCache().getHeaderValue());
 
-		
-		//為了修正照片問題 by 修盟
-//		String mimeType = context.getMimeType(mail);
-//		headers.setContentType(MediaType.parseMediaType(mimeType));
+		// 為了修正照片問題 by 修盟
+		// String mimeType = context.getMimeType(mail);
+		// headers.setContentType(MediaType.parseMediaType(mimeType));
 
 		ResponseEntity<byte[]> responseEntity = new ResponseEntity<>(media, headers, HttpStatus.OK);
 		return responseEntity;

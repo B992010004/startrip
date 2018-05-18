@@ -135,4 +135,14 @@ public class TravelListDao implements ITravelListDao  {
 			}
 	}
 	//--------------------------------------------------------------
+
+
+	@Override
+	public List<TravelListBean> select_listday(Integer travelId, Integer tripday) {
+		String sql="select * from travellist where  travelId=:travelId and tripday=:tripday";
+		List<TravelListBean> list =factory.getCurrentSession().createNativeQuery(sql,TravelListBean.class)
+				.setParameter("travelId", travelId)
+				.setParameter("tripday", tripday).getResultList();
+		return list;
+	}
 }

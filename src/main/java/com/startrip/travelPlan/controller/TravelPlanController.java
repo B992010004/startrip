@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.hibernate.TransientPropertyValueException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.CacheControl;
 import org.springframework.http.HttpHeaders;
@@ -290,14 +291,19 @@ public class TravelPlanController {
 	@RequestMapping(value="/Travel/add/list",method=RequestMethod.GET)
 	@ResponseBody
 	public TravelListBean travelAdd(@RequestParam("viewName")String viewName,@RequestParam("starttime")String starttime
-			,@RequestParam("endtime")String endtime,@RequestParam("type")String type
-			,@RequestParam("day")Integer day,@RequestParam("travelId")Integer travelId
+			,@RequestParam("endtime")String endtime,@RequestParam("travelType")String type
+			,@RequestParam("tripday")Integer day,@RequestParam("travelId")Integer travelId
 			,@RequestParam("memberId")Integer memberId) {
 		System.out.println(viewName+","+starttime+","+ endtime+","+ type+","+ travelId+","+ day);
+		System.out.println("------------------------------------------------------------------");
+		System.out.println("------------------------------------------------------------------");
 		String travelName = travelservice.Select_Travel(memberId, travelId).getTravelName();
 		String viewId = viewService.getViewPoint(viewName).getViewid();
 		Integer state = 1;
 		TravelListBean tlb = new TravelListBean(viewName, starttime, endtime, travelName, type, memberId, travelId, viewId, day, state);
+		System.out.println(tlb);
+		System.out.println(tlb);
+		System.out.println(tlb);
 		Integer pk =listservice.insert(tlb);
 		
 		return tlb;
@@ -347,11 +353,22 @@ public class TravelPlanController {
 		all.add(bean);
 		}
 		
-		System.out.println(all);
+		System.out.println(all.toString());
 		return all;
 	}
-	
-	
+	@RequestMapping(value="travel/checkday",method=RequestMethod.GET)
+	@ResponseBody
+	public boolean getAllList(Model model,TravelListBean bean,String mail) {
+		Integer memberId =memberservice.select(mail).getMemberid();
+		List<TravelListBean>list=new ArrayList<>();
+		list= listservice.select_listday(bean.getTravelId(), bean.getTripday());
+		
+		if(list.size()==0) {
+			return false;
+		}else {
+		return true;
+		}
+	}
 	//----------------------------------------------------
 	//view相關控制
 	//-----------------------------------------------------

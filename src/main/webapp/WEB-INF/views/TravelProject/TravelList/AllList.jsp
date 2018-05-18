@@ -190,9 +190,16 @@
 		</div>
 		
 		
+		
 		<div class="form-group">
 		<label class="form-control-label" for="formGroupExampleInput">結束時間</label>
 		    <input  placeholder="Selected endtime" type="text" id="endtime" class="form-control"/>
+		  
+		</div>
+		
+		<div class="form-group">
+		<label  class="form-control-label" for="formGroupExampleInput">持續時間</label>
+		    <input  placeholder="持續時間" type="text" id="time" class="form-control"/>
 		  
 		</div>
 		
@@ -319,6 +326,10 @@ $(document).on('click','.card-img-top',function(e){
 		$('#type').html(imgrow)
 		daysrow.append(docFrag);
 		$('#days').html(daysrow);
+		
+		
+		
+		
 	})
 	
 })
@@ -355,8 +366,32 @@ $(document).on('click','.circle',function(e){
 	all.css({"background-color":"#28b9ff"})
 	
 	var type = $(e.target)
-	type.css({ 'background-color': '#00496c','color':'white'})
 	var day =type.text()
+	type.css({ 'background-color': '#00496c','color':'white'})
+	var datas={}
+	datas.mail="${LoginOK.mail}";
+	datas.travelId="${Travel.travelId}"
+	datas.tripday=day
+	
+	$.ajax({
+		url:"/startrip/travel/checkday",
+		type:"GET",
+		data:datas,
+		success:function(data){
+			if(data==true){
+				console.log('true')
+				$('#starttime').parent().css('display','none');
+				$('#endtime').parent().css('display','none');
+				$('#time').parent().css('display','block');
+			} else{
+				console.log('false')
+				$('#starttime').parent().css('display','block');
+				$('#endtime').parent().css('display','block');
+				$('#time').parent().css('display','none');
+			}
+			
+		}
+	})
 	inputDay.val(day)
 // 	console.log(inputDay.val())
 
@@ -393,8 +428,8 @@ $(document).on('click','#checklist',function(){
 	datas.viewName=$('#viewName').val();
 	datas.starttime=$('#starttime').val();
 	datas.endtime=$('#endtime').val();
-	datas.type=inputType.val();
-	datas.day=inputDay.val();
+	datas.travelType=inputType.val();
+	datas.tripday=inputDay.val();
 	datas.travelId='${Travel.travelId}'
 	datas.memberId='${LoginOK.memberid}'
 	
@@ -405,6 +440,7 @@ $(document).on('click','#checklist',function(){
 		data:datas,
 		contentType: "application/json; charset=utf-8",
 		success:function(data){
+			console.log(data)
 			searchList();
 			
 			
@@ -433,17 +469,6 @@ function searchDays(){
 		data:value,
 		contentType: "application/json; charset=utf-8",
 		success:function(data){
-// 			console.log(data)
-// 			  <div id="tripcontext">
-// 	            <h3 id="travelName">tripname</h3>
-// 	            <div class="timestyle col-5">
-// 	                <span id ="startDate" class="time contex">2015/02/08</span>
-// 	                <br>  
-// 	                <span style="margin:50px;">|</span>
-// 	                <br>
-// 	                <span id="endDate"  class="time contex">2015/02/13</span>
-// 	            </div>
-// 	        </div>
 			$('#tripcontext').empty();
 			var travelNmae = $("<h3 id='travelName'>"+data.Name.travelName+"</h3>");
 			var col =$("<div class='timestyle col-4'></div>");
@@ -454,7 +479,7 @@ function searchDays(){
 			$('#tripcontext').html([travelNmae,col])
 		//清空清單 並建立清單項目
 		$('.timeline').empty();
-// 		console.log("天數"+data.Name.travelDays)
+		//console.log("天數"+data.Name.travelDays)
 			var docFrag = $(document.createDocumentFragment());
 			var main =$(".timeline");
 			for( var i = 1,day=data.Name.travelDays;i<=day;i++){
@@ -466,16 +491,12 @@ function searchDays(){
  
 					daycontent.html(title);
 					right1.html(daycontent);
-				
 					docFrag.append(right1);
-					
-					 searchList(i);
-					
+					console.log('i='+i)
+					searchList(i);
 			}
-				main.append(docFrag);
-			
+			main.append(docFrag);
 		}
-		
 	})
 } 
 //------------------------------------------
@@ -486,6 +507,9 @@ function searchList(day){
 	travel.mail="${LoginOK.mail}"
 	travel.travelId="${Travel.travelId}"
 	travel.day=day
+	
+	console.log("day="+day)
+	
 	$.ajax({
 		url:"/startrip/list/travelId",
 		type:"GET",
@@ -494,50 +518,74 @@ function searchList(day){
 		contentType: "application/json; charset=utf-8",
 		success: 
 			function(data){
-			
-			var len = data.length;
-			var waypts=[];
-			if(!(data=="")){
-			console.log("清單地點")
-			}
-			for(var i = 0;i<len;i++){//產生天數清單
-				var right=$('<div class="container1 right"  id="dayTile'+(i+1)+'"> </div>')
-				var content = $('<div class="content"><div class="closelist" id="closelist'+(i+1)+'" ></div></div>')
-				var title = $('<h3 class="listtitle" name="title">'+data[i].viewName+'</h3>');
-				var start = $('<div class="start">'+data[i].startTime+'</div>');
-				var end = $('<div class="end">'+data[i].endTime+'</div>');
-				content.append([title,start,end])
-				right.append(content)
-				var day=data[i].tripday
-				var tag = "daybody"+day
-// 				console.log(tag)
-				$(".timeline").find("#"+tag).append(right);
-				waypts.push({
-					location: data[i].viewName,
-					stopover: true
-					})
-				}//for----end
-			
-			  var directionsService = new google.maps.DirectionsService;
-			  var directionsDisplay = new google.maps.DirectionsRenderer({
+				var len = data.length;
+				var waypts=[];
+				for(var i = 0;i<len;i++){//產生天數清單
+					var right=$('<div class="container1 right"  id="dayTile'+(i+1)+'"> </div>')
+					var content = $('<div class="content"><div class="closelist" id="closelist'+(i+1)+'" ></div></div>')
+					var title = $('<h3 class="listtitle" name="title">'+data[i].viewName+'</h3>');
+					var start = $('<div class="start">'+data[i].startTime+'</div>');
+					var end = $('<div class="end">'+data[i].endTime+'</div>');
+					content.append([title,start,end])
+					right.append(content)
+					var day1=data[i].tripday
+					var tag = "daybody"+day1
+					$(".timeline").find("#"+tag).append(right);
+					waypts.push({
+						location: data[i].viewName,
+						stopover: true
+						})
+					}//for----end
+			   directionsService = new google.maps.DirectionsService;
+			   directionsDisplay = new google.maps.DirectionsRenderer({
 		          draggable: true,
 		          map: map,
-		        //   panel: document.getElementById('right-panel')
-		        });
+		       });
 			//中途點
+			var wlen = waypts.length
+			if(wlen>2){
 			  waypts.splice(0,1);
 			  waypts.pop()
-			//------------------
-			  if(data.length<2){
+			}
+			
+			  if(len<2){
 				  console.log("只有一個點")
 			  }else{
-			  var road =displayRoute(data[0].viewName, data[len-1].viewName,waypts, directionsService,directionsDisplay);
-			  console.log(road)
-			  }        
-			
+			var request={}
+				if(wlen>2){
+				request.waypoints= waypts//模式
+				}
+				
+				request.origin=data[0].viewName//起始
+				request.destination= data[len-1].viewName//目的
+				request.travelMode= 'DRIVING'//模式
+				directionsService.route(request, function(response,status){
+			  	if (status === 'OK') {
+			          var result=response.routes[0]
+			          var rlen=result.legs.length
+			          directionsDisplay.setDirections(response);
+			          console.log(rlen)
+			          road=[]
+			          if(rlen<0){
+			         console.log("沒有行程")
+			         directionsDisplay.setDirections(response);
+		          	}else{
+				          for(var i = 0;i<(len-1);i++){
+				        	var distance=result.legs[i].distance.text;
+				        	var duration=result.legs[i].duration.text;
+				        	console.log(distance+','+duration)
+				        	var body = $('<div class="" id="time'+(i+1)+'"> </div>')
+				        	var road=$('<span class="col-4">'+distance+'</span><span>'+duration+'</span></div>')
+				        	body.append(road)
+				        	$(".timeline").find("#"+tag).find('#dayTile'+(i+1)).after(body)
+							}
+				          
+			  			}         
+					}
+				})//directionsService end
+			}
 		}
-		
-	})
+	}) 
 }
 //-----------------------------------------------------
 //推薦景點
@@ -551,88 +599,33 @@ function searchView(){
 		data:value,
 		contentType: "application/json; charset=UTF-8",
 		success:function(data){
-// 			<div id="view">
-// 				<h5 class="card-title">Card title</h5>
-//             <div class="card" style="width: 18rem;">
-//                 <img class="card-img-top" src="..." alt="Card image cap">
-//                 <div class="card-body">
-//                 </div>
-//             </div>
-// 			</div>
 				$('#views').empty();
-// 		console.log(data[0])
-// 		 console.log(data[1])
-			var length = data.length;
+				var length = data.length;
 				var docFrag = $(document.createDocumentFragment());
 				
-			for(var i=0;i<length;i++){
+				for(var i=0;i<length;i++){
 			
 				var split =data[i].imgName.split(";");
 				var img = $('<img class="card-img-top hover-shadow" id="img'+(i+1)+'"  alt="Card image cap">').attr("src",'/startrip/showImage/'+split[0]);
 				var body = $('<div class="card-body view"></div>');
 				var detail = $('<p>'+data[i].viewDetail+'</p>')
-// 			
 					body.html(detail);
 				var card = $('<div class="card" style="width: 18rem;"></div>');
 				var title = $('<h5 class="card-title"><strong>'+data[i].viewName+'</strong></h5>');
 				var view = $('<div class="view"></div>');
 				card.html([img,body])
-
 				view.html([title,card])
 				docFrag.html(view);
-			}
+				}
 			$('#views').html(docFrag);
 		} 
-	})
+	})//ajax end
 }
 
+function PlaceRoute(origin, destination,waypts, service){
+	
+}
 
-function displayRoute(origin, destination,waypts, service,display) {
-	service.route({
-    //起始
-      origin: origin,
-    //目的
-      destination: destination,
-    //中途點
-      waypoints: waypts,
-      
-    //模式
-      travelMode: 'DRIVING'
-//     console.log(status);
-    }, function(response, status) {
-      if (status === 'OK') {
-//           console.log(response)
-// //           console.log(response.routes[0].legs[0].distance.text)
-// //           console.log(response.routes[0].legs[0].duration.text)
-// //           console.log(response.routes[0].legs[0].start_address)
-// //           console.log(response.routes[0].legs[0].end_address)
-// //           console.log(response.routes[0].legs[0].duration.text)
-//           var result=response.routes[0]
-//           len=result.legs.length
-//           console.log(len)
-//           road=[]
-//           if(len<0){
-//         	  console.log("沒有形成")
-//           }else{
-// // 	          for(var i = 0;i<len;i++){
-// // 	        	distance=result.legs[i].distance.text;
-// // 	        	duration=result.legs[i].duration.text;
-// // 	        	road.push({
-// // 	        		distance:distance,
-// // 	        		duration:duration
-// // 	        	})
-
-	         display.setDirections(response);
-	          
-          
-          
-          
-      } else {
-       console.log('Could not display directions due to: ' + status);
-      }
-    });
-    
-  }
   
 
 </script>
@@ -803,6 +796,13 @@ function initMap() {
 	  	});
 			//placechange-----end------------------------------------
 
+	      directionsService = new google.maps.DirectionsService;
+		   directionsDisplay = new google.maps.DirectionsRenderer({
+	          draggable: true,
+	          map: map,
+	       });
+	  
+	  
 	  }//init end
 	  
 
@@ -903,7 +903,7 @@ function initMap() {
 		$('#starttime').timepicker();
 // 		console.log($('#starttime').val());
 		$('#endtime').timepicker();
-		
+		$('#time').timepicker();
 		
 		$('#myModal').on('shown.bs.modal', function () {
 			  $('#myInput').trigger('focus')

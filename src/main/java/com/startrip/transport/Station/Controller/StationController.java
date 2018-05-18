@@ -28,11 +28,11 @@ public class StationController {
 	@RequestMapping(value="/select", method=RequestMethod.GET)
 	public String select(Model model) {
 		List<StationBean> all = StationService.select();
-		System.out.println(all);
+		//System.out.println(all);
 		for(StationBean stationBean:all) {
-			System.out.println( "getStationName="+stationBean.getStationName());
-			System.out.println(stationBean.getStationId());			
-			System.out.println(stationBean.getArea());		
+			//System.out.println( "getStationName="+stationBean.getStationName());
+			//System.out.println(stationBean.getStationId());			
+			//System.out.println(stationBean.getArea());		
 		System.out.println(stationBean.getAddress());		}
 		model.addAttribute("stationList", all);//標籤名stationList
 		
@@ -42,6 +42,22 @@ public class StationController {
 //	@RequestMapping(value="station/list")
 //	public String selectStation(Model model) {
 //		}
+	@RequestMapping(value="/selectArea", method=RequestMethod.GET)
+	public String selectArea(Model model) {
+		List<StationBean> area = StationService.select();
+		System.out.println(area);
+		for(StationBean stationBean:area) {
+			System.out.println( "getStationName="+stationBean.getStationName());
+			System.out.println(stationBean.getStationId());			
+			System.out.println(stationBean.getArea());		
+		System.out.println(stationBean.getAddress());		}
+		model.addAttribute("stationList", area);//標籤名stationList
+		
+		return "transport/select";
+	}
+	
+	
+	
 	
 	
 	
