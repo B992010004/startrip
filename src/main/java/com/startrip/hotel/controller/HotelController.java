@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.startrip.hotel.model.SearchHotel;
-import com.startrip.hotel.model.service.HotelService;
+import com.startrip.hotel.model.service.HotelServiceInterface;
 import com.startrip.reviews.model.ReviewBean;
 import com.startrip.reviews.service.ReviewService;
 
@@ -19,7 +19,7 @@ import com.startrip.reviews.service.ReviewService;
 public class HotelController {
 
 	@Autowired
-	HotelService hotelService;
+	HotelServiceInterface hotelService;
 
 	@Autowired
 	ServletContext context;
@@ -39,7 +39,10 @@ public class HotelController {
 		// public String hotelsSearchResult(Model model, String location, java.sql.Date
 		// checkin, java.sql.Date checkout,
 		// Integer People) {
+
 		System.out.println(searchHotel);
+//		System.out.println("搜尋結果: " + hotelService.selectByCriteria(searchHotel));
+		model.addAttribute("results", hotelService.selectByCriteria(searchHotel));
 		return "hotel/HotelsSearchResult";
 	}
 

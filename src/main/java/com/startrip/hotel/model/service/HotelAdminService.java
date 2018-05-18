@@ -17,7 +17,7 @@ import com.startrip.hotel.model.persistent.ServicelistBean;
 import com.startrip.hotel.model.persistent.ServicenameBean;
 import com.startrip.hotel.model.repository.FacilitylistDAO;
 import com.startrip.hotel.model.repository.FacilitynameDAO;
-import com.startrip.hotel.model.repository.HotelsDAO;
+import com.startrip.hotel.model.repository.HotelDAOInterface;
 import com.startrip.hotel.model.repository.PhotoDAO;
 import com.startrip.hotel.model.repository.PhotonameDAO;
 import com.startrip.hotel.model.repository.RoomtypeDAO;
@@ -28,7 +28,7 @@ import com.startrip.hotel.model.repository.ServicenameDAO;
 @Transactional
 public class HotelAdminService {
 	@Autowired
-	HotelsDAO hotels;
+	HotelDAOInterface hotels;
 	@Autowired
 	PhotonameDAO photoname;
 	@Autowired
