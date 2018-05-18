@@ -319,8 +319,8 @@
                         <div class="row">
                             <div class="col-md">
                                 <!-- 地圖 -->
-                                <a href="http://maps.google.com/maps?q=福華飯店,+台北市&amp;z=11" data-geo="" target="_blank">
-                                    <img class="map" alt="福華飯店, 台北市" src="http://maps.google.com/maps/api/staticmap?zoom=17&size=300x300&maptype=terrain&sensor=false&center=福華飯店, 台北市&key=AIzaSyAphlUZhilGS44rk9TBLOoMluxpNJa0Cfk">
+                                <a href="http://maps.google.com/maps?q=${hotel.hoteladdress }&amp;z=11" data-geo="" target="_blank">
+                                    <img class="map" alt="${hotel.hoteladdress }" src="http://maps.google.com/maps/api/staticmap?zoom=15&size=300x300&maptype=terrain&sensor=false&center=${hotel.hoteladdress }&markers=color:green%7Clabel:H%7C${hotel.hoteladdress }&key=AIzaSyARfDct4ecrevMJjHgcrjmPOLfbM6X9N7w">
                                 </a>
                             </div>
                         </div>
@@ -478,11 +478,11 @@
 			<div class="travler-rank col-md-2" id="selectCheckBox">
 				<label class="sr-only-focusable">旅客類型</label>
 				<ul>
-					<li><input id="cr1" type="checkbox" name="family" value="家庭">家庭出遊</li>
-					<li><input id="cr2" type="checkbox" name="couple" value="伴侶旅行">伴侶旅行</li>
-					<li><input id="cr3" type="checkbox" name="alone" value="單獨旅行">單獨旅行</li>
-					<li><input id="cr4" type="checkbox" name="business" value="商務">商務出差</li>
-					<li><input id="cr5" type="checkbox" name="friends" value="朋友">好友旅行</li>
+					<li><input id="cr1" type="checkbox" name="family" value="家庭" onclick="selectByCriteria('${hotel.hotelid }')">家庭出遊</li>
+					<li><input id="cr2" type="checkbox" name="couple" value="伴侶旅行" onclick="selectByCriteria('${hotel.hotelid }')">伴侶旅行</li>
+					<li><input id="cr3" type="checkbox" name="alone" value="單獨旅行" onclick="selectByCriteria('${hotel.hotelid }')">單獨旅行</li>
+					<li><input id="cr4" type="checkbox" name="business" value="商務" onclick="selectByCriteria('${hotel.hotelid }')">商務出差</li>
+					<li><input id="cr5" type="checkbox" name="friends" value="朋友" onclick="selectByCriteria('${hotel.hotelid }')">好友旅行</li>
 				</ul>
 			</div>
 
@@ -761,42 +761,43 @@
 
             })
 
-            $(function () {
-                $(document).tooltip({
-                    items: "[title]",
-                    content: function () {
-                        var element = $(this);
-                        if (element.is("[data-geo]")) {
-                            var text = element.children().attr("map");
-                            console.log(text)
-                            return "<img class='map' alt='" + text +
-                                "' src='http://maps.google.com/maps/api/staticmap?" +
-                                "zoom=16&size=350x350&maptype=terrain&sensor=false&center=" +
-                                text + "&key=AIzaSyAphlUZhilGS44rk9TBLOoMluxpNJa0Cfk'>";
-                        }
-                        if (element.is("[title]")) {
-                            return element.attr("title");
-                        }
-                        if (element.is("img")) {
-                            return element.attr("alt");
-                        }
-                    }
-                });
-            });
+//             $(function () {
+//                 $(document).tooltip({
+//                     items: "[title]",
+//                     content: function () {
+//                         var element = $(this);
+//                         if (element.is("[data-geo]")) {
+//                             var text = element.children().attr("map");
+//                             console.log(text)
+//                             return "<img class='map' alt='" + text +
+//                                 "' src='http://maps.google.com/maps/api/staticmap?" +
+//                                 "zoom=16&size=350x350&maptype=terrain&sensor=false&center=" +
+//                                 text + "&key=AIzaSyAphlUZhilGS44rk9TBLOoMluxpNJa0Cfk'>";
+//                         }
+//                         if (element.is("[title]")) {
+//                             return element.attr("title");
+//                         }
+//                         if (element.is("img")) {
+//                             return element.attr("alt");
+//                         }
+//                     }
+//                 });
+//             });
         </script>
         
-<!--         多重篩選 -->
+        <!-- 多重篩選 -->
         <script>
-        $(document).ready(function(){
-			for(i=1;i<=5;i++){
-				$('#cr' + i).on('change',function(){
-					selectByCriteria();
-// 					console.log("繫結成功");
-				})
-			}
-		});
+        //為了傳Id 此段沒用
+//         $(document).ready(function(){
+// 			for(i=1;i<=5;i++){
+// 				$('#cr' + i).on('change',function(){
+// 					selectByCriteria();
+//  					console.log("繫結成功");
+// 				})
+// 			}
+// 		});
 	
-		function selectByCriteria(){
+		function selectByCriteria(hotelId){
 			var criteriaData = {};
 			
 // 			criteriaData.family = $("#cr1").val();
@@ -813,7 +814,7 @@
 	 			criteriaData[checkbox.attributes["name"].value] = checkbox.attributes["value"].value;
 	 			console.log("C");
 			});
-
+	 		criteriaData.hotelId = hotelId;
 	 		console.log(criteriaData);
 
 			$.ajax({
@@ -868,7 +869,7 @@
 		
 			});
 		}
-        </script>
+        </script>    
 </body>
 
 </html>

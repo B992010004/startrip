@@ -162,22 +162,22 @@
 
 	<div class="container">
 		<div class="row">
-			<div class="col-md">
-				<div class="col-md-123">
-					<h2 class="display-4 probootstrap-section-heading">餐廳名稱</h2>
-					<div class="littletitle1">
-						<div>台灣台北中山區敬業二路69巷55號</div>
-						<div>+886 2 8502 5779</div>
+				<div class="col-md">
+					<div class="col-md-123">
+						<h2 class="display-4 probootstrap-section-heading">${RtDetailsBean.rtName}</h2>
+						<div class="littletitle1">
+							<div>${RtDetailsBean.rtPhone}</div>
+							<div>${RtDetailsBean.rtAddress}</div>
+						</div>
 					</div>
 				</div>
-			</div>
 		</div>
 	</div>
 
 	<!-- END section -->
 	<section class="probootstrap_section">
 		<form:form method="post" modelAttribute="RtBookingBean"
-			action="insertRtBooking/">
+			action="/startrip/insertRtBooking/">
 			<!--  method="post" modelAttribute="RtDetailsBean" action="insertRestaurant" -->
 			<div class="intermediate">
 				<div class="container">
@@ -185,7 +185,7 @@
 						<h1 class="headline1">訂位基本資訊</h1>
 					</div>
 
-
+					<form:input value="${RtDetailsBean.rtId}" path="rtId" type="hidden"/>
 					<div class="form-group">
 						<label for="account">訂位者姓名&nbsp;:&nbsp;</label>
 						<form:input type="text" class="form-control" path="crName"
@@ -277,8 +277,8 @@
 					<br>
 					<div class="form-group">
 						<label>其他注意事項&nbsp;:&nbsp;</label>
-						<form:textarea cols="40" rows="8" class="form-control" path="bgNote"
-							placeholder="如需特別告知等..." autofocus="autofocus" />
+						<form:textarea cols="40" rows="8" class="form-control"
+							path="bgNote" placeholder="如需特別告知等..." autofocus="autofocus" />
 						<!-- required="required" -->
 					</div>
 

@@ -13,14 +13,11 @@ import javax.persistence.Table;
 import com.startrip.member.memberModle.MemberBean;
 
 @Entity
-@Table(name="RtBooking")
+@Table(name = "RtBooking")
 public class RtBookingBean {
 
-	@ManyToOne
-	@JoinColumn(name="memberId", nullable=false)
-	private MemberBean memberBean;
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer bgId;
 	private String crName;
 	private String crPhone;
@@ -31,16 +28,14 @@ public class RtBookingBean {
 	private Integer cnPeople;
 	private String bgNote;
 	private Date reTime;
-	@ManyToOne
-	@JoinColumn(name="rtId", nullable=false)
-	private RtDetailsBean rtDetailsBean;
+	private Integer rtId;
+	private Integer memberId;
 	
 	
-	public RtBookingBean(MemberBean memberBean, Integer bgId, String crName, String crPhone, Integer bgPeople,
-			String bgDate, String bgPeriod, Integer cnChair, Integer cnPeople, String bgNote, Date reTime,
-			RtDetailsBean rtDetailsBean) {
+	
+	public RtBookingBean(Integer bgId, String crName, String crPhone, Integer bgPeople, String bgDate, String bgPeriod,
+			Integer cnChair, Integer cnPeople, String bgNote, Date reTime, Integer rtId, Integer memberId) {
 		super();
-		this.memberBean = memberBean;
 		this.bgId = bgId;
 		this.crName = crName;
 		this.crPhone = crPhone;
@@ -51,7 +46,8 @@ public class RtBookingBean {
 		this.cnPeople = cnPeople;
 		this.bgNote = bgNote;
 		this.reTime = reTime;
-		this.rtDetailsBean = rtDetailsBean;
+		this.rtId = rtId;
+		this.memberId = memberId;
 	}
 
 	public RtBookingBean() {
@@ -60,18 +56,9 @@ public class RtBookingBean {
 
 	@Override
 	public String toString() {
-		return "RtBookingBean [memberBean=" + memberBean + ", bgId=" + bgId + ", crName=" + crName + ", crPhone="
-				+ crPhone + ", bgPeople=" + bgPeople + ", bgDate=" + bgDate + ", bgPeriod=" + bgPeriod + ", cnChair="
-				+ cnChair + ", cnPeople=" + cnPeople + ", bgNote=" + bgNote + ", reTime=" + reTime + ", rtDetailsBean="
-				+ rtDetailsBean + "]";
-	}
-
-	public MemberBean getMemberBean() {
-		return memberBean;
-	}
-
-	public void setMemberBean(MemberBean memberBean) {
-		this.memberBean = memberBean;
+		return "RtBookingBean [bgId=" + bgId + ", crName=" + crName + ", crPhone=" + crPhone + ", bgPeople=" + bgPeople
+				+ ", bgDate=" + bgDate + ", bgPeriod=" + bgPeriod + ", cnChair=" + cnChair + ", cnPeople=" + cnPeople
+				+ ", bgNote=" + bgNote + ", reTime=" + reTime + ", rtId=" + rtId + ", memberId=" + memberId + "]";
 	}
 
 	public Integer getBgId() {
@@ -154,13 +141,22 @@ public class RtBookingBean {
 		this.reTime = reTime;
 	}
 
-	public RtDetailsBean getRtDetailsBean() {
-		return rtDetailsBean;
+	public Integer getRtId() {
+		return rtId;
 	}
 
-	public void setRtDetailsBean(RtDetailsBean rtDetailsBean) {
-		this.rtDetailsBean = rtDetailsBean;
+	public void setRtId(Integer rtId) {
+		this.rtId = rtId;
 	}
+
+	public Integer getMemberId() {
+		return memberId;
+	}
+
+	public void setMemberId(Integer memberId) {
+		this.memberId = memberId;
+	}
+
+	
 	
 }
-
