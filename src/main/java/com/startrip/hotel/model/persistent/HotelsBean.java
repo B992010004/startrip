@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 @Entity(name = "hotels")
 public class HotelsBean implements Serializable {
@@ -28,8 +29,31 @@ public class HotelsBean implements Serializable {
 	private String hotelinfo;
 	private String hotelrulenote;
 	private Integer lowestPrice;
+	private String photoString;
 	// private Integer refundid;
 	// private Integer advancedayid;
+	
+	@Transient
+	private String photoArr[];
+	
+	
+	public String[] getPhotoArr() {
+		return photoArr;
+	}
+
+	public void setPhotoArr(String[] photoArr) {
+		this.photoArr = photoArr;
+	}
+	
+	
+
+	public String getPhotoString() {
+		return photoString;
+	}
+
+	public void setPhotoString(String photoString) {
+		this.photoString = photoString;
+	}
 
 	public Integer getLowestPrice() {
 		return lowestPrice;
@@ -115,8 +139,8 @@ public class HotelsBean implements Serializable {
 	public String toString() {
 		return "HotelsBean [hotelmanagerid=" + hotelmanagerid + ", hotelid=" + hotelid + ", hotelname=" + hotelname
 				+ ", hotelphone=" + hotelphone + ", hotelstar=" + hotelstar + ", hoteladdress=" + hoteladdress
-				+ ", hotelstate=" + hotelstate + ", hotelinfo=" + hotelinfo + ", hotelrulenote=" + hotelrulenote
-				+ ", refundid=" + ", advancedayid=" + "]";
+				+ ", hotelstate=" + hotelstate + ", lowestPrice=" + lowestPrice + ", photoString=" + photoString + "]";
 	}
+	
 
 }

@@ -27,7 +27,7 @@ import com.startrip.member.memberModle.MemberBean;
 public class TravelViewBean {
 	//pk,流水號,colum=viewid
 	
-	private String viewid;
+	private Integer viewid;
 	private MultipartFile[] imgSrc;
 	private String imgName;
 	
@@ -62,31 +62,16 @@ public class TravelViewBean {
 
 
 
-	public TravelViewBean(String viewid,  String imgName, Integer memberId, String viewName,
-		String viewaddr, String viewPhone, String website, String viewDetail, Integer count) {
-	super();
-	this.viewid = viewid;
-	this.imgSrc = imgSrc;
-	this.imgName = imgName;
-	this.memberId = memberId;
-	this.viewName = viewName;
-	this.viewaddr = viewaddr;
-	this.viewPhone = viewPhone;
-	this.website = website;
-	this.tdate = tdate;
-	this.viewDetail = viewDetail;
-	this.count = count;
-}
-
-
+	
 
 
 
 	@Id
-	public String getViewid() {
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	public Integer getViewid() {
 		return viewid;
 	}
-	public void setViewid(String viewid) {
+	public void setViewid(Integer viewid) {
 		this.viewid = viewid;
 	}
 	
@@ -185,10 +170,11 @@ public class TravelViewBean {
 	
 
 
-	public TravelViewBean(String viewid, String imgName, Integer memberId, String viewName, String viewaddr,
-			String viewPhone, String website, String viewDetail) {
-		super();
-		this.viewid = viewid;
+	public TravelViewBean( String imgName, Integer memberId, String viewName, String viewaddr,
+			String viewPhone, String website, String viewDetail,Integer count) {
+	
+
+
 		this.imgName = imgName;
 		this.memberId = memberId;
 		this.viewName = viewName;
@@ -196,6 +182,7 @@ public class TravelViewBean {
 		this.viewPhone = viewPhone;
 		this.website = website;
 		this.viewDetail = viewDetail;
+		this.count		=count;
 	}
 	
 	

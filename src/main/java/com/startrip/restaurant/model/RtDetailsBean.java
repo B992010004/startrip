@@ -47,6 +47,7 @@ public class RtDetailsBean {
 
 	@Transient
 	private MultipartFile[] multipartFiles;
+	
 	@OneToMany(fetch = FetchType.EAGER)
 	private List<RtBookingBean> rtBookingBean;
 	

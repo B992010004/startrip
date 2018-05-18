@@ -153,7 +153,8 @@ public class ReviewController {
 		media = baos.toByteArray();
 		headers.setCacheControl(CacheControl.noCache().getHeaderValue());
 		String mimeType = context.getMimeType(photoName);
-		// headers.setContentType(MediaType.IMAGE_JPEG);
+		//另一種寫法
+//		headers.setContentType(MediaType.IMAGE_JPEG);
 		headers.setContentType(MediaType.parseMediaType(mimeType));
 		ResponseEntity<byte[]> responseEntity = new ResponseEntity<>(media, headers, HttpStatus.OK);
 

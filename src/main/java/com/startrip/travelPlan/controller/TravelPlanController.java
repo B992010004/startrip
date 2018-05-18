@@ -29,6 +29,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -139,10 +140,6 @@ public class TravelPlanController {
 			MemberBean mb = new MemberBean();
 			 mb=memberservice.select(mail);
 			 Integer memberId =mb.getMemberid();
-			System.out.println(memberId);
-			System.out.println(memberId);
-			System.out.println(memberId);
-			System.out.println(memberId);
 			tb = travelservice.Select_Travel(memberId, travelId);
 			tb.setState(0);
 			System.out.println(tb.toString());
@@ -294,16 +291,18 @@ public class TravelPlanController {
 			,@RequestParam("endtime")String endtime,@RequestParam("travelType")String type
 			,@RequestParam("tripday")Integer day,@RequestParam("travelId")Integer travelId
 			,@RequestParam("memberId")Integer memberId) {
-		System.out.println(viewName+","+starttime+","+ endtime+","+ type+","+ travelId+","+ day);
-		System.out.println("------------------------------------------------------------------");
-		System.out.println("------------------------------------------------------------------");
+		
 		String travelName = travelservice.Select_Travel(memberId, travelId).getTravelName();
-		String viewId = viewService.getViewPoint(viewName).getViewid();
+		
+		List<TravelViewBean> view = viewService.getViewPoint(viewName);
+		System.out.println(view.size());
+		for(TravelViewBean views :view) {
+			System.out.println(views);
+		}
+		Integer viewId=view.get(0).getViewid();
 		Integer state = 1;
 		TravelListBean tlb = new TravelListBean(viewName, starttime, endtime, travelName, type, memberId, travelId, viewId, day, state);
-		System.out.println(tlb);
-		System.out.println(tlb);
-		System.out.println(tlb);
+		
 		Integer pk =listservice.insert(tlb);
 		
 		return tlb;
@@ -359,15 +358,31 @@ public class TravelPlanController {
 	@RequestMapping(value="travel/checkday",method=RequestMethod.GET)
 	@ResponseBody
 	public boolean getAllList(Model model,TravelListBean bean,String mail) {
+		
 		Integer memberId =memberservice.select(mail).getMemberid();
 		List<TravelListBean>list=new ArrayList<>();
 		list= listservice.select_listday(bean.getTravelId(), bean.getTripday());
-		
-		if(list.size()==0) {
+		System.out.println(bean.getTravelId()+","+ bean.getTripday());
+		System.out.println("size="+list.size());
+		System.out.println("empty="+list.isEmpty());
+		System.out.println("確認有無行程");
+		System.out.println("確認有無行程");
+		if(list.isEmpty()) {
 			return false;
 		}else {
 		return true;
 		}
+	}
+
+	
+	@RequestMapping(value="listday/lasttime",method=RequestMethod.GET)
+	@ResponseBody
+	public TravelListBean getAllList(Integer tripday,String mail,Integer travelId) {
+		Integer memberId =memberservice.select(mail).getMemberid();
+		
+		TravelListBean tlb= listservice.select_lastlist(travelId, tripday);
+		
+		return tlb;
 	}
 	//----------------------------------------------------
 	//view相關控制
@@ -456,27 +471,30 @@ public class TravelPlanController {
 
 	}
 	
-	@RequestMapping(value = "Travel/add/view", method = RequestMethod.POST )
+	@RequestMapping(value ="Travel/add/view", method = RequestMethod.GET )
 	@ResponseBody
-	public Object addViewFrom(@RequestParam("viewName")String viewName
-			,@RequestParam("src")String src,@RequestParam("score")String score
-			,@RequestParam("phone")String phone,@RequestParam("website")String website
-			,@RequestParam("address")String address,@RequestParam("placeId")String placeId
-			,@RequestParam("memberId")Integer memberId) {
+	public String addViewFrom(TravelViewBean bean)
+	{	
 		Integer count;
-		TravelViewBean bean = new TravelViewBean();
-		bean =viewService.select_ViewId(placeId);
-		if(bean == null) {
+		List<TravelViewBean> list = new ArrayList<>();
+		
+		list =viewService.select_ViewName(bean.getViewName());
+		if(list.size()<=0) {
 			count=1;
-			TravelViewBean tvb = new TravelViewBean(placeId, src, memberId, viewName, address, phone, website, score,count);
-			viewService.insert(tvb);
-			
-			return "insert secess";
+			TravelViewBean tvb =new TravelViewBean(bean.getImgName(),bean.getMemberId(), bean.getViewName(), bean.getViewaddr(), bean.getViewPhone(), bean.getWebsite(), bean.getViewDetail(),count);
+			Integer pk =viewService.insert(tvb);
+			if(pk==null) {
+			return "null";
+			}else {
+			return "scuess";
+			}
 		}else {
-		count= viewService.getCount(placeId);
+	
+		TravelViewBean tvb = list.get(0);
+		count= tvb.getCount();
 		count++;
-		bean.setCount(count);
-		viewService.update(bean);
+		tvb.setCount(count);
+		viewService.update(tvb);
 		return "count sccuess";
 		}
 	}
@@ -498,7 +516,7 @@ public class TravelPlanController {
 	public HashMap<String,Object> singleView(Model model,@RequestParam("viewName")String viewName
 			,@RequestParam("mail")String mail,@RequestParam("travelId")Integer travelId) {
 		
-		TravelViewBean tvb = viewService.getViewPoint(viewName);
+		TravelViewBean tvb = viewService.getViewPoint(viewName).get(0);
 		Integer memberId = memberservice.select(mail).getMemberid();
 		TravelAllBean tab = travelservice.Select_Travel(memberId, travelId);
 		

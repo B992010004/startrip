@@ -44,7 +44,7 @@ public class TravelViewDao implements ITravelViewDao {
 	}
 
 	@Override
-	public TravelViewBean select_ViewId(String viewId) {
+	public TravelViewBean select_ViewId(Integer viewId) {
 		TravelViewBean bean = null;
 		Session session = factory.getCurrentSession();
 		bean = session.get(TravelViewBean.class, viewId);
@@ -55,17 +55,29 @@ public class TravelViewDao implements ITravelViewDao {
 		return bean;
 		}
 	}
+	@Override
+	public List<TravelViewBean> select_ViewName(String viewName) {
+		TravelViewBean bean = null;
+		System.out.println(viewName);
+		String sql = "select * from travelview where viewName=:viewName";
+		Session session = factory.getCurrentSession();
+		List<TravelViewBean> list= session.createNativeQuery(sql, TravelViewBean.class).setParameter("viewName", viewName).list();
+		
+			
+			return list;
+		
+	}
 
 
 	@Override
-	public void insert(TravelViewBean bean) {
+	public Integer insert(TravelViewBean bean) {
 		
 		Session session  =factory.getCurrentSession();
 		MemberBean mb = getMemberId(bean.getMemberId());
 		bean.setMemberId(mb.getMemberid());
 		System.out.println(bean.toString());
-		session.save(bean);
-		
+		Integer pk= (Integer) session.save(bean);
+		return pk;
 	}
 	
 //	public viewSourceCollection getImgId(int imgId) {
@@ -93,7 +105,7 @@ public class TravelViewDao implements ITravelViewDao {
 	}
 
 	@Override
-	public void delete(String viewId) {
+	public void delete(Integer viewId) {
 		Session session= factory.getCurrentSession();
 		TravelViewBean bean =session.get(TravelViewBean.class, viewId);
 		session.delete(bean);
@@ -115,16 +127,18 @@ public class TravelViewDao implements ITravelViewDao {
 		return list;
 	}
 	@Override
-	public TravelViewBean getViewPoint(String viewName) {
+	public List<TravelViewBean> getViewPoint(String viewName) {
+		System.out.println(viewName);
 		String sql="select * from TravelView where viewName=:viewName";
-		TravelViewBean tvb =factory.getCurrentSession().createNativeQuery(sql, TravelViewBean.class)
-				.setParameter("viewName", viewName).getSingleResult();
+		List<TravelViewBean> tvb =factory.getCurrentSession().createNativeQuery(sql, TravelViewBean.class)
+				.setParameter("viewName", viewName).list();
+		
 		
 		return tvb;
 	}
 	
 	@Override
-	public Integer getCount(String viewId) {
+	public Integer getCount(Integer viewId) {
 		System.out.println("here-----------------------------------------");
 		String sql = "select * from TravelView where viewId=:viewId";
 		TravelViewBean tvb= factory.getCurrentSession().createNativeQuery(sql, TravelViewBean.class)
@@ -132,7 +146,16 @@ public class TravelViewDao implements ITravelViewDao {
 		Integer count =tvb.getCount();
 		return count;
 	}
-
+	@Override
+	public List<TravelViewBean> getPrimayKey(String viewName,String viewaddr) {
+		String sql = "select * from travelview where viewName=:viewName and viewaddr=:viewaddr";
+		
+		List<TravelViewBean> list =factory.getCurrentSession().createNativeQuery(sql, TravelViewBean.class)
+		.setParameter("viewName", viewName).setParameter("viewaddr", viewaddr).list();
+		
+		return list;
+		
+	}
 	
 	//測試-----		
 	public static void main (String args[]){

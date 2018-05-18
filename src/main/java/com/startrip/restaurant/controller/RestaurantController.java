@@ -161,7 +161,7 @@ public class RestaurantController {
 
 	@RequestMapping(value = "/restaurant/{restaurantId}")
 	public String rooms(@PathVariable("restaurantId") Integer restaurantId, Model model) {
-		
+
 		RtDetailsBean photoBn = rtDetailsService.getAllRtDetailsrtId(restaurantId);
 		String[] photoArr = null;
 		String[] photo = photoBn.getPhotoPaths().split(";");

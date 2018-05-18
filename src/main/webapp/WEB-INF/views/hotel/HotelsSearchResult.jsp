@@ -345,14 +345,15 @@
         <!-- 靜態資料結束 -->
         <!-- 動態資料產生 -->
         <c:forEach var="hotel" items="${results }">
-        <a href="/startrip/Rooms/1" class="roomlink">
+        <a href="/startrip/Rooms/${hotel.hotelid }" class="roomlink">
           <div class="row">
             <div class="col-md">
               <!-- card -->
               <div class="card">
                 <div class="row">
-                  <div class="col-md-4 imgmaxheight">  
-                      <img src="/startrip/assets/images/img_1.jpg" class="img-thumbnail" alt="飯店圖片">
+                  <div class="col-md-4 imgmaxheight">
+<%--                     ${hotel.photoArr[0] } --%>
+                      <img src="/startrip/getPicture/hotel/${hotel.hotelid }/${hotel.photoArr[0] }" class="img-thumbnail" alt="飯店圖片">
                   </div>
                   <div class="col-md-8">
                     <div class="row">
