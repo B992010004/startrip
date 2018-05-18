@@ -304,7 +304,7 @@
       <div class="col-md-9">
         <br>
         <!-- 動態資料產生 -->
-        <a href="Rooms.html" class="roomlink">
+        <a href="/startrip/Rooms/1" class="roomlink">
           <div class="row">
             <div class="col-md">
               <!-- card -->
