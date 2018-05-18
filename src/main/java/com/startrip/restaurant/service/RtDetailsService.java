@@ -7,6 +7,8 @@ import com.startrip.restaurant.model.RtDetailsBean;
 public interface RtDetailsService {
 
 	List<RtDetailsBean> getAll();
+	
+	List<RtDetailsBean> getAllOne();
 
 	List<RtDetailsBean> getrtArea();
 

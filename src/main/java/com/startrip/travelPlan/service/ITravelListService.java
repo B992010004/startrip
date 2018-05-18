@@ -19,4 +19,6 @@ public interface ITravelListService {
 	public void delete(int id); 
 	
 	public List<TravelListBean> select_listday(Integer travelId,Integer tripday);
+	
+	public TravelListBean select_lastlist(Integer travelId,Integer tripday);
 }

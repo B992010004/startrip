@@ -8,19 +8,20 @@ import com.startrip.travelPlan.model.TravelViewBean;
 
 public interface ITravelViewService {
 	
-	TravelViewBean select_ViewId(String viewId);
+	TravelViewBean select_ViewId(Integer viewId);
+	List<TravelViewBean> select_ViewName(String viewName);
 
 
 	List<TravelViewBean> select();
 
 
-	public void insert(TravelViewBean bean);
+	public Integer insert(TravelViewBean bean);
 
 
 	public void update(TravelViewBean bean);
 
 
-	public void delete(String viewId);
+	public void delete(Integer viewId);
 	
 	public List<String> getAllOrgClass();
 
@@ -29,7 +30,9 @@ public interface ITravelViewService {
 	
 	List<TravelViewBean> getAddress(String address);
 	
-	public TravelViewBean getViewPoint(String viewName);
-	public Integer getCount(String viewId);
+	public List<TravelViewBean> getViewPoint(String viewName);
+	public Integer getCount(Integer viewId);
+	
+	public List<TravelViewBean> getPrimayKey(String viewName,String viewaddr);
 	
 }

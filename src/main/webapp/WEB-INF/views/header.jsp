@@ -36,8 +36,6 @@
 					<li class="nav-item"><a class="nav-link"
 						href="/startrip/insertupdate">餐廳資料修改</a></li>
 					
-						<!-- 測試 --><li class="nav-item"><a class="nav-link"
-						href="/startrip/RtAllList">o測試o餐廳種覽o</a></li><!-- 測試 -->
 
 					<li class="nav-item">
 						<c:if test="${ empty LoginOK }">

@@ -9,6 +9,8 @@ public interface RtDetailsRepository {
 
 	List<RtDetailsBean> getAll();
 	
+	List<RtDetailsBean> getAllOne();
+	
 	List<RtDetailsBean> getrtArea();
 	
 	List<RtDetailsBean> getrtPricepountH();

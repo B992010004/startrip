@@ -20,5 +20,7 @@ public interface ITravelListDao {
 	public List<TravelListBean> Select_travellist(Integer travelId,Integer day);
 	
 	public List<TravelListBean> select_listday(Integer travelId,Integer tripday);
+	
+	public TravelListBean select_lastlist(Integer travelId, Integer tripday);
 
 }

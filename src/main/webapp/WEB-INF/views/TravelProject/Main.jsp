@@ -52,7 +52,7 @@
         
 		</section>
 		
-		<section class="probootstrap_section" id="section-feature-testimonial">
+		<section class="probootstrap_section" id="section-feature-testimonial" style="padding: 2em 8em;">
 
 		<div class="row">
 			<div class="col-md-3" style="background-color: blcak;">
@@ -196,18 +196,12 @@
 				$(e.target).removeClass('active');
 			})
 			//刪除行程
-			$(document)
-					.on(
-							"click",
-							".del",
-							function(e) {
+			$(document).on(	"click",".del",function(e) {
 								console.log(e.target.id)
 								var del = {}
 								del.email = "${LoginOK.mail}";
-								del.id = $('#' + e.target.id).parent().parent()
-										.find('.id').text();
-								$
-										.ajax({
+								del.id = $('#' + e.target.id).parent().parent().find('.id').text();
+								$.ajax({
 											url : "/startrip/travel/remove",
 											type : "GET",
 											dataType : "json",
@@ -215,69 +209,47 @@
 											contentType : "application/json; charset=utf-8",
 											success : function(data) {
 												console.log(e.target.id)
-												$('#' + e.target.id).parent()
-														.parent().remove();
+												$('#' + e.target.id).parent().parent().remove();
 											}
 										})
 							})//click end
 
-			$(document)
-					.on(
-							"click",
-							".update",
-							function(e) {
+			$(document).on(	"click",".update",function(e) {
 								var update = {}
 								update.mail = "${LoginOK.mail}";
-								update.travelId = $('#' + e.target.id).parent()
-										.parent().find('.id').text();
-								$
-										.ajax({
-											url : "/startrip/travel/id",
-											type : "GET",
-											dataType : "json",
-											data : update,
-											contentType : "application/json; charset=utf-8",
-											success : function(data) {
-												$('input[name="travelName"]')
-														.val(
-																data.Name.travelName);
-												$('input[name="startDate"]')
-														.val(data.startDate);
-												$('input[name="endDate"]').val(
-														data.endDate);
-												$('input[name="travelId"]')
-														.val(data.Name.travelId);
-
-												$("#model").modal({
+								update.travelId = $('#' + e.target.id).parent().parent().find('.id').text();
+								$.ajax({
+									url : "/startrip/travel/id",
+									type : "GET",
+									dataType : "json",
+									data : update,
+									contentType : "application/json; charset=utf-8",
+									success : function(data) {
+							$('input[name="travelName"]').val(data.Name.travelName);
+							$('input[name="startDate"]').val(data.startDate);
+							$('input[name="endDate"]').val(data.endDate);
+							$('input[name="travelId"]').val(data.Name.travelId);
+							$("#model").modal({
 													"show" : true,
-												})
-												$(document)
-														.on(
-																'click',
-																"#check",
-																function() {
-																	var datas = $(
-																			'form[name="update"]')
-																			.serialize();
-																	$
-																			.ajax({
-																				url : "/startrip/travel/update",
-																				type : "GET",
-																				dataType : "json",
-																				data : datas,
-																				contentType : "application/json; charset=utf-8",
-																				success : function(
-																						data) {
-																					console
-																							.log(data)
-																				}
-																			})
-																})
+											})
+							$(document).on('click',"#check",function() {
+								var datas = $('form[name="update"]').serialize();
+						$.ajax({
+							url : "/startrip/travel/update",
+							type : "GET",
+							dataType : "json",
+							data : datas,
+							contentType : "application/json; charset=utf-8",
+							success : function(data) {
+								console.log(data)
+								}
+							})
+					})
 											}
 										})
 							})//click end
 
-			$(document).on('click', '.btn', function(e) {
+			$(document).on('click', '.btn.btn-primary.btn-lg.btn-block', function(e) {
 				var value = {}
 				mail = '${LoginOK.mail}'
 				value.mail = mail;
@@ -327,8 +299,7 @@
 			var all = {};
 			all.mail = "${LoginOK.mail}";
 
-			$
-					.ajax({
+			$.ajax({
 						url : "/startrip/travel/all",
 						type : "GET",
 						dataType : "json",
@@ -347,7 +318,7 @@
 							var start;
 							var end;
 							for (var i = 0, len = data.length; i < len; i++) {
-								var card = $('<div class="card col-6" id="plan" style="width: 18rem;"></div>')
+								var card = $('<div class="card col-5" id="plan" style="width: 18rem;"></div>')
 								var imgrow = $('<div class="row" "></div>');
 								var img = $('<img id="travelimg" class="card-img-top col-8" src="/startrip/show/'+data[i].img+'" alt="Card image cap"><img src = http://localhost:8080/startrip/assets/Travel/img/marker.png class="icon col-2 update" id="update'
 										+ (i + 1)

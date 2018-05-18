@@ -19,8 +19,13 @@ public class viewService implements ITravelViewService {
 	
 	@Transactional
 	@Override
-	public TravelViewBean select_ViewId(String viewId) {
-	return viewDao.select_ViewId(viewId);
+	public TravelViewBean select_ViewId(Integer viewId) {
+		return viewDao.select_ViewId(viewId);
+	}
+	@Transactional
+	@Override
+	public List<TravelViewBean> select_ViewName(String viewName) {
+		return viewDao.select_ViewName(viewName);
 	}
 	
 	@Transactional
@@ -31,9 +36,10 @@ public class viewService implements ITravelViewService {
 	
 	@Transactional
 	@Override
-	public void insert(TravelViewBean bean) {
+	public Integer insert(TravelViewBean bean) {
 		
-		viewDao.insert(bean);
+		return viewDao.insert(bean);
+		
 	}
 	@Transactional
 	@Override
@@ -52,7 +58,7 @@ public class viewService implements ITravelViewService {
 	
 	@Transactional
 	@Override
-	public void delete(String viewId) {
+	public void delete(Integer viewId) {
 		viewDao.delete(viewId);
 	}
 	@Transactional
@@ -69,12 +75,17 @@ public class viewService implements ITravelViewService {
 	}
 	@Transactional
 	@Override
-	public TravelViewBean getViewPoint(String viewName) {
+	public List<TravelViewBean> getViewPoint(String viewName) {
 		return viewDao.getViewPoint(viewName);
 	}
 	@Transactional
 	@Override
-	public Integer getCount(String viewId) {
+	public Integer getCount(Integer viewId) {
 		return viewDao.getCount(viewId);
+	}
+	@Transactional
+	@Override
+	public List<TravelViewBean> getPrimayKey(String viewName,String viewaddr) {
+		return viewDao.getPrimayKey(viewName, viewaddr);
 	}
 }

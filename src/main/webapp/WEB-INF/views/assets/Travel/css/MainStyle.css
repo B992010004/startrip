@@ -13,3 +13,17 @@
 	width:150px;
 	height:150px;
 }
+
+.card.col-5{
+	margin:1em; 
+	width:400px;
+}
+
+.icon.col-2.update{
+	    width: 60px;
+    height: 30px;
+}
+.icon.col-2.del{
+	    width: 60px;
+    height: 30px; 
+}
