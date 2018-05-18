@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -216,7 +216,7 @@
 			for (var i = 0; i < areasLen; i++) {
 				areas[i].addEventListener("mouseover", mouseOver);
 				areas[i].addEventListener("mouseout", mouseOut);
-				areas[i].addEventListener("click", Click);
+//				areas[i].addEventListener("click", Click);
 			}
 		});
 
@@ -224,8 +224,7 @@
 			console.log(this.id);
 			// document.images[0].src = "images/MapTaipei.gif"; 
 			//console.log("QQQ");
-			document.images[0].src = "/startrip/assets/transport/images/map/map"
-					+ this.id + ".png";
+			document.images[0].src = "/startrip/assets/transport/images/map/map"+this.id+".png";
 			//console.log("/startrip/assets/transport/images/map/map"+ this.id +".png");
 		}
 
@@ -233,26 +232,15 @@
 			document.images[0].src = "/startrip/assets/transport/images/taiwan.png";
 		}
 
-		function Click() {
+//		function Click() {
 			// document.getElementById("mapdiv").innerHTML = "<img src='images/Taipei.gif'/>";
-			document.getElementById("mapdiv").innerHTML = "<img src='images/"
-					+ this.id.substr(2) + ".gif'/>";
-					this.innerHTML = '您選的座位為' + this.id.substr(5) + '號';
-			$("#xx").html("<span>"+'您選的座位為'+this.id.substr(5)+'號'+"</span>");
-		}
+//			document.getElementById("mapdiv").innerHTML = "<img src='images/"
+//					+ this.id.substr(2) + ".gif'/>";
+//					this.innerHTML = '您選的座位為' + this.id.substr(5) + '號';
+//			$("#xx").html("<span>"+'您選的座位為'+this.id.substr(5)+'號'+"</span>");
+//		}
 	</script>
-	<script>
-	function test(){
-		if($(".tt").text()=="台北"){
-			alert("台北");
-		}else{
-			alert($(".tt").text());
-		}
-			
-		
-	}
 	
-	</script>
 	
 	
 
@@ -274,59 +262,98 @@
 					src="/startrip/assets/transport/images/taiwan.png" usemap="#FPMap0"
 					width="280" height="460" usemap="#Map" border="0"> <map
 						id="FPMap0" name="FPMap0">
-						<area class=imgbut shape="rect" coords="201,54,248,76" id=01 name="新北">
-						<area class=imgbut shape="rect" coords="181,23,228,44" id=02 name="台北" onclick="test()">
-						<area class=imgbut shape="rect" coords="229,28,274,52" id=03 name="基隆">
-						<area class=imgbut shape="rect" coords="122,186,170,208" id=04 name="南投">
-						<area class=imgbut shape="rect" coords="53,303,100,328" id=05 name="高雄" >
-						<area class=imgbut shape="rect" coords="208,99,260,122" id=06 name="宜蘭">
-						<area class=imgbut shape="rect" coords="176,196,224,215" id=07 name="花蓮">
-						<area class=imgbut shape="rect" coords="136,278,185,302" id=08 name="台東">
-						<area class=imgbut shape="rect" coords="84,335,132,359" id=09 name="屏東">
-						<area class=imgbut shape="rect" coords="54,260,100,283" id=10 name="台南">
-						<area class=imgbut shape="rect" coords="37,227,86,252" id=11 name="嘉義">
-						<area class=imgbut shape="rect" coords="36,193,85,212" id=12 name="雲林">
-						<area class=imgbut shape="rect" coords="69,161,119,185" id=13 name="彰化">
-						<area class=imgbut shape="rect" coords="111,137,160,160" id=14 name="台中">
-						<area class=imgbut shape="rect" coords="92,104,142,128" id=15 name="苗栗">
-						<area class=imgbut shape="rect" coords="155,93,204,114" id=16 name="新竹">
-						<area class=imgbut shape="rect" coords="148,44,197,67" id=17 name="桃園">
+						<area class=imgbut shape="rect" coords="201,54,248,76" id=01 onclick="xxx('新北')">
+						<area class=imgbut shape="rect" coords="181,23,228,44" id=02  onclick="xxx('台北')">
+						<area class=imgbut shape="rect" coords="229,28,274,52" id=03 onclick="xxx('基隆')">
+						<area class=imgbut shape="rect" coords="122,186,170,208" id=04 onclick="xxx('南投')">
+						<area class=imgbut shape="rect" coords="53,303,100,328" id=05 onclick="xxx('高雄')">
+						<area class=imgbut shape="rect" coords="208,99,260,122" id=06 onclick="xxx('宜蘭')">
+						<area class=imgbut shape="rect" coords="176,196,224,215" id=07 onclick="xxx('花蓮')">
+						<area class=imgbut shape="rect" coords="136,278,185,302" id=08 onclick="xxx('台東')">
+						<area class=imgbut shape="rect" coords="84,335,132,359" id=09 onclick="xxx('屏東')">
+						<area class=imgbut shape="rect" coords="54,260,100,283" id=10 onclick="xxx('台南')">
+						<area class=imgbut shape="rect" coords="37,227,86,252" id=11 onclick="xxx('嘉義')">
+						<area class=imgbut shape="rect" coords="36,193,85,212" id=12 onclick="xxx('雲林')">
+						<area class=imgbut shape="rect" coords="69,161,119,185" id=13 onclick="xxx('彰化')">
+						<area class=imgbut shape="rect" coords="111,137,160,160" id=14 onclick="xxx('台中')">
+						<area class=imgbut shape="rect" coords="92,104,142,128" id=15 onclick="xxx('苗栗')">
+						<area class=imgbut shape="rect" coords="155,93,204,114" id=16 onclick="xxx('新竹')">
+						<area class=imgbut shape="rect" coords="148,44,197,67" id=17 onclick="xxx('桃園')">
 					</map>
-					<div>
-						<h3 id="xx"></h3>
-					</div>
+					
 				</a>
 			</div>
 
 
 	<!-- 以上為地圖顯示區塊 -->
-<div>
-<table border="1" cellpadding="10" cellspacing="0"class="table  table-bordered">
-		<tr>
-			<th>地區</th>
-			<th>站名</th>
-			<th>車站地址</th>
-		</tr>
+<!-- 	以下為顯示地區車站 -->
+<script>
 
-		<c:forEach items='${stationList}' var='select'>
-			<tr class="trr">
+function xxx(data){
+// 	alert($('#FPMap0'));
+//	alert(data);
+	var abb = {};
+	abb.local=data;
+	$.ajax({
+		type: 'POST',
+		url: 'selectArea',
+		data: abb,
+// 		dataType: dataType,
+		success: function(response) 
+		{
+// 			alert("response: "+ response);
+//			console.log(response);
 			
-				<td>${select.area}</td>
-				<td>${select.stationName}</td>
-				<td>${select.address}</td>
+			
+			$("#tbo").empty();
+			for(var i=0;i<response.length;i++){
+				$("#tbo").append("<tr><td>"+response[i].area+ "</td>"+
+								 	 "<td>"+response[i].stationName+"</td>"+
+								 	 "<td>"+response[i].address+"</td></tr>");
+// 				$("#tbo").append("<td>"+response[i].area+ "<tr>");
+// 				$("#tbo").append("<td>"+response[i].stationName+ "</td>");
+// 				$("#tbo").append("<td>"+response[i].address+ "</td>");
+// 				alert(response[i].stationName);
+			}
+			
+		},
+		error: function(jqXHR, textStatus, errorThrown) {alert("no")},
+		
+});
 
-			</tr>
-		</c:forEach>
-	</table>
-						<h3>8</h3>
-					</a>
-				</div>
+
+}
+	
+
+</script>
+
+<div >
+<table  class="for-table table" >
+                       <thead>
+                          <tr>
+                             <th width="100">地區</th>
+							<th width="100">站名</th>
+							<th>車站地址</th>
+                          </tr>
+                       </thead>
+                      <tbody id="tbo">
+                      </tbody>
+                       <tfoot>
+                   
+</table>
+</div>
+
+
+
+
 		</div>
 	</div>
-	</section>
+</section>
+<!-- 以上為地區顯示車站 -->
 
+<!-- 老師範例 -->
 
-
+<!-- 老師範例 -->
 	<h2 class="title01">1 起迄地區查詢</h2>
 	<div class="search">
 		<form id="form1" name="form1" method="post">
@@ -381,43 +408,7 @@
 	<!--以下為起訖站查詢 	-------------------------------------------------------------------------------------------- -->
 
 	<!-- 起訖站查詢function -->
-	<script>
-       
-        document.addEventListener("DOMContentLoaded", function () {
-           
-            var areas=document.querySelectorAll("area.imgbut");
-            var areasLen=areas.length;
-            console.log(areas);
-            console.log(areasLen);
-            for(var i=0;i<areasLen;i++){
-                areas[i].addEventListener("mouseover",mouseOver);
-                areas[i].addEventListener("mouseout",mouseOut);
-                areas[i].addEventListener("click",Click);
-            }
-        });  
 
-     
-        function mouseOver() {  
-        	console.log(this.id);    
-            // document.images[0].src = "images/MapTaipei.gif"; 
-            //console.log("QQQ");
-            document.images[0].src = "/startrip/assets/transport/images/map/map"+ this.id + ".png"; 
-            //console.log("/startrip/assets/transport/images/map/map"+ this.id +".png");
-        }
-
-
-        function mouseOut() {            
-            document.images[0].src = "/startrip/assets/transport/images/taiwan.png" ;
-        }
-
-
-        function Click() {            
-            // document.getElementById("mapdiv").innerHTML = "<img src='images/Taipei.gif'/>";
-            document.getElementById("mapdiv").innerHTML = 
-            "<img src='images/"+this.id.substr(2)+".gif'/>";
-        }
-        
-    </script>
 	<!-- 以上為起訖站查詢function -->
 	<!-- 起訖站查詢版面開始 -->
 	<h2 class="title01">2 起迄站查詢</h2>
@@ -478,36 +469,7 @@
 	<!--      以下為用地區選車站----------- -->
 	<h2 class="title04">3 營業據點路線列表</h2>
 
-	<script>	
-document.addEventListener("DOMContentLoaded", function () {
-document.getElementById("area3").addEventListener("change", createStation);
-	
 
-function setdisplay() {
-	var y = document.getElementById("idSelectYear").value;
-	document.getElementById("area3").innerHTML = ${select.stationName};
-	
-}
-
-function prepareyear() {
-    for (i = 2010; i <= 2020; i++) {   //新增年
-        var opt = document.createElement("option");
-        opt.setAttribute("value", i);
-        var optTxt = document.createTextNode(i);
-        opt.appendChild(optTxt);
-
-        document.getElementById('point').appendChild(opt);
-
-    }
-    function createday() {
-    	 var y = document.getElementById("point").value;
-    	
-    }
-}
-	
-	
-	
-</script>
 	<div class="search">
 		<label for="area3" class="">請選擇地區：</label>
 		<div>
