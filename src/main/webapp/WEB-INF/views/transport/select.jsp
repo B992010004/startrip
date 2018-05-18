@@ -267,23 +267,23 @@
 					src="/startrip/assets/transport/images/taiwan.png" usemap="#FPMap0"
 					width="280" height="460" usemap="#Map" border="0"> <map
 						id="FPMap0" name="FPMap0">
-						<area class=imgbut shape="rect" coords="201,54,248,76" id=01 onclick="xxx('新北')">
-						<area class=imgbut shape="rect" coords="181,23,228,44" id=02  onclick="xxx('台北')">
-						<area class=imgbut shape="rect" coords="229,28,274,52" id=03 onclick="xxx('基隆')">
-						<area class=imgbut shape="rect" coords="122,186,170,208" id=04 onclick="xxx('南投')">
-						<area class=imgbut shape="rect" coords="53,303,100,328" id=05 onclick="xxx('高雄')">
-						<area class=imgbut shape="rect" coords="208,99,260,122" id=06 onclick="xxx('宜蘭')">
-						<area class=imgbut shape="rect" coords="176,196,224,215" id=07 onclick="xxx('花蓮')">
-						<area class=imgbut shape="rect" coords="136,278,185,302" id=08 onclick="xxx('台東')">
-						<area class=imgbut shape="rect" coords="84,335,132,359" id=09 onclick="xxx('屏東')">
-						<area class=imgbut shape="rect" coords="54,260,100,283" id=10 onclick="xxx('台南')">
-						<area class=imgbut shape="rect" coords="37,227,86,252" id=11 onclick="xxx('嘉義')">
-						<area class=imgbut shape="rect" coords="36,193,85,212" id=12 onclick="xxx('雲林')">
-						<area class=imgbut shape="rect" coords="69,161,119,185" id=13 onclick="xxx('彰化')">
-						<area class=imgbut shape="rect" coords="111,137,160,160" id=14 onclick="xxx('台中')">
-						<area class=imgbut shape="rect" coords="92,104,142,128" id=15 onclick="xxx('苗栗')">
-						<area class=imgbut shape="rect" coords="155,93,204,114" id=16 onclick="xxx('新竹')">
-						<area class=imgbut shape="rect" coords="148,44,197,67" id=17 onclick="xxx('桃園')">
+						<area class=imgbut shape="rect" coords="201,54,248,76" id=01 onclick="getArea('新北')">
+						<area class=imgbut shape="rect" coords="181,23,228,44" id=02  onclick="getArea('台北')">
+						<area class=imgbut shape="rect" coords="229,28,274,52" id=03 onclick="getArea('基隆')">
+						<area class=imgbut shape="rect" coords="122,186,170,208" id=04 onclick="getArea('南投')">
+						<area class=imgbut shape="rect" coords="53,303,100,328" id=05 onclick="getArea('高雄')">
+						<area class=imgbut shape="rect" coords="208,99,260,122" id=06 onclick="getArea('宜蘭')">
+						<area class=imgbut shape="rect" coords="176,196,224,215" id=07 onclick="getArea('花蓮')">
+						<area class=imgbut shape="rect" coords="136,278,185,302" id=08 onclick="getArea('台東')">
+						<area class=imgbut shape="rect" coords="84,335,132,359" id=09 onclick="getArea('屏東')">
+						<area class=imgbut shape="rect" coords="54,260,100,283" id=10 onclick="getArea('台南')">
+						<area class=imgbut shape="rect" coords="37,227,86,252" id=11 onclick="getArea('嘉義')">
+						<area class=imgbut shape="rect" coords="36,193,85,212" id=12 onclick="getArea('雲林')">
+						<area class=imgbut shape="rect" coords="69,161,119,185" id=13 onclick="getArea('彰化')">
+						<area class=imgbut shape="rect" coords="111,137,160,160" id=14 onclick="getArea('台中')">
+						<area class=imgbut shape="rect" coords="92,104,142,128" id=15 onclick="getArea('苗栗')">
+						<area class=imgbut shape="rect" coords="155,93,204,114" id=16 onclick="getArea('新竹')">
+						<area class=imgbut shape="rect" coords="148,44,197,67" id=17 onclick="getArea('桃園')">
 					</map>
 					
 				</a>
@@ -294,7 +294,7 @@
 <!-- 	以下為顯示地區車站 -->
 <script>
 
-function xxx(data){
+function getArea(data){
 // 	alert($('#FPMap0'));
 //	alert(data);
 	var abb = {};
@@ -321,8 +321,7 @@ function xxx(data){
 // 				alert(response[i].stationName);
 			}
 			
-		},
-		error: function(jqXHR, textStatus, errorThrown) {alert("no")},
+		},error: function(jqXHR, textStatus, errorThrown) {alert("no")},
 		
 });
 
@@ -352,28 +351,25 @@ function xxx(data){
                    
 </table>
 </div>
+<div class="row">
+   <div class="col-md">
+                                <!-- 地圖 -->
+   <a href="http://maps.google.com/maps?q=${response[i].address}&amp;z=11" data-geo="" target="_blank">
+          <img class="map" alt="${response[i].address}" src="http://maps.google.com/maps/api/staticmap?zoom=15&size=300x300&maptype=terrain&sensor=false&center=${hotel.hoteladdress }&markers=color:green%7Clabel:H%7C${hotel.hoteladdress }&key=AIzaSyARfDct4ecrevMJjHgcrjmPOLfbM6X9N7w">
+            </a>
+    </div>
+ </div>
+
 <!-- googleMapFunction -->
-<script>
-        function initMap() {
-            var latlng = new google.maps.LatLng(25.0337866, 121.54319800000007);
-            var myOptions = { zoom: 13, center: latlng, mapTypeId: google.maps.MapTypeId.ROADMAP };
-            var map = new google.maps.Map(document.getElementById("map"), myOptions);
-            var marker = new google.maps.Marker({ position: latlng, title: "Hello World!" });
-            // To add the marker to the map, call setMap();
-            marker.setMap(map);
-        }
-    </script> 
+  
 <!-- googleMapFunction -->
     
-<div id="showMap">
-
-
-
-</div>
-
-
+			
 		</div>
 	</div>
+
+
+
 </section>
 <!-- 以上為地區顯示車站 -->
 
