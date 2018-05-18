@@ -1,7 +1,5 @@
 package com.startrip.hotel.model;
 
-import java.sql.Date;
-
 public class SearchHotel {
 	private String searchSrting;
 	private String checkIn;

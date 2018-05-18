@@ -75,7 +75,7 @@
 									<div class="form-group inputState">
 										<label for="id_label_location">
 <!-- 											<input type="text" id="id_label_location" name="searchSrting" class="form-control" placeholder="地點或飯店名稱"> -->
-											<select id="inputState" class="form-control" name="poeple">
+											<select id="inputState" class="form-control" name="searchSrting">
 												<option value="">請選擇旅遊目的地</option>
 												<option value="基隆">基隆</option>
 												<option value="台北">台北</option>
