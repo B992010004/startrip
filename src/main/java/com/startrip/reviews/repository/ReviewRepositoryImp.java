@@ -123,7 +123,7 @@ public class ReviewRepositoryImp implements ReviewRepository {
 			hql = fromClause;
 		}
 		
-		System.out.println("hql看這裡"+hql);
+		System.out.println("hql看這裡 "+hql);
 
 		Session session = sessionFactory.getCurrentSession();
 		List<ReviewBean> list = new ArrayList<>();

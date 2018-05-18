@@ -138,10 +138,10 @@ public class RestaurantController {
 	@RequestMapping(value = "/restaurant/{restaurantId}")
 	public String rooms(@PathVariable("restaurantId") Integer restaurantId, Model model) {
 		
-		System.out.println(restaurantId);
-		RtDetailsBean rdb = rtDetailsService.getAllRtDetailsrtId(restaurantId);
-		System.out.println("rdb" + rdb);
-		model.addAttribute("RtId", rdb);
+//		System.out.println(restaurantId);
+//		RtDetailsBean rdb = rtDetailsService.getAllRtDetailsrtId(restaurantId);
+//		System.out.println("rdb" + rdb);
+//		model.addAttribute("RtId", rdb);
 		
 		//---------------------------------------------------------------------
 		
