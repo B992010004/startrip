@@ -21,6 +21,7 @@ public class FacilitylistDAO{
 		Session session = factory.getCurrentSession();
 		session.save(bean);
 	}
+	
 	public void deleteByHotelid(Integer hotelid) {
 		Session session = factory.getCurrentSession();
 		session.createQuery(HQLQuery.get(HQL.DELETE_FACILITY_BY_HOTELID)).setParameter("hotelid", hotelid).executeUpdate();

@@ -67,14 +67,14 @@
 		<div class="container">
 			<div class="row align-items-center">
 				<div class="col-md probootstrap-animate">
-					<form action="HotelsSearchResult.html" class="probootstrap-form" style="border-radius:30px;">
+					<form action="/startrip/HotelsSearchResult" class="probootstrap-form" style="border-radius:30px;">
 						<div class="form-group">
 							<div class="row">
 								<!-- place -->
 								<div class="col-md-4">
 									<div class="form-group inputState">
 										<label for="id_label_location">
-											<input type="text" id="id_label_location" name="location" class="form-control" placeholder="地點或飯店名稱">
+											<input type="text" id="id_label_location" name="searchSrting" class="form-control" placeholder="地點或飯店名稱">
 										</label>
 									</div>
 								</div>
@@ -85,7 +85,7 @@
 										<div class="probootstrap-date-wrap">
 											<label for="probootstrap-date-arrival">
 												<span class="icon ion-calendar"></span>
-												<input type="text" id="probootstrap-date-arrival" name="checkin" class="form-control" placeholder="入住">
+												<input type="text" id="probootstrap-date-arrival" name="checkIn" class="form-control" placeholder="入住">
 											</label>
 										</div>
 									</div>
@@ -97,7 +97,7 @@
 										<div class="probootstrap-date-wrap">
 											<label for="probootstrap-date-departure">
 												<span class="icon ion-calendar"></span>
-												<input type="text" id="probootstrap-date-departure" name="checkout" class="form-control" placeholder="退房">
+												<input type="text" id="probootstrap-date-departure" name="checkOut" class="form-control" placeholder="退房">
 											</label>
 										</div>
 									</div>
@@ -107,28 +107,28 @@
 								<div class="col-md">
 									<div class="form-group inputState">
 										<label for="id_label_people">
-											<select id="inputState" class="form-control" name="poeple">
+											<select id="inputState" class="form-control" name="personNum">
 												<option selected value="1">人數</option>
-												<option value="1">1</option>
-												<option value="2">2</option>
-												<option value="3">3</option>
-												<option value="4">4</option>
-												<option value="5">5</option>
-												<option value="6">6</option>
-												<option value="7">7</option>
-												<option value="8">8</option>
-												<option value="9">9</option>
-												<option value="10">10</option>
-												<option value="11">11</option>
-												<option value="12">12</option>
-												<option value="13">13</option>
-												<option value="14">14</option>
-												<option value="15">15</option>
-												<option value="16">16</option>
-												<option value="17">17</option>
-												<option value="18">18</option>
-												<option value="19">19</option>
-												<option value="20">20</option>
+												<option value="1">1人</option>
+												<option value="2" selected="selected">2人</option>
+												<option value="3">3人</option>
+												<option value="4">4人</option>
+												<option value="5">5人</option>
+												<option value="6">6人</option>
+												<option value="7">7人</option>
+												<option value="8">8人</option>
+												<option value="9">9人</option>
+												<option value="10">10人</option>
+												<option value="11">11人</option>
+												<option value="12">12人</option>
+												<option value="13">13人</option>
+												<option value="14">14人</option>
+												<option value="15">15人</option>
+												<option value="16">16人</option>
+												<option value="17">17人</option>
+												<option value="18">18人</option>
+												<option value="19">19人</option>
+												<option value="20">20人</option>
 											</select>
 										</label>
 									</div>
