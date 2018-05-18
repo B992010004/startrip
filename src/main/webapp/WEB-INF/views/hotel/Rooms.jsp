@@ -319,8 +319,8 @@
                         <div class="row">
                             <div class="col-md">
                                 <!-- 地圖 -->
-                                <a href="http://maps.google.com/maps?q=福華飯店,+台北市&amp;z=11" data-geo="" target="_blank">
-                                    <img class="map" alt="福華飯店, 台北市" src="http://maps.google.com/maps/api/staticmap?zoom=17&size=300x300&maptype=terrain&sensor=false&center=福華飯店, 台北市&key=AIzaSyAphlUZhilGS44rk9TBLOoMluxpNJa0Cfk">
+                                <a href="http://maps.google.com/maps?q=${hotel.hoteladdress }&amp;z=11" data-geo="" target="_blank">
+                                    <img class="map" alt="${hotel.hoteladdress }" src="http://maps.google.com/maps/api/staticmap?zoom=15&size=300x300&maptype=terrain&sensor=false&center=${hotel.hoteladdress }&markers=color:green%7Clabel:H%7C${hotel.hoteladdress }&key=AIzaSyARfDct4ecrevMJjHgcrjmPOLfbM6X9N7w">
                                 </a>
                             </div>
                         </div>
@@ -761,28 +761,28 @@
 
             })
 
-            $(function () {
-                $(document).tooltip({
-                    items: "[title]",
-                    content: function () {
-                        var element = $(this);
-                        if (element.is("[data-geo]")) {
-                            var text = element.children().attr("map");
-                            console.log(text)
-                            return "<img class='map' alt='" + text +
-                                "' src='http://maps.google.com/maps/api/staticmap?" +
-                                "zoom=16&size=350x350&maptype=terrain&sensor=false&center=" +
-                                text + "&key=AIzaSyAphlUZhilGS44rk9TBLOoMluxpNJa0Cfk'>";
-                        }
-                        if (element.is("[title]")) {
-                            return element.attr("title");
-                        }
-                        if (element.is("img")) {
-                            return element.attr("alt");
-                        }
-                    }
-                });
-            });
+//             $(function () {
+//                 $(document).tooltip({
+//                     items: "[title]",
+//                     content: function () {
+//                         var element = $(this);
+//                         if (element.is("[data-geo]")) {
+//                             var text = element.children().attr("map");
+//                             console.log(text)
+//                             return "<img class='map' alt='" + text +
+//                                 "' src='http://maps.google.com/maps/api/staticmap?" +
+//                                 "zoom=16&size=350x350&maptype=terrain&sensor=false&center=" +
+//                                 text + "&key=AIzaSyAphlUZhilGS44rk9TBLOoMluxpNJa0Cfk'>";
+//                         }
+//                         if (element.is("[title]")) {
+//                             return element.attr("title");
+//                         }
+//                         if (element.is("img")) {
+//                             return element.attr("alt");
+//                         }
+//                     }
+//                 });
+//             });
         </script>
         
 <!--         多重篩選 -->
@@ -868,7 +868,7 @@
 		
 			});
 		}
-        </script>
+        </script>    
 </body>
 
 </html>
