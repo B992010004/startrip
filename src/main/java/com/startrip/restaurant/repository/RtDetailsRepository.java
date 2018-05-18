@@ -20,7 +20,7 @@ public interface RtDetailsRepository {
 	RtDetailsBean getAllRtDetailsrtName(String rtName);
 	
 	RtDetailsBean getAllRtDetailsrtId(Integer rtId);
-
+	
 	RtDetailsBean updateRtDetails(RtDetailsBean bean);
 
 	RtDetailsBean insertRtDetails(RtDetailsBean bean);

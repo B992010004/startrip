@@ -39,10 +39,10 @@ public class RestaurantController {
 
 	@Autowired
 	MemberServiceInterface memberservice;
-	
+
 	@Autowired
 	ReviewService reviewService;
-	
+
 	@Autowired
 	ServletContext context;
 
@@ -55,44 +55,44 @@ public class RestaurantController {
 		List<RtDetailsBean> list3 = rtDetailsService.getrtPricepountH();
 		List<RtDetailsBean> list4 = rtDetailsService.getrtPricepountM();
 		List<RtDetailsBean> list5 = rtDetailsService.getrtPricepountL();
-		
+
 		String[] photoArr = null;
-		
+
 		for (RtDetailsBean bean : list) {
 			if (bean.getPhotoPaths() != null) {
 				photoArr = bean.getPhotoPaths().split(";");
 				bean.setPhotoArr(photoArr);
 			}
 		}
-		
+
 		for (RtDetailsBean bean : list2) {
 			if (bean.getPhotoPaths() != null) {
 				photoArr = bean.getPhotoPaths().split(";");
 				bean.setPhotoArr(photoArr);
 			}
 		}
-		
+
 		for (RtDetailsBean bean : list3) {
 			if (bean.getPhotoPaths() != null) {
 				photoArr = bean.getPhotoPaths().split(";");
 				bean.setPhotoArr(photoArr);
 			}
 		}
-		
+
 		for (RtDetailsBean bean : list4) {
 			if (bean.getPhotoPaths() != null) {
 				photoArr = bean.getPhotoPaths().split(";");
 				bean.setPhotoArr(photoArr);
 			}
 		}
-		
+
 		for (RtDetailsBean bean : list5) {
 			if (bean.getPhotoPaths() != null) {
 				photoArr = bean.getPhotoPaths().split(";");
 				bean.setPhotoArr(photoArr);
 			}
 		}
-		
+
 		model.addAttribute("RtDetails", list);
 		model.addAttribute("nearby", list2);
 		model.addAttribute("HH", list3);
@@ -137,14 +137,32 @@ public class RestaurantController {
 
 	@RequestMapping(value = "/restaurant/{restaurantId}")
 	public String rooms(@PathVariable("restaurantId") Integer restaurantId, Model model) {
-		
-//		System.out.println(restaurantId);
-//		RtDetailsBean rdb = rtDetailsService.getAllRtDetailsrtId(restaurantId);
-//		System.out.println("rdb" + rdb);
-//		model.addAttribute("RtId", rdb);
-		
-		//---------------------------------------------------------------------
-		
+
+		RtDetailsBean photoBn = rtDetailsService.getAllRtDetailsrtId(restaurantId);
+		String[] photoArr = null;
+		String[] photo = photoBn.getPhotoPaths().split(";");
+		String OneImage1 = photo[0].toString();
+		String OneImage2 = photo[1].toString();
+		String OneImage3 = photo[2].toString();
+		String OneImage4 = photo[3].toString();
+		String OneImage5 = photo[4].toString();
+		String OneImage6 = photo[5].toString();
+		model.addAttribute("OneImage1",OneImage1);
+		model.addAttribute("OneImage2",OneImage2);
+		model.addAttribute("OneImage3",OneImage3);
+		model.addAttribute("OneImage4",OneImage4);
+		model.addAttribute("OneImage5",OneImage5);
+		model.addAttribute("OneImage6",OneImage6);
+
+		// ----------------------------------------------------------------------------
+
+		System.out.println(restaurantId);
+		RtDetailsBean rdb = rtDetailsService.getAllRtDetailsrtId(restaurantId);
+		System.out.println("rdb" + rdb);
+		model.addAttribute("RtId", rdb);
+
+		// ----------------------------------------------------------------------------
+
 		// review
 		// 評等
 		List<Long> ranks = reviewService.getRankByRestaurantId(restaurantId);
@@ -167,36 +185,36 @@ public class RestaurantController {
 	}
 
 	// /展示餐廳資訊/---------------------------------------------------------------------------------------------
-	
+
 	// 處理照片請求
-		// 相片都保存在C:\\temp\\
-		@RequestMapping(value = "/getPicture/rtImage/{photoName:.+}", method = RequestMethod.GET)
-		public ResponseEntity<byte[]> getPicture(HttpServletResponse resp, @PathVariable String photoName) {
+	// 相片都保存在C:\\temp\\
+	@RequestMapping(value = "/getPicture/rtImage/{photoName:.+}", method = RequestMethod.GET)
+	public ResponseEntity<byte[]> getPicture(HttpServletResponse resp, @PathVariable String photoName) {
 
-			HttpHeaders headers = new HttpHeaders();
-			ByteArrayOutputStream baos = null;
-			int len = 0;
-			byte[] media = null;
+		HttpHeaders headers = new HttpHeaders();
+		ByteArrayOutputStream baos = null;
+		int len = 0;
+		byte[] media = null;
 
-			try (InputStream is = new FileInputStream("C:/temp/rtImage/" + photoName)) {
-				baos = new ByteArrayOutputStream();
-				byte[] b = new byte[8192];
+		try (InputStream is = new FileInputStream("C:/temp/rtImage/" + photoName)) {
+			baos = new ByteArrayOutputStream();
+			byte[] b = new byte[8192];
 
-				while ((len = is.read(b)) != -1) {
-					baos.write(b, 0, len);
-				}
-			} catch (IOException e) {
-				throw new RuntimeException("ProductController 的  getPicture() 發生 IOException:" + e.getMessage());
+			while ((len = is.read(b)) != -1) {
+				baos.write(b, 0, len);
 			}
-			media = baos.toByteArray();
-			headers.setCacheControl(CacheControl.noCache().getHeaderValue());
-			String mimeType = context.getMimeType(photoName);
-			// headers.setContentType(MediaType.IMAGE_JPEG);
-			headers.setContentType(MediaType.parseMediaType(mimeType));
-			ResponseEntity<byte[]> responseEntity = new ResponseEntity<>(media, headers, HttpStatus.OK);
-
-			return responseEntity;
+		} catch (IOException e) {
+			throw new RuntimeException("ProductController 的  getPicture() 發生 IOException:" + e.getMessage());
 		}
+		media = baos.toByteArray();
+		headers.setCacheControl(CacheControl.noCache().getHeaderValue());
+		String mimeType = context.getMimeType(photoName);
+		// headers.setContentType(MediaType.IMAGE_JPEG);
+		headers.setContentType(MediaType.parseMediaType(mimeType));
+		ResponseEntity<byte[]> responseEntity = new ResponseEntity<>(media, headers, HttpStatus.OK);
+
+		return responseEntity;
+	}
 
 	// ---------測試------------------------測試------------------測試----------------測試-------------
 
