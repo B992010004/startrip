@@ -110,20 +110,20 @@
 
 		<!-- --------------------------------------------------------------------------------------------------- -->
 
-		<div class="row">
+		<div class="row"><c:forEach var='rtDetails' items='${RtDetails}'>
 			<div class="col-lg-6 portfolio-item">
 				<div class="card h-100">
 					<a href="#"><img class="card-img-top"
 						src="/startrip/assets/images/01.jpg" alt=""></a>
 					<div class="card-body">
 						<h4 class="card-title">
-							<a href="#">餐廳名稱</a>
+							<a href="#">${rtDetails.rtName}</a>
 						</h4>
-						<p class="card-text">地區</p>
-						<p class="card-text">菜系類別</p>
-						<p class="card-text">餐點類別</p>
-						<p class="card-text">餐點類別</p>
-						<p class="card-text">評分星等</p>
+						<p class="card-text">${rtDetails.rtCounty}</p>
+						<p class="card-text">${rtDetails.rtArea}}</p>
+						<p class="card-text">${rtDetails.rtCuisine}</p>
+						<p class="card-text">${rtDetails.teCategory}</p>
+						<p class="card-text">${rtDetails.rtBusinesshours}</p>
 						<div class="btn11">
 							<a href="/startrip/restaurant/1" class="btn btn-primary">去了解</a>
 						</div>
@@ -263,7 +263,7 @@
 					</div>
 				</div>
 			</div>
-
+</c:forEach>
 		</div>
 
 		<!-- --------------------------------------------------------------------------------------------------- -->

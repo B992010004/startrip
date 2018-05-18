@@ -8,224 +8,226 @@
 <html>
 
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>餐廳名稱</title>
-	<meta name="description" content="Free Bootstrap 4 Theme by ProBootstrap.com">
-	<meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>餐廳名稱</title>
+<meta name="description"
+	content="Free Bootstrap 4 Theme by ProBootstrap.com">
+<meta name="keywords"
+	content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
 
-	<link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,700" rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,700"
+	rel="stylesheet">
 
-	<link rel="stylesheet" href="/startrip/assets/css/bootstrap/bootstrap.css">
-	<link rel="stylesheet" href="/startrip/assets/css/animate.css">
-	<link rel="stylesheet" href="/startrip/assets/fonts/ionicons/css/ionicons.min.css">
+<link rel="stylesheet"
+	href="/startrip/assets/css/bootstrap/bootstrap.css">
+<link rel="stylesheet" href="/startrip/assets/css/animate.css">
+<link rel="stylesheet"
+	href="/startrip/assets/fonts/ionicons/css/ionicons.min.css">
 
-	<link rel="stylesheet" href="/startrip/assets/css/owl.carousel.min.css">
+<link rel="stylesheet" href="/startrip/assets/css/owl.carousel.min.css">
 
-	<link rel="stylesheet" href="/startrip/assets/fonts/flaticon/font/flaticon.css">
+<link rel="stylesheet"
+	href="/startrip/assets/fonts/flaticon/font/flaticon.css">
 
-	<link rel="stylesheet" href="/startrip/assets/fonts/fontawesome/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="/startrip/assets/fonts/fontawesome/css/font-awesome.min.css">
 
-	<link rel="stylesheet" href="/startrip/assets/css/select2.css">
+<link rel="stylesheet" href="/startrip/assets/css/select2.css">
 
 
-	<link rel="stylesheet" href="/startrip/assets/css/helpers.css">
-	<link rel="stylesheet" href="/startrip/assets/css/style.css">
-	<link rel="stylesheet" href="/startrip/assets/css/rthome.css">
-	<link rel="stylesheet" href="/startrip/assets/css/rthome2.css">
-	<link rel="stylesheet" href="/startrip/assets/css/rthome3.css">
-	<link rel="stylesheet" href="/startrip/assets/css/rthome4.css">
+<link rel="stylesheet" href="/startrip/assets/css/helpers.css">
+<link rel="stylesheet" href="/startrip/assets/css/style.css">
+<link rel="stylesheet" href="/startrip/assets/css/rthome.css">
+<link rel="stylesheet" href="/startrip/assets/css/rthome2.css">
+<link rel="stylesheet" href="/startrip/assets/css/rthome3.css">
+<link rel="stylesheet" href="/startrip/assets/css/rthome4.css">
 
-	<style>
-		.probootstrap-cover .overlay {
-			position: absolute;
-			background: rgba(0, 0, 0, 0.2);
-			top: 0;
-			left: 0;
-			right: 0;
-			bottom: 0;
-		}
+<style>
+.probootstrap-cover .overlay {
+	position: absolute;
+	background: rgba(0, 0, 0, 0.2);
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
 
-		.col-md-123 {
-			padding: 3%;
-		}
+.col-md-123 {
+	padding: 3%;
+}
 
-		.border-bottom {
-			padding: 2%;
-		}
+.border-bottom {
+	padding: 2%;
+}
 
-		.littletitle1 {
-			text-align: left;
-		}
+.littletitle1 {
+	text-align: left;
+}
 
-		#section-home {
-			padding-top: 45px;
-			padding-bottom: 45px;
-		}
+#section-home {
+	padding-top: 45px;
+	padding-bottom: 45px;
+}
 
-		.probootstrap-form {
-			margin-bottom: 0;
-			padding-top: 15px;
-			padding-bottom: 15px;
-		}
+.probootstrap-form {
+	margin-bottom: 0;
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
 
-		.owl-dots {
-			display: none;
-		}
+.owl-dots {
+	display: none;
+}
 
-		.owl-stage-outer {
-			padding-top: 0px !important;
-			padding-bottom: 0px !important;
-		}
+.owl-stage-outer {
+	padding-top: 0px !important;
+	padding-bottom: 0px !important;
+}
 
-		#inputState {
-			height: 46px;
-			color: rgb(151, 148, 148)
-		}
+#inputState {
+	height: 46px;
+	color: rgb(151, 148, 148)
+}
 
-		.commentdate {
-			text-align: right;
-		}
+.commentdate {
+	text-align: right;
+}
 
-		.inputState label,
-		.inputState select {
-			height: 46px;
-			width: 100%;
-			color: rgb(151, 148, 148)
-		}
+.inputState label, .inputState select {
+	height: 46px;
+	width: 100%;
+	color: rgb(151, 148, 148)
+}
 
-		.imgmaxsize {
-			width: 795px;
-			height: 550px;
-		}
+.imgmaxsize {
+	width: 795px;
+	height: 550px;
+}
 
-		.popwindow {
-			margin: 100px
-		}
+.popwindow {
+	margin: 100px
+}
 
-		.imglist {
-			height: 80px;
-		}
+.imglist {
+	height: 80px;
+}
 
-		tbody th img {
-			max-width: 180px;
-			height: 130px;
-		}
+tbody th img {
+	max-width: 180px;
+	height: 130px;
+}
 
-		.review {
-			text-align: right;
-			padding: 2%;
-		}
+.review {
+	text-align: right;
+	padding: 2%;
+}
 
-		.probootstrap-section-heading {
-			border-bottom: #00CA4C 5px solid;
-			padding: 1%;
-		}
+.probootstrap-section-heading {
+	border-bottom: #00CA4C 5px solid;
+	padding: 1%;
+}
 
-		.littletitle1 {
-			padding-top: 2%;
-		}
+.littletitle1 {
+	padding-top: 2%;
+}
 
-		.map {
-			height: 200%;
-			width: 435.5%;
-		}
+.map {
+	height: 200%;
+	width: 435.5%;
+}
 
-		.row2 {
-			padding-top: 15%;
-		}
+.row2 {
+	padding-top: 15%;
+}
 
-		.col-md-1234 {
-			width: 100%;
-			text-align: center;
-		}
+.col-md-1234 {
+	width: 100%;
+	text-align: center;
+}
 
-		.probootstrap_section {
-			padding-top: 0%;
-			padding-bottom: 3%;
-		}
+.probootstrap_section {
+	padding-top: 0%;
+	padding-bottom: 3%;
+}
 
-		.btn {
-			display: inline-block;
-			font-weight: 300;
-			text-align: center;
-			white-space: nowrap;
-			vertical-align: middle;
-			-webkit-user-select: none;
-			-moz-user-select: none;
-			-ms-user-select: none;
-			user-select: none;
-			border: 1px solid transparent;
-			padding: 0.5rem 0.75rem;
-			font-size: 1rem;
-			line-height: 1.25;
-			border-radius: 0.25rem;
-			-webkit-transition: all 0.15s ease-in-out;
-			-o-transition: all 0.15s ease-in-out;
-			transition: all 0.15s ease-in-out;
-		}
+.btn {
+	display: inline-block;
+	font-weight: 300;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	border: 1px solid transparent;
+	padding: 0.5rem 0.75rem;
+	font-size: 1rem;
+	line-height: 1.25;
+	border-radius: 0.25rem;
+	-webkit-transition: all 0.15s ease-in-out;
+	-o-transition: all 0.15s ease-in-out;
+	transition: all 0.15s ease-in-out;
+}
 
-		.btn:focus,
-		.btn:hover {
-			text-decoration: none;
-		}
+.btn:focus, .btn:hover {
+	text-decoration: none;
+}
 
-		.btn:focus,
-		.btn.focus {
-			outline: 0;
-			-webkit-box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
-			box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
-		}
+.btn:focus, .btn.focus {
+	outline: 0;
+	-webkit-box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+	box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
 
-		.btn.disabled,
-		.btn:disabled {
-			opacity: .65;
-		}
+.btn.disabled, .btn:disabled {
+	opacity: .65;
+}
 
-		.btn:active,
-		.btn.active {
-			background-image: none;
-		}
-		
-		.progress-bar {
-/* 	    	margin-top: 10px; */
- 	    	
-	    }
-	    
-	    .progress-label{
-	    	margin-top: 5px;
-	    	width: 50px; 
-	    }
-	    .travler-rank{
-	    	width: 300px; 
-	    
-	    }
-	    
-	    .review-image{
-	    	 height:120px;
-	    	 margin:5px;
-	    	 
-	    }
-	    
-	     .review-memberphoto {
-            /* 照片圓圈大小倚靠各div的class設定 */
-            
-           	width: 80px;
-           	height: 80px; 
-            border-radius: 50%; 
-        }
-        ul li
-        {
-        list-style-type:none;
-        }
-        
-	</style>
+.btn:active, .btn.active {
+	background-image: none;
+}
+
+.progress-bar {
+	/* 	    	margin-top: 10px; */
+	
+}
+
+.progress-label {
+	margin-top: 5px;
+	width: 50px;
+}
+
+.travler-rank {
+	width: 300px;
+}
+
+.review-image {
+	height: 120px;
+	margin: 5px;
+}
+
+.review-memberphoto {
+	/* 照片圓圈大小倚靠各div的class設定 */
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+}
+
+ul li {
+	list-style-type: none;
+}
+
+</style>
 
 </head>
 
 <body>
 
 	<jsp:include page="/WEB-INF/views/header.jsp" flush="true" />
-	<section class="probootstrap-cover overflow-hidden relative" style="background-image: url('/startrip/assets/images/03.jpg');">
+	<section class="probootstrap-cover overflow-hidden relative"
+		style="background-image: url('/startrip/assets/images/03.jpg');">
 		<div class="overlay"></div>
 	</section>
 
@@ -236,23 +238,15 @@
 		<div class="row">
 			<div class="col-md">
 				<div class="col-md-123">
-					<c:forEach var='rtDetails' items='${RtId}'>
-						<h2 class="display-4 probootstrap-section-heading">${rtDetails.rtName}</h2>
+					<h2 class="display-4 probootstrap-section-heading">${RtId.rtName}</h2>
 
-						<div class="littletitle1">
-							<div>${rtDetails.rtAddress}</div>
-							<div>${rtDetails.rtPhone}</div>
-							<div>網址 :
-								${rtDetails.rtUrl}
-							</div>
-							<div>${rtDetails.rtCounty}</div>
-							<div>${rtDetails.rtArea}</div>
-							<div>${rtDetails.rtPricepount}</div>
-							<div>${rtDetails.rtCuisine}</div>
-							<div>${rtDetails.teCategory}</div>
-						</div>
-
-					</c:forEach>
+					<div class="littletitle1">
+						<div>${RtId.rtCuisine}</div>
+						<div>${RtId.teCategory}</div>
+						<div>${RtId.rtPhone}</div>
+						<div>${RtId.rtCounty}</div>
+						<div>${RtId.rtArea}</div>
+					</div>
 				</div>
 				<div class="col-md-1234">
 					<a href="/startrip/reservation" class="btn btn-primary">立&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;即&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;訂&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;位</a>
@@ -269,17 +263,16 @@
 			<div class="container">
 				<!-- 相片 section -->
 				<section class="probootstrap_section">
-					<c:forEach var='rtDetails' items='${RtId}'>
-						<div class="container">
-							<div class="row">
-								<div class="col-md-123">
-									<div class="owl-carousel js-owl-carousel-2">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-123">
+								<div class="owl-carousel js-owl-carousel-2">
 										<!-- photo slide item -->
 										<div>
 											<div
 												class="media probootstrap-media d-block align-items-stretch imgmaxsize">
-												<img src="/startrip/assets\images\test1.jpg" value="1"
-													name="XX" class="img-fluid mainimg">
+												<img src="/startrip/getPicture/rtImage/${OneImage1}"
+													value="1" class="img-fluid mainimg">
 											</div>
 										</div>
 										<!-- END photo slide item -->
@@ -287,8 +280,8 @@
 										<div>
 											<div
 												class="media probootstrap-media d-block align-items-stretch imgmaxsize">
-												<img src="/startrip/assets\images\sq_img_1.jpg" value="2"
-													name="AA" class="img-fluid mainimg">
+												<img src="/startrip/getPicture/rtImage/${OneImage2}"
+													value="2" class="img-fluid mainimg">
 											</div>
 										</div>
 										<!-- END photo slide item -->
@@ -296,17 +289,42 @@
 										<div>
 											<div
 												class="media probootstrap-media d-block align-items-stretch imgmaxsize">
-												<img src="/startrip/assets\images\sq_img_2.jpg" value="3"
-													name="BB" class="img-fluid mainimg">
+												<img src="/startrip/getPicture/rtImage/${OneImage3}"
+													value="3" class="img-fluid mainimg">
 											</div>
 										</div>
 										<!-- END photo slide item -->
-									</div>
-									<div></div>
+										<!-- photo slide item -->
+										<div>
+											<div
+												class="media probootstrap-media d-block align-items-stretch imgmaxsize">
+												<img src="/startrip/getPicture/rtImage/${OneImage4}"
+													value="3" class="img-fluid mainimg">
+											</div>
+										</div>
+										<!-- END photo slide item -->
+											<!-- photo slide item -->
+										<div>
+											<div
+												class="media probootstrap-media d-block align-items-stretch imgmaxsize">
+												<img src="/startrip/getPicture/rtImage/${OneImage5}"
+													value="3" class="img-fluid mainimg">
+											</div>
+										</div>
+										<!-- END photo slide item -->
+											<!-- photo slide item -->
+										<div>
+											<div
+												class="media probootstrap-media d-block align-items-stretch imgmaxsize">
+												<img src="/startrip/getPicture/rtImage/${OneImage6}"
+													value="3" class="img-fluid mainimg">
+											</div>
+										</div>
+										<!-- END photo slide item -->
 								</div>
 							</div>
 						</div>
-					</c:forEach>
+					</div>
 				</section>
 				<!-- END section -->
 			</div>
@@ -338,27 +356,21 @@
 						<tbody>
 							<tr>
 								<th width="4%" scope="row">1.</th>
-								<td></td>
+								<td>營業時間&nbsp;:&nbsp;${RtId.rtBusinesshours}</td>
 							</tr>
 							<!-- 政策提示生成起始 -->
 							<tr>
 								<th width="4%" scope="row">2.</th>
-								<td></td>
+								<td>價位&nbsp;:&nbsp;${RtId.rtPricepount}</td>
 							</tr>
 							<!-- 政策提示生成結束 -->
 							<tr>
 								<th scope="row">3.</th>
-								<td></td>
+								<td>地址 &nbsp;:&nbsp;${RtId.rtAddress}</td>
 							</tr>
 							<tr>
 								<th scope="row">4.</th>
-								<td></td>
-							</tr>
-							<tr>
-								<th scope="row">5.</th>
-
-								<td></td>
-
+								<td>網址 &nbsp;:&nbsp;${RtId.rtUrl}</td>
 							</tr>
 						</tbody>
 					</table>
@@ -381,8 +393,9 @@
 				</div>
 			</div>
 			<div class="col-md-4">
-				<a href="/startrip/review/UserReviewEdit/1" class="btn btn-primary">發表評論</a>
-				<a href="" class="btn btn-outline-primary">即時客服</a>
+				<a href="/startrip/review/UserReviewEdit/${RtId.rtId }"
+					class="btn btn-primary">發表評論</a> <a href=""
+					class="btn btn-outline-primary">即時客服</a>
 			</div>
 		</div>
 		<div class="row">
@@ -393,192 +406,142 @@
 			<div class="travler-rank col-md-3">
 				<div class="progress">
 					<span class="progress-label">很棒</span>
-					<div class="progress-bar" role="progressbar" style="width: ${ranks[0]/rankSize *100}%" aria-valuenow="${ranks[0]/rankSize *100}"
-					 aria-valuemin="0" aria-valuemax="100">
-						<fmt:formatNumber type="number" value="${ranks[0]/rankSize *100}" maxFractionDigits="0" />%</div>
+					<div class="progress-bar" role="progressbar"
+						style="width: ${ranks[0]/rankSize *100}%"
+						aria-valuenow="${ranks[0]/rankSize *100}" aria-valuemin="0"
+						aria-valuemax="100">
+						<fmt:formatNumber type="number" value="${ranks[0]/rankSize *100}"
+							maxFractionDigits="0" />
+						%
+					</div>
 				</div>
 
 				<div class="progress">
 					<span class="progress-label">非常好</span>
-					<div class="progress-bar" role="progressbar" style="width: ${ranks[1]/rankSize *100}%" aria-valuenow="${ranks[1]/rankSize *100}"
-					 aria-valuemin="0" aria-valuemax="100">
-						<fmt:formatNumber type="number" value="${ranks[1]/rankSize *100}" maxFractionDigits="0" />%</div>
+					<div class="progress-bar" role="progressbar"
+						style="width: ${ranks[1]/rankSize *100}%"
+						aria-valuenow="${ranks[1]/rankSize *100}" aria-valuemin="0"
+						aria-valuemax="100">
+						<fmt:formatNumber type="number" value="${ranks[1]/rankSize *100}"
+							maxFractionDigits="0" />
+						%
+					</div>
 				</div>
 
 				<div class="progress">
 					<span class="progress-label">普通</span>
-					<div class="progress-bar" role="progressbar" style="width: ${ranks[2]/rankSize *100}%" aria-valuenow="${ranks[2]/rankSize *100}"
-					 aria-valuemin="0" aria-valuemax="100">
-						<fmt:formatNumber type="number" value="${ranks[2]/rankSize *100}" maxFractionDigits="0" />%</div>
+					<div class="progress-bar" role="progressbar"
+						style="width: ${ranks[2]/rankSize *100}%"
+						aria-valuenow="${ranks[2]/rankSize *100}" aria-valuemin="0"
+						aria-valuemax="100">
+						<fmt:formatNumber type="number" value="${ranks[2]/rankSize *100}"
+							maxFractionDigits="0" />
+						%
+					</div>
 				</div>
 
 				<div class="progress">
 					<span class="progress-label">差</span>
-					<div class="progress-bar" role="progressbar" style="width: ${ranks[3]/rankSize *100}%" aria-valuenow="${ranks[3]/rankSize *100}"
-					 aria-valuemin="0" aria-valuemax="100">
-						<fmt:formatNumber type="number" value="${ranks[3]/rankSize *100}" maxFractionDigits="0" />%</div>
+					<div class="progress-bar" role="progressbar"
+						style="width: ${ranks[3]/rankSize *100}%"
+						aria-valuenow="${ranks[3]/rankSize *100}" aria-valuemin="0"
+						aria-valuemax="100">
+						<fmt:formatNumber type="number" value="${ranks[3]/rankSize *100}"
+							maxFractionDigits="0" />
+						%
+					</div>
 				</div>
 
 				<div class="progress">
 					<span class="progress-label">糟透了</span>
-					<div class="progress-bar" role="progressbar" style="width: ${ranks[4]/rankSize *100}%" aria-valuenow="${ranks[4]/rankSize *100}"
-					 aria-valuemin="0" aria-valuemax="100">
-						<fmt:formatNumber type="number" value="${ranks[4]/rankSize *100}" maxFractionDigits="0" />%</div>
+					<div class="progress-bar" role="progressbar"
+						style="width: ${ranks[4]/rankSize *100}%"
+						aria-valuenow="${ranks[4]/rankSize *100}" aria-valuemin="0"
+						aria-valuemax="100">
+						<fmt:formatNumber type="number" value="${ranks[4]/rankSize *100}"
+							maxFractionDigits="0" />
+						%
+					</div>
 				</div>
 			</div>
 
 			<!-- 旅客類型 -->
 
-				<div class="travler-rank col-md-2" id="selectCheckBox">
-					<label class="sr-only-focusable">旅客類型</label>
-						<ul>
-							<li><input id="cr1" type="checkbox" name="family" value="家庭">家庭出遊</li>
-							<li><input id="cr2" type="checkbox" name="couple" value="伴侶旅行">伴侶旅行</li>
-							<li><input id="cr3" type="checkbox" name="alone" value="單獨旅行">單獨旅行</li>
-							<li><input id="cr4" type="checkbox" name="business" value="商務">商務出差</li>
-							<li><input id="cr5" type="checkbox" name="friends" value="朋友">好友旅行</li>				
-						</ul>
-				</div>
+			<div class="travler-rank col-md-2" id="selectCheckBox">
+				<label class="sr-only-focusable">旅客類型</label>
+				<ul>
+					<li><input id="cr1" type="checkbox" name="family" value="家庭">家庭出遊</li>
+					<li><input id="cr2" type="checkbox" name="couple" value="伴侶旅行">伴侶旅行</li>
+					<li><input id="cr3" type="checkbox" name="alone" value="單獨旅行">單獨旅行</li>
+					<li><input id="cr4" type="checkbox" name="business" value="商務">商務出差</li>
+					<li><input id="cr5" type="checkbox" name="friends" value="朋友">好友旅行</li>
+				</ul>
+			</div>
 
 			<!-- 月份 -->
 			<div class="travler-rank col-md-3">
 				<label class="sr-only-focusable">月份</label>
-					<ul>
-						<li><input type="checkbox" />3 月到 5 月</li>
-						<li><input type="checkbox" />6 月到 8 月</li>
-						<li><input type="checkbox" />9 月到 11 月</li>
-						<li><input type="checkbox" />12 月到 2 月</li>				
-					</ul>
-			</div>		
+				<ul>
+					<li><input type="checkbox" />3 月到 5 月</li>
+					<li><input type="checkbox" />6 月到 8 月</li>
+					<li><input type="checkbox" />9 月到 11 月</li>
+					<li><input type="checkbox" />12 月到 2 月</li>
+				</ul>
+			</div>
 		</div>
 
-	<div id="displayReview">
-		<c:forEach var='review' items='${reviews}'>
-			<div class="row" style="margin:16px;">
-				<div class="col-md-1">
-					<div class="row justify-content-center" style="margin:16px;">
-						<img class="review-memberphoto" src="<c:url value='/getPicture/memberIcon/${review.memberBean.avatar}'/>">
-					</div>
-					<div class="row justify-content-center">
-						<div>
-							<h6>${review.memberBean.username }</h6>
+		<div id="displayReview">
+			<c:forEach var='review' items='${reviews}'>
+				<div class="row" style="margin: 16px;">
+					<div class="col-md-1">
+						<div class="row justify-content-center" style="margin: 16px;">
+							<img class="review-memberphoto"
+								src="<c:url value='/getPicture/memberIcon/${review.memberBean.avatar}'/>">
+						</div>
+						<div class="row justify-content-center">
+							<div>
+								<h6>${review.memberBean.username }</h6>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="col-md-9">
-					<div class="probootstrap_font-18">
-						<h5>${review.title}</h5>
+					<div class="col-md-9">
+						<div class="probootstrap_font-18">
+							<h5>${review.title}</h5>
+						</div>
+						<div>${review.content }</div>
+						<c:if test="${not empty review.photoPathList }">
+							<c:forEach var="photoPath" items="${review.photoPathList }">
+								<img src="/startrip/getPicture/reviewUpload/${photoPath }"
+									class="review-image" />
+							</c:forEach>
+						</c:if>
 					</div>
-					<div>${review.content }</div>
-					<c:if test="${not empty review.photoPathList }">
-						<c:forEach var="photoPath" items="${review.photoPathList }">
-							<img src="/startrip/getPicture/reviewUpload/${photoPath }" class="review-image" />
-						</c:forEach>
-					</c:if>
 				</div>
-			</div>
-		</c:forEach>
-	</div>
+			</c:forEach>
+		</div>
 	</div>
 	<!-- 訊息聊天框  -->
-	<div style="float:right">
+	<div style="float: right">
 
-		<button class="btn btn-secondary" type="button" id="dropdownMessageButton" onclick="slideFrame()">
-			聊天框
-		</button>
-		<div id="dropdownMessage" style="padding:0px;display:none;border:#F8F8FF 1px solid">
-			<div style="color: #fff;background-color: #00CA4C;
-            border-color: #00CA4C;"> 對方帳號名</div>
-			<div id="displayMessage" style="width:250px;height:250px;overflow-y:auto;"></div>
+		<button class="btn btn-secondary" type="button"
+			id="dropdownMessageButton" onclick="slideFrame()">聊天框</button>
+		<div id="dropdownMessage"
+			style="padding: 0px; display: none; border: #F8F8FF 1px solid">
+			<div
+				style="color: #fff; background-color: #00CA4C; border-color: #00CA4C;">
+				對方帳號名</div>
+			<div id="displayMessage"
+				style="width: 250px; height: 250px; overflow-y: auto;"></div>
 			<div class="dropdown-divider "></div>
 			<div>
-				<textarea id="messages" rows="1" cols="25;" style="resize:none;" placeholder="請輸入訊息" maxlength="250"></textarea>
+				<textarea id="messages" rows="1" cols="25;" style="resize: none;"
+					placeholder="請輸入訊息" maxlength="250"></textarea>
 			</div>
-			<div class="btn btn-secondary" id="sendText" onclick="initChat('${LoginOK.memberid }', 6)">傳二</div>
+			<div class="btn btn-secondary" id="sendText"
+				onclick="initChat('${LoginOK.memberid }', 6)">傳二</div>
 		</div>
 
 	</div>
-
-
-	<section class="probootstrap_section">
-		<div class="container">
-			<div class="row text-center mb-5 probootstrap-animate">
-				<div class="col-md-12">
-					<h2 class="display-4 probootstrap-section-heading">附近美食</h2>
-				</div>
-			</div>
-
-			<div class="row probootstrap-animate">
-				<div class="col-md-12">
-					<div class="owl-carousel js-owl-carousel">
-						<a class="probootstrap-slide" href="#">
-							<span class="flaticon-teatro-de-la-caridad"></span>
-							<em>Teatro de la Caridad</em>
-						</a>
-						<a class="probootstrap-slide" href="#">
-							<span class="flaticon-royal-museum-of-the-armed-forces"></span>
-							<em>Royal Museum of the Armed Forces</em>
-						</a>
-						<a class="probootstrap-slide" href="#">
-							<span class="flaticon-parthenon"></span>
-							<em>Parthenon</em>
-						</a>
-						<a class="probootstrap-slide" href="#">
-							<span class="flaticon-marina-bay-sands"></span>
-							<em>Marina Bay Sands </em>
-						</a>
-						<a class="probootstrap-slide" href="#">
-							<span class="flaticon-samarra-minaret"></span>
-							<em>Samarra Minaret</em>
-						</a>
-						<a class="probootstrap-slide" href="#">
-							<span class="flaticon-chiang-kai-shek-memorial"></span>
-							<em>Chiang Kai Shek Memorial</em>
-						</a>
-						<a class="probootstrap-slide" href="#">
-							<span class="flaticon-heuvelse-kerk-tilburg"></span>
-							<em>Heuvelse Kerk Tilburg</em>
-						</a>
-						<a class="probootstrap-slide" href="#">
-							<span class="flaticon-cathedral-of-cordoba"></span>
-							<em>Cathedral of Cordoba</em>
-						</a>
-						<a class="probootstrap-slide" href="#">
-							<span class="flaticon-london-bridge"></span>
-							<em>London Bridge</em>
-						</a>
-						<a class="probootstrap-slide" href="#">
-							<span class="flaticon-taj-mahal"></span>
-							<em>Taj Mahal</em>
-						</a>
-						<a class="probootstrap-slide" href="#">
-							<span class="flaticon-leaning-tower-of-pisa"></span>
-							<em>Leaning Tower of Pisa</em>
-						</a>
-						<a class="probootstrap-slide" href="#">
-							<span class="flaticon-burj-al-arab"></span>
-							<em>Burj al Arab</em>
-						</a>
-						<a class="probootstrap-slide" href="#">
-							<span class="flaticon-gate-of-india"></span>
-							<em>Gate of India</em>
-						</a>
-						<a class="probootstrap-slide" href="#">
-							<span class="flaticon-osaka-castle"></span>
-							<em>Osaka Castle</em>
-						</a>
-						<a class="probootstrap-slide" href="#">
-							<span class="flaticon-statue-of-liberty"></span>
-							<em>Statue of Liberty </em>
-						</a>
-
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- END section -->
-
 
 
 	<div>
@@ -604,8 +567,10 @@
 	<script src="/startrip/assets/js/main.js"></script>
 
 	<!-- 即時聊天 -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.0.3/sockjs.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.0.3/sockjs.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 
 	<script>
 		//現在測試傳2號
@@ -713,7 +678,7 @@
 
 		$('#stopSTOMP').click(function () { sock.close() });
 	</script>
-	
+
 	<script>
 		$(document).ready(function(){
 			for(i=1;i<=5;i++){
@@ -788,32 +753,6 @@
 					}
 
 					$('#displayReview').html(docFrag);
-
-// 					要生樹
-// 					<div class="row" style="margin:16px;">
-// 					<div class="col-md-1">
-// 						<div class="row justify-content-center" style="margin:16px;">
-// 							<img class="review-memberphoto" src="<c:url value='/getPicture/${review.memberBean.mail}'/>">
-// 						</div>
-// 						<div class="row justify-content-center">
-// 							<div>
-// 								<h6>${review.memberBean.username }</h6>
-// 							</div>
-// 						</div>
-// 					</div>
-
-// 					<div class="col-md-9">
-// 						<div class="probootstrap_font-18">
-// 							<h5>${review.title}</h5>
-// 						</div>
-// 						<div class="">${review.content }</div>
-// 						<c:if test="${not empty review.photoPathList }">
-// 							<c:forEach var="photoPath" items="${review.photoPathList }">
-// 								<img src="/startrip/getPicture/reviewUpload/${photoPath }" class="review-image" />
-// 							</c:forEach>
-// 						</c:if>
-// 					</div>
-// 				</div>				
 					
 				},
 				error:function(e){
@@ -822,6 +761,89 @@
 		
 			});
 		}
+		
+		 $(document).ready(function () {
+             $("#my_popup").attr("hidden", false)
+         })
+
+         $('.js-owl-carousel-2').owlCarousel({
+             loop: false,
+             margin: 20,
+             nav: false,
+             autoplay: true,
+             autoplayTimeout: 5000,
+             smartSpeed: 800,
+             stagePadding: 0,
+             navText: ["<span class='ion-chevron-left'></span>", "<span class='ion-chevron-right'></span>"],
+             responsive: {
+                 0: {
+                     items: 1
+                 }
+             }
+         });
+
+         $('#bookingnow').click(function () {
+             $('html,body').animate({
+                 scrollTop: $('#bookingposition').offset().top
+             }, 800);
+         });
+         // 滑動至預定區間
+
+         $(document).ready(function () {
+             $('#my_popup').popup();
+
+         });
+         // 初始化跳出視窗區間
+         $('#my_popup').popup({
+             opacity: 0.4,
+             // 設定不透明度
+
+         });
+
+         $('.imglist').click(function () {
+             var imgval = $(this).attr("value")
+             var clickimg = $(".mainimg[value=" + imgval + "]").parent().parent().parent()
+             var activeimg = $(".owl-stage-outer>div .active").children().children().children()
+             var activeimgval = activeimg.attr("value")
+             if (imgval == activeimgval)
+                 return
+             var b = clickimg.parent().parent().parent()
+             b.attr("class", "owl-carousel js-owl-carousel-2 owl-loaded owl-drag owl-grab")
+             b.attr("class", "owl-carousel js-owl-carousel-2 owl-loaded owl-drag")
+             b.children().children().css("transition", "0.8s")
+             var imgwidthstart = clickimg.parent().attr("style").lastIndexOf(": ")
+             var imgwidthend = clickimg.parent().attr("style").lastIndexOf("px;")
+             var imgwidth = clickimg.parent().attr("style").substr(imgwidthstart + 2, imgwidthend - imgwidthstart - 2)
+             var imglength = $("div .col-md.popwindow").children().length
+             var a = imgwidth * -1 / imglength * (imgval - 1)
+             var imgchoice = clickimg.parent().css("transform", "translate3d(" + a + "px, 0px, 0px)")
+             activeimg.parent().parent().parent().removeClass("active")
+             clickimg.attr("class", "owl-item active")
+
+         })
+
+         $(function () {
+             $(document).tooltip({
+                 items: "[title]",
+                 content: function () {
+                     var element = $(this);
+                     if (element.is("[data-geo]")) {
+                         var text = element.children().attr("map");
+                         console.log(text)
+                         return "<img class='map' alt='" + text +
+                             "' src='http://maps.google.com/maps/api/staticmap?" +
+                             "zoom=16&size=350x350&maptype=terrain&sensor=false&center=" +
+                             text + "&key=AIzaSyAphlUZhilGS44rk9TBLOoMluxpNJa0Cfk'>";
+                     }
+                     if (element.is("[title]")) {
+                         return element.attr("title");
+                     }
+                     if (element.is("img")) {
+                         return element.attr("alt");
+                     }
+                 }
+             });
+         });
 	</script>
 
 </body>

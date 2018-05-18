@@ -6,46 +6,21 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.annotations.DynamicUpdate;
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistry;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import javax.persistence.Transient;
 
 @Entity(name = "hotels")
-public class HotelsBean implements Serializable{
+public class HotelsBean implements Serializable {
 	private static final long serialVersionUID = -2333660904250123305L;
 
 	public HotelsBean() {
 	}
 
-	public static void main(String[] args) {
-		StandardServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().configure("/com/startrip/hotel/model/persistent/hibernateTest.cfg.xml").build();
-		SessionFactory factory = new MetadataSources(serviceRegistry).buildMetadata().buildSessionFactory();
-		Session session = factory.openSession();
-		session.beginTransaction();
-		
-		HotelsBean bean = new HotelsBean();
-		bean.setHotelmanagerid(1);
-		bean.setHotelname("HAHA");
-		session.save(bean);
-		System.out.println("----------");
-		HotelsBean temp = session.get(HotelsBean.class, 1);
-		System.out.println(temp);
-		
-		session.getTransaction().commit();
-		session.close();
-		factory.close();
-	}
-
 	private Integer hotelmanagerid;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer hotelid;
-	
+
 	private String hotelname;
 	private String hotelphone;
 	private Integer hotelstar;
@@ -53,10 +28,41 @@ public class HotelsBean implements Serializable{
 	private Integer hotelstate;
 	private String hotelinfo;
 	private String hotelrulenote;
-	private Integer refundid;
-	private Integer advancedayid;
-
+	private Integer lowestPrice;
+	private String photoString;
+	// private Integer refundid;
+	// private Integer advancedayid;
 	
+	@Transient
+	private String photoArr[];
+	
+	
+	public String[] getPhotoArr() {
+		return photoArr;
+	}
+
+	public void setPhotoArr(String[] photoArr) {
+		this.photoArr = photoArr;
+	}
+	
+	
+
+	public String getPhotoString() {
+		return photoString;
+	}
+
+	public void setPhotoString(String photoString) {
+		this.photoString = photoString;
+	}
+
+	public Integer getLowestPrice() {
+		return lowestPrice;
+	}
+
+	public void setLowestPrice(Integer lowestPrice) {
+		this.lowestPrice = lowestPrice;
+	}
+
 	public Integer getHotelmanagerid() {
 		return hotelmanagerid;
 	}
@@ -129,30 +135,12 @@ public class HotelsBean implements Serializable{
 		this.hotelrulenote = hotelrulenote;
 	}
 
-	public Integer getRefundid() {
-		return refundid;
-	}
-
-	public void setRefundid(Integer refundid) {
-		this.refundid = refundid;
-	}
-
-	public Integer getAdvancedayid() {
-		return advancedayid;
-	}
-
-	public void setAdvancedayid(Integer advancedayid) {
-		this.advancedayid = advancedayid;
-	}
-
 	@Override
 	public String toString() {
 		return "HotelsBean [hotelmanagerid=" + hotelmanagerid + ", hotelid=" + hotelid + ", hotelname=" + hotelname
 				+ ", hotelphone=" + hotelphone + ", hotelstar=" + hotelstar + ", hoteladdress=" + hoteladdress
-				+ ", hotelstate=" + hotelstate + ", hotelinfo=" + hotelinfo + ", hotelrulenote=" + hotelrulenote
-				+ ", refundid=" + refundid + ", advancedayid=" + advancedayid + "]";
+				+ ", hotelstate=" + hotelstate + ", lowestPrice=" + lowestPrice + ", photoString=" + photoString + "]";
 	}
-
-
+	
 
 }

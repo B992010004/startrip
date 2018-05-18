@@ -119,9 +119,11 @@ public class ReviewRepositoryImp implements ReviewRepository {
 		String fromClause = crteriaIsAvailable ? "FROM ReviewBean rb WHERE " : "FROM ReviewBean rb ";
 		if (crteriaIsAvailable) {
 			hql = fromClause + queryString;
+		} else {
+			hql = fromClause;
 		}
 		
-		System.out.println("hql看這裡"+hql);
+		System.out.println("hql看這裡 "+hql);
 
 		Session session = sessionFactory.getCurrentSession();
 		List<ReviewBean> list = new ArrayList<>();

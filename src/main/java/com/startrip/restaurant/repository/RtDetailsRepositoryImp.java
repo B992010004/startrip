@@ -65,7 +65,7 @@ public class RtDetailsRepositoryImp implements RtDetailsRepository {
 		}
 		return false;
 	}
-
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<RtDetailsBean> getAll() {

@@ -11,25 +11,23 @@ import com.startrip.transport.Station.StationInterface.StationRepositoryInterfac
 import com.startrip.transport.Station.StationModle.StationBean;
 
 @Service
+@Transactional
 public class StationService implements StationServiceInterface{
 
 	@Autowired
 	private StationRepositoryInterface stationDAO;
 	
-	@Transactional
 	@Override
 	public List<StationBean> select() {
 		return stationDAO.select();
 	}
 	
-	@Transactional
 	@Override
 	public void update(String area, String stationName,String Address) {
 		
 		stationDAO.update(area,stationName,Address);
 	}
 	
-	@Transactional
 	@Override
 	public void insert(StationBean bean) {
 
@@ -37,12 +35,16 @@ public class StationService implements StationServiceInterface{
 
 	}
 	
-	@Transactional
 	@Override
 	public boolean delete(Integer id) {
 		return stationDAO.delete(id);
 	
 }
+
+	@Override
+	public List<StationBean> selectArea(String ar) {
+		return stationDAO.selectArea(ar);
+	}
 
 	
 }

@@ -16,4 +16,6 @@ public interface StationServiceInterface {
 
 	boolean delete(Integer id);
 	
+	List<StationBean> selectArea(String ar);
+	
 }

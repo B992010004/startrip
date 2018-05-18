@@ -1,10 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>HotelsSearchResult</title>
+<title>飯店搜尋結果</title>
 
   <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,700" rel="stylesheet">
 
@@ -303,8 +307,8 @@
       <!-- result -->
       <div class="col-md-9">
         <br>
-        <!-- 動態資料產生 -->
-        <a href="Rooms.html" class="roomlink">
+        <!-- 靜態資料產生 -->
+        <a href="/startrip/Rooms/1" class="roomlink">
           <div class="row">
             <div class="col-md">
               <!-- card -->
@@ -338,6 +342,45 @@
           </div>
           <p></p>
         </a>
+        <!-- 靜態資料結束 -->
+        <!-- 動態資料產生 -->
+        <c:forEach var="hotel" items="${results }">
+        <a href="/startrip/Rooms/${hotel.hotelid }" class="roomlink">
+          <div class="row">
+            <div class="col-md">
+              <!-- card -->
+              <div class="card">
+                <div class="row">
+                  <div class="col-md-4 imgmaxheight">
+<%--                     ${hotel.photoArr[0] } --%>
+                      <img src="/startrip/getPicture/hotel/${hotel.hotelid }/${hotel.photoArr[0] }" class="img-thumbnail" alt="飯店圖片">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="row">
+                      <div class="col-md-8">${hotel.hotelname }</div>
+                      <div class="col-md-4">5.7</div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">${hotel.hoteladdress }</div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">★★★★★</div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="row">
+                      <div class="col-md-8">服務種類</div>
+                      <div class="col-md-4">價格：${hotel.lowestPrice }</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- end card -->
+            </div>
+          </div>
+          <p></p>
+        </a>
+        </c:forEach>
         <!-- 動態資料結束 -->
       </div>
       <!-- result -->

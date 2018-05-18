@@ -7,7 +7,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>HotelsSearchResult</title>
+    <title>${hotel.hotelname }</title>
 
 
     <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,700" rel="stylesheet">
@@ -122,6 +122,10 @@
            	height: 80px; 
            	border-radius: 50%;
         }
+        
+        ul li {
+			list-style-type: none;
+		}
     </style>
 
 
@@ -234,15 +238,15 @@
                     <!-- 主要資訊 -->
                     <div class="col-md">
                         <div class="row">
-                            <div class="col-md-9">OX飯店★★★★★
+                            <div class="col-md-9">${hotel.hotelname }
                             </div>
-                            <div class="col-md-3">最低訂房價格：3000</div>
+                            <div class="col-md-3">最低訂房價格：${hotel.lowestPrice }</div>
                         </div>
                         <div class="row">
-                            <div class="col-md-12">台北市內湖區</div>
+                            <div class="col-md-12">${hotel.hoteladdress }</div>
                         </div>
                         <div class="row">
-                            <div class="col-md-9">02-12345678</div>
+                            <div class="col-md-9">${hotel.hotelphone }</div>
                             <div class="col-md-3">
                                 <button id="bookingnow" type="button" class="btn btn-outline-warning">
                                     立即預定
@@ -261,30 +265,33 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="owl-carousel js-owl-carousel-2">
+                                        	<!-- 動態生成 -->
                                             <!-- photo slide item -->
+                                          <c:forEach var="photo" items="${hotel.photoArr }">
                                             <div>
                                                 <div class="media probootstrap-media d-block align-items-stretch imgmaxsize">
-                                                    <img src="/startrip/assets/images/test1.jpg" value="1" name="XX" class="img-fluid mainimg">
+                                                    <img src="/startrip/getPicture/hotel/${hotel.hotelid }/${photo }" name="XX" class="img-fluid mainimg">
                                                 </div>
                                             </div>
+                                            </c:forEach>
                                             <!-- END photo slide item -->
                                             <!-- photo slide item -->
-                                            <div>
-                                                <div class="media probootstrap-media d-block align-items-stretch imgmaxsize">
-                                                    <img src="/startrip/assets/images/sq_img_1.jpg" value="2" name="AA" class="img-fluid mainimg">
-                                                </div>
-                                            </div>
+<!--                                             <div> -->
+<!--                                                 <div class="media probootstrap-media d-block align-items-stretch imgmaxsize"> -->
+<!--                                                     <img src="/startrip/assets/images/sq_img_1.jpg" value="2" name="AA" class="img-fluid mainimg"> -->
+<!--                                                 </div> -->
+<!--                                             </div> -->
                                             <!-- END photo slide item -->
                                             <!-- photo slide item -->
-                                            <div>
-                                                <div class="media probootstrap-media d-block align-items-stretch imgmaxsize">
-                                                    <img src="/startrip/assets/images/sq_img_2.jpg" value="3" name="BB" class="img-fluid mainimg">
-                                                </div>
-                                            </div>
+<!--                                             <div> -->
+<!--                                                 <div class="media probootstrap-media d-block align-items-stretch imgmaxsize"> -->
+<!--                                                     <img src="/startrip/assets/images/sq_img_2.jpg" value="3" name="BB" class="img-fluid mainimg"> -->
+<!--                                                 </div> -->
+<!--                                             </div> -->
                                             <!-- END photo slide item -->
                                         </div>
                                         <div>
-                                            <p class="my_popup_open">圖片名稱
+                                            <p class="my_popup_open">
                                                 <i>(點我看更多)</i>
                                             </p>
                                         </div>
@@ -421,24 +428,135 @@
                     </div>
                 </div>
                 
-                
-               
-				                
+                <!--評論 -->
+                <hr>
+                <div class="row justify-content-between">
+                    <div class="col-md-8">
+                        <div class="title_text">
+                        	<h5>評論</h5>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="/startrip/review/UserReviewEdit/1" class="btn btn-primary">發表評論</a>
+                        <a href="" class="btn btn-outline-primary">即時客服</a>
+                    </div>
                 </div>
-            </div>     
+				<div class="row">
+                        <!-- 旅客評等 -->
+						<!-- <p class="col-md-3">旅客評等</p> -->
+						<label class="sr-only-focusable">旅客評等</label>
+                        <!-- 旅客評等 -->
+                                <div class="travler-rank col-md-3" >                            
+		                            <div class="progress">
+		                            	<span class="progress-label">很棒</span>
+										<div class="progress-bar" role="progressbar" style="width: ${ranks[0]/rankSize *100}%"aria-valuenow="${ranks[0]/rankSize *100}" aria-valuemin="0" aria-valuemax="100"><fmt:formatNumber type="number" value="${ranks[0]/rankSize *100}" maxFractionDigits="0"/>%</div>
+									</div>							
+									
+									<div class="progress">
+										<span class="progress-label">非常好</span>							  							  
+									  	<div class="progress-bar" role="progressbar" style="width: ${ranks[1]/rankSize *100}%" aria-valuenow="${ranks[1]/rankSize *100}" aria-valuemin="0" aria-valuemax="100"><fmt:formatNumber type="number" value="${ranks[1]/rankSize *100}" maxFractionDigits="0"/>%</div>
+									</div>					
+									
+									<div class="progress">
+										<span class="progress-label">普通</span>							  		
+									  	<div class="progress-bar" role="progressbar" style="width: ${ranks[2]/rankSize *100}%" aria-valuenow="${ranks[2]/rankSize *100}" aria-valuemin="0" aria-valuemax="100"><fmt:formatNumber type="number" value="${ranks[2]/rankSize *100}" maxFractionDigits="0"/>%</div>
+									</div>							
+									
+									<div class="progress">
+										<span class="progress-label">差</span>
+										<div class="progress-bar" role="progressbar" style="width: ${ranks[3]/rankSize *100}%" aria-valuenow="${ranks[3]/rankSize *100}" aria-valuemin="0" aria-valuemax="100"><fmt:formatNumber type="number" value="${ranks[3]/rankSize *100}" maxFractionDigits="0"/>%</div>
+									</div>						
+									
+									<div class="progress">
+										<span class="progress-label">糟透了</span>
+									  	<div class="progress-bar" role="progressbar" style="width: ${ranks[4]/rankSize *100}%" aria-valuenow="${ranks[4]/rankSize *100}" aria-valuemin="0" aria-valuemax="100"><fmt:formatNumber type="number" value="${ranks[4]/rankSize *100}" maxFractionDigits="0"/>%</div>
+									</div>       
+								</div>
+						
+                       <!-- 旅客類型 -->
 
+			<div class="travler-rank col-md-2" id="selectCheckBox">
+				<label class="sr-only-focusable">旅客類型</label>
+				<ul>
+					<li><input id="cr1" type="checkbox" name="family" value="家庭">家庭出遊</li>
+					<li><input id="cr2" type="checkbox" name="couple" value="伴侶旅行">伴侶旅行</li>
+					<li><input id="cr3" type="checkbox" name="alone" value="單獨旅行">單獨旅行</li>
+					<li><input id="cr4" type="checkbox" name="business" value="商務">商務出差</li>
+					<li><input id="cr5" type="checkbox" name="friends" value="朋友">好友旅行</li>
+				</ul>
+			</div>
+
+			<!-- 月份 -->
+			<div class="travler-rank col-md-3">
+				<label class="sr-only-focusable">月份</label>
+				<ul>
+					<li><input type="checkbox" />3 月到 5 月</li>
+					<li><input type="checkbox" />6 月到 8 月</li>
+					<li><input type="checkbox" />9 月到 11 月</li>
+					<li><input type="checkbox" />12 月到 2 月</li>
+				</ul>
+			</div>
+                        <!-- 月份 -->
+                    </div>                    
+                </div>
+            </div>
+            <div id="displayReview">     
+			<c:forEach var='review' items='${reviews}'>	        
+				<div class="row" style="margin:16px;">
+					<div class="col-md-1">
+						<div class="row justify-content-center" style="margin:16px;"><img class="review-memberphoto" src="<c:url value='/getPicture/${review.memberBean.mail}'/>"></div>
+						<div class="row justify-content-center"><div><h6>${review.memberBean.username }</h6></div></div>
+					</div>
+					<div class="col-md-9">
+						<div class="probootstrap_font-18"><h5>${review.title}</h5></div>
+						<div class="">${review.content }</div>
+						<c:if test="${not empty review.photoPathList }">
+							<c:forEach var="photoPath" items="${review.photoPathList }">
+								<img src="/startrip/getPicture/reviewUpload/${photoPath }" class="review-image"/>
+							</c:forEach>
+						</c:if>					
+					</div>
+				</div>				
+			</c:forEach>
+			</div>
 		</div>
 		
+		<!-- 訊息聊天框  -->
+	<div style="float:right">
+
+        <button class="btn btn-secondary" type="button" id="dropdownMessageButton" onclick="slideFrame()">
+            聊天框
+        </button>
+        <div id="dropdownMessage" style="padding:0px;display:none;border:#F8F8FF 1px solid">
+            <div style="color: #fff;background-color: #00CA4C;
+            border-color: #00CA4C;"> 對方帳號名</div>
+            <div id="displayMessage" style="width:250px;height:250px;overflow-y:auto;"></div>
+            <div class="dropdown-divider "></div>
+            <div>
+                <textarea id="messages" rows="1" cols="25;" style="resize:none;" placeholder="請輸入訊息" maxlength="250"></textarea>
+            </div>
+            <div class="btn btn-secondary" id="sendText" onclick="initChat('${LoginOK.memberid }', 6)">傳二</div>
+        </div>
+
+	</div>
+        
         <!-- 圖片彈出區間 -->
+        
+        
         <div id="my_popup" hidden="hidden">
-            <div class="row">
+        <div class="row">
                 <div class="col-md popwindow">
-                    <img src="/startrip/assets/images/test1.jpg" value="1" title="XX" class="ui-corner-all img-fluid imglist my_popup_close  img-thumbnail">
-                    <img src="/startrip/assets/images/sq_img_1.jpg" value="2" title="AA" class="ui-corner-all img-fluid imglist my_popup_close img-thumbnail">
-                    <img src="/startrip/assets/images/sq_img_2.jpg" value="3" title="BB" class="ui-corner-all img-fluid imglist my_popup_close img-thumbnail">
+        <c:forEach var="photo" items="${hotel.photoArr }" varStatus="idx">
+            
+                    <img src="/startrip/getPicture/hotel/${hotel.hotelid }/${photo }" class="ui-corner-all img-fluid imglist my_popup_close  img-thumbnail">
+            </c:forEach>
+<%--                     <img src="/startrip/getPicture/hotel/${hotel.hotelid }/${photo }"  title="AA" class="ui-corner-all img-fluid imglist my_popup_close img-thumbnail"> --%>
+<%--                     <img src="/startrip/getPicture/hotel/${hotel.hotelid }/${photo }"  title="BB" class="ui-corner-all img-fluid imglist my_popup_close img-thumbnail"> --%>
                 </div>
             </div>
         </div>
+     
+       
         <!-- 圖片彈出區間 -->
 
 
@@ -471,6 +589,116 @@
         <script src="/startrip/assets/js/jquery-ui.js"></script>
         <script src="/startrip/assets/js/jquery.popupoverlay.js"></script>
         
+<!-- 即時聊天 -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.0.3/sockjs.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+ 
+	<script>
+//現在測試傳2號
+//不如這樣 自行實作三向交握
+//三向交握成功!!
+//接下來解決 廣播收到後建立聊天框
+	function slideFrame(){
+		$('#dropdownMessage').slideToggle(200);
+	}
+	
+	var subscribedArr = [];
+	
+	 var url = 'http://'+ window.location.host +'/startrip/chat';
+     var sock = new SockJS(url);
+     var stomp = Stomp.over(sock);
+     stomp.connect('guest', 'guest', function(frame) {
+	      console.log('*****  Connected  *****');
+// 	      stomp.subscribe("/brocast/message/" + '${LoginOK.memberid }', handleText);
+ 		  //訂閱廣播
+ 		  //一開始大家只有廣播
+	      stomp.subscribe("/brocast/message/" + '${LoginOK.memberid }', handleInitP2P);
+	      });
+	
+	   function initChat(senderPk, receiverPk){		   	 
+		   if(!issubscribed(receiverPk)){
+			   stomp.subscribe("/target/message/" + senderPk + "/" + receiverPk, handleText);
+			   subscribedArr.push(receiverPk);
+			   console.log('subscribed!!');
+		   }
+		   //檢查是否有值 有值動作
+		   if($('#messages').val()){			  
+		      //清空輸入欄 並加入文字至上方顯示窗
+		      var message = $('#messages').val();    
+		      $('#messages').val("");
+		      var myText = $("<span class='myText' style='color:#FFFFFF;text-align:center;'></span>").text(message);
+		      var myTextdiv = $("<div class='myTextDiv' style='border-radius:10px;background-color:#0066FF;float:right;clear:both;max-width:146px;word-wrap: break-word;margin-bottom:5px;'></div>").append(myText);
+		      $('#displayMessage').append(myTextdiv);		      
+		//       var payload = JSON.stringify({'message':'Marco!'});
+		      var payload = JSON.stringify({"message":message, "messageStatus":"1"});		      
+		      //stomp.send("/app/chatRoom/" + senderPk + "/" + receiverPk, {}, payload);
+		      //一開始先推到對方廣播
+		      stomp.send("/app/brocast/message/" + senderPk + "/" + receiverPk, {}, payload);
+		    }
+	  }
+	   
+	   function sendMessage(senderPk, receiverPk){		   	 
+		   if(!issubscribed(receiverPk)){
+			   stomp.subscribe("/target/message/" + senderPk + "/" + receiverPk, handleText);
+			   subscribedArr.push(receiverPk);
+			   console.log('subscribed!!');
+		   }	       
+		   //檢查是否有值
+		   if($('#messages').val()){			  
+		      //清空輸入欄 並加入文字至上方顯示窗
+		      var message = $('#messages').val();    
+		      $('#messages').val("");
+		      var myText = $("<span class='myText' style='color:#FFFFFF;text-align:center;'></span>").text(message);
+		      var myTextdiv = $("<div class='myTextDiv' style='border-radius:10px;background-color:#0066FF;float:right;clear:both;max-width:146px;word-wrap: break-word;margin-bottom:5px;'></div>").append(myText);
+		      $('#displayMessage').append(myTextdiv);
+		      
+		//       var payload = JSON.stringify({'message':'Marco!'});
+		      var payload = JSON.stringify({"message":message});		      
+		      //stomp.send("/app/chatRoom/" + senderPk + "/" + receiverPk, {}, payload);
+		      //點對點通道
+		      stomp.send("/app/chatRoom/" + senderPk + "/" + receiverPk, {}, payload);
+		    }
+	  }
+	
+      function handleInitP2P(message){
+    	  console.log('handleInitP2P message:', message);
+    	  var object = JSON.parse(message.body);
+    	  //$('#output').append("<b>Received spittle: " + JSON.parse(message.body).message + "</b><br/>");
+		  var callBackText = $("<span class='callBackText' style='text-align:center;'></span>").text(JSON.parse(message.body).message);
+	      var callBackTextdiv = $("<div class='callBackTextDiv' style='border-radius:10px;background-color:#DDDDDD;float:left;clear:both;max-width:146px;word-wrap:break-word;margin-bottom:5px;'></div>").html(callBackText);
+	      $('#displayMessage').append(callBackTextdiv);
+	      //更改訊息發送位置
+	      //硬改改掉 好醜
+	      $('#sendText').attr('onclick', "sendMessage("+ object.receiverAccount + "," + object.senderAccount + ")");
+	      $('#sendText').text("發送至" + object.senderAccount);      
+	      
+	      if(object.messageStatus == 1){
+		      //通知對方 建立點對點通道
+		      var payload = JSON.stringify({"messageStatus":"2"});		      
+		      //stomp.send("/app/chatRoom/" + senderPk + "/" + receiverPk, {}, payload);
+		      //利用brocast通知對方建立點對點通道
+		      stomp.send("/app/brocast/message/" + object.receiverAccount + "/" + object.senderAccount, {}, payload);
+	      }else if(object.messageStatus == 2){
+	    	  console.log("連線成功");
+	      }
+      }
+      
+      function handleText(message) {
+    	  console.log('message:', message);
+		  //$('#output').append("<b>Received spittle: " + JSON.parse(message.body).message + "</b><br/>");
+		  var callBackText = $("<span class='callBackText' style='text-align:center;'></span>").text(JSON.parse(message.body).message);
+	      var callBackTextdiv = $("<div class='callBackTextDiv' style='border-radius:10px;background-color:#DDDDDD;float:left;clear:both;max-width:146px;word-wrap:break-word;margin-bottom:5px;'></div>").html(callBackText);
+	      $('#displayMessage').append(callBackTextdiv);      
+      }
+      function issubscribed(receiverPk){
+    	  if(subscribedArr.indexOf(receiverPk) != -1){
+    		  return true;
+    	  }
+    	  return false;
+      }
+
+      $('#stopSTOMP').click(function() {sock.close()});
+	</script>
 
         <script>
             $(document).ready(function () {
@@ -555,6 +783,91 @@
                     }
                 });
             });
+        </script>
+        
+<!--         多重篩選 -->
+        <script>
+        $(document).ready(function(){
+			for(i=1;i<=5;i++){
+				$('#cr' + i).on('change',function(){
+					selectByCriteria();
+// 					console.log("繫結成功");
+				})
+			}
+		});
+	
+		function selectByCriteria(){
+			var criteriaData = {};
+			
+// 			criteriaData.family = $("#cr1").val();
+// 			criteriaData.couple = $("#cr2").val();
+// 			criteriaData.alone = $("#cr3").val();
+// 			criteriaData.business = $("#cr4").val();
+			
+	 		$("#selectCheckBox input:checked").each(function(idx,checkbox){
+	 			console.log("A");
+	 			console.log(checkbox);
+	 			console.log(checkbox.attributes["name"].value);
+	 			console.log(checkbox.attributes["value"].value);
+	 			console.log("B");
+	 			criteriaData[checkbox.attributes["name"].value] = checkbox.attributes["value"].value;
+	 			console.log("C");
+			});
+
+	 		console.log(criteriaData);
+
+			$.ajax({
+				url : '/startrip/review/selectByCriteria',
+				type : 'GET',
+				data : criteriaData,
+				//enctype: "multipart/form-data",
+				//contentType : false,
+				//processData : false,
+				//dataType:"json",
+				success : function(responce) {
+					$('#displayReview').empty();				
+					console.log(responce);				
+					var docFrag = $(document.createDocumentFragment());
+					for(i=0;i<responce.length;i++){
+						console.log(responce[i].content);
+						//大row
+						var row = $('<div class="row" style="margin:16px;"></div>');
+
+						var col1 = $('<div class="col-md-1"></div>');
+						var innerRow1 = $('<div class="row justify-content-center" style="margin:16px;"></div>');
+							if(responce[i].memberBean.avatar != null){
+								var memberImg = $('<img class="review-memberphoto" src="/startrip/getPicture/memberIcon/' + responce[i].memberBean.avatar +'" />');
+							}						
+						var innerRow2 = $('<div class="row justify-content-center"></div>');
+						var innerRow2content = $('<div><h6>' + responce[i].memberBean.username + '</h6></div>');
+						innerRow2.append(innerRow2content);
+						innerRow1.append(memberImg);
+						col1.append([innerRow1, innerRow2]);
+
+						var col2 = $('<div class="col-md-9"></div>');
+						var title = $('<div class="probootstrap_font-18"><h5>' + responce[i].title + '</h5></div>');
+						var content = $('<div>' + responce[i].content + '</div>');
+
+						col2.append([title, content]);
+						if(responce[i].photoPathList!=null){
+						$.each(responce[i].photoPathList, function(idx,photoPath){
+							var contentImg = $('<img src="/startrip/getPicture/reviewUpload/' + photoPath + '" class="review-image" />');
+							col2.append(contentImg);
+						});
+						}
+						row.append([col1, col2]);
+						docFrag.append(row);
+					}
+
+					$('#displayReview').html(docFrag);
+					
+				},
+				error:function(e){
+					console.log(e);
+				}
+		
+			});
+		}
         </script>
 </body>
 
