@@ -118,7 +118,7 @@
 							src="/startrip/getPicture/rtImage/${rtDetails.photoArr[4]}" alt=""></a>
 						<div class="card-body">
 							<h4 class="card-title">
-								<a href="#">${rtDetails.rtName}</a>
+								<a href="/startrip/restaurant/${rtDetails.rtId}">${rtDetails.rtName}</a>
 							</h4>
 							<p class="card-text">${rtDetails.rtCuisine}</p>
 							<p class="card-text">${rtDetails.teCategory}</p>

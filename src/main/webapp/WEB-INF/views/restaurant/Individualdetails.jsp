@@ -240,6 +240,7 @@ ul li {
 					<h2 class="display-4 probootstrap-section-heading">${RtId.rtName}</h2>
 
 					<div class="littletitle1">
+						<div>${RtId.rtId}</div>
 						<div>${RtId.rtCuisine}</div>
 						<div>${RtId.teCategory}</div>
 						<div>${RtId.rtPhone}</div>
@@ -248,7 +249,7 @@ ul li {
 					</div>
 				</div>
 				<div class="col-md-1234">
-					<a href="/startrip/reservation" class="btn btn-primary">立&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;即&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;訂&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;位</a>
+					<a href="/startrip/reservation/${RtId.rtId}" class="btn btn-primary">立&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;即&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;訂&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;位</a>
 				</div>
 			</div>
 		</div>

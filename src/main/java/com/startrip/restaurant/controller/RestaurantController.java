@@ -109,13 +109,13 @@ public class RestaurantController {
 	}
 
 	// /前台餐廳首頁/--------------------------------------------------------------------------------------------
-	
+
 	// 前台餐廳總覽---------------------------------------------------------------------------------------------
-	
+
 	@RequestMapping(value = "/RtAllList")
 	public String getAllRt(Model model) {
-		
-		List<RtDetailsBean> list = rtDetailsService.getAllOne();	
+
+		List<RtDetailsBean> list = rtDetailsService.getAllOne();
 		String[] photoArr = null;
 		for (RtDetailsBean bean : list) {
 			if (bean.getPhotoPaths() != null) {
@@ -126,34 +126,34 @@ public class RestaurantController {
 		model.addAttribute("RtDetails", list);
 		return "restaurant/RtAllList";
 	}
-	
+
 	// /前台餐廳總覽/---------------------------------------------------------------------------------------------
 
 	// 前台新增訂單---------------------------------------------------------------------------------------------
 
-	 @RequestMapping(value = "/reservation", method = RequestMethod.GET)
-	 public String insertRtBooking(Model model) {
-	
-	 RtBookingBean rbb = new RtBookingBean();
-	 model.addAttribute("RtBookingBean", rbb);
-	
-	 return "restaurant/reservation";
-	 }
-	
-	 @RequestMapping(value = "/insertRtBooking/", method = RequestMethod.POST)
-	 public String insertRtBooking(@PathVariable("rtid") Integer
-	 rtid,@PathVariable("mail") String mail,@ModelAttribute("RtBookingBean")
-	 RtBookingBean rbb, BindingResult result, HttpServletRequest request, HttpSession session) {
-		 
-	 MemberBean memberBean = (MemberBean)session.getAttribute("LoginOK");
-	 rbb.setRtDetailsBean(rtDetailsService.getAllRtDetailsrtId(rtid));
-	 rbb.setMemberBean(memberBean);
-	 Timestamp outDate = new Timestamp(System.currentTimeMillis());
-	 rbb.setReTime(outDate);
-	 rtBookingService.insertRtBooking(rbb);
-	
-	 return "restaurant/Individualdetails";
-	 }
+	@RequestMapping(value = "/reservation/{rtId}", method = RequestMethod.GET)
+	public String insertRtBooking(@PathVariable("rtId") Integer rtId,Model model) {
+		RtDetailsBean rbb = rtDetailsService.getAllRtDetailsrtId(rtId);
+		RtBookingBean rtBookingBean = new RtBookingBean();
+		model.addAttribute("RtDetailsBean", rbb);
+		model.addAttribute("RtBookingBean", rtBookingBean);
+		return "restaurant/reservation";
+	}
+
+	@RequestMapping(value = "/insertRtBooking/", method = RequestMethod.POST)
+	public String insertRtBooking(@ModelAttribute("RtBookingBean") RtBookingBean rbb, Model model , BindingResult result, HttpServletRequest request,
+			HttpSession session) {
+
+		MemberBean memberBean = (MemberBean) session.getAttribute("LoginOK");
+		System.out.println("=========================" + memberBean);
+		Timestamp outDate = new Timestamp(System.currentTimeMillis());
+		rbb.setReTime(outDate);
+		rbb.setMemberId(memberBean.getMemberid());
+		System.out.println("=========================" + outDate);
+		rtBookingService.insertRtBooking(rbb);
+
+		return "restaurant/Individualdetails";
+	}
 
 	// /前台新增訂單/---------------------------------------------------------------------------------------------
 
@@ -171,18 +171,16 @@ public class RestaurantController {
 		String OneImage4 = photo[3].toString();
 		String OneImage5 = photo[4].toString();
 		String OneImage6 = photo[5].toString();
-		model.addAttribute("OneImage1",OneImage1);
-		model.addAttribute("OneImage2",OneImage2);
-		model.addAttribute("OneImage3",OneImage3);
-		model.addAttribute("OneImage4",OneImage4);
-		model.addAttribute("OneImage5",OneImage5);
-		model.addAttribute("OneImage6",OneImage6);
+		model.addAttribute("OneImage1", OneImage1);
+		model.addAttribute("OneImage2", OneImage2);
+		model.addAttribute("OneImage3", OneImage3);
+		model.addAttribute("OneImage4", OneImage4);
+		model.addAttribute("OneImage5", OneImage5);
+		model.addAttribute("OneImage6", OneImage6);
 
 		// ----------------------------------------------------------------------------
 
-		System.out.println(restaurantId);
 		RtDetailsBean rdb = rtDetailsService.getAllRtDetailsrtId(restaurantId);
-		System.out.println("rdb" + rdb);
 		model.addAttribute("RtId", rdb);
 
 		// ----------------------------------------------------------------------------
@@ -239,6 +237,5 @@ public class RestaurantController {
 
 		return responseEntity;
 	}
-
 
 }
