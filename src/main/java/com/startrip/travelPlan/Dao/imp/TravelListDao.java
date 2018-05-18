@@ -55,7 +55,7 @@ public class TravelListDao implements ITravelListDao  {
 	@Override
 	public Integer insert(TravelListBean bean) {
 		Session session = factory.getCurrentSession();
-		
+		System.out.println(bean.toString());
 		Integer pk =(int)session.save(bean);
 		return pk;
 	}
@@ -144,5 +144,14 @@ public class TravelListDao implements ITravelListDao  {
 				.setParameter("travelId", travelId)
 				.setParameter("tripday", tripday).getResultList();
 		return list;
+	}
+
+
+	@Override
+	public TravelListBean select_lastlist(Integer travelId, Integer tripday) {
+		String sql="select top(1) * from travellist where  travelId = :travelId and tripday=:tripday order by substring(endTime,1,2) DESC, substring(endTime,3,5)  DESC";
+		TravelListBean tlb = factory.getCurrentSession().createNativeQuery(sql, TravelListBean.class)
+				.setParameter("travelId", travelId).setParameter("tripday", tripday).getSingleResult();
+		return tlb;
 	}
 }

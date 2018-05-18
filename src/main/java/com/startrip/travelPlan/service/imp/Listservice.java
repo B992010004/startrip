@@ -46,5 +46,10 @@ public class Listservice implements ITravelListService {
 	public List<TravelListBean> select_listday(Integer travelId,Integer tripday){
 		return listDao.select_listday(travelId,  tripday);
 	}
+	@Transactional
+	@Override
+	public TravelListBean select_lastlist(Integer travelId, Integer tripday) {
+		return listDao.select_lastlist(travelId,tripday);
+	}
 
 }

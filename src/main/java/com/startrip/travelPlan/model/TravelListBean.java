@@ -22,7 +22,7 @@ public class TravelListBean {
 
 	@Override
 	public String toString() {
-		return "TravelListBean [viewName=" + viewName + ", StartTime=" + startTime + ", endTime=" + endTime
+		return "TravelListBean [viewName=" + viewName + ", startTime=" + startTime + ", endTime=" + endTime
 				+ ", travelType=" + travelType + ", travelName=" + travelName + ", listId=" + listId + ", travelId="
 				+ travelId + ", viewid=" + viewid + ", tripday=" + tripday + ", state=" + state + "]";
 	}
@@ -37,7 +37,7 @@ public class TravelListBean {
 	private Integer travelId;
 	
 	
-	private String viewid;
+	private Integer viewid;
 	
 	private Integer tripday;
 	private Integer state;
@@ -47,7 +47,7 @@ public class TravelListBean {
 	
 	
 	public TravelListBean(String viewName, String startTime, String endTime, String travelType, String travelName,
-			Integer listId, Integer travelId, String viewid, Integer tripday, Integer state) {
+			Integer listId, Integer travelId, Integer viewid, Integer tripday, Integer state) {
 		super();
 		this.viewName = viewName;
 		this.startTime = startTime;
@@ -71,7 +71,7 @@ public class TravelListBean {
 		return startTime;
 	}
 	public void setStartTime(String startTime) {
-		startTime = startTime;
+		this.startTime = startTime;
 	}
 	public String getEndTime() {
 		return endTime;
@@ -99,10 +99,10 @@ public class TravelListBean {
 	public void setTravelId(Integer travelId) {
 		this.travelId = travelId;
 	}
-	public String getViewid() {
+	public Integer getViewid() {
 		return viewid;
 	}
-	public void setViewid(String viewid) {
+	public void setViewid(Integer viewid) {
 		this.viewid = viewid;
 	}
 	public Integer getTripday() {

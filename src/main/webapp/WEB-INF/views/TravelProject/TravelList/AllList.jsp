@@ -198,7 +198,7 @@
 		</div>
 		
 		<div class="form-group">
-		<label  class="form-control-label" for="formGroupExampleInput">持續時間</label>
+		<label  class="form-control-label" for="formGroupExampleInput"  >持續時間</label>
 		    <input  placeholder="持續時間" type="text" id="time" class="form-control"/>
 		  
 		</div>
@@ -264,12 +264,9 @@ var k = event.target.id;
 
 
 
-
+//新增行程天數
 var add={}
-
 $('#insertday').on('click',function(){
-	
-	
 	add.mail="${LoginOK.mail}"
 	add.travelId="${Travel.travelId}"
 		$.ajax({
@@ -281,25 +278,21 @@ $('#insertday').on('click',function(){
 			success:function(data){
 // 				console.log(data.travelDays)
 				searchDays();
-				searchList();
 				
 			}
 		})
-	
 })
+
 //查詢景點相關資訊
 $(document).on('click','.card-img-top',function(e){
-// 	console.log(e.target.id)
 	var viewName=$('#'+e.target.id).parent().prev().text();
 	var mail = "${LoginOK.mail}";
 	var travelId="${Travel.travelId}"
 	$.get("/startrip/view/search",{"viewName":viewName,"mail":mail,"travelId":travelId},function(data){
-// 		console.log(data);
 		var body=$('.viewDetail');
 		var li = body.find('ul');
 		body.css("display","block")
 		body.find('h5').text(data.view.viewName);
-// 		body.find('img').attr('src',imgName);
 		var Name= $('<li class="list-group-item">景點名稱:'+data.view.viewaddr+'</li>');
 		var phone = $('<li class="list-group-item">電話:'+data.view.viewPhone+'</li>');
 		var orgclass = $('<li class="list-group-item">類型'+data.view.orgclass+'</li>');
@@ -308,10 +301,10 @@ $(document).on('click','.card-img-top',function(e){
 		var daysrow = $('<div class="checkview row"></div>');
 		var imgs=$('<div class="list-group-item col-3" id="food" src="/startrip/assets/Travel/img/food.png"></div><div id="shop" class="list-group-item col-3" src="/startrip/assets/Travel/img/shop.png"></div><div id="travel" class="list-group-item col-3" src="/startrip/assets/Travel/img/mountain.png"></div><div id="rest" class="list-group-item col-3" src="/startrip/assets/Travel/img/zzz.png"><div><hr>');
 		var docFrag = $(document.createDocumentFragment());
+		
 		for(var i =1;i<=data.travel.travelDays;i++){
-			
-		var selectday=$('<div class="circle col-2" id="chioceday'+i+'">'+i+'</div>')
-		docFrag.append(selectday);
+			var selectday=$('<div class="circle col-2" id="chioceday'+i+'">'+i+'</div>')
+			docFrag.append(selectday);
 		}
 		li.empty();
 		li.append(Name);
@@ -333,7 +326,7 @@ $(document).on('click','.card-img-top',function(e){
 	})
 	
 })
-
+//顯示詳細資訊功能
 $(document).on('click','.close',function(){
 	var body=$('.viewDetail');
 	body.css("display","none")
@@ -358,9 +351,8 @@ $(document).on('click','.list-group-item.col-3',function(e){
 // 		console.log(inputType.val())
 	})
 
-	
-
 	var inputDay = $('#travelDay')
+//新增行程的圖片css切換
 $(document).on('click','.circle',function(e){
 	var all = $('.circle')
 	all.css({"background-color":"#28b9ff"})
@@ -393,62 +385,146 @@ $(document).on('click','.circle',function(e){
 		}
 	})
 	inputDay.val(day)
-// 	console.log(inputDay.val())
 
 })
 $(document).on('click','#insertList',function(){
 // 	alert('here')
 	var body=$('.viewDetail')
 	var view={} ;
-	view.viewName=body.children().eq(1).text();
-	view.src=body.children().eq(2).attr('src');
 	var ul=body.children().eq(3).children()
-	view.score=ul.eq(0).children().text();
+	
+	view.viewName=body.children().eq(1).text();
+	view.imgName=body.children().eq(2).attr('src');
+	view.detail=ul.eq(0).children().text();
 	view.phone=ul.eq(1).children().text();
 	view.website=ul.eq(2).children().text();
 	view.address=ul.eq(3).children().text();
-	view.placeId=body.children().eq(4).val();
 	view.travelId='${Travel.travelId}'
 	view.memberId='${LoginOK.memberid}'
-// 	console.log(view)
+	console.log(view)
 	$.ajax({
 		url:"/startrip/Travel/add/view",
-		type:"POST",
-// 		dataType:"json",
-		data:view,
-// 		contentType: "application/json; charset=utf-8",
-		success:function(data){
-			console.log(data)
-		}
-	})
-})
-$(document).on('click','#checklist',function(){
-
-	var datas={} ;
-	datas.viewName=$('#viewName').val();
-	datas.starttime=$('#starttime').val();
-	datas.endtime=$('#endtime').val();
-	datas.travelType=inputType.val();
-	datas.tripday=inputDay.val();
-	datas.travelId='${Travel.travelId}'
-	datas.memberId='${LoginOK.memberid}'
-	
-	$.ajax({
-		url:"/startrip/Travel/add/list",
 		type:"GET",
-		dataType:"json",
-		data:datas,
-		contentType: "application/json; charset=utf-8",
+		data:view,
 		success:function(data){
+			
 			console.log(data)
-			searchList();
+			}
+		})
+	})
+$(document).on('click','#checklist',function(){
+	var day = inputDay.val()
+	var travelId="${Travel.travelId}"
+	var mail ="${LoginOK.mail}"
+	value={}
+	value.mail=mail;
+	value.travelId=travelId;
+	value.tripday=day
+	console.log(value)
+	console.log('準備判斷天數有沒有行程')
+	$.ajax({
+		url:"/startrip/travel/checkday",
+		type:"GET",
+		data:value,
+		success:function(check){
+			
+			if(check==true){
+				console.log('有行程')
+				list={}
+				list.tripday=day
+				list.travelId=travelId
+				list.mail=mail
+				$.get("/startrip/listday/lasttime",list,function(data){
+					var datas={}
+					console.log("取得最後一筆行程")
+					datas.viewName=$('#viewName').val();
+					datas.starttime=data.endTime;
+					console.log(data.endTime)
+					var time = data.endTime.split(":")
+					var insert =$('#time').val().split(":")
+					console.log(time[0])
+					console.log(time[1])
+					console.log(insert[0])
+					console.log(insert[0])
+					
+					
+					
+					var hour =parseInt(time[0])+parseInt(insert[0])
+					var min =parseInt(time[1])+parseInt(insert[1])
+					if(hour>23){
+						hour = hour-23;
+					}
+					if(min>60){
+						min =min-60;
+						hour=hour+1;
+					}
+					
+					var twobit = function( num ) {
+						return num >= 10 ? num + '' : '0' + num;
+					};
+					twobit(hour)
+					
+					datas.endtime=twobit(hour)+":"+twobit(min);
+					datas.travelType=inputType.val();
+					datas.tripday=inputDay.val();
+					datas.travelId='${Travel.travelId}';
+					datas.memberId='${LoginOK.memberid}';
+				$.ajax({
+				url:"/startrip/Travel/add/list",
+				type:"GET",
+				dataType:"json",
+				data:datas,
+				contentType: "application/json; charset=utf-8",
+				success:function(data){
+					console.log('新增行程')
+					}
+				})
+			})
+				
+		}else if(check==false){
+				console.log('沒有行程')
+			
+				var datas={} ;
+				datas.viewName=$('#viewName').val();
+				datas.starttime=$('#starttime').val();
+				datas.endtime=$('#endtime').val();
+				datas.travelType=inputType.val();
+				datas.tripday=inputDay.val();
+				datas.travelId='${Travel.travelId}';
+				datas.memberId='${LoginOK.memberid}';
+				console.log(datas)
+				$.ajax({
+				url:"/startrip/Travel/add/list",
+				type:"GET",
+				dataType:"json",
+				data:datas,
+				contentType: "application/json; charset=utf-8",
+				success:function(data){
+					console.log('新增行程')
+					console.log(data)
+					searchDays();
+					
+				}
+			})
+			}
+			
+			
 			
 			
 		}
 	})
 })
 
+$(document).on('click','.closelist',function(e){
+	console.log(e.target.id)
+	list={}
+	list.travelid=${Travel.travelId}
+	list.memberId=${LoginOK.memberid}
+// 	list.
+// 	$.get('/list remove',,function(e))
+	
 
+})
 
 
 
@@ -896,7 +972,7 @@ function initMap() {
 
 
 </script>
-<script src="/startrip/assets/Travel/js/timepicker.min.js"></script>
+<script src="/startrip/assets/Travel/js/timepicker.js"></script>
 <script>
  $(document).ready(function() {
 	
