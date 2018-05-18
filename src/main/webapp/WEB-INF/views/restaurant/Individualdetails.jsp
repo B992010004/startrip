@@ -270,7 +270,7 @@
 											<div
 												class="media probootstrap-media d-block align-items-stretch imgmaxsize">
 												<img src="/startrip/getPicture/rtImage/${rtDetails.photoArr[0]}" value="1"
-													name="XX" class="img-fluid mainimg">
+													 class="img-fluid mainimg">
 											</div>
 										</div>
 										<!-- END photo slide item -->
@@ -279,7 +279,7 @@
 											<div
 												class="media probootstrap-media d-block align-items-stretch imgmaxsize">
 												<img src="/startrip/getPicture/rtImage/${rtDetails.photoArr[1]}" value="2"
-													name="AA" class="img-fluid mainimg">
+													 class="img-fluid mainimg">
 											</div>
 										</div>
 										<!-- END photo slide item -->
@@ -288,7 +288,7 @@
 											<div
 												class="media probootstrap-media d-block align-items-stretch imgmaxsize">
 												<img src="/startrip/getPicture/rtImage/${rtDetails.photoArr[2]}" value="3"
-													name="BB" class="img-fluid mainimg">
+													 class="img-fluid mainimg">
 											</div>
 										</div>
 										<!-- END photo slide item -->
@@ -365,7 +365,7 @@
 				</div>
 			</div>
 			<div class="col-md-4">
-				<a href="/startrip/review/UserReviewEdit/1" class="btn btn-primary">發表評論</a>
+				<a href="/startrip/review/UserReviewEdit/${RtId.rtId }" class="btn btn-primary">發表評論</a>
 				<a href="" class="btn btn-outline-primary">即時客服</a>
 			</div>
 		</div>
@@ -806,6 +806,89 @@
 		
 			});
 		}
+		
+		 $(document).ready(function () {
+             $("#my_popup").attr("hidden", false)
+         })
+
+         $('.js-owl-carousel-2').owlCarousel({
+             loop: false,
+             margin: 20,
+             nav: false,
+             autoplay: true,
+             autoplayTimeout: 5000,
+             smartSpeed: 800,
+             stagePadding: 0,
+             navText: ["<span class='ion-chevron-left'></span>", "<span class='ion-chevron-right'></span>"],
+             responsive: {
+                 0: {
+                     items: 1
+                 }
+             }
+         });
+
+         $('#bookingnow').click(function () {
+             $('html,body').animate({
+                 scrollTop: $('#bookingposition').offset().top
+             }, 800);
+         });
+         // 滑動至預定區間
+
+         $(document).ready(function () {
+             $('#my_popup').popup();
+
+         });
+         // 初始化跳出視窗區間
+         $('#my_popup').popup({
+             opacity: 0.4,
+             // 設定不透明度
+
+         });
+
+         $('.imglist').click(function () {
+             var imgval = $(this).attr("value")
+             var clickimg = $(".mainimg[value=" + imgval + "]").parent().parent().parent()
+             var activeimg = $(".owl-stage-outer>div .active").children().children().children()
+             var activeimgval = activeimg.attr("value")
+             if (imgval == activeimgval)
+                 return
+             var b = clickimg.parent().parent().parent()
+             b.attr("class", "owl-carousel js-owl-carousel-2 owl-loaded owl-drag owl-grab")
+             b.attr("class", "owl-carousel js-owl-carousel-2 owl-loaded owl-drag")
+             b.children().children().css("transition", "0.8s")
+             var imgwidthstart = clickimg.parent().attr("style").lastIndexOf(": ")
+             var imgwidthend = clickimg.parent().attr("style").lastIndexOf("px;")
+             var imgwidth = clickimg.parent().attr("style").substr(imgwidthstart + 2, imgwidthend - imgwidthstart - 2)
+             var imglength = $("div .col-md.popwindow").children().length
+             var a = imgwidth * -1 / imglength * (imgval - 1)
+             var imgchoice = clickimg.parent().css("transform", "translate3d(" + a + "px, 0px, 0px)")
+             activeimg.parent().parent().parent().removeClass("active")
+             clickimg.attr("class", "owl-item active")
+
+         })
+
+         $(function () {
+             $(document).tooltip({
+                 items: "[title]",
+                 content: function () {
+                     var element = $(this);
+                     if (element.is("[data-geo]")) {
+                         var text = element.children().attr("map");
+                         console.log(text)
+                         return "<img class='map' alt='" + text +
+                             "' src='http://maps.google.com/maps/api/staticmap?" +
+                             "zoom=16&size=350x350&maptype=terrain&sensor=false&center=" +
+                             text + "&key=AIzaSyAphlUZhilGS44rk9TBLOoMluxpNJa0Cfk'>";
+                     }
+                     if (element.is("[title]")) {
+                         return element.attr("title");
+                     }
+                     if (element.is("img")) {
+                         return element.attr("alt");
+                     }
+                 }
+             });
+         });
 	</script>
 
 </body>
