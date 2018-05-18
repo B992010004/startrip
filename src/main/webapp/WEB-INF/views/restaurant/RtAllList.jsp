@@ -104,166 +104,33 @@
 
 		<div class="col-md1">
 			<div class="bigheadline1">
-				<h2 class="display-4 probootstrap-section-heading">★ 餐廳嘉年華★</h2>
+				<h2 class="display-4 probootstrap-section-heading">★餐廳嘉年華★</h2>
 			</div>
 		</div>
 
 		<!-- --------------------------------------------------------------------------------------------------- -->
 
-		<div class="row"><c:forEach var='rtDetails' items='${RtDetails}'>
-			<div class="col-lg-6 portfolio-item">
-				<div class="card h-100">
-					<a href="#"><img class="card-img-top"
-						src="/startrip/assets/images/01.jpg" alt=""></a>
-					<div class="card-body">
-						<h4 class="card-title">
-							<a href="#">${rtDetails.rtName}</a>
-						</h4>
-						<p class="card-text">${rtDetails.rtCounty}</p>
-						<p class="card-text">${rtDetails.rtArea}}</p>
-						<p class="card-text">${rtDetails.rtCuisine}</p>
-						<p class="card-text">${rtDetails.teCategory}</p>
-						<p class="card-text">${rtDetails.rtBusinesshours}</p>
-						<div class="btn11">
-							<a href="/startrip/restaurant/1" class="btn btn-primary">去了解</a>
+		<div class="row">
+		<c:forEach var='rtDetails' items='${RtDetails}'>
+				<div class="col-lg-6 portfolio-item">
+					<div class="card h-100">
+						<a href="/startrip/restaurant/${rtDetails.rtId}"><img class="card-img-top"
+							src="/startrip/getPicture/rtImage/${rtDetails.photoArr[4]}" alt=""></a>
+						<div class="card-body">
+							<h4 class="card-title">
+								<a href="#">${rtDetails.rtName}</a>
+							</h4>
+							<p class="card-text">${rtDetails.rtCuisine}</p>
+							<p class="card-text">${rtDetails.teCategory}</p>
+							<p class="card-text">${rtDetails.rtPricepount}</p>
+							<p class="card-text">${rtDetails.rtCounty}</p>
+							<div class="btn11">
+								<a href="/startrip/restaurant/${rtDetails.rtId}" class="btn btn-primary">去了解</a>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="col-lg-6 portfolio-item">
-				<div class="card h-100">
-					<a href="#"><img class="card-img-top"
-						src="/startrip/assets/images/01.jpg" alt=""></a>
-					<div class="card-body">
-						<h4 class="card-title">
-							<a href="#">餐廳名稱</a>
-						</h4>
-						<p class="card-text">地區</p>
-						<p class="card-text">菜系類別</p>
-						<p class="card-text">餐點類別</p>
-						<p class="card-text">餐點類別</p>
-						<p class="card-text">評分星等</p>
-						<div class="btn11">
-							<a href="/startrip/restaurant/1" class="btn btn-primary">去了解</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-6 portfolio-item">
-				<div class="card h-100">
-					<a href="#"><img class="card-img-top"
-						src="/startrip/assets/images/01.jpg" alt=""></a>
-					<div class="card-body">
-						<h4 class="card-title">
-							<a href="#">餐廳名稱</a>
-						</h4>
-						<p class="card-text">地區</p>
-						<p class="card-text">菜系類別</p>
-						<p class="card-text">餐點類別</p>
-						<p class="card-text">餐點類別</p>
-						<p class="card-text">評分星等</p>
-						<div class="btn11">
-							<a href="/startrip/restaurant/1" class="btn btn-primary">去了解</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-6 portfolio-item">
-				<div class="card h-100">
-					<a href="#"><img class="card-img-top"
-						src="/startrip/assets/images/01.jpg" alt=""></a>
-					<div class="card-body">
-						<h4 class="card-title">
-							<a href="#">餐廳名稱</a>
-						</h4>
-						<p class="card-text">地區</p>
-						<p class="card-text">菜系類別</p>
-						<p class="card-text">餐點類別</p>
-						<p class="card-text">餐點類別</p>
-						<p class="card-text">評分星等</p>
-						<div class="btn11">
-							<a href="/startrip/restaurant/1" class="btn btn-primary">去了解</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-6 portfolio-item">
-				<div class="card h-100">
-					<a href="#"><img class="card-img-top"
-						src="/startrip/assets/images/01.jpg" alt=""></a>
-					<div class="card-body">
-						<h4 class="card-title">
-							<a href="#">餐廳名稱</a>
-						</h4>
-						<p class="card-text">地區</p>
-						<p class="card-text">菜系類別</p>
-						<p class="card-text">餐點類別</p>
-						<p class="card-text">餐點類別</p>
-						<p class="card-text">評分星等</p>
-						<div class="btn11">
-							<a href="/startrip/restaurant/1" class="btn btn-primary">去了解</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-6 portfolio-item">
-				<div class="card h-100">
-					<a href="#"><img class="card-img-top"
-						src="/startrip/assets/images/01.jpg" alt=""></a>
-					<div class="card-body">
-						<h4 class="card-title">
-							<a href="#">餐廳名稱</a>
-						</h4>
-						<p class="card-text">地區</p>
-						<p class="card-text">菜系類別</p>
-						<p class="card-text">餐點類別</p>
-						<p class="card-text">餐點類別</p>
-						<p class="card-text">評分星等</p>
-						<div class="btn11">
-							<a href="/startrip/restaurant/1" class="btn btn-primary">去了解</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-6 portfolio-item">
-				<div class="card h-100">
-					<a href="#"><img class="card-img-top"
-						src="/startrip/assets/images/01.jpg" alt=""></a>
-					<div class="card-body">
-						<h4 class="card-title">
-							<a href="#">餐廳名稱</a>
-						</h4>
-						<p class="card-text">地區</p>
-						<p class="card-text">菜系類別</p>
-						<p class="card-text">餐點類別</p>
-						<p class="card-text">餐點類別</p>
-						<p class="card-text">評分星等</p>
-						<div class="btn11">
-							<a href="/startrip/restaurant/1" class="btn btn-primary">去了解</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-6 portfolio-item">
-				<div class="card h-100">
-					<a href="#"><img class="card-img-top"
-						src="/startrip/assets/images/01.jpg" alt=""></a>
-					<div class="card-body">
-						<h4 class="card-title">
-							<a href="#">餐廳名稱</a>
-						</h4>
-						<p class="card-text">地區</p>
-						<p class="card-text">菜系類別</p>
-						<p class="card-text">餐點類別</p>
-						<p class="card-text">餐點類別</p>
-						<p class="card-text">評分星等</p>
-						<div class="btn11">
-							<a href="/startrip/restaurant/1" class="btn btn-primary">去了解</a>
-						</div>
-					</div>
-				</div>
-			</div>
-</c:forEach>
+			</c:forEach>
 		</div>
 
 		<!-- --------------------------------------------------------------------------------------------------- -->
@@ -272,6 +139,7 @@
 		<div class="form-group">縣市&nbsp;:&nbsp;</div>
 		<select path="" class="js-states form-control" id="id_label_single"
 			style="width: 100%;">
+			<option value="">請選擇縣市</option>
 			<option value="臺北市">臺北市</option>
 			<option value="新北市">新北市</option>
 			<option value="桃園市">桃園市</option>
@@ -296,6 +164,7 @@
 		<div class="form-group">地區&nbsp;:&nbsp;</div>
 		<select path="" class="js-states form-control" id="id_label_single"
 			style="width: 100%;">
+			<option value="">請選擇地區</option>
 			<option value="花蓮市">花蓮市</option>
 			<option value="鳳林鎮">玉里鎮</option>
 			<option value="鳳林鎮">鳳林鎮</option>
@@ -313,6 +182,7 @@
 		<div class="form-group">菜系類別&nbsp;:&nbsp;</div>
 		<select path="" class="js-states form-control" id="id_label_single"
 			style="width: 100%;">
+			<option value="">請選擇菜系</option>
 			<option value="中式料理">中式料理</option>
 			<option value="日式料理">日式料理</option>
 			<option value="港式料理">港式料理</option>
@@ -332,6 +202,7 @@
 		<div class="form-group">餐點類別&nbsp;:&nbsp;</div>
 		<select path="" class="js-states form-control" id="id_label_single"
 			style="width: 100%;">
+			<option value="">請選擇區段</option>
 			<option value="早餐">早餐</option>
 			<option value="早午餐">早午餐</option>
 			<option value="午餐">午餐</option>
@@ -343,6 +214,7 @@
 		<div class="form-group">餐點價位&nbsp;:&nbsp;</div>
 		<select path="" class="js-states form-control" id="id_label_single"
 			style="width: 100%;">
+			<option value="">請選擇價位</option>
 			<option value="高級餐廳">高級餐廳</option>
 			<option value="中等價位">中等價位</option>
 			<option value="平價美食">平價美食</option>

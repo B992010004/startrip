@@ -67,4 +67,9 @@ public class RtDetailsServiceImp implements RtDetailsService {
 		return RtDetailsRepositoryImp.getrtPricepountL();
 	}
 
+	@Override
+	public List<RtDetailsBean> getAllOne() {
+		return RtDetailsRepositoryImp.getAllOne();
+	}
+
 }

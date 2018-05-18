@@ -95,20 +95,24 @@
 }
 
 .probootstrap_section2 {
-  padding-bottom: 3em;
-  float: left;
-  width: 100%; }
-  .probootstrap_section.bg-light {
-    background: #ECECEC !important; }
-    
+	padding-bottom: 3em;
+	float: left;
+	width: 100%;
+}
+
+.probootstrap_section.bg-light {
+	background: #ECECEC !important;
+}
+
 .probootstrap_section3 {
-  padding-top:6%;
-  float: left;
-  width: 100%; }
-  .probootstrap_section.bg-light {
-    background: #ECECEC !important; }
+	padding-top: 6%;
+	float: left;
+	width: 100%;
+}
 
-
+.probootstrap_section.bg-light {
+	background: #ECECEC !important;
+}
 </style>
 
 </head>
@@ -125,15 +129,18 @@
 		data-stellar-background-ratio="0.5" id="section-home">
 		<div class="overlay"></div>
 		<div class="container">
-			<div class="row align-items-center text-center">
-				<div class="input-group mb-3">
-					<input type="text" class="form-control" placeholder="城市、餐廳名稱等"
-						aria-label="Recipient's username" aria-describedby="basic-addon2">
-					<div>
-						<input type="submit" value="找餐廳" class="btn btn-primary btn-block">
+			<form action="/startrip/RtAllList">
+				<div class="row align-items-center text-center">
+					<div class="input-group mb-3">
+						<input type="text" class="form-control" placeholder="城市、餐廳名稱等"
+							aria-label="Recipient's username" aria-describedby="basic-addon2">
+						<div>
+							<input type="submit" value="找餐廳"
+								class="btn btn-primary btn-block">
+						</div>
 					</div>
 				</div>
-			</div>
+			</form>
 		</div>
 
 	</section>
@@ -154,7 +161,8 @@
 				<div class="row">
 					<c:forEach var='rtDetails' items='${RtDetails}'>
 						<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
-							<a href="/startrip/restaurant/${rtDetails.rtId}" class="probootstrap-thumbnail"> <img
+							<a href="/startrip/restaurant/${rtDetails.rtId}"
+								class="probootstrap-thumbnail"> <img
 								src="/startrip/getPicture/rtImage/${rtDetails.photoArr[2]}"
 								alt="Free Template by ProBootstrap.com" class="img-fluid">
 								<h3>${rtDetails.rtName}</h3> <span>${rtDetails.rtCuisine}</span>
@@ -174,7 +182,8 @@
 				<div class="row">
 					<c:forEach var='rtDetails' items='${nearby}'>
 						<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
-							<a href="/startrip/restaurant/${rtDetails.rtId}" class="probootstrap-thumbnail"> <img
+							<a href="/startrip/restaurant/${rtDetails.rtId}"
+								class="probootstrap-thumbnail"> <img
 								src="/startrip/getPicture/rtImage/${rtDetails.photoArr[1]}"
 								alt="Free Template by ProBootstrap.com" class="img-fluid">
 
@@ -195,7 +204,8 @@
 				<div class="row">
 					<c:forEach var='rtDetails' items='${HH}'>
 						<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
-							<a href="/startrip/restaurant/${rtDetails.rtId}" class="probootstrap-thumbnail"> <img
+							<a href="/startrip/restaurant/${rtDetails.rtId}"
+								class="probootstrap-thumbnail"> <img
 								src="/startrip/getPicture/rtImage/${rtDetails.photoArr[3]}"
 								alt="Free Template by ProBootstrap.com" class="img-fluid">
 
@@ -216,7 +226,8 @@
 				<div class="row">
 					<c:forEach var='rtDetails' items='${MM}'>
 						<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
-							<a href="/startrip/restaurant/${rtDetails.rtId}" class="probootstrap-thumbnail"> <img
+							<a href="/startrip/restaurant/${rtDetails.rtId}"
+								class="probootstrap-thumbnail"> <img
 								src="/startrip/getPicture/rtImage/${rtDetails.photoArr[3]}"
 								alt="Free Template by ProBootstrap.com" class="img-fluid">
 
@@ -229,7 +240,7 @@
 				</div>
 			</div>
 		</div>
-			<div class="container">
+		<div class="container">
 			<div class="row text-center mb-5 probootstrap-animate">
 				<div class="col-md-12">
 					<h2 class="display-4 border-bottom probootstrap-section-heading">平價美食</h2>
@@ -237,7 +248,8 @@
 				<div class="row">
 					<c:forEach var='rtDetails' items='${LL}'>
 						<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
-							<a href="/startrip/restaurant/${rtDetails.rtId}" class="probootstrap-thumbnail"> <img
+							<a href="/startrip/restaurant/${rtDetails.rtId}"
+								class="probootstrap-thumbnail"> <img
 								src="/startrip/getPicture/rtImage/${rtDetails.photoArr[5]}"
 								alt="Free Template by ProBootstrap.com" class="img-fluid">
 

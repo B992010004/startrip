@@ -76,6 +76,17 @@ public class RtDetailsRepositoryImp implements RtDetailsRepository {
 		list = session.createQuery(hql).setMaxResults(4).getResultList();
 		return list;
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<RtDetailsBean> getAllOne() {
+		String hql="FROM RtDetailsBean";
+		Session session = null;
+		List<RtDetailsBean> list = new ArrayList<>();
+		session = factory.getCurrentSession();
+		list = session.createQuery(hql).setMaxResults(8).getResultList();
+		return list;
+	}
 
 	@SuppressWarnings("unchecked")
 	@Override

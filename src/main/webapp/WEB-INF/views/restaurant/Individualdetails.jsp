@@ -218,7 +218,6 @@ tbody th img {
 ul li {
 	list-style-type: none;
 }
-
 </style>
 
 </head>
@@ -261,12 +260,13 @@ ul li {
 		<div class="row">
 			<!-- 相片 + 評分 + 地圖 -->
 			<div class="container">
-				<!-- 相片 section -->
-				<section class="probootstrap_section">
-					<div class="container">
-						<div class="row">
-							<div class="col-md-123">
-								<div class="owl-carousel js-owl-carousel-2">
+				<div class="col-md-9">
+					<!-- 相片 section -->
+					<section class="probootstrap_section">
+						<div class="container">
+							<div class="row">
+								<div class="col-md-123">
+									<div class="owl-carousel js-owl-carousel-2">
 										<!-- photo slide item -->
 										<div>
 											<div
@@ -303,7 +303,7 @@ ul li {
 											</div>
 										</div>
 										<!-- END photo slide item -->
-											<!-- photo slide item -->
+										<!-- photo slide item -->
 										<div>
 											<div
 												class="media probootstrap-media d-block align-items-stretch imgmaxsize">
@@ -312,7 +312,7 @@ ul li {
 											</div>
 										</div>
 										<!-- END photo slide item -->
-											<!-- photo slide item -->
+										<!-- photo slide item -->
 										<div>
 											<div
 												class="media probootstrap-media d-block align-items-stretch imgmaxsize">
@@ -321,12 +321,13 @@ ul li {
 											</div>
 										</div>
 										<!-- END photo slide item -->
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-				</section>
-				<!-- END section -->
+					</section>
+					<!-- END section -->
+				</div>
 			</div>
 			<div class="col-md-3">
 				<div class="row">

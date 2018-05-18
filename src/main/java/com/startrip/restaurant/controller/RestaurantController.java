@@ -4,10 +4,13 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.CacheControl;
@@ -17,11 +20,15 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.startrip.member.Service.MemberServiceInterface;
+import com.startrip.member.memberModle.MemberBean;
+import com.startrip.restaurant.model.RtBookingBean;
 import com.startrip.restaurant.model.RtDetailsBean;
 import com.startrip.restaurant.service.RtBookingService;
 import com.startrip.restaurant.service.RtDetailsService;
@@ -102,34 +109,51 @@ public class RestaurantController {
 	}
 
 	// /前台餐廳首頁/--------------------------------------------------------------------------------------------
+	
+	// 前台餐廳總覽---------------------------------------------------------------------------------------------
+	
+	@RequestMapping(value = "/RtAllList")
+	public String getAllRt(Model model) {
+		
+		List<RtDetailsBean> list = rtDetailsService.getAllOne();	
+		String[] photoArr = null;
+		for (RtDetailsBean bean : list) {
+			if (bean.getPhotoPaths() != null) {
+				photoArr = bean.getPhotoPaths().split(";");
+				bean.setPhotoArr(photoArr);
+			}
+		}
+		model.addAttribute("RtDetails", list);
+		return "restaurant/RtAllList";
+	}
+	
+	// /前台餐廳總覽/---------------------------------------------------------------------------------------------
 
 	// 前台新增訂單---------------------------------------------------------------------------------------------
 
-	// @RequestMapping(value = "/reservation", method = RequestMethod.GET)
-	// public String insertRtBooking(Model model) {
-	//
-	// RtBookingBean rbb = new RtBookingBean();
-	// RtDetailsBean rdb = new RtDetailsBean();
-	// model.addAttribute("rtDetailsBean", rdb);
-	// model.addAttribute("RtBookingBean", rbb);
-	//
-	// return "restaurant/reservation";
-	// }
-	//
-	// @RequestMapping(value = "/insertRtBooking/", method = RequestMethod.POST)
-	// public String insertRtBooking(@PathVariable("rtid") Integer
-	// rtid,@PathVariable("mail") String mail,@ModelAttribute("RtBookingBean")
-	// RtBookingBean rbb, BindingResult result,
-	// HttpServletRequest request, HttpSession session) {
-	// MemberBean memberBean = (MemberBean)session.getAttribute("LoginOK");
-	// rbb.setRtDetailsBean(rtDetailsService.getAllRtDetailsrtId(rtid));
-	// rbb.setMemberBean(memberBean);
-	// Timestamp outDate = new Timestamp(System.currentTimeMillis());
-	// rbb.setReTime(outDate);
-	// rtBookingService.insertRtBooking(rbb);
-	//
-	// return "restaurant/Individualdetails";
-	// }
+	 @RequestMapping(value = "/reservation", method = RequestMethod.GET)
+	 public String insertRtBooking(Model model) {
+	
+	 RtBookingBean rbb = new RtBookingBean();
+	 model.addAttribute("RtBookingBean", rbb);
+	
+	 return "restaurant/reservation";
+	 }
+	
+	 @RequestMapping(value = "/insertRtBooking/", method = RequestMethod.POST)
+	 public String insertRtBooking(@PathVariable("rtid") Integer
+	 rtid,@PathVariable("mail") String mail,@ModelAttribute("RtBookingBean")
+	 RtBookingBean rbb, BindingResult result, HttpServletRequest request, HttpSession session) {
+		 
+	 MemberBean memberBean = (MemberBean)session.getAttribute("LoginOK");
+	 rbb.setRtDetailsBean(rtDetailsService.getAllRtDetailsrtId(rtid));
+	 rbb.setMemberBean(memberBean);
+	 Timestamp outDate = new Timestamp(System.currentTimeMillis());
+	 rbb.setReTime(outDate);
+	 rtBookingService.insertRtBooking(rbb);
+	
+	 return "restaurant/Individualdetails";
+	 }
 
 	// /前台新增訂單/---------------------------------------------------------------------------------------------
 
@@ -216,15 +240,5 @@ public class RestaurantController {
 		return responseEntity;
 	}
 
-	// ---------測試------------------------測試------------------測試----------------測試-------------
-
-	// 新增訂單頁面 樣板
-
-	@RequestMapping(value = "/RtAllList")
-	public String allList(Model model) {
-		return "/restaurant/RtAllList";
-	}
-
-	// ---------測試------------------------測試------------------測試----------------測試-------------
 
 }
