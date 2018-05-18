@@ -237,23 +237,15 @@ ul li {
 		<div class="row">
 			<div class="col-md">
 				<div class="col-md-123">
-					<c:forEach var='rtDetails' items='${RtId}'>
-						<h2 class="display-4 probootstrap-section-heading">${rtDetails.rtName}</h2>
+						<h2 class="display-4 probootstrap-section-heading">${RtId.rtName}</h2>
 
 						<div class="littletitle1">
-							<div>${rtDetails.rtAddress}</div>
-							<div>${rtDetails.rtPhone}</div>
-							<div>網址 :
-								${rtDetails.rtUrl}
-							</div>
-							<div>${rtDetails.rtCounty}</div>
-							<div>${rtDetails.rtArea}</div>
-							<div>${rtDetails.rtPricepount}</div>
-							<div>${rtDetails.rtCuisine}</div>
-							<div>${rtDetails.teCategory}</div>
+							<div>${RtId.rtCuisine}</div>
+							<div>${RtId.teCategory}</div>
+							<div>${RtId.rtPhone}</div>
+							<div>${RtId.rtCounty}</div>
+							<div>${RtId.rtArea}</div>
 						</div>
-
-					</c:forEach>
 				</div>
 				<div class="col-md-1234">
 					<a href="/startrip/reservation" class="btn btn-primary">立&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;即&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;訂&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;位</a>
@@ -270,7 +262,6 @@ ul li {
 			<div class="container">
 				<!-- 相片 section -->
 				<section class="probootstrap_section">
-					<c:forEach var='rtDetails' items='${RtId}'>
 						<div class="container">
 							<div class="row">
 								<div class="col-md-123">
@@ -279,7 +270,7 @@ ul li {
 										<div>
 											<div
 												class="media probootstrap-media d-block align-items-stretch imgmaxsize">
-												<img src="/startrip/assets\images\test1.jpg" value="1"
+												<img src="/startrip/getPicture/rtImage/${rtDetails.photoArr[0]}" value="1"
 													name="XX" class="img-fluid mainimg">
 											</div>
 										</div>
@@ -288,7 +279,7 @@ ul li {
 										<div>
 											<div
 												class="media probootstrap-media d-block align-items-stretch imgmaxsize">
-												<img src="/startrip/assets\images\sq_img_1.jpg" value="2"
+												<img src="/startrip/getPicture/rtImage/${rtDetails.photoArr[1]}" value="2"
 													name="AA" class="img-fluid mainimg">
 											</div>
 										</div>
@@ -297,7 +288,7 @@ ul li {
 										<div>
 											<div
 												class="media probootstrap-media d-block align-items-stretch imgmaxsize">
-												<img src="/startrip/assets\images\sq_img_2.jpg" value="3"
+												<img src="/startrip/getPicture/rtImage/${rtDetails.photoArr[2]}" value="3"
 													name="BB" class="img-fluid mainimg">
 											</div>
 										</div>
@@ -307,7 +298,6 @@ ul li {
 								</div>
 							</div>
 						</div>
-					</c:forEach>
 				</section>
 				<!-- END section -->
 			</div>
@@ -331,7 +321,6 @@ ul li {
 		<div class="row">
 			<div class="row2">
 				<div class="col-md">
-					<c:forEach var='rtDetails' items='${RtId}'>
 						<!-- 規定 -->
 						<br>
 						<h5>餐廳詳細資料：</h5>
@@ -340,31 +329,24 @@ ul li {
 							<tbody>
 								<tr>
 									<th width="4%" scope="row">1.</th>
-									<td></td>
+									<td>營業時間&nbsp;:&nbsp;${RtId.rtBusinesshours}</td>
 								</tr>
 								<!-- 政策提示生成起始 -->
 								<tr>
 									<th width="4%" scope="row">2.</th>
-									<td></td>
+									<td>價位&nbsp;:&nbsp;${RtId.rtPricepount}</td>
 								</tr>
 								<!-- 政策提示生成結束 -->
 								<tr>
 									<th scope="row">3.</th>
-									<td></td>
+									<td>地址 &nbsp;:&nbsp;${RtId.rtAddress}</td>
 								</tr>
 								<tr>
 									<th scope="row">4.</th>
-									<td></td>
-								</tr>
-								<tr>
-									<th scope="row">5.</th>
-
-									<td></td>
-
+									<td>網址 &nbsp;:&nbsp;${RtId.rtUrl}</td>
 								</tr>
 							</tbody>
 						</table>
-					</c:forEach>
 				</div>
 			</div>
 		</div>
