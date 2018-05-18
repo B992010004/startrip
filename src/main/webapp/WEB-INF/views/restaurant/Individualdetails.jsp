@@ -753,32 +753,6 @@ ul li {
 					}
 
 					$('#displayReview').html(docFrag);
-
-// 					要生樹
-// 					<div class="row" style="margin:16px;">
-// 					<div class="col-md-1">
-// 						<div class="row justify-content-center" style="margin:16px;">
-// 							<img class="review-memberphoto" src="<c:url value='/getPicture/${review.memberBean.mail}'/>">
-// 						</div>
-// 						<div class="row justify-content-center">
-// 							<div>
-// 								<h6>${review.memberBean.username }</h6>
-// 							</div>
-// 						</div>
-// 					</div>
-
-// 					<div class="col-md-9">
-// 						<div class="probootstrap_font-18">
-// 							<h5>${review.title}</h5>
-// 						</div>
-// 						<div class="">${review.content }</div>
-// 						<c:if test="${not empty review.photoPathList }">
-// 							<c:forEach var="photoPath" items="${review.photoPathList }">
-// 								<img src="/startrip/getPicture/reviewUpload/${photoPath }" class="review-image" />
-// 							</c:forEach>
-// 						</c:if>
-// 					</div>
-// 				</div>				
 					
 				},
 				error:function(e){

@@ -345,7 +345,7 @@
         <!-- 靜態資料結束 -->
         <!-- 動態資料產生 -->
         <c:forEach var="hotel" items="${results }">
-        <a href="/startrip/Rooms/1" class="roomlink">
+        <a href="/startrip/Rooms/${hotel.hotelid }" class="roomlink">
           <div class="row">
             <div class="col-md">
               <!-- card -->

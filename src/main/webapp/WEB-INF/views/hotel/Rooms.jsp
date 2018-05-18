@@ -7,7 +7,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Hotels</title>
+    <title>${hotel.hotelname }</title>
 
 
     <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,700" rel="stylesheet">
@@ -122,6 +122,10 @@
            	height: 80px; 
            	border-radius: 50%;
         }
+        
+        ul li {
+			list-style-type: none;
+		}
     </style>
 
 
@@ -234,15 +238,15 @@
                     <!-- 主要資訊 -->
                     <div class="col-md">
                         <div class="row">
-                            <div class="col-md-9">OX飯店★★★★★
+                            <div class="col-md-9">${hotel.hotelname }
                             </div>
-                            <div class="col-md-3">最低訂房價格：3000</div>
+                            <div class="col-md-3">最低訂房價格：${hotel.lowestPrice }</div>
                         </div>
                         <div class="row">
-                            <div class="col-md-12">台北市內湖區</div>
+                            <div class="col-md-12">${hotel.hoteladdress }</div>
                         </div>
                         <div class="row">
-                            <div class="col-md-9">02-12345678</div>
+                            <div class="col-md-9">${hotel.hotelphone }</div>
                             <div class="col-md-3">
                                 <button id="bookingnow" type="button" class="btn btn-outline-warning">
                                     立即預定
@@ -261,30 +265,33 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="owl-carousel js-owl-carousel-2">
+                                        	<!-- 動態生成 -->
                                             <!-- photo slide item -->
+                                          <c:forEach var="photo" items="${hotel.photoArr }">
                                             <div>
                                                 <div class="media probootstrap-media d-block align-items-stretch imgmaxsize">
-                                                    <img src="/startrip/assets/images/test1.jpg" value="1" name="XX" class="img-fluid mainimg">
+                                                    <img src="/startrip/getPicture/hotel/${hotel.hotelid }/${photo }" name="XX" class="img-fluid mainimg">
                                                 </div>
                                             </div>
+                                            </c:forEach>
                                             <!-- END photo slide item -->
                                             <!-- photo slide item -->
-                                            <div>
-                                                <div class="media probootstrap-media d-block align-items-stretch imgmaxsize">
-                                                    <img src="/startrip/assets/images/sq_img_1.jpg" value="2" name="AA" class="img-fluid mainimg">
-                                                </div>
-                                            </div>
+<!--                                             <div> -->
+<!--                                                 <div class="media probootstrap-media d-block align-items-stretch imgmaxsize"> -->
+<!--                                                     <img src="/startrip/assets/images/sq_img_1.jpg" value="2" name="AA" class="img-fluid mainimg"> -->
+<!--                                                 </div> -->
+<!--                                             </div> -->
                                             <!-- END photo slide item -->
                                             <!-- photo slide item -->
-                                            <div>
-                                                <div class="media probootstrap-media d-block align-items-stretch imgmaxsize">
-                                                    <img src="/startrip/assets/images/sq_img_2.jpg" value="3" name="BB" class="img-fluid mainimg">
-                                                </div>
-                                            </div>
+<!--                                             <div> -->
+<!--                                                 <div class="media probootstrap-media d-block align-items-stretch imgmaxsize"> -->
+<!--                                                     <img src="/startrip/assets/images/sq_img_2.jpg" value="3" name="BB" class="img-fluid mainimg"> -->
+<!--                                                 </div> -->
+<!--                                             </div> -->
                                             <!-- END photo slide item -->
                                         </div>
                                         <div>
-                                            <p class="my_popup_open">圖片名稱
+                                            <p class="my_popup_open">
                                                 <i>(點我看更多)</i>
                                             </p>
                                         </div>
@@ -466,16 +473,34 @@
 									</div>       
 								</div>
 						
-                        <!-- 旅客類型 -->
-                        <p class="col-md-3">旅客類型</p>
-                        <!-- 旅客類型 -->
-                        
-                        <!-- 月份 -->
-                        <p class="col-md-3">月份</p>
+                       <!-- 旅客類型 -->
+
+			<div class="travler-rank col-md-2" id="selectCheckBox">
+				<label class="sr-only-focusable">旅客類型</label>
+				<ul>
+					<li><input id="cr1" type="checkbox" name="family" value="家庭">家庭出遊</li>
+					<li><input id="cr2" type="checkbox" name="couple" value="伴侶旅行">伴侶旅行</li>
+					<li><input id="cr3" type="checkbox" name="alone" value="單獨旅行">單獨旅行</li>
+					<li><input id="cr4" type="checkbox" name="business" value="商務">商務出差</li>
+					<li><input id="cr5" type="checkbox" name="friends" value="朋友">好友旅行</li>
+				</ul>
+			</div>
+
+			<!-- 月份 -->
+			<div class="travler-rank col-md-3">
+				<label class="sr-only-focusable">月份</label>
+				<ul>
+					<li><input type="checkbox" />3 月到 5 月</li>
+					<li><input type="checkbox" />6 月到 8 月</li>
+					<li><input type="checkbox" />9 月到 11 月</li>
+					<li><input type="checkbox" />12 月到 2 月</li>
+				</ul>
+			</div>
                         <!-- 月份 -->
                     </div>                    
                 </div>
-            </div>     
+            </div>
+            <div id="displayReview">     
 			<c:forEach var='review' items='${reviews}'>	        
 				<div class="row" style="margin:16px;">
 					<div class="col-md-1">
@@ -493,6 +518,7 @@
 					</div>
 				</div>				
 			</c:forEach>
+			</div>
 		</div>
 		
 		<!-- 訊息聊天框  -->
@@ -515,15 +541,22 @@
 	</div>
         
         <!-- 圖片彈出區間 -->
+        
+        
         <div id="my_popup" hidden="hidden">
-            <div class="row">
+        <div class="row">
                 <div class="col-md popwindow">
-                    <img src="/startrip/assets/images/test1.jpg" value="1" title="XX" class="ui-corner-all img-fluid imglist my_popup_close  img-thumbnail">
-                    <img src="/startrip/assets/images/sq_img_1.jpg" value="2" title="AA" class="ui-corner-all img-fluid imglist my_popup_close img-thumbnail">
-                    <img src="/startrip/assets/images/sq_img_2.jpg" value="3" title="BB" class="ui-corner-all img-fluid imglist my_popup_close img-thumbnail">
+        <c:forEach var="photo" items="${hotel.photoArr }" varStatus="idx">
+            
+                    <img src="/startrip/getPicture/hotel/${hotel.hotelid }/${photo }" class="ui-corner-all img-fluid imglist my_popup_close  img-thumbnail">
+            </c:forEach>
+<%--                     <img src="/startrip/getPicture/hotel/${hotel.hotelid }/${photo }"  title="AA" class="ui-corner-all img-fluid imglist my_popup_close img-thumbnail"> --%>
+<%--                     <img src="/startrip/getPicture/hotel/${hotel.hotelid }/${photo }"  title="BB" class="ui-corner-all img-fluid imglist my_popup_close img-thumbnail"> --%>
                 </div>
             </div>
         </div>
+     
+       
         <!-- 圖片彈出區間 -->
 
 
@@ -666,9 +699,7 @@
 
       $('#stopSTOMP').click(function() {sock.close()});
 	</script>
-    
-     
-<!-- ------------------------------------------       -->
+
         <script>
             $(document).ready(function () {
                 $("#my_popup").attr("hidden", false)
@@ -752,6 +783,91 @@
                     }
                 });
             });
+        </script>
+        
+<!--         多重篩選 -->
+        <script>
+        $(document).ready(function(){
+			for(i=1;i<=5;i++){
+				$('#cr' + i).on('change',function(){
+					selectByCriteria();
+// 					console.log("繫結成功");
+				})
+			}
+		});
+	
+		function selectByCriteria(){
+			var criteriaData = {};
+			
+// 			criteriaData.family = $("#cr1").val();
+// 			criteriaData.couple = $("#cr2").val();
+// 			criteriaData.alone = $("#cr3").val();
+// 			criteriaData.business = $("#cr4").val();
+			
+	 		$("#selectCheckBox input:checked").each(function(idx,checkbox){
+	 			console.log("A");
+	 			console.log(checkbox);
+	 			console.log(checkbox.attributes["name"].value);
+	 			console.log(checkbox.attributes["value"].value);
+	 			console.log("B");
+	 			criteriaData[checkbox.attributes["name"].value] = checkbox.attributes["value"].value;
+	 			console.log("C");
+			});
+
+	 		console.log(criteriaData);
+
+			$.ajax({
+				url : '/startrip/review/selectByCriteria',
+				type : 'GET',
+				data : criteriaData,
+				//enctype: "multipart/form-data",
+				//contentType : false,
+				//processData : false,
+				//dataType:"json",
+				success : function(responce) {
+					$('#displayReview').empty();				
+					console.log(responce);				
+					var docFrag = $(document.createDocumentFragment());
+					for(i=0;i<responce.length;i++){
+						console.log(responce[i].content);
+						//大row
+						var row = $('<div class="row" style="margin:16px;"></div>');
+
+						var col1 = $('<div class="col-md-1"></div>');
+						var innerRow1 = $('<div class="row justify-content-center" style="margin:16px;"></div>');
+							if(responce[i].memberBean.avatar != null){
+								var memberImg = $('<img class="review-memberphoto" src="/startrip/getPicture/memberIcon/' + responce[i].memberBean.avatar +'" />');
+							}						
+						var innerRow2 = $('<div class="row justify-content-center"></div>');
+						var innerRow2content = $('<div><h6>' + responce[i].memberBean.username + '</h6></div>');
+						innerRow2.append(innerRow2content);
+						innerRow1.append(memberImg);
+						col1.append([innerRow1, innerRow2]);
+
+						var col2 = $('<div class="col-md-9"></div>');
+						var title = $('<div class="probootstrap_font-18"><h5>' + responce[i].title + '</h5></div>');
+						var content = $('<div>' + responce[i].content + '</div>');
+
+						col2.append([title, content]);
+						if(responce[i].photoPathList!=null){
+						$.each(responce[i].photoPathList, function(idx,photoPath){
+							var contentImg = $('<img src="/startrip/getPicture/reviewUpload/' + photoPath + '" class="review-image" />');
+							col2.append(contentImg);
+						});
+						}
+						row.append([col1, col2]);
+						docFrag.append(row);
+					}
+
+					$('#displayReview').html(docFrag);
+					
+				},
+				error:function(e){
+					console.log(e);
+				}
+		
+			});
+		}
         </script>
 </body>
 

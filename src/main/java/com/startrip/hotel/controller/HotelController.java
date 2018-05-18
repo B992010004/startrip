@@ -48,7 +48,7 @@ public class HotelController {
 	@RequestMapping(value = "/HotelsSearchResult")
 	public String hotelsSearchResult(Model model, SearchHotel searchHotel) {
 		String[] photoArr = null;
-		
+
 		System.out.println(searchHotel);
 		// System.out.println("搜尋結果: " + hotelService.selectByCriteria(searchHotel));
 		List<HotelsBean> list = hotelService.selectByCriteria(searchHotel);
@@ -64,6 +64,13 @@ public class HotelController {
 	@RequestMapping(value = "/Rooms/{hotelId}")
 	public String rooms(@PathVariable("hotelId") Integer hotelId, Model model) {
 
+		HotelsBean bean = hotelService.selectByPk(hotelId);
+		//將PhotoPath分割
+		String[] photoArr = null;
+		photoArr = bean.getPhotoString().split(";");
+		bean.setPhotoArr(photoArr);
+		model.addAttribute("hotel", bean);
+
 		// review
 		// 評等
 		List<Long> ranks = reviewService.getRankByRestaurantId(hotelId);
@@ -78,6 +85,7 @@ public class HotelController {
 		}
 		model.addAttribute("rankSize", rankSize);
 		model.addAttribute("ranks", ranks);
+
 		// 評論bean
 		List<ReviewBean> reviews = reviewService.getReviewsByRestaurantId(hotelId);
 		model.addAttribute("reviews", reviews);
@@ -112,11 +120,10 @@ public class HotelController {
 		ByteArrayOutputStream baos = null;
 		int len = 0;
 		byte[] media = null;
-		System.out.println("除錯外");
+
 		// 7以下的id為靜態資料
 		if (Integer.valueOf(hotelId) <= 7) {
-			
-			System.out.println("除錯");
+
 			InputStream is = context
 					.getResourceAsStream("/WEB-INF/views/assets/images/hotels/" + hotelId + "/" + photoName);
 			baos = new ByteArrayOutputStream();
