@@ -32,8 +32,8 @@ import com.startrip.restaurant.model.RtBookingBean;
 import com.startrip.restaurant.model.RtDetailsBean;
 import com.startrip.restaurant.service.RtBookingService;
 import com.startrip.restaurant.service.RtDetailsService;
-import com.startrip.reviews.model.ReviewBean;
-import com.startrip.reviews.service.ReviewService;
+import com.startrip.reviews.model.RestaurantReview;
+import com.startrip.reviews.service.RestaurantReviewService;
 
 @Controller
 public class RestaurantController {
@@ -48,7 +48,7 @@ public class RestaurantController {
 	MemberServiceInterface memberservice;
 
 	@Autowired
-	ReviewService reviewService;
+	RestaurantReviewService restaurantReviewService;
 
 	@Autowired
 	ServletContext context;
@@ -187,7 +187,7 @@ public class RestaurantController {
 
 		// review
 		// 評等
-		List<Long> ranks = reviewService.getRankByRestaurantId(restaurantId);
+		List<Long> ranks = restaurantReviewService.getRankByRestaurantId(restaurantId);
 		Integer rankSize = 0;
 		for (Long rank : ranks) {
 			Integer tmp = rank.intValue();
@@ -200,7 +200,7 @@ public class RestaurantController {
 		model.addAttribute("rankSize", rankSize);
 		model.addAttribute("ranks", ranks);
 		// 評論bean
-		List<ReviewBean> reviews = reviewService.getReviewsByRestaurantId(restaurantId);
+		List<RestaurantReview> reviews = restaurantReviewService.getRestaurantReviewsByRestaurantId(restaurantId);
 		model.addAttribute("reviews", reviews);
 
 		return "/restaurant/Individualdetails";

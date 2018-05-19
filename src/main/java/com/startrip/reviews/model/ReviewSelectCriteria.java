@@ -2,7 +2,7 @@ package com.startrip.reviews.model;
 
 public class ReviewSelectCriteria {
 
-	private String hotelId;
+	private Integer pK;
 	private String family;
 	private String couple;
 	private String alone;
@@ -49,18 +49,18 @@ public class ReviewSelectCriteria {
 		this.friends = friends;
 	}
 
-	public String getHotelId() {
-		return hotelId;
+	public Integer getpK() {
+		return pK;
 	}
 
-	public void setHotelId(String hotelId) {
-		this.hotelId = hotelId;
+	public void setpK(Integer pK) {
+		this.pK = pK;
 	}
 
 	@Override
 	public String toString() {
-		return "ReviewSelectCriteria [hotelId=" + hotelId + ", family=" + family + ", couple=" + couple + ", alone="
-				+ alone + ", business=" + business + ", friends=" + friends + "]";
+		return "ReviewSelectCriteria [pK=" + pK + ", family=" + family + ", couple=" + couple + ", alone=" + alone
+				+ ", business=" + business + ", friends=" + friends + "]";
 	}
 
 }

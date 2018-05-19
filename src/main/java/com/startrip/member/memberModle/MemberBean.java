@@ -15,7 +15,7 @@ import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlTransient;
 import org.springframework.web.multipart.MultipartFile;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.startrip.reviews.model.ReviewBean;
+import com.startrip.reviews.model.HotelReview;
 
 @Entity
 @Table(name = "Membertable")
@@ -69,7 +69,7 @@ public class MemberBean implements Serializable {
 	}
 
 	@OneToMany(cascade = { CascadeType.REMOVE }, mappedBy = "memberBean")
-	private Set<ReviewBean> reviewBeans;
+	private Set<HotelReview> reviewBeans;
 
 	// -------------------------------
 	// @OneToMany(mappedBy="viewMail",cascade= {CascadeType.ALL})

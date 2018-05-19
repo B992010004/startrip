@@ -19,7 +19,7 @@ import com.startrip.member.memberModle.MemberBean;
 
 @Entity
 @Table
-public class ReviewBean implements Serializable {
+public class HotelReview implements Serializable {
 	/**
 	 * 
 	 */
@@ -29,7 +29,7 @@ public class ReviewBean implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer no;
 	private Integer articleId;
-	private Integer restaurantId;
+	private Integer hotelId;
 	private Integer memberId;
 	private String lastname;
 	private Timestamp updateTime;
@@ -49,11 +49,11 @@ public class ReviewBean implements Serializable {
 	private String photoPaths;
 	private String videoPath;
 	private String filePath;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "memberId", referencedColumnName = "memberid", insertable = false, updatable = false)
 	private MemberBean memberBean;
-	
+
 	public MemberBean getMemberBean() {
 		return memberBean;
 	}
@@ -86,6 +86,14 @@ public class ReviewBean implements Serializable {
 		return photoPathList;
 	}
 
+	public Integer getHotelId() {
+		return hotelId;
+	}
+
+	public void setHotelId(Integer hotelId) {
+		this.hotelId = hotelId;
+	}
+
 	public Integer getNo() {
 		return no;
 	}
@@ -100,14 +108,6 @@ public class ReviewBean implements Serializable {
 
 	public void setArticleId(Integer articleId) {
 		this.articleId = articleId;
-	}
-
-	public Integer getRestaurantId() {
-		return restaurantId;
-	}
-
-	public void setRestaurantId(Integer restaurantId) {
-		this.restaurantId = restaurantId;
 	}
 
 	public Integer getMemberId() {
@@ -233,18 +233,19 @@ public class ReviewBean implements Serializable {
 	public Date getVisited() {
 		return visited;
 	}
-	
+
 	public void setVisited(Date visited) {
 		this.visited = visited;
 	}
 
 	@Override
 	public String toString() {
-		return "ReviewBean [no=" + no + ", articleId=" + articleId + ", restaurantId=" + restaurantId + ", memberId=" + memberId
+		return "HotelReview [no=" + no + ", articleId=" + articleId + ", hotelId=" + hotelId + ", memberId=" + memberId
 				+ ", lastname=" + lastname + ", updateTime=" + updateTime + ", title=" + title + ", content=" + content
 				+ ", tripType=" + tripType + ", visited=" + visited + ", overallRank=" + overallRank
 				+ ", serviceRating=" + serviceRating + ", valueRating=" + valueRating + ", roomsRating=" + roomsRating
 				+ ", roomTips=" + roomTips + ", thumbCount=" + thumbCount + ", photoPaths=" + photoPaths
-				+ ", videoPath=" + videoPath + ", filePath=" + filePath + "]";
+				+ ", videoPath=" + videoPath + ", filePath=" + filePath + ", memberBean=" + memberBean + "]";
 	}
+
 }

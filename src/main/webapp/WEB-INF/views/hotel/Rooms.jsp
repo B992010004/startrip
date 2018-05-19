@@ -512,7 +512,7 @@
 						<div class="">${review.content }</div>
 						<c:if test="${not empty review.photoPathList }">
 							<c:forEach var="photoPath" items="${review.photoPathList }">
-								<img src="/startrip/getPicture/reviewUpload/${photoPath }" class="review-image"/>
+								<img src="/startrip/getPicture/reviewUpload/hotel/${photoPath }" class="review-image"/>
 							</c:forEach>
 						</c:if>					
 					</div>
@@ -814,7 +814,7 @@
 	 			criteriaData[checkbox.attributes["name"].value] = checkbox.attributes["value"].value;
 	 			console.log("C");
 			});
-	 		criteriaData.hotelId = hotelId;
+	 		criteriaData.pK = hotelId;
 	 		console.log(criteriaData);
 
 			$.ajax({
@@ -852,7 +852,7 @@
 						col2.append([title, content]);
 						if(responce[i].photoPathList!=null){
 						$.each(responce[i].photoPathList, function(idx,photoPath){
-							var contentImg = $('<img src="/startrip/getPicture/reviewUpload/' + photoPath + '" class="review-image" />');
+							var contentImg = $('<img src="/startrip/getPicture/reviewUpload/hotel/' + photoPath + '" class="review-image" />');
 							col2.append(contentImg);
 						});
 						}
