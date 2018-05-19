@@ -395,7 +395,7 @@ tbody th img {
 				</div>
 			</div>
 			<div class="col-md-4">
-				<a href="/startrip/review/UserReviewEdit/${RtId.rtId }"
+				<a href="/startrip/review/restaurantReviewEdit/${RtId.rtId }"
 					class="btn btn-primary">發表評論</a> <a href=""
 					class="btn btn-outline-primary">即時客服</a>
 			</div>
