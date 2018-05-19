@@ -9,7 +9,7 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>餐廳名稱</title>
+<title>StarTrip-${RtId.rtName}</title>
 <meta name="description"
 	content="Free Bootstrap 4 Theme by ProBootstrap.com">
 <meta name="keywords"
@@ -238,7 +238,7 @@ tbody th img {
 
 	<jsp:include page="/WEB-INF/views/header.jsp" flush="true" />
 	<section class="probootstrap-cover overflow-hidden relative"
-		style="background-image: url('/startrip/assets/images/03.jpg');">
+		style="background-image: url('/startrip/assets/images/rt/03.jpg');">
 		<div class="overlay"></div>
 	</section>
 

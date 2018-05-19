@@ -5,6 +5,8 @@ import java.util.List;
 import com.startrip.restaurant.model.RtDetailsBean;
 
 public interface RtDetailsService {
+	
+	List<RtDetailsBean> getAllall();
 
 	List<RtDetailsBean> getAll();
 	

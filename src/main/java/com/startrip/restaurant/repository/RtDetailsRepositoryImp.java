@@ -68,6 +68,17 @@ public class RtDetailsRepositoryImp implements RtDetailsRepository {
 	
 	@SuppressWarnings("unchecked")
 	@Override
+	public List<RtDetailsBean> getAllall() {
+		String hql="FROM RtDetailsBean";
+		Session session = null;
+		List<RtDetailsBean> list = new ArrayList<>();
+		session = factory.getCurrentSession();
+		list = session.createQuery(hql).getResultList();
+		return list;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
 	public List<RtDetailsBean> getAll() {
 		String hql="FROM RtDetailsBean";
 		Session session = null;

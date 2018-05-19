@@ -153,7 +153,7 @@
 
 	<jsp:include page="/WEB-INF/views/header.jsp" flush="true" />
 	<section class="probootstrap-cover overflow-hidden relative"
-		style="background-image: url('/startrip/assets/images/03.jpg');">
+		style="background-image: url('/startrip/assets/images/rt/03.jpg');">
 		<div class="overlay"></div>
 	</section>
 

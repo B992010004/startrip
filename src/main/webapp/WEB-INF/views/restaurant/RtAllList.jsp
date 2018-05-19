@@ -52,7 +52,6 @@
 
 .portfolio-item {
 	padding-top: 6%;
-	padding-bottom: 2%;
 }
 
 .col-md1 {
@@ -61,8 +60,7 @@
 }
 
 .bigheadline1 {
-	padding-top: 12%;
-	padding-bottom: 3%;
+	padding-top: 10%;
 	text-align: center;
 }
 
@@ -78,6 +76,9 @@
 .btn11 {
 	text-align: center;
 }
+.card{
+	border: #00CA4C 2px outset;
+}
 </style>
 
 
@@ -88,7 +89,7 @@
 <body>
 	<jsp:include page="/WEB-INF/views/header.jsp" flush="true" />
 	<section class="probootstrap-cover overflow-hidden relative"
-		style="background-image: url('/startrip/assets/images/03.jpg');">
+		style="background-image: url('/startrip/assets/images/rt/03.jpg');">
 		<div class="overlay"></div>
 	</section>
 
@@ -114,8 +115,10 @@
 		<c:forEach var='rtDetails' items='${RtDetails}'>
 				<div class="col-lg-6 portfolio-item">
 					<div class="card h-100">
-						<a href="/startrip/restaurant/${rtDetails.rtId}"><img class="card-img-top"
-							src="/startrip/getPicture/rtImage/${rtDetails.photoArr[4]}" alt=""></a>
+						<a href="/startrip/restaurant/${rtDetails.rtId}"><img
+							class="card-img-top"
+							src="/startrip/getPicture/rtImage/${rtDetails.photoArr[4]}"
+							alt=""></a>
 						<div class="card-body">
 							<h4 class="card-title">
 								<a href="/startrip/restaurant/${rtDetails.rtId}">${rtDetails.rtName}</a>

@@ -2,6 +2,7 @@ package com.startrip.restaurant.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
@@ -94,15 +95,26 @@ public class RestaurantAdminController {
 	}
 
 	// /後台新增餐廳/---------------------------------------------------------------------------------------------
-
-	// ---------測試------------------------測試------------------測試----------------測試-------------
-
-	// 後台個別修刪
-
+	
+	// 後台刪除餐廳---------------------------------------------------------------------------------------------
+	
 	@RequestMapping(value = "/Individualdetailsmodify")
-	public String modifyRt(Model model) {
+	public String  deleteRt(Model model) {
+		List<RtDetailsBean> list = rtDetailsService.getAllall();
+		String[] photoArr = null;
+		for (RtDetailsBean bean : list) {
+			if (bean.getPhotoPaths() != null) {
+				photoArr = bean.getPhotoPaths().split(";");
+				bean.setPhotoArr(photoArr);
+			}
+		}
+		model.addAttribute("RtDetails", list);
 		return "restaurant/Individualdetailsmodify";
 	}
+	
+	// /後台刪除餐廳/---------------------------------------------------------------------------------------------
+
+	// ---------測試------------------------測試------------------測試----------------測試-------------
 
 	// 後台訂位查詢
 

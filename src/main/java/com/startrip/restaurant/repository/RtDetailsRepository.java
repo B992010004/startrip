@@ -7,6 +7,8 @@ import com.startrip.restaurant.model.RtDetailsBean;
 
 public interface RtDetailsRepository {
 
+	List<RtDetailsBean> getAllall();
+	
 	List<RtDetailsBean> getAll();
 	
 	List<RtDetailsBean> getAllOne();

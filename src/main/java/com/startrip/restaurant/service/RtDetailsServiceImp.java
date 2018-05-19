@@ -72,4 +72,9 @@ public class RtDetailsServiceImp implements RtDetailsService {
 		return RtDetailsRepositoryImp.getAllOne();
 	}
 
+	@Override
+	public List<RtDetailsBean> getAllall() {
+		return RtDetailsRepositoryImp.getAllall();
+	}
+
 }

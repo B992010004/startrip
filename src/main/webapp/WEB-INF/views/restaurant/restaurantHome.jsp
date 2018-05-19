@@ -125,7 +125,7 @@
 
 
 	<section class="probootstrap-cover overflow-hidden relative"
-		style="background-image: url('/startrip/assets/images/03.jpg');"
+		style="background-image: url('/startrip/assets/images/rt/03.jpg');"
 		data-stellar-background-ratio="0.5" id="section-home">
 		<div class="overlay"></div>
 		<div class="container">
