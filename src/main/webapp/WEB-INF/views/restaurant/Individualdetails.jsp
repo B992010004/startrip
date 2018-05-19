@@ -472,11 +472,11 @@ tbody th img {
 			<div class="travler-rank col-md-2" id="selectCheckBox">
 				<label class="sr-only-focusable">旅客類型</label>
 				<ul>
-					<li><input id="cr1" type="checkbox" name="family" value="家庭">家庭出遊</li>
-					<li><input id="cr2" type="checkbox" name="couple" value="伴侶旅行">伴侶旅行</li>
-					<li><input id="cr3" type="checkbox" name="alone" value="單獨旅行">單獨旅行</li>
-					<li><input id="cr4" type="checkbox" name="business" value="商務">商務出差</li>
-					<li><input id="cr5" type="checkbox" name="friends" value="朋友">好友旅行</li>
+					<li><input id="cr1" type="checkbox" name="family" value="家庭" onclick="selectByCriteria('${hotel.hotelid }')">家庭出遊</li>
+					<li><input id="cr2" type="checkbox" name="couple" value="伴侶旅行" onclick="selectByCriteria('${hotel.hotelid }')">伴侶旅行</li>
+					<li><input id="cr3" type="checkbox" name="alone" value="單獨旅行" onclick="selectByCriteria('${hotel.hotelid }')">單獨旅行</li>
+					<li><input id="cr4" type="checkbox" name="business" value="商務" onclick="selectByCriteria('${hotel.hotelid }')">商務出差</li>
+					<li><input id="cr5" type="checkbox" name="friends" value="朋友" onclick="selectByCriteria('${hotel.hotelid }')">好友旅行</li>
 				</ul>
 			</div>
 
@@ -682,88 +682,90 @@ tbody th img {
 	</script>
 
 	<script>
-		$(document).ready(function(){
-			for(i=1;i<=5;i++){
-				$('#cr' + i).on('change',function(){
-					selectByCriteria();
-// 					console.log("繫結成功");
-				})
-			}
+	//為了傳Id 此段沒用
+//  $(document).ready(function(){
+//		for(i=1;i<=5;i++){
+//			$('#cr' + i).on('change',function(){
+//				selectByCriteria();
+//				console.log("繫結成功");
+//			})
+//		}
+//	});
+
+	function selectByCriteria(hotelId){
+		var criteriaData = {};
+		
+//		criteriaData.family = $("#cr1").val();
+//		criteriaData.couple = $("#cr2").val();
+//		criteriaData.alone = $("#cr3").val();
+//		criteriaData.business = $("#cr4").val();
+		
+		$("#selectCheckBox input:checked").each(function(idx,checkbox){
+			console.log("A");
+			console.log(checkbox);
+			console.log(checkbox.attributes["name"].value);
+			console.log(checkbox.attributes["value"].value);
+			console.log("B");
+			criteriaData[checkbox.attributes["name"].value] = checkbox.attributes["value"].value;
+			console.log("C");
 		});
-	
-		function selectByCriteria(){
-			var criteriaData = {};
-			
-// 			criteriaData.family = $("#cr1").val();
-// 			criteriaData.couple = $("#cr2").val();
-// 			criteriaData.alone = $("#cr3").val();
-// 			criteriaData.business = $("#cr4").val();
-			
-	 		$("#selectCheckBox input:checked").each(function(idx,checkbox){
-	 			console.log("A");
-	 			console.log(checkbox);
-	 			console.log(checkbox.attributes["name"].value);
-	 			console.log(checkbox.attributes["value"].value);
-	 			console.log("B");
-	 			criteriaData[checkbox.attributes["name"].value] = checkbox.attributes["value"].value;
-	 			console.log("C");
-			});
+		criteriaData.pK = hotelId;
+		console.log(criteriaData);
 
-	 		console.log(criteriaData);
+		$.ajax({
+			url : '/startrip/review/selectByCriteria',
+			type : 'GET',
+			data : criteriaData,
+			//enctype: "multipart/form-data",
+			//contentType : false,
+			//processData : false,
+			//dataType:"json",
+			success : function(responce) {
+				$('#displayReview').empty();				
+				console.log(responce);				
+				var docFrag = $(document.createDocumentFragment());
+				for(i=0;i<responce.length;i++){
+					console.log(responce[i].content);
+					//大row
+					var row = $('<div class="row" style="margin:16px;"></div>');
 
-			$.ajax({
-				url : '/startrip/review/selectByCriteria',
-				type : 'GET',
-				data : criteriaData,
-				//enctype: "multipart/form-data",
-				//contentType : false,
-				//processData : false,
-				//dataType:"json",
-				success : function(responce) {
-					$('#displayReview').empty();				
-					console.log(responce);				
-					var docFrag = $(document.createDocumentFragment());
-					for(i=0;i<responce.length;i++){
-						console.log(responce[i].content);
-						//大row
-						var row = $('<div class="row" style="margin:16px;"></div>');
+					var col1 = $('<div class="col-md-1"></div>');
+					var innerRow1 = $('<div class="row justify-content-center" style="margin:16px;"></div>');
+						if(responce[i].memberBean.avatar != null){
+							var memberImg = $('<img class="review-memberphoto" src="/startrip/getPicture/memberIcon/' + responce[i].memberBean.avatar +'" />');
+						}						
+					var innerRow2 = $('<div class="row justify-content-center"></div>');
+					var innerRow2content = $('<div><h6>' + responce[i].memberBean.username + '</h6></div>');
+					innerRow2.append(innerRow2content);
+					innerRow1.append(memberImg);
+					col1.append([innerRow1, innerRow2]);
 
-						var col1 = $('<div class="col-md-1"></div>');
-						var innerRow1 = $('<div class="row justify-content-center" style="margin:16px;"></div>');
-							if(responce[i].memberBean.avatar != null){
-								var memberImg = $('<img class="review-memberphoto" src="/startrip/getPicture/memberIcon/' + responce[i].memberBean.avatar +'" />');
-							}						
-						var innerRow2 = $('<div class="row justify-content-center"></div>');
-						var innerRow2content = $('<div><h6>' + responce[i].memberBean.username + '</h6></div>');
-						innerRow2.append(innerRow2content);
-						innerRow1.append(memberImg);
-						col1.append([innerRow1, innerRow2]);
+					var col2 = $('<div class="col-md-9"></div>');
+					var title = $('<div class="probootstrap_font-18"><h5>' + responce[i].title + '</h5></div>');
+					var content = $('<div>' + responce[i].content + '</div>');
 
-						var col2 = $('<div class="col-md-9"></div>');
-						var title = $('<div class="probootstrap_font-18"><h5>' + responce[i].title + '</h5></div>');
-						var content = $('<div>' + responce[i].content + '</div>');
-
-						col2.append([title, content]);
-						if(responce[i].photoPathList!=null){
-						$.each(responce[i].photoPathList, function(idx,photoPath){
-							var contentImg = $('<img src="/startrip/getPicture/reviewUpload/' + photoPath + '" class="review-image" />');
-							col2.append(contentImg);
-						});
-						}
-						row.append([col1, col2]);
-						docFrag.append(row);
+					col2.append([title, content]);
+					if(responce[i].photoPathList!=null){
+					$.each(responce[i].photoPathList, function(idx,photoPath){
+						var contentImg = $('<img src="/startrip/getPicture/reviewUpload/hotel/' + photoPath + '" class="review-image" />');
+						col2.append(contentImg);
+					});
 					}
-
-					$('#displayReview').html(docFrag);
-					
-				},
-				error:function(e){
-					console.log(e);
+					row.append([col1, col2]);
+					docFrag.append(row);
 				}
-		
-			});
-		}
-		
+
+				$('#displayReview').html(docFrag);
+				
+			},
+			error:function(e){
+				console.log(e);
+			}
+	
+		});
+	}
+	</script>
+	<script>
 		 $(document).ready(function () {
              $("#my_popup").attr("hidden", false)
          })
