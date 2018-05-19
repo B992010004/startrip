@@ -115,6 +115,15 @@ public class ReviewRepositoryImp implements ReviewRepository {
 			queryString.append("tripType = :friends ");
 			crteriaIsAvailable = true;
 		}
+		
+		//塞Pk鍵
+		if (reviewSelectCriteria.getHotelId() != null) {
+			if (crteriaIsAvailable) {
+				queryString.append("AND ");
+			}
+			queryString.append("restaurantId = :restaurantId ");
+			crteriaIsAvailable = true;
+		}
 
 		String fromClause = crteriaIsAvailable ? "FROM ReviewBean rb WHERE " : "FROM ReviewBean rb ";
 		if (crteriaIsAvailable) {
@@ -147,6 +156,10 @@ public class ReviewRepositoryImp implements ReviewRepository {
 		
 		if (reviewSelectCriteria.getFriends() != null) {
 			prepareStmt.setParameter("friends", reviewSelectCriteria.getFriends());
+		}
+		
+		if (reviewSelectCriteria.getFriends() != null) {
+			prepareStmt.setParameter("restaurantId", reviewSelectCriteria.getHotelId());
 		}
 
 		list = prepareStmt.getResultList();
