@@ -100,7 +100,7 @@
     <div class="div">
 <table class="table  table-bordered">
             <tr>
-                <td scope="col" style="background-color:burlywood;" cellpadding="5" border="0">門</td>
+                <td scope="col" style="background-color:#00FFCC;" cellpadding="5" border="0">門</td>
                 <td id="05">
                     <img id="idimg5" src="/startrip/assets/transport/images/setOff.jpg" width="50" height="50">
                 </td>
@@ -134,16 +134,16 @@
             </tr>
             <tr>
 
-                <td style="background-color:burlywood"></td>
-                <td style="background-color:burlywood"></td>
-                <td style="background-color:burlywood"></td>
-                <td style="background-color:burlywood"></td>
-                <td style="background-color:burlywood"></td>
-                <td style="background-color:burlywood"></td>
-                <td style="background-color:burlywood"></td>
-                <td style="background-color:burlywood"></td>
-                <td style="background-color:burlywood"></td>
-                <td style="background-color:burlywood"></td>
+                <td style="background-color:#00FFCC"></td>
+                <td style="background-color:#00FFCC"></td>
+                <td style="background-color:#00FFCC"></td>
+                <td style="background-color:#00FFCC"></td>
+                <td style="background-color:#00FFCC"></td>
+                <td style="background-color:#00FFCC"></td>
+                <td style="background-color:#00FFCC"></td>
+                <td style="background-color:#00FFCC"></td>
+                <td style="background-color:#00FFCC"></td>
+                <td style="background-color:#00FFCC"></td>
                 <td id="30" class="hover" :hover>
                     <img id="idimg30" src="/startrip/assets/transport/images/setOff.jpg" width="50" height="50">
                 </td>
@@ -161,7 +161,7 @@
                 <td id="10">
                     <img id="idimg10" src="/startrip/assets/transport/images/setOff.jpg" width="50" height="50">
                 </td>
-                <td scope="col" style="background-color:burlywood"></td>
+                <td scope="col" style="background-color:#00FFCC"></td>
                 <td id="14">
                     <img id="idimg14" src="/startrip/assets/transport/images/setOff.jpg" width="50" height="50">
                 </td>
@@ -194,7 +194,7 @@
                 <td id="09">
                     <img id="idimg9" src="/startrip/assets/transport/images/setOff.jpg" width="50" height="50">
                 </td>
-                <td scope="col" style="background-color:burlywood"></td>
+                <td scope="col" style="background-color:#00FFCC"></td>
                 <td id="13">
                     <img id="idimg13" src="/startrip/assets/transport/images/setOff.jpg" width="50" height="50">
                 </td>

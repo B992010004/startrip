@@ -59,6 +59,11 @@
 	right: 0;
 	bottom: 0;
 }
+.adbody {
+        text-align: center;
+        width: 600px;
+        margin: auto;
+    }
 </style>
 <title>站名編號查詢</title>
 </head>
@@ -210,6 +215,14 @@
 	</section>
 	<!-- 以上為訂票功能版面 -->
 
+<a href="/startrip/assets/transport/images/AD/mainview1-p.jpg">測試網址</a>
+
+
+<!-- 輪播牆 -->
+
+<!-- 輪播牆 -->
+
+
 	<!-- 以下為地圖查車站function -->
 	<script>
 		document.addEventListener("DOMContentLoaded", function() {
@@ -314,7 +327,8 @@ function getArea(data){
 			for(var i=0;i<response.length;i++){
 				$("#tbo").append("<tr><td>"+response[i].area+ "</td>"+
 								 	 "<td>"+response[i].stationName+"</td>"+
-								 	 "<td>"+response[i].address+"</td></tr>");
+								 	 "<td id='getAddress'>"+response[i].address+"</td>"+
+								 	 "<td>"+"<img width='30' height='30' src='/startrip/assets/transport/images/mapicon.png'>"+"</td></tr>");
 // 				$("#tbo").append("<td>"+response[i].area+ "<tr>");
 // 				$("#tbo").append("<td>"+response[i].stationName+ "</td>");
 // 				$("#tbo").append("<td>"+response[i].address+ "</td>");
@@ -326,16 +340,44 @@ function getArea(data){
 });
 
 
-}
-	
+};
+document.addEventListener("DOMContentLoaded", function makeMap() {
+    
+        
+        document.getElementById("getAddress").addEventListener("click", click1);   
+        
+    
+        document.getElementById("random" ).addEventListener("click", getRandom);   
+}); 
+function click1() {
+// 	this.src = "/startrip/assets/transport/images/setOn.png";
+// 	 this.innerHTML = '您選的座位為' + this.id.substr(5) + '號';
+     $("#gm").html("<span>"+'
 
+    		 <div class="col-md">
+     <!-- 地圖 -->"
+<a href='http://maps.google.com/maps?q=新北市金山區中山路87號	&amp;z=1" data-geo="" target="_blank">
+<img class="map" alt="新北市金山區中山路87號	" src="https://maps.google.com/maps/api/staticmap?zoom=15&size=300x300&maptype=terrain&sensor=false&center=新北市金山區中山路87號	&markers=color:blue%7Clabel:S%7C新北市金山區中山路87號&key=AIzaSyARfDct4ecrevMJjHgcrjmPOLfbM6X9N7w">
+</a>
+</div>
+    		 
+    		 
+    		 
+    		 
+    		 '+"</span>");	
+}	
 </script>
 
+         
+    
 
 <div >
+<!-- 滑鼠擊點產生地圖script -->
+
 
 
 </div>
+<!-- 產生出的車站資訊表格 -->
 <div >
 <table  class="for-table table" >
                        <thead>
@@ -343,6 +385,8 @@ function getArea(data){
                              <th width="100">地區</th>
 							<th width="100">站名</th>
 							<th>車站地址</th>
+							<th>地圖</th>
+							
                           </tr>
                        </thead>
                       <tbody id="tbo">
@@ -350,12 +394,16 @@ function getArea(data){
                        <tfoot>
                    
 </table>
+<div id="gm">
+
+</div>
+
 </div>
 <div class="row">
    <div class="col-md">
                                 <!-- 地圖 -->
-   <a href="http://maps.google.com/maps?q=${response[i].address}&amp;z=11" data-geo="" target="_blank">
-          <img class="map" alt="${response[i].address}" src="http://maps.google.com/maps/api/staticmap?zoom=15&size=300x300&maptype=terrain&sensor=false&center=${hotel.hoteladdress }&markers=color:green%7Clabel:H%7C${hotel.hoteladdress }&key=AIzaSyARfDct4ecrevMJjHgcrjmPOLfbM6X9N7w">
+   <a href="http://maps.google.com/maps?q=新北市金山區中山路87號	&amp;z=1" data-geo="" target="_blank">
+          <img class="map" alt="新北市金山區中山路87號	" src="https://maps.google.com/maps/api/staticmap?zoom=15&size=300x300&maptype=terrain&sensor=false&center=新北市金山區中山路87號	&markers=color:blue%7Clabel:S%7C新北市金山區中山路87號&key=AIzaSyARfDct4ecrevMJjHgcrjmPOLfbM6X9N7w">
             </a>
     </div>
  </div>
