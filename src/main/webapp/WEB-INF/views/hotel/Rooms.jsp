@@ -437,7 +437,7 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <a href="/startrip/review/UserReviewEdit/1" class="btn btn-primary">發表評論</a>
+                        <a href="/startrip/review/UserReviewEdit/${hotel.hotelid }" class="btn btn-primary">發表評論</a>
                         <a href="" class="btn btn-outline-primary">即時客服</a>
                     </div>
                 </div>

@@ -142,7 +142,6 @@ public class ReviewController {
 		// 不知道為什麼無法使用自動注入
 		hr.setVisited(Date.valueOf(requset.getParameter("visited")));
 		hotelReviewService.addHotelReview(hr);
-		;
 		System.out.println("準備return");
 		return "redirect:/Rooms/" + hotelId;
 	}
