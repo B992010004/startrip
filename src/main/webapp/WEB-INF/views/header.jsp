@@ -5,7 +5,7 @@
 
 
 		<div class="container">
-			<a class="navbar-brand" href="#">TRIP_LOGO</a>
+			<a class="navbar-brand" href="/startrip/">Star★Trip</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#probootstrap-menu" aria-controls="probootstrap-menu"
 			 aria-expanded="false" aria-label="Toggle navigation">
 				<span>
@@ -30,12 +30,12 @@
 						
 					<c:if test="${not empty LoginOK}">
 					<li class="nav-item"><a class="nav-link"														
-						href="/startrip/admin/HostManage">住宿管理</a></li>	
+						href="/startrip/admin/HostManage">✎住宿管理</a></li>	
 					</c:if>
-					
+					<c:if test="${not empty LoginOK}">
 					<li class="nav-item"><a class="nav-link"
-						href="/startrip/insertupdate">餐廳資料修改</a></li>
-					
+						href="/startrip/insertupdate">✎餐廳管理</a></li>
+					</c:if>
 
 					<li class="nav-item">
 						<c:if test="${ empty LoginOK }">

@@ -133,10 +133,12 @@ public class RestaurantController {
 
 	@RequestMapping(value = "/reservation/{rtId}", method = RequestMethod.GET)
 	public String insertRtBooking(@PathVariable("rtId") Integer rtId,Model model) {
+		
 		RtDetailsBean rbb = rtDetailsService.getAllRtDetailsrtId(rtId);
 		RtBookingBean rtBookingBean = new RtBookingBean();
 		model.addAttribute("RtDetailsBean", rbb);
 		model.addAttribute("RtBookingBean", rtBookingBean);
+		
 		return "restaurant/reservation";
 	}
 
@@ -145,11 +147,9 @@ public class RestaurantController {
 			HttpSession session) {
 
 		MemberBean memberBean = (MemberBean) session.getAttribute("LoginOK");
-		System.out.println("=========================" + memberBean);
 		Timestamp outDate = new Timestamp(System.currentTimeMillis());
 		rbb.setReTime(outDate);
 		rbb.setMemberId(memberBean.getMemberid());
-		System.out.println("=========================" + outDate);
 		rtBookingService.insertRtBooking(rbb);
 
 		return "restaurant/Individualdetails";

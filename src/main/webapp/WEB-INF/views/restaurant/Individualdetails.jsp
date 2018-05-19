@@ -138,7 +138,7 @@ tbody th img {
 }
 
 .row2 {
-	padding-top: 15%;
+	padding-top: 20%;
 }
 
 .col-md-1234 {
@@ -215,8 +215,20 @@ tbody th img {
 	border-radius: 50%;
 }
 
-ul li {
+.ul li {
 	list-style-type: none;
+}
+
+.container1 {
+	text-align: center;
+	width: 100%;
+	height: 200px;
+}
+
+.mid {
+	padding-top: 4%;
+	width: 135%;
+	height: 200%;
 }
 </style>
 
@@ -249,7 +261,8 @@ ul li {
 					</div>
 				</div>
 				<div class="col-md-1234">
-					<a href="/startrip/reservation/${RtId.rtId}" class="btn btn-primary">立&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;即&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;訂&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;位</a>
+					<a href="/startrip/reservation/${RtId.rtId}"
+						class="btn btn-primary">立&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;即&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;訂&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;位</a>
 				</div>
 			</div>
 		</div>
@@ -265,64 +278,52 @@ ul li {
 					<!-- 相片 section -->
 					<section class="probootstrap_section">
 						<div class="container">
-							<div class="row">
-								<div class="col-md-123">
-									<div class="owl-carousel js-owl-carousel-2">
-										<!-- photo slide item -->
-										<div>
-											<div
-												class="media probootstrap-media d-block align-items-stretch imgmaxsize">
-												<img src="/startrip/getPicture/rtImage/${OneImage1}"
-													value="1" class="img-fluid mainimg">
-											</div>
-										</div>
-										<!-- END photo slide item -->
-										<!-- photo slide item -->
-										<div>
-											<div
-												class="media probootstrap-media d-block align-items-stretch imgmaxsize">
-												<img src="/startrip/getPicture/rtImage/${OneImage2}"
-													value="2" class="img-fluid mainimg">
-											</div>
-										</div>
-										<!-- END photo slide item -->
-										<!-- photo slide item -->
-										<div>
-											<div
-												class="media probootstrap-media d-block align-items-stretch imgmaxsize">
-												<img src="/startrip/getPicture/rtImage/${OneImage3}"
-													value="3" class="img-fluid mainimg">
-											</div>
-										</div>
-										<!-- END photo slide item -->
-										<!-- photo slide item -->
-										<div>
-											<div
-												class="media probootstrap-media d-block align-items-stretch imgmaxsize">
-												<img src="/startrip/getPicture/rtImage/${OneImage4}"
-													value="3" class="img-fluid mainimg">
-											</div>
-										</div>
-										<!-- END photo slide item -->
-										<!-- photo slide item -->
-										<div>
-											<div
-												class="media probootstrap-media d-block align-items-stretch imgmaxsize">
-												<img src="/startrip/getPicture/rtImage/${OneImage5}"
-													value="3" class="img-fluid mainimg">
-											</div>
-										</div>
-										<!-- END photo slide item -->
-										<!-- photo slide item -->
-										<div>
-											<div
-												class="media probootstrap-media d-block align-items-stretch imgmaxsize">
-												<img src="/startrip/getPicture/rtImage/${OneImage6}"
-													value="3" class="img-fluid mainimg">
-											</div>
-										</div>
-										<!-- END photo slide item -->
+							<div class="mid">
+								<div class="owl-carousel js-owl-carousel-2">
+
+									<!-- photo slide item -->
+									<div
+										class="media probootstrap-media d-block align-items-stretch">
+										<img src="/startrip/getPicture/rtImage/${OneImage1}" value="1"
+											class="img-fluid mainimg">
 									</div>
+									<!-- END photo slide item -->
+									<!-- photo slide item -->
+									<div
+										class="media probootstrap-media d-block align-items-stretch">
+										<img src="/startrip/getPicture/rtImage/${OneImage2}" value="2"
+											class="img-fluid mainimg">
+									</div>
+									<!-- END photo slide item -->
+									<!-- photo slide item -->
+									<div
+										class="media probootstrap-media d-block align-items-stretch">
+										<img src="/startrip/getPicture/rtImage/${OneImage3}" value="3"
+											class="img-fluid mainimg">
+									</div>
+									<!-- END photo slide item -->
+									<!-- photo slide item -->
+									<div
+										class="media probootstrap-media d-block align-items-stretch">
+										<img src="/startrip/getPicture/rtImage/${OneImage4}" value="3"
+											class="img-fluid mainimg">
+									</div>
+									<!-- END photo slide item -->
+									<!-- photo slide item -->
+									<div
+										class="media probootstrap-media d-block align-items-stretch">
+										<img src="/startrip/getPicture/rtImage/${OneImage5}" value="3"
+											class="img-fluid mainimg">
+									</div>
+									<!-- END photo slide item -->
+									<!-- photo slide item -->
+									<div
+										class="media probootstrap-media d-block align-items-stretch">
+										<img src="/startrip/getPicture/rtImage/${OneImage6}" value="3"
+											class="img-fluid mainimg">
+									</div>
+									<!-- END photo slide item -->
+
 								</div>
 							</div>
 						</div>
@@ -331,13 +332,12 @@ ul li {
 				</div>
 			</div>
 			<div class="col-md-3">
-				<div class="row">
-					<div class="container">
-						<iframe class="map"
-							src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12159.728261117327!2d121.55548566496115!3d25.030380117784713!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442abc98a381297%3A0xe822c38c9e07609e!2sWoolloomooloo!5e0!3m2!1szh-TW!2stw!4v1525934478377"
-							width="600" height="450" frameborder="0" style="border: 0"
-							allowfullscreen></iframe>
-					</div>
+				<div class="container1">
+					<a href="http://maps.google.com/maps?q=${RtId.rtAddress}&amp;z=11"
+						data-geo="" target="_blank"> <img class="map"
+						alt="${RtId.rtAddress}"
+						src="http://maps.google.com/maps/api/staticmap?zoom=15&size=500x200&maptype=terrain&sensor=false&center=${RtId.rtAddress}&markers=color:green%7Clabel:H%7C${RtId.rtAddress}&key=AIzaSyARfDct4ecrevMJjHgcrjmPOLfbM6X9N7w">
+					</a>
 				</div>
 			</div>
 		</div>

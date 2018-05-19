@@ -149,7 +149,7 @@
 	<section class="probootstrap_section3" id="section-city-guides">
 		<div class="bigheadline1">
 			<h1 class="headline1">搜尋美食盡在</h1>
-			<h1 class="headline2">Star</h1>
+			<h1 class="headline2">Star★</h1>
 			<h1 class="headline1">Trip</h1>
 			<p>在 StarTrip 內總共為您準備了超過 10000 筆的餐廳資訊、價格以及評分，協助尋找最適合您的餐廳喜好。</p>
 		</div>
