@@ -14,7 +14,7 @@ import com.startrip.hotel.model.SearchHotel;
 import com.startrip.hotel.model.persistent.HotelsBean;
 import com.startrip.hotel.tool.HQL;
 import com.startrip.hotel.tool.HQLQuery;
-import com.startrip.reviews.model.ReviewBean;
+import com.startrip.reviews.model.HotelReview;
 
 @Repository
 public class HotelsDAO implements HotelDAOInterface {

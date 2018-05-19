@@ -12,21 +12,21 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.startrip.reviews.model.ReviewBean;
+import com.startrip.reviews.model.HotelReview;
 import com.startrip.reviews.model.ReviewSelectCriteria;
 
 @Repository
-public class ReviewRepositoryImp implements ReviewRepository {
+public class HotelReviewRepositoryImp implements HotelReviewRepository {
 
 	@Autowired
 	SessionFactory sessionFactory;
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<ReviewBean> getAllReviews() {
-		String hql = "FROM ReviewBean";
+	public List<HotelReview> getAllHotelReviews() {
+		String hql = "FROM HotelReview";
 		Session session = null;
-		List<ReviewBean> list = new ArrayList<>();
+		List<HotelReview> list = new ArrayList<>();
 		session = sessionFactory.getCurrentSession();
 		list = session.createQuery(hql).getResultList();
 		System.out.println(list);
@@ -35,24 +35,24 @@ public class ReviewRepositoryImp implements ReviewRepository {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<ReviewBean> getReviewsByRestaurantId(int restaurantId) {
-		List<ReviewBean> list = new ArrayList<>();
-		String hql = "FROM ReviewBean WHERE restaurantId = :id";
+	public List<HotelReview> getHotelReviewsByHotelId(Integer hotelId) {
+		List<HotelReview> list = new ArrayList<>();
+		String hql = "FROM HotelReview WHERE HotelId = :id";
 		Session session = sessionFactory.getCurrentSession();
-		list = session.createQuery(hql).setParameter("id", restaurantId).getResultList();
+		list = session.createQuery(hql).setParameter("id", hotelId).getResultList();
 
 		return list;
 	}
 
 	@Override
-	public void addReview(ReviewBean review) {
+	public void addHotelReview(HotelReview hotelReview){
 		Session session = sessionFactory.getCurrentSession();
-		review.setUpdateTime(new Timestamp(new Date().getTime()));
-		session.save(review);
+		hotelReview.setUpdateTime(new Timestamp(new Date().getTime()));
+		session.save(hotelReview);
 	}
 
 	@Override
-	public void update(int restaurantId, ReviewBean review) {
+	public void update(Integer hotelId, HotelReview hotelReview) {
 		// String hql = "UPDATE ReviewBean SET stock = :newQuantity WHERE hotelId =
 		// :id";
 		// Session session = sessionFacory.getCurrentSession();
@@ -63,18 +63,18 @@ public class ReviewRepositoryImp implements ReviewRepository {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Long> getRankByRestaurantId(int restaurantId) {
-		String hql = "SELECT count(overallRank) FROM ReviewBean rb WHERE rb.restaurantId = :restaurantId GROUP BY rb.overallRank";
+	public List<Long> getRankByHotelId(Integer hotelId) {
+		String hql = "SELECT count(overallRank) FROM HotelReview hr WHERE hr.hotelId = :hotelId GROUP BY hr.overallRank";
 		Session session = sessionFactory.getCurrentSession();
 		List<Long> list = new ArrayList<>();
-		list = session.createQuery(hql).setParameter("restaurantId", restaurantId).list();
+		list = session.createQuery(hql).setParameter("hotelId", hotelId).list();
 		// System.out.println(list);
 		return list;
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<ReviewBean> selectByCriteria(ReviewSelectCriteria reviewSelectCriteria) {
+	public List<HotelReview> selectHotelReviewsByCriteria(ReviewSelectCriteria reviewSelectCriteria) {
 		String hql = null;
 		StringBuffer queryString = new StringBuffer();
 		boolean crteriaIsAvailable = false;
@@ -115,51 +115,51 @@ public class ReviewRepositoryImp implements ReviewRepository {
 			queryString.append("tripType = :friends ");
 			crteriaIsAvailable = true;
 		}
-		
-		//塞Pk鍵
-		if (reviewSelectCriteria.getHotelId() != null) {
+
+		// 塞Pk鍵
+		if (reviewSelectCriteria.getpK() != null) {
 			if (crteriaIsAvailable) {
 				queryString.append("AND ");
 			}
-			queryString.append("restaurantId = :restaurantId ");
+			queryString.append("hotelId = :hotelId ");
 			crteriaIsAvailable = true;
 		}
 
-		String fromClause = crteriaIsAvailable ? "FROM ReviewBean rb WHERE " : "FROM ReviewBean rb ";
+		String fromClause = crteriaIsAvailable ? "FROM HotelReview hr WHERE " : "FROM HotelReview hr ";
 		if (crteriaIsAvailable) {
 			hql = fromClause + queryString;
 		} else {
 			hql = fromClause;
 		}
-		
-		System.out.println("hql看這裡 "+hql);
+
+		System.out.println("hql看這裡 " + hql);
 
 		Session session = sessionFactory.getCurrentSession();
-		List<ReviewBean> list = new ArrayList<>();
+		List<HotelReview> list = new ArrayList<>();
 		Query prepareStmt = session.createQuery(hql);
 
 		if (reviewSelectCriteria.getFamily() != null) {
 			prepareStmt.setParameter("family", reviewSelectCriteria.getFamily());
 		}
-		
+
 		if (reviewSelectCriteria.getCouple() != null) {
 			prepareStmt.setParameter("couple", reviewSelectCriteria.getCouple());
 		}
-		
+
 		if (reviewSelectCriteria.getAlone() != null) {
 			prepareStmt.setParameter("alone", reviewSelectCriteria.getAlone());
 		}
-		
+
 		if (reviewSelectCriteria.getBusiness() != null) {
 			prepareStmt.setParameter("business", reviewSelectCriteria.getBusiness());
 		}
-		
+
 		if (reviewSelectCriteria.getFriends() != null) {
 			prepareStmt.setParameter("friends", reviewSelectCriteria.getFriends());
 		}
-		
-		if (reviewSelectCriteria.getFriends() != null) {
-			prepareStmt.setParameter("restaurantId", reviewSelectCriteria.getHotelId());
+
+		if (reviewSelectCriteria.getpK() != null) {
+			prepareStmt.setParameter("hotelId", reviewSelectCriteria.getpK());
 		}
 
 		list = prepareStmt.getResultList();

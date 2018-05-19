@@ -32,14 +32,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.startrip.reviews.model.ReviewBean;
-import com.startrip.reviews.service.ReviewService;
+import com.startrip.reviews.model.HotelReview;
+import com.startrip.reviews.service.HotelReviewService;
 
 @Controller
-public class ReviewController {
+public class HotelReviewController {
 
 	@Autowired
-	ReviewService reviewService;
+	HotelReviewService hotelReviewService;
 
 	@Autowired
 	ServletContext context;
@@ -48,8 +48,8 @@ public class ReviewController {
 	public String getAddNewUserReviewEdit(@PathVariable("hotelId") Integer hotelId, Model model) {
 		// bug紀錄: 這段程式碼有分數有空缺會有問題
 
-		ReviewBean rb = new ReviewBean();
-		model.addAttribute("reviewBean", rb);
+		HotelReview hr = new HotelReview();
+		model.addAttribute("reviewBean", hr);
 
 		return "review/UserReviewEdit";
 	}
@@ -58,18 +58,18 @@ public class ReviewController {
 	// 照片存本地
 	// 檔名存資料庫
 	@RequestMapping(value = "/review/UserReviewEdit/{hotelId}", method = RequestMethod.POST)
-	public String processAddNewUserReviewEdit(@PathVariable("hotelId") Integer restaurantId,
-			@ModelAttribute("reviewBean") ReviewBean rb, BindingResult result, HttpServletRequest requset) throws ParseException {
+	public String processAddNewUserReviewEdit(@PathVariable("hotelId") Integer hotelId,
+			@ModelAttribute("reviewBean") HotelReview hr, BindingResult result, HttpServletRequest requset) throws ParseException {
 		// String[] suppressedFields = result.getSuppressedFields();
 		// if (suppressedFields.length > 0) {
 		// throw new RuntimeException("嘗試傳入不允許的欄位: " +
 		// StringUtils.arrayToCommaDelimitedString(suppressedFields));
 		// }
 		
-		rb.setRestaurantId(restaurantId);
+		hr.setHotelId(hotelId);
 		String fileurl = "";
 		StringBuffer fileNameBuffer = new StringBuffer();
-		MultipartFile[] avatas = rb.getMultipartFiles();
+		MultipartFile[] avatas = hr.getMultipartFiles();
 		for (MultipartFile avata : avatas) {
 			if (avata.isEmpty() || !isImage(avata)) {
 				System.out.println("無法找到文件或不是照片類型");
@@ -81,7 +81,7 @@ public class ReviewController {
 				System.out.println("========================================");
 				// String rootDirectory =
 				// request.getSession().getServletContext().getRealPath("/");
-				String rootDirectory = "C:\\temp\\";
+				String rootDirectory = "C:\\temp\\reviewUpload\\";
 				System.out.println(rootDirectory);
 				int i = avata.getOriginalFilename().lastIndexOf(".");// 返回最後一個點的位置
 
@@ -90,13 +90,13 @@ public class ReviewController {
 				fileurl = filename;
 				fileNameBuffer.append(filename + ";");
 				try {
-					File imageFolder = new File(rootDirectory, "reviewUpload");
+					File imageFolder = new File(rootDirectory, "hotel");
 					if (!imageFolder.exists()) {
 						imageFolder.mkdirs();
 					}
 					File file = new File(imageFolder, fileurl);
 					avata.transferTo(file);
-					rb.setPhotoPaths(fileNameBuffer.toString());
+					hr.setPhotoPaths(fileNameBuffer.toString());
 				} catch (IllegalStateException e) {
 					e.printStackTrace();
 				} catch (IOException e) {
@@ -124,15 +124,15 @@ public class ReviewController {
 		// }
 		
 		//不知道為什麼無法使用自動注入
-		rb.setVisited(Date.valueOf(requset.getParameter("visited")));		
-		reviewService.addReview(rb);
+		hr.setVisited(Date.valueOf(requset.getParameter("visited")));		
+		hotelReviewService.addHotelReview(hr);;
 		System.out.println("準備return");
-		return "redirect:/restaurant/" + restaurantId;
+		return "redirect:/Rooms/" + hotelId;
 	}
 
 	// 處理照片請求
 	// 相片都保存在C:\\temp\\
-	@RequestMapping(value = "/getPicture/reviewUpload/{photoName:.+}", method = RequestMethod.GET)
+	@RequestMapping(value = "/getPicture/reviewUpload/hotel/{photoName:.+}", method = RequestMethod.GET)
 	public ResponseEntity<byte[]> getPicture(HttpServletResponse resp, @PathVariable String photoName) {
 
 		HttpHeaders headers = new HttpHeaders();
@@ -140,7 +140,7 @@ public class ReviewController {
 		int len = 0;
 		byte[] media = null;
 
-		try (InputStream is = new FileInputStream("C:/temp/reviewUpload/" + photoName)) {
+		try (InputStream is = new FileInputStream("C:/temp/reviewUpload/hotel/" + photoName)) {
 			baos = new ByteArrayOutputStream();
 			byte[] b = new byte[8192];
 
@@ -148,7 +148,7 @@ public class ReviewController {
 				baos.write(b, 0, len);
 			}
 		} catch (IOException e) {
-			throw new RuntimeException("ProductController 的  getPicture() 發生 IOException:" + e.getMessage());
+			throw new RuntimeException("HotelReviewController 的  getPicture() 發生 IOException:" + e.getMessage());
 		}
 		media = baos.toByteArray();
 		headers.setCacheControl(CacheControl.noCache().getHeaderValue());
