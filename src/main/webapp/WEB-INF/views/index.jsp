@@ -74,27 +74,27 @@
 								<div class="col-md-4">
 									<div class="form-group inputState">
 										<label for="id_label_location">
-<!-- 											<input type="text" id="id_label_location" name="searchSrting" class="form-control" placeholder="地點或飯店名稱"> -->
-											<select id="inputState" class="form-control" name="searchSrting">
-												<option value="">請選擇旅遊目的地</option>
-												<option value="基隆">基隆</option>
-												<option value="台北">台北</option>
-												<option value="新北">新北</option>
-												<option value="桃園">桃園</option>
-												<option value="新竹">新竹</option>
-												<option value="苗栗">苗栗</option>
-												<option value="台中">台中</option>
-												<option value="彰化">彰化</option>
-												<option value="南投">南投</option>
-												<option value="雲林">雲林</option>
-												<option value="嘉義">嘉義</option>
-												<option value="台南">台南</option>
-												<option value="高雄">高雄</option>
-												<option value="屏東">屏東</option>
-												<option value="宜蘭">宜蘭</option>
-												<option value="花蓮" selected="selected">花蓮</option>
-												<option value="台東">台東</option>
-											</select>
+											<input type="text" id="id_label_location" name="searchSrting" class="form-control" placeholder="地點或飯店名稱">
+<!-- 											<select id="inputState" class="form-control" name="searchSrting"> -->
+<!-- 												<option value="">請選擇旅遊目的地</option> -->
+<!-- 												<option value="基隆">基隆</option> -->
+<!-- 												<option value="台北">台北</option> -->
+<!-- 												<option value="新北">新北</option> -->
+<!-- 												<option value="桃園">桃園</option> -->
+<!-- 												<option value="新竹">新竹</option> -->
+<!-- 												<option value="苗栗">苗栗</option> -->
+<!-- 												<option value="台中">台中</option> -->
+<!-- 												<option value="彰化">彰化</option> -->
+<!-- 												<option value="南投">南投</option> -->
+<!-- 												<option value="雲林">雲林</option> -->
+<!-- 												<option value="嘉義">嘉義</option> -->
+<!-- 												<option value="台南">台南</option> -->
+<!-- 												<option value="高雄">高雄</option> -->
+<!-- 												<option value="屏東">屏東</option> -->
+<!-- 												<option value="宜蘭">宜蘭</option> -->
+<!-- 												<option value="花蓮" selected="selected">花蓮</option> -->
+<!-- 												<option value="台東">台東</option> -->
+<!-- 											</select> -->
 										</label>
 										
 									</div>
