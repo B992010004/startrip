@@ -118,6 +118,18 @@
                                 <form:radiobutton path="tripType" autocomplete="off" value="單獨旅行" class="form-control" /> 單獨旅行
                             </label>
                         </div>
+                        
+                        <div class="form-group">
+                            <label for="visited" class="sr-only-focusable">您的造訪日期是？</label>
+                            <form:select path="visited" id="visited" name="visited">
+							  <form:option value="" id="visitedOpt1"></form:option>
+							  <form:option value="" id="visitedOpt2"></form:option>
+							  <form:option value="" id="visitedOpt3"></form:option>
+							  <form:option value="" id="visitedOpt4"></form:option>
+							  <form:option value="" id="visitedOpt5"></form:option>
+							  <form:option value="" id="visitedOpt6"></form:option>
+							</form:select>
+                        </div>
 
                         <div class="form-group">
                             <label class="sr-only-focusable">你對此飯店的服務</label>
@@ -427,6 +439,60 @@
             }
         }
     </script>
+    
+    <script> 
+        document.addEventListener("DOMContentLoaded", function () {
+            for (var i = 1; i <= 5; i++) {
+                document.getElementById("oR" + i).addEventListener("mouseover", mouseover1);  //事件繫結，滑鼠滑入
+                document.getElementById("oR" + i).addEventListener("mouseout", mouseout1);
+                document.getElementById("oR" + i).addEventListener("click", click1);   //事件繫結，滑鼠滑出
+            }
+            
+            for (var i = 1; i <= 5; i++) {
+                document.getElementById("sR" + i).addEventListener("mouseover", mouseover2);  //事件繫結，滑鼠滑入
+                document.getElementById("sR" + i).addEventListener("mouseout", mouseout2);
+                document.getElementById("sR" + i).addEventListener("click", click2);   //事件繫結，滑鼠滑出
+            }
+            
+            for (var i = 1; i <= 5; i++) {
+                document.getElementById("vR" + i).addEventListener("mouseover", mouseover3);  //事件繫結，滑鼠滑入
+                document.getElementById("vR" + i).addEventListener("mouseout", mouseout3);
+                document.getElementById("vR" + i).addEventListener("click", click3);   //事件繫結，滑鼠滑出
+            }
+            
+            for (var i = 1; i <= 5; i++) {
+                document.getElementById("rR" + i).addEventListener("mouseover", mouseover4);  //事件繫結，滑鼠滑入
+                document.getElementById("rR" + i).addEventListener("mouseout", mouseout4);
+                document.getElementById("rR" + i).addEventListener("click", click4);   //事件繫結，滑鼠滑出
+            }
+            console.log("DOMContentLoaded");
+            preparedate();
+
+        });
+        
+        function preparedate() {
+            var today = new Date;
+            var year = today.getFullYear();
+            var month = today.getMonth();
+          	//alert(today.getFullYear());
+            //alert(month);
+                       
+            for (i = 1; i <= 6; i++) {
+            		//日期要補1不然 sql.Date無法parse
+            		document.getElementById('visitedOpt' + i).setAttribute("value", year + "-" + (month+1) + "-" + 1);
+            		var node = document.createTextNode(year + "年" + (month+1) + "月");
+            		document.getElementById('visitedOpt' + i).append(node);
+                    month--;
+                    if(month < 0){
+                    	month = 11;
+                    	year--;
+                    }
+				
+            }
+        }
+        
+        
+	</script>
 	
         
 </body>
