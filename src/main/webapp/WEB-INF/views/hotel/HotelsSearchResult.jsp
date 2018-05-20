@@ -308,40 +308,40 @@
       <div class="col-md-9">
         <br>
         <!-- 靜態資料產生 -->
-        <a href="/startrip/Rooms/1" class="roomlink">
-          <div class="row">
-            <div class="col-md">
-              <!-- card -->
-              <div class="card">
-                <div class="row">
-                  <div class="col-md-4 imgmaxheight">  
-                      <img src="/startrip/assets/images/img_1.jpg" class="img-thumbnail" alt="飯店圖片">
-                  </div>
-                  <div class="col-md-8">
-                    <div class="row">
-                      <div class="col-md-8">OX飯店</div>
-                      <div class="col-md-4">5.7</div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-12">台北市內湖區</div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-12">★★★★★</div>
-                    </div>
-                    <br>
-                    <br>
-                    <div class="row">
-                      <div class="col-md-8">服務種類</div>
-                      <div class="col-md-4">價格：30000</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- end card -->
-            </div>
-          </div>
-          <p></p>
-        </a>
+<!--         <a href="/startrip/Rooms/1" class="roomlink"> -->
+<!--           <div class="row"> -->
+<!--             <div class="col-md"> -->
+<!--               card -->
+<!--               <div class="card"> -->
+<!--                 <div class="row"> -->
+<!--                   <div class="col-md-4 imgmaxheight">   -->
+<!--                       <img src="/startrip/assets/images/img_1.jpg" class="img-thumbnail" alt="飯店圖片"> -->
+<!--                   </div> -->
+<!--                   <div class="col-md-8"> -->
+<!--                     <div class="row"> -->
+<!--                       <div class="col-md-8">OX飯店</div> -->
+<!--                       <div class="col-md-4">5.7</div> -->
+<!--                     </div> -->
+<!--                     <div class="row"> -->
+<!--                       <div class="col-md-12">台北市內湖區</div> -->
+<!--                     </div> -->
+<!--                     <div class="row"> -->
+<!--                       <div class="col-md-12">★★★★★</div> -->
+<!--                     </div> -->
+<!--                     <br> -->
+<!--                     <br> -->
+<!--                     <div class="row"> -->
+<!--                       <div class="col-md-8">服務種類</div> -->
+<!--                       <div class="col-md-4">價格：30000</div> -->
+<!--                     </div> -->
+<!--                   </div> -->
+<!--                 </div> -->
+<!--               </div> -->
+<!--               end card -->
+<!--             </div> -->
+<!--           </div> -->
+<!--           <p></p> -->
+<!--         </a> -->
         <!-- 靜態資料結束 -->
         <!-- 動態資料產生 -->
         <c:forEach var="hotel" items="${results }">
