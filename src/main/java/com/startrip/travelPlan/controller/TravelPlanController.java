@@ -381,6 +381,17 @@ public class TravelPlanController {
 		
 		return tlb;
 	}
+	
+	@RequestMapping(value="list/remove",method=RequestMethod.GET)
+	@ResponseBody
+	public Integer removeList(Integer travelId,Integer tripday,String starttime) {
+				
+		Integer a= listservice.update_ListState(travelId, tripday,starttime);
+		
+		return a;
+	}
+	
+	
 	//----------------------------------------------------
 	//view相關控制
 	//-----------------------------------------------------

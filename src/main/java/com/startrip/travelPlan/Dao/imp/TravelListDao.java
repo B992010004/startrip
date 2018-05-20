@@ -32,7 +32,7 @@ public class TravelListDao implements ITravelListDao  {
 	
 	@Override
 	public List<TravelListBean> Select_travellist(Integer travelId,Integer day) {
-		String sql = "select * from TravelList where travelId=:travelId and tripday=:tripday  order by tripday asc,LEFT(starttime,2)";
+		String sql = "select * from TravelList where travelId=:travelId and tripday=:tripday and state=1  order by tripday asc,LEFT(starttime,2)";
 			Session session = factory.getCurrentSession();
 		List<TravelListBean> result = session.createNativeQuery(sql,TravelListBean.class)
 				.setParameter("travelId", travelId)
@@ -153,5 +153,17 @@ public class TravelListDao implements ITravelListDao  {
 		TravelListBean tlb = factory.getCurrentSession().createNativeQuery(sql, TravelListBean.class)
 				.setParameter("travelId", travelId).setParameter("tripday", tripday).getSingleResult();
 		return tlb;
+	}
+
+
+	@Override
+	public Integer update_ListState(Integer travelId, Integer tripday, String starttime) {
+		String hql = "UPDATE TravelListBean SET state=:state where travelId=:travelId and tripday=:tripday and startTime=:starttime";
+		Integer a =factory.getCurrentSession().createQuery(hql).setParameter("state", 0)
+				.setParameter("travelId",travelId ).setParameter("tripday",tripday ).setParameter("starttime", starttime)
+				.executeUpdate();
+		
+		
+		return a;
 	}
 }

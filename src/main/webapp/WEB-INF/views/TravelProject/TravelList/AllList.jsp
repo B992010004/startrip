@@ -266,7 +266,7 @@ function changetype(){
         map: map,
      });
 	
-var k = event.target.id;
+	var k = event.target.id;
 	//當天行程數
 	var right=$('#'+k).parent().parent().find('.right')
 	var len = right.length
@@ -559,14 +559,23 @@ $(document).on('click','#checklist',function(){
 		}
 	})
 })
-
+//刪除清單
 $(document).on('click','.closelist',function(e){
-	console.log(e.target.id)
-	list={}
-	list.travelid=${Travel.travelId}
-	list.memberId=${LoginOK.memberid}
-// 	list.
-// 	$.get('/list remove',,function(e))
+// 	console.log(e.target.id)
+// 	console.log($('#'+e.target.id).parent().parent().parent().attr('id'))
+// 	console.log($('#'+e.target.id).next().next().text())
+// 	console.log(day)
+	var daybody=$('#'+e.target.id).parent().parent().parent().attr('id');
+	var day = daybody.substr(7,1);
+	var list={}
+	list.travelId=${Travel.travelId}
+	list.tripday=day
+  	list.starttime=$('#'+e.target.id).next().next().text()
+ 	$.get('/startrip/list/remove',list,function(data){
+ 		console.log(data);
+ 		$('#'+e.target.id).parent().parent().remove();
+ 		searchDays();
+ 	})
 	
 
 })
