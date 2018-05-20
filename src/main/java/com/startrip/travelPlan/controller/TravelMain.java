@@ -22,14 +22,8 @@ public class TravelMain {
 		HttpSession session = request.getSession();
 		session.removeAttribute("listOb");
 		session.removeAttribute("Travel");
-			
 		
 		return "TravelProject/Main";
 	}
-	
-	
-	
-	
-	
 	
 }
