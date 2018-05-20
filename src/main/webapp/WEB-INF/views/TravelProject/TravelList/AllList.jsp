@@ -244,22 +244,78 @@
 <!--     <script src="/startrip/assets/Travel/js/lightbox.js"></script> -->
 <script>
 $(function(){
-	
+	//搜尋天數
 	searchDays();
+	//搜尋景點
 	searchView();
 
 })
 	
-
+//天數行程切換
 function changetype(){
+	var pyrmont = new google.maps.LatLng(25.0337409,121.5416216);
+	var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 13,
+        center:pyrmont
+      });
+
+	
+	 directionsService = new google.maps.DirectionsService;
+	   directionsDisplay = new google.maps.DirectionsRenderer({
+        draggable: true,
+        map: map,
+     });
+	
 var k = event.target.id;
+	//當天行程數
+	var right=$('#'+k).parent().parent().find('.right')
+	var len = right.length
+	var start;
+	var end;
+	var waypts=[];
 	
-	$('#'+k).parent().parent().find('.right').slideToggle();
+	console.log(right.eq(0).find('h3').text())
 	
+	if(right.is(':visible')==true){
+		right.hide(1000);
+	}else{
+		
+		right.show(1000);
+		for(var i = 0;i<len;i++){
+			if(i==0){
+				var start =	$('#'+k).parent().parent().find('.right').eq(i).find('h3').text()
+			}else if(i==(len-1)){
+				var end = $('#'+k).parent().parent().find('.right').eq(i).find('h3').text()
+			}else{
+				waypts.push({
+					location: $('#'+k).parent().parent().find('.right').eq(i).find('h3').text(),
+					stopover: true
+					})
+			}
+		}	
+			 directionsService.route({
+		      //起始
+		        origin: start,
+		      //目的
+		        destination: end,
+		      //中途點
+		        waypoints: waypts,
+		      //模式
+		        travelMode: 'DRIVING'
+		      
+		      }, function(response, status) {
+		        if (status === 'OK') {
+		            console.log(response)
+		        	directionsDisplay.setDirections(response);
+		          
+		        } else {
+		         console.log('Could not display directions due to: ' + status);
+		        }
+			})
+		
+	}
 }
-
-
-
+	
 
 
 
@@ -276,11 +332,9 @@ $('#insertday').on('click',function(){
 			data:add,
 			contentType: "application/json; charset=utf-8",
 			success:function(data){
-// 				console.log(data.travelDays)
 				searchDays();
-				
-			}
-		})
+		}
+	})
 })
 
 //查詢景點相關資訊
@@ -319,10 +373,6 @@ $(document).on('click','.card-img-top',function(e){
 		$('#type').html(imgrow)
 		daysrow.append(docFrag);
 		$('#days').html(daysrow);
-		
-		
-		
-		
 	})
 	
 })
@@ -412,6 +462,7 @@ $(document).on('click','#insertList',function(){
 			}
 		})
 	})
+	
 $(document).on('click','#checklist',function(){
 	var day = inputDay.val()
 	var travelId="${Travel.travelId}"
@@ -442,12 +493,6 @@ $(document).on('click','#checklist',function(){
 					console.log(data.endTime)
 					var time = data.endTime.split(":")
 					var insert =$('#time').val().split(":")
-					console.log(time[0])
-					console.log(time[1])
-					console.log(insert[0])
-					console.log(insert[0])
-					
-					
 					
 					var hour =parseInt(time[0])+parseInt(insert[0])
 					var min =parseInt(time[1])+parseInt(insert[1])
@@ -537,7 +582,6 @@ function searchDays(){
 	var value = {};
 	value.mail="${LoginOK.mail}";
 	value.travelId="${Travel.travelId}"
-// 	alert(value)
 	$.ajax({
 		url:"/startrip/travel/id",
 		type:"GET",
@@ -613,10 +657,6 @@ function searchList(day){
 						})
 					}//for----end
 			   directionsService = new google.maps.DirectionsService;
-			   directionsDisplay = new google.maps.DirectionsRenderer({
-		          draggable: true,
-		          map: map,
-		       });
 			//中途點
 			var wlen = waypts.length
 			if(wlen>2){
@@ -639,12 +679,10 @@ function searchList(day){
 			  	if (status === 'OK') {
 			          var result=response.routes[0]
 			          var rlen=result.legs.length
-			          directionsDisplay.setDirections(response);
 			          console.log(rlen)
 			          road=[]
 			          if(rlen<0){
 			         console.log("沒有行程")
-			         directionsDisplay.setDirections(response);
 		          	}else{
 				          for(var i = 0;i<(len-1);i++){
 				        	var distance=result.legs[i].distance.text;
@@ -702,273 +740,272 @@ function PlaceRoute(origin, destination,waypts, service){
 	
 }
 
+function initMap() {
+  	var pyrmont = new google.maps.LatLng(25.0337409,121.5416216);
+	var map;
+    var infowindow;
+    var icon = {
+          url: '/startrip/assets/Travel/img/local.ico',
+          size: new google.maps.Size(90, 90),
+          //mark位置
+          //origin: new google.maps.Point(0, 4),
+          anchor: new google.maps.Point(-0, 80),
+          scaledSize: new google.maps.Size(90, 90)
+        };
+	//初始化地圖
+    map = new google.maps.Map(document.getElementById('map'), {
+    center: pyrmont,
+    zoom: 14
+     });
+	//標記初始化地圖	      
+     marker = new google.maps.Marker({
+        position: pyrmont,
+        map: map,
+        title: '資策會',
+        icon: icon,
+    })
+    infowindow = new google.maps.InfoWindow();
+    service = new google.maps.places.PlacesService(map);
+    //路線規劃
+    var directionsService = new google.maps.DirectionsService;
+//	    //路線設定
+//	    var directionsDisplay = new google.maps.DirectionsRenderer({
+//	        draggable: true,
+//	        map: map,
+//	        //儀錶板(顯示位置)
+//	        panel: document.getElementById('right-panel')
+//	      });  
+    //顯示監控
+//	    directionsDisplay.addListener('directions_changed', function() {
+//	        computeTotalDistance(directionsDisplay.getDirections());
+//	      });
+		//路線規劃 call function
+//       displayRoute('饒河街', '台北101', directionsService,
+//           directionsDisplay);
+     
+  //初始化end------------------------
+ 
+ 
+
+	//服務搜尋promont 範圍50000----------------------------------------------------
+        // service.nearbySearch({
+        //   location: pyrmont,
+        //   radius: 50000       
+        // }, callback);
+	//-----------------------------------------------
+	// Create the search box and link it to the UI element.
+	var input = document.getElementById('pac-input');
+  		var searchBox = new google.maps.places.SearchBox(input);
+      map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+      // Bias the SearchBox results towards current map's viewport.
+      map.addListener('bounds_changed', function() {
+        searchBox.setBounds(map.getBounds());
+      });
+
+      var markers = [];
+      // Listen for the event fired when the user selects a prediction and retrieve
+      // more details for that place.
+      //placechange-----
+      searchBox.addListener('places_changed', function() {
+   var places = searchBox.getPlaces();
+
+   if (places.length == 0) {
+      return;
+   }
+
+    // Clear out the old markers.
+    markers.forEach(function(marker) {
+      marker.setMap(null);
+    });
+    markers = [];
+
+    // For each place, get the icon, name and location.
+    var bounds = new google.maps.LatLngBounds();
+    
+    places.forEach(function(place,index) {
+    if (!place.geometry) {
+        console.log("Returned place contains no geometry");
+        return;
+      }
+     
+
+      // Create a marker for each place.
+      markers.push(
+        new google.maps.Marker({
+          map: map,
+          icon: icon,
+          title: place.name,
+          position: place.geometry.location,
+          animation: google.maps.Animation.DROP
+        })
+        );
+      //-------------------end
+      //markerclick-----------------------------
+    	google.maps.event.addListener(markers[index], 'click', function() {
+  	  
+  	var body=$('.viewDetail');
+		var li = body.find('ul');
+		body.css("display","block")
+		body.find('h5').text(place.name)
+		body.append('<input type="hidden" class="placeId" value='+place.place_id+'>') 
+  	body.find('img').attr('src',place.photos[0].getUrl({'maxWidth': 100, 'maxHeight': 100}));
+//			console.log(place.place_id)
+  	var Name= $('<li class="list-group-item">景點評分:<h5>'+place.rating +'</h5></li>');
+		var phone = $('<li class="list-group-item">電話:<h5>'+place.formatted_phone_number+'</h5></li>');
+		var website = $('<li class="list-group-item">網址:<h5>'+place.website+'</h5></li>');
+		var address = $('<li class="list-group-item">地址:<h5>'+place.formatted_address+'</h5></li>');
+		var btn = $('<button id="insertList" type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addList" >加入行程</button>');
+		var imgrow = $('<div class="checkview row"></div>');
+		var daysrow = $('<div class="checkview row"></div>');
+		var imgs=$('<div class="list-group-item col-3" id="food" src="/startrip/assets/Travel/img/food.png"></div><div id="shop" class="list-group-item col-3" src="/startrip/assets/Travel/img/shop.png"></div><div id="travel" class="list-group-item col-3" src="/startrip/assets/Travel/img/mountain.png"></div><div id="rest" class="list-group-item col-3" src="/startrip/assets/Travel/img/zzz.png"><div><hr>');
+		var docFrag = $(document.createDocumentFragment());
+
+		var days=${Travel.travelDays};
+		
+		for(var i =1;i<=days;i++){
+		var selectday=$('<div class="circle col-2" id="chioceday'+i+'">'+i+'</div>')
+		docFrag.append(selectday);
+		}
+		li.empty();
+		li.append(Name);
+		$('#viewName').val(place.name)
+		li.append(phone);
+		li.append(website);
+		li.append(address)
+		li.append(btn);
+		
+		imgrow.append(imgs);
+		$('#type').html(imgrow)
+		daysrow.append(docFrag);
+		$('#days').html(daysrow); 
+//         infowindow.setContent('<div><strong>' + place.name + '</strong><br>' 
+//             + place.formatted_phone_number+'<br>'
+//             +place.rating +'<br>'
+//             +place.website  +'<br>'
+//             + place.formatted_address + '</div>'
+//             +"<img src="+place.photos[0].getUrl({'maxWidth': 100, 'maxHeight': 100})+'>');
+//               infowindow.open(map, this);
+        });
+		//markckick-----end
+
+
+      if (place.geometry.viewport) {
+        // Only geocodes have viewport.
+        bounds.union(place.geometry.viewport);
+      } else {
+        bounds.extend(place.geometry.location);
+      }
+
+     
+    	});
+		//place.each-----end
+    
+    	map.fitBounds(bounds);
+  	});
+		//placechange-----end------------------------------------
+
+      directionsService = new google.maps.DirectionsService;
+	   directionsDisplay = new google.maps.DirectionsRenderer({
+          draggable: true,
+          map: map,
+       });
   
+  
+  }//init end
+  
+
+
+  //處理
+//	  function displayRoute(origin, destination,waypts, service, display) {
+//	      service.route({
+//	      //起始
+//	        origin: origin,
+//	      //目的
+//	        destination: destination,
+//	      //中途點
+//	        waypoints: waypts,
+//	      //模式
+//	        travelMode: 'DRIVING'
+      
+//	      }, function(response, status) {
+//	        if (status === 'OK') {
+//	            console.log(response)
+//	            console.log(response.routes[0].legs[0].distance.text)
+//	            console.log(response.routes[0].legs[0].duration.text)
+//	            console.log(response.routes[0].legs[0].start_address)
+//	            console.log(response.routes[0].legs[0].end_address)
+//	            console.log(response.routes[0].legs[0].duration.text)
+           
+//	          display.setDirections(response);
+//	        } else {
+//	         console.log('Could not display directions due to: ' + status);
+//	        }
+//	      });
+      
+//	    }
+    //displayRoute -------end---
+     
+    
+    
+    
+    
+	//	顯示
+//	    function computeTotalDistance(result) {
+//	      var total = 0;
+//	      var myroute = result.routes[0];
+//	      for (var i = 0; i < myroute.legs.length; i++) {
+//	        total += myroute.legs[i].distance.value;
+//	      }
+//	      total = total / 1000;
+//	      document.getElementById('total').innerHTML = total + ' km';
+//	    }	
+  	//路線規劃end----------------------------------------
+  
+ 
+  
+  //(回傳直,狀態)
+  function callback(results, status) {
+    if (status === google.maps.places.PlacesServiceStatus.OK) {
+      for (var i = 0; i < results.length; i++) {
+        var id = results[i].place_id;
+        var service = new google.maps.places.PlacesService(map);
+       //--------------------------------------------
+
+       //------------------------------ 
+        service.getDetails({placeId:id},function(place,status){
+            if (status === google.maps.places.PlacesServiceStatus.OK) {
+        var photos=place.photos;
+
+        var marker = new google.maps.Marker({
+        map: map,
+        position: place.geometry.location,
+       
+        });
+
+        //-----------------------------
+//	        google.maps.event.addListener(marker, 'click', function() {
+
+//// 	        infowindow.setContent('<div><strong>' + place.name + '</strong><br>' 
+//// 	        + place.formatted_phone_number+'<br>'
+//// 	        +place.rating +'<br>'
+//// 	        +place.website  +'<br>'
+//// 	        + place.formatted_address + '</div>'
+//// 	        +"<img src="+place.photos[0].getUrl({'maxWidth': 100, 'maxHeight': 100})+'>');
+//// 	          infowindow.open(map, this);
+//	        });
+        }
+        });
+
+        
+      }
+    }
+  }
+ //callback-----end
+
 
 </script>
 <script type="text/javascript">
-function initMap() {
-	  	var pyrmont = new google.maps.LatLng(25.0337409,121.5416216);
-		var map;
-	    var infowindow;
-	    var icon = {
-	          url: '/startrip/assets/Travel/img/local.ico',
-	          size: new google.maps.Size(90, 90),
-	          //mark位置
-	          //origin: new google.maps.Point(0, 4),
-	          anchor: new google.maps.Point(-0, 80),
-	          scaledSize: new google.maps.Size(90, 90)
-	        };
-		//初始化地圖
-	    map = new google.maps.Map(document.getElementById('map'), {
-	    center: pyrmont,
-	    zoom: 14
-	     });
-		//標記初始化地圖	      
-	     marker = new google.maps.Marker({
-	        position: pyrmont,
-	        map: map,
-	        title: '資策會',
-	        icon: icon,
-	    })
-	    
-	    infowindow = new google.maps.InfoWindow();
-	    service = new google.maps.places.PlacesService(map);
-	    //路線規劃
-	    var directionsService = new google.maps.DirectionsService;
-	    //路線設定
-	    var directionsDisplay = new google.maps.DirectionsRenderer({
-	        draggable: true,
-	        map: map,
-	        //儀錶板(顯示位置)
-	        panel: document.getElementById('right-panel')
-	      });  
-	    //顯示監控
-	    directionsDisplay.addListener('directions_changed', function() {
-	        computeTotalDistance(directionsDisplay.getDirections());
-	      });
-			//路線規劃 call function
-//	       displayRoute('饒河街', '台北101', directionsService,
-//	           directionsDisplay);
-	     
-	  //初始化end------------------------
-	 
-	 
-
-		//服務搜尋promont 範圍50000----------------------------------------------------
-	        // service.nearbySearch({
-	        //   location: pyrmont,
-	        //   radius: 50000       
-	        // }, callback);
-		//-----------------------------------------------
-		// Create the search box and link it to the UI element.
-		var input = document.getElementById('pac-input');
-	  		var searchBox = new google.maps.places.SearchBox(input);
-	      map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
-	      // Bias the SearchBox results towards current map's viewport.
-	      map.addListener('bounds_changed', function() {
-	        searchBox.setBounds(map.getBounds());
-	      });
-
-	      var markers = [];
-	      // Listen for the event fired when the user selects a prediction and retrieve
-	      // more details for that place.
-	      //placechange-----
-	      searchBox.addListener('places_changed', function() {
-	   var places = searchBox.getPlaces();
-
-	   if (places.length == 0) {
-	      return;
-	   }
-
-	    // Clear out the old markers.
-	    markers.forEach(function(marker) {
-	      marker.setMap(null);
-	    });
-	    markers = [];
-
-	    // For each place, get the icon, name and location.
-	    var bounds = new google.maps.LatLngBounds();
-	    
-	    places.forEach(function(place,index) {
-	    if (!place.geometry) {
-	        console.log("Returned place contains no geometry");
-	        return;
-	      }
-	     
-
-	      // Create a marker for each place.
-	      markers.push(
-	        new google.maps.Marker({
-	          map: map,
-	          icon: icon,
-	          title: place.name,
-	          position: place.geometry.location,
-	          animation: google.maps.Animation.DROP
-	        })
-	        );
-	      //-------------------end
-	      //markerclick-----------------------------
-	    	google.maps.event.addListener(markers[index], 'click', function() {
-	  	  
-	  	var body=$('.viewDetail');
-			var li = body.find('ul');
-			body.css("display","block")
-			body.find('h5').text(place.name)
-			body.append('<input type="hidden" class="placeId" value='+place.place_id+'>') 
-	  	body.find('img').attr('src',place.photos[0].getUrl({'maxWidth': 100, 'maxHeight': 100}));
-// 			console.log(place.place_id)
-	  	var Name= $('<li class="list-group-item">景點評分:<h5>'+place.rating +'</h5></li>');
-			var phone = $('<li class="list-group-item">電話:<h5>'+place.formatted_phone_number+'</h5></li>');
-			var website = $('<li class="list-group-item">網址:<h5>'+place.website+'</h5></li>');
-			var address = $('<li class="list-group-item">地址:<h5>'+place.formatted_address+'</h5></li>');
-			var btn = $('<button id="insertList" type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addList" >加入行程</button>');
-			var imgrow = $('<div class="checkview row"></div>');
-			var daysrow = $('<div class="checkview row"></div>');
-			var imgs=$('<div class="list-group-item col-3" id="food" src="/startrip/assets/Travel/img/food.png"></div><div id="shop" class="list-group-item col-3" src="/startrip/assets/Travel/img/shop.png"></div><div id="travel" class="list-group-item col-3" src="/startrip/assets/Travel/img/mountain.png"></div><div id="rest" class="list-group-item col-3" src="/startrip/assets/Travel/img/zzz.png"><div><hr>');
-			var docFrag = $(document.createDocumentFragment());
-
-			var days=${Travel.travelDays};
-			
-			for(var i =1;i<=days;i++){
-			var selectday=$('<div class="circle col-2" id="chioceday'+i+'">'+i+'</div>')
-			docFrag.append(selectday);
-			}
-			li.empty();
-			li.append(Name);
-			$('#viewName').val(place.name)
-			li.append(phone);
-			li.append(website);
-			li.append(address)
-			li.append(btn);
-			
-			imgrow.append(imgs);
-			$('#type').html(imgrow)
-			daysrow.append(docFrag);
-			$('#days').html(daysrow); 
-//	         infowindow.setContent('<div><strong>' + place.name + '</strong><br>' 
-//	             + place.formatted_phone_number+'<br>'
-//	             +place.rating +'<br>'
-//	             +place.website  +'<br>'
-//	             + place.formatted_address + '</div>'
-//	             +"<img src="+place.photos[0].getUrl({'maxWidth': 100, 'maxHeight': 100})+'>');
-//	               infowindow.open(map, this);
-	        });
-			//markckick-----end
-
-
-	      if (place.geometry.viewport) {
-	        // Only geocodes have viewport.
-	        bounds.union(place.geometry.viewport);
-	      } else {
-	        bounds.extend(place.geometry.location);
-	      }
-
-	     
-	    	});
-			//place.each-----end
-	    
-	    	map.fitBounds(bounds);
-	  	});
-			//placechange-----end------------------------------------
-
-	      directionsService = new google.maps.DirectionsService;
-		   directionsDisplay = new google.maps.DirectionsRenderer({
-	          draggable: true,
-	          map: map,
-	       });
-	  
-	  
-	  }//init end
-	  
-
-
-	  //處理
-// 	  function displayRoute(origin, destination,waypts, service, display) {
-// 	      service.route({
-// 	      //起始
-// 	        origin: origin,
-// 	      //目的
-// 	        destination: destination,
-// 	      //中途點
-// 	        waypoints: waypts,
-// 	      //模式
-// 	        travelMode: 'DRIVING'
-	      
-// 	      }, function(response, status) {
-// 	        if (status === 'OK') {
-// 	            console.log(response)
-// 	            console.log(response.routes[0].legs[0].distance.text)
-// 	            console.log(response.routes[0].legs[0].duration.text)
-// 	            console.log(response.routes[0].legs[0].start_address)
-// 	            console.log(response.routes[0].legs[0].end_address)
-// 	            console.log(response.routes[0].legs[0].duration.text)
-	           
-// 	          display.setDirections(response);
-// 	        } else {
-// 	         console.log('Could not display directions due to: ' + status);
-// 	        }
-// 	      });
-	      
-// 	    }
-	    //displayRoute -------end---
-	     
-	    
-	    
-	    
-	    
-		//	顯示
-// 	    function computeTotalDistance(result) {
-// 	      var total = 0;
-// 	      var myroute = result.routes[0];
-// 	      for (var i = 0; i < myroute.legs.length; i++) {
-// 	        total += myroute.legs[i].distance.value;
-// 	      }
-// 	      total = total / 1000;
-// 	      document.getElementById('total').innerHTML = total + ' km';
-// 	    }	
-	  	//路線規劃end----------------------------------------
-	  
-	 
-	  
-	  //(回傳直,狀態)
-	  function callback(results, status) {
-	    if (status === google.maps.places.PlacesServiceStatus.OK) {
-	      for (var i = 0; i < results.length; i++) {
-	        var id = results[i].place_id;
-	        var service = new google.maps.places.PlacesService(map);
-	       //--------------------------------------------
-
-	       //------------------------------ 
-	        service.getDetails({placeId:id},function(place,status){
-	            if (status === google.maps.places.PlacesServiceStatus.OK) {
-	        var photos=place.photos;
-
-	        var marker = new google.maps.Marker({
-	        map: map,
-	        position: place.geometry.location,
-	       
-	        });
-
-	        //-----------------------------
-// 	        google.maps.event.addListener(marker, 'click', function() {
-
-// // 	        infowindow.setContent('<div><strong>' + place.name + '</strong><br>' 
-// // 	        + place.formatted_phone_number+'<br>'
-// // 	        +place.rating +'<br>'
-// // 	        +place.website  +'<br>'
-// // 	        + place.formatted_address + '</div>'
-// // 	        +"<img src="+place.photos[0].getUrl({'maxWidth': 100, 'maxHeight': 100})+'>');
-// // 	          infowindow.open(map, this);
-// 	        });
-	        }
-	        });
-
-	        
-	      }
-	    }
-	  }
-	 //callback-----end
 
 
 </script>

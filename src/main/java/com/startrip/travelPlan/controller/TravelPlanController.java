@@ -18,7 +18,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.hibernate.TransientPropertyValueException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.CacheControl;
 import org.springframework.http.HttpHeaders;
@@ -29,7 +28,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -38,7 +36,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.startrip.member.Service.MemberServiceInterface;
 import com.startrip.member.memberModle.MemberBean;
-import com.startrip.travelPlan.Tool.Tools;
 import com.startrip.travelPlan.model.TravelAllBean;
 import com.startrip.travelPlan.model.TravelListBean;
 import com.startrip.travelPlan.model.TravelViewBean;

@@ -49,32 +49,20 @@
 
 
 	 <section class="probootstrap_section bg-dark" id="section-contact">
-        
-		</section>
+     </section>
 		
-		<section class="probootstrap_section" id="section-feature-testimonial" style="padding: 2em 8em;">
+	<section class="probootstrap_section" id="section-feature-testimonial" style="padding: 2em 8em;">
 
 		<div class="row">
 			<div class="col-md-3" style="background-color: blcak;">
 				<ul class="list-group list-group-flush">
-
-
-
-					<li class="list-group-item " align="center"><a
-						href="/startrip/Travel/addPlan/${LoginOK.mail}">新增行程</a></li>
-					<li class="list-group-item " align="center"><a
-						href="Travel/addPlan/${LoginOK.mail}">新增行程</a></li>
-					<li class="list-group-item " align="center"><a
-						href="Travel/addList">新增清單</a></li>
-					<li class="list-group-item " align="center"><a
-						href="Views/add">新增景點</a></li>
-					<li class="list-group-item " align="center"><a
-						href="TravelViews/all">查詢景點</a></li>
-					<!-- 				 	<li class="list-group-item "  align="center"><a  href="list/All">查詢行程</a><br></li> -->
-					<!-- 		  <li class="list-group-item"></li> -->
+					<li class="list-group-item " align="center"><a	href="/startrip/Travel/addPlan/${LoginOK.mail}">新增行程</a></li>
+					<li class="list-group-item " align="center"><a	href="Travel/addPlan/${LoginOK.mail}">新增行程</a></li>
+					<li class="list-group-item " align="center"><a href="Travel/addList">新增清單</a></li>
+					<li class="list-group-item " align="center"><a	href="Views/add">新增景點</a></li>
+					<li class="list-group-item " align="center"><a	href="TravelViews/all">查詢景點</a></li>
 				</ul>
 			</div>
-
 
 			<div class="col-md-9" id="travels">
 				<div class="row" id="row">
@@ -101,14 +89,7 @@
 				</div>
 			</div>
 		</div>
-
-
-
 	</section>
-
-
-
-
 
 	<div>
 		<jsp:include page="/WEB-INF/views/footer.jsp" flush="true" />
@@ -118,9 +99,7 @@
 	</div>
 
 
-	<div class="modal fade" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalCenterTitle" aria-hidden="true"
-		id="model">
+	<div class="modal fade" tabindex="-1" role="dialog"	aria-labelledby="exampleModalCenterTitle" aria-hidden="true"	id="model">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -167,12 +146,6 @@
 		</div>
 	</div>
 	<!--  ----------------------------------------------------------------------- -->
-
-
-
-
-
-
 
 	<script src="/startrip/assets/js/jquery.min.js"></script>
 	<script src="/startrip/assets/js/popper.min.js"></script>
@@ -300,20 +273,13 @@
 			all.mail = "${LoginOK.mail}";
 
 			$.ajax({
-						url : "/startrip/travel/all",
-						type : "GET",
-						dataType : "json",
-						data : all,
-						contentType : "application/json; charset=utf-8",
-						success : function(data) {
+					url : "/startrip/travel/all",
+					type : "GET",
+					dataType : "json",
+					data : all,
+					contentType : "application/json; charset=utf-8",
+					success : function(data) {
 							$('#row').empty();
-							// 			console.log(data)
-							// 			<div class="card" style="width: 18rem;">
-							// 			  <img class="card-img-top" src="..." alt="Card image cap">
-							// 			  <div class="card-body">
-							// 			    <p class="card-text">${travel.travelName}</p>
-							// 			  </div>
-							// 			</div>
 							var docFrag = $(document.createDocumentFragment());
 							var start;
 							var end;
@@ -324,7 +290,7 @@
 										+ (i + 1)
 										+ '"><img id="del'
 										+ (i + 1)
-										+ '" class="icon col-2 del" src = http://localhost:8080/startrip/assets/Travel/img/close2.png>')
+										+ '" class="icon col-2 del" src = "/startrip/assets/Travel/img/close2.png">')
 								var body = $('<div class="card-body"></div>')
 								var title = $('<h5 class="card-title">'
 										+ data[i].travelName
