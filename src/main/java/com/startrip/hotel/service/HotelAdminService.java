@@ -68,7 +68,7 @@ public class HotelAdminService {
 		bean.setEnddate(checkout);
 		bean.setBasicprice(price);
 		bean.setRoomnote(roomnote);
-		bean.setRoomstate(true);
+//		bean.setRoomstate(true);
 	}
 
 	public void updateRoomtype(Integer roomid,String name,Integer people,Integer rooms) {
@@ -80,7 +80,7 @@ public class HotelAdminService {
 			bean.setNumberofpeople(people);
 		}
 		if(rooms != null) {
-			bean.setNumberofrooms(rooms);
+//			bean.setNumberofrooms(rooms);
 		}
 	}
 	

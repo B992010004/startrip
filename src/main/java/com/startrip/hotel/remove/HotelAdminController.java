@@ -348,8 +348,8 @@ public class HotelAdminController {
 		room.setHotelid(hotelid);
 		room.setRoomname(name);
 		room.setNumberofpeople(people);
-		room.setNumberofrooms(rooms);
-		room.setRoomstate(false);
+//		room.setNumberofrooms(rooms);
+//		room.setRoomstate(false);
 		hotelAdminService.insertRoomtype(room);
 
 		return "redirect:/admin/HostConnect_Rooms";

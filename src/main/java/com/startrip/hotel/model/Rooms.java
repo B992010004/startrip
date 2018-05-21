@@ -21,41 +21,34 @@ public class Rooms implements Serializable {
 	public Rooms() {
 	}
 
-	public static void main(String[] args) {
-		StandardServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
-				.configure("/com/startrip/hotel/model/persistent/hibernateTest.cfg.xml").build();
-		SessionFactory factory = new MetadataSources(serviceRegistry).buildMetadata().buildSessionFactory();
-		Session session = factory.openSession();
-		session.beginTransaction();
-
-		Rooms bean = new Rooms();
-		bean.setRoomid(2);
-
-		// RoomtypeBean bean = session.get(RoomtypeBean.class, 1);
-		// System.out.println(bean);
-		// session.delete(bean);
-
-		// session.save(bean);
-
-		session.getTransaction().commit();
-		session.close();
-		factory.close();
-	}
-
-	private Integer hotelid;
-	private Boolean roomstate;
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer roomid;
 
+	// fk
+	private Integer hotelid;
+
+	// 設定1為可訂
+	private Integer roomstate;
+
+	// 房型之類的
+	private Integer roomtype;
+	// 房型描述名稱
 	private String roomname;
+
 	private Integer numberofpeople;
-	private Integer numberofrooms;
 	private java.sql.Date opendate;
 	private java.sql.Date enddate;
 	private Integer basicprice;
 	private String roomnote;
+
+	public Integer getRoomid() {
+		return roomid;
+	}
+
+	public void setRoomid(Integer roomid) {
+		this.roomid = roomid;
+	}
 
 	public Integer getHotelid() {
 		return hotelid;
@@ -65,20 +58,20 @@ public class Rooms implements Serializable {
 		this.hotelid = hotelid;
 	}
 
-	public Boolean getRoomstate() {
+	public Integer getRoomstate() {
 		return roomstate;
 	}
 
-	public void setRoomstate(Boolean roomstate) {
+	public void setRoomstate(Integer roomstate) {
 		this.roomstate = roomstate;
 	}
 
-	public Integer getRoomid() {
-		return roomid;
+	public Integer getRoomtype() {
+		return roomtype;
 	}
 
-	public void setRoomid(Integer roomid) {
-		this.roomid = roomid;
+	public void setRoomtype(Integer roomtype) {
+		this.roomtype = roomtype;
 	}
 
 	public String getRoomname() {
@@ -95,14 +88,6 @@ public class Rooms implements Serializable {
 
 	public void setNumberofpeople(Integer numberofpeople) {
 		this.numberofpeople = numberofpeople;
-	}
-
-	public Integer getNumberofrooms() {
-		return numberofrooms;
-	}
-
-	public void setNumberofrooms(Integer numberofrooms) {
-		this.numberofrooms = numberofrooms;
 	}
 
 	public java.sql.Date getOpendate() {
@@ -139,9 +124,9 @@ public class Rooms implements Serializable {
 
 	@Override
 	public String toString() {
-		return "RoomtypeBean [hotelid=" + hotelid + ", roomstate=" + roomstate + ", roomid=" + roomid + ", roomname="
-				+ roomname + ", numberofpeople=" + numberofpeople + ", numberofrooms=" + numberofrooms + ", opendate="
-				+ opendate + ", enddate=" + enddate + ", basicprice=" + basicprice + ", roomnote=" + roomnote + "]";
+		return "Rooms [roomid=" + roomid + ", hotelid=" + hotelid + ", roomstate=" + roomstate + ", roomtype="
+				+ roomtype + ", roomname=" + roomname + ", numberofpeople=" + numberofpeople + ", opendate=" + opendate
+				+ ", enddate=" + enddate + ", basicprice=" + basicprice + ", roomnote=" + roomnote + "]";
 	}
 
 }
