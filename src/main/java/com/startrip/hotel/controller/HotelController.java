@@ -63,10 +63,11 @@ public class HotelController {
 
 	@RequestMapping(value = "/Rooms/{hotelId}")
 	public String rooms(@PathVariable("hotelId") Integer hotelId, Model model) {
-		
-		//Hotel資訊
+
+		// Hotel資訊
 		HotelsBean bean = hotelService.selectByPk(hotelId);
-		//將PhotoPath分割
+		// 將PhotoPath分割
+		//此法比較好 不用在Bean裡面寫程式
 		String[] photoArr = null;
 		photoArr = bean.getPhotoString().split(";");
 		bean.setPhotoArr(photoArr);
@@ -94,9 +95,17 @@ public class HotelController {
 		return "hotel/Rooms";
 	}
 
-	@RequestMapping(value = "/HotelCheckout")
-	public String hotelCheckout(Model model) {
-		return "hotel/HotelCheckout";
+	@RequestMapping(value = "/Booking/{hotelId}")
+	public String hotelCheckout(@PathVariable("hotelId") Integer hotelId, Model model) {
+		// Hotel資訊
+		HotelsBean bean = hotelService.selectByPk(hotelId);
+		// 將PhotoPath分割
+		String[] photoArr = null;
+		photoArr = bean.getPhotoString().split(";");
+		bean.setPhotoArr(photoArr);
+		model.addAttribute("hotel", bean);
+
+		return "hotel/Booking";
 	}
 
 	@RequestMapping(value = "/Payment_Creditcard")

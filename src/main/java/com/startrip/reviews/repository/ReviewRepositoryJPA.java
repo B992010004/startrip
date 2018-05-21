@@ -10,7 +10,7 @@ import com.startrip.reviews.model.HotelReview;
 @Repository
 public interface ReviewRepositoryJPA extends JpaRepository<HotelReview, Integer> {
 	// List<ReviewBean> getAllReviews();
-	List<HotelReview> findByRestaurantId(Integer restaurantId);
+//	List<HotelReview> findByRestaurantId(Integer restaurantId);
 
 //	@Query(value = "SELECT count(overallRank) FROM ReviewBean rb WHERE rb.restaurantId = ? GROUP BY rb.overallRank", nativeQuery = true)
 //	List<Long> getRankByRestaurantId(Integer restaurantId);

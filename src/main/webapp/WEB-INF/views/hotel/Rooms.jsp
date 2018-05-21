@@ -319,8 +319,8 @@
                         <div class="row">
                             <div class="col-md">
                                 <!-- 地圖 -->
-                                <a href="http://maps.google.com/maps?q=${hotel.hoteladdress }&amp;z=11" data-geo="" target="_blank">
-                                    <img class="map" alt="${hotel.hoteladdress }" src="http://maps.google.com/maps/api/staticmap?zoom=15&size=300x300&maptype=terrain&sensor=false&center=${hotel.hoteladdress }&markers=color:green%7Clabel:H%7C${hotel.hoteladdress }&key=AIzaSyARfDct4ecrevMJjHgcrjmPOLfbM6X9N7w">
+                                <a href="https://maps.google.com/maps?q=${hotel.hoteladdress }&amp;z=11" data-geo="" target="_blank">
+                                    <img class="map" alt="${hotel.hoteladdress }" src="https://maps.google.com/maps/api/staticmap?zoom=15&size=300x300&maptype=terrain&sensor=false&center=${hotel.hoteladdress }&markers=color:green%7Clabel:H%7C${hotel.hoteladdress }&key=AIzaSyARfDct4ecrevMJjHgcrjmPOLfbM6X9N7w">
                                 </a>
                             </div>
                         </div>
@@ -344,7 +344,7 @@
                                 <!-- 房間資料起始 -->
                                 <tr>
                                     <th scope="row">
-                                        <img src="/startrip/assets/images/sq_img_2.jpg">
+                                        <img src="/startrip/assets/images/roomStyle.jpg">
                                         <br> 豪華雙人房
                                     </th>
                                     <td>附早餐
@@ -357,7 +357,7 @@
                                     </td>
                                     <td>3000</td>
                                     <td>
-                                        <form action="HotelCheckout.html">
+                                        <form action="/startrip//Booking/${hotel.hotelid }">
                                             <button type="submit" class="btn btn-outline-warning">預定</button>
                                             <br>
                                             <br>
@@ -437,7 +437,7 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <a href="/startrip/review/UserReviewEdit/1" class="btn btn-primary">發表評論</a>
+                        <a href="/startrip/review/UserReviewEdit/${hotel.hotelid }" class="btn btn-primary">發表評論</a>
                         <a href="" class="btn btn-outline-primary">即時客服</a>
                     </div>
                 </div>
@@ -535,7 +535,7 @@
             <div>
                 <textarea id="messages" rows="1" cols="25;" style="resize:none;" placeholder="請輸入訊息" maxlength="250"></textarea>
             </div>
-            <div class="btn btn-secondary" id="sendText" onclick="initChat('${LoginOK.memberid }', 6)">傳二</div>
+            <div class="btn btn-secondary" id="sendText" onclick="initChat('${LoginOK.memberid }', 2)">傳二</div>
         </div>
 
 	</div>

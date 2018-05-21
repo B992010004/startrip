@@ -21,4 +21,6 @@ public interface ITravelListService {
 	public List<TravelListBean> select_listday(Integer travelId,Integer tripday);
 	
 	public TravelListBean select_lastlist(Integer travelId,Integer tripday);
+	
+	public Integer update_ListState(Integer travelId,Integer tripday,String starttime);
 }

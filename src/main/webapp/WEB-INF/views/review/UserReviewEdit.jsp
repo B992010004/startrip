@@ -65,7 +65,7 @@
                         <div class="form-group">
                             <div class="form-group">
                                 <div class="form-group" id="rating">
-                                    <label class="sr-only-focusable">你對此餐廳的整體評價</label>
+                                    <label class="sr-only-focusable">你對此飯店的整體評價</label>
                                     <p>
                                         <img id="oR1" src="/startrip/assets/images/review/star.gif" width="10%" />
                                         <img id="oR2" src="/startrip/assets/images/review/star.gif" width="10%" />
@@ -77,7 +77,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="title" class="sr-only-focusable">您的評論標題</label>
-                                    <form:input path="title" type="text" class="form-control" id="title" name="title" placeholder="蓋述你的造訪或強調有趣的細節" />
+                                    <form:input path="title" type="text" class="form-control" id="title" name="title" placeholder="蓋述你的造訪或有趣的細節" />
                                 </div>
                             </div>
                             <!-- <div class="col-md-6">
@@ -90,12 +90,12 @@
 
                         <div class="form-group">
                             <label for="content" class="sr-only-focusable">您的評論內容</label>
-                            <form:textarea cols="30" rows="10" path="content" class="form-control" id="content" name="content" placeholder="跟大家分享您的體驗: 食物、氣氛、服務?"></form:textarea>
+                            <form:textarea cols="30" rows="10" path="content" class="form-control" id="content" name="content" placeholder="跟大家分享您的體驗: 客房、交通位置、設施?"></form:textarea>
                         </div>
 
                         <div class="form-group">
                             <label for="tips" class="sr-only-focusable">分享客房建議給其他旅客</label>
-                            <form:input path="roomTips" type="text" class="form-control" id="tips" name="tips" placeholder="例如:最佳景觀、人少時段、無障礙等等。" />
+                            <form:input path="roomTips" type="text" class="form-control" id="tips" name="tips" placeholder="例如:最佳景觀、較安靜的樓層、無障礙等等。" />
                         </div>
 
 
@@ -132,7 +132,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="sr-only-focusable">你對此餐廳的服務</label>
+                            <label class="sr-only-focusable">你對此飯店的服務</label>
                             <p>
                                 <img id="sR1" src="/startrip/assets/images/review/star.gif" width="10%" />
                                 <img id="sR2" src="/startrip/assets/images/review/star.gif" width="10%" />
@@ -143,7 +143,7 @@
 
                         </div>
                         <div class="form-group">
-                            <label class="sr-only-focusable">你對此餐廳的食物</label>
+                            <label class="sr-only-focusable">你對此飯店的清潔與衛生</label>
                             <p>
                                 <img id="vR1" src="/startrip/assets/images/review/star.gif" width="10%" />
                                 <img id="vR2" src="/startrip/assets/images/review/star.gif" width="10%" />
@@ -154,7 +154,7 @@
 
                         </div>
                         <div class="form-group">
-                            <label class="sr-only-focusable">你對此餐廳的划算度</label>
+                            <label class="sr-only-focusable">你對此飯店的睡眠品質</label>
                             <p>
                                 <img id="rR1" src="/startrip/assets/images/review/star.gif" width="10%" />
                                 <img id="rR2" src="/startrip/assets/images/review/star.gif" width="10%" />
@@ -232,31 +232,8 @@
                 document.getElementById("rR" + i).addEventListener("mouseout", mouseout4);
                 document.getElementById("rR" + i).addEventListener("click", click4);   //事件繫結，滑鼠滑出
             }
-            console.log("DOMContentLoaded");
-            preparedate();
 
         });
-        
-        function preparedate() {
-            var today = new Date;
-            var year = today.getFullYear();
-            var month = today.getMonth();
-          	//alert(today.getFullYear());
-            //alert(month);
-                       
-            for (i = 1; i <= 6; i++) {
-            		//日期要補1不然 sql.Date無法parse
-            		document.getElementById('visitedOpt' + i).setAttribute("value", year + "-" + (month+1) + "-" + 1);
-            		var node = document.createTextNode(year + "年" + (month+1) + "月");
-            		document.getElementById('visitedOpt' + i).append(node);
-                    month--;
-                    if(month < 0){
-                    	month = 11;
-                    	year--;
-                    }
-				
-            }
-        }
         
         
 	</script>
@@ -462,6 +439,60 @@
             }
         }
     </script>
+    
+    <script> 
+        document.addEventListener("DOMContentLoaded", function () {
+            for (var i = 1; i <= 5; i++) {
+                document.getElementById("oR" + i).addEventListener("mouseover", mouseover1);  //事件繫結，滑鼠滑入
+                document.getElementById("oR" + i).addEventListener("mouseout", mouseout1);
+                document.getElementById("oR" + i).addEventListener("click", click1);   //事件繫結，滑鼠滑出
+            }
+            
+            for (var i = 1; i <= 5; i++) {
+                document.getElementById("sR" + i).addEventListener("mouseover", mouseover2);  //事件繫結，滑鼠滑入
+                document.getElementById("sR" + i).addEventListener("mouseout", mouseout2);
+                document.getElementById("sR" + i).addEventListener("click", click2);   //事件繫結，滑鼠滑出
+            }
+            
+            for (var i = 1; i <= 5; i++) {
+                document.getElementById("vR" + i).addEventListener("mouseover", mouseover3);  //事件繫結，滑鼠滑入
+                document.getElementById("vR" + i).addEventListener("mouseout", mouseout3);
+                document.getElementById("vR" + i).addEventListener("click", click3);   //事件繫結，滑鼠滑出
+            }
+            
+            for (var i = 1; i <= 5; i++) {
+                document.getElementById("rR" + i).addEventListener("mouseover", mouseover4);  //事件繫結，滑鼠滑入
+                document.getElementById("rR" + i).addEventListener("mouseout", mouseout4);
+                document.getElementById("rR" + i).addEventListener("click", click4);   //事件繫結，滑鼠滑出
+            }
+            console.log("DOMContentLoaded");
+            preparedate();
+
+        });
+        
+        function preparedate() {
+            var today = new Date;
+            var year = today.getFullYear();
+            var month = today.getMonth();
+          	//alert(today.getFullYear());
+            //alert(month);
+                       
+            for (i = 1; i <= 6; i++) {
+            		//日期要補1不然 sql.Date無法parse
+            		document.getElementById('visitedOpt' + i).setAttribute("value", year + "-" + (month+1) + "-" + 1);
+            		var node = document.createTextNode(year + "年" + (month+1) + "月");
+            		document.getElementById('visitedOpt' + i).append(node);
+                    month--;
+                    if(month < 0){
+                    	month = 11;
+                    	year--;
+                    }
+				
+            }
+        }
+        
+        
+	</script>
 	
         
 </body>
