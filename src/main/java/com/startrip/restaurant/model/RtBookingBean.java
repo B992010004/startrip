@@ -6,11 +6,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
-import com.startrip.member.memberModle.MemberBean;
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Table(name = "RtBooking")
@@ -31,8 +30,17 @@ public class RtBookingBean {
 	private Integer rtId;
 	private Integer memberId;
 	
+	@Transient
+	private String rtname;
 	
-	
+	public String getRtname() {
+		return rtname;
+	}
+
+	public void setRtname(String rtname) {
+		this.rtname = rtname;
+	}
+
 	public RtBookingBean(Integer bgId, String crName, String crPhone, Integer bgPeople, String bgDate, String bgPeriod,
 			Integer cnChair, Integer cnPeople, String bgNote, Date reTime, Integer rtId, Integer memberId) {
 		super();

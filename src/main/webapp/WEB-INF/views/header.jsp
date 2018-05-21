@@ -6,8 +6,7 @@
 
 	<div class="container">
 		<a class="navbar-brand" href="/startrip/">
-			<h2 style="color: #e1e100; display: inline;">Star ★</h2>
-			<h2 style="color: #00CA4C; display: inline;">Trip</h2></a>
+			<h2 style="color:white;">Star ★ Trip</h2></a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#probootstrap-menu" aria-controls="probootstrap-menu"
 			aria-expanded="false" aria-label="Toggle navigation">
