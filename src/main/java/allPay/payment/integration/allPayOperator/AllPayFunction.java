@@ -27,13 +27,15 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+
 import org.w3c.dom.Document;
+
 import allPay.payment.integration.config.AllPayConfig;
 import allPay.payment.integration.errorMsg.ErrorMessage;
 import allPay.payment.integration.exception.AllPayException;
 
 /**
- * ¦@¥Î¨ç¦¡Ãþ§O
+ * ï¿½@ï¿½Î¨ç¦¡ï¿½ï¿½ï¿½O
  * @author mark.chiu
  *
  */
@@ -42,7 +44,7 @@ public class AllPayFunction {
 	private final static char[] hexArray = "0123456789ABCDEF".toCharArray();
 		
 	/**
-	 * ²£¥ÍÀË¬d½X
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½Ë¬dï¿½X
 	 * @param key
 	 * @param iv
 	 * @param obj
@@ -68,7 +70,7 @@ public class AllPayFunction {
 	}
 	
 	/**
-	 * ²£¥ÍÀË¬d½X
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½Ë¬dï¿½X
 	 * @param key
 	 * @param iv
 	 * @param Hashtable<String, String> params
@@ -91,7 +93,7 @@ public class AllPayFunction {
 	}
 	
 	/**
-	 * ±Nª«¥óªºÄÝ©Ê»PÀË¬d½X²Õ¦X¦¨httpªº°Ñ¼Æ¸ê®Æ®æ¦¡
+	 * ï¿½Nï¿½ï¿½ï¿½ï¿½ï¿½Ý©Ê»Pï¿½Ë¬dï¿½Xï¿½Õ¦Xï¿½ï¿½httpï¿½ï¿½ï¿½Ñ¼Æ¸ï¿½Æ®æ¦¡
 	 * @param obj
 	 * @param CheckMacValue
 	 * @return string
@@ -114,7 +116,7 @@ public class AllPayFunction {
 	}
 	
 	/**
-	 * ±Nª«¥óÂà¬°Hashtable
+	 * ï¿½Nï¿½ï¿½ï¿½ï¿½ï¿½à¬°Hashtable
 	 * @param obj
 	 * @return Hashtable
 	 */
@@ -143,7 +145,7 @@ public class AllPayFunction {
 	}
 	
 	/**
-	 * client http postªº¥\¯à
+	 * client http postï¿½ï¿½ï¿½\ï¿½ï¿½
 	 * @param url
 	 * @param urlParameters
 	 * @return response string
@@ -181,7 +183,7 @@ public class AllPayFunction {
 	}
 	
 	/**
-	 * ²£¥Í Unix TimeStamp
+	 * ï¿½ï¿½ï¿½ï¿½ Unix TimeStamp
 	 * @return TimeStamp
 	 */
 	public final static String genUnixTimeStamp(){
@@ -203,7 +205,7 @@ public class AllPayFunction {
 	}
 	
 	/**
-	 * https ³B²z
+	 * https ï¿½Bï¿½z
 	 */
 	private static void trustAllHosts() {
 		
@@ -246,7 +248,7 @@ public class AllPayFunction {
 	}
 	
 	/**
-	 * °w¹ïª«¥ó¤ºÄÝ©Êªº°Ñ¼Æ§@±Æ§Ç
+	 * ï¿½wï¿½ïª«ï¿½ï¿½ï¿½Ý©Êªï¿½ï¿½Ñ¼Æ§@ï¿½Æ§ï¿½
 	 * @param Class
 	 * @return List
 	 */
@@ -261,7 +263,7 @@ public class AllPayFunction {
 	}
 	
 	/**
-	 * ±N¸ê®Æ°µ urlEncode½s½X
+	 * ï¿½Nï¿½ï¿½Æ°ï¿½ urlEncodeï¿½sï¿½X
 	 * @param data
 	 * @return url encoded string
 	 */
@@ -275,7 +277,7 @@ public class AllPayFunction {
 	}
 	
 	/**
-	 * ±N°µ§¹ªºurlEncode¦r¦ê°µÂà´«²Å¦X .NET»y¨¥ªºÂà´«³W«h
+	 * ï¿½Nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½urlEncodeï¿½rï¿½ê°µï¿½à´«ï¿½Å¦X .NETï¿½yï¿½ï¿½ï¿½ï¿½ï¿½à´«ï¿½Wï¿½h
 	 * @param url
 	 * @return .Net url encoded string
 	 */
@@ -285,7 +287,7 @@ public class AllPayFunction {
 	}
 	
 	/**
-	 * ±N byte array ¸ê®Æ°µ hash md5©Î sha256 ¹Bºâ¡A¨Ã¦^¶Ç hex­Èªº¦r¦ê¸ê®Æ
+	 * ï¿½N byte array ï¿½ï¿½Æ°ï¿½ hash md5ï¿½ï¿½ sha256 ï¿½Bï¿½ï¿½Aï¿½Ã¦^ï¿½ï¿½ hexï¿½Èªï¿½ï¿½rï¿½ï¿½ï¿½ï¿½
 	 * @param data
 	 * @param isMD5
 	 * @return string
@@ -305,7 +307,7 @@ public class AllPayFunction {
 	}
 	
 	/**
-	 * ±N byte array ¸ê®ÆÂà´«¦¨ hex¦r¦ê­È
+	 * ï¿½N byte array ï¿½ï¿½ï¿½ï¿½à´«ï¿½ï¿½ hexï¿½rï¿½ï¿½ï¿½
 	 * @param bytes
 	 * @return string
 	 */

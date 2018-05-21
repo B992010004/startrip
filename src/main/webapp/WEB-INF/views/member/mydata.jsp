@@ -43,7 +43,7 @@
 	padding-bottom: 45px;
 }
 
-tbody th img {
+tbody td img {
 	max-width: 180px;
 	height: 130px;
 }
@@ -72,7 +72,7 @@ tbody th img {
 					<c:if test="${ empty rtlist }">
 						<h6>您目前沒有訂單</h6>
 					</c:if>
-					<c:if test="${ !empty rtlist }">
+					<c:if test="${ !empty hotellist }">
 						<h4>飯店</h4>
 						<table class="table table-bordered">
 							<thead>
@@ -103,6 +103,7 @@ tbody th img {
 					</c:if>
 					<c:if test="${ !empty rtlist }">
 						<h4>餐廳</h4>
+						<div id="rterror"></div>
 						<table class="table table-bordered" id="rtTable">
 							<thead>
 								<tr>
@@ -116,21 +117,20 @@ tbody th img {
 							<tbody>
 								<c:forEach var='rtlists' items='${rtlist}'>
 									<tr>
+										<td scope="row"><input type="text" style="display: none;"
+											value="${rtlists.bgId}"> <img
+											src="<c:url value='/getrtPicture/${rtlists.rtId}'/>"> <br>
+											<span>${rtlists.rtname}</span></td>
 
-
-										<th scope="row">
-											<%-- 								<img src="<c:url value='/getrtPicture/${rtlists.rtDetailsBean.rtId}'/>"> --%>
-											<br> ${rtlists.rtDetailsBean.rtName}
-										</th>
-										<td>用餐日期:${rtlists.bgDate}<BR>用餐時段:${rtlists.reTime}
+										<td>用餐日期:${rtlists.bgDate}<BR>用餐時段:${rtlists.bgPeriod}
 										</td>
-										<td>訂位人數:${rtlists.bgPeople} <br>兒童專用椅:${rtlists.cnChair}
+										<td>訂位人數:${rtlists.bgPeople}<c:if
+												test="${rtlists.cnPeople!=0}">+${rtlists.cnPeople}</c:if> <br>兒童專用椅:${rtlists.cnChair}
 											<br>
 										</td>
 										<td>${rtlists.bgNote}<br></td>
-										<td><input type="button" class="btn btn-primary"
-											id="modlifysubmit" value="取消訂位"></td>
-
+										<td><button type="button" class="btn btn-primary"
+												id="canclebutton">取消訂位</button></td>
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -155,5 +155,22 @@ tbody th img {
 	<script src="/startrip/assets/js/jquery.easing.1.3.js"></script>
 	<script src="/startrip/assets/js/select2.min.js"></script>
 	<script src="/startrip/assets/js/main.js"></script>
+	<script>
+	  $('#rtTable>tbody').on('click','tr button',function(){
+		   var id = $(this).parents('tr').find('td>input').val();
+		  var ajaxdata={bgId:id};
+		  $.ajax({
+					url : "/startrip/deletedata",
+					type : "GET",
+					data : ajaxdata,
+					success : function(responseText, textStatus)  {		   	
+			   if(responseText==1){
+				  alert("您的定位已經取消");
+				   window.location.reload();
+				  
+			   }}
+		   })
+	  })
+	</script>
 </body>
 </html>

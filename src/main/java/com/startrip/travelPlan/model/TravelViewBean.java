@@ -1,25 +1,15 @@
 package com.startrip.travelPlan.model;
 
-import java.sql.Date;
-import java.util.Arrays;
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlTransient;
 
 import org.springframework.web.multipart.MultipartFile;
-
-import com.startrip.member.memberModle.MemberBean;
 
 //進入點,table=TravelView
 @Entity

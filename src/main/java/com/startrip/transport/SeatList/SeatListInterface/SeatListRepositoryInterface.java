@@ -3,7 +3,6 @@ package com.startrip.transport.SeatList.SeatListInterface;
 import java.util.List;
 
 import com.startrip.transport.SeatList.SeatListModle.SeatListBean;
-import com.startrip.transport.Station.StationModle.StationBean;
 
 public interface SeatListRepositoryInterface {
 

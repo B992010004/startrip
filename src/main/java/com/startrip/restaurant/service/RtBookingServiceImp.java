@@ -38,4 +38,10 @@ public class RtBookingServiceImp implements RtBookingService {
 		return RtBookingRepositoryImp.deleteRtBookingbgId(bgId);
 	}
 
+	@Override
+	public List<RtBookingBean> getRtBookingmember(int memberId) {
+
+		return RtBookingRepositoryImp.getRtBookingmember(memberId);
+	}
+
 }

@@ -1,7 +1,5 @@
 package com.startrip.member.MemberInterface;
 
-import java.sql.Blob;
-import java.util.Date;
 import java.util.List;
 
 import com.startrip.member.memberModle.MemberBean;
