@@ -1,11 +1,9 @@
 package com.startrip.hotel.model.persistent;
 
 import java.io.Serializable;
-import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 @Entity(name = "advanceday")
 public class AdvancedayBean implements Serializable {

@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.startrip.member.memberModle.MemberBean;
-import com.startrip.restaurant.exception.RtBookingNotFoundException;
 import com.startrip.restaurant.model.RtBookingBean;
 
 @Repository
@@ -60,6 +59,22 @@ public class RtBookingRepositoryImp implements RtBookingRepository {
 		return false;
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<RtBookingBean> getRtBookingmember(int memberId) {
+		Session session = null;	
+		String hql = "FROM RtBookingBean where memberId=:memberId";
+		List<RtBookingBean> list = new ArrayList<>();	
+		session = factory.getCurrentSession();
+		list = session.createQuery(hql).setParameter("memberId", memberId).getResultList();
+		if (list.size() == 0) {
+			return null;
+		} else {
+			return list;
+		}
+	}
+	}
 
 
-}
+
+

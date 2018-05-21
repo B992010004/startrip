@@ -1,6 +1,5 @@
 package com.startrip.transport.SeatList.Service;
 
-import java.sql.Blob;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;

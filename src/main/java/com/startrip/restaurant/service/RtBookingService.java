@@ -9,6 +9,7 @@ public interface RtBookingService {
 
 	List<RtBookingBean> getAllRtBookingmemberBean(MemberBean memberBean);
 	
+	List<RtBookingBean> getRtBookingmember(int memberId);
 	RtBookingBean updateRtBooking(RtBookingBean bean);
 
 	RtBookingBean insertRtBooking(RtBookingBean bean);
