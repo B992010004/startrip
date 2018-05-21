@@ -16,34 +16,14 @@ public class HotelOrder implements Serializable {
 	private static final long serialVersionUID = 8538582177447768571L;
 
 	public HotelOrder() {
-	}
-
-	public static void main(String[] args) {
-		StandardServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
-				.configure("/com/startrip/hotel/model/persistent/hibernateTest.cfg.xml").build();
-		SessionFactory factory = new MetadataSources(serviceRegistry).buildMetadata().buildSessionFactory();
-		Session session = factory.openSession();
-		session.beginTransaction();
-
-		HotelOrder bean = new HotelOrder();
-		bean.setOrdernumber(201805020001L);
-		session.save(bean);
-		System.out.println("-------");
-		HotelOrder temp = session.get(HotelOrder.class, 201805020001L);
-		System.out.println(temp);
-		System.out.println("-------");
-		session.delete(bean);
-
-		session.getTransaction().commit();
-		session.close();
-		factory.close();
-	}
+	}	
 
 	@Id
 	private Long ordernumber;
 	// yyyyMMdd + serial number
 
 	private Integer hotelid;
+	private Integer roomid;
 	private Integer memberid;
 	private Integer orderstateid;
 	private Integer paymentmethodid;
@@ -143,12 +123,22 @@ public class HotelOrder implements Serializable {
 		this.checkout = checkout;
 	}
 
+	public Integer getRoomid() {
+		return roomid;
+	}
+
+	public void setRoomid(Integer roomid) {
+		this.roomid = roomid;
+	}
+
 	@Override
 	public String toString() {
-		return "MemberorderBean [ordernumber=" + ordernumber + ", hotelid=" + hotelid + ", memberid=" + memberid
-				+ ", orderstateid=" + orderstateid + ", paymentmethodid=" + paymentmethodid + ", orderdate=" + orderdate
-				+ ", ordernote=" + ordernote + ", totalamount=" + totalamount + ", singlenightprice=" + singlenightprice
-				+ ", checkin=" + checkin + ", checkout=" + checkout + "]";
+		return "HotelOrder [ordernumber=" + ordernumber + ", hotelid=" + hotelid + ", roomid=" + roomid + ", memberid="
+				+ memberid + ", orderstateid=" + orderstateid + ", paymentmethodid=" + paymentmethodid + ", orderdate="
+				+ orderdate + ", ordernote=" + ordernote + ", totalamount=" + totalamount + ", singlenightprice="
+				+ singlenightprice + ", checkin=" + checkin + ", checkout=" + checkout + "]";
 	}
+
+	
 
 }
