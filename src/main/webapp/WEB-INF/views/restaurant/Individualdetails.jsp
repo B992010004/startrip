@@ -835,7 +835,7 @@ tbody th img {
                          var text = element.children().attr("map");
                          console.log(text)
                          return "<img class='map' alt='" + text +
-                             "' src='http://maps.google.com/maps/api/staticmap?" +
+                             "' src='https://maps.google.com/maps/api/staticmap?" +
                              "zoom=16&size=350x350&maptype=terrain&sensor=false&center=" +
                              text + "&key=AIzaSyAphlUZhilGS44rk9TBLOoMluxpNJa0Cfk'>";
                      }

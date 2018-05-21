@@ -95,8 +95,8 @@ public class HotelController {
 		return "hotel/Rooms";
 	}
 
-	@RequestMapping(value = "/Booking/{hotelId}")
-	public String hotelCheckout(@PathVariable("hotelId") Integer hotelId, Model model) {
+	@RequestMapping(value = "/Booking/{hotelId}/{typeId}")
+	public String hotelCheckout(@PathVariable("hotelId") Integer hotelId, @PathVariable("hotelId") Integer typeId,Model model) {
 		// Hotel資訊
 		HotelsBean bean = hotelService.selectByPk(hotelId);
 		// 將PhotoPath分割

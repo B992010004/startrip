@@ -357,7 +357,8 @@
                                     </td>
                                     <td>3000</td>
                                     <td>
-                                        <form action="/startrip//Booking/${hotel.hotelid }">
+										<!-- 房型typeId寫死 -->
+                                        <form action="/startrip/Booking/${hotel.hotelid }/1" method="POST">
                                             <button type="submit" class="btn btn-outline-warning">預定</button>
                                             <br>
                                             <br>

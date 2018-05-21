@@ -15,7 +15,7 @@ public interface RtBookingRepository {
 	RtBookingBean insertRtBooking(RtBookingBean bean);
 
 	boolean deleteRtBookingbgId(Integer bgId);
-	
+	List<RtBookingBean> getRtBookingmember(int memberId);
 	
 }
 
