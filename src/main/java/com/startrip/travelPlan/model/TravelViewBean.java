@@ -39,6 +39,7 @@ public class TravelViewBean {
 	private String website;
 	private java.sql.Date tdate;
 	private String viewDetail;
+	private String latlng;
 	private Integer count;
 //
 	
@@ -63,6 +64,22 @@ public class TravelViewBean {
 
 
 	
+
+
+
+	public String getLatlng() {
+		return latlng;
+	}
+
+
+
+
+
+	public void setLatlng(String latlng) {
+		this.latlng = latlng;
+	}
+
+
 
 
 

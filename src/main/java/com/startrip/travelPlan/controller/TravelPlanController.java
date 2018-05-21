@@ -91,7 +91,7 @@ public class TravelPlanController {
 		//------------------
 		MemberBean mb =memberservice.select(mail);
 		Integer id =mb.getMemberid();
-		bean.setMail(mail);
+//		bean.setMail(mail);
 		bean.setMemberId(id);
 		bean.setState(1);
 		Integer pk =travelservice.insert_getprimarykey(bean);
@@ -378,15 +378,16 @@ public class TravelPlanController {
 		Integer memberId =memberservice.select(mail).getMemberid();
 		
 		TravelListBean tlb= listservice.select_lastlist(travelId, tripday);
+		System.out.println("tlb="+tlb);
 		
 		return tlb;
 	}
 	
 	@RequestMapping(value="list/remove",method=RequestMethod.GET)
 	@ResponseBody
-	public Integer removeList(Integer travelId,Integer tripday,String starttime) {
+	public Integer removeList(Integer travelId,Integer tripday,String endtime) {
 				
-		Integer a= listservice.update_ListState(travelId, tripday,starttime);
+		Integer a= listservice.update_ListState(travelId, tripday,endtime);
 		
 		return a;
 	}

@@ -23,5 +23,5 @@ public interface ITravelListDao {
 	
 	public TravelListBean select_lastlist(Integer travelId, Integer tripday);
 
-	public Integer update_ListState(Integer travelId, Integer tripday, String starttime);
+	public Integer update_ListState(Integer travelId, Integer tripday, String endtime);
 }

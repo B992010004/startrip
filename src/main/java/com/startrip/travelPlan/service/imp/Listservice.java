@@ -53,8 +53,8 @@ public class Listservice implements ITravelListService {
 	}
 	@Transactional
 	@Override
-	public Integer update_ListState(Integer travelId, Integer tripday, String starttime) {
-		return listDao.update_ListState(travelId,tripday,starttime);
+	public Integer update_ListState(Integer travelId, Integer tripday, String endtime) {
+		return listDao.update_ListState(travelId,tripday,endtime);
 	}
 
 }

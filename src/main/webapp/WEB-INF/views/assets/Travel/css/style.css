@@ -69,10 +69,28 @@
 }
 
 #tripcontext{
-	
-      background-color: aqua;
-      height: 120px;
+	background-image:url("/startrip/assets/Travel/img/beach.jpg");
+	background-size:25em;
+	background-repeat:no-repeat;
+    background-color: aqua;
+    height: 120px;
   }
+  .bgImg{
+  background-image:url("/startrip/assets/Travel/img/icon-black-corner.png");
+  background-size:20em;
+      height: 100%;
+    width: 300px;
+  }
+  #travelName{
+  color: white;
+      padding: 1px 20px;
+  }
+  
+  .time.contex{
+  color: white;
+  font-size: 2em;
+  }
+  
    .timestyle{
      margin: 0;
      float: left;
@@ -80,7 +98,7 @@
   }
   .triplist{
       height: 640px;
-    background-color: #474e5d;
+    background-color: #89ccbb;
     overflow-y: auto;
     position: fixed;
     width: 350px;
@@ -187,8 +205,8 @@
     top: 20px;
 }
 .contentDay {
-	width: 100px;
-    padding: 1px 16px;
+	    width: 150px;
+    padding: 1px 35px;
     background-color: white;
     position: relative;
     border-radius: 25px;
@@ -270,28 +288,31 @@
 }
 
  .foot{
-     
     bottom: 0px;
     position: fixed;
-    background-color: aqua;
+    background-color: #009ce8;
     width: 350px;
     height: 80px;
-    line-height: 100px;
+    line-height: 70px;
+    padding: 0px 3em;
+    
+}
 
- }
-  .fmain{
-     background-color:rgba(23, 89, 101, 0.76);
-      border-radius: 30px;
-      border: black solid 2px;
-      color:red;
-      font-size: 1em;
-      font-weight: 300;
+ 
+ #insertday{
+     background-color: #009ce8;
+    border-radius: 30px;
+    color: white;
+    border: white solid 5px;
+    font-size: 1em;
+    font-family: fantasy;  	
   }
-
-  .fmain:hover{
+  
+#insertday:hover{
       background-color: red;
       border-radius: 30px;
-      border: black solid 2px;
+      border: white solid 5px;
+      color: #22b7ff;
       
   }
 
@@ -532,25 +553,49 @@ blockquote {
     height: 695px;
     position: fixed;
     z-index: 2;
-    top:  40px;
+    top:  100px;
     display:none;
     padding:40px 30px;
+}
+.closelist:hover{
+	background-color: #0080ff;
 }
 
 .closelist{
 	background-image:url("/startrip/assets/Travel/img/close.png");
-	background-size: 1em;
-	height: 16px;
+	background-size: 30px;
+	height: 30px;
     float: right;
-    width: 16px;
+    width: 30px;
+    margin-right:10px;
    
 }
-.placeId{
-	
+.updatelist{
+	background-image:url("/startrip/assets/Travel/img/pen.png");
+	background-size: 30px;
+	height: 30px;
+    float: right;
+    width: 30px;
+    margin-right:10px;
+}
+.updatelist:hover{
+	background-color: #0080ff;
+}
+.placeImg{
+	background-image: url("/startrip/assets/Travel/img/down-arrow-hand-drawn-sign.png");
+	width: 28px;
+	   background-size: 28px;
+    background-color: white;
+    display: inline-block;
+    height: 28px;
+    margin-right: 1em;
+	margin-top: 2px;
 	
 }
 
-
+.timediv{
+	background-color: white;
+}
 
 
 @media screen and (max-width: 768px) {
