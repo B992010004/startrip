@@ -1,0 +1,29 @@
+package com.startrip.hotel.remove;
+
+import java.util.List;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import com.startrip.hotel.tool.HQL;
+import com.startrip.hotel.tool.HQLQuery;
+
+@Repository
+public class PhotonameDAO{
+	
+	@Autowired
+	SessionFactory factory;
+	
+	public List<PhotonameBean> select(){
+		Session session = factory.getCurrentSession();
+		List<PhotonameBean> result= session.createQuery(HQLQuery.get(HQL.SELECT_PHOTONAME), PhotonameBean.class).list();
+		
+		return result;
+	}
+	public Integer selectPhotonameidForOther() {
+		Session session = factory.getCurrentSession();
+		return session.createQuery(HQLQuery.get(HQL.SELECT_PHOTOID_FOR_OTHER),Integer.class).setParameter("photoname", "其他").uniqueResult();
+	}
+}
