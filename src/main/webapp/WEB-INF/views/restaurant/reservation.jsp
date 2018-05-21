@@ -330,8 +330,6 @@
 					<!-- 規定 -->
 					<!-- Button trigger modal -->
 					<div class="bookingbutton">
-
-
 						<input type="submit"
 							value="確&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;認&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;訂&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;位"
 							class="btn btn-primary btn-block">
@@ -339,8 +337,6 @@
 						<!-- 							data-target="#exampleModalCenter"> -->
 						<!-- 							確&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;認&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;訂&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;位 -->
 						<!-- 						</button> -->
-
-
 					</div>
 					<!-- Modal -->
 					<!-- 					<div class="modal fade" id="exampleModalCenter" tabindex="-1" -->

@@ -151,6 +151,26 @@ public class RestaurantController {
 		rbb.setReTime(outDate);
 		rbb.setMemberId(memberBean.getMemberid());
 		rtBookingService.insertRtBooking(rbb);
+		RtDetailsBean photoBn = rtDetailsService.getAllRtDetailsrtId(rbb.getRtId());
+		String[] photoArr = null;
+		String[] photo = photoBn.getPhotoPaths().split(";");
+		String OneImage1 = photo[0].toString();
+		String OneImage2 = photo[1].toString();
+		String OneImage3 = photo[2].toString();
+		String OneImage4 = photo[3].toString();
+		String OneImage5 = photo[4].toString();
+		String OneImage6 = photo[5].toString();
+		model.addAttribute("OneImage1", OneImage1);
+		model.addAttribute("OneImage2", OneImage2);
+		model.addAttribute("OneImage3", OneImage3);
+		model.addAttribute("OneImage4", OneImage4);
+		model.addAttribute("OneImage5", OneImage5);
+		model.addAttribute("OneImage6", OneImage6);
+
+		// ----------------------------------------------------------------------------
+
+		RtDetailsBean rdb = rtDetailsService.getAllRtDetailsrtId(rbb.getRtId());
+		model.addAttribute("RtId", rdb);
 
 		return "restaurant/Individualdetails";
 	}
