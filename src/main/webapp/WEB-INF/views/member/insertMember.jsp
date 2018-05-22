@@ -98,10 +98,16 @@
 								path="password" placeholder="請輸入" autofocus="autofocus"
 								required="required" />
 						</div>
+				       <div class="form-group">
+							<label>姓:</label>
+							<form:input type="text" class="form-control" name="mName" 
+								path="firstname" placeholder="請輸入" autofocus="autofocus"
+								required="required" />
+						</div>
 						<div class="form-group">
-							<label>姓名:</label>
+							<label>名:</label>
 							<form:input type="text" class="form-control" name="mName"
-								path="username" placeholder="請輸入" autofocus="autofocus"
+								path="lastname" placeholder="請輸入" autofocus="autofocus"
 								required="required" />
 						</div>
 						<div class="form-group">

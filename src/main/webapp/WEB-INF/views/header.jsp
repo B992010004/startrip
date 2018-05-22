@@ -110,7 +110,7 @@
 						<div class="dropdown show">
 							<a class="nav-link" href="#" role="button" id="dropdownMenuLink"
 								data-toggle="dropdown" aria-haspopup="true"
-								aria-expanded="false"> ${LoginOK.username} <img
+								aria-expanded="false"> ${LoginOK.lastname} <img
 								style="border-radius: 50%;" width="30px" height="30px"
 								src="<c:url value='/getPicture/${LoginOK.mail}'/>">
 							</a>

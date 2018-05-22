@@ -75,11 +75,17 @@
 					<div class="row">
 						<div class="col-md-6  probootstrap-animate">
 							<div class="form-group">
-								<label>姓名:</label>
-								<form:input type="text" class="form-control" name="mName"
-									path="username" value="${LoginOK.username}" placeholder="請輸入"
-									autofocus="autofocus" required="required" />
-							</div>
+							<label>姓:</label>
+							<form:input type="text" class="form-control" name="mName" 
+								path="firstname" placeholder="請輸入" autofocus="autofocus"
+								value="${LoginOK.firstname}" required="required" />
+						</div>
+						<div class="form-group">
+							<label>名:</label>
+							<form:input type="text" class="form-control" name="mName"
+								path="lastname" placeholder="請輸入" autofocus="autofocus"
+								value="${LoginOK.lastname}" required="required" />
+						</div>
 							<div class="form-group">
 								<label>地址:</label>
 								<form:input type="text" class="form-control" name="mAdd"
