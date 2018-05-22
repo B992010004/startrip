@@ -54,67 +54,69 @@
             <div class="col-md-1"></div>
             <div id="userinfo" class="col-md-6">
                 <br>
-                <!--                 <form> -->
-                <h5>*聯絡人姓名</h5>
-                <div class="form-row">
-                    <div class="form-group col-md-5">
-                        <input type="text" class="form-control" name="lastname" placeholder="姓" value="">
-                    </div>
-                    <div class="form-group col-md-6">
-                        <input type="text" class="form-control" name="firstname" placeholder="名" value="${LoginOK.username }">
-                    </div>
-                </div>
-                <h5>*聯絡Email</h5>
-                <div class="form-row">
-                    <div class="form-group col-md-11">
-                        <input type="text" class="form-control" name="email" placeholder="Email" value="${LoginOK.mail }">
-                    </div>
-                </div>
-                <h5>*手機號碼</h5>
-                <div class="form-row">
-                    <div class="form-group col-md-11">
-                        <input type="text" class="form-control" name="cellphone" placeholder="0900123456" value="${LoginOK.phone }">
-                    </div>
-                </div>
-                <br>
-                <h5>備註</h5>
-                <div class="form-row">
-                    <div class="form-group col-md-11">
-                        <textarea class="form-control" name="note" rows="3"></textarea>
-                    </div>
-                </div>
-                <br>
-
-                <c:if test="${empty LoginOK }">
-                    <h5>管理您的預訂</h5>
-                    (輸入密碼即可使用上方的電子郵件地址建立帳戶。)
+                <form name="userinfo">
+                    <h5>*聯絡人姓名</h5>
                     <div class="form-row">
-                        <div class="form-group col-md-11">
-                            <input type="password" class="form-control" name="password" placeholder="設定密碼 ( 6 至 30 個字元，且不可使用空格 )">
+                        <div class="form-group col-md-5">
+                            <input type="text" class="form-control" name="lastname" id="lastname" placeholder="姓" value="">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <input type="text" class="form-control" name="firstname" id="firstname" placeholder="名" value="${LoginOK.username }">
                         </div>
                     </div>
+                    <h5>*聯絡Email</h5>
                     <div class="form-row">
                         <div class="form-group col-md-11">
-                            <input type="password" class="form-control" name="password" placeholder="再次輸入密碼">
+                            <input type="text" class="form-control" name="email" id="email" placeholder="Email" value="${LoginOK.mail }">
+                        </div>
+                    </div>
+                    <h5>*手機號碼</h5>
+                    <div class="form-row">
+                        <div class="form-group col-md-11">
+                            <input type="text" class="form-control" name="cellphone" id="cellphone" placeholder="0900123456" value="${LoginOK.phone }">
                         </div>
                     </div>
                     <br>
-                </c:if>
+                    <h5>備註</h5>
+                    <div class="form-row">
+                        <div class="form-group col-md-11">
+                            <textarea class="form-control" name=ordernote id="ordernote" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <br>
+
+                    <c:if test="${empty LoginOK }">
+                        <h5>管理您的預訂</h5>
+                        (輸入密碼即可使用上方的電子郵件地址建立帳戶。)
+                        <div class="form-row">
+                            <div class="form-group col-md-11">
+                                <input type="password" class="form-control" name="password" placeholder="設定密碼 ( 6 至 30 個字元，且不可使用空格 )">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-11">
+                                <input type="password" class="form-control" name="password" placeholder="再次輸入密碼">
+                            </div>
+                        </div>
+                        <br>
+                    </c:if>
+
+                    <br>
+                    <input type="hidden" name="memberid" id="memberid" value="${LoginOK.memberid }">
+                </form>
                 <h5>*選擇付款方式</h5>
                 <table rules="none" class="table">
                     <tbody>
                         <tr>
-<!--                             <td> -->
-<!--                                 <button type="button" name="payment" value="creditcard" class="btn btn-light">信用卡</button> -->
-<!--                             </td> -->
+                            <!--                             <td> -->
+                            <!--                                 <button type="button" name="payment" value="creditcard" class="btn btn-light">信用卡</button> -->
+                            <!--                             </td> -->
                             <td>
                                 <button id="allPay" name="payment" value="allPay" class="btn btn-light">歐付寶</button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-                <br>
-                <!--                 </form> -->
                 <br>
             </div>
             <div class="col-md-4">
@@ -126,7 +128,7 @@
                             <td>${hotel.hotelname }</td>
                         </tr>
                         <tr>
-                            <td>豪華雙人房</td>
+                            <td>${room.roomname }</td>
                         </tr>
                         <tr>
                             <td>2018-06-28 ~ 2018-07-01 ( 4晚 )
@@ -134,7 +136,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>總金額 NT 12000 元</td>
+                            <td>總金額 NT ${room.basicprice } 元</td>
                         </tr>
                     </tbody>
                 </table>
@@ -256,16 +258,24 @@
     <script>
         $(document).ready(function () {
             $('#allPay').click(function () {
-                
-                $.ajax({
-                    url: '/startrip/frontEnd/aioCheckOut/aioCheckOutALL/1',
+// 				var formData = new FormData(document.userinfo);
+				var formData = {};
+				formData.lastname = $('#lastname').val();
+				formData.firstname = $('#firstname').val();
+				formData.email = $('#email').val();
+				formData.cellphone = $('#cellphone').val();
+				formData.memberid = $('#memberid').val();
+				console.log(formData);
+				$.ajax({
+                    url: '/startrip/frontEnd/aioCheckOut/aioCheckOutALL/${hotel.hotelid }/${room.roomtype }',
                     type: 'POST',
                     //enctype: "multipart/form-data",
                     //contentType : false,
                     //processData : false,
-                    //dataType:"json",
+//                     dataType:"json",
+                    data: formData,
                     success: function (responce) {
-						$('#responce').html(responce);
+                        $('#responce').html(responce);
                     },
                     error: function (e) {
                         console.log(e);
