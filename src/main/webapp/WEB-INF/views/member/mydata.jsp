@@ -41,6 +41,7 @@
 </head>
 
 <body>
+
     <div>
         <jsp:include page="/WEB-INF/views/header.jsp" flush="true" />
     </div>
