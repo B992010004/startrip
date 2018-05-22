@@ -1,8 +1,11 @@
 package com.startrip.restaurant.controller;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.InputStream;
+import java.sql.Blob;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.UUID;
 
@@ -11,16 +14,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.CacheControl;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.startrip.member.Service.MemberServiceInterface;
+import com.startrip.member.memberModle.MemberBean;
 import com.startrip.restaurant.model.RtBookingBean;
 import com.startrip.restaurant.model.RtDetailsBean;
 import com.startrip.restaurant.service.RtBookingService;
@@ -37,6 +46,8 @@ public class RestaurantAdminController {
 
 	@Autowired
 	ServletContext context;
+	@Autowired
+	MemberServiceInterface memberservice;
 
 	// 後台新增餐廳---------------------------------------------------------------------------------------------
 
@@ -142,6 +153,44 @@ public class RestaurantAdminController {
 		return "restaurant/AllListBooking";
 	}
 
+	@RequestMapping(value = "/getPicture/{memberid}")
+	public ResponseEntity<byte[]> getPicture(@PathVariable int memberid) {
+		MemberBean bean = memberservice.selectbyid(memberid);
+		HttpHeaders headers = new HttpHeaders();
+		Blob blob = bean.getPhoto();
+		int len = 0;
+		byte[] media = null;
+		if (blob != null) {
+			try {
+				len = (int) blob.length();
+				media = blob.getBytes(1, len);
+			} catch (SQLException e) {
+				throw new RuntimeException("productcontroller的getpicture發生錯誤" + e.getMessage());
+			}
+		} else {
+			InputStream is = context.getResourceAsStream("/WEB-INF/views/assets/images/membericon/user.jpg");
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			byte[] b = new byte[8192];
+			try {
+				while ((len = is.read(b)) != -1) {
+					baos.write(b, 0, len);
+				}
+			} catch (Exception e) {
+				throw new RuntimeException("productcontroller的getpicture發生IOException" + e.getMessage());
+			}
+			media = baos.toByteArray();
+		}
+		headers.setCacheControl(CacheControl.noCache().getHeaderValue());
+
+		// 為了修正照片問題 by 修盟
+		// String mimeType = context.getMimeType(mail);
+		// headers.setContentType(MediaType.parseMediaType(mimeType));
+
+		ResponseEntity<byte[]> responseEntity = new ResponseEntity<>(media, headers, HttpStatus.OK);
+		return responseEntity;
+	}	
+	
+	
 	// /後台顯示全部訂單/---------------------------------------------------------------------------------------------
 
 }

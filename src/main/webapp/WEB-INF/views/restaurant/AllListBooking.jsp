@@ -127,12 +127,12 @@
 			<c:forEach var='rtBookings' items='${RtBookings}'>
 				<div class="col-lg-6 portfolio-item">
 					<div class="card h-100">
-						<img class="card-img-top" src="/startrip/getPicture/rtImage/"
+						<img class="card-img-top" src="<c:url value='/getPicture/${LoginOK.memberid}'/>"
 							alt="">
 						<div class="card-body">
-							<h4 class="card-title">訂單編號&nbsp;:&nbsp;${rtBookings.bgId}</h4>
-							<h4 class="card-text">會員編號&nbsp;:&nbsp;${rtBookings.memberId}</h4>
-							<p class="card-text">餐廳 ID&nbsp;:&nbsp;${rtBookings.rtId}</p>
+							<h4 class="card-title">${rtBookings.bgId}</h4>
+							<h4 class="card-title">會員編號&nbsp;:&nbsp;${rtBookings.memberId}</h4>
+							<h4 class="card-title">餐廳 ID&nbsp;:&nbsp;${rtBookings.rtId}</h4>
 							<p class="card-text">客戶姓名&nbsp;:&nbsp;${rtBookings.crName}</p>
 							<p class="card-text">客戶電話&nbsp;:&nbsp;${rtBookings.crPhone}</p>
 							<p class="card-text">大人訂位數&nbsp;:&nbsp;${rtBookings.bgPeople}</p>
@@ -144,7 +144,7 @@
 							<p class="card-text">資料接收時間&nbsp;:&nbsp;${rtBookings.reTime}</p>
 
 							<div class="btn11">
-								<input type="image" class="btn btnn deleteButton" id="delectOne"
+								<input type="image" class="btn btnn deleteButtonbooking" id="delectOne"
 									img src="/startrip/assets/images/rt/delete.png">
 
 							</div>
@@ -194,6 +194,27 @@
 	<script src="/startrip/assets/js/jquery.easing.1.3.js"></script>
 	<script src="/startrip/assets/js/select2.min.js"></script>
 	<script src="/startrip/assets/js/main.js"></script>
+	<script>
+	
+	<!-- icons刪除    -->
+	$( document ).ready(function() {
+
+		$(document).on('click','.deleteButtonbooking',function(){
+			var id = $(this).parents('.card-body').find('a:first').text();
+			  var ajaxrtid={rtId:id};
+			
+			 $.ajax({
+					url : "/startrip/deleteRtDetailsrtId",
+					type : "GET",
+					data : ajaxrtid,
+		   })
+		   location.reload();
+		})
+		
+	})
+	
+	</script>
+	
 
 </body>
 </html>
