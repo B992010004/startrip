@@ -26,3 +26,10 @@ public class OrderListController {
 	}
 
 }
+//-------------------------------------------------
+
+//我需要把姓名scName,身份證字號scId,信箱sMail,電話sPhone寫入OrerList表格中
+//然後把orderNumber填入前面TripInfController選取到的SeatList表格那一欄裡面
+
+
+

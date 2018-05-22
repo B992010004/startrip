@@ -88,18 +88,53 @@
                                         <div class="probootstrap-date-wrap">
                                             <label for="probootstrap-date-arrival">
                                                 <span class="icon ion-calendar"></span>
-                                                <input type="text" id="probootstrap-date-arrival" name="checkin" class="form-control" placeholder="請選擇出發日期">
+                                                出發日期<input type="text" id="probootstrap-date-arrival" name="checkin" class="form-control" placeholder="出發日期">
                                             </label>
                                         </div>
                                     </div>
                                 </div>
                                 <!-- 							以上選擇出發日期 -->
-                      
+<!--                       選擇出發時間 -->
+                       <div class="col-md">
+                                    <div class="form-group inputState">
+                                        <label for="id_label_people">
+                                            出發時間<select id="inputState" class="form-control" name="poeple">
+                                                <option value="">請選擇出發時間</option>
+                                                <option value="00:00">00:00</option>
+                                                <option value="01:00">01:00</option>
+                                                <option value="02:00">02:00</option>
+                                                <option value="03:00">03:00</option>
+                                                <option value="04:00">04:00</option>
+                                                <option value="05:00">05:00</option>
+                                                <option value="06:00">06:00</option>
+                                                <option value="07:00">07:00</option>
+                                                <option value="08:00">08:00</option>
+                                                <option value="09:00">09:00</option>
+                                                <option value="10:00">10:00</option>
+                                                <option value="11:00">11:00</option>
+                                                <option value="12:00">12:00</option>
+                                                <option value="13:00">13:00</option>
+                                                <option value="14:00">14:00</option>
+                                                <option value="15:00">15:00</option>
+                                                <option value="16:00">16:00</option>
+                                                <option value="17:00">17:00</option>
+                                                <option value="18:00">18:00</option>
+                                                <option value="19:00">19:00</option>
+                                                <option value="20:00">20:00</option>
+                                                <option value="21:00">21:00</option>
+                                                <option value="22:00">22:00</option>
+                                                <option value="23:00">23:00</option>
+                                               
+                                            </select>
+                                        </label>
+                                    </div>
+                                </div>
+<!--                  選擇出發時間      -->
                                 <!-- 選擇出發地點 -->
                                 <div class="col-md">
                                     <div class="form-group inputState">
                                         <label for="id_label_people">
-                                            <select id="inputState" class="form-control" name="poeple">
+                                            出發地點<select id="inputState" class="form-control" name="poeple">
                                                 <option value="">請選擇出發地點</option>
                                                 <option value="基隆">基隆</option>
                                                 <option value="台北">台北</option>
@@ -128,7 +163,7 @@
                                 <div class="col-md">
                                     <div class="form-group inputState">
                                         <label for="id_label_people">
-                                            <select id="inputState" class="form-control" name="poeple">
+                                            出發站名<select id="inputState" class="form-control" name="poeple">
 
                                                 <option value="" selected="selected">選擇出發車站</option>
                                                 <option value="台北車站">台北車站</option>
@@ -149,7 +184,7 @@
                                 <div class="col-md">
                                     <div class="form-group inputState">
                                         <label for="id_label_people">
-                                            <select id="inputState" class="form-control" name="poeple">
+                                            到達地點<select id="inputState" class="form-control" name="poeple">
                                                 <option value="">請選擇前往地點</option>
                                                 <option value="基隆">基隆</option>
                                                 <option value="台北">台北</option>
@@ -177,7 +212,7 @@
                                 <div class="col-md">
                                     <div class="form-group inputState">
                                         <label for="id_label_people">
-                                            <select id="inputState" class="form-control" name="poeple">
+                                            到達車站<select id="inputState" class="form-control" name="poeple">
                                                 <option value="">請選擇目的車站</option>
 
                                                
