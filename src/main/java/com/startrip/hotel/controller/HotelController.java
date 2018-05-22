@@ -54,7 +54,6 @@ public class HotelController {
 	public String hotelsSearchResult(Model model, SearchHotel searchHotel) {
 		String[] photoArr = null;
 
-		System.out.println(searchHotel);
 		// System.out.println("搜尋結果: " + hotelService.selectByCriteria(searchHotel));
 		List<HotelsBean> list = hotelService.selectByCriteria(searchHotel);
 		for (HotelsBean bean : list) {
@@ -98,7 +97,7 @@ public class HotelController {
 		model.addAttribute("reviews", reviews);
 
 		// 房型
-		//Group by 失敗
+		// Group by 失敗
 		List<Rooms> roomList = roomsServiceInterface.selectByHotelIdGroupByType(hotelId);
 		model.addAttribute("roomList", roomList);
 
@@ -118,7 +117,7 @@ public class HotelController {
 		// roomtype先塞訂單hotelBean裡
 		bean.setRoomtype(roomType);
 		model.addAttribute("hotel", bean);
-		
+
 		// 房型資訊
 		// 應該照選定房型選出來
 		// 目前groupByType未完成

@@ -63,6 +63,7 @@ public class HotelPaymentController {
 		aio.setHoldTradeAMT("0");
 		// 顯示付款成功的頁面（預設
 		aio.setReturnURL("https://developers.opay.tw/AioMock/MerchantReturnUrl");
+		aio.setReturnURL("https://startrip.southeastasia.cloudapp.azure.com:8443/startrip/PayEnd");
 		// 付款成功後轉跳的頁面
 		// aio.setClientBackURL("http://localhost:8080/startrip/");
 
