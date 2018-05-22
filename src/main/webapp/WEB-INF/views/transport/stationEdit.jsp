@@ -291,25 +291,19 @@
     <option value="">半票</option>
     <option value="">學生票</option>
     </select>
-                              
-                              
-                              
-                              
-                              
-                              
-                              
-                              
-                              
-                                <!-- 							送出 -->
-                              
-
-                                <!-- 							送出 -->
-
-
-
     <br>
     <br>
- 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 <a href="/startrip/select">回上一步</a>
 
 <script>
