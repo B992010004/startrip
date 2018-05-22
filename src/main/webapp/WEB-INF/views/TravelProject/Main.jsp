@@ -57,11 +57,11 @@
 			<div class="col-md-3" style="background-color: blcak;">
 				<ul class="list-group list-group-flush">
 					<li class="list-group-item " align="center"><a	href="/startrip/Travel/addPlan/${LoginOK.mail}">新增行程</a></li>
-					<li class="list-group-item " align="center"><a	href="Travel/addPlan/${LoginOK.mail}">新增行程</a></li>
-					<li class="list-group-item " align="center"><a href="Travel/addList">新增清單</a></li>
-					<li class="list-group-item " align="center"><a	href="Views/add">新增景點</a></li>
-					<li class="list-group-item " align="center"><a	href="TravelViews/all">查詢景點</a></li>
-				</ul>
+<%-- 					<li class="list-group-item " align="center"><a	href="Travel/addPlan/${LoginOK.mail}">新增行程</a></li> --%>
+<!-- 					<li class="list-group-item " align="center"><a href="Travel/addList">新增清單</a></li> -->
+<!-- 					<li class="list-group-item " align="center"><a	href="Views/add">新增景點</a></li> -->
+<!-- 					<li class="list-group-item " align="center"><a	href="TravelViews/all">查詢景點</a></li> -->
+				</ul> 
 			</div>
 
 			<div class="col-md-9" id="travels">
@@ -137,7 +137,6 @@
 
 
 					<div class="modal-footer">
-						<button type="button" class="btn btn-primary" id="back">返回</button>
 						<button id="check" type="submit" class="btn btn-primary">確認</button>
 					</div>
 
