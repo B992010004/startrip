@@ -18,7 +18,7 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 @Configuration
 @EnableTransactionManagement
-//@EnableJpaRepositories("com.startrip.*")
+// @EnableJpaRepositories("com.startrip.*")
 public class RootAppConfig {
 
 	@Bean
@@ -69,10 +69,10 @@ public class RootAppConfig {
 		properties.put("hibernate.format_sql", Boolean.TRUE);
 		properties.put("default_batch_fetch_size", 10);
 		properties.put("hibernate.hbm2ddl.auto", "update");
-//		properties.put("hibernate.connection.datasource", "java:comp/env/jdbc/startrip");
+
+		// properties.put("hibernate.connection.datasource", "java:comp/env/jdbc/startrip");
 		return properties;
 	}
-	
-	
+
 
 }

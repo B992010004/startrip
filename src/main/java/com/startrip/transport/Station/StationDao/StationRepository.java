@@ -67,12 +67,7 @@ public class StationRepository implements StationRepositoryInterface{
 	
 	@Override
 	public void update(String area, String stationName,String Address) {
-//		String hql = "update StationBean set   password=:password address=:address phone=:phone birthday=:birthday username=:username avatar=:avatar photo=:photo  where mail =:mail";
-//		Session session = factory.getCurrentSession();
-//		session.createQuery(hql).setParameter("mail", mail).setParameter("password", password)
-//				.setParameter("address", address).setParameter("username", username).setParameter("birthday", birthday)
-//				.setParameter("password", password).setParameter("avatar", avatar).setParameter("photo", photo)
-//				.executeUpdate();
+
 	}
 
 

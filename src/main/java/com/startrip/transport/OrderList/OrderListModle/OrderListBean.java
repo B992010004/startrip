@@ -1,6 +1,8 @@
 package com.startrip.transport.OrderList.OrderListModle;
 
 import java.io.Serializable;
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -32,9 +34,13 @@ public class OrderListBean implements Serializable{
 	
 	private String crderKind;
 	
-	private Date orderTime;
+	private Time OrderTime;
 	
-
+	private String StarStation;
+	
+	private String EndStation;
+	
+	private Date OrderDate;
 
 	public Integer getOrderNumber() {
 		return orderNumber;
@@ -84,20 +90,53 @@ public class OrderListBean implements Serializable{
 		this.crderKind = crderKind;
 	}
 
-	public Date getOrderTime() {
-		return orderTime;
+	public Time getOrderTime() {
+		return OrderTime;
 	}
 
-	public void setOrderTime(Date orderTime) {
-		this.orderTime = orderTime;
+	public void setOrderTime(Time orderTime) {
+		OrderTime = orderTime;
+	}
+
+	public String getStarStation() {
+		return StarStation;
+	}
+
+	public void setStarStation(String starStation) {
+		StarStation = starStation;
+	}
+
+	public String getEndStation() {
+		return EndStation;
+	}
+
+	public void setEndStation(String endStation) {
+		EndStation = endStation;
+	}
+
+	public Date getOrderDate() {
+		return OrderDate;
+	}
+
+	public void setOrderDate(Date orderDate) {
+		OrderDate = orderDate;
 	}
 
 	@Override
 	public String toString() {
 		return "OrderListBean [orderNumber=" + orderNumber + ", scId=" + scId + ", scName=" + scName + ", sMail="
-				+ sMail + ", sPhone=" + sPhone + ", crderKind=" + crderKind + ", orderTime=" + orderTime + "]";
+				+ sMail + ", sPhone=" + sPhone + ", crderKind=" + crderKind + ", OrderTime=" + OrderTime
+				+ ", StarStation=" + StarStation + ", EndStation=" + EndStation + ", OrderDate=" + OrderDate + "]";
 	}
 
+	public static void update(String scId2, String scName2, String sMail2, Integer sPhone2, String crderKind2,
+			Time orderTime2, String starStation2, String endStation2, Date orderDate2) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+
+	
 	
 	
 }

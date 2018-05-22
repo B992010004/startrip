@@ -47,10 +47,8 @@ import com.startrip.restaurant.service.RtDetailsService;
 public class MemberController {
 	@Autowired
 	RtBookingService rtBookingService;
-
 	@Autowired
 	RtDetailsService rtDetailsService;
-
 	@Autowired
 	MemberServiceInterface memberservice;
 
@@ -70,8 +68,11 @@ public class MemberController {
 		List<RtBookingBean> rbList = rtBookingService.getRtBookingmember(memberid);
 		if (rbList != null) {
 			for (RtBookingBean bean : rbList) {
+
 				RtDetailsBean rtdbean = rtDetailsService.getAllRtDetailsrtId(bean.getRtId());
-				bean.setRtname(rtdbean.getRtName());
+				if (rtdbean != null) {
+					bean.setRtname(rtdbean.getRtName());
+				}
 			}
 			model.addAttribute("rtlist", rbList);
 		}
@@ -95,31 +96,33 @@ public class MemberController {
 	@RequestMapping(value = "/getrtPicture/{rtId}", method = RequestMethod.GET)
 	public ResponseEntity<byte[]> getrtPicture(HttpServletResponse resp, @PathVariable int rtId) {
 		RtDetailsBean rtbean = rtDetailsService.getAllRtDetailsrtId(rtId);
-		String photoName = rtbean.getPhotoPaths();
-		String[] photoNameArr = photoName.split(";");
-		HttpHeaders headers = new HttpHeaders();
-		ByteArrayOutputStream baos = null;
-		int len = 0;
-		byte[] media = null;
+			String photoName = rtbean.getPhotoPaths();
+			String[] photoNameArr = photoName.split(";");
+			HttpHeaders headers = new HttpHeaders();
+			ByteArrayOutputStream baos = null;
+			int len = 0;
+			byte[] media = null;
 
-		try (InputStream is = new FileInputStream("C:/temp/rtImage/" + photoNameArr[0])) {
-			baos = new ByteArrayOutputStream();
-			byte[] b = new byte[8192];
+			try (InputStream is = new FileInputStream("C:/temp/rtImage/" + photoNameArr[0])) {
+				baos = new ByteArrayOutputStream();
+				byte[] b = new byte[8192];
 
-			while ((len = is.read(b)) != -1) {
-				baos.write(b, 0, len);
+				while ((len = is.read(b)) != -1) {
+					baos.write(b, 0, len);
+				}
+			} catch (IOException e) {
+				throw new RuntimeException("getPicture() 發生 IOException:" + e.getMessage());
 			}
-		} catch (IOException e) {
-			throw new RuntimeException("getPicture() 發生 IOException:" + e.getMessage());
-		}
-		media = baos.toByteArray();
-		headers.setCacheControl(CacheControl.noCache().getHeaderValue());
-		String mimeType = context.getMimeType(photoNameArr[0]);
-		// headers.setContentType(MediaType.IMAGE_JPEG);
-		headers.setContentType(MediaType.parseMediaType(mimeType));
-		ResponseEntity<byte[]> responseEntity = new ResponseEntity<>(media, headers, HttpStatus.OK);
+			media = baos.toByteArray();
+			headers.setCacheControl(CacheControl.noCache().getHeaderValue());
+			String mimeType = context.getMimeType(photoNameArr[0]);
+			// headers.setContentType(MediaType.IMAGE_JPEG);
+			headers.setContentType(MediaType.parseMediaType(mimeType));
+			ResponseEntity<byte[]> responseEntity = new ResponseEntity<>(media, headers, HttpStatus.OK);
 
-		return responseEntity;
+			return responseEntity;
+		
+
 	}
 
 	@RequestMapping(value = "/member/insertMember", method = RequestMethod.GET)
@@ -175,33 +178,6 @@ public class MemberController {
 			}
 		}
 		return "index";
-	}
-
-	@RequestMapping(value = "/facebooklogin", method = RequestMethod.POST)
-	public String facebooklogin(MemberBean mb, HttpServletRequest request, HttpServletResponse response)
-			throws IOException {
-		HttpSession session = request.getSession();
-		String mail = request.getParameter("userid");
-		String username = request.getParameter("username");
-		MemberBean bean = memberservice.select(mail);
-		if (bean == null) {
-			String pass = UUID.randomUUID().toString();
-			System.out.println(mail);
-			mb.setMail(mail);
-			mb.setPassword(pass);
-			mb.setAddress("");
-			mb.setAvatar("");
-			mb.setBirthday("");
-			mb.setPhone("");
-			mb.setPhoto(null);
-			mb.setLastname(username);
-			memberservice.insert(mb);
-			session.setAttribute("LoginOK", mb);
-			return "index";
-		} else {
-			session.setAttribute("LoginOK", bean);
-			return "index";
-		}
 	}
 
 	@RequestMapping(value = "/LoginServlet", method = RequestMethod.POST)
@@ -269,7 +245,6 @@ public class MemberController {
 	@RequestMapping(value = "/ModifyMember", method = RequestMethod.POST)
 	public String ModifyMember(@ModelAttribute("MemberBean") MemberBean mb, BindingResult result,
 			HttpServletRequest request) {
-		HttpSession session = request.getSession();
 		MultipartFile avatarImage = mb.getAvatarImage();
 		String originalFilename = avatarImage.getOriginalFilename();
 		if (avatarImage != null) {
@@ -296,7 +271,6 @@ public class MemberController {
 		mb.setValidataCode(null);
 		System.out.println(mb);
 		memberservice.update(mb);
-		session.setAttribute("LoginOK", mb);
 		return "index";
 	}
 
@@ -374,6 +348,7 @@ public class MemberController {
 		media = baos.toByteArray();
 		headers.setCacheControl(CacheControl.noCache().getHeaderValue());
 		String mimeType = context.getMimeType(photoName);
+		// headers.setContentType(MediaType.IMAGE_JPEG);
 		headers.setContentType(MediaType.parseMediaType(mimeType));
 		ResponseEntity<byte[]> responseEntity = new ResponseEntity<>(media, headers, HttpStatus.OK);
 
@@ -392,6 +367,17 @@ public class MemberController {
 			writer.println("1");
 		}
 	}
+
+	// @ExceptionHandler(NotFoundException.class)
+	// public ModelAndView handleError(HttpServletRequest request,
+	// NotFoundException exception) {
+	// ModelAndView mv=new ModelAndView();
+	// mv.addObject("invalidBookId",exception.getMail());
+	// mv.addObject("exception",exception);
+	// mv.addObject("url",request.getRequestURI()+"?"+request.getQueryString());
+	// mv.setViewName("/index");
+	// return mv;
+	// }
 
 	@RequestMapping(value = "/member/forgetpassword", method = RequestMethod.GET)
 	public String forgetPass(Model model) {
@@ -472,6 +458,10 @@ public class MemberController {
 		return "/member/changepassword";
 	}
 
+	@RequestMapping(value = "/selectrt", method = RequestMethod.POST)
+	public void selectrt(HttpServletRequest request, HttpServletResponse response) {
+
+	}
 
 	@RequestMapping(value = "/changepassword", method = RequestMethod.POST)
 	public String changepassword(HttpServletRequest request, HttpServletResponse response) {
