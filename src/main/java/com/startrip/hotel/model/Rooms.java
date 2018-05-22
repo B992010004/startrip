@@ -1,17 +1,13 @@
 package com.startrip.hotel.model;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistry;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import javax.persistence.Transient;
 
 @Entity
 public class Rooms implements Serializable {
@@ -32,8 +28,9 @@ public class Rooms implements Serializable {
 	private Integer roomstate;
 
 	// 房型之類的
+	// group by
 	private Integer roomtype;
-	// 房型描述名稱
+	// 房型描述名稱(通常Type一樣 描述名稱應該相同)
 	private String roomname;
 
 	private Integer numberofpeople;
@@ -41,6 +38,14 @@ public class Rooms implements Serializable {
 	private java.sql.Date enddate;
 	private Integer basicprice;
 	private String roomnote;
+	private String service;
+	private String facility;
+
+	// 將service, facility的string切開
+	@Transient
+	private String[] serviceArr;
+	@Transient
+	private String[] facilityArr;
 
 	public Integer getRoomid() {
 		return roomid;
@@ -122,11 +127,45 @@ public class Rooms implements Serializable {
 		this.roomnote = roomnote;
 	}
 
+	public String getService() {
+		return service;
+	}
+
+	public void setService(String service) {
+		this.service = service;
+	}
+
+	public String getFacility() {
+		return facility;
+	}
+
+	public void setFacility(String facility) {
+		this.facility = facility;
+	}
+
+	public String[] getServiceArr() {
+		return serviceArr;
+	}
+
+	public void setServiceArr(String[] serviceArr) {
+		this.serviceArr = serviceArr;
+	}
+
+	public String[] getFacilityArr() {
+		return facilityArr;
+	}
+
+	public void setFacilityArr(String[] facilityArr) {
+		this.facilityArr = facilityArr;
+	}
+
 	@Override
 	public String toString() {
 		return "Rooms [roomid=" + roomid + ", hotelid=" + hotelid + ", roomstate=" + roomstate + ", roomtype="
 				+ roomtype + ", roomname=" + roomname + ", numberofpeople=" + numberofpeople + ", opendate=" + opendate
-				+ ", enddate=" + enddate + ", basicprice=" + basicprice + ", roomnote=" + roomnote + "]";
+				+ ", enddate=" + enddate + ", basicprice=" + basicprice + ", roomnote=" + roomnote + ", service="
+				+ service + ", facility=" + facility + ", serviceArr=" + Arrays.toString(serviceArr) + ", facilityArr="
+				+ Arrays.toString(facilityArr) + "]";
 	}
 
 }

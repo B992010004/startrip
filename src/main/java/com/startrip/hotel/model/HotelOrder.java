@@ -23,6 +23,7 @@ public class HotelOrder implements Serializable {
 	// yyyyMMdd + serial number
 
 	private Integer hotelid;
+	//多間的話我的roomid應該要是陣列
 	private Integer roomid;
 	private Integer memberid;
 	private Integer orderstateid;
@@ -34,6 +35,11 @@ public class HotelOrder implements Serializable {
 	// -- use string to record list.
 	private java.sql.Date checkin;
 	private java.sql.Date checkout;
+	
+	private String lastname;
+	private String firstname;
+	private String email;
+	private String cellphone;
 
 	public Long getOrdernumber() {
 		return ordernumber;
@@ -131,14 +137,45 @@ public class HotelOrder implements Serializable {
 		this.roomid = roomid;
 	}
 
+	public String getLastname() {
+		return lastname;
+	}
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+
+	public String getFirstname() {
+		return firstname;
+	}
+
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getCellphone() {
+		return cellphone;
+	}
+
+	public void setCellphone(String cellphone) {
+		this.cellphone = cellphone;
+	}
+
 	@Override
 	public String toString() {
 		return "HotelOrder [ordernumber=" + ordernumber + ", hotelid=" + hotelid + ", roomid=" + roomid + ", memberid="
 				+ memberid + ", orderstateid=" + orderstateid + ", paymentmethodid=" + paymentmethodid + ", orderdate="
 				+ orderdate + ", ordernote=" + ordernote + ", totalamount=" + totalamount + ", singlenightprice="
-				+ singlenightprice + ", checkin=" + checkin + ", checkout=" + checkout + "]";
+				+ singlenightprice + ", checkin=" + checkin + ", checkout=" + checkout + ", lastname=" + lastname
+				+ ", firstname=" + firstname + ", email=" + email + ", cellphone=" + cellphone + "]";
 	}
-
-	
 
 }

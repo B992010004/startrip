@@ -442,16 +442,24 @@ $(document).on('click','#insertList',function(){
 // 	alert('here')
 	var body=$('.viewDetail')
 	var view={} ;
-	var ul=body.children().eq(3).children()
+	var ul=body.children().eq(3)
 	
 	view.viewName=body.children().eq(1).text();
 	view.imgName=body.children().eq(2).attr('src');
 	view.detail=ul.eq(0).children().text();
-	view.phone=ul.find('.phone').text();
-	view.website=ul.find('.website').text();
-	view.address=ul.find('.address').text();
-	view.latlng = body.children().eq(1).attr('data-location')
-	console.log(body.children().eq(1).attr('data-location'))
+	
+	if(body.children().eq(3).find('.phone').find('h5').text()=='undefined'){
+		view.viewPhone='null'
+	}else{view.viewPhone=ul.find('.phone').find('h5').text();}
+	
+	if(body.children().eq(3).find('.website').find('h5').text()=='undefined'){
+		view.website='null'
+	}else{view.website=ul.find('.website').find('h5').text();}
+
+	view.viewaddr=body.children().eq(3).find('.address').find('h5').text();
+	latlng=body.children().eq(1).attr('data-location')
+	latlng=latlng.substring(1,latlng.length-1)
+	view.latlng = latlng
 	view.travelId='${Travel.travelId}'
 	view.memberId='${LoginOK.memberid}'
 	console.log(view)
@@ -503,11 +511,10 @@ $(document).on('click','#checklist',function(){
 					  	if (status === 'OK') {
 					  		var result=response.routes[0];
 					  		var duration=result.legs[0].duration.value;
-					  		var routehour=Math.ceil((duration/3600)); 
-				        	var routemin = Math.ceil(duration/60);
-					       
-					  	}
-					  
+					  		var routehour=Math.round((duration/3600)); 
+				        	var routemin = Math.round(duration%3600/60);
+					  	
+					   
 					datas.starttime=data.endTime;
 					
 					var time = data.endTime.split(":")
@@ -516,8 +523,12 @@ $(document).on('click','#checklist',function(){
 					
 					var starthour =parseInt(time[0])+routehour
 					var startmin =parseInt(time[1])+routemin
+					
 					var endhour =parseInt(time[0])+parseInt(insert[0])+routehour
 					var endmin =parseInt(time[1])+parseInt(insert[1])+routemin
+					
+					console.log(parseInt(time[0])+"+"+routehour)
+					console.log(parseInt(time[1])+"+"+routehour)
 					if(starthour>23){
 						starthour = starthour-23;
 						
@@ -542,6 +553,7 @@ $(document).on('click','#checklist',function(){
 					};
 					twobit(starthour)
 					twobit(startmin)
+					console.log(startmin+',twobit+'+twobit(startmin))
 					twobit(endhour)
 					twobit(endmin)
 					
@@ -552,6 +564,7 @@ $(document).on('click','#checklist',function(){
 					datas.travelId='${Travel.travelId}';
 					datas.memberId='${LoginOK.memberid}';
 					console.log("datas=")
+						}
 				$.ajax({
 				url:"/startrip/Travel/add/list",
 				type:"GET",
@@ -563,6 +576,8 @@ $(document).on('click','#checklist',function(){
 					searchDays();
 					}
 				})
+				
+						
 						})
 			})
 				
@@ -601,7 +616,8 @@ $(document).on('click','#checklist',function(){
 })
 //刪除清單
 $(document).on('click','.closelist',function(e){
-// 	console.log(e.target.id)
+	console.log(e.target.id)
+	var nextid=e.target.id
 // 	console.log($('#'+e.target.id).parent().parent().parent().attr('id'))
 // 	console.log($('#'+e.target.id).next().next().text())
 // 	console.log(day)
@@ -610,12 +626,17 @@ $(document).on('click','.closelist',function(e){
 	var list={}
 	list.travelId=${Travel.travelId}
 	list.tripday=day
-  	list.endtime=$('#'+e.target.id).next().next().next().text()
+  	list.endtime=$('#'+e.target.id).parent().find('.end').text()
+	console.log('endtime ='+list.endtime)
   	console.log(list)
  	$.get('/startrip/list/remove',list,function(data){
  		console.log(data);
  		$('#'+e.target.id).parent().parent().remove();
  		searchDays();
+ 		
+
+
+ 		
  	})
 	
 
@@ -638,6 +659,7 @@ function searchDays(){
 		dataType:"json",
 		data:value,
 		contentType: "application/json; charset=utf-8",
+		
 		success:function(data){
 			$('#tripcontext').empty();
 			var bg=$('<div class="bgImg"></div>')
@@ -688,6 +710,7 @@ function searchList(day){
 		dataType:"json",
 		data:travel,
 		contentType: "application/json; charset=utf-8",
+	
 		success: 
 			function(data){
 				var len = data.length;
@@ -703,6 +726,7 @@ function searchList(day){
 					content.append([title,start,end])
 					right.append(content)
 					var day1=data[i].tripday
+					
 					var tag = "daybody"+day1
 					
 					$(".timeline").find("#"+tag).append(right);
@@ -722,7 +746,7 @@ function searchList(day){
 			  if(len<2){
 				  console.log("只有一個點")
 			  }else{
-			var request={}
+				var request={}
 				if(wlen>2){
 				request.waypoints= waypts//模式
 				}
@@ -740,6 +764,9 @@ function searchList(day){
 			         	console.log("沒有行程")
 		          	}else{
 				          for(var i = 0;i<(len-1);i++){
+				        	  
+				        	  
+				        	  
 				        	var distance=result.legs[i].distance.text;
 				        	var duration=result.legs[i].duration.text;
 				        	
@@ -754,6 +781,72 @@ function searchList(day){
 				        	daybody.find('#dayTile'+(i+1)).after(body);
 				        	
 							}
+				      	
+							var twobit = function( num ) {
+								return num >= 10 ? num + '' : '0' + num;
+							};
+				  	     var listlen =  daybody.find('.right').length
+				  	     console.log('len ='+listlen)
+				  	    var tripday=daybody;
+				  		console.log(tripday)
+				  			for(var j = 0;j<listlen;j++){
+				  				
+				  				if(j==0){
+				  					var firstend=daybody.find('.right').eq(0).find('.end').text();
+				  					console.log('firstend = '+ firstend)
+				  				}else{
+				  				var prevend = daybody.find('.right').eq(j-1).find('.end').text()
+				  				var duration =daybody.find('.timediv').eq(j-1).find('span').eq(1).data('googledistance')
+				  			console.log('prevend '+j+'= '+prevend);
+				  			console.log('duration '+j+'= '+duration)
+				  				var start = daybody.find('.right').eq(j).find('.start').text()
+				  				var end = daybody.find('.right').eq(j).find('.end').text()
+				  				console.log('start '+j+'= '+start);
+				  				console.log('end '+j+'= '+end);
+				  				var sstart =start.split(":");
+				  				var send = end.split(":");
+				  				
+				  				hour=parseInt(send[0])-parseInt(sstart[0]);
+				  				min=parseInt(send[1])-parseInt(sstart[1]);
+				  				console.log('持續時間:hour='+hour+' and min = '+min);
+				  				if(min<0){
+				  						hour =hour-1;
+				  						min = min+60;
+				  					}
+				  				var pend =prevend.split(":");
+				  				console.log(parseInt(pend[0])+"hour開始時間+行車時間"+(Math.round(duration/3600)));
+				  				console.log(parseInt(pend[1])+"min開始時間+行車時間"+(Math.round((duration%3600)/60)));
+				  				starthour = parseInt(pend[0])+(Math.round(duration/3600));
+				  				startmin = parseInt(pend[1])+(Math.round((duration%3600)/60));
+				  				console.log(starthour+','+startmin)
+				  				endhour = starthour+hour
+				  				endmin = startmin+min
+				  				console.log('hour結束時間+行車時間'+endhour+','+endmin)
+				  				if(endmin>60){
+				  						endmin = endmin-60;
+				  						endhour = endhour+1;
+				  					}
+				  				var stime= twobit(starthour)+":"+twobit(startmin)
+				  				var etime=	twobit(endhour)+":"+twobit(endmin)
+				  				daybody.find('.right').eq(j).find('.start').text(twobit(starthour)+":"+twobit(startmin));
+			  					daybody.find('.right').eq(j).find('.end').text(twobit(endhour)+":"+twobit(endmin));
+			  					var value = {};
+			  					value.startTime=stime
+			  					value.endTime=etime
+			  					value.travelId="${Travel.travelId}"
+			  					value.mail="${LoginOK.mail}"
+			  					value.tripday=day;
+			  					value.viewName=daybody.find('.right').eq(j).find('h5').text();
+			  					console.log(daybody.find('.right').eq(j).find('h5').text())
+			  					$.get("/startrip/list/update",value,function(data){
+			  						console.log(data)
+			  					})
+				  					} //else end
+				  				}
+				  				
+				  					  
+				  					
+				          
 				          
 			  			}         
 					}
@@ -762,6 +855,60 @@ function searchList(day){
 		}
 	}) 
 }
+
+/*
+ * var tripday=list.tripday;
+	console.log(tripday)
+		var listlen =$('#daybody'+tripday).find('.right').length
+		
+		for(var i = 0;i<listlen;i++){
+			if(i==0){
+				var firstend=$('#daybody'+tripday).find('.right').eq(0).find('.end').text()
+				console.log(firstend)
+			}else{
+				var prevend = $('#daybody'+tripday).find('.right').eq(i-1).find('.end').text()
+				var duration =$('#daybody'+tripday).find('.timediv').eq(i-1).find('span').eq(1).data('googledistance')
+				console.log(duration)
+				var start = $('#daybody'+tripday).find('.right').eq(i-1).find('.start').text()
+				var end = $('#daybody'+tripday).find('.right').eq(i-1).find('.end').text()
+				console.log("start"+start)
+				console.log("end ="+end)
+				start.split(":")
+				end.split(":")
+				hour=parseInt(end[0])-parseInt(start[0])
+				min=parseInt(end[1])-parseInt(start[1])
+				if(min<0){
+					hour =hour-1;
+					min = min+60;
+				}
+				  
+				prevend.split(":")
+				console.log(parseInt(prevend[0])+"++"+(Math.round(duration/3600)))
+				console.log(parseInt(prevend[1])+"++"+(Math.round((duration%3600)/60)))
+				console.log()
+				starthour = parseInt(prevend[0])+(Math.round(duration/3600))
+				startmin = parseInt(prevend[1])+(Math.round((duration%3600)/60))
+				
+				endhour = starthour+hour
+				endmin = startmin+min
+				
+				console.log(starthour+";;"+startmin)
+				console.log(endhour+";;"+endmin)
+				if(endmin>60){
+					endmin = endmin-60;
+					endhour = endhour+1;
+				}
+				$('#daybody'+tripday).find('.right').eq(i).find('.start').text(starthour+":"+startmin)
+				$('#daybody'+tripday).find('.right').eq(i).find('.end').text(endhour+":"+endmin)
+				console.log($('#daybody'+tripday).find('.right').eq(i).find('.start').text())
+				console.log($('#daybody'+tripday).find('.right').eq(i).find('.start').text())
+			}
+			
+		}
+ */
+
+
+
 //-----------------------------------------------------
 //推薦景點
 function searchView(){
@@ -868,7 +1015,7 @@ function initMap() {
       //placechange-----
       searchBox.addListener('places_changed', function() {
    var places = searchBox.getPlaces();
-
+		console.log(places)
    if (places.length == 0) {
       return;
    }
@@ -883,7 +1030,7 @@ function initMap() {
     var bounds = new google.maps.LatLngBounds();
     
     places.forEach(function(place,index) {
-    if (!place.geometry) {
+    if (!place.geometry||(place.photos.length==0)) {
         console.log("Returned place contains no geometry");
         return;
       }
@@ -905,15 +1052,23 @@ function initMap() {
   	  console.log(place)
   		var body=$('.viewDetail');
 		var li = body.find('ul');
+		li.empty();
+		
 		body.css("display","block")
 		body.find('h5').text(place.name)
 		body.find('h5').attr('data-location',place.geometry.location)
 		body.append('<input type="hidden" class="placeId" value='+place.place_id+'>') 
   	body.find('img').attr('src',place.photos[0].getUrl({'maxWidth': 100, 'maxHeight': 100}));
 //			console.log(place.place_id)
-  	var Name= $('<li class="list-group-item rating">景點評分:<h5>'+place.rating +'</h5></li>');
+	if(!(place.rating=='undefind')){
+	  	var rating= $('<li class="list-group-item rating">景點評分:<h5>'+place.rating +'</h5></li>');
+		}
+	if(!(place.formatted_phone_number=='undefind')){
 		var phone = $('<li class="list-group-item phone">電話:<h5>'+place.formatted_phone_number+'</h5></li>');
+		}
+	if(!(place.website=='undefind')){
 		var website = $('<li class="list-group-item website">網址:<h5>'+place.website+'</h5></li>');
+		}
 		var address = $('<li class="list-group-item address">地址:<h5>'+place.formatted_address+'</h5></li>');
 		var btn = $('<button id="insertList" type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addList" >加入行程</button>');
 		var imgrow = $('<div class="checkview row"></div>');
@@ -928,7 +1083,7 @@ function initMap() {
 		docFrag.append(selectday);
 		}
 		li.empty();
-		li.append(Name);
+		li.append(rating);
 		$('#viewName').val(place.name)
 		li.append(phone);
 		li.append(website);

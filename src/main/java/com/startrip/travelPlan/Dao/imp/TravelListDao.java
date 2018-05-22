@@ -158,6 +158,7 @@ public class TravelListDao implements ITravelListDao  {
 
 	@Override
 	public Integer update_ListState(Integer travelId, Integer tripday, String endtime) {
+		System.out.println("DAO= "+travelId+","+tripday+","+endtime);
 		String hql = "UPDATE TravelListBean SET state=:state where travelId=:travelId and tripday=:tripday and endTime=:endtime";
 		Integer a =factory.getCurrentSession().createQuery(hql).setParameter("state", 0)
 				.setParameter("travelId",travelId ).setParameter("tripday",tripday ).setParameter("endtime", endtime)
@@ -165,5 +166,15 @@ public class TravelListDao implements ITravelListDao  {
 		
 		
 		return a;
+	}
+
+
+	@Override
+	public String update_List(TravelListBean bean) {
+		String sql = "Update travellist set starttime=:starttime ,endtime=:endtime where viewid=:viewid and tripday=:tripday and travelid=:travelid";
+		factory.getCurrentSession().createNativeQuery(sql, TravelListBean.class)
+		.setParameter("starttime", bean.getStartTime()).setParameter("endtime", bean.getEndTime()).setParameter("viewid", bean.getViewid())
+		.setParameter("tripday", bean.getTripday()).setParameter("travelid", bean.getTravelId()).executeUpdate();
+		return "success";
 	}
 }
