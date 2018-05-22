@@ -1,3 +1,0 @@
-JDBC 連線字串:
-jdbc:sqlserver://dbservereeit10031.database.windows.net:1433;database=startrip;user=memberuser@dbservereeit10031;password=P@ssw0rd;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;
-
