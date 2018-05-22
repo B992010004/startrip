@@ -2,11 +2,13 @@ package com.startrip.restaurant.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,13 +17,14 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.startrip.restaurant.model.RtBookingBean;
 import com.startrip.restaurant.model.RtDetailsBean;
 import com.startrip.restaurant.service.RtBookingService;
 import com.startrip.restaurant.service.RtDetailsService;
-
-
 
 @Controller
 public class RestaurantAdminController {
@@ -95,11 +98,11 @@ public class RestaurantAdminController {
 	}
 
 	// /後台新增餐廳/---------------------------------------------------------------------------------------------
-	
-	// 後台刪除餐廳---------------------------------------------------------------------------------------------
-	
+
+	// 後台顯示全部餐廳---------------------------------------------------------------------------------------------
+
 	@RequestMapping(value = "/Individualdetailsmodify")
-	public String  deleteRt(Model model) {
+	public String getAllRtDetailsrtId(Model model) {
 		List<RtDetailsBean> list = rtDetailsService.getAllall();
 		String[] photoArr = null;
 		for (RtDetailsBean bean : list) {
@@ -111,18 +114,34 @@ public class RestaurantAdminController {
 		model.addAttribute("RtDetails", list);
 		return "restaurant/Individualdetailsmodify";
 	}
-	
+
+	// /後台顯示全部餐廳/---------------------------------------------------------------------------------------------
+
+	// 後台刪除餐廳---------------------------------------------------------------------------------------------
+
+	@RequestMapping(value = "/deleteRtDetailsrtId", method = RequestMethod.GET)
+	public @ResponseBody String deleteDetailsrtId(Model model, HttpServletRequest request, HttpServletResponse response)
+			throws IOException {
+
+		String rtida = request.getParameter("rtId");
+		int rtId = Integer.parseInt(rtida);
+		rtDetailsService.deleteRtDetailsrtId(rtId);
+
+		return "restaurant/Individualdetailsmodify";
+
+	}
+
 	// /後台刪除餐廳/---------------------------------------------------------------------------------------------
 
-	// ---------測試------------------------測試------------------測試----------------測試-------------
-
-	// 後台訂位查詢
+	// 後台顯示全部訂單---------------------------------------------------------------------------------------------
 
 	@RequestMapping(value = "/AllListBooking")
-	public String allbooking(Model model) {
+	public String getAllRtBookingtId(Model model) {
+		List<RtBookingBean> list = rtBookingService.getAllall();
+		model.addAttribute("RtBookings", list);
 		return "restaurant/AllListBooking";
 	}
 
-	// ---------測試------------------------測試------------------測試----------------測試-------------
+	// /後台顯示全部訂單/---------------------------------------------------------------------------------------------
 
 }

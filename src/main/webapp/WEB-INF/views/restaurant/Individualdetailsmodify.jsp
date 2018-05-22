@@ -125,7 +125,7 @@
 		<!-- --------------------------------------------------------------------------------------------------- -->
 		<div class="row align-items-center text-center">
 			<div class="input-group ">
-				<input type="text" class="form-control" placeholder="餐廳流水號、餐廳名稱等"
+				<input type="text" class="form-control" placeholder="餐廳ID、餐廳名稱等"
 					aria-label="Recipient's username" aria-describedby="basic-addon2">
 				<div>
 					<input type="submit" value="搜尋" class="btn btn-primary btn-block">
@@ -136,13 +136,14 @@
 			<c:forEach var='rtDetails' items='${RtDetails}'>
 				<div class="col-lg-6 portfolio-item">
 					<div class="card h-100">
+						
 						<a href="/startrip/restaurant/${rtDetails.rtId}"><img
 							class="card-img-top"
 							src="/startrip/getPicture/rtImage/${rtDetails.photoArr[0]}"
 							alt=""></a>
 						<div class="card-body">
 							<h4 class="card-title">
-								<a href="/startrip/restaurant/${rtDetails.rtId}">流水號&nbsp;:&nbsp;${rtDetails.rtId}</a>
+								<a href="/startrip/restaurant/${rtDetails.rtId}">${rtDetails.rtId}</a>
 							</h4>
 							<h4 class="card-title">
 								<a href="/startrip/restaurant/${rtDetails.rtId}">餐廳名稱&nbsp;:&nbsp;${rtDetails.rtName}</a>
@@ -160,11 +161,8 @@
 
 							<div class="btn11">
 								<input type="image" class="btn btnn" id="repair" img
-									src="/startrip/assets/images/rt/pencil.png"
-									onClick="document.form1.submit()"> <input type="image"
-									class="btn btnn" id="delectOne" img
-									src="/startrip/assets/images/rt/delete.png"
-									onClick="document.form1.submit()">
+									src="/startrip/assets/images/rt/pencil.png"> 
+								<input type="image"	class="btn btnn deleteButton" id="delectOne" img src="/startrip/assets/images/rt/delete.png">
 
 							</div>
 						</div>
@@ -233,20 +231,22 @@
 	<script src="/startrip/assets/js/main.js"></script>
 	<script>
 	
-		document.getElementById("delectOne").onclick=rtdt;
-		function rtdt(){
+	<!-- icons刪除    -->
+	$( document ).ready(function() {
+
+		$(document).on('click','.deleteButton',function(){
+			var id = $(this).parents('.card-body').find('a:first').text();
+			  var ajaxrtid={rtId:id};
 			
-			
-			
-		}
+			 $.ajax({
+					url : "/startrip/deleteRtDetailsrtId",
+					type : "GET",
+					data : ajaxrtid,
+		   })
+		   location.reload();
+		})
 		
-		
-		
-		var delectId = document.getElementById("delect").onclick;
-	if(confirm("確實要刪除嗎?"))
-	alert("已經刪除！");
-	else
-	alert("已經取消了刪除操作");
+	})
 	
 	</script>
 </body>

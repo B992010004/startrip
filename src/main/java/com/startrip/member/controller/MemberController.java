@@ -69,6 +69,7 @@ public class MemberController {
 		if (rbList != null) {
 			for (RtBookingBean bean : rbList) {
 				RtDetailsBean rtdbean = rtDetailsService.getAllRtDetailsrtId(bean.getRtId());
+				
 				bean.setRtname(rtdbean.getRtName());
 			}
 			model.addAttribute("rtlist", rbList);

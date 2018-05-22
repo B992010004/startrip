@@ -143,7 +143,10 @@
 .modal-title {
 	color: #FF3333;
 	text-align: center;
-	border-bottom: #00CA4C 2px solid;
+}
+
+.modal-body{
+	border-top: #00CA4C 2px solid;
 }
 </style>
 
@@ -162,15 +165,15 @@
 
 	<div class="container">
 		<div class="row">
-				<div class="col-md">
-					<div class="col-md-123">
-						<h2 class="display-4 probootstrap-section-heading">${RtDetailsBean.rtName}</h2>
-						<div class="littletitle1">
-							<div>${RtDetailsBean.rtPhone}</div>
-							<div>${RtDetailsBean.rtAddress}</div>
-						</div>
+			<div class="col-md">
+				<div class="col-md-123">
+					<h2 class="display-4 probootstrap-section-heading">${RtDetailsBean.rtName}</h2>
+					<div class="littletitle1">
+						<div>${RtDetailsBean.rtPhone}</div>
+						<div>${RtDetailsBean.rtAddress}</div>
 					</div>
 				</div>
+			</div>
 		</div>
 	</div>
 
@@ -185,7 +188,7 @@
 						<h1 class="headline1">訂位基本資訊</h1>
 					</div>
 
-					<form:input value="${RtDetailsBean.rtId}" path="rtId" type="hidden"/>
+					<form:input value="${RtDetailsBean.rtId}" path="rtId" type="hidden" />
 					<div class="form-group">
 						<label for="account">訂位者姓名&nbsp;:&nbsp;</label>
 						<form:input type="text" class="form-control" path="crName"
@@ -373,44 +376,36 @@
 
 	<!-- END section -->
 
-	<div class="container">
-		<div class="review">
-			<a href="/startrip/restaurantHome" class="btn btn-primary">回餐廳首頁</a>
-		</div>
-	</div>
-
 
 
 
 	<!-- Button trigger modal -->
 
-	<!-- <div class="container"> -->
-	<!-- <div class="button1"> -->
-	<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"> -->
-	<!--   回餐廳首頁 -->
-	<!-- </button> -->
-	<!-- </div> -->
-
-	<!-- <!-- Modal -->
-	-->
-	<!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"> -->
-	<!--   <div class="modal-dialog" role="document"> -->
-	<!--     <div class="modal-content"> -->
-	<!--       <div class="modal-header">  -->
-	<!--         <h5 class="modal-title">警語&nbsp;&nbsp;!&nbsp;&nbsp;!&nbsp;&nbsp;!</h5> -->
-	<!--       </div> -->
-	<!--       <div class="modal-body"> -->
-	<!--       <p>離開此頁面，資料將消失</p> -->
-	<!--       <p>如需再次訂位，須重填您的資料</p> -->
-	<!--       </div> -->
-	<!--       <div class="modal-footer"> -->
-	<!--         <button type="button" class="btn btn-secondary" href="/startrip/">繼續離開</button> -->
-	<!--         <button type="button" class="btn btn-primary" data-dismiss="modal">返回訂位</button> -->
-	<!--       </div> -->
-	<!--     </div> -->
-	<!--   </div> -->
-	<!-- </div> -->
-	<!-- </div> -->
+	<div class="container">
+		<div class="button1">
+			<button type="button" class="btn btn-primary" data-toggle="modal"
+				data-target="#exampleModal">回餐廳首頁</button>
+		</div>
+		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">警語&nbsp;&nbsp;!&nbsp;&nbsp;!&nbsp;&nbsp;!</h5>
+					</div>
+					<div class="modal-body">
+						<p>離開此頁面，資料將消失</p>
+						<p>如需再次訂位，須重填您的資料</p>
+					</div>
+					<div class="modal-footer">
+						<input type="button" class="btn btn-secondary" value="返回餐廳首頁"
+							onclick="location.href='/startrip/restaurantHome'">
+						<button type="button" class="btn btn-primary" data-dismiss="modal">繼續訂位</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<!-- END section -->
 
