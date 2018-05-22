@@ -15,7 +15,61 @@
 	 <script
 	src="http://code.jquery.com/jquery-1.11.3.min.js"></script> <script
 	src="https://www.google.com/recaptcha/api.js"></script> 
+  <script>
+        
+        function statusChangeCallback(response) {
+            if (response.status === 'connected') {
+                testAPI();
+            } 
+        }
+        function checkLoginState() {
+            FB.getLoginStatus(function (response) {
+                statusChangeCallback(response);
+            });
+        }
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '1677443222291210',
+                cookie: true,  
+                xfbml: true,  
+                version: 'v2.8' 
+            });
+            FB.getLoginStatus(function (response) {
+                statusChangeCallback(response);
+            });
 
+        };
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+        function testAPI() {
+            console.log('Welcome!  Fetching your information.... ');
+            FB.api('/me', function (response) {                     
+            	var userid=response.userID;
+            		var name=response.name;
+            	var ajaxdata = {
+        				mail : userid,
+        				username :name
+        			}
+        			$
+        					.ajax({
+        						url : "/startrip/facebooklogin",
+        						type : "POST",
+        						data : ajaxdata,
+        						async : false,
+        						success : function(responseText, textStatus) { 							
+        						},
+        						error : function() {
+
+        						}
+        					});
+            });
+        }
+    </script>
 <style>
 .errorMsg {
 	text-align: center;
@@ -78,14 +132,14 @@
 							<p class="mr-5" style="padding-left: 30px">或使用其他方式登入</p>
 							<a href="#"
 								class="btn btn-block btn-social btn-facebook btn-flat"> <i
-								class="fa fa-facebook"></i>Facebook 登 入
+								class="fa fa-facebook" scope="public_profile,email" onlogin="checkLoginState();"></i>Facebook 登 入
 							</a>
-							<div class="btn btn-block btn-social btn-google-plus btn-flat"
-								data-onsuccess="onSignIn" data-theme="dark">
-								<i class="fa fa-google-plus"></i> Google+ 登 入
-							</div>
+<!-- 							<div class="btn btn-block btn-social btn-google-plus btn-flat" -->
+<!-- 								data-onsuccess="onSignIn" data-theme="dark"> -->
+<!-- 								<i class="fa fa-google-plus"></i> Google+ 登 入 -->
+<!-- 							</div> -->
 
-						</div>
+<!-- 						</div> -->
 						<!-- /.social-auth-links -->
 
 						<p>

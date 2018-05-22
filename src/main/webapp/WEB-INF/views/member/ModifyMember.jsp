@@ -44,6 +44,11 @@
 	border: 2px solid silver;
 	margin: 10px;
 }
+
+#section-home {
+	padding-top: 45px;
+	padding-bottom: 45px;
+}
 </style>
 </head>
 <body>
@@ -54,111 +59,92 @@
 		style="background-image: url('/startrip/assets/images/bg_1.jpg');"
 		data-stellar-background-ratio="0.5" id="section-home">
 		<div class="overlay"></div>
-		<div class="container">
-			<div class="row align-items-center text-center">
-				<div class="col-md">
-					<h2 class="heading mb-2 display-4 font-light probootstrap-animate">Get
-						In Touch</h2>
-
-					<p class="lead mb-5 probootstrap-animate"></p>
-					<p>
-						<a href="https://themewagon.com/theme_tag/free/" target="_blank"
-							role="button"
-							class="btn btn-primary p-3 mr-3 pl-5 pr-5 text-uppercase d-lg-inline d-md-inline d-sm-block d-block mb-3">More
-							Templates Here</a>
-					</p>
-				</div>
-			</div>
-		</div>
-
 	</section>
 	<!-- END section -->
-
 
 	<section class="probootstrap_section bg-light" id="section-contact">
 
 		<div class="container" id="SignUp">
+			
+				<form:form method="post" modelAttribute="MemberBean"
+					class="probootstrap-form probootstrap-form-box mb60"
+					enctype="multipart/form-data" id="modlifyform">
 
-
-			<form:form method="post" modelAttribute="MemberBean"
-				class="probootstrap-form probootstrap-form-box mb60"
-				enctype="multipart/form-data" id="modlifyform">
-
-				<H2 class="display-4 border-bottom probootstrap-section-heading"
-					style="text-align: center">Modify Personal Information</H2>
-				<div class="row">
-					<div class="col-md-6  probootstrap-animate">
-						<div class="form-group">
-							<label>姓名:</label>
-							<form:input type="text" class="form-control" name="mName"
-								path="username" value="${LoginOK.username}" placeholder="請輸入"
-								autofocus="autofocus" required="required" />
-						</div>
-						<div class="form-group">
-							<label>地址:</label>
-							<form:input type="text" class="form-control" name="mAdd"
-								path="address" value="${LoginOK.address}" placeholder="請輸入"
-								autofocus="autofocus" required="required" />
-						</div>
-						<div class="form-group">
-							<label>電話:</label>
-							<form:input type="text" class="form-control" name="mPhone"
-								path="phone" value="${LoginOK.phone}" placeholder="請輸入"
-								autofocus="autofocus" required="required" />
-							<span id="err"></span>
-						</div>
-					</div>
-					<div class="col-md-6  probootstrap-animate">
-						<div class="form-group">
-							<label>生日:</label>
-							<form:input type="text" class="form-control" name="mbday"
-								path="birthday" value="${LoginOK.birthday}" placeholder="請輸入"
-								autofocus="autofocus" required="required" />
-						</div>
-						<div class="form-group">
-							<form:input type="text" class="form-control" name="mEmail"
-								path='mail' style="display: none;" value="${LoginOK.mail}"></form:input>
-						</div>
-						<div class="form-group">
-							<form:input type="text" class="form-control" path="memberid"
-								style="display: none;" value="${LoginOK.memberid}" />
-							<form:input type="password" class="form-control" path="password"
-								style="display: none;" value="${LoginOK.password}" />
-						</div>
-						<div class="form-group">
-							<form:input type="text" class="form-control" path="validataCode"
-								style="display: none;" value="${LoginOK.validataCode}" />
-						</div>
-						<div class="form-group">
-							<form:input type="text" class="form-control" path="registerDate"
-								style="display: none;" value="${LoginOK.registerDate}" />
-						</div>
-						<div class="form-group">
-							<form:input type="text" class="form-control" path="photo"
-								style="display: none;" value="${LoginOK.photo}" />
-						</div>
-						<div class="form-group">
-							<form:input type="text" class="form-control" path="avatar"
-								style="display: none;" value="${LoginOK.avatar}" />
-						</div>
-						<div class="form-group">
-							<img id="preview_progressbarTW_img" class="img1" value=""
-								src="<c:url value='/getPicture/${LoginOK.mail}'/>" /> <label
-								for="progressbarTWInput" class="btn btn-primary"> 選擇您的相片
-						</label>
-							<form:input type="file" path="avatarImage"
-								id="progressbarTWInput" name="mAvatar"
-								accept="image/gif, image/jpeg, image/png" style="display: none;" />
+					<H2 class="display-4 border-bottom probootstrap-section-heading"
+						style="text-align: center">Modify Personal Information</H2>
+					<div class="row">
+						<div class="col-md-6  probootstrap-animate">
 							<div class="form-group">
-								<input type="button" class="btn btn-primary" id="modlifysubmit"
-									 value="確認修改"
-									style='position: absolute; right: 0;'>
+								<label>姓名:</label>
+								<form:input type="text" class="form-control" name="mName"
+									path="username" value="${LoginOK.username}" placeholder="請輸入"
+									autofocus="autofocus" required="required" />
+							</div>
+							<div class="form-group">
+								<label>地址:</label>
+								<form:input type="text" class="form-control" name="mAdd"
+									path="address" value="${LoginOK.address}" placeholder="請輸入"
+									autofocus="autofocus" required="required" />
+							</div>
+							<div class="form-group">
+								<label>電話:</label>
+								<form:input type="text" class="form-control" name="mPhone"
+									path="phone" value="${LoginOK.phone}" placeholder="請輸入"
+									autofocus="autofocus" required="required" />
+								<span id="err"></span>
+							</div>
+						</div>
+						<div class="col-md-6  probootstrap-animate">
+							<div class="form-group">
+								<label>生日:</label>
+								<form:input type="text" class="form-control" name="mbday"
+									path="birthday" value="${LoginOK.birthday}" placeholder="請輸入"
+									autofocus="autofocus" required="required" />
+							</div>
+							<div class="form-group">
+								<form:input type="text" class="form-control" name="mEmail"
+									path='mail' style="display: none;" value="${LoginOK.mail}"></form:input>
+							</div>
+							<div class="form-group">
+								<form:input type="text" class="form-control" path="memberid"
+									style="display: none;" value="${LoginOK.memberid}" />
+								<form:input type="password" class="form-control" path="password"
+									style="display: none;" value="${LoginOK.password}" />
+							</div>
+							<div class="form-group">
+								<form:input type="text" class="form-control" path="validataCode"
+									style="display: none;" value="${LoginOK.validataCode}" />
+							</div>
+							<div class="form-group">
+								<form:input type="text" class="form-control" path="registerDate"
+									style="display: none;" value="${LoginOK.registerDate}" />
+							</div>
+							<div class="form-group">
+								<form:input type="text" class="form-control" path="photo"
+									style="display: none;" value="${LoginOK.photo}" />
+							</div>
+							<div class="form-group">
+								<form:input type="text" class="form-control" path="avatar"
+									style="display: none;" value="${LoginOK.avatar}" />
+							</div>
+							<div class="form-group">
+								<img id="preview_progressbarTW_img" class="img1" value=""
+									src="<c:url value='/getPicture/${LoginOK.mail}'/>" /> <label
+									for="progressbarTWInput" class="btn btn-primary">
+									選擇您的相片 </label>
+								<form:input type="file" path="avatarImage"
+									id="progressbarTWInput" name="mAvatar"
+									accept="image/gif, image/jpeg, image/png"
+									style="display: none;" />
+								<div class="form-group">
+									<input type="button" class="btn btn-primary" id="modlifysubmit"
+										value="確認修改" style='position: absolute; right: 0;'>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-			</form:form>
-		</div>
+				</form:form>
+			</div>
 		<div class="modal fade" id="modlifymodel" tabindex="-1" role="dialog"
 			aria-labelledby="exampleModalCenterTitle" aria-hidden="true"
 			data-backdrop="static" data-keyboard="false">
@@ -198,11 +184,9 @@
 		src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
 		async defer></script>
 	<script>
-		$("#modlifybackbutton").click(function() {		
+		$("#modlifybackbutton").click(function() {
 			$("#modlifyform").submit();
 		});
-
-	
 	</script>
 
 	<script>
@@ -219,9 +203,7 @@
 				reader.readAsDataURL(input.files[0]);
 			}
 		}
-		
-		
-		
+
 		$(function() {
 			$("#modlifysubmit").click(function() {
 

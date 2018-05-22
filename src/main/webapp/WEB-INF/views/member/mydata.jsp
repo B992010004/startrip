@@ -158,14 +158,15 @@ tbody td img {
 	<script>
 	  $('#rtTable>tbody').on('click','tr button',function(){
 		   var id = $(this).parents('tr').find('td>input').val();
-		  var ajaxdata={bgId:id};
+		   var aa = $(this).parents('tr').find('td>span').text();
+		   var ajaxdata={bgId:id};
 		  $.ajax({
 					url : "/startrip/deletedata",
 					type : "GET",
 					data : ajaxdata,
 					success : function(responseText, textStatus)  {		   	
 			   if(responseText==1){
-				  alert("您的定位已經取消");
+				   alert("您在"+aa+"的定位已經取消");
 				   window.location.reload();
 				  
 			   }}
