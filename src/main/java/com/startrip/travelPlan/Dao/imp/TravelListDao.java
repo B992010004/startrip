@@ -139,7 +139,7 @@ public class TravelListDao implements ITravelListDao  {
 
 	@Override
 	public List<TravelListBean> select_listday(Integer travelId, Integer tripday) {
-		String sql="select * from travellist where  travelId=:travelId and tripday=:tripday";
+		String sql="select * from travellist where  travelId=:travelId and tripday=:tripday and state=1";
 		List<TravelListBean> list =factory.getCurrentSession().createNativeQuery(sql,TravelListBean.class)
 				.setParameter("travelId", travelId)
 				.setParameter("tripday", tripday).getResultList();
@@ -149,7 +149,7 @@ public class TravelListDao implements ITravelListDao  {
 
 	@Override
 	public TravelListBean select_lastlist(Integer travelId, Integer tripday) {
-		String sql="select top(1) * from travellist where  travelId = :travelId and tripday=:tripday order by substring(endTime,1,2) DESC, substring(endTime,3,5)  DESC";
+		String sql="select top(1) * from travellist where  travelId = :travelId and tripday=:tripday and state=1 order by substring(endTime,1,2) DESC, substring(endTime,3,5)  DESC";
 		TravelListBean tlb = factory.getCurrentSession().createNativeQuery(sql, TravelListBean.class)
 				.setParameter("travelId", travelId).setParameter("tripday", tripday).getSingleResult();
 		return tlb;
@@ -157,10 +157,10 @@ public class TravelListDao implements ITravelListDao  {
 
 
 	@Override
-	public Integer update_ListState(Integer travelId, Integer tripday, String starttime) {
-		String hql = "UPDATE TravelListBean SET state=:state where travelId=:travelId and tripday=:tripday and startTime=:starttime";
+	public Integer update_ListState(Integer travelId, Integer tripday, String endtime) {
+		String hql = "UPDATE TravelListBean SET state=:state where travelId=:travelId and tripday=:tripday and endTime=:endtime";
 		Integer a =factory.getCurrentSession().createQuery(hql).setParameter("state", 0)
-				.setParameter("travelId",travelId ).setParameter("tripday",tripday ).setParameter("starttime", starttime)
+				.setParameter("travelId",travelId ).setParameter("tripday",tripday ).setParameter("endtime", endtime)
 				.executeUpdate();
 		
 		

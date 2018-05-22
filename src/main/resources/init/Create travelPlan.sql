@@ -21,13 +21,13 @@ CREATE TABLE TravelView(
 	viewcount int null,
 	tdate date NULL,
 	
-	memberId int not NULL REFERENCES membertable (memberId))
+	memberId int not NULL REFERENCES membertable (memberid))
 
 	go
-	insert into TravelView (viewcount,viewName,imgName,website,viewaddr,viewPhone,viewDetail,tdate,memberId)values(11,'¤j¤Ù¤s','1.jpg;2.jpg;3.jpg','view','¶§©ú¤s','0939-987-456','xxxxxxxxxxxxxxxxxxxxxxxxxxxxx','2015-07-08',1);
-	insert into TravelView (viewcount,viewName,imgName,website,viewaddr,viewPhone,viewDetail,tdate,memberId)values(2,'¤pªo§|','11.jpg;21.jpg;31.jpg','view','¶§©ú¤s','0939-987-456','xxxxxxxxxxxxxxxxxxxxxxxxxxxxx','2015-07-08',1);
-	insert into TravelView (viewcount,viewName,imgName,website,viewaddr,viewPhone,viewDetail,tdate,memberId)values(3,'ªo§|','11.jpg;21.jpg;31.jpg','view','¶§©ú¤s','0939-987-456','xxxxxxxxxxxxxxxxxxxxxxxxxxxxx','2015-07-08',1);
-	insert into TravelView (viewcount,viewName,imgName,website,viewaddr,viewPhone,viewDetail,tdate,memberId)values(5,'¤õ§|','11.jpg;21.jpg;31.jpg','view','¶§©ú¤s','0939-987-456','xxxxxxxxxxxxxxxxxxxxxxxxxxxxx','2015-07-08',1);
+--	insert into TravelView (viewcount,viewName,imgName,website,viewaddr,viewPhone,viewDetail,tdate,memberId)values(11,'¤j¤Ù¤s','1.jpg;2.jpg;3.jpg','view','¶§©ú¤s','0939-987-456','xxxxxxxxxxxxxxxxxxxxxxxxxxxxx','2015-07-08',1);
+--	insert into TravelView (viewcount,viewName,imgName,website,viewaddr,viewPhone,viewDetail,tdate,memberId)values(2,'¤pªo§|','11.jpg;21.jpg;31.jpg','view','¶§©ú¤s','0939-987-456','xxxxxxxxxxxxxxxxxxxxxxxxxxxxx','2015-07-08',1);
+--	insert into TravelView (viewcount,viewName,imgName,website,viewaddr,viewPhone,viewDetail,tdate,memberId)values(3,'ªo§|','11.jpg;21.jpg;31.jpg','view','¶§©ú¤s','0939-987-456','xxxxxxxxxxxxxxxxxxxxxxxxxxxxx','2015-07-08',1);
+--	insert into TravelView (viewcount,viewName,imgName,website,viewaddr,viewPhone,viewDetail,tdate,memberId)values(5,'¤õ§|','11.jpg;21.jpg;31.jpg','view','¶§©ú¤s','0939-987-456','xxxxxxxxxxxxxxxxxxxxxxxxxxxxx','2015-07-08',1);
 
 CREATE TABLE TravelPlan(
 	travelId int IDENTITY(1,1) NOT NULL primary key,
@@ -37,7 +37,7 @@ CREATE TABLE TravelPlan(
 	travelName varchar(255) NULL,
 	img varchar(255) null,
 	state int not null,
-	memberId int not NULL REFERENCES membertable (memberId))
+	memberId int not NULL REFERENCES membertable (memberid))
 
 GO
 insert into TravelPlan (travelName,startDate,endDate,travelDays,img,state,memberId)values('ªá½¬','2015-02-05','2015-02-08',3,'1.jpg',1,1);
@@ -67,7 +67,7 @@ values(3,'09:30','10:30',1,1,'QK',1);
 
 CREATE TABLE travelCollection(
 	travel_Id int NOT NULL REFERENCES TravelPlan (travelId),
-	member_Id int NOT NULL REFERENCES Membertable (memberId),
+	member_Id int NOT NULL REFERENCES Membertable (memberid),
 PRIMARY KEY 
 (	member_Id ,
 	travel_Id ))

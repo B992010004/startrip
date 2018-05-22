@@ -341,8 +341,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <!-- 房間資料起始 -->
-                                <tr>
+                            <tr>
                                     <th scope="row">
                                         <img src="/startrip/assets/images/roomStyle.jpg">
                                         <br> 豪華雙人房
@@ -357,7 +356,9 @@
                                     </td>
                                     <td>3000</td>
                                     <td>
-                                        <form action="/startrip//Booking/${hotel.hotelid }">
+										<!-- 房型roomType寫死 -->
+										<!-- 數量1 被固定-->
+                                        <form action="/startrip/Booking/${hotel.hotelid }/1" method="POST">
                                             <button type="submit" class="btn btn-outline-warning">預定</button>
                                             <br>
                                             <br>
@@ -368,6 +369,37 @@
                                         </form>
                                     </td>
                                 </tr>
+                                <!-- 房間資料起始 -->
+                            <c:forEach var="room" items="${roomList }">
+                                <tr>
+                                    <th scope="row">
+                                        <img src="/startrip/assets/images/roomStyle.jpg">
+                                        <br> ${room.roomname }
+                                    </th>
+                                    <td>附早餐
+                                        <br>可加床
+                                        <br>不可退款
+                                    </td>
+                                    <td>
+                                        1 張雙人床 / 2 張單人床
+                                        <br>室內WIFI
+                                    </td>
+                                    <td>${room.basicprice }</td>
+                                    <td>
+										<!-- 房型roomType寫死 -->
+										<!-- 數量1 被固定-->
+                                        <form action="/startrip/Booking/${hotel.hotelid }/${room.roomtype }" method="POST">
+                                            <button type="submit" class="btn btn-outline-warning">預定</button>
+                                            <br>
+                                            <br>
+                                            <label for="extrabed">
+                                                是否加床
+                                                <input type="checkbox" id="extrabed" name="extrabed">
+                                            </label>
+                                        </form>
+                                    </td>
+                                </tr>
+                        </c:forEach>
                                 <!-- 房間資料結束 -->
                             </tbody>
                         </table>

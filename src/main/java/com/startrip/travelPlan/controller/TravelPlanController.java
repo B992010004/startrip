@@ -90,7 +90,7 @@ public class TravelPlanController {
 		//------------------
 		MemberBean mb =memberservice.select(mail);
 		Integer id =mb.getMemberid();
-		bean.setMail(mail);
+//		bean.setMail(mail);
 		bean.setMemberId(id);
 		bean.setState(1);
 		Integer pk =travelservice.insert_getprimarykey(bean);
@@ -377,15 +377,16 @@ public class TravelPlanController {
 		Integer memberId =memberservice.select(mail).getMemberid();
 		
 		TravelListBean tlb= listservice.select_lastlist(travelId, tripday);
+		System.out.println("tlb="+tlb);
 		
 		return tlb;
 	}
 	
 	@RequestMapping(value="list/remove",method=RequestMethod.GET)
 	@ResponseBody
-	public Integer removeList(Integer travelId,Integer tripday,String starttime) {
+	public Integer removeList(Integer travelId,Integer tripday,String endtime) {
 				
-		Integer a= listservice.update_ListState(travelId, tripday,starttime);
+		Integer a= listservice.update_ListState(travelId, tripday,endtime);
 		
 		return a;
 	}
@@ -488,7 +489,8 @@ public class TravelPlanController {
 		list =viewService.select_ViewName(bean.getViewName());
 		if(list.size()<=0) {
 			count=1;
-			TravelViewBean tvb =new TravelViewBean(bean.getImgName(),bean.getMemberId(), bean.getViewName(), bean.getViewaddr(), bean.getViewPhone(), bean.getWebsite(), bean.getViewDetail(),count);
+			System.out.println(bean.toString());
+			TravelViewBean tvb =new TravelViewBean( bean.getImgName(), bean.getMemberId(), bean.getViewName(), bean.getViewaddr(), bean.getViewPhone(), bean.getWebsite(), null, bean.getViewDetail(), bean.getLatlng(), count);
 			Integer pk =viewService.insert(tvb);
 			if(pk==null) {
 			return "null";

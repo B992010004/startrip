@@ -27,15 +27,13 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-
 import org.w3c.dom.Document;
-
 import allPay.payment.integration.config.AllPayConfig;
 import allPay.payment.integration.errorMsg.ErrorMessage;
 import allPay.payment.integration.exception.AllPayException;
 
 /**
- * �@�Ψ禡���O
+ * 共用函式類別
  * @author mark.chiu
  *
  */
@@ -44,7 +42,7 @@ public class AllPayFunction {
 	private final static char[] hexArray = "0123456789ABCDEF".toCharArray();
 		
 	/**
-	 * �����ˬd�X
+	 * 產生檢查碼
 	 * @param key
 	 * @param iv
 	 * @param obj
@@ -70,7 +68,7 @@ public class AllPayFunction {
 	}
 	
 	/**
-	 * �����ˬd�X
+	 * 產生檢查碼
 	 * @param key
 	 * @param iv
 	 * @param Hashtable<String, String> params
@@ -93,7 +91,7 @@ public class AllPayFunction {
 	}
 	
 	/**
-	 * �N�����ݩʻP�ˬd�X�զX��http���ѼƸ�Ʈ榡
+	 * 將物件的屬性與檢查碼組合成http的參數資料格式
 	 * @param obj
 	 * @param CheckMacValue
 	 * @return string
@@ -116,7 +114,7 @@ public class AllPayFunction {
 	}
 	
 	/**
-	 * �N�����ରHashtable
+	 * 將物件轉為Hashtable
 	 * @param obj
 	 * @return Hashtable
 	 */
@@ -145,7 +143,7 @@ public class AllPayFunction {
 	}
 	
 	/**
-	 * client http post���\��
+	 * client http post的功能
 	 * @param url
 	 * @param urlParameters
 	 * @return response string
@@ -183,7 +181,7 @@ public class AllPayFunction {
 	}
 	
 	/**
-	 * ���� Unix TimeStamp
+	 * 產生 Unix TimeStamp
 	 * @return TimeStamp
 	 */
 	public final static String genUnixTimeStamp(){
@@ -205,7 +203,7 @@ public class AllPayFunction {
 	}
 	
 	/**
-	 * https �B�z
+	 * https 處理
 	 */
 	private static void trustAllHosts() {
 		
@@ -248,7 +246,7 @@ public class AllPayFunction {
 	}
 	
 	/**
-	 * �w�磌���ݩʪ��ѼƧ@�Ƨ�
+	 * 針對物件內屬性的參數作排序
 	 * @param Class
 	 * @return List
 	 */
@@ -263,7 +261,7 @@ public class AllPayFunction {
 	}
 	
 	/**
-	 * �N��ư� urlEncode�s�X
+	 * 將資料做 urlEncode編碼
 	 * @param data
 	 * @return url encoded string
 	 */
@@ -277,7 +275,7 @@ public class AllPayFunction {
 	}
 	
 	/**
-	 * �N������urlEncode�r�갵�ഫ�ŦX .NET�y�����ഫ�W�h
+	 * 將做完的urlEncode字串做轉換符合 .NET語言的轉換規則
 	 * @param url
 	 * @return .Net url encoded string
 	 */
@@ -287,7 +285,7 @@ public class AllPayFunction {
 	}
 	
 	/**
-	 * �N byte array ��ư� hash md5�� sha256 �B��A�æ^�� hex�Ȫ��r����
+	 * 將 byte array 資料做 hash md5或 sha256 運算，並回傳 hex值的字串資料
 	 * @param data
 	 * @param isMD5
 	 * @return string
@@ -307,7 +305,7 @@ public class AllPayFunction {
 	}
 	
 	/**
-	 * �N byte array ����ഫ�� hex�r���
+	 * 將 byte array 資料轉換成 hex字串值
 	 * @param bytes
 	 * @return string
 	 */

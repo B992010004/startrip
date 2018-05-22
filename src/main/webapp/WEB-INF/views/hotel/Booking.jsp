@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
-<!DOCTYPE html>
 <html>
 
 <head>
@@ -56,33 +54,33 @@
             <div class="col-md-1"></div>
             <div id="userinfo" class="col-md-6">
                 <br>
-                <form action="">
+                <form name="userinfo">
                     <h5>*聯絡人姓名</h5>
                     <div class="form-row">
                         <div class="form-group col-md-5">
-                            <input type="text" class="form-control" name="lastname" placeholder="姓" value="">
+                            <input type="text" class="form-control" name="lastname" id="lastname" placeholder="姓" value="">
                         </div>
                         <div class="form-group col-md-6">
-                            <input type="text" class="form-control" name="firstname" placeholder="名" value="${LoginOK.username }">
+                            <input type="text" class="form-control" name="firstname" id="firstname" placeholder="名" value="${LoginOK.username }">
                         </div>
                     </div>
                     <h5>*聯絡Email</h5>
                     <div class="form-row">
                         <div class="form-group col-md-11">
-                            <input type="text" class="form-control" name="email" placeholder="Email" value="${LoginOK.mail }">
+                            <input type="text" class="form-control" name="email" id="email" placeholder="Email" value="${LoginOK.mail }">
                         </div>
                     </div>
                     <h5>*手機號碼</h5>
                     <div class="form-row">
                         <div class="form-group col-md-11">
-                            <input type="text" class="form-control" name="cellphone" placeholder="0900123456" value="${LoginOK.phone }">
+                            <input type="text" class="form-control" name="cellphone" id="cellphone" placeholder="0900123456" value="${LoginOK.phone }">
                         </div>
                     </div>
                     <br>
                     <h5>備註</h5>
                     <div class="form-row">
                         <div class="form-group col-md-11">
-                            <textarea class="form-control" name="note" rows="3"></textarea>
+                            <textarea class="form-control" name=ordernote id="ordernote" rows="3"></textarea>
                         </div>
                     </div>
                     <br>
@@ -102,21 +100,23 @@
                         </div>
                         <br>
                     </c:if>
-                    <h5>*選擇付款方式</h5>
-                    <table rules="none" class="table">
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <button type="submit" name="payment" value="creditcard" class="btn btn-light">信用卡</button>
-                                </td>
-                                <td>
-                                    <button type="submit" name="payment" value="allpay" class="btn btn-light">歐付寶</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+
                     <br>
+                    <input type="hidden" name="memberid" id="memberid" value="${LoginOK.memberid }">
                 </form>
+                <h5>*選擇付款方式</h5>
+                <table rules="none" class="table">
+                    <tbody>
+                        <tr>
+                            <!--                             <td> -->
+                            <!--                                 <button type="button" name="payment" value="creditcard" class="btn btn-light">信用卡</button> -->
+                            <!--                             </td> -->
+                            <td>
+                                <button id="allPay" name="payment" value="allPay" class="btn btn-light">歐付寶</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
                 <br>
             </div>
             <div class="col-md-4">
@@ -128,7 +128,7 @@
                             <td>${hotel.hotelname }</td>
                         </tr>
                         <tr>
-                            <td>豪華雙人房</td>
+                            <td>${room.roomname }</td>
                         </tr>
                         <tr>
                             <td>2018-06-28 ~ 2018-07-01 ( 4晚 )
@@ -136,7 +136,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>總金額 NT 12000 元</td>
+                            <td>總金額 NT ${room.basicprice } 元</td>
                         </tr>
                     </tbody>
                 </table>
@@ -144,6 +144,7 @@
             <div class="col-md-1"></div>
         </div>
     </div>
+
     <!-- end checkout -->
     <footer class="probootstrap_section probootstrap-border-top">
         <div class="container">
@@ -235,9 +236,9 @@
             </div>
         </div>
     </footer>
+    <div id="responce">
+    </div>
     <!-- END footer -->
-
-
     <script src="/startrip/assets/js/jquery.min.js"></script>
 
     <script src="/startrip/assets/js/popper.min.js"></script>
@@ -253,6 +254,40 @@
     <script src="/startrip/assets/js/main.js"></script>
 
     <script src="/startrip/assets/js/range.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#allPay').click(function () {
+// 				var formData = new FormData(document.userinfo);
+				var formData = {};
+				formData.lastname = $('#lastname').val();
+				formData.firstname = $('#firstname').val();
+				formData.email = $('#email').val();
+				formData.cellphone = $('#cellphone').val();
+				formData.memberid = $('#memberid').val();
+				console.log(formData);
+				$.ajax({
+                    url: '/startrip/frontEnd/aioCheckOut/aioCheckOutALL/${hotel.hotelid }/${room.roomtype }',
+                    type: 'POST',
+                    //enctype: "multipart/form-data",
+                    //contentType : false,
+                    //processData : false,
+//                     dataType:"json",
+                    data: formData,
+                    success: function (responce) {
+                        $('#responce').html(responce);
+                    },
+                    error: function (e) {
+                        console.log(e);
+                    }
+
+                });
+            });
+        });
+
+
+
+    </script>
 
 </body>
 

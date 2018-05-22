@@ -20,9 +20,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.startrip.hotel.model.HotelsBean;
+import com.startrip.hotel.model.Rooms;
 import com.startrip.hotel.model.SearchHotel;
-import com.startrip.hotel.model.persistent.HotelsBean;
-import com.startrip.hotel.model.service.HotelServiceInterface;
+import com.startrip.hotel.service.HotelServiceInterface;
+import com.startrip.hotel.service.RoomsServiceInterface;
 import com.startrip.reviews.model.HotelReview;
 import com.startrip.reviews.service.HotelReviewService;
 
@@ -31,6 +33,9 @@ public class HotelController {
 
 	@Autowired
 	HotelServiceInterface hotelService;
+
+	@Autowired
+	RoomsServiceInterface roomsServiceInterface;
 
 	@Autowired
 	ServletContext context;
@@ -67,7 +72,7 @@ public class HotelController {
 		// Hotel資訊
 		HotelsBean bean = hotelService.selectByPk(hotelId);
 		// 將PhotoPath分割
-		//此法比較好 不用在Bean裡面寫程式
+		// 此法比較好 不用在Bean裡面寫程式
 		String[] photoArr = null;
 		photoArr = bean.getPhotoString().split(";");
 		bean.setPhotoArr(photoArr);
@@ -92,18 +97,34 @@ public class HotelController {
 		List<HotelReview> reviews = hotelReviewService.getHotelReviewsByHotelId(hotelId);
 		model.addAttribute("reviews", reviews);
 
+		// 房型
+		//Group by 失敗
+		List<Rooms> roomList = roomsServiceInterface.selectByHotelIdGroupByType(hotelId);
+		model.addAttribute("roomList", roomList);
+
 		return "hotel/Rooms";
 	}
 
-	@RequestMapping(value = "/Booking/{hotelId}")
-	public String hotelCheckout(@PathVariable("hotelId") Integer hotelId, Model model) {
+	@RequestMapping(value = "/Booking/{hotelId}/{roomType}")
+	public String hotelCheckout(@PathVariable("hotelId") Integer hotelId, @PathVariable("roomType") Integer roomType,
+			Model model) {
 		// Hotel資訊
 		HotelsBean bean = hotelService.selectByPk(hotelId);
 		// 將PhotoPath分割
 		String[] photoArr = null;
 		photoArr = bean.getPhotoString().split(";");
 		bean.setPhotoArr(photoArr);
+		// 目前並沒有房型資料
+		// roomtype先塞訂單hotelBean裡
+		bean.setRoomtype(roomType);
 		model.addAttribute("hotel", bean);
+		
+		// 房型資訊
+		// 應該照選定房型選出來
+		// 目前groupByType未完成
+		List<Rooms> roomList = roomsServiceInterface.selectByHotelIdGroupByType(hotelId);
+		Rooms room = roomList.get(0);
+		model.addAttribute("room", room);
 
 		return "hotel/Booking";
 	}
