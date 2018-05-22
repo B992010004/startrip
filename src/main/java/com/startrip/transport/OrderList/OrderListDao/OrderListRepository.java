@@ -1,7 +1,7 @@
 package com.startrip.transport.OrderList.OrderListDao;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -23,7 +23,7 @@ public class OrderListRepository implements OrderListRepositoryInterface{
 		String hql = "FROM OrderListBean";
 		Session session = factory.getCurrentSession();
 		List<OrderListBean> list = new ArrayList<>();
-		list = session.createQuery(hql, OrderListBean.class).getResultList();//StationBean.class指定查詢一定是StationBean.class
+		list = session.createQuery(hql, OrderListBean.class).getResultList();
 		return list;
 	
 	
@@ -38,7 +38,7 @@ public class OrderListRepository implements OrderListRepositoryInterface{
 	}
 
 	@Override
-	public void update(String scId, String scName, String sMail, Integer sPhone, String crderKind, Date orderTime) {
+	public void update(String scId, String scName, String sMail, Integer sPhone, String crderKind, Timestamp orderTime,String StarStation,String EndStation) {
 		// TODO Auto-generated method stub
 		
 	}

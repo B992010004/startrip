@@ -1,5 +1,6 @@
 package com.startrip.transport.OrderList.OrderListInterface;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -12,17 +13,18 @@ public interface OrderListRepositoryInterface {
 
 	StationBean select(Integer orderNumber);
 
-	void update(String scId,String scName,  String sMail, Integer sPhone, String crderKind,Date orderTime);
+	void update(String scId,String scName,  String sMail, Integer sPhone, String crderKind,Timestamp orderTime,
+			
+			String StarStation ,String EndStation
+			
+			
+			);
 
 	void insert(OrderListBean bean);
 
 	boolean delete(Integer orderNumber);
 
-	
 
-	
-	
-	
 	
 	
 	
