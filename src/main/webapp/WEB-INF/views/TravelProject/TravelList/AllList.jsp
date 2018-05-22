@@ -826,6 +826,10 @@ function searchList(day){
 				  						endmin = endmin-60;
 				  						endhour = endhour+1;
 				  					}
+				  				if(startmin>60){
+				  					startmin = startmin-60;
+			  						starthour = starthour+1;
+			  					}
 				  				var stime= twobit(starthour)+":"+twobit(startmin)
 				  				var etime=	twobit(endhour)+":"+twobit(endmin)
 				  				daybody.find('.right').eq(j).find('.start').text(twobit(starthour)+":"+twobit(startmin));
