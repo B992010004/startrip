@@ -1,6 +1,7 @@
 package com.startrip.travelPlan.model;
 
 import java.sql.Date;
+import java.util.Arrays;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -44,18 +45,35 @@ public class TravelViewBean {
 	
 	
 
-	@Override
-	public String toString() {
-		return "TravelViewBean [viewid=" + viewid + ", imgName=" + imgName + ", memberId=" + memberId + ", viewName="
-				+ viewName + ", viewaddr=" + viewaddr + ", viewPhone=" + viewPhone + ", website=" + website
-				+ ", viewDetail=" + viewDetail + ", count=" + count + "]";
-	}
+	
 
 
 
 
 
 	
+
+
+
+	@Override
+	public String toString() {
+		return "TravelViewBean [viewid=" + viewid + ", imgSrc=" + Arrays.toString(imgSrc) + ", imgName=" + imgName
+				+ ", memberId=" + memberId + ", viewName=" + viewName + ", viewaddr=" + viewaddr + ", viewPhone="
+				+ viewPhone + ", website=" + website + ", tdate=" + tdate + ", viewDetail=" + viewDetail + ", latlng="
+				+ latlng + ", count=" + count + "]";
+	}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
