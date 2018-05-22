@@ -1,6 +1,7 @@
 package com.startrip.hotel.model;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,11 +33,13 @@ public class HotelsBean implements Serializable {
 	private String photoString;
 	// private Integer refundid;
 	// private Integer advancedayid;
-	
+
+	@Transient
+	private Integer roomtype;
+
 	@Transient
 	private String photoArr[];
-	
-	
+
 	public String[] getPhotoArr() {
 		return photoArr;
 	}
@@ -44,8 +47,6 @@ public class HotelsBean implements Serializable {
 	public void setPhotoArr(String[] photoArr) {
 		this.photoArr = photoArr;
 	}
-	
-	
 
 	public String getPhotoString() {
 		return photoString;
@@ -135,12 +136,21 @@ public class HotelsBean implements Serializable {
 		this.hotelrulenote = hotelrulenote;
 	}
 
+	public Integer getRoomtype() {
+		return roomtype;
+	}
+
+	public void setRoomtype(Integer roomtype) {
+		this.roomtype = roomtype;
+	}
+
 	@Override
 	public String toString() {
 		return "HotelsBean [hotelmanagerid=" + hotelmanagerid + ", hotelid=" + hotelid + ", hotelname=" + hotelname
 				+ ", hotelphone=" + hotelphone + ", hotelstar=" + hotelstar + ", hoteladdress=" + hoteladdress
-				+ ", hotelstate=" + hotelstate + ", lowestPrice=" + lowestPrice + ", photoString=" + photoString + "]";
+				+ ", hotelstate=" + hotelstate + ", hotelinfo=" + hotelinfo + ", hotelrulenote=" + hotelrulenote
+				+ ", lowestPrice=" + lowestPrice + ", photoString=" + photoString + ", roomtype=" + roomtype
+				+ ", photoArr=" + Arrays.toString(photoArr) + "]";
 	}
-	
 
 }
