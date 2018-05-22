@@ -451,6 +451,7 @@ $(document).on('click','#insertList',function(){
 	view.website=ul.find('.website').text();
 	view.address=ul.find('.address').text();
 	view.latlng = body.children().eq(1).attr('data-location')
+	console.log(body.children().eq(1).attr('data-location'))
 	view.travelId='${Travel.travelId}'
 	view.memberId='${LoginOK.memberid}'
 	console.log(view)
@@ -502,7 +503,7 @@ $(document).on('click','#checklist',function(){
 					  	if (status === 'OK') {
 					  		var result=response.routes[0];
 					  		var duration=result.legs[0].duration.value;
-					  		var routehour=Math.ceil((duration/60/60)); 
+					  		var routehour=Math.ceil((duration/3600)); 
 				        	var routemin = Math.ceil(duration/60);
 					       
 					  	}

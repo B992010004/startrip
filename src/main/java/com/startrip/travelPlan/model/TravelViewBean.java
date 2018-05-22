@@ -1,5 +1,7 @@
 package com.startrip.travelPlan.model;
 
+import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -174,23 +176,38 @@ public class TravelViewBean {
 
 
 
-	
 
 
-	public TravelViewBean( String imgName, Integer memberId, String viewName, String viewaddr,
-			String viewPhone, String website, String viewDetail,Integer count) {
-	
-
-
+	public TravelViewBean(  String imgName, Integer memberId, String viewName,
+			String viewaddr, String viewPhone, String website, Date tdate, String viewDetail, String latlng,
+			Integer count) {
+		super();
+		
+		
 		this.imgName = imgName;
 		this.memberId = memberId;
 		this.viewName = viewName;
 		this.viewaddr = viewaddr;
 		this.viewPhone = viewPhone;
 		this.website = website;
+		this.tdate = tdate;
 		this.viewDetail = viewDetail;
-		this.count		=count;
+		this.latlng = latlng;
+		this.count = count;
 	}
+
+
+
+
+
+	
+
+
+
+	
+
+
+	
 	
 	
 	

@@ -489,7 +489,8 @@ public class TravelPlanController {
 		list =viewService.select_ViewName(bean.getViewName());
 		if(list.size()<=0) {
 			count=1;
-			TravelViewBean tvb =new TravelViewBean(bean.getImgName(),bean.getMemberId(), bean.getViewName(), bean.getViewaddr(), bean.getViewPhone(), bean.getWebsite(), bean.getViewDetail(),count);
+			System.out.println(bean.toString());
+			TravelViewBean tvb =new TravelViewBean( bean.getImgName(), bean.getMemberId(), bean.getViewName(), bean.getViewaddr(), bean.getViewPhone(), bean.getWebsite(), null, bean.getViewDetail(), bean.getLatlng(), count);
 			Integer pk =viewService.insert(tvb);
 			if(pk==null) {
 			return "null";
