@@ -256,7 +256,7 @@
         <div class="container">
             <div class="row text-center mb-5 probootstrap-animate">
                 <div class="col-md-12">
-                    <h4 class="display-4 probootstrap-section-heading">查詢車站(地圖)</h4>
+                    <h4 class="display-4 probootstrap-section-heading">查詢車站</h4>
                 </div>
             </div>
             <div class="row">

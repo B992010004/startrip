@@ -951,6 +951,8 @@ function searchView(){
 
 
 function initMap() {
+	
+	
   	var pyrmont = new google.maps.LatLng(25.0337409,121.5416216);
 	var map;
     var infowindow;
@@ -976,33 +978,7 @@ function initMap() {
     })
     infowindow = new google.maps.InfoWindow();
     service = new google.maps.places.PlacesService(map);
-    //路線規劃
-    var directionsService = new google.maps.DirectionsService;
-//	    //路線設定
-//	    var directionsDisplay = new google.maps.DirectionsRenderer({
-//	        draggable: true,
-//	        map: map,
-//	        //儀錶板(顯示位置)
-//	        panel: document.getElementById('right-panel')
-//	      });  
-    //顯示監控
-//	    directionsDisplay.addListener('directions_changed', function() {
-//	        computeTotalDistance(directionsDisplay.getDirections());
-//	      });
-		//路線規劃 call function
-//       displayRoute('饒河街', '台北101', directionsService,
-//           directionsDisplay);
-     
-  //初始化end------------------------
- 
- 
-
-	//服務搜尋promont 範圍50000----------------------------------------------------
-        // service.nearbySearch({
-        //   location: pyrmont,
-        //   radius: 50000       
-        // }, callback);
-	//-----------------------------------------------
+  
 	// Create the search box and link it to the UI element.
 	var input = document.getElementById('pac-input');
   		var searchBox = new google.maps.places.SearchBox(input);
@@ -1018,6 +994,7 @@ function initMap() {
       // more details for that place.
       //placechange-----
       searchBox.addListener('places_changed', function() {
+    	  marker.setMap(null);
    var places = searchBox.getPlaces();
 		console.log(places)
    if (places.length == 0) {

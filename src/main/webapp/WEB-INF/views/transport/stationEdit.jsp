@@ -81,7 +81,7 @@
             <div class="row align-items-center">
                 <div class="col-md probootstrap-animate">
                                                                                                        <h3 style="color:#E8CCFF" align="center" >請輸入基本資料</h3>
-                    <form action="stationEdit" class="probootstrap-form" style="border-radius: 30px;">
+                    <form action="/startrip/insertOrerList" class="probootstrap-form" style="border-radius: 30px;">
                         <div class="form-group">
                                                  
                               
@@ -90,7 +90,7 @@
 										<label for=" ">
 											身分證字號:
 											</label>
-											<input type="text" id="id_label_location" name="searchSrting" class="form-control" placeholder="">
+											<input type="text" id="id_label_location" name="identity" class="form-control" placeholder="">
 						
 										
 									</div>
@@ -102,7 +102,7 @@
 										<label for="id_label_location">
 											姓名
 											</label>
-											<input type="text" id="id_label_location" name="searchSrting" class="form-control" placeholder="">
+											<input type="text" id="id_label_location" name="custname" class="form-control" placeholder="">
 
 										
 										
@@ -115,7 +115,7 @@
 										<label for="id_label_location">
 											電子郵件:
 										</label>
-											<input type="text" id="id_label_location" name="searchSrting" class="form-control" placeholder="">
+											<input type="text" id="id_label_location" name="sMail" class="form-control" placeholder="">
 										
 
 										
@@ -129,7 +129,7 @@
 									<div class="form-group inputState">
 										
 										<label for="id_label_location">
-											連絡電話:<input type="text" id="id_label_location" name="searchSrting" class="form-control" placeholder="">
+											連絡電話:<input type="text" id="id_label_location" name="phone" class="form-control" placeholder="">
 
 										</label>
 										
@@ -142,8 +142,6 @@
 
                       
                         </div>
-                    </form>
-                    
                     <!-- summit -->
                                
             <div class="form-group">
@@ -152,6 +150,8 @@
                          </div>
                 </div>
                             
+                    </form>
+                    
                     <!-- summit -->
                 </div>
             </div>
@@ -291,25 +291,19 @@
     <option value="">半票</option>
     <option value="">學生票</option>
     </select>
-                              
-                              
-                              
-                              
-                              
-                              
-                              
-                              
-                              
-                                <!-- 							送出 -->
-                              
-
-                                <!-- 							送出 -->
-
-
-
     <br>
     <br>
- 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 <a href="/startrip/select">回上一步</a>
 
 <script>

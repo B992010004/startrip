@@ -70,7 +70,7 @@
    <div>
         <jsp:include page="/WEB-INF/views/header.jsp" flush="true" />
     </div>
-
+<h1>SELECT2!!!!!!!</h1>
 
 
     <!-- 以下為訂票功能 -->

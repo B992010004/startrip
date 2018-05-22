@@ -9,8 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import org.springframework.web.multipart.MultipartFile;
-
 @Entity
 @Table(name = "RtBooking")
 public class RtBookingBean {
