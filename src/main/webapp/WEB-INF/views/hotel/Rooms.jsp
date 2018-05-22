@@ -537,7 +537,7 @@
 				<div class="row" style="margin:16px;">
 					<div class="col-md-1">
 						<div class="row justify-content-center" style="margin:16px;"><img class="review-memberphoto" src="<c:url value='/getPicture/${review.memberBean.mail}'/>"></div>
-						<div class="row justify-content-center"><div><h6>${review.memberBean.username }</h6></div></div>
+						<div class="row justify-content-center"><div><h6>${review.memberBean.lastname }</h6></div></div>
 					</div>
 					<div class="col-md-9">
 						<div class="probootstrap_font-18"><h5>${review.title}</h5></div>

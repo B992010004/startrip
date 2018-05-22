@@ -2,9 +2,6 @@ package com.startrip.hotel.remove;
 
 import java.io.Serializable;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
 //@Entity(name="refund")
 public class RefundBean implements Serializable {
 	private static final long serialVersionUID = -7439730669003920115L;

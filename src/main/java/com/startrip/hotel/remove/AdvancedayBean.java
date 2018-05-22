@@ -2,9 +2,6 @@ package com.startrip.hotel.remove;
 
 import java.io.Serializable;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
 //@Entity(name = "advanceday")
 public class AdvancedayBean implements Serializable {
 

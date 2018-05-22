@@ -2,9 +2,6 @@ package com.startrip.hotel.remove;
 
 import java.io.Serializable;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
 //@Entity(name="paymentmethod")
 public class PaymentmethodBean  implements Serializable{
 	private static final long serialVersionUID = 1132143219284705867L;
