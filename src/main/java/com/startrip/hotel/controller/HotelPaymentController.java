@@ -7,6 +7,7 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -62,10 +63,10 @@ public class HotelPaymentController {
 		aio.setTradeDesc("房型");
 		aio.setHoldTradeAMT("0");
 		// 顯示付款成功的頁面（預設
-		aio.setReturnURL("https://developers.opay.tw/AioMock/MerchantReturnUrl");
+//		aio.setReturnURL("https://developers.opay.tw/AioMock/MerchantReturnUrl");
 		aio.setReturnURL("https://startrip.southeastasia.cloudapp.azure.com:8443/startrip/PayEnd");
 		// 付款成功後轉跳的頁面
-		// aio.setClientBackURL("http://localhost:8080/startrip/");
+		aio.setClientBackURL("https://startrip.southeastasia.cloudapp.azure.com:8443/startrip/PayEnd");
 
 		order.setHotelid(hotelId);
 		order.setOrderdate(new java.sql.Date(date.getTime()));
@@ -78,5 +79,13 @@ public class HotelPaymentController {
 			throw new Error(e.getNewExceptionMessage());
 		}
 
+	}
+	
+	@RequestMapping(value = "/PayEnd")
+	public String payEnd(Model model) {
+		
+		System.out.println("payend有收到甚麼嗎??");
+		
+		return "hotel/PayEnd";
 	}
 }

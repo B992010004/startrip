@@ -15,7 +15,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
-
 @Configuration
 @EnableTransactionManagement
 // @EnableJpaRepositories("com.startrip.*")
@@ -56,7 +55,7 @@ public class RootAppConfig {
 	public HibernateTransactionManager transactionManager(SessionFactory sessionFactory) {
 
 		System.out.println("transactionManager.. in RootAppConfig");
-//		 HibernateTransactionManager txManager = null;
+		// HibernateTransactionManager txManager = null;
 		HibernateTransactionManager txManager = new HibernateTransactionManager();
 		txManager.setSessionFactory(sessionFactory);
 		return txManager;
@@ -73,6 +72,5 @@ public class RootAppConfig {
 		// properties.put("hibernate.connection.datasource", "java:comp/env/jdbc/startrip");
 		return properties;
 	}
-
 
 }

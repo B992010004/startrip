@@ -136,12 +136,7 @@ public class HotelController {
 	@RequestMapping(value = "/Payment_Allpay")
 	public String paymentAllpay(Model model) {
 		return "hotel/Payment_Allpay";
-	}
-
-	@RequestMapping(value = "/PayEnd")
-	public String payEnd(Model model) {
-		return "hotel/PayEnd";
-	}
+	}	
 
 	@RequestMapping(value = "/getPicture/hotel/{hotelId}/{photoName:.+}")
 	public ResponseEntity<byte[]> getHotelPicture(HttpServletResponse resp, @PathVariable String hotelId,
