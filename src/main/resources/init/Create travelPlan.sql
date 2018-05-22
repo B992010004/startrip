@@ -13,11 +13,12 @@ drop table [TravelView]
 CREATE TABLE TravelView(
 	viewid int IDENTITY(1,1) not null primary key,
 	viewName varchar(255) NULL,
-	imgName varchar(255) NULL,
+	imgName varchar(max) NULL,
 	website varchar(255) NULL,
 	viewaddr varchar(255) NULL,
 	viewPhone varchar(255) NULL,
 	viewDetail varchar(255) NULL,
+	latlng varchar(255) NULL,
 	viewcount int null,
 	tdate date NULL,
 	

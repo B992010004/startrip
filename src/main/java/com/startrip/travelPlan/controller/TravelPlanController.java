@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.hibernate.TransientPropertyValueException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.CacheControl;
 import org.springframework.http.HttpHeaders;
@@ -61,7 +62,7 @@ public class TravelPlanController {
 	ServletContext ctx;
 	
 	//新增行程-------------------------------------------
-	@RequestMapping(value="Travel/addPlan/{mail}",method=RequestMethod.GET)
+	@RequestMapping(value="Travel/addPlan/{mail}.{com}",method=RequestMethod.GET)
 	public String travelNewAdd(Model model) {
 		TravelAllBean bean = new TravelAllBean();
 		
@@ -70,10 +71,12 @@ public class TravelPlanController {
 	
 	}
 	
-	@RequestMapping(value="Travel/addPlan/{mail}",method=RequestMethod.POST)
+	@RequestMapping(value="Travel/addPlan/{mail}.{com}",method=RequestMethod.POST)
 	public String travelAdd(@ModelAttribute("TravelALLBean") TravelAllBean bean
-			,@PathVariable("mail")String mail,HttpSession session,HttpServletRequest request) {
+			,@PathVariable("mail")String mail,@PathVariable("com")String domain,HttpSession session,HttpServletRequest request) {
 //		-----------------------------------------------------
+		System.out.println("mail===="+mail);
+		
 		//亂數一張圖片
 		Integer img =(int)(Math.random()*10+1);
 		bean.setImg(img+".jpg");
@@ -88,7 +91,7 @@ public class TravelPlanController {
 		
 		bean.setTravelDays(days);
 		//------------------
-		MemberBean mb =memberservice.select(mail);
+		MemberBean mb =memberservice.select(mail+"."+domain);
 		Integer id =mb.getMemberid();
 //		bean.setMail(mail);
 		bean.setMemberId(id);
@@ -119,8 +122,10 @@ public class TravelPlanController {
 	public List<Object> travelAll(Model model,String mail) {
 		
 		HashMap<String , String > map = new HashMap<>();
+		System.out.println("mail="+mail);
 		MemberBean mb = memberservice.select(mail);
 		Integer id = mb.getMemberid();
+		System.out.println("id="+id);
 		List<Object> all = new ArrayList<>();
 		List<TravelAllBean> list = travelservice.select_mail(id);
 		for(TravelAllBean bean :list) {
@@ -385,10 +390,23 @@ public class TravelPlanController {
 	@RequestMapping(value="list/remove",method=RequestMethod.GET)
 	@ResponseBody
 	public Integer removeList(Integer travelId,Integer tripday,String endtime) {
+		
 				
 		Integer a= listservice.update_ListState(travelId, tripday,endtime);
 		
 		return a;
+	}
+	@RequestMapping(value="list/update",method=RequestMethod.GET)
+	@ResponseBody
+	public String removeList(TravelListBean bean) {
+		List<TravelViewBean> list=viewService.getViewPoint(bean.getViewName()); 
+		Integer viewid = list.get(0).getViewid();
+		System.out.println("update value="+bean.toString());
+				bean.setState(1);
+				bean.setViewid(viewid);
+		listservice.update_List(bean);
+		
+		return "success";
 	}
 	
 	
@@ -485,7 +503,7 @@ public class TravelPlanController {
 	{	
 		Integer count;
 		List<TravelViewBean> list = new ArrayList<>();
-		
+		System.out.println("add/view.bean="+bean.toString());
 		list =viewService.select_ViewName(bean.getViewName());
 		if(list.size()<=0) {
 			count=1;

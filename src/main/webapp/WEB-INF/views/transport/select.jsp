@@ -94,30 +94,7 @@
                                     </div>
                                 </div>
                                 <!-- 							以上選擇出發日期 -->
-                                <script>
-//function getArea1(data){
-// 	alert($('#FPMap0'));
-//	alert(data);
-//	var abb = {};
-//	abb.local=data;
-//	$.ajax({
-//		type: 'POST',
-//		url: 'selectArea',
-//		data: abb,
-// 		dataType: dataType,
-//		success: function(response) 
-//		{
-// 		
-
-
-//		}
-
-//		},error: function(jqXHR, textStatus, errorThrown) {alert("no")},
-
-
-                                </script>
-
-
+                      
                                 <!-- 選擇出發地點 -->
                                 <div class="col-md">
                                     <div class="form-group inputState">
@@ -154,12 +131,15 @@
                                             <select id="inputState" class="form-control" name="poeple">
 
                                                 <option value="" selected="selected">選擇出發車站</option>
-                                                <c:forEach items='${selectArea}' var='select'>
+                                                <option value="台北車站">台北車站</option>
+                                                <option value="市府轉運站	">市府轉運站</option>
+                                                <option value="	士林轉運站">士林轉運站</option>
+                                                <option value="松山機場站">松山機場站</option>
+                                                <option value="南港轉運站">南港轉運站	</option>
+                                                <option value="捷運南港展覽館">捷運南港展覽館</option>
+                                                <option value="捷運圓山站">捷運圓山站</option>
 
-
-                                                    <option value="">${selectArea.stationName}</option>
-
-                                                </c:forEach>
+                                              
                                             </select>
                                         </label>
                                     </div>
@@ -200,12 +180,12 @@
                                             <select id="inputState" class="form-control" name="poeple">
                                                 <option value="">請選擇目的車站</option>
 
-                                                <c:forEach items='${selectArea}' var='select'>
+                                               
 
 
-                                                    <option value="">${selectArea.stationName}</option>
+                                                    <option value="南方澳站">南方澳站</option>
 
-                                                </c:forEach>
+                                               
                                             </select>
                                         </label>
                                     </div>
@@ -232,7 +212,7 @@
     </section>
     <!-- 以上為訂票功能版面 -->
 
-    <a href="/startrip/assets/transport/images/AD/mainview1-p.jpg">測試網址</a>
+    
 
 
     <!-- 輪播牆 -->
@@ -267,13 +247,7 @@
             document.images[0].src = "/startrip/assets/transport/images/taiwan.png";
         }
 
-//		function Click() {
-			// document.getElementById("mapdiv").innerHTML = "<img src='images/Taipei.gif'/>";
-//			document.getElementById("mapdiv").innerHTML = "<img src='images/"
-//					+ this.id.substr(2) + ".gif'/>";
-//					this.innerHTML = '您選的座位為' + this.id.substr(5) + '號';
-//			$("#xx").html("<span>"+'您選的座位為'+this.id.substr(5)+'號'+"</span>");
-//		}
+
     </script>
     <!-- 以上為地圖查車站function -->
 
@@ -347,7 +321,7 @@
                             console.log("地址: " + googleAddress);
                             $("#gm").append(
                                 "<a href='https://maps.google.com/maps?q=" + googleAddress + "&amp;z=11"
-                                + "data-geo='' target='_blank'> <img class='map' alt=" + googleAddress + "src='https://maps.google.com/maps/api/staticmap?zoom=15&size=300x300&maptype=terrain&sensor=false&center=" + googleAddress + "&markers=color:green%7Clabel:H%7C$" + googleAddress + "&key=AIzaSyARfDct4ecrevMJjHgcrjmPOLfbM6X9N7w'></a>"
+                                + "data-geo='' target='_blank'> <img class='map' alt=" + googleAddress + "src='https://maps.google.com/maps/api/staticmap?zoom=15&size=300x300&maptype=terrain&sensor=false&center=" + googleAddress + "&markers=color:green%7Clabel:S%7C$" + googleAddress + "&key=AIzaSyARfDct4ecrevMJjHgcrjmPOLfbM6X9N7w'></a>"
                             );
                         });
 
