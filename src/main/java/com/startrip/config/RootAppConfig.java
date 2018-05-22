@@ -15,37 +15,36 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
-
 @Configuration
 @EnableTransactionManagement
 // @EnableJpaRepositories("com.startrip.*")
 public class RootAppConfig {
 
-	@Bean
-	public DataSource dataSource() {
-		ComboPooledDataSource ds = new ComboPooledDataSource();
-		ds.setUser("sa");
-		ds.setPassword("P@ssw0rd");
-
-		try {
-			ds.setDriverClass("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-		} catch (PropertyVetoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		ds.setJdbcUrl("jdbc:sqlserver://127.0.0.1:1433;DatabaseName=startrip");
-		ds.setInitialPoolSize(4);
-		ds.setMaxPoolSize(8);
-
-		return ds;
-	}
+	// @Bean
+	// public DataSource dataSource() {
+	// ComboPooledDataSource ds = new ComboPooledDataSource();
+	// ds.setUser("sa");
+	// ds.setPassword("P@ssw0rd");
+	//
+	// try {
+	// ds.setDriverClass("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+	// } catch (PropertyVetoException e) {
+	// // TODO Auto-generated catch block
+	// e.printStackTrace();
+	// }
+	//
+	// ds.setJdbcUrl("jdbc:sqlserver://127.0.0.1:1433;DatabaseName=startrip");
+	// ds.setInitialPoolSize(4);
+	// ds.setMaxPoolSize(8);
+	//
+	// return ds;
+	// }
 
 	@Bean
 	public LocalSessionFactoryBean sessionFactoryBean() {
 		System.out.println("SessionFactory... in RootAppConfig");
 		LocalSessionFactoryBean factory = new LocalSessionFactoryBean();
-		factory.setDataSource(dataSource());
+		// factory.setDataSource(dataSource());
 		factory.setPackagesToScan(new String[] { "com.startrip" });
 		factory.setHibernateProperties(additionalProperties());
 		return factory;
@@ -56,7 +55,7 @@ public class RootAppConfig {
 	public HibernateTransactionManager transactionManager(SessionFactory sessionFactory) {
 
 		System.out.println("transactionManager.. in RootAppConfig");
-//		 HibernateTransactionManager txManager = null;
+		// HibernateTransactionManager txManager = null;
 		HibernateTransactionManager txManager = new HibernateTransactionManager();
 		txManager.setSessionFactory(sessionFactory);
 		return txManager;
@@ -70,9 +69,8 @@ public class RootAppConfig {
 		properties.put("default_batch_fetch_size", 10);
 		properties.put("hibernate.hbm2ddl.auto", "update");
 
-		// properties.put("hibernate.connection.datasource", "java:comp/env/jdbc/startrip");
+		properties.put("hibernate.connection.datasource", "java:comp/env/jdbc/startrip");
 		return properties;
 	}
-
 
 }
