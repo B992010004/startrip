@@ -153,7 +153,7 @@ public class RestaurantAdminController {
 		return "restaurant/AllListBooking";
 	}
 
-	@RequestMapping(value = "/getPicture/{memberid}")
+	@RequestMapping(value = "/startrip/{memberid}")
 	public ResponseEntity<byte[]> getPicture(@PathVariable int memberid) {
 		MemberBean bean = memberservice.selectbyid(memberid);
 		HttpHeaders headers = new HttpHeaders();
@@ -192,5 +192,21 @@ public class RestaurantAdminController {
 	
 	
 	// /後台顯示全部訂單/---------------------------------------------------------------------------------------------
+	
+	// 後台刪除訂位---------------------------------------------------------------------------------------------
+
+		@RequestMapping(value = "/deleteRtBookingbgId", method = RequestMethod.GET)
+		public @ResponseBody String deleteRtBookingbgId(Model model, HttpServletRequest request, HttpServletResponse response)
+				throws IOException {
+
+			String bgida = request.getParameter("bgId");
+			int bgId = Integer.parseInt(bgida);
+			rtBookingService.deleteRtBookingbgId(bgId);
+
+			return "restaurant/AllListBooking";
+
+		}
+
+		// /後台刪除訂位/---------------------------------------------------------------------------------------------
 
 }

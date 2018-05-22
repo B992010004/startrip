@@ -77,12 +77,21 @@
 	color: #00CA4C;
 }
 
+.card-title {
+	color: #00CA4C;
+}
+
 .card-text {
 	margin: 0%;
 }
 
 .btn11 {
 	text-align: right;
+}
+
+.btnn {
+	width: 15%;
+	height: 15%;
 }
 </style>
 
@@ -116,7 +125,7 @@
 
 		<div class="row align-items-center text-center">
 			<div class="input-group ">
-				<input type="text" class="form-control" placeholder="餐廳ID、會員ID等"
+				<input type="text" class="form-control" placeholder="餐廳  ID、會員  ID"
 					aria-label="Recipient's username" aria-describedby="basic-addon2">
 				<div>
 					<input type="submit" value="搜尋" class="btn btn-primary btn-block">
@@ -127,12 +136,12 @@
 			<c:forEach var='rtBookings' items='${RtBookings}'>
 				<div class="col-lg-6 portfolio-item">
 					<div class="card h-100">
-						<img class="card-img-top" src="<c:url value='/getPicture/${LoginOK.memberid}'/>"
-							alt="">
+						<img class="card-img-top"
+							src="<c:url value='/startrip/${rtBookings.memberId}'/>" alt="">
 						<div class="card-body">
 							<h4 class="card-title">${rtBookings.bgId}</h4>
 							<h4 class="card-title">會員編號&nbsp;:&nbsp;${rtBookings.memberId}</h4>
-							<h4 class="card-title">餐廳 ID&nbsp;:&nbsp;${rtBookings.rtId}</h4>
+							<h4 class="card-title">餐廳 編號&nbsp;:&nbsp;${rtBookings.rtId}</h4>
 							<p class="card-text">客戶姓名&nbsp;:&nbsp;${rtBookings.crName}</p>
 							<p class="card-text">客戶電話&nbsp;:&nbsp;${rtBookings.crPhone}</p>
 							<p class="card-text">大人訂位數&nbsp;:&nbsp;${rtBookings.bgPeople}</p>
@@ -142,10 +151,9 @@
 							<p class="card-text">訂位用餐時段&nbsp;:&nbsp;${rtBookings.bgPeriod}</p>
 							<p class="card-text">其他注意事項&nbsp;:&nbsp;${rtBookings.bgNote}</p>
 							<p class="card-text">資料接收時間&nbsp;:&nbsp;${rtBookings.reTime}</p>
-
 							<div class="btn11">
-								<input type="image" class="btn btnn deleteButtonbooking" id="delectOne"
-									img src="/startrip/assets/images/rt/delete.png">
+								<input type="image" class="btn btnn deleteButtonbooking"
+									id="delectOne" img src="/startrip/assets/images/rt/delete.png">
 
 							</div>
 						</div>
@@ -153,15 +161,6 @@
 				</div>
 			</c:forEach>
 		</div>
-
-
-
-
-
-
-
-
-
 	</div>
 
 
@@ -195,26 +194,24 @@
 	<script src="/startrip/assets/js/select2.min.js"></script>
 	<script src="/startrip/assets/js/main.js"></script>
 	<script>
-	
 	<!-- icons刪除    -->
-	$( document ).ready(function() {
+		$(document).ready(function() {
 
-		$(document).on('click','.deleteButtonbooking',function(){
-			var id = $(this).parents('.card-body').find('a:first').text();
-			  var ajaxrtid={rtId:id};
-			
-			 $.ajax({
-					url : "/startrip/deleteRtDetailsrtId",
+			$(document).on('click', '.deleteButtonbooking', function() {
+				var id = $(this).parents('.card-body').find('h4:first').text();
+				var ajaxbkid = {
+					bgId : id
+				};
+
+				$.ajax({
+					url : "/startrip/deleteRtBookingbgId",
 					type : "GET",
-					data : ajaxrtid,
-		   })
-		   location.reload();
-		})
-		
-	})
-	
-	</script>
-	
+					data : ajaxbkid,
+				})
+				location.reload();
+			})
 
+		})
+	</script>
 </body>
 </html>

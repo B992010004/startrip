@@ -141,7 +141,7 @@
 }
 
 .modal-title {
-	color: #FF3333;
+	color: #00CA4C;
 	text-align: center;
 }
 
@@ -391,7 +391,7 @@
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title">警語&nbsp;&nbsp;!&nbsp;&nbsp;!&nbsp;&nbsp;!</h5>
+						<h5 class="modal-title">提醒&nbsp;&nbsp;!&nbsp;&nbsp;?</h5>
 					</div>
 					<div class="modal-body">
 						<p>離開此頁面，資料將消失</p>

@@ -125,7 +125,7 @@
 		<!-- --------------------------------------------------------------------------------------------------- -->
 		<div class="row align-items-center text-center">
 			<div class="input-group ">
-				<input type="text" class="form-control" placeholder="餐廳ID、餐廳名稱等"
+				<input type="text" class="form-control" placeholder="餐廳  ID、餐廳名稱等"
 					aria-label="Recipient's username" aria-describedby="basic-addon2">
 				<div>
 					<input type="submit" value="搜尋" class="btn btn-primary btn-block">
@@ -136,7 +136,7 @@
 			<c:forEach var='rtDetails' items='${RtDetails}'>
 				<div class="col-lg-6 portfolio-item">
 					<div class="card h-100">
-						
+
 						<a href="/startrip/restaurant/${rtDetails.rtId}"><img
 							class="card-img-top"
 							src="/startrip/getPicture/rtImage/${rtDetails.photoArr[0]}"
@@ -160,9 +160,10 @@
 							<p class="card-text">E-mail&nbsp;:&nbsp;${rtDetails.rtEmail}</p>
 
 							<div class="btn11">
-								<input type="image" class="btn btnn" id="repair" img
-									src="/startrip/assets/images/rt/pencil.png"> 
-								<input type="image"	class="btn btnn deleteButton" id="delectOne" img src="/startrip/assets/images/rt/delete.png">
+								<input type="image" class="btn btnn repairButton" id="repair" img
+									src="/startrip/assets/images/rt/pencil.png"> <input
+									type="image" class="btn btnn deleteButton" id="delectOne" img
+									src="/startrip/assets/images/rt/delete.png">
 
 							</div>
 						</div>
@@ -230,24 +231,49 @@
 	<script src="/startrip/assets/js/select2.min.js"></script>
 	<script src="/startrip/assets/js/main.js"></script>
 	<script>
-	
 	<!-- icons刪除    -->
-	$( document ).ready(function() {
+		$(document).ready(function() {
 
-		$(document).on('click','.deleteButton',function(){
-			var id = $(this).parents('.card-body').find('a:first').text();
-			  var ajaxrtid={rtId:id};
-			
-			 $.ajax({
+			$(document).on('click', '.deleteButton', function() {
+				var id = $(this).parents('.card-body').find('a:first').text();
+				var ajaxrtid = {
+					rtId : id
+				};
+
+				$.ajax({
 					url : "/startrip/deleteRtDetailsrtId",
 					type : "GET",
 					data : ajaxrtid,
-		   })
-		   location.reload();
+				})
+				location.reload();
+			})
+
 		})
-		
-	})
-	
 	</script>
+
+	<script>
+	<!-- icons修改   -->
+		$(document).ready(function() {
+			
+			$(document).on('click','repairButton',function() {
+								var ProductID = $(this).parents('tr').find(
+										'td:nth-child(1)').text();
+								var ProductName = $(this).parents('tr').find(
+										'td:nth-child(2)').text();
+								var UnitPrice = $(this).parents('tr').find(
+										'td:nth-child(3)').text();
+								var UnitsInStock = $(this).parents('tr').find(
+										'td:nth-child(4)').text();
+
+								$('#ProductID').val(ProductID).next('span')
+										.text(ProductID);
+								$('#ProductName').val(ProductName);
+								$('#UnitPrice').val(UnitPrice);
+								$('#UnitsInStock').val(UnitsInStock);
+							})
+				})
+	</script>
+
+
 </body>
 </html>
