@@ -62,7 +62,7 @@ public class TravelPlanController {
 	ServletContext ctx;
 	
 	//新增行程-------------------------------------------
-	@RequestMapping(value="Travel/addPlan/{mail}",method=RequestMethod.GET)
+	@RequestMapping(value="Travel/addPlan/{mail}.{com}",method=RequestMethod.GET)
 	public String travelNewAdd(Model model) {
 		TravelAllBean bean = new TravelAllBean();
 		
@@ -71,10 +71,12 @@ public class TravelPlanController {
 	
 	}
 	
-	@RequestMapping(value="Travel/addPlan/{mail}",method=RequestMethod.POST)
+	@RequestMapping(value="Travel/addPlan/{mail}.{com}",method=RequestMethod.POST)
 	public String travelAdd(@ModelAttribute("TravelALLBean") TravelAllBean bean
-			,@PathVariable("mail")String mail,HttpSession session,HttpServletRequest request) {
+			,@PathVariable("mail")String mail,@PathVariable("com")String domain,HttpSession session,HttpServletRequest request) {
 //		-----------------------------------------------------
+		System.out.println("mail===="+mail);
+		
 		//亂數一張圖片
 		Integer img =(int)(Math.random()*10+1);
 		bean.setImg(img+".jpg");
@@ -89,7 +91,7 @@ public class TravelPlanController {
 		
 		bean.setTravelDays(days);
 		//------------------
-		MemberBean mb =memberservice.select(mail);
+		MemberBean mb =memberservice.select(mail+"."+domain);
 		Integer id =mb.getMemberid();
 //		bean.setMail(mail);
 		bean.setMemberId(id);
