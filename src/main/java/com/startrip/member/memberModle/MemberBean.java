@@ -33,7 +33,9 @@ public class MemberBean implements Serializable {
 	private String mail;
 	private String password;
 
-	private String username;
+
+	private String firstname;
+	private String lastname;
 	private String address;
 	private String phone;
 	private String birthday;
@@ -69,6 +71,21 @@ public class MemberBean implements Serializable {
 
 	public void setPhoto(Blob photo) {
 		this.photo = photo;
+	}
+	public String getFirstname() {
+		return firstname;
+	}
+
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+
+	public String getLastname() {
+		return lastname;
+	}
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
 	}
 
 	@OneToMany(cascade = { CascadeType.REMOVE }, mappedBy = "memberBean")
@@ -114,7 +131,7 @@ public class MemberBean implements Serializable {
 
 	@Override
 	public String toString() {
-		return "MemberBean [mail=" + mail + ", password=" + password + ", username=" + username + ", address=" + address
+		return "MemberBean [mail=" + mail + ", password=" + password  + ", address=" + address
 				+ ", phone=" + phone + ", birthday=" + birthday + ", avatar=" + avatar + ", registerDate="
 				+ registerDate + ", validataCode=" + validataCode + ", photo=" + photo + "]";
 	}
@@ -127,13 +144,6 @@ public class MemberBean implements Serializable {
 		this.password = password;
 	}
 
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
 
 	public String getAddress() {
 		return address;

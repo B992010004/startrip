@@ -44,6 +44,10 @@
 	border: 2px solid silver;
 	margin: 10px;
 }
+#section-home {
+	padding-top: 45px;
+	padding-bottom: 45px;
+}
 </style>
 
 
@@ -59,23 +63,6 @@
 		style="background-image: url('/startrip/assets/images/bg_1.jpg');"
 		data-stellar-background-ratio="0.5" id="section-home">
 		<div class="overlay"></div>
-		<div class="container">
-			<div class="row align-items-center text-center">
-				<div class="col-md">
-					<h2 class="heading mb-2 display-4 font-light probootstrap-animate">Get
-						In Touch</h2>
-
-					<p class="lead mb-5 probootstrap-animate"></p>
-					<p>
-						<a href="https://themewagon.com/theme_tag/free/" target="_blank"
-							role="button"
-							class="btn btn-primary p-3 mr-3 pl-5 pr-5 text-uppercase d-lg-inline d-md-inline d-sm-block d-block mb-3">More
-							Templates Here</a>
-					</p>
-				</div>
-			</div>
-		</div>
-
 	</section>
 	<!-- END section -->
 
@@ -111,10 +98,16 @@
 								path="password" placeholder="請輸入" autofocus="autofocus"
 								required="required" />
 						</div>
+				       <div class="form-group">
+							<label>姓:</label>
+							<form:input type="text" class="form-control" name="mName" 
+								path="firstname" placeholder="請輸入" autofocus="autofocus"
+								required="required" />
+						</div>
 						<div class="form-group">
-							<label>姓名:</label>
+							<label>名:</label>
 							<form:input type="text" class="form-control" name="mName"
-								path="username" placeholder="請輸入" autofocus="autofocus"
+								path="lastname" placeholder="請輸入" autofocus="autofocus"
 								required="required" />
 						</div>
 						<div class="form-group">

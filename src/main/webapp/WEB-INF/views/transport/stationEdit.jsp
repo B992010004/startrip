@@ -8,97 +8,161 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Free Bootstrap 4 Theme by ProBootstrap.com">
+    <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,700" rel="stylesheet">
+
+    <link rel="stylesheet" href="/startrip/assets/css/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="/startrip/assets/css/animate.css">
+    <link rel="stylesheet" href="/startrip/assets/fonts/ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="/startrip/assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/startrip/assets/fonts/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="/startrip/assets/fonts/fontawesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/startrip/assets/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="/startrip/assets/css/select2.css">
+    <link rel="stylesheet" href="/startrip/assets/css/helpers.css">
+    <link rel="stylesheet" href="/startrip/assets/css/style.css">
+    
+     <style>
+        #showMap {
+            width: 300px;
+            height: 300px;
+        }
+
+        #inputState {
+            height: 46px;
+            color: rgb(151, 148, 148)
+        }
+
+        .inputState label,
+        .inputState select {
+            height: 46px;
+            width: 100%;
+            color: rgb(151, 148, 148)
+        }
+
+        .probootstrap-cover .overlay {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.2);
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        .adbody {
+            text-align: center;
+            width: 600px;
+            margin: auto;
+        }
+        .mapImage {
+        	cursor: pointer;
+        
+        }
+    </style>
     <title>訂位系統</title>
 </head>
 
 <body>
-
-
-<a href="/startrip/select">車站查詢</a>
-    <!-- action="transport/stationEdit" -->
-    <form:form method="post" modelAttribute="inputStation">
-
-        地區:
-        <form>
-            <select name="YourLocation">
-                <option value="" selected="selected">請選擇</option>
-                <option value="基隆">基隆</option>
-                <option value="台北">台北</option>
-                <option value="新北">新北</option>
-                <option value="桃園">桃園</option>
-                <option value="新竹">新竹</option>
-                <option value="苗栗">苗栗</option>
-                <option value="台中">台中</option>
-                <option value="彰化">彰化</option>
-                <option value="南投">南投</option>
-                <option value="雲林">雲林</option>
-                <option value="嘉義">嘉義</option>
-                <option value="台南">台南</option>
-                <option value="高雄">高雄</option>
-                <option value="屏東">屏東</option>
-                <option value="宜蘭">宜蘭</option>
-                <option value="花蓮">花蓮</option>
-                <option value="台東">台東</option>
-
-            </select>
-        </form>
-        站名:
-        <form:input path="stationName" />
-        <br>
-        <input type="button" value="新增">
-    </form:form>
-
-    <br>
-    <br>
-    <a href="/startrip/views/transport/stationInput.jsp">手動選位</a>
+   <div>
+        <jsp:include page="/WEB-INF/views/header.jsp" flush="true" />
+    </div>
 
 
 
-    <script src="/startrip/assets/js/jquery.min.js"></script>
-    <script src="/startrip/assets/js/popper.min.js"></script>
-    <script src="/startrip/assets/js/bootstrap.min.js"></script>
-    <script src="/startrip/assets/js/owl.carousel.min.js"></script>
-    <script src="/startrip/assets/js/jquery.waypoints.min.js"></script>
-    <script src="/startrip/assets/js/jquery.easing.1.3.js"></script>
-    <script src="/startrip/assets/js/select2.min.js"></script>
-    <script src="/startrip/assets/js/main.js"></script>
+    <!-- 以下為訂票功能 -->
 
-    <script>
-        //        document.addEventListener("DOMContentLoaded", function () {
-        //           for (var i = 1; i <= 5; i++) {
-        //               document.getElementById("oR" + i).addEventListener("mouseover", mouseover);  //事件繫結，滑鼠滑入
-        //               document.getElementById("oR" + i).addEventListener("mouseout", mouseOut);
-        // document.getElementById("oR" + i).addEven
-        document.addEventListener("DOMContentLoaded", function () {
-            for (var i = 1; i <= 31; i++) {
-                document.getElementById("idimg" + i).addEventListener("mouseover", mouseover);  //事件繫結，滑鼠滑入
-                document.getElementById("idimg" + i).addEventListener("mouseout", mouseout);//事件繫結，滑鼠滑出
-                document.getElementById("idimg" + i).addEventListener("click", click1);   
-                
-            }
-                document.getElementById("random" ).addEventListener("click", getRandom);   
-        });
+    <section class="probootstrap-cover overflow-hidden relative" style="background-image: url('/startrip/assets/transport/images/into.jpg');"
+        data-stellar-background-ratio="0.5" id="section-home">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md probootstrap-animate">
+                                                                                                       <h3 style="color:#E8CCFF" align="center" >請輸入基本資料</h3>
+                    <form action="stationEdit" class="probootstrap-form" style="border-radius: 30px;">
+                        <div class="form-group">
+                                                 
+                              
+									<div class="form-group ">
+										
+										<label for=" ">
+											身分證字號:
+											</label>
+											<input type="text" id="id_label_location" name="searchSrting" class="form-control" placeholder="">
+						
+										
+									</div>
+								
+<!-- 分隔線								 -->
+							
+									<div class="form-group">
+										
+										<label for="id_label_location">
+											姓名
+											</label>
+											<input type="text" id="id_label_location" name="searchSrting" class="form-control" placeholder="">
 
-        function mouseover() {			
-            this.src = "/startrip/assets/transport/images/setOn.png";
-        }
-        function mouseout() {
-        	this.src = "/startrip/assets/transport/images/setOff.jpg";
-        }
-        function click1() {
-        	this.src = "/startrip/assets/transport/images/setOn.png";
-        	 this.innerHTML = '您選的座位為' + this.id.substr(5) + '號';
-             $("#QQ").html("<span>"+'您選的座位為'+this.id.substr(5)+'號'+"</span>");
-        }
-		function getRandom(){
-			$("#QQ").html("<span>"+'您選的座位為'+Math.floor(Math.random()*31+1)+'號'+"</span>");
-			
-		}	
-    </script>
+										
+										
+									</div>
+							
+<!-- 分隔線 -->
+								
+									<div class="form-group inputState">
+										
+										<label for="id_label_location">
+											電子郵件:
+										</label>
+											<input type="text" id="id_label_location" name="searchSrting" class="form-control" placeholder="">
+										
 
-	<h1 id="QQ"></h1>
+										
+										
+									</div>
+								
+<!-- 分隔線 -->
+								
+<!-- 連絡電話 -->
+								
+									<div class="form-group inputState">
+										
+										<label for="id_label_location">
+											連絡電話:<input type="text" id="id_label_location" name="searchSrting" class="form-control" placeholder="">
+
+										</label>
+										
+									</div>
+								
+                                <!-- 							送出 -->
+                                
+
+                                <!-- 							送出 -->
+
+                      
+                        </div>
+                    </form>
+                    
+                    <!-- summit -->
+                               
+            <div class="form-group">
+               <div class="col-md">
+                        <input  type="submit" value="送出" class="btn btn-primary btn-block" src="">
+                         </div>
+                </div>
+                            
+                    <!-- summit -->
+                </div>
+            </div>
+    </section> 
+ 
+                              
+                              
+<h1 id="QQ">請選擇座位</h1>
+	
     <div class="div">
-<table class="table  table-bordered">
+<table id class="table  table-bordered">
             <tr>
                 <td scope="col" style="background-color:#00FFCC;" cellpadding="5" border="0">門</td>
                 <td id="05">
@@ -215,48 +279,77 @@
                 </td>
             </tr>
         </table>
+       </div>
         <br>
 <button id="random" value="submit">電腦選位</button>
+        <h1 id="QQ"></h1>
+<br>         
+<select id="inputState" class="form-control" name="poeple">
+    <option value="">請選擇票種</option>
+                                               
+    <option value="">全票</option>
+    <option value="">半票</option>
+    <option value="">學生票</option>
+    </select>
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                                <!-- 							送出 -->
+                              
+
+                                <!-- 							送出 -->
+
+
+
+    <br>
+    <br>
+ 
+<a href="/startrip/select">回上一步</a>
+
+<script>
         
-         
+        document.addEventListener("DOMContentLoaded", function () {
+            for (var i = 1; i <= 31; i++) {
+                document.getElementById("idimg" + i).addEventListener("mouseover", mouseover);  //事件繫結，滑鼠滑入
+                document.getElementById("idimg" + i).addEventListener("mouseout", mouseout);//事件繫結，滑鼠滑出
+                document.getElementById("idimg" + i).addEventListener("click", click1);   
+                
+            }
+                document.getElementById("random" ).addEventListener("click", getRandom);   
+        });
 
-           
-            
-
-
-<meta name="description"
-	content="Free Bootstrap 4 Theme by ProBootstrap.com">
-<meta name="keywords"
-	content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
-
-<link
-	href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,700"
-	rel="stylesheet">
-
-<link rel="stylesheet"
-	href="/startrip/assets/css/bootstrap/bootstrap.css">
-<link rel="stylesheet" href="/startrip/assets/css/animate.css">
-<link rel="stylesheet"
-	href="/startrip/assets/fonts/ionicons/css/ionicons.min.css">
-
-<link rel="stylesheet" href="/startrip/assets/css/owl.carousel.min.css">
-
-<link rel="stylesheet"
-	href="/startrip/assets/fonts/flaticon/font/flaticon.css">
-
-<link rel="stylesheet"
-	href="/startrip/assets/fonts/fontawesome/css/font-awesome.min.css">
-
-<link rel="stylesheet" href="/startrip/assets/css/select2.css">
-
-
-<link rel="stylesheet" href="/startrip/assets/css/helpers.css">
-<link rel="stylesheet" href="/startrip/assets/css/style.css">
-<link rel="stylesheet" href="/startrip/assets/css/rthome.css">
-<link rel="stylesheet" href="/startrip/assets/css/rthome2.css">
-<link rel="stylesheet" href="/startrip/assets/css/rthome3.css">
-<link rel="stylesheet" href="/startrip/assets/css/rthome4.css">
- <script src="/startrip/assets/js/jquery.min.js"></script>
+        function mouseover() {			
+            this.src = "/startrip/assets/transport/images/setOn.png";
+        }
+        function mouseout() {
+        	this.src = "/startrip/assets/transport/images/setOff.jpg";
+        }
+        function click1() {
+        	this.src = "/startrip/assets/transport/images/setOn.png";
+        	 this.innerHTML = '您選的座位為' + this.id.substr(5) + '號';
+             $("#QQ").html("<span>"+'您選的座位為'+this.id.substr(5)+'號'+"</span>");
+        }
+		function getRandom(){
+			$("#QQ").html("<span>"+'您選的座位為'+Math.floor(Math.random()*31+1)+'號'+"</span>");
+			
+		}	
+    </script>
+    
+    <script src="/startrip/assets/js/jquery.min.js"></script>
+    <script src="/startrip/assets/js/popper.min.js"></script>
+    <script src="/startrip/assets/js/bootstrap.min.js"></script>
+    <script src="/startrip/assets/js/owl.carousel.min.js"></script>
+    <script src="/startrip/assets/js/jquery.waypoints.min.js"></script>
+    <script src="/startrip/assets/js/jquery.easing.1.3.js"></script>
+    <script src="/startrip/assets/js/select2.min.js"></script>
+    <script src="/startrip/assets/js/main.js"></script>
+    <script src="/startrip/assets/js/jquery.min.js"></script>
     <script src="/startrip/assets/js/popper.min.js"></script>
     <script src="/startrip/assets/js/bootstrap.min.js"></script>
     <script src="/startrip/assets/js/owl.carousel.min.js"></script>

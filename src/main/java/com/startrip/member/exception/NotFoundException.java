@@ -1,17 +1,12 @@
 package com.startrip.member.exception;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
 @SuppressWarnings("serial")
+@ResponseStatus(HttpStatus.NOT_FOUND)
 public class NotFoundException extends RuntimeException {
 	
-	String mail;	
-	public String getMail() {
-		return mail;
-	}
-
-	public void setMail(String mail) {
-		this.mail = mail;
-	}
-
 	public NotFoundException() {
 		super();
 		// TODO Auto-generated constructor stub
