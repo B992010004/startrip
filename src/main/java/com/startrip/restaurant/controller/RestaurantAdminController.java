@@ -87,7 +87,7 @@ public class RestaurantAdminController {
 		}
 		rtDetailsService.insertRtDetails(rdb);
 		System.out.println("準備return");
-		return "restaurant/Individualdetailsmodify";
+		return "redirect:/Individualdetailsmodify";
 	}
 
 	private boolean isImage(MultipartFile file) {
