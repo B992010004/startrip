@@ -285,7 +285,7 @@
 							for (var i = 0, len = data.length; i < len; i++) {
 								var card = $('<div class="card col-5" id="plan" style="width: 18rem;"></div>')
 								var imgrow = $('<div class="row" "></div>');
-								var img = $('<img id="travelimg" class="card-img-top col-8" src="/startrip/show/'+data[i].img+'" alt="Card image cap"><img src = http://localhost:8080/startrip/assets/Travel/img/marker.png class="icon col-2 update" id="update'
+								var img = $('<img id="travelimg" class="card-img-top col-8" src="/startrip/show/'+data[i].img+'" alt="Card image cap"><img src = /startrip/assets/Travel/img/marker.png class="icon col-2 update" id="update'
 										+ (i + 1)
 										+ '"><img id="del'
 										+ (i + 1)
@@ -293,7 +293,7 @@
 								var body = $('<div class="card-body"></div>')
 								var title = $('<h5 class="card-title">'
 										+ data[i].travelName
-										+ '</h5><div class="id"  >'
+										+ '</h5><div class="id"  style="display:none;">'
 										+ data[i].travelId + '</div>')
 
 								start = new Date(data[i].startDate);
