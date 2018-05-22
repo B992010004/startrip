@@ -174,30 +174,31 @@ public class MemberController {
 		return "index";
 	}
 
-	@SuppressWarnings("null")
+	
 	@RequestMapping(value = "/facebooklogin", method = RequestMethod.POST)
-	public String facebooklogin(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	public String facebooklogin(MemberBean mb,HttpServletRequest request, HttpServletResponse response) throws IOException {
 		HttpSession session = request.getSession();
-		String mail = request.getParameter("mail");
+		String mail = request.getParameter("userid");
 		String username = request.getParameter("username");
 		MemberBean bean= memberservice.select(mail);
 		if(bean==null) {
 			String pass = UUID.randomUUID().toString();
-			bean.setMail(mail);	
-			bean.setPassword(pass);
-			bean.setAddress("");
-			bean.setAvatar("");
-			bean.setBirthday("");
-			bean.setPhone("");
-			bean.setPhoto(null);
-			bean.setUsername(username);
-			memberservice.insert(bean);
-			session.setAttribute("LoginOK", bean);
-			return "redirect:/";
+			System.out.println(mail);
+			mb.setMail(mail);	
+			mb.setPassword(pass);
+			mb.setAddress("");
+			mb.setAvatar("");
+			mb.setBirthday("");
+			mb.setPhone("");
+			mb.setPhoto(null);
+			mb.setUsername(username);
+			memberservice.insert(mb);
+			session.setAttribute("LoginOK", mb);
+			return "index";
 		}
 		else {
 			session.setAttribute("LoginOK", bean);
-			return "redirect:/";
+			return "index";
 		}		
 	}
 	
