@@ -235,11 +235,11 @@
                 </td>
             </tr>
         </table>
-<button id="random" value="submit">電腦選位</button>
+<button id="random" >電腦選位</button>
 
 
 
-<input type="submit" value="選擇班次" class="btn btn-primary btn-block">
+<input type="submit" value="送出" class="btn btn-primary btn-block">
 
 
        </div>
@@ -254,31 +254,7 @@
     </section> 
  
                               
-                              
-
-<br>         
-<select id="inputState" class="form-control" name="poeple">
-    <option value="">請選擇票種</option>
-                                               
-    <option value="">全票</option>
-    <option value="">半票</option>
-    <option value="">學生票</option>
-    </select>
-    <br>
-    <br>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-<a href="/startrip/select">回上一步</a>
-
+                          
 
     
     <script src="/startrip/assets/js/jquery.min.js"></script>

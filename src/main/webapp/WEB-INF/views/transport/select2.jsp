@@ -158,7 +158,7 @@
     </section> 
  
    
-    
+    </script>
     
     <script src="/startrip/assets/js/jquery.min.js"></script>
     <script src="/startrip/assets/js/popper.min.js"></script>
