@@ -2,11 +2,13 @@ package com.startrip.controller;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.startrip.hotel.model.HotelsBean;
@@ -20,18 +22,40 @@ public class HomeController {
 
 	// servletPath
 	@RequestMapping("/")
-	public String root() {
+	public String root(Model model) {
 		List<HotelsBean> hotelList = new ArrayList<>();
 		Set<Integer> randomSet = hotelRandom();
-		for (int i = 0; i < randomSet.size(); i++) {
-
+		Iterator<Integer> it = randomSet.iterator();
+		while (it.hasNext()) {
+			int no = it.next();
+			HotelsBean bean = hotelService.selectByPk(no);
+			hotelList.add(bean);
 		}
+
+		for (HotelsBean bean : hotelList) {
+			String[] photoArr = bean.getPhotoString().split(";");
+			bean.setPhotoArr(photoArr);
+		}
+		model.addAttribute("hotelList", hotelList);
 		return "index";
 	}
 
 	@RequestMapping("/index")
-	public String index() {
-		hotelRandom();
+	public String index(Model model) {
+		List<HotelsBean> hotelList = new ArrayList<>();
+		Set<Integer> randomSet = hotelRandom();
+		Iterator<Integer> it = randomSet.iterator();
+		while (it.hasNext()) {
+			int no = it.next();
+			HotelsBean bean = hotelService.selectByPk(no);
+			hotelList.add(bean);
+		}
+
+		for (HotelsBean bean : hotelList) {
+			String[] photoArr = bean.getPhotoString().split(";");
+			bean.setPhotoArr(photoArr);
+		}
+		model.addAttribute("hotelList", hotelList);
 		return "index";
 	}
 

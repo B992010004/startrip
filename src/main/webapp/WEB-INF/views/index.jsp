@@ -185,28 +185,28 @@
 			<div class="row">
 				<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
 					<a href="#" class="probootstrap-thumbnail">
-						<img src="assets\images\test1.jpg" alt="Free Template by ProBootstrap.com" class="img-fluid">
+						<img src="/startrip/getPicture/hotel/${hotelList[0].hotelid }/${hotelList[0].photoArr[0] }" alt="Free Template by ProBootstrap.com" class="img-fluid">
 						<div class="probootstrap-text">
-							<h3>1</h3>
+							<h3>${hotelList[0].hotelname }</h3>
 						</div>
 					</a>
 				</div>
 				<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
 					<a href="#" class="probootstrap-thumbnail">
-						<img src="assets\images\test1.jpg" alt="Free Template by ProBootstrap.com" class="img-fluid">
-						<h3>2</h3>
+						<img src="/startrip/getPicture/hotel/${hotelList[1].hotelid }/${hotelList[1].photoArr[0] }" alt="Free Template by ProBootstrap.com" class="img-fluid">
+						<h3>${hotelList[1].hotelname }</h3>
 					</a>
 				</div>
 				<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
 					<a href="#" class="probootstrap-thumbnail">
-						<img src="assets\images\test1.jpg" alt="Free Template by ProBootstrap.com" class="img-fluid">
-						<h3>3</h3>
+						<img src="/startrip/getPicture/hotel/${hotelList[2].hotelid }/${hotelList[2].photoArr[0] }" alt="Free Template by ProBootstrap.com" class="img-fluid">
+						<h3>${hotelList[2].hotelname }</h3>
 					</a>
 				</div>
 				<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
 					<a href="#" class="probootstrap-thumbnail">
-						<img src="assets\images\test1.jpg" alt="Free Template by ProBootstrap.com" class="img-fluid">
-						<h3>4</h3>
+						<img src="/startrip/getPicture/hotel/${hotelList[3].hotelid }/${hotelList[3].photoArr[0] }" alt="Free Template by ProBootstrap.com" class="img-fluid">
+						<h3>${hotelList[3].hotelname }</h3>
 					</a>
 				</div>
 			</div>
