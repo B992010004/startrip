@@ -57,9 +57,9 @@ public class TripInfRepository implements TripInfRepositoryInterface {
 	}
 
 	@Override
-	public boolean delete(Integer Trip) {
+	public boolean delete(Integer trip) {
 		Session session = factory.getCurrentSession();
-		TripInfBean bean = select(Trip);
+		TripInfBean bean = select(trip);
 		if (bean != null) {
 			session.delete(bean);
 			return true;

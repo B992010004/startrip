@@ -43,16 +43,7 @@
                         <div class="form-group">
                             <div class="row">
                              	<div>
-			<select id="destination" name="" style="width: 120px">
-				<option value="" selected="selected">請選擇</option>
-				<c:forEach items='${stationList}' var='select'>
 
-
-					<option value="">${select.stationName}</option>
-
-				</c:forEach>
-
-			</select>
 		</div>
                              
                              
@@ -79,7 +70,32 @@
     </section>
 
 
+		<h3>當日班次</h3>
+<table border="1" cellpadding="10" cellspacing="0" class="table  table-bordered">
+		
+		<tr>
+			<th>班次編號</th>
+			<th>日期</th>
+			<th>起站名稱</th>
+			<th>迄站名稱</th>
+			<th>剩餘座位</th>
+			<th>發車時間</th>
+			<th>票價</th>
+			
+		</tr>
+			<c:forEach items='${TripInfList}' var='select'>
+			<tr>
+				<td>${select.trip}</td>			
+				<td><fmt:formatDate pattern="yyyy-MM-dd"  value="${select.date }" /></td>
+				<td>${select.starStation}</td>
+				<td>${select.endStation}</td>
+				<td>${select.seateList}</td>
+				<td>${select.starTime}</td>
+				<td>${select.price}</td>
 
+			</tr>
+		</c:forEach>
+	</table>
 
 
 

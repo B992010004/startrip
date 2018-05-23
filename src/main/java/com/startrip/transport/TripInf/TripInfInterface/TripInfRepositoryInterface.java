@@ -11,12 +11,12 @@ public interface TripInfRepositoryInterface {
 
 	List<TripInfBean> select();
 
-	TripInfBean select(Integer Trip);
+	TripInfBean select(Integer trip);
 
-	void update(Data date, String StarStation, String EndStation, Integer Price, Integer SeateList, Time StarTime);
+	void update(Data date, String starStation, String endStation, Integer price, Integer seateList, Time starTime);
 
 	void insert(TripInfBean bean);
 
-	boolean delete(Integer Trip);
+	boolean delete(Integer trip);
 
 }

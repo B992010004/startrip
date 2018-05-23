@@ -30,8 +30,8 @@ public  class TripInfService implements TripInfServiceInterface{
 
 
 	@Override
-	public void update(Data date, String StarStation, String EndStation, Integer Price, Integer SeateList,
-			Time StarTime) {
+	public void update(Data date, String starStation, String endStation, Integer price, Integer seateList,
+			Time starTime) {
 		// TODO Auto-generated method stub
 		
 	}

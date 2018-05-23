@@ -12,6 +12,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.startrip.transport.TripInf.Service.TripInfServiceInterface;
 import com.startrip.transport.TripInf.TripInfModle.TripInfBean;
 
@@ -24,11 +26,12 @@ public class TripInfController {
 	ServletContext context;
 
 	@RequestMapping(value = "/selectTripInf", method = RequestMethod.GET)
+
 	public String select(Model model, HttpServletRequest request) {
 
 		List<TripInfBean> all = TripInfService.select1();
 
-		model.addAttribute("TripInfList", all);// 標籤名stationList
+		model.addAttribute("TripInfList", all);// 標籤名TripInfList
 System.out.println(all);
 		return "/transport/TripInfSelect";
 	}
