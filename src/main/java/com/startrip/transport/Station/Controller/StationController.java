@@ -43,9 +43,9 @@ public class StationController {
 	@RequestMapping(value = "/selectArea", method = RequestMethod.POST)
 	@ResponseBody
 	public List<StationBean> selectArea(HttpServletRequest req, Model model) {
-		System.out.println(req.getParameter("local"));
+//		System.out.println(req.getParameter("local"));
 		List<StationBean> area = StationService.selectArea(req.getParameter("local"));
-		System.out.println(area);
+//		System.out.println(area);
 	
 
 		return area;

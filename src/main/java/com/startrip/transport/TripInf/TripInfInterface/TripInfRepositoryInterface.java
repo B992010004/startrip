@@ -15,8 +15,8 @@ List<TripInfBean> select();
 TripInfBean select(Integer Trip);
 
 
-void update(Data date,Integer StarStation,
-		Integer EndStation,Integer Price,
+void update(Data date,String StarStation,
+		String EndStation,Integer Price,
 		Integer SeateList,Time StarTime);
 
 void insert(TripInfBean bean);
