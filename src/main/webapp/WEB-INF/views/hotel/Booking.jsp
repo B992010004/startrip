@@ -58,10 +58,10 @@
                     <h5>*聯絡人姓名</h5>
                     <div class="form-row">
                         <div class="form-group col-md-5">
-                            <input type="text" class="form-control" name="lastname" id="lastname" placeholder="姓" value="">
+                            <input type="text" class="form-control" name="lastname" id="lastname" placeholder="姓" value="${LoginOK.lastname }">
                         </div>
                         <div class="form-group col-md-6">
-                            <input type="text" class="form-control" name="firstname" id="firstname" placeholder="名" value="${LoginOK.username }">
+                            <input type="text" class="form-control" name="firstname" id="firstname" placeholder="名" value="${LoginOK.firstname }">
                         </div>
                     </div>
                     <h5>*聯絡Email</h5>

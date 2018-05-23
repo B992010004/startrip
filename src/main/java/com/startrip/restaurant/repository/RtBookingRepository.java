@@ -5,8 +5,11 @@ import java.util.List;
 
 import com.startrip.member.memberModle.MemberBean;
 import com.startrip.restaurant.model.RtBookingBean;
+import com.startrip.restaurant.model.RtDetailsBean;
 
 public interface RtBookingRepository {
+	
+	List<RtBookingBean> getAllall();
 	
 	List<RtBookingBean> getAllRtBookingmemberBean(MemberBean memberBean);
 	
@@ -15,6 +18,7 @@ public interface RtBookingRepository {
 	RtBookingBean insertRtBooking(RtBookingBean bean);
 
 	boolean deleteRtBookingbgId(Integer bgId);
+	
 	List<RtBookingBean> getRtBookingmember(int memberId);
 	
 }
