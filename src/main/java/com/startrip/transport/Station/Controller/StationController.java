@@ -30,9 +30,9 @@ public class StationController {
 	public String select(Model model) {
 		List<StationBean> all = StationService.select();
 		// System.out.println(all);
-		for (StationBean stationBean : all) {
-			
-		}
+//		for (StationBean stationBean : all) {
+//			
+//		}
 		model.addAttribute("stationList", all);// 標籤名stationList
 
 		return "transport/select";

@@ -21,26 +21,26 @@ public class TripInfBean implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer Trip;
+	private Integer trip;
 	
 	private Date date;
 	
-	private String StarStation;
+	private String starStation;
 
-	private String EndStation;
+	private String endStation;
 	
-	private Integer Price;
+	private Integer price;
 	
-	private Integer SeateList;
+	private Integer seateList;
 	
-	private Time StarTime;
+	private Time starTime;
 
 	public Integer getTrip() {
-		return Trip;
+		return trip;
 	}
 
 	public void setTrip(Integer trip) {
-		Trip = trip;
+		this.trip = trip;
 	}
 
 	public Date getDate() {
@@ -52,43 +52,43 @@ public class TripInfBean implements Serializable{
 	}
 
 	public String getStarStation() {
-		return StarStation;
+		return starStation;
 	}
 
 	public void setStarStation(String starStation) {
-		StarStation = starStation;
+		this.starStation = starStation;
 	}
 
 	public String getEndStation() {
-		return EndStation;
+		return endStation;
 	}
 
 	public void setEndStation(String endStation) {
-		EndStation = endStation;
+		this.endStation = endStation;
 	}
 
 	public Integer getPrice() {
-		return Price;
+		return price;
 	}
 
 	public void setPrice(Integer price) {
-		Price = price;
+		this.price = price;
 	}
 
 	public Integer getSeateList() {
-		return SeateList;
+		return seateList;
 	}
 
 	public void setSeateList(Integer seateList) {
-		SeateList = seateList;
+		this.seateList = seateList;
 	}
 
 	public Time getStarTime() {
-		return StarTime;
+		return starTime;
 	}
 
 	public void setStarTime(Time starTime) {
-		StarTime = starTime;
+		this.starTime = starTime;
 	}
 
 	public static long getSerialversionuid() {
@@ -97,11 +97,10 @@ public class TripInfBean implements Serializable{
 
 	@Override
 	public String toString() {
-		return "TripInfBean [Trip=" + Trip + ", date=" + date + ", StarStation=" + StarStation + ", EndStation="
-				+ EndStation + ", Price=" + Price + ", SeateList=" + SeateList + ", StarTime=" + StarTime + "]";
+		return "TripInfBean [trip=" + trip + ", date=" + date + ", starStation=" + starStation + ", endStation="
+				+ endStation + ", price=" + price + ", seateList=" + seateList + ", starTime=" + starTime + "]";
 	}
 
-	
 	
 	
 }

@@ -57,11 +57,13 @@
 			<div class="col-md-3" style="background-color: blcak;">
 				<ul class="list-group list-group-flush">
 					<li class="list-group-item " align="center"><a	href="/startrip/Travel/addPlan/${LoginOK.mail}">新增行程</a></li>
-<%-- 					<li class="list-group-item " align="center"><a	href="Travel/addPlan/${LoginOK.mail}">新增行程</a></li> --%>
+<%-- 					
+						<li class="list-group-item " align="center"><a	href="Travel/addPlan/${LoginOK.mail}">新增行程</a></li> --%>
 <!-- 					<li class="list-group-item " align="center"><a href="Travel/addList">新增清單</a></li> -->
 <!-- 					<li class="list-group-item " align="center"><a	href="Views/add">新增景點</a></li> -->
 <!-- 					<li class="list-group-item " align="center"><a	href="TravelViews/all">查詢景點</a></li> -->
 				</ul> 
+					<img style="width:100%;height:100%;opacity: 0.5;"	alt="" src="/startrip/assets/Travel/img/BG.jpg">
 			</div>
 
 			<div class="col-md-9" id="travels">
@@ -108,6 +110,8 @@
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
+				
+			
 				</div>
 				<!-- -------------------------------------------------------- -->
 				<form method='GET' name="update">
@@ -291,10 +295,7 @@
 										+ (i + 1)
 										+ '" class="icon col-2 del" src = "/startrip/assets/Travel/img/close2.png">')
 								var body = $('<div class="card-body"></div>')
-								var title = $('<h5 class="card-title">'
-										+ data[i].travelName
-										+ '</h5><div class="id"  style="display:none;">'
-										+ data[i].travelId + '</div>')
+								var title = $('<h5 class="card-title">'	+ data[i].travelName + '</h5><div class="id"  style="display:none;">'+ data[i].travelId + '</div>')
 
 								start = new Date(data[i].startDate);
 								StartDate = format(start);
