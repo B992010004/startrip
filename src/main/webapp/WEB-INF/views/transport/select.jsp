@@ -79,7 +79,7 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md probootstrap-animate">
-                    <form action="stationEdit" class="probootstrap-form" style="border-radius: 30px;">
+                    <form action="/startrip/selectTripInf" class="probootstrap-form" style="border-radius: 30px;">
                         <div class="form-group">
                             <div class="row">
                                 <!-- 							選擇出發日期 -->
@@ -88,7 +88,7 @@
                                         <div class="probootstrap-date-wrap">
                                             <label for="probootstrap-date-arrival">
                                                 <span class="icon ion-calendar"></span>
-                                                出發日期<input type="text" id="probootstrap-date-arrival" name="checkin" class="form-control" placeholder="出發日期">
+                                                出發日期<input type="text" id="probootstrap-date-arrival" name="date" class="form-control" placeholder="出發日期">
                                             </label>
                                         </div>
                                     </div>
@@ -99,7 +99,7 @@
                      <div class="col-md">
                                     <div class="form-group inputState">
                                         <label for="id_label_people">
-                                            <select id="inputState" class="form-control" name="poeple">
+                                           預計出發的時間<select id="inputState" class="form-control" name="">
                                                 <option value="">請選擇出發時間</option>
                                                 <option value="">00:00</option>
                                                 <option value="">01:00</option>
@@ -139,7 +139,7 @@
                                 <div class="col-md">
                                     <div class="form-group inputState">
                                         <label for="id_label_people">
-                                            出發地點<select id="inputState" class="form-control" name="poeple">
+                                            出發地點<select id="inputState" class="form-control" name="">
                                                 <option value="">請選擇出發地點</option>
                                                 <option value="基隆">基隆</option>
                                                 <option value="台北">台北</option>
@@ -168,7 +168,7 @@
                                 <div class="col-md">
                                     <div class="form-group inputState">
                                         <label for="id_label_people">
-                                            出發站名<select id="inputState" class="form-control" name="poeple">
+                                            出發站名<select id="inputState" class="form-control" name="StarStation">
 
                                                 <option value="" selected="selected">選擇出發車站</option>
                                                 <option value="台北車站">台北車站</option>
@@ -217,7 +217,7 @@
                                 <div class="col-md">
                                     <div class="form-group inputState">
                                         <label for="id_label_people">
-                                            到達車站<select id="inputState" class="form-control" name="poeple">
+                                            到達車站<select id="inputState" class="form-control" name="EndStation">
                                                 <option value="">請選擇目的車站</option>
 
                                                

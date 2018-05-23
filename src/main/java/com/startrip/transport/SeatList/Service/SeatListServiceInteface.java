@@ -9,12 +9,15 @@ public interface SeatListServiceInteface {
 	
 	List<SeatListBean> select();
 	
-	void update(Integer Trip, Integer SeatNumber,Integer Seat,Integer OrderNumber);
+	void update(Integer Trip, Integer SeatNumber,Integer OrderNumber);
 
 	void insert(SeatListBean bean);
 
 	boolean delete(Integer id);
+
 	
+
+		
 
 	
 }
