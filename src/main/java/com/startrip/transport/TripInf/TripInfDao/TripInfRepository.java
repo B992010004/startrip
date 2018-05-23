@@ -8,11 +8,11 @@ import javax.xml.crypto.Data;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.sql.ordering.antlr.Factory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.startrip.transport.Station.StationModle.StationBean;
+
 import com.startrip.transport.TripInf.TripInfInterface.TripInfRepositoryInterface;
 import com.startrip.transport.TripInf.TripInfModle.TripInfBean;
 @Repository
@@ -24,7 +24,7 @@ public class TripInfRepository implements TripInfRepositoryInterface {
 	
 	@Override
 	public List<TripInfBean> select() {
-		String hql = "FROM TripInfBean";
+		String hql = "FROM TripInf";
 		Session session = factory.getCurrentSession();
 		List<TripInfBean> list = new ArrayList<>();
 		list = session.createQuery(hql, TripInfBean.class).getResultList();//StationBean.class指定查詢一定是StationBean.class
@@ -38,18 +38,12 @@ public class TripInfRepository implements TripInfRepositoryInterface {
 		List<TripInfBean> list = new ArrayList<>();
 		session = factory.getCurrentSession();
 		list = session.createQuery(hql, TripInfBean.class).getResultList();//StationBean.class指定查詢一定是StationBean.class
+		return list.get(0);
 		
-		
-		
-		if (list.size() == 0) {
-			return null;
-		} else {
-			return list.get(0);
-		}
 	}
 
 	@Override
-	public void update(Data date, Integer StarStation, Integer EndStation, Integer Price, Integer SeateList,
+	public void update(Data date, String StarStation, String EndStation, Integer Price, Integer SeateList,
 			Time StarTime) {
 		// TODO Auto-generated method stub
 

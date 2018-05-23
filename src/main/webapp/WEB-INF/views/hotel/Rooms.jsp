@@ -411,7 +411,7 @@
                         <h5>介紹：</h5>
                         <br>
                         <!-- 介紹生成起始 -->
-                        <p class="ml-3">這裡放介紹</p>
+                        <p class="ml-3">${hotel.hotelinfo }</p>
                         <!-- 介紹生成結束 -->
                     </div>
                 </div>

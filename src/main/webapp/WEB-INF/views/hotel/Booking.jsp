@@ -58,10 +58,10 @@
                     <h5>*聯絡人姓名</h5>
                     <div class="form-row">
                         <div class="form-group col-md-5">
-                            <input type="text" class="form-control" name="lastname" id="lastname" placeholder="姓" value="">
+                            <input type="text" class="form-control" name="lastname" id="lastname" placeholder="姓" value="${LoginOK.lastname }">
                         </div>
                         <div class="form-group col-md-6">
-                            <input type="text" class="form-control" name="firstname" id="firstname" placeholder="名" value="${LoginOK.username }">
+                            <input type="text" class="form-control" name="firstname" id="firstname" placeholder="名" value="${LoginOK.firstname }">
                         </div>
                     </div>
                     <h5>*聯絡Email</h5>
@@ -90,7 +90,7 @@
                         (輸入密碼即可使用上方的電子郵件地址建立帳戶。)
                         <div class="form-row">
                             <div class="form-group col-md-11">
-                                <input type="password" class="form-control" name="password" placeholder="設定密碼 ( 6 至 30 個字元，且不可使用空格 )">
+                                <input type="password" id="password" class="form-control" name="password" placeholder="設定密碼 ( 6 至 30 個字元，且不可使用空格 )">
                             </div>
                         </div>
                         <div class="form-row">
@@ -131,12 +131,12 @@
                             <td>${room.roomname }</td>
                         </tr>
                         <tr>
-                            <td>2018-06-28 ~ 2018-07-01 ( 4晚 )
+                            <td>${searchBean.checkIn } ~ ${searchBean.checkOut } (${searchBean.night}晚 )
                                 <br>// 點擊查看每晚明細
                             </td>
                         </tr>
                         <tr>
-                            <td>總金額 NT ${room.basicprice } 元</td>
+                            <td>總金額 NT ${room.basicprice*searchBean.night } 元</td>
                         </tr>
                     </tbody>
                 </table>
@@ -265,6 +265,7 @@
 				formData.email = $('#email').val();
 				formData.cellphone = $('#cellphone').val();
 				formData.memberid = $('#memberid').val();
+				formData.password = $('#password').val();
 				console.log(formData);
 				$.ajax({
                     url: '/startrip/frontEnd/aioCheckOut/aioCheckOutALL/${hotel.hotelid }/${room.roomtype }',
@@ -272,7 +273,7 @@
                     //enctype: "multipart/form-data",
                     //contentType : false,
                     //processData : false,
-//                     dataType:"json",
+					//dataType:"json",
                     data: formData,
                     success: function (responce) {
                         $('#responce').html(responce);

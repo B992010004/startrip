@@ -44,6 +44,7 @@
 	border: 2px solid silver;
 	margin: 10px;
 }
+
 #section-home {
 	padding-top: 45px;
 	padding-bottom: 45px;
@@ -84,8 +85,8 @@
 						<div class="form-group">
 							<label>信箱:</label>
 							<form:input type="text" class="form-control" id="mail"
-								name="mail" path='mail' placeholder="請輸入" autofocus="autofocus"
-								required="required"></form:input>
+								name="mail" path='mail' placeholder="YourEmail"
+								autofocus="autofocus" required="required"></form:input>
 							<span id="tips"></span>
 						</div>
 						<form:input type="text" path='validataCode' value=""
@@ -95,42 +96,53 @@
 						<div class="form-group">
 							<label>密碼:</label>
 							<form:input type="password" class="form-control" name="mPwd"
-								path="password" placeholder="請輸入" autofocus="autofocus"
+								id="passck" maxlength="12" path="password"
+								placeholder="請輸入6至12位密碼" autofocus="autofocus"
 								required="required" />
+							<span id="passtext"></span>
 						</div>
-				       <div class="form-group">
+						<div class="form-group">
+							<label for="passck2">確認您的密碼:</label> <input type="password"
+								maxlength="12" class="form-control" name="ckpassword"
+								placeholder="CheckYourPASSWORD" id="passck2"
+								autofocus="autofocus" required="required" /> <span
+								class="col-md-10" id="errarea"></span>
+						</div>
+						<div class="form-group">
 							<label>姓:</label>
-							<form:input type="text" class="form-control" name="mName" 
-								path="firstname" placeholder="請輸入" autofocus="autofocus"
+							<form:input type="text" class="form-control" name="mName"
+								path="firstname" placeholder="FirstName" autofocus="autofocus"
 								required="required" />
 						</div>
 						<div class="form-group">
 							<label>名:</label>
 							<form:input type="text" class="form-control" name="mName"
-								path="lastname" placeholder="請輸入" autofocus="autofocus"
+								path="lastname" placeholder="LastName" autofocus="autofocus"
 								required="required" />
 						</div>
 						<div class="form-group">
 							<label>地址:</label>
 							<form:input type="text" class="form-control" name="mAdd"
-								path="address" placeholder="請輸入" autofocus="autofocus"
+								path="address" placeholder="Address" autofocus="autofocus"
 								required="required" />
 						</div>
-						<div class="form-group">
-							<label>電話:</label>
-							<form:input type="tel" class="form-control" id="phone"
-								name="mPhone" path="phone" placeholder="請輸入"
-								autofocus="autofocus" required="required" />
-							<span id="err"></span>
-						</div>
+
 
 					</div>
 					<div class="col-md-6  probootstrap-animate">
+
+						<div class="form-group">
+							<label>電話:</label>
+							<form:input type="tel" class="form-control" id="phone"
+								name="mPhone" path="phone" placeholder="Phone"
+								autofocus="autofocus" required="required" />
+							<span id="err"></span>
+						</div>
 						<div class="form-group">
 							<label>生日:</label>
 							<form:input type="text" class="form-control" name="mbday"
-								path="birthday" placeholder="請輸入" autofocus="autofocus"
-								required="required" />
+								id="probootstrap-date-departure" path="birthday"
+								placeholder="Birthday" autofocus="autofocus" required="required" />
 						</div>
 
 						<div class="form-group">
@@ -165,8 +177,7 @@
 					<div class="modal-body" style="text-align: center">成功加入會員
 						，請登入繼續使用</div>
 					<div class="modal-footer">
-						<button type="button"
-								class="btn btn-primary" id="backbutton">回首頁</button>
+						<button type="button" class="btn btn-primary" id="backbutton">回首頁</button>
 					</div>
 				</div>
 			</div>
@@ -209,16 +220,46 @@
 			}
 		}
 	</script>
-	<script>		
-			$("#backbutton").click(function() {
-				$("#insertform").submit();			
-			})
-		
+	<script>
+		$("#backbutton").click(function() {
+			$("#insertform").submit();
+		})
+
+		$(function ckpass() {
+			$("#passck")
+					.on(
+							'keyup',
+							function() {
+								var ckpassword = document
+										.getElementById("passck").value;
+								var strongRegex = new RegExp(
+										"^(?=.{8,})(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\\W).*$",
+										"g");
+								var mediumRegex = new RegExp(
+										"^(?=.{7,})(((?=.*[A-Z])(?=.*[a-z]))|((?=.*[A-Z])(?=.*[0-9]))|((?=.*[a-z])(?=.*[0-9]))).*$",
+										"g");
+								var enoughRegex = new RegExp("(?=.{6,}).*", "g");
+								if (ckpassword == "") {
+									document.getElementById("passtext").innerHTML = "";
+								} else if (strongRegex.test(ckpassword)) {
+									document.getElementById("passtext").innerHTML = "<img src='/StarTrip/assets/images/membericon/e.jpg'>";
+								} else if (mediumRegex.test(ckpassword)) {
+									document.getElementById("passtext").innerHTML = "<img src='/StarTrip/assets/images/membericon/c.jpg'>";
+								} else if (enoughRegex.test(ckpassword)) {
+									document.getElementById("passtext").innerHTML = "<img src='/StarTrip/assets/images/membericon/b.jpg'>";
+								}
+
+							})
+		})
 
 		$(function insertform() {
 			$("#hahaha")
 					.click(
 							function() {
+
+								$("#err").html("");
+								document.getElementById("errarea").innerHTML = "";
+								$("#tips").html("");
 
 								if ($('#phone').val().match(/^09[0-9]{8}$/)) {
 									$("#err").html("");
@@ -234,6 +275,20 @@
 								var aa1 = aa.match('@gmail.com');
 								var aa2 = aa.match('@yahoo.com.tw');
 								var aa3 = aa.match('@outlook.com');
+								var fgpassword = document
+										.getElementById("passck").value;
+								var ckpassword = document
+										.getElementById("passck2").value;
+								var passwordlength = document
+										.getElementById("passck").value.length
+
+								if (fgpassword == "" || ckpassword == "") {
+									document.getElementById("errarea").innerHTML = "<font color=\'red\'>請輸入密碼</font>";
+								} else if (passwordlength < 6) {
+									document.getElementById("errarea").innerHTML = "<font color=\'red\'>密碼長度小於6</font>";
+								} else if (fgpassword != ckpassword) {
+									document.getElementById("errarea").innerHTML = "<font color=\'red\'>請輸入相同密碼</font>";
+								}
 
 								if (aa == "") {
 									$("#tips").html(
@@ -249,6 +304,8 @@
 														responseText,
 														textStatus) {
 													if (responseText == 0
+															&& passwordlength >= 6
+															&& fgpassword == ckpassword
 															&& $('#phone')
 																	.val()
 																	.match(
@@ -256,6 +313,8 @@
 														$("#tips")
 																.html(
 																		"<font color=\"green\">恭喜，此帳號可以使用！</font>")
+														document
+																.getElementById("errarea").innerHTML = "";
 														$("#chmodel").modal({
 															show : true
 														});

@@ -24,9 +24,9 @@ public class SeatListService implements SeatListServiceInteface{
 		
 		@Transactional
 		@Override
-		public void update(Integer Trip, Integer SeatNumber,Integer Seat,Integer OrderNumber) {
+		public void update(Integer Trip, Integer SeatNumber,Integer OrderNumber) {
 			
-			SeatListDAO.update(Trip,SeatNumber,Seat,OrderNumber);
+			SeatListDAO.update(Trip,SeatNumber,OrderNumber);
 		}
 		
 		
@@ -46,4 +46,5 @@ public class SeatListService implements SeatListServiceInteface{
 	
 	
 		}
+		
 }

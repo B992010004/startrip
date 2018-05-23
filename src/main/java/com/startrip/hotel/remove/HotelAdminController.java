@@ -33,7 +33,6 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import com.startrip.hotel.model.HotelsBean;
 import com.startrip.hotel.model.Rooms;
-import com.startrip.hotel.service.HotelAdminService;
 import com.startrip.member.memberModle.MemberBean;
 
 @Controller

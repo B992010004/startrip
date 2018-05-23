@@ -43,9 +43,8 @@
 	
 	function fblogout(){     
 		FB.logout(function(response){    
-		alert("成功登出。");
 		localStorage.clear();	
-		location.replace( "https://localhost:8443/startrip/");
+		location.replace( "https://startrip.southeastasia.cloudapp.azure.com:8443/startrip");
 		})}
 	
 		
@@ -61,7 +60,7 @@
 				data : ajaxdata,
 				async : false,
 				success : function(responseText, textStatus) {
-					window.location = "https://localhost:8443/startrip/";
+					window.location = "https://startrip.southeastasia.cloudapp.azure.com:8443/startrip";
 				},
 				error : function() {
 
@@ -83,8 +82,6 @@
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item  active"><a class="nav-link"
 					href="/startrip/">Home</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="/startrip/Rooms/1">房型</a></li>
 
 				<li class="nav-item"><a class="nav-link"
 					href="/startrip/restaurantHome">餐廳</a></li>

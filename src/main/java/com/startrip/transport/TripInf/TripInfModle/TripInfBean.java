@@ -25,25 +25,15 @@ public class TripInfBean implements Serializable{
 	
 	private Date date;
 	
-	private Integer StarStation;
+	private String StarStation;
 
-	private Integer EndStation;
+	private String EndStation;
 	
 	private Integer Price;
 	
 	private Integer SeateList;
 	
 	private Time StarTime;
-
-	
-	
-	
-	
-	@Override
-	public String toString() {
-		return "TripInfBean [Trip=" + Trip + ", date=" + date + ", StarStation=" + StarStation + ", EndStation="
-				+ EndStation + ", Price=" + Price + ", SeateList=" + SeateList + ", StarTime=" + StarTime + "]";
-	}
 
 	public Integer getTrip() {
 		return Trip;
@@ -53,8 +43,6 @@ public class TripInfBean implements Serializable{
 		Trip = trip;
 	}
 
-
-
 	public Date getDate() {
 		return date;
 	}
@@ -63,23 +51,19 @@ public class TripInfBean implements Serializable{
 		this.date = date;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
-	public Integer getStarStation() {
+	public String getStarStation() {
 		return StarStation;
 	}
 
-	public void setStarStation(Integer starStation) {
+	public void setStarStation(String starStation) {
 		StarStation = starStation;
 	}
 
-	public Integer getEndStation() {
+	public String getEndStation() {
 		return EndStation;
 	}
 
-	public void setEndStation(Integer endStation) {
+	public void setEndStation(String endStation) {
 		EndStation = endStation;
 	}
 
@@ -106,5 +90,18 @@ public class TripInfBean implements Serializable{
 	public void setStarTime(Time starTime) {
 		StarTime = starTime;
 	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	@Override
+	public String toString() {
+		return "TripInfBean [Trip=" + Trip + ", date=" + date + ", StarStation=" + StarStation + ", EndStation="
+				+ EndStation + ", Price=" + Price + ", SeateList=" + SeateList + ", StarTime=" + StarTime + "]";
+	}
+
+	
+	
 	
 }

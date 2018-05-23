@@ -10,14 +10,14 @@ public class HotelOrder implements Serializable {
 	private static final long serialVersionUID = 8538582177447768571L;
 
 	public HotelOrder() {
-	}	
+	}
 
 	@Id
-	private Long ordernumber;
+	private String orderId;
 	// yyyyMMdd + serial number
 
 	private Integer hotelid;
-	//多間的話我的roomid應該要是陣列
+	// 多間的話我的roomid應該要是陣列
 	private Integer roomid;
 	private Integer memberid;
 	private Integer orderstateid;
@@ -25,22 +25,23 @@ public class HotelOrder implements Serializable {
 	private java.sql.Date orderdate;
 	private String ordernote;
 	private Integer totalamount;
-	private String singlenightprice;
+	private Integer singlenightprice;
 	// -- use string to record list.
 	private java.sql.Date checkin;
 	private java.sql.Date checkout;
-	
+
 	private String lastname;
 	private String firstname;
 	private String email;
 	private String cellphone;
+	private String password;
 
-	public Long getOrdernumber() {
-		return ordernumber;
+	public String getOrderId() {
+		return orderId;
 	}
 
-	public void setOrdernumber(Long ordernumber) {
-		this.ordernumber = ordernumber;
+	public void setOrderId(String orderId) {
+		this.orderId = orderId;
 	}
 
 	public Integer getHotelid() {
@@ -99,11 +100,11 @@ public class HotelOrder implements Serializable {
 		this.totalamount = totalamount;
 	}
 
-	public String getSinglenightprice() {
+	public Integer getSinglenightprice() {
 		return singlenightprice;
 	}
 
-	public void setSinglenightprice(String singlenightprice) {
+	public void setSinglenightprice(Integer singlenightprice) {
 		this.singlenightprice = singlenightprice;
 	}
 
@@ -163,13 +164,22 @@ public class HotelOrder implements Serializable {
 		this.cellphone = cellphone;
 	}
 
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	@Override
 	public String toString() {
-		return "HotelOrder [ordernumber=" + ordernumber + ", hotelid=" + hotelid + ", roomid=" + roomid + ", memberid="
+		return "HotelOrder [orderId=" + orderId + ", hotelid=" + hotelid + ", roomid=" + roomid + ", memberid="
 				+ memberid + ", orderstateid=" + orderstateid + ", paymentmethodid=" + paymentmethodid + ", orderdate="
 				+ orderdate + ", ordernote=" + ordernote + ", totalamount=" + totalamount + ", singlenightprice="
 				+ singlenightprice + ", checkin=" + checkin + ", checkout=" + checkout + ", lastname=" + lastname
-				+ ", firstname=" + firstname + ", email=" + email + ", cellphone=" + cellphone + "]";
+				+ ", firstname=" + firstname + ", email=" + email + ", cellphone=" + cellphone + ", password="
+				+ password + "]";
 	}
 
 }

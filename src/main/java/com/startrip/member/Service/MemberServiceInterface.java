@@ -15,7 +15,7 @@ public interface MemberServiceInterface {
 	
 	void update(MemberBean bean);
 
-	void insert(MemberBean bean);
+	Integer insert(MemberBean bean);
 
 	boolean delete(String email);
 

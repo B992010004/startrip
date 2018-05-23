@@ -12,8 +12,8 @@ public interface TripInfServiceInterface {
 
 	List <TripInfBean> select();
 	
-	void update(Data date, Integer StarStation,
-			Integer EndStation,Integer Price,
+	void update(Data date, String StarStation,
+			String EndStation,Integer Price,
 			Integer SeateList,Time StarTime);
 
 	void insert(TripInfBean bean);

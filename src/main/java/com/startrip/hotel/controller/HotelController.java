@@ -4,10 +4,13 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.ParseException;
 import java.util.List;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.CacheControl;
@@ -51,16 +54,20 @@ public class HotelController {
 	}
 
 	@RequestMapping(value = "/HotelsSearchResult")
-	public String hotelsSearchResult(Model model, SearchHotel searchHotel) {
+	public String hotelsSearchResult(Model model, SearchHotel searchHotel, HttpServletRequest request)
+			throws ParseException {
 		String[] photoArr = null;
 
-		System.out.println(searchHotel);
 		// System.out.println("搜尋結果: " + hotelService.selectByCriteria(searchHotel));
 		List<HotelsBean> list = hotelService.selectByCriteria(searchHotel);
 		for (HotelsBean bean : list) {
 			photoArr = bean.getPhotoString().split(";");
 			bean.setPhotoArr(photoArr);
 		}
+
+		// 搜尋字串丟session保存
+		HttpSession session = request.getSession();
+		session.setAttribute("searchBean", searchHotel);
 
 		model.addAttribute("results", list);
 		return "hotel/HotelsSearchResult";
@@ -98,7 +105,7 @@ public class HotelController {
 		model.addAttribute("reviews", reviews);
 
 		// 房型
-		//Group by 失敗
+		// Group by 失敗
 		List<Rooms> roomList = roomsServiceInterface.selectByHotelIdGroupByType(hotelId);
 		model.addAttribute("roomList", roomList);
 
@@ -107,18 +114,19 @@ public class HotelController {
 
 	@RequestMapping(value = "/Booking/{hotelId}/{roomType}")
 	public String hotelCheckout(@PathVariable("hotelId") Integer hotelId, @PathVariable("roomType") Integer roomType,
-			Model model) {
+			Model model, HttpServletRequest request) {
 		// Hotel資訊
 		HotelsBean bean = hotelService.selectByPk(hotelId);
 		// 將PhotoPath分割
 		String[] photoArr = null;
 		photoArr = bean.getPhotoString().split(";");
 		bean.setPhotoArr(photoArr);
+		
 		// 目前並沒有房型資料
-		// roomtype先塞訂單hotelBean裡
+		// roomtype 塞hotelBean裡
 		bean.setRoomtype(roomType);
 		model.addAttribute("hotel", bean);
-		
+
 		// 房型資訊
 		// 應該照選定房型選出來
 		// 目前groupByType未完成
@@ -137,11 +145,6 @@ public class HotelController {
 	@RequestMapping(value = "/Payment_Allpay")
 	public String paymentAllpay(Model model) {
 		return "hotel/Payment_Allpay";
-	}
-
-	@RequestMapping(value = "/PayEnd")
-	public String payEnd(Model model) {
-		return "hotel/PayEnd";
 	}
 
 	@RequestMapping(value = "/getPicture/hotel/{hotelId}/{photoName:.+}")
