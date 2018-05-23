@@ -64,14 +64,15 @@
 							style="border-color: #C0C0C0; border-style: solid; border-style: outset; border-radius: 50%; position: absolute; right: 30px;"
 							width="160px" height="160px"
 							src="<c:url value='/getPicture/${change.mail}'/>">
-						<H2>${change.username}您好!</H2>
+						<H2>${change.lastname}您好!</H2>
 						<P>請重新設定您的密碼</P>
 
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="fgpassword">請輸入密碼:</label> <input type="password"
-									class="form-control" name="fgpassword" placeholder="請輸入"
+									class="form-control" name="fgpassword" placeholder="請輸入6至12位密碼"
 									id="fgpassword" autofocus="autofocus" required="required" />
+									<span id="CKpasstext"></span>
 							</div>
 						</div>
 
@@ -82,7 +83,7 @@
 							</div>
 							<div class="form-group">
 								<label for="ckpassword">再次確認您的密碼:</label> <input type="password"
-									class="form-control" name="ckpassword" placeholder="請輸入"
+									class="form-control" name="ckpassword"  placeholder="CheckYourPASSWORD"
 									id="ckpassword" autofocus="autofocus" required="required" />
 							</div>
 							<div class="col-md-10" id="errorMsg"></div>
@@ -136,15 +137,39 @@
 				
 				$("#ckpassform").submit();
 				});
+		$(function ck1pass() {
+			$("#fgpassword").on('keyup', function(){
+				var ckpassword = document.getElementById("fgpassword").value;
+				 var strongRegex = new RegExp("^(?=.{8,})(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\\W).*$", "g");
+			     var mediumRegex = new RegExp("^(?=.{7,})(((?=.*[A-Z])(?=.*[a-z]))|((?=.*[A-Z])(?=.*[0-9]))|((?=.*[a-z])(?=.*[0-9]))).*$", "g");
+			     var enoughRegex = new RegExp("(?=.{6,}).*", "g");				     
+			     if(ckpassword==""){
+			    	 document.getElementById("CKpasstext").innerHTML = "";
+			     }
+			     else if(strongRegex.test(ckpassword)){ document.getElementById("CKpasstext").innerHTML = "<img src='/StarTrip/assets/images/membericon/e.jpg'>";}
+			     else if(mediumRegex.test(ckpassword)){ document.getElementById("CKpasstext").innerHTML = "<img src='/StarTrip/assets/images/membericon/c.jpg'>";}	
+			     else if(enoughRegex.test(ckpassword)){ document.getElementById("CKpasstext").innerHTML = "<img src='/StarTrip/assets/images/membericon/b.jpg'>";}
+			     
+			})	
+	})
+		
+
 		function ckpass() {
+			document.getElementById("errorMsg").innerHTML = "";
 			var fgpassword = document.getElementById("fgpassword").value;
 			var ckpassword = document.getElementById("ckpassword").value;
-
+			var passwordlength=  document.getElementById("fgpassword").value.length;
+			
 			if (fgpassword == "" || ckpassword == "") {
 				document.getElementById("errorMsg").innerHTML = "<font color=\'red\'>請輸入正確的密碼</font>";
 				
-			} else if (fgpassword == ckpassword) {
+			} 
+			else if(passwordlength < 6){
+				document.getElementById("errorMsg").innerHTML = "<font color=\'red\'>請輸入6位數以上的密碼</font>";
+			}
+			else if (fgpassword == ckpassword) {
 				document.getElementById("errorMsg").innerHTML = "";
+			
 				$("#changemodel").modal({
 					show : true
 				});
