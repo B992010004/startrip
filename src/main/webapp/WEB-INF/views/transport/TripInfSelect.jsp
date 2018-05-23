@@ -34,21 +34,17 @@
 </head>
 
 <body>
-<section class="probootstrap-cover overflow-hidden relative" style="background-image: url('/startrip/assets/transport/images/into.jpg');"
+<div>
+        <jsp:include page="/WEB-INF/views/header.jsp" flush="true" />
+    </div>
+
+ <section class="probootstrap-cover overflow-hidden relative" style="background-image: url('/startrip/assets/transport/images/into.jpg');"
         data-stellar-background-ratio="0.5" id="section-home">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md probootstrap-animate">
-                    <form action="/startrip/selectTripInf" class="probootstrap-form" style="border-radius: 30px;">
-                        <div class="form-group">
-                            <div class="row">
-                             <h3 align="center">當日班次</h3>
-                             	<div class="col-md">
-                                    <div class="form-group inputState">
-                             
+       
+ <form action="/startrip/stationEdit" class="probootstrap-form" style="border-radius: 30px;">
 <table border="1" cellpadding="10" cellspacing="0" class="table  table-bordered">
 		
-		<tr>
+		<tr align="center">班次資訊
 			<th>班次編號</th>
 			<th>日期</th>
 			<th>起站名稱</th>
@@ -73,27 +69,8 @@
 			</tr>
 		</c:forEach>
 	</table>
-                             
-                             
-                                <!-- 							送出 -->
-                                <!-- summit -->
-                              
-                                <!-- summit -->
-
-                                <!-- 							送出 -->
-
-                            </div>
-                            </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-    </section>
-
-
-		
-
+		</form>
+  </section>
 
 
 

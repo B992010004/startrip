@@ -78,7 +78,7 @@
         data-stellar-background-ratio="0.5" id="section-home">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-md probootstrap-animate">
+                
                     <form action="/startrip/selectTripInf" class="probootstrap-form" style="border-radius: 30px;">
                         <div class="form-group">
                             <div class="row">
@@ -96,43 +96,7 @@
                                 <!-- 							以上選擇出發日期 -->
 
 <!--  								選擇出發時間                      -->
-                     <div class="col-md">
-                                    <div class="form-group inputState">
-                                        <label for="id_label_people">
-                                           預計出發的時間<select id="inputState" class="form-control" name="">
-                                                <option value="">請選擇出發時間</option>
-                                                <option value="">00:00</option>
-                                                <option value="">01:00</option>
-                                                <option value="">02:00</option>
-                                                <option value="">03:00</option>
-                                                <option value="">04:00</option>
-                                                <option value="">05:00</option>
-                                                <option value="">06:00</option>
-                                                <option value="">07:00</option>
-                                                <option value="">08:00</option>
-                                                <option value="">09:00</option>
-                                                <option value="">10:00</option>
-                                                <option value="">11:00</option>
-                                                <option value="">12:00</option>
-                                                <option value="">13:00</option>
-                                                <option value="">14:00</option>
-                                                <option value="">15:00</option>
-                                                <option value="">16:00</option>
-                                                <option value="">17:00</option>
-                                                <option value="">18:00</option>
-                                                <option value="">19:00</option>
-                                                <option value="">20:00</option>
-                                                <option value="">21:00</option>
-                                                <option value="">22:00</option>
-                                                <option value="">23:00</option>
-                                            
-
-                                               
-                                            </select>
-                                        </label>
-                                    </div>
-                                </div>
-
+       
 <!--                  選擇出發時間      -->
 
                                 <!-- 選擇出發地點 -->
@@ -359,10 +323,10 @@
                             var googleAddress = $(this).parent('td').children('span').text()
                             //                             alert(googleAddress)
                             console.log("地址: " + googleAddress);
-                            $("#gm").append(
+                            $($("#gm")).hide().append(
                                 "<a href='https://maps.google.com/maps?q=" + googleAddress + "&amp;z=11"
                                 + "data-geo='' target='_blank'> <img class='map' alt=" + googleAddress + "src='https://maps.google.com/maps/api/staticmap?zoom=15&size=300x300&maptype=terrain&sensor=false&center=" + googleAddress + "&markers=color:green%7Clabel:S%7C$" + googleAddress + "&key=AIzaSyARfDct4ecrevMJjHgcrjmPOLfbM6X9N7w'></a>"
-                            );
+                            ).slideDown(2000) ;
                         });
 
                     };
