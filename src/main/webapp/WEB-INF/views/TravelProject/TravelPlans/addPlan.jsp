@@ -61,12 +61,12 @@
 
 			<div class="form-group">
 				<label class="form-control-label" for="startDate:">startDate:</label>
-				<form:input path="startDate" placeholder="請輸入行程名稱" type="text"
+				<form:input path="startDate" placeholder="起始日期" type="text"
 					name="startDate" id="startDate" class="form-control" />
 			</div>
 			<div class="form-group">
 				<label class="form-control-label" for="endDate">endDate:</label>
-				<form:input path="endDate" placeholder="請輸入行程名稱" type="text"
+				<form:input path="endDate" placeholder="結束日期" type="text"
 					name="endDate" id="endDate" class="form-control" />
 			</div>
 				
@@ -155,9 +155,9 @@
 				 "backdrop": 'static',
 				 "keyboard":false,
 				 })
-				返回件
+				//返回
 			 $("#back").click(function(){
-				 history.go("/startrip/TravelMain");
+				 history.go(-1);
 			 	})
 			  });//end
 	</script>
