@@ -21,25 +21,25 @@ public class HotelService implements HotelServiceInterface {
 	@Override
 	public int insert(HotelsBean bean) {
 		return hotelDAOInterface.insert(bean);
-	};
+	}
 
 	@Override
 	public HotelsBean selectByPk(Integer hotelid) {
 		return hotelDAOInterface.selectByPk(hotelid);
-	};
+	}
 
 	@Override
 	public void update(HotelsBean bean) {
 		hotelDAOInterface.update(bean);
-	};
+	}
 
 	@Override
 	public List<HotelsBean> selectByMemberid(Integer memberid) {
 		return hotelDAOInterface.selectByMemberid(memberid);
-	};
+	}
 
 	@Override
 	public List<HotelsBean> selectByCriteria(SearchHotel searchHotel) {
 		return hotelDAOInterface.selectByCriteria(searchHotel);
-	};
+	}
 }

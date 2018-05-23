@@ -10,10 +10,12 @@ public interface MemberServiceInterface {
 	List<MemberBean> select();
 
 	MemberBean select(String email);
+	
 	MemberBean selectbyid(int memberid);
+	
 	void update(MemberBean bean);
 
-	void insert(MemberBean bean);
+	Integer insert(MemberBean bean);
 
 	boolean delete(String email);
 

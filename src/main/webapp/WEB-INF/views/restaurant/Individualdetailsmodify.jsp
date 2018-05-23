@@ -125,7 +125,7 @@
 		<!-- --------------------------------------------------------------------------------------------------- -->
 		<div class="row align-items-center text-center">
 			<div class="input-group ">
-				<input type="text" class="form-control" placeholder="餐廳流水號、餐廳名稱等"
+				<input type="text" class="form-control" placeholder="餐廳  ID、餐廳名稱等"
 					aria-label="Recipient's username" aria-describedby="basic-addon2">
 				<div>
 					<input type="submit" value="搜尋" class="btn btn-primary btn-block">
@@ -136,35 +136,55 @@
 			<c:forEach var='rtDetails' items='${RtDetails}'>
 				<div class="col-lg-6 portfolio-item">
 					<div class="card h-100">
+
 						<a href="/startrip/restaurant/${rtDetails.rtId}"><img
 							class="card-img-top"
 							src="/startrip/getPicture/rtImage/${rtDetails.photoArr[0]}"
 							alt=""></a>
 						<div class="card-body">
 							<h4 class="card-title">
-								<a href="/startrip/restaurant/${rtDetails.rtId}">流水號&nbsp;:&nbsp;${rtDetails.rtId}</a>
+								<a href="/startrip/restaurant/${rtDetails.rtId}">${rtDetails.rtId}</a>
 							</h4>
 							<h4 class="card-title">
 								<a href="/startrip/restaurant/${rtDetails.rtId}">餐廳名稱&nbsp;:&nbsp;${rtDetails.rtName}</a>
 							</h4>
-							<p class="card-text">縣市&nbsp;:&nbsp;${rtDetails.rtCounty}</p>
-							<p class="card-text">地區&nbsp;:&nbsp;${rtDetails.rtArea}</p>
-							<p class="card-text">菜系類別&nbsp;:&nbsp;${rtDetails.rtCuisine}</p>
-							<p class="card-text">餐點類別&nbsp;:&nbsp;${rtDetails.teCategory}</p>
-							<p class="card-text">地址&nbsp;:&nbsp;${rtDetails.rtAddress}</p>
-							<p class="card-text">電話&nbsp;:&nbsp;${rtDetails.rtPhone}</p>
-							<p class="card-text">網址&nbsp;:&nbsp;${rtDetails.rtUrl}</p>
-							<p class="card-text">價位&nbsp;:&nbsp;${rtDetails.rtPricepount}</p>
-							<p class="card-text">營業時間&nbsp;:&nbsp;${rtDetails.rtBusinesshours}</p>
-							<p class="card-text">E-mail&nbsp;:&nbsp;${rtDetails.rtEmail}</p>
+							<p class="card-text">
+								<span>縣市&nbsp;:&nbsp;</span><span>${rtDetails.rtCounty}</span>
+							</p>
+							<p class="card-text">
+								<span>地區&nbsp;:&nbsp;</span><span>${rtDetails.rtArea}</span>
+							</p>
+							<p class="card-text">
+								<span>菜系類別&nbsp;:&nbsp;</span><span>${rtDetails.rtCuisine}</span>
+							</p>
+							<p class="card-text">
+								<span>餐點類別&nbsp;:&nbsp;</span><span>${rtDetails.teCategory}</span>
+							</p>
+							<p class="card-text">
+								<span>地址&nbsp;:&nbsp;</span><span>${rtDetails.rtAddress}</span>
+							</p>
+							<p class="card-text">
+								<span>電話&nbsp;:&nbsp;</span><span>${rtDetails.rtPhone}</span>
+							</p>
+							<p class="card-text">
+								<span>網址&nbsp;:&nbsp;</span><span>${rtDetails.rtUrl}</span>
+							</p>
+							<p class="card-text">
+								<span>價位&nbsp;:&nbsp;</span><span>${rtDetails.rtPricepount}</span>
+							</p>
+							<p class="card-text">
+								<span>營業時間&nbsp;:&nbsp;</span><span>${rtDetails.rtBusinesshours}</span>
+							</p>
+							<p class="card-text">
+								<span>E-mail&nbsp;:&nbsp;</span><span>${rtDetails.rtEmail}</span>
+							</p>
 
 							<div class="btn11">
-								<input type="image" class="btn btnn" id="repair" img
-									src="/startrip/assets/images/rt/pencil.png"
-									onClick="document.form1.submit()"> <input type="image"
-									class="btn btnn" id="delectOne" img
-									src="/startrip/assets/images/rt/delete.png"
-									onClick="document.form1.submit()">
+								<input type="image" class="btn btnn repairButton" id="repair"
+									img src="/startrip/assets/images/rt/pencil.png">
+								<button id="submitOK">完成送出</button>
+								<input type="image" class="btn btnn deleteButton" id="delectOne"
+									img src="/startrip/assets/images/rt/delete.png">
 
 							</div>
 						</div>
@@ -172,33 +192,6 @@
 				</div>
 			</c:forEach>
 		</div>
-
-		<!-- --------------------------------------------------------------------------------------------------- -->
-
-
-		<!-- 				<ul class="list-group"> -->
-		<!-- 					<li class="list-group-item active1">餐廳名稱</li> -->
-		<!-- 					<li class="list-group-item">菜系類別&nbsp;:&nbsp;</li> -->
-		<!-- 					<li class="list-group-item">餐點類別&nbsp;:&nbsp;</li> -->
-		<!-- 					<li class="list-group-item">地址&nbsp;:&nbsp;</li> -->
-		<!-- 					<li class="list-group-item">電話&nbsp;:&nbsp;</li> -->
-		<!-- 					<li class="list-group-item">網址&nbsp;:&nbsp;</li> -->
-		<!-- 					<li class="list-group-item">價位&nbsp;:&nbsp;</li> -->
-		<!-- 					<li class="list-group-item">營業時間&nbsp;:&nbsp;</li> -->
-		<!-- 					<li class="list-group-item">E-mail&nbsp;:&nbsp;</li> -->
-		<!-- 					<li class="list-group-item">縣市&nbsp;:&nbsp;</li> -->
-		<!-- 					<li class="list-group-item" style="border-bottom: 3px #DDDDDD solid;">地區&nbsp;:&nbsp;</li> -->
-		<!-- 				</ul> -->
-		<!-- 				<div class="col-md"> -->
-		<!-- 					<input type="submit" -->
-		<!-- 						value="修&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;改" -->
-		<!-- 						class="btn btn-primary padding1">  -->
-		<!-- 						<input type="submit" -->
-		<!-- 						value="刪&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;除" -->
-		<!-- 						class="btn btn-primary padding1"> -->
-		<!-- 				</div> -->
-
-
 	</div>
 
 
@@ -232,22 +225,175 @@
 	<script src="/startrip/assets/js/select2.min.js"></script>
 	<script src="/startrip/assets/js/main.js"></script>
 	<script>
-	
-		document.getElementById("delectOne").onclick=rtdt;
-		function rtdt(){
-			
-			
-			
-		}
-		
-		
-		
-		var delectId = document.getElementById("delect").onclick;
-	if(confirm("確實要刪除嗎?"))
-	alert("已經刪除！");
-	else
-	alert("已經取消了刪除操作");
-	
+	<!-- icons刪除    -->
+		$(document).ready(function() {
+
+			$(document).on('click', '.deleteButton', function() {
+				var id = $(this).parents('.card-body').find('a:first').text();
+				var ajaxrtid = {
+					rtId : id
+				};
+
+				$.ajax({
+					url : "/startrip/deleteRtDetailsrtId",
+					type : "GET",
+					data : ajaxrtid,
+				})
+				location.reload();
+			})
+
+		})
 	</script>
+
+	<script>
+	<!-- icons送出    -->
+		$(document).ready(
+				function() {
+
+					$(document).on(
+							'click',
+							'#submitOK',
+							function() {
+								var text2 = $(this).parents('.card-body').find(
+										'input:eq(0)').val();
+								var text4 = $(this).parents('.card-body').find(
+										'input:eq(1)').val();
+								var text6 = $(this).parents('.card-body').find(
+										'input:eq(2)').val();
+								var text8 = $(this).parents('.card-body').find(
+										'input:eq(3)').val();
+								var text10 = $(this).parents('.card-body')
+										.find('input:eq(4)').val();
+								var text12 = $(this).parents('.card-body')
+										.find('input:eq(5)').val();
+								var text14 = $(this).parents('.card-body')
+										.find('input:eq(6)').val();
+								var text16 = $(this).parents('.card-body')
+										.find('input:eq(7)').val();
+								var text18 = $(this).parents('.card-body')
+										.find('input:eq(8)').val();
+								var text20 = $(this).parents('.card-body')
+										.find('input:eq(9)').val();
+
+								alert(text2);
+								alert(text4);
+								alert(text6);
+								alert(text8);
+								alert(text10);
+								alert(text12);
+								alert(text14);
+								alert(text16);
+								alert(text18);
+								alert(text20);
+								
+								// 				$.ajax({
+								// 					url : "/startrip/deleteRtDetailsrtId",
+								// 					type : "GET",
+								// 					data : ajaxrtid,
+								// 				})
+								// 				location.reload();
+							})
+
+				})
+	</script>
+
+	<script>
+	<!-- icons修改    -->
+		$(document)
+				.ready(
+						function() {
+
+							$(document)
+									.on(
+											'click',
+											'#repair',
+											function() {
+
+												var text2 = $(this).parents(
+														'.card-body').find(
+														'span:eq(1)').text();
+												var input2 = $('<input type="text" class="edit" value="'+text2+'">');
+												$(this).parents('.card-body')
+														.find('span:eq(1)')
+														.html(input2);
+
+												var text4 = $(this).parents(
+														'.card-body').find(
+														'span:eq(3)').text();
+												var input4 = $('<input type="text" class="edit" value="'+text4+'">');
+												$(this).parents('.card-body')
+														.find('span:eq(3)')
+														.html(input4);
+
+												var text6 = $(this).parents(
+														'.card-body').find(
+														'span:eq(5)').text();
+												var input6 = $('<input type="text" class="edit" value="'+text6+'">');
+												$(this).parents('.card-body')
+														.find('span:eq(5)')
+														.html(input6);
+
+												var text8 = $(this).parents(
+														'.card-body').find(
+														'span:eq(7)').text();
+												var input8 = $('<input type="text" class="edit" value="'+text8+'">');
+												$(this).parents('.card-body')
+														.find('span:eq(7)')
+														.html(input8);
+
+												var text10 = $(this).parents(
+														'.card-body').find(
+														'span:eq(9)').text();
+												var input10 = $('<input type="text" class="edit" value="'+text10+'">');
+												$(this).parents('.card-body')
+														.find('span:eq(9)')
+														.html(input10);
+
+												var text12 = $(this).parents(
+														'.card-body').find(
+														'span:eq(11)').text();
+												var input12 = $('<input type="text" class="edit" value="'+text12+'">');
+												$(this).parents('.card-body')
+														.find('span:eq(11)')
+														.html(input12);
+
+												var text14 = $(this).parents(
+														'.card-body').find(
+														'span:eq(13)').text();
+												var input14 = $('<input type="text" class="edit" value="'+text14+'">');
+												$(this).parents('.card-body')
+														.find('span:eq(13)')
+														.html(input14);
+
+												var text16 = $(this).parents(
+														'.card-body').find(
+														'span:eq(15)').text();
+												var input16 = $('<input type="text" class="edit" value="'+text16+'">');
+												$(this).parents('.card-body')
+														.find('span:eq(15)')
+														.html(input16);
+
+												var text18 = $(this).parents(
+														'.card-body').find(
+														'span:eq(17)').text();
+												var input18 = $('<input type="text" class="edit" value="'+text18+'">');
+												$(this).parents('.card-body')
+														.find('span:eq(17)')
+														.html(input18);
+
+												var text20 = $(this).parents(
+														'.card-body').find(
+														'span:eq(19)').text();
+												var input20 = $('<input type="text" class="edit" value="'+text20+'">');
+												$(this).parents('.card-body')
+														.find('span:eq(19)')
+														.html(input20);
+
+											})
+						})
+	</script>
+
+
+
 </body>
 </html>

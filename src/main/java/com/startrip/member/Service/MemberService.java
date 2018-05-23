@@ -43,9 +43,9 @@ public class MemberService implements MemberServiceInterface {
 
 	@Transactional
 	@Override
-	public void insert(MemberBean bean) {
+	public Integer insert(MemberBean bean) {
 
-		memberDAO.insert(bean);
+		return memberDAO.insert(bean);
 	}
 
 	@Transactional

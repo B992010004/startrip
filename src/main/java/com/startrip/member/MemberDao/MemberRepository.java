@@ -67,9 +67,10 @@ public class MemberRepository implements MemberRepositoryinterface {
 	}
 
 	@Override
-	public void insert(MemberBean bean) {
+	public Integer insert(MemberBean bean) {
 		Session session = factory.getCurrentSession();
-		session.save(bean);
+		Integer i =  (Integer) session.save(bean);
+		return i;
 	}
 
 	@Override

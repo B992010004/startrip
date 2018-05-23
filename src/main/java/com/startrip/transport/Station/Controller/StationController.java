@@ -30,9 +30,9 @@ public class StationController {
 	public String select(Model model) {
 		List<StationBean> all = StationService.select();
 		// System.out.println(all);
-		for (StationBean stationBean : all) {
-			
-		}
+//		for (StationBean stationBean : all) {
+//			
+//		}
 		model.addAttribute("stationList", all);// 標籤名stationList
 
 		return "transport/select";
@@ -43,9 +43,9 @@ public class StationController {
 	@RequestMapping(value = "/selectArea", method = RequestMethod.POST)
 	@ResponseBody
 	public List<StationBean> selectArea(HttpServletRequest req, Model model) {
-		System.out.println(req.getParameter("local"));
+//		System.out.println(req.getParameter("local"));
 		List<StationBean> area = StationService.selectArea(req.getParameter("local"));
-		System.out.println(area);
+//		System.out.println(area);
 	
 
 		return area;

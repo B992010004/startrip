@@ -2,6 +2,7 @@ package com.startrip.restaurant.repository;
 
 import java.util.List;
 
+import com.startrip.restaurant.model.RtBookingBean;
 import com.startrip.restaurant.model.RtDetailsBean;
 
 
