@@ -42,35 +42,10 @@
                     <form action="/startrip/selectTripInf" class="probootstrap-form" style="border-radius: 30px;">
                         <div class="form-group">
                             <div class="row">
-                             	<div>
-
-		</div>
+                             <h3 align="center">當日班次</h3>
+                             	<div class="col-md">
+                                    <div class="form-group inputState">
                              
-                             
-                             
-                             
-                                <!-- 							送出 -->
-                                <!-- summit -->
-                                <div class="col-md">
-                                    <div class="form-group">
-                                        <div class="col-md">
-                                            <input type="submit" value="送出" class="btn btn-primary btn-block">
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- summit -->
-
-                                <!-- 							送出 -->
-
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-    </section>
-
-
-		<h3>當日班次</h3>
 <table border="1" cellpadding="10" cellspacing="0" class="table  table-bordered">
 		
 		<tr>
@@ -81,6 +56,7 @@
 			<th>剩餘座位</th>
 			<th>發車時間</th>
 			<th>票價</th>
+			<th>選擇班次</th>
 			
 		</tr>
 			<c:forEach items='${TripInfList}' var='select'>
@@ -92,10 +68,31 @@
 				<td>${select.seateList}</td>
 				<td>${select.starTime}</td>
 				<td>${select.price}</td>
-
+				<td><input type="submit" value="選擇班次" class="btn btn-primary btn-block"></td>
+	
 			</tr>
 		</c:forEach>
 	</table>
+                             
+                             
+                                <!-- 							送出 -->
+                                <!-- summit -->
+                              
+                                <!-- summit -->
+
+                                <!-- 							送出 -->
+
+                            </div>
+                            </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+    </section>
+
+
+		
 
 
 
