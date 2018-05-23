@@ -79,14 +79,14 @@
       <!-- select -->
       <div class="col-md-3">
         <br>
-        <form action="HotelsSearchResult.html" class="probootstrap-form">
+        <form action="/startrip/HotelsSearchResult" class="probootstrap-form">
           <div class="form-group">
             <!-- place -->
             <div class="row">
               <div class="col-md">
                 <div class="form-group inputState">
                   <label for="id_label_location">
-                    <input type="text" id="id_label_location" name="location" class="form-control" placeholder="地點或飯店名稱">
+                    <input type="text" id="id_label_location" name="searchSrting" class="form-control" placeholder="地點或飯店名稱">
                   </label>
                 </div>
               </div>
@@ -99,7 +99,7 @@
                   <div class="probootstrap-date-wrap inputState">
                     <label for="probootstrap-date-arrival">
                       <span class="icon ion-calendar"></span>
-                      <input type="text" id="probootstrap-date-arrival" name="checkin" class="form-control" placeholder="入住">
+                      <input type="text" id="probootstrap-date-arrival" name="checkIn" class="form-control" placeholder="入住">
                     </label>
                   </div>
                 </div>
@@ -113,7 +113,7 @@
                   <div class="probootstrap-date-wrap inputState">
                     <label for="probootstrap-date-departure">
                       <span class="icon ion-calendar"></span>
-                      <input type="text" id="probootstrap-date-departure" name="checkout" class="form-control" placeholder="退房">
+                      <input type="text" id="probootstrap-date-departure" name="checkOut" class="form-control" placeholder="退房">
                     </label>
                   </div>
                 </div>
@@ -125,10 +125,10 @@
               <div class="col-md">
                 <div class="form-group inputState">
                   <label for="id_label_people">
-                    <select class="form-control" name="poeple">
+                    <select class="form-control" name="personNum">
                       <option selected value="1">人數</option>
                       <option value="1">1</option>
-                      <option value="2">2</option>
+                      <option value="2" selected="selected">2</option>
                       <option value="3">3</option>
                       <option value="4">4</option>
                       <option value="5">5</option>

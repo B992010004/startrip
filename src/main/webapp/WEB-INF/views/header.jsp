@@ -82,8 +82,6 @@
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item  active"><a class="nav-link"
 					href="/startrip/">Home</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="/startrip/Rooms/1">房型</a></li>
 
 				<li class="nav-item"><a class="nav-link"
 					href="/startrip/restaurantHome">餐廳</a></li>

@@ -38,7 +38,7 @@ public class HotelPaymentController {
 
 	@Autowired
 	MemberServiceInterface memberservice;
-	
+
 	@Autowired
 	HotelOrderServiceInterface hotelOrderServiceInterface;
 
@@ -120,7 +120,6 @@ public class HotelPaymentController {
 		order.setTotalamount(totalAmount);
 		hotelOrderServiceInterface.save(order);
 		System.out.println(order);
-		
 
 		try {
 			String html = all.aioCheckOut(aio, invoice);
