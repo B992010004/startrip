@@ -22,12 +22,13 @@ public class TripInfRepository implements TripInfRepositoryInterface {
 	SessionFactory factory;
 	
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<TripInfBean> select() {
-		String hql = "FROM TripInf";
+		String hql = "FROM TripInfBean";
 		Session session = factory.getCurrentSession();
 		List<TripInfBean> list = new ArrayList<>();
-		list = session.createQuery(hql, TripInfBean.class).getResultList();//StationBean.class指定查詢一定是StationBean.class
+		list = session.createQuery(hql).getResultList(); //StationBean.class指定查詢一定是StationBean.class
 		return list;
 	}
 
