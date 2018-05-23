@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.startrip.restaurant.exception.RtDetailsNotFoundException;
+import com.startrip.restaurant.model.RtBookingBean;
 import com.startrip.restaurant.model.RtDetailsBean;
 
 @Repository
@@ -31,13 +32,18 @@ public class RtDetailsRepositoryImp implements RtDetailsRepository {
 		}
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public RtDetailsBean getAllRtDetailsrtId(Integer rtId) {
-		RtDetailsBean rdi = null;
-		Session session = factory.getCurrentSession();
-		rdi = session.get(RtDetailsBean.class, rtId);
-		if(rdi == null) throw new RtDetailsNotFoundException(rtId);
-		return rdi;		
+		String hql = "FROM RtDetailsBean where rtId =:rtId ";
+		Session session = factory.getCurrentSession();		
+		List<RtDetailsBean> list = new ArrayList<>();	
+		list =session.createQuery(hql).setParameter("rtId", rtId).getResultList();;	
+		if (list.size() == 0) {
+			return null;
+		} else {
+			return list.get(0);
+		}	
 	}
 
 	@Override
@@ -142,7 +148,6 @@ public class RtDetailsRepositoryImp implements RtDetailsRepository {
 		list5 = session.createQuery(hql).setParameter("L", "平價美食").setMaxResults(4).getResultList();
 		return list5;
 	}
-
 
 
 }

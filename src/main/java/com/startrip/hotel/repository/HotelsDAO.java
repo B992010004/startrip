@@ -87,7 +87,13 @@ public class HotelsDAO implements HotelDAOInterface {
 		StringBuffer queryString = new StringBuffer();
 		boolean crteriaIsAvailable = false;
 
-		if (searchHotel.getSearchSrting() != null) {
+		if (searchHotel.getSearchSrting() != "") {
+			queryString.append("hotelname like :SearchSrting0 OR hoteladdress like :SearchSrting1 ");
+			// queryString.append("hotelname = :SearchSrting0 ");
+			crteriaIsAvailable = true;
+			
+		}else {
+			//給個預設
 			queryString.append("hotelname like :SearchSrting0 OR hoteladdress like :SearchSrting1 ");
 			// queryString.append("hotelname = :SearchSrting0 ");
 			crteriaIsAvailable = true;
@@ -129,9 +135,13 @@ public class HotelsDAO implements HotelDAOInterface {
 		List<HotelsBean> list = new ArrayList<>();
 		Query prepareStmt = session.createQuery(hql);
 
-		if (searchHotel.getSearchSrting() != null) {
+		if (searchHotel.getSearchSrting() != "") {
 			prepareStmt.setParameter("SearchSrting0", "%" + searchHotel.getSearchSrting() + "%");
 			prepareStmt.setParameter("SearchSrting1", "%" + searchHotel.getSearchSrting() + "%");
+		}else {
+			//給個預設
+			prepareStmt.setParameter("SearchSrting0", "%花蓮%");
+			prepareStmt.setParameter("SearchSrting1", "%花蓮%");
 		}
 
 		// if (searchHotel.getCheckIn() != null) {

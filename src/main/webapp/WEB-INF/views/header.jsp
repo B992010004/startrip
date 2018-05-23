@@ -89,9 +89,10 @@
 					href="/startrip/restaurantHome">餐廳</a></li>
 				<li class="nav-item"><a class="nav-link"
 					href="/startrip/select">大眾運輸</a></li>
+					<c:if test="${not empty LoginOK}">
 				<li class="nav-item"><a class="nav-link"
 					href="/startrip/TravelMain/">行程規劃</a></li>
-
+					</c:if>
 				<c:if test="${not empty LoginOK}">
 					<li class="nav-item"><a class="nav-link"
 						href="/startrip/admin/HostManage">✎住宿管理</a></li>

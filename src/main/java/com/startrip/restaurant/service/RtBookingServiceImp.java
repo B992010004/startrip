@@ -44,4 +44,9 @@ public class RtBookingServiceImp implements RtBookingService {
 		return RtBookingRepositoryImp.getRtBookingmember(memberId);
 	}
 
+	@Override
+	public List<RtBookingBean> getAllall() {
+		return RtBookingRepositoryImp.getAllall();
+	}
+
 }

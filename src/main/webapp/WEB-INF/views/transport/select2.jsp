@@ -70,7 +70,7 @@
    <div>
         <jsp:include page="/WEB-INF/views/header.jsp" flush="true" />
     </div>
-
+<h1>SELECT2!!!!!!!</h1>
 
 
     <!-- 以下為訂票功能 -->
@@ -80,68 +80,12 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md probootstrap-animate">
-                                                                                                       <h3 style="color:#E8CCFF" align="center" >請輸入基本資料</h3>
+                                                                                                       <h3 style="color:#E8CCFF" align="center" >請選擇欲搭乘班次</h3>
                     <form action="stationEdit" class="probootstrap-form" style="border-radius: 30px;">
-                        <div class="form-group">
-                                                 
-                              
-									<div class="form-group ">
-										
-										<label for=" ">
-											身分證字號:
-											</label>
-											<input type="text" id="id_label_location" name="searchSrting" class="form-control" placeholder="">
-						
-										
-									</div>
-								
-<!-- 分隔線								 -->
-							
-									<div class="form-group">
-										
-										<label for="id_label_location">
-											姓名
-											</label>
-											<input type="text" id="id_label_location" name="searchSrting" class="form-control" placeholder="">
-
-										
-										
-									</div>
-							
-<!-- 分隔線 -->
-								
-									<div class="form-group inputState">
-										
-										<label for="id_label_location">
-											電子郵件:
-										</label>
-											<input type="text" id="id_label_location" name="searchSrting" class="form-control" placeholder="">
-										
-
-										
-										
-									</div>
-								
-<!-- 分隔線 -->
-								
-<!-- 連絡電話 -->
-								
-									<div class="form-group inputState">
-										
-										<label for="id_label_location">
-											連絡電話:<input type="text" id="id_label_location" name="searchSrting" class="form-control" placeholder="">
-
-										</label>
-										
-									</div>
-								
-                                <!-- 							送出 -->
-                                
-
-                                <!-- 							送出 -->
-
-                      
-                        </div>
+                       
+                       
+                       
+                       
                     </form>
                     
                     <!-- summit -->
@@ -292,21 +236,7 @@
     <option value="">學生票</option>
     </select>
                               
-                              
-                              
-                              
-                              
-                              
-                              
-                              
-                              
-                                <!-- 							送出 -->
-                              
-
-                                <!-- 							送出 -->
-
-
-
+      
     <br>
     <br>
  
