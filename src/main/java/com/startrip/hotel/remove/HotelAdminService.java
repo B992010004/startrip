@@ -1,4 +1,4 @@
-package com.startrip.hotel.service;
+package com.startrip.hotel.remove;
 
 import java.util.List;
 
@@ -9,19 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.startrip.hotel.model.HotelsBean;
 import com.startrip.hotel.model.Rooms;
-import com.startrip.hotel.remove.FacilitylistBean;
-import com.startrip.hotel.remove.FacilitylistDAO;
-import com.startrip.hotel.remove.FacilitynameBean;
-import com.startrip.hotel.remove.FacilitynameDAO;
-import com.startrip.hotel.remove.PhotoBean;
-import com.startrip.hotel.remove.PhotoDAO;
-import com.startrip.hotel.remove.PhotonameBean;
-import com.startrip.hotel.remove.PhotonameDAO;
-import com.startrip.hotel.remove.RoomtypeDAO;
-import com.startrip.hotel.remove.ServicelistBean;
-import com.startrip.hotel.remove.ServicelistDAO;
-import com.startrip.hotel.remove.ServicenameBean;
-import com.startrip.hotel.remove.ServicenameDAO;
 import com.startrip.hotel.repository.HotelDAOInterface;
 
 @Service
