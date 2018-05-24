@@ -59,7 +59,7 @@ public class MemberController {
 	public String logout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		session.removeAttribute("LoginOK");
-		return "index";
+		return "redirect:/";
 	}
 
 	@RequestMapping(value = "/selectdata/{memberid}", method = RequestMethod.GET)
