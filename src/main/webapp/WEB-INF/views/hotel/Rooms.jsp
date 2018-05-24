@@ -637,7 +637,7 @@
 	
 	var subscribedArr = [];
 	
-	 var url = 'http://'+ window.location.host +'/startrip/chat';
+	 var url = 'https://'+ window.location.host +'/startrip/chat';
      var sock = new SockJS(url);
      var stomp = Stomp.over(sock);
      stomp.connect('guest', 'guest', function(frame) {

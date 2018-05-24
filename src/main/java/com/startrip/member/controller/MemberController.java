@@ -96,32 +96,31 @@ public class MemberController {
 	@RequestMapping(value = "/getrtPicture/{rtId}", method = RequestMethod.GET)
 	public ResponseEntity<byte[]> getrtPicture(HttpServletResponse resp, @PathVariable int rtId) {
 		RtDetailsBean rtbean = rtDetailsService.getAllRtDetailsrtId(rtId);
-			String photoName = rtbean.getPhotoPaths();
-			String[] photoNameArr = photoName.split(";");
-			HttpHeaders headers = new HttpHeaders();
-			ByteArrayOutputStream baos = null;
-			int len = 0;
-			byte[] media = null;
+		String photoName = rtbean.getPhotoPaths();
+		String[] photoNameArr = photoName.split(";");
+		HttpHeaders headers = new HttpHeaders();
+		ByteArrayOutputStream baos = null;
+		int len = 0;
+		byte[] media = null;
 
-			try (InputStream is = new FileInputStream("C:/temp/rtImage/" + photoNameArr[0])) {
-				baos = new ByteArrayOutputStream();
-				byte[] b = new byte[8192];
+		try (InputStream is = new FileInputStream("C:/temp/rtImage/" + photoNameArr[0])) {
+			baos = new ByteArrayOutputStream();
+			byte[] b = new byte[8192];
 
-				while ((len = is.read(b)) != -1) {
-					baos.write(b, 0, len);
-				}
-			} catch (IOException e) {
-				throw new RuntimeException("getPicture() 發生 IOException:" + e.getMessage());
+			while ((len = is.read(b)) != -1) {
+				baos.write(b, 0, len);
 			}
-			media = baos.toByteArray();
-			headers.setCacheControl(CacheControl.noCache().getHeaderValue());
-			String mimeType = context.getMimeType(photoNameArr[0]);
-			// headers.setContentType(MediaType.IMAGE_JPEG);
-			headers.setContentType(MediaType.parseMediaType(mimeType));
-			ResponseEntity<byte[]> responseEntity = new ResponseEntity<>(media, headers, HttpStatus.OK);
+		} catch (IOException e) {
+			throw new RuntimeException("getPicture() 發生 IOException:" + e.getMessage());
+		}
+		media = baos.toByteArray();
+		headers.setCacheControl(CacheControl.noCache().getHeaderValue());
+		String mimeType = context.getMimeType(photoNameArr[0]);
+		// headers.setContentType(MediaType.IMAGE_JPEG);
+		headers.setContentType(MediaType.parseMediaType(mimeType));
+		ResponseEntity<byte[]> responseEntity = new ResponseEntity<>(media, headers, HttpStatus.OK);
 
-			return responseEntity;
-		
+		return responseEntity;
 
 	}
 
