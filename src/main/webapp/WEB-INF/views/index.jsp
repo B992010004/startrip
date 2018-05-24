@@ -182,11 +182,10 @@
 	</section>
 	<!-- END section -->
 
-	<section class="probootstrap_section bg-light">
-		<div class="container">
+<div class="container">
 			<div class="row text-center mb-5 probootstrap-animate">
 				<div class="col-md-12">
-					<h4 class="display-4 probootstrap-section-heading">精選推薦2</h4>
+					<h2 class="display-4 border-bottom probootstrap-section-heading">熱門餐廳</h2>
 				</div>
 			</div>
 			<div class="row">
@@ -214,8 +213,6 @@
 				</div>
 			</div>
 		</div>
-	</section>
-	<!-- END section -->
 
 
 	<div>

@@ -175,9 +175,6 @@
 							<p class="card-text">
 								<span>營業時間&nbsp;:&nbsp;</span><span>${rtDetails.rtBusinesshours}</span>
 							</p>
-							<p class="card-text">
-								<span>E-mail&nbsp;:&nbsp;</span><span>${rtDetails.rtEmail}</span>
-							</p>
 
 							<div class="btn11">
 								<input type="image" class="btn btnn repairButton" id="repair"
@@ -247,54 +244,73 @@
 
 	<script>
 	<!-- icons送出    -->
-		$(document).ready(
-				function() {
+		$(document)
+				.ready(
+						function() {
 
-					$(document).on(
-							'click',
-							'#submitOK',
-							function() {
-								var text2 = $(this).parents('.card-body').find(
-										'input:eq(0)').val();
-								var text4 = $(this).parents('.card-body').find(
-										'input:eq(1)').val();
-								var text6 = $(this).parents('.card-body').find(
-										'input:eq(2)').val();
-								var text8 = $(this).parents('.card-body').find(
-										'input:eq(3)').val();
-								var text10 = $(this).parents('.card-body')
-										.find('input:eq(4)').val();
-								var text12 = $(this).parents('.card-body')
-										.find('input:eq(5)').val();
-								var text14 = $(this).parents('.card-body')
-										.find('input:eq(6)').val();
-								var text16 = $(this).parents('.card-body')
-										.find('input:eq(7)').val();
-								var text18 = $(this).parents('.card-body')
-										.find('input:eq(8)').val();
-								var text20 = $(this).parents('.card-body')
-										.find('input:eq(9)').val();
+							$(document)
+									.on(
+											'click',
+											'#submitOK',
+											function() {
+												
+												var id = $(this).parents('.card-body').find('a:first').text();
+												var text2 = $(this).parents(
+														'.card-body').find(
+														'input:eq(0)').val();
+												var text4 = $(this).parents(
+														'.card-body').find(
+														'input:eq(1)').val();
+												var text6 = $(this).parents(
+														'.card-body').find(
+														'input:eq(2)').val();
+												var text8 = $(this).parents(
+														'.card-body').find(
+														'input:eq(3)').val();
+												var text10 = $(this).parents(
+														'.card-body').find(
+														'input:eq(4)').val();
+												var text12 = $(this).parents(
+														'.card-body').find(
+														'input:eq(5)').val();
+												var text14 = $(this).parents(
+														'.card-body').find(
+														'input:eq(6)').val();
+												var text16 = $(this).parents(
+														'.card-body').find(
+														'input:eq(7)').val();
+												var text18 = $(this).parents(
+														'.card-body').find(
+														'input:eq(8)').val();
+												
+												var ajaxall = {
+														rtId : id,
+														rtCounty : text2,
+														rtArea : text4,
+														rtCuisine : text6,
+														teCategory : text8,
+														rtAddress : text10,
+														rtPhone : text12,
+														rtUrl : text14,
+														rtPricepount : text16,
+														rtBusinesshours : text18,
+													};
+												
+												$
+														.ajax({
+															url : "/startrip/updateAll",
+															type : "GET",
+															data : ajaxall,
+															success : function(
+																	responseText,
+																	textStatus) {
 
-								alert(text2);
-								alert(text4);
-								alert(text6);
-								alert(text8);
-								alert(text10);
-								alert(text12);
-								alert(text14);
-								alert(text16);
-								alert(text18);
-								alert(text20);
-								
-								// 				$.ajax({
-								// 					url : "/startrip/deleteRtDetailsrtId",
-								// 					type : "GET",
-								// 					data : ajaxrtid,
-								// 				})
-								// 				location.reload();
-							})
+															}
+														})
 
-				})
+											})
+
+						})
 	</script>
 
 	<script>
@@ -380,14 +396,6 @@
 												$(this).parents('.card-body')
 														.find('span:eq(17)')
 														.html(input18);
-
-												var text20 = $(this).parents(
-														'.card-body').find(
-														'span:eq(19)').text();
-												var input20 = $('<input type="text" class="edit" value="'+text20+'">');
-												$(this).parents('.card-body')
-														.find('span:eq(19)')
-														.html(input20);
 
 											})
 						})

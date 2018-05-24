@@ -10,6 +10,7 @@ public interface MemberRepositoryinterface {
 
 	MemberBean select(String email);
 	MemberBean selectbyid(int memberid);
+
 	void update(MemberBean bean);
 	
 	Integer insert(MemberBean bean);
