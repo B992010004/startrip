@@ -49,7 +49,8 @@
 	padding-top: 45px;
 	padding-bottom: 45px;
 }
-.modal-body{
+
+.modal-body {
 	border-top: #00CA4C 2px solid;
 }
 </style>
@@ -222,14 +223,90 @@
 		}
 	</script>
 	<script>
+		document.addEventListener("DOMContentLoaded", function() {
+			document.getElementById("mail").addEventListener("blur", ckmail);
+			document.getElementById("phone").addEventListener("blur", ckphone);
+			document.getElementById("passck").addEventListener("blur", ckpswd);
+			document.getElementById("passck2").addEventListener("blur", ckpswd2);
+		});
+
+		function ckpswd2() {
+			var fgpassword = document.getElementById("passck").value;
+			var ckpassword = document.getElementById("passck2").value;
+		 if (fgpassword != ckpassword) {
+				document.getElementById("errarea").innerHTML = "<font color=\'red\'>請輸入相同密碼</font>";
+			}		
+			}
+		
+		
+		
+		function ckpswd() {
+			var fgpassword = document.getElementById("passck").value;
+			var passwordlength = document.getElementById("passck").value.length
+			if (fgpassword == "") {
+				document.getElementById("errarea").innerHTML = "<font color=\'red\'>請輸入密碼</font>";
+			} else if (passwordlength < 6) {
+				document.getElementById("errarea").innerHTML = "<font color=\'red\'>密碼長度小於6</font>";
+			}
+		}
+
+		function ckphone() {
+	
+			if ($('#phone').val().match(/^09[0-9]{8}$/)) {
+				$("#err").html("");
+			} else {
+				$("#err").html("<font color=\'red\'>請輸入正確的手機</font> ");
+			}
+		}
+
+		function ckmail() {
+			var ajaxdata = {
+				mail : $('#mail').val()
+			}
+
+			var aa = $('#mail').val();
+			var aa1 = aa.match('@gmail.com');
+			var aa2 = aa.match('@yahoo.com.tw');
+			var aa3 = aa.match('@outlook.com');
+			$
+					.ajax({
+						url : "/startrip/checkid",
+						type : "GET",
+						data : ajaxdata,
+						success : function(responseText, textStatus) {
+							if (aa == "") {
+								$("#tips").html(
+										"<font color=\"red\">請輸入信箱！</font>");
+							} else if (aa1 == null || aa2 == null
+									|| aa3 == null) {
+								$("#tips")
+										.html(
+												" <font color=\'red\'>信箱格式不正確  請使用Google，Yahoo或者outlook信箱</font> ");
+							} else if (responseText == 1) {
+								$("#tips")
+										.html(
+												"<font color=\"red\">帳號已存在，請重新輸入！</font>");
+							} else if (responseText == 0) {
+								$("#tips")
+										.html(
+												"<font color=\"green\">恭喜，此帳號可以使用！</font>")
+							}
+						},
+						error : function() {
+							alert("error");
+						}
+
+					});
+		}
+	</script>
+	<script>
 		$("#backbutton").click(function() {
 			$("#insertform").submit();
 		})
- 
-		
-		
 		$(function ckpass() {
-			$("#passck").on('keyup',
+			$("#passck")
+					.on(
+							'keyup',
 							function() {
 								var ckpassword = document
 										.getElementById("passck").value;
@@ -253,14 +330,10 @@
 							})
 		})
 
-		var flag1= false;
-		var flag2= false;
-		var flag3= false;
-		var flag4= false;
-		
-		
 		$(function insertform() {
-			$("#hahaha").click(function() {
+			$("#hahaha")
+					.click(
+							function() {
 								$("#err").html("");
 								document.getElementById("errarea").innerHTML = "";
 								$("#tips").html("");
@@ -268,7 +341,9 @@
 								if ($('#phone').val().match(/^09[0-9]{8}$/)) {
 									$("#err").html("");
 								} else {
-									$("#err").html("<font color=\'red\'>請輸入正確的手機</font> ");
+									$("#err")
+											.html(
+													"<font color=\'red\'>請輸入正確的手機</font> ");
 								}
 								var ajaxdata = {
 									mail : $('#mail').val()
