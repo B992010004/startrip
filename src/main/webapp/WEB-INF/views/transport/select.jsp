@@ -63,6 +63,46 @@
         }
     </style>
     <title>站名編號查詢</title>
+               <script>
+                    function getArea(data) {
+                        // 	alert($('#FPMap0'));
+                        //	alert(data);
+                        var abb = {};
+                        abb.local = data;
+                        $.ajax({
+                            type: 'POST',
+                            url: 'selectArea',
+                            data: abb,
+                            success: function (response) {
+                                $("#tbo").empty();
+                                $("#gm").empty();
+                                for (var i = 0; i < response.length; i++) {
+                                    $("#tbo").append("<tr><td>" + response[i].area + "</td>" +
+                                        "<td>" + response[i].stationName + "</td>" +
+                                        "<td >" + "<img class='mapImage' id='getAddress' width='30' height='30' src='/startrip/assets/transport/images/mapicon.png' ><span>" + response[i].address + "</span></td></tr>");
+                                }
+
+                            }, error: function (jqXHR, textStatus, errorThrown) { alert("no") },
+
+                        });
+
+                        $(document).on('click', '.mapImage', function () {
+                            //	alert(this)
+                            //	alert('aaaa')
+                            $("#gm").empty();
+                            var googleAddress = $(this).parent('td').children('span').text()
+                            //                             alert(googleAddress)
+                            console.log("地址: " + googleAddress);
+                            $($("#gm")).hide().append(
+                                "<a href='https://maps.google.com/maps?q=" + googleAddress + "&amp;z=11"
+                                + "data-geo='' target='_blank'> <img class='map' alt=" + googleAddress + "src='https://maps.google.com/maps/api/staticmap?zoom=15&size=330x500&maptype=terrain&sensor=false&center=" + googleAddress + "&markers=color:green%7Clabel:S%7C$" + googleAddress + "&key=AIzaSyARfDct4ecrevMJjHgcrjmPOLfbM6X9N7w'></a>"
+                            ).slideDown(2000) ;
+                        });
+
+                    };
+                </script>
+    
+    
 </head>
 
 <body>
@@ -252,21 +292,38 @@
         }
 
 
+       
     </script>
+     <script type="text/javascript" src="test.js">
+
+        var aImg=document.getElementById("mapDiv").getElementsByTagName('img');
+
+        for(var i=0;i<aImg.length;i++){
+
+              aImg[i].style.height="200%";
+
+//              aImg[i].style.width="the width you want";
+
+        }
+
+        
+        </script>
+    
+    
     <!-- 以上為地圖查車站function -->
 
     <!-- 以下為地圖標註顯示 -->
-    <section>
-        <div class="container">
+    
+        <div align="left" style="margin-left:100px">
             <div class="row text-center mb-5 probootstrap-animate">
                 <div class="col-md-12">
                     <h4 class="display-4 probootstrap-section-heading">查詢車站</h4>
                 </div>
             </div>
-            <div class="row">
-                <div>
-                    <a class="probootstrap-thumbnail">
-                        <img id="imgMap" class="img-fluid" alt="Free Template by ProBootstrap.com" src="/startrip/assets/transport/images/taiwan.png"
+            <div style="width:200%" class="row">
+                <div id="mapDiv">
+            <a id="mapDiv" class="probootstrap-thumbnail">
+                        <img style="width:200% " id="imgMap" class="img-fluid" alt="Free Template by ProBootstrap.com" src="/startrip/assets/transport/images/taiwan.png"
                             usemap="#FPMap0" width="280" height="460" usemap="#Map" border="0">
                         <map id="FPMap0" name="FPMap0">
                             <area class=imgbut shape="rect" coords="201,54,248,76" id=01 onclick="getArea('新北')">
@@ -292,54 +349,15 @@
                 </div>
                 <!-- 以上為地圖顯示區塊 -->
                 <!-- 	以下為顯示地區車站 -->
-                <script>
-                    function getArea(data) {
-                        // 	alert($('#FPMap0'));
-                        //	alert(data);
-                        var abb = {};
-                        abb.local = data;
-                        $.ajax({
-                            type: 'POST',
-                            url: 'selectArea',
-                            data: abb,
-                            success: function (response) {
-                                $("#tbo").empty();
-                                $("#gm").empty();
-                                for (var i = 0; i < response.length; i++) {
-                                    $("#tbo").append("<tr><td>" + response[i].area + "</td>" +
-                                        "<td>" + response[i].stationName + "</td>" +
-                                        "<td >" + "<img class='mapImage' id='getAddress' width='30' height='30' src='/startrip/assets/transport/images/mapicon.png' ><span>" + response[i].address + "</span></td></tr>");
-                                }
-
-                            }, error: function (jqXHR, textStatus, errorThrown) { alert("no") },
-
-                        });
-
-                        $(document).on('click', '.mapImage', function () {
-                            //	alert(this)
-                            //	alert('aaaa')
-                            $("#gm").empty();
-                            var googleAddress = $(this).parent('td').children('span').text()
-                            //                             alert(googleAddress)
-                            console.log("地址: " + googleAddress);
-                            $($("#gm")).hide().append(
-                                "<a href='https://maps.google.com/maps?q=" + googleAddress + "&amp;z=11"
-                                + "data-geo='' target='_blank'> <img class='map' alt=" + googleAddress + "src='https://maps.google.com/maps/api/staticmap?zoom=15&size=330x500&maptype=terrain&sensor=false&center=" + googleAddress + "&markers=color:green%7Clabel:S%7C$" + googleAddress + "&key=AIzaSyARfDct4ecrevMJjHgcrjmPOLfbM6X9N7w'></a>"
-                            ).slideDown(2000) ;
-                        });
-
-                    };
-                </script>
+     
                 <!-- 產生出的車站資訊表格 -->
-                <div>
-                    <table class="for-table table">
+                <div style="margin-left:100px">
+                    <table  class="for-table table">
                         <thead>
                             <tr>
                                 <th width="100">地區</th>
                                 <th width="100">站名</th>
                                 <th>車站地址</th>
-
-
                             </tr>
                         </thead>
                         <tbody id="tbo">
@@ -350,14 +368,14 @@
 
                 </div>
                <div id="gm">
-
-                    </div>
+							
+               </div>
             </div>
         </div>
 
 
 
-    </section>
+    
     <!-- 以上為地區顯示車站 -->
 
 
