@@ -46,28 +46,18 @@ public class StationController {
 //		System.out.println(req.getParameter("local"));
 		List<StationBean> area = StationService.selectArea(req.getParameter("local"));
 //		System.out.println(area);
-	
-
 		return area;
 	}
-
 	@RequestMapping(value = "/stationEdit", method = RequestMethod.POST)
 	public String saveStation(@ModelAttribute("StationBean") StationBean ist, BindingResult result,
 			HttpServletRequest request) {
 		StationService.insert(ist);
 		return "redirect:/stationEdit";
 	}
-
 	@RequestMapping(value = "/stationEdit", method = RequestMethod.GET)
 	public String InputStation(Model model) {
 		StationBean ist = new StationBean();
 		model.addAttribute("inputStation", ist);
 		return "transport/stationEdit";
-	}
-
-	
-
-	
-	
-	
+	}	
 }
