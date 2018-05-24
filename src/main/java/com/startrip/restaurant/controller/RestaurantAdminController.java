@@ -143,6 +143,32 @@ public class RestaurantAdminController {
 	}
 
 	// /後台刪除餐廳/---------------------------------------------------------------------------------------------
+	
+	// 後台修改餐廳---------------------------------------------------------------------------------------------
+	
+	@RequestMapping(value = "/updateAll", method = RequestMethod.GET)
+	public @ResponseBody String updateRtDetails(RtDetailsBean bean, HttpServletRequest request, HttpServletResponse response)
+			throws IOException {
+		
+		String rtId = request.getParameter("rtId");
+		Integer rtIdc = Integer.valueOf(rtId);
+		bean.setRtId(rtIdc);
+		bean.setRtCounty(request.getParameter("rtCounty"));
+		bean.setRtCounty(request.getParameter("rtArea"));
+		bean.setRtCounty(request.getParameter("rtCuisine"));
+		bean.setRtCounty(request.getParameter("teCategory"));
+		bean.setRtCounty(request.getParameter("rtAddress"));
+		bean.setRtCounty(request.getParameter("rtPhone"));
+		bean.setRtCounty(request.getParameter("rtUrl"));
+		bean.setRtCounty(request.getParameter("rtPricepount"));
+		bean.setRtCounty(request.getParameter("rtBusinesshours"));
+		rtDetailsService.updateRtDetails(bean);
+
+		return "restaurant/Individualdetailsmodify";
+
+	}
+	
+	// /後台修改餐廳/---------------------------------------------------------------------------------------------
 
 	// 後台顯示全部訂單---------------------------------------------------------------------------------------------
 
