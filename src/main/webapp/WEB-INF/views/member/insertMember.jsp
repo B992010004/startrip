@@ -154,13 +154,11 @@
 								id="progressbarTWInput" name="mAvatar"
 								accept="image/gif, image/jpeg, image/png" style="display: none;" />
 						</div>
-
 						<div class="form-group">
 							<input type="button" id="hahaha" class="btn btn-primary"
 								id="hahaha" style='position: absolute; right: 0;'
 								value="Sign Up">
 						</div>
-
 					</div>
 				</div>
 			</form:form>

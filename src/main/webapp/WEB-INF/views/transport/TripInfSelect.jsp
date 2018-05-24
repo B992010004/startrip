@@ -73,6 +73,27 @@
   </section>
 
 
-
+<div>
+		<jsp:include page="/WEB-INF/views/footer.jsp" flush="true" />
+	</div>
+	<div>
+		<jsp:include page="/WEB-INF/views/member/login.jsp" flush="true" />
+	</div>
+<script src="/startrip/assets/js/jquery.min.js"></script>
+	<script src="/startrip/assets/js/popper.min.js"></script>
+	<script src="/startrip/assets/js/bootstrap.min.js"></script>
+	<script src="/startrip/assets/js/owl.carousel.min.js"></script>
+	<script src="/startrip/assets/js/jquery.waypoints.min.js"></script>
+	<script src="/startrip/assets/js/jquery.easing.1.3.js"></script>
+	<script src="/startrip/assets/js/select2.min.js"></script>
+	<script src="/startrip/assets/js/main.js"></script>
+	<script src="/startrip/assets/js/jquery.min.js"></script>
+	<script src="/startrip/assets/js/popper.min.js"></script>
+	<script src="/startrip/assets/js/bootstrap.min.js"></script>
+	<script src="/startrip/assets/js/owl.carousel.min.js"></script>
+	<script src="/startrip/assets/js/jquery.waypoints.min.js"></script>
+	<script src="/startrip/assets/js/jquery.easing.1.3.js"></script>
+	<script src="/startrip/assets/js/select2.min.js"></script>
+	<script src="/startrip/assets/js/main.js"></script>	
 </body>
 </html>

@@ -125,14 +125,14 @@ public class MemberController {
 
 	}
 
-	@RequestMapping(value = "/member/insertMember", method = RequestMethod.GET)
+	@RequestMapping(value = "/insertMember", method = RequestMethod.GET)
 	public String InsertMember(Model model) {
 		MemberBean mb = new MemberBean();
 		model.addAttribute("MemberBean", mb);
 		return "/member/insertMember";
 	}
 
-	@RequestMapping(value = "/member/insertMember", method = RequestMethod.POST)
+	@RequestMapping(value = "/insertMember", method = RequestMethod.POST)
 	public String InsertMember(@ModelAttribute("MemberBean") MemberBean mb, BindingResult result,
 			HttpServletRequest request) {
 		MultipartFile avatarImage = mb.getAvatarImage();
@@ -144,7 +144,7 @@ public class MemberController {
 				mb.setPhoto(null);
 				mb.setAvatar("user.jpg");
 				memberservice.insert(mb);
-				return "index";
+				return "redirect:/";
 			} else {
 				String ext = originalFilename.substring(originalFilename.lastIndexOf("."));
 				// 寫進資料庫
@@ -174,10 +174,10 @@ public class MemberController {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-				return "index";
+				return "redirect:/";
 			}
 		}
-		return "index";
+		return "redirect:/";
 	}
 
 	@RequestMapping(value = "/LoginServlet", method = RequestMethod.POST)
@@ -271,7 +271,7 @@ public class MemberController {
 		mb.setValidataCode(null);
 		System.out.println(mb);
 		memberservice.update(mb);
-		return "index";
+		return "redirect:/";
 	}
 
 	@RequestMapping(value = "/getPicture/{mail:.+}")
@@ -468,6 +468,6 @@ public class MemberController {
 		String mail = request.getParameter("ckmail");
 		String password = request.getParameter("ckpassword");
 		memberservice.changepassword(mail, password);
-		return "/index";
+		return "redirect:/";
 	}
 }
