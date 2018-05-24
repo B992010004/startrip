@@ -408,10 +408,10 @@ tbody th img {
 				<div class="progress">
 					<span class="progress-label">很棒</span>
 					<div class="progress-bar" role="progressbar"
-						style="width: ${ranks[0]/rankSize *100}%"
-						aria-valuenow="${ranks[0]/rankSize *100}" aria-valuemin="0"
+						style="width: ${rankArr[0]/rankSize *100}%"
+						aria-valuenow="${rankArr[0]/rankSize *100}" aria-valuemin="0"
 						aria-valuemax="100">
-						<fmt:formatNumber type="number" value="${ranks[0]/rankSize *100}"
+						<fmt:formatNumber type="number" value="${rankArr[0]/rankSize *100}"
 							maxFractionDigits="0" />
 						%
 					</div>
@@ -420,10 +420,10 @@ tbody th img {
 				<div class="progress">
 					<span class="progress-label">非常好</span>
 					<div class="progress-bar" role="progressbar"
-						style="width: ${ranks[1]/rankSize *100}%"
-						aria-valuenow="${ranks[1]/rankSize *100}" aria-valuemin="0"
+						style="width: ${rankArr[1]/rankSize *100}%"
+						aria-valuenow="${rankArr[1]/rankSize *100}" aria-valuemin="0"
 						aria-valuemax="100">
-						<fmt:formatNumber type="number" value="${ranks[1]/rankSize *100}"
+						<fmt:formatNumber type="number" value="${rankArr[1]/rankSize *100}"
 							maxFractionDigits="0" />
 						%
 					</div>
@@ -432,10 +432,10 @@ tbody th img {
 				<div class="progress">
 					<span class="progress-label">普通</span>
 					<div class="progress-bar" role="progressbar"
-						style="width: ${ranks[2]/rankSize *100}%"
-						aria-valuenow="${ranks[2]/rankSize *100}" aria-valuemin="0"
+						style="width: ${rankArr[2]/rankSize *100}%"
+						aria-valuenow="${rankArr[2]/rankSize *100}" aria-valuemin="0"
 						aria-valuemax="100">
-						<fmt:formatNumber type="number" value="${ranks[2]/rankSize *100}"
+						<fmt:formatNumber type="number" value="${rankArr[2]/rankSize *100}"
 							maxFractionDigits="0" />
 						%
 					</div>
@@ -444,10 +444,10 @@ tbody th img {
 				<div class="progress">
 					<span class="progress-label">差</span>
 					<div class="progress-bar" role="progressbar"
-						style="width: ${ranks[3]/rankSize *100}%"
-						aria-valuenow="${ranks[3]/rankSize *100}" aria-valuemin="0"
+						style="width: ${rankArr[3]/rankSize *100}%"
+						aria-valuenow="${rankArr[3]/rankSize *100}" aria-valuemin="0"
 						aria-valuemax="100">
-						<fmt:formatNumber type="number" value="${ranks[3]/rankSize *100}"
+						<fmt:formatNumber type="number" value="${rankArr[3]/rankSize *100}"
 							maxFractionDigits="0" />
 						%
 					</div>
@@ -456,10 +456,10 @@ tbody th img {
 				<div class="progress">
 					<span class="progress-label">糟透了</span>
 					<div class="progress-bar" role="progressbar"
-						style="width: ${ranks[4]/rankSize *100}%"
-						aria-valuenow="${ranks[4]/rankSize *100}" aria-valuemin="0"
+						style="width: ${rankArr[4]/rankSize *100}%"
+						aria-valuenow="${rankArr[4]/rankSize *100}" aria-valuemin="0"
 						aria-valuemax="100">
-						<fmt:formatNumber type="number" value="${ranks[4]/rankSize *100}"
+						<fmt:formatNumber type="number" value="${rankArr[4]/rankSize *100}"
 							maxFractionDigits="0" />
 						%
 					</div>

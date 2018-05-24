@@ -22,18 +22,16 @@ public class SeatListBean implements Serializable {
 
 	private Integer SeatNumber;
 
-	private Integer Seat;
-
 	private Integer OrderNumber;
-
-	public Integer getSeatListNumber() {
-		return SeatListNumber;
-	}
 
 	@Override
 	public String toString() {
 		return "SeatListBean [SeatListNumber=" + SeatListNumber + ", Trip=" + Trip + ", SeatNumber=" + SeatNumber
-				+ ", Seat=" + Seat + ", OrderNumber=" + OrderNumber + "]";
+				+ ", OrderNumber=" + OrderNumber + "]";
+	}
+
+	public Integer getSeatListNumber() {
+		return SeatListNumber;
 	}
 
 	public void setSeatListNumber(Integer seatListNumber) {
@@ -56,14 +54,6 @@ public class SeatListBean implements Serializable {
 		SeatNumber = seatNumber;
 	}
 
-	public Integer getSeat() {
-		return Seat;
-	}
-
-	public void setSeat(Integer seat) {
-		Seat = seat;
-	}
-
 	public Integer getOrderNumber() {
 		return OrderNumber;
 	}
@@ -72,4 +62,11 @@ public class SeatListBean implements Serializable {
 		OrderNumber = orderNumber;
 	}
 
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	
+	
+	
 }

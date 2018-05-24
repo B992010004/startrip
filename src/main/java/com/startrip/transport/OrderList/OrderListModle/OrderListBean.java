@@ -2,7 +2,6 @@ package com.startrip.transport.OrderList.OrderListModle;
 
 import java.io.Serializable;
 import java.sql.Time;
-import java.sql.Timestamp;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -34,13 +33,13 @@ public class OrderListBean implements Serializable{
 	
 	private String crderKind;
 	
-	private Time OrderTime;
+	private Time orderTime;
 	
-	private String StarStation;
+	private String starStation;
 	
-	private String EndStation;
+	private String endStation;
 	
-	private Date OrderDate;
+	private Date orderDate;
 
 	public Integer getOrderNumber() {
 		return orderNumber;
@@ -91,52 +90,48 @@ public class OrderListBean implements Serializable{
 	}
 
 	public Time getOrderTime() {
-		return OrderTime;
+		return orderTime;
 	}
 
 	public void setOrderTime(Time orderTime) {
-		OrderTime = orderTime;
+		this.orderTime = orderTime;
 	}
 
 	public String getStarStation() {
-		return StarStation;
+		return starStation;
 	}
 
 	public void setStarStation(String starStation) {
-		StarStation = starStation;
+		this.starStation = starStation;
 	}
 
 	public String getEndStation() {
-		return EndStation;
+		return endStation;
 	}
 
 	public void setEndStation(String endStation) {
-		EndStation = endStation;
+		this.endStation = endStation;
 	}
 
 	public Date getOrderDate() {
-		return OrderDate;
+		return orderDate;
 	}
 
 	public void setOrderDate(Date orderDate) {
-		OrderDate = orderDate;
+		this.orderDate = orderDate;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	@Override
 	public String toString() {
 		return "OrderListBean [orderNumber=" + orderNumber + ", scId=" + scId + ", scName=" + scName + ", sMail="
-				+ sMail + ", sPhone=" + sPhone + ", crderKind=" + crderKind + ", OrderTime=" + OrderTime
-				+ ", StarStation=" + StarStation + ", EndStation=" + EndStation + ", OrderDate=" + OrderDate + "]";
+				+ sMail + ", sPhone=" + sPhone + ", crderKind=" + crderKind + ", orderTime=" + orderTime
+				+ ", starStation=" + starStation + ", endStation=" + endStation + ", orderDate=" + orderDate + "]";
 	}
 
-	public static void update(String scId2, String scName2, String sMail2, Integer sPhone2, String crderKind2,
-			Time orderTime2, String starStation2, String endStation2, Date orderDate2) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-
-	
 	
 	
 }

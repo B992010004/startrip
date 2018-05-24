@@ -21,39 +21,27 @@ public class TripInfBean implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer Trip;
+	private Integer trip;
 	
 	private Date date;
 	
-	private Integer StarStation;
+	private String starStation;
 
-	private Integer EndStation;
+	private String endStation;
 	
-	private Integer Price;
+	private Integer price;
 	
-	private Integer SeateList;
+	private Integer seateList;
 	
-	private Time StarTime;
-
-	
-	
-	
-	
-	@Override
-	public String toString() {
-		return "TripInfBean [Trip=" + Trip + ", date=" + date + ", StarStation=" + StarStation + ", EndStation="
-				+ EndStation + ", Price=" + Price + ", SeateList=" + SeateList + ", StarTime=" + StarTime + "]";
-	}
+	private Time starTime;
 
 	public Integer getTrip() {
-		return Trip;
+		return trip;
 	}
 
 	public void setTrip(Integer trip) {
-		Trip = trip;
+		this.trip = trip;
 	}
-
-
 
 	public Date getDate() {
 		return date;
@@ -63,48 +51,56 @@ public class TripInfBean implements Serializable{
 		this.date = date;
 	}
 
+	public String getStarStation() {
+		return starStation;
+	}
+
+	public void setStarStation(String starStation) {
+		this.starStation = starStation;
+	}
+
+	public String getEndStation() {
+		return endStation;
+	}
+
+	public void setEndStation(String endStation) {
+		this.endStation = endStation;
+	}
+
+	public Integer getPrice() {
+		return price;
+	}
+
+	public void setPrice(Integer price) {
+		this.price = price;
+	}
+
+	public Integer getSeateList() {
+		return seateList;
+	}
+
+	public void setSeateList(Integer seateList) {
+		this.seateList = seateList;
+	}
+
+	public Time getStarTime() {
+		return starTime;
+	}
+
+	public void setStarTime(Time starTime) {
+		this.starTime = starTime;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 
-	public Integer getStarStation() {
-		return StarStation;
+	@Override
+	public String toString() {
+		return "TripInfBean [trip=" + trip + ", date=" + date + ", starStation=" + starStation + ", endStation="
+				+ endStation + ", price=" + price + ", seateList=" + seateList + ", starTime=" + starTime + "]";
 	}
 
-	public void setStarStation(Integer starStation) {
-		StarStation = starStation;
-	}
-
-	public Integer getEndStation() {
-		return EndStation;
-	}
-
-	public void setEndStation(Integer endStation) {
-		EndStation = endStation;
-	}
-
-	public Integer getPrice() {
-		return Price;
-	}
-
-	public void setPrice(Integer price) {
-		Price = price;
-	}
-
-	public Integer getSeateList() {
-		return SeateList;
-	}
-
-	public void setSeateList(Integer seateList) {
-		SeateList = seateList;
-	}
-
-	public Time getStarTime() {
-		return StarTime;
-	}
-
-	public void setStarTime(Time starTime) {
-		StarTime = starTime;
-	}
+	
 	
 }

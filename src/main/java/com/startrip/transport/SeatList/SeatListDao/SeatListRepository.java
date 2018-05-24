@@ -45,11 +45,11 @@ public class SeatListRepository implements SeatListRepositoryInterface {
 	}
 	@Override
 	public void update(Integer Trip, Integer SeatNumber, 
-			Integer Seat, Integer OrderNumber) {
+			Integer OrderNumber) {
 		String hql = "update SeatListBean set   Trip=:Trip SeatNumber=:SeatNumber Seat=:Seat OrderNumber=:OrderNumber   where id =:id";
 		Session session = factory.getCurrentSession();
 		session.createQuery(hql).setParameter("Trip", Trip).setParameter("SeatNumber", SeatNumber)
-				.setParameter("Seat", Seat).setParameter("OrderNumber", OrderNumber)
+				.setParameter("OrderNumber", OrderNumber)
 				.executeUpdate();
 		
 	}

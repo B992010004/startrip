@@ -37,6 +37,11 @@
             max-width: 180px;
             height: 130px;
         }
+        
+        .roomPhoto {
+        	width: 200px;
+        	
+        }
     </style>
 </head>
 
@@ -57,20 +62,20 @@
                 <div style="margin: auto" class="col-md-10  probootstrap-animate">
                     <div class="probootstrap-form probootstrap-form-box mb60">
 
-                        <c:if test="${ empty rtlist }">
-                            <h6>您目前沒有訂單</h6>
-                        </c:if>
+<%--                         <c:if test="${ empty rtlist }"> --%>
+<!--                             <h6>您目前沒有訂單</h6> -->
+<%--                         </c:if> --%>
 <%--                         <c:if test="${ !empty hotellist }"> --%>
                         <h1>訂單完成囉!</h1>
                         <br>
                         <h6>祝您旅途愉快</h6>
                         <br>
-                            <h4>飯店</h4>
+                            <h4>飯店資訊</h4>
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th width="20%" scope="col">房型</th>
-                                        <th width="25%" scope="col">服務</th>
+                                        <th width="25%" scope="col"></th>
                                         <th width="25%" scope="col">設施</th>
                                         <th width="15%" scope="col">每晚平均房價</th>
                                     </tr>
@@ -79,12 +84,14 @@
 
                                     <tr>
                                         <th scope="row">
-                                            <img src="/startrip/assets/images/sq_img_2.jpg">
+                                            <img class="roomPhoto" src="/startrip/assets/images/roomStyle.jpg">
                                             <br> 豪華雙人房
                                         </th>
-                                        <td>附早餐
-                                            <br>可加床
-                                            <br>不可退款
+                                        <td>太魯閣晶英酒店 (Silks Place Taroko Hotel)
+                                            <br>972花蓮縣秀林鄉天祥路18號
+                                            <br>38691155
+                                            <br>入住日期:
+                                            <br>退房日期:
                                         </td>
                                         <td>1 張雙人床 / 2 張單人床
                                             <br>室內WIFI
