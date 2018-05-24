@@ -320,11 +320,11 @@
 								if (ckpassword == "") {
 									document.getElementById("passtext").innerHTML = "";
 								} else if (strongRegex.test(ckpassword)) {
-									document.getElementById("passtext").innerHTML = "<img src='/StarTrip/assets/images/membericon/e.jpg'>";
+									document.getElementById("passtext").innerHTML = "<img src='/startrip/assets/images/membericon/e.jpg'>";
 								} else if (mediumRegex.test(ckpassword)) {
-									document.getElementById("passtext").innerHTML = "<img src='/StarTrip/assets/images/membericon/c.jpg'>";
+									document.getElementById("passtext").innerHTML = "<img src='/startrip/assets/images/membericon/c.jpg'>";
 								} else if (enoughRegex.test(ckpassword)) {
-									document.getElementById("passtext").innerHTML = "<img src='/StarTrip/assets/images/membericon/b.jpg'>";
+									document.getElementById("passtext").innerHTML = "<img src='/startrip/assets/images/membericon/b.jpg'>";
 								}
 
 							})
