@@ -230,6 +230,10 @@ tbody th img {
 	width: 135%;
 	height: 200%;
 }
+
+ul li {
+			list-style-type: none;
+		}
 </style>
 
 </head>

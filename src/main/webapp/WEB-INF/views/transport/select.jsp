@@ -366,7 +366,12 @@
     <!-- 以上為地區顯示車站 -->
 
 
-
+<div>
+		<jsp:include page="/WEB-INF/views/footer.jsp" flush="true" />
+	</div>
+	<div>
+		<jsp:include page="/WEB-INF/views/member/login.jsp" flush="true" />
+	</div>
     <script src="/startrip/assets/js/jquery.min.js"></script>
 
     <script src="/startrip/assets/js/popper.min.js"></script>

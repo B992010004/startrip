@@ -341,6 +341,7 @@
                                 </tr>
                             </thead>
                             <tbody>
+							<!-- 靜態資料 -->
                             <tr>
                                     <th scope="row">
                                         <img src="/startrip/assets/images/roomStyle.jpg">

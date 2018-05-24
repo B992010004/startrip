@@ -98,14 +98,14 @@
 			<th></th>
 			
 		</tr>
-			<c:forEach items='${訂單資訊}' var='select'>
+			<c:forEach items='${OrerList}' var='select'>
 			<tr>
-				<td>${select.trip}</td>			
-				<td><fmt:formatDate pattern="yyyy-MM-dd"  value="${select.date }" /></td>
-				<td>${select.starTime}</td>
-				<td>${select.starStation}</td>
+				<td>${selectAllOrerList.trip}</td>			
+				<td><fmt:formatDate pattern="yyyy-MM-dd"  value="${selectAllOrerList.orderDate }" /></td>
+				<td>${selectAllOrerList.orderTime}</td>
+				<td>${selectAllOrerList.starStation}</td>
 				<td>--------></td>
-				<td>${select.endStation}</td>
+				<td>${selectAllOrerList.endStation}</td>
 				<td>${select.price}</td>
 				<td></td>
 	
