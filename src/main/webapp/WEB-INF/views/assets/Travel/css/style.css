@@ -83,8 +83,10 @@
     width: 300px;
   }
   #travelName{
-  color: white;
+  		color: white;
       padding: 1px 20px;
+      font-family: fantasy;
+      font-weight: 1em;
   }
   
   .time.contex{
@@ -98,7 +100,7 @@
      width:200px;
   }
   .triplist{
-      height: 620px;
+      height: 570px;
     background-color: #89ccbb;
     overflow-y: auto;
     position: fixed;

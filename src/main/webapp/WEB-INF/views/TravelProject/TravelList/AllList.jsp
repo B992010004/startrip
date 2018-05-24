@@ -658,7 +658,7 @@ function searchDays(){
 		success:function(data){
 			$('#tripcontext').empty();
 			var bg=$('<div class="bgImg"></div>')
-			var travelNmae = $("<h3 id='travelName'>"+data.Name.travelName+"</h3>");
+			var travelNmae = $("<h4 id='travelName'>"+data.Name.travelName+"</h4>");
 			var col =$("<div class='timestyle col-4'></div>");
 			var starttime = $('<span id ="startDate" class="time contex">'+data.startDate+'</span><br>')
 			var line=$("<span class='time contex' style='margin-left:25px;'>|</span><br>");

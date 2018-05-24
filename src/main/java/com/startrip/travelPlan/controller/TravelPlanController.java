@@ -240,7 +240,7 @@ public class TravelPlanController {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-//		System.out.println();
+	
 		return bean;
 	}
 	//show行程圖片
