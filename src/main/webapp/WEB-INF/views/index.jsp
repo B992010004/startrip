@@ -214,44 +214,27 @@
 	</section>
 	<!-- END section -->
 
-	<section class="probootstrap_section bg-light">
-		<div class="container">
+<div class="container">
 			<div class="row text-center mb-5 probootstrap-animate">
 				<div class="col-md-12">
-					<h4 class="display-4 probootstrap-section-heading">精選推薦2</h4>
+					<h2 class="display-4 border-bottom probootstrap-section-heading">熱門餐廳</h2>
 				</div>
-			</div>
-			<div class="row">
-				<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
-					<a href="#" class="probootstrap-thumbnail">
-						<img src="/startrip/assets/images/img_1.jpg" alt="Free Template by ProBootstrap.com" class="img-fluid">
-						<div class="probootstrap-text">
-							<h3>5</h3>
+				<div class="row">
+					<c:forEach var='rtDetails' items='${RtDetails}'>
+						<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
+							<a href="/startrip/restaurant/${rtDetails.rtId}"
+								class="probootstrap-thumbnail"> <img
+								src="/startrip/getPicture/rtImage/${rtDetails.photoArr[2]}"
+								alt="Free Template by ProBootstrap.com" class="img-fluid">
+								<h3>${rtDetails.rtName}</h3> <span>${rtDetails.rtCuisine}</span>
+								<span>${rtDetails.teCategory}</span> <span>${rtDetails.rtPricepount}</span>
+								<span>${rtDetails.rtCounty}</span>
+							</a>
 						</div>
-					</a>
-				</div>
-				<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
-					<a href="#" class="probootstrap-thumbnail">
-						<img src="/startrip/assets/images/img_2.jpg" alt="Free Template by ProBootstrap.com" class="img-fluid">
-						<h3>6</h3>
-					</a>
-				</div>
-				<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
-					<a href="#" class="probootstrap-thumbnail">
-						<img src="/startrip/assets/images/img_3.jpg" alt="Free Template by ProBootstrap.com" class="img-fluid">
-						<h3>7</h3>
-					</a>
-				</div>
-				<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
-					<a href="#" class="probootstrap-thumbnail">
-						<img src="/startrip/assets/images/img_4.jpg" alt="Free Template by ProBootstrap.com" class="img-fluid">
-						<h3>8</h3>
-					</a>
+					</c:forEach>
 				</div>
 			</div>
 		</div>
-	</section>
-	<!-- END section -->
 
 
 	<div>
