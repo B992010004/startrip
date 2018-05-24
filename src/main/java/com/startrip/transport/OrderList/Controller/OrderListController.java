@@ -39,11 +39,7 @@ public class OrderListController {
 @RequestMapping(value = "/selectAllOrerList", method = RequestMethod.GET)
 public String selectAllOrerList(Model model, HttpServletRequest request, OrderListBean rdb) {
 		List<OrderListBean> all= OrderListService.select();
-
-	
-
 //	System.out.println("OrderListController 的 id :");
-	
 	model.addAttribute("OrerList", all);
 	System.out.println("OrerListSelectAll="+all);
 	return "/transport/OrerListSelectAll";
