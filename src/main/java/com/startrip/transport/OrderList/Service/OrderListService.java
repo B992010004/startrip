@@ -9,6 +9,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.startrip.transport.OrderList.OrderListInterface.OrderListRepositoryInterface;
 import com.startrip.transport.OrderList.OrderListModle.OrderListBean;
 import com.startrip.transport.Station.StationModle.StationBean;
 
@@ -17,7 +18,7 @@ import com.startrip.transport.Station.StationModle.StationBean;
 public class OrderListService implements OrderListServiceInterface {
 
 	@Autowired
-	private OrderListServiceInterface orderListDAO;
+	private OrderListRepositoryInterface orderListDAO;
 	
 	@Override
 	public List<OrderListBean> select() {
