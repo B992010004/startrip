@@ -49,6 +49,9 @@
 	padding-top: 45px;
 	padding-bottom: 45px;
 }
+.modal-body{
+	border-top: #00CA4C 2px solid;
+}
 </style>
 
 
@@ -222,11 +225,11 @@
 		$("#backbutton").click(function() {
 			$("#insertform").submit();
 		})
-
+ 
+		
+		
 		$(function ckpass() {
-			$("#passck")
-					.on(
-							'keyup',
+			$("#passck").on('keyup',
 							function() {
 								var ckpassword = document
 										.getElementById("passck").value;
@@ -250,11 +253,14 @@
 							})
 		})
 
+		var flag1= false;
+		var flag2= false;
+		var flag3= false;
+		var flag4= false;
+		
+		
 		$(function insertform() {
-			$("#hahaha")
-					.click(
-							function() {
-
+			$("#hahaha").click(function() {
 								$("#err").html("");
 								document.getElementById("errarea").innerHTML = "";
 								$("#tips").html("");
@@ -262,9 +268,7 @@
 								if ($('#phone').val().match(/^09[0-9]{8}$/)) {
 									$("#err").html("");
 								} else {
-									$("#err")
-											.html(
-													"<font color=\'red\'>請輸入正確的手機</font> ");
+									$("#err").html("<font color=\'red\'>請輸入正確的手機</font> ");
 								}
 								var ajaxdata = {
 									mail : $('#mail').val()

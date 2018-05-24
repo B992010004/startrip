@@ -42,6 +42,9 @@
 	padding-top: 45px;
 	padding-bottom: 45px;
 }
+.modal-body{
+	border-top: #00CA4C 2px solid;
+}
 </style>
 </head>
 <body>
