@@ -1,5 +1,6 @@
 package com.startrip.travelPlan.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -44,7 +45,7 @@ public class TravelAllBean {
 	public java.sql.Date getEndDate() {
 		return endDate;
 	}
-
+	
 	public int getTravelDays() {
 		return travelDays;
 	}
@@ -69,7 +70,7 @@ public class TravelAllBean {
 	public void setEndDate(java.sql.Date endDate) {
 		this.endDate = endDate;
 	}
-
+	
 	public void setTravelDays(int travelDays) {
 		this.travelDays = travelDays;
 	}

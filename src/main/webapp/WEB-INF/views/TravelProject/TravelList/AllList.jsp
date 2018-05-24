@@ -244,6 +244,10 @@
     <script src="/startrip/assets/Travel/js/index.js"></script>
 <!--     <script src="/startrip/assets/Travel/js/lightbox.js"></script> -->
 <script>
+
+
+</script>
+<script>
 $(function(){
 	//搜尋天數
 	searchDays();
@@ -254,15 +258,22 @@ $(function(){
 	
 //天數行程切換
 function changetype(){
+	 var icon = {
+	          url: '/startrip/assets/Travel/img/local.ico',
+	          size: new google.maps.Size(90, 90),
+	          //mark位置
+	          anchor: new google.maps.Point(-0, 80),
+	          scaledSize: new google.maps.Size(90, 90)
+	        };
+	
 	var pyrmont = new google.maps.LatLng(25.0337409,121.5416216);
 	 map = new google.maps.Map(document.getElementById('map'), {
         zoom: 13,
         center:pyrmont
-      });
-
+      })
 	
 	 directionsService = new google.maps.DirectionsService;
-	   directionsDisplay = new google.maps.DirectionsRenderer({
+	 directionsDisplay = new google.maps.DirectionsRenderer({
         map: map,
      });
 	
@@ -276,6 +287,9 @@ function changetype(){
 	if(right.is(':visible')==true){
 		right.hide(1000);
 		$('#'+k).parent().parent().find('.timediv').hide(1000); 
+		var input = document.getElementById('pac-input');
+   	 	var searchBox = new google.maps.places.SearchBox(input);
+        createSearch(icon,map,searchBox)
 	}else{
 		right.show(1000);
 		$('#'+k).parent().parent().find('.timediv').show(1000);
@@ -285,6 +299,7 @@ function changetype(){
 				console.log('start'+start)
 			}else if(i==(len-1)){
 				end = $('#'+k).parent().parent().find('.right').eq(i).find('h5').text()
+				
 			}else{
 				waypts.push({
 				location: $('#'+k).parent().parent().find('.right').eq(i).find('h5').text(),
@@ -293,36 +308,23 @@ function changetype(){
 				}
 			}//for---end	
 			directionsService.route({
-			 //起始
-			        origin: start,
-			      //目的
-			        destination: end,
-			      //中途點
-			        waypoints: waypts,
-			      //模式
-			        travelMode: 'DRIVING'
-			      
+			      origin: start,//起始
+			      destination: end,//目的
+			      waypoints: waypts,//中途點
+			      travelMode: 'DRIVING'//模式
 			      }, function(response, status) {
-			        if (status === 'OK') {
-			            console.log(response)
-			        	directionsDisplay.setDirections(response);
-			          
-			         
-
-			        } else {
-			         console.log('Could not display directions due to: ' + status);
-			        }
-				})
-			
-		}
-		
+			        	if (status === 'OK') {
+				        	directionsDisplay.setDirections(response);
+				        	var input = document.getElementById('pac-input');
+				        	 var searchBox = new google.maps.places.SearchBox(input);
+				             createSearch(icon,map,searchBox)
+				        } else {
+				         console.log('Could not display directions due to: ' + status);
+				        }
+					})
+			}
+}//changetype---end
 	
-}
-	
-
-
-
-
 //新增行程天數
 var add={}
 $('#insertday').on('click',function(){
@@ -338,7 +340,7 @@ $('#insertday').on('click',function(){
 				searchDays();
 		}
 	})
-})
+})//新增天數END
 
 //查詢景點相關資訊
 $(document).on('click','.card-img-top',function(e){
@@ -363,16 +365,16 @@ $(document).on('click','.card-img-top',function(e){
 		var selectday=$('<div class="circle col-2" id="chioceday'+i+'">'+i+'</div>')
 		docFrag.append(selectday);
 	}
-		li.empty();
-		li.append(Name);
-		$('#viewName').val(data.view.viewName)
-		li.append(phone);
-		li.append(orgclass);
-		li.append(btn);
-		imgrow.append(imgs);
-		$('#type').html(imgrow)
-		daysrow.append(docFrag);
-		$('#days').html(daysrow);
+	li.empty();
+	li.append(Name);
+	$('#viewName').val(data.view.viewName)
+	li.append(phone);
+	li.append(orgclass);
+	li.append(btn);
+	imgrow.append(imgs);
+	$('#type').html(imgrow)
+	daysrow.append(docFrag);
+	$('#days').html(daysrow);
 	})
 	
 })
@@ -385,7 +387,7 @@ $(document).on('click','.close',function(){
 
 $(document).mouseup(function(e){
 	  var container =$(".viewDetail"); // 這邊放你想要排除的區塊
-	    if (!container.is(e.target) && container.has(e.target).length === 0) {
+	  if (!container.is(e.target) && container.has(e.target).length === 0) {
 	       container.hide(); 
 	    }
 	  })
@@ -634,8 +636,11 @@ $(document).on('click','.closelist',function(e){
 
 
 
-</script>
-<script>
+
+
+
+
+
 
 //-----------------------------------
 //行程天數生成
@@ -872,8 +877,6 @@ function searchView(){
 
 
 function initMap() {
-	
-	
   	var pyrmont = new google.maps.LatLng(25.0337409,121.5416216);
 	var map;
     var infowindow;
@@ -881,7 +884,6 @@ function initMap() {
           url: '/startrip/assets/Travel/img/local.ico',
           size: new google.maps.Size(90, 90),
           //mark位置
-          //origin: new google.maps.Point(0, 4),
           anchor: new google.maps.Point(-0, 80),
           scaledSize: new google.maps.Size(90, 90)
         };
@@ -891,8 +893,6 @@ function initMap() {
 	    zoom: 14
 	      });
 	
-    
-     
 	//--------------------------------
 	//標記初始化地圖	      
      marker = new google.maps.Marker({
@@ -902,132 +902,129 @@ function initMap() {
         icon: icon,
     })
     service = new google.maps.places.PlacesService(map);
-	// Create the search box and link it to the UI element.
-	var input = document.getElementById('pac-input');
-  	var searchBox = new google.maps.places.SearchBox(input);
-
-      // Bias the SearchBox results towards current map's viewport.
-      map.addListener('bounds_changed', function() {
-        searchBox.setBounds(map.getBounds());
-      });
-		
-      var markers = [];
-      // Listen for the event fired when the user selects a prediction and retrieve
-      // more details for that place.
-      //placechange-----
-      searchBox.addListener('places_changed', function() {
-    	  marker.setMap(null);
-   var places = searchBox.getPlaces();
-		console.log(places)
-   if (places.length == 0) {
-      return;
-   }
-
-    // Clear out the old markers.
-    markers.forEach(function(marker) {
-      marker.setMap(null);
-    });
-    markers = [];
-
-    // For each place, get the icon, name and location.
-    var bounds = new google.maps.LatLngBounds();
-    
-    places.forEach(function(place,index) {
-    if (!place.geometry||(place.photos.length==0)) {
-        console.log("Returned place contains no geometry");
-        return;
-      }
+     var input = document.getElementById('pac-input');
+     var searchBox = new google.maps.places.SearchBox(input);
+     createSearch(icon,map,searchBox)
      
-
-      // Create a marker for each place.
-      markers.push(
-        new google.maps.Marker({
-          map: map,
-          icon: icon,
-          title: place.name,
-          position: place.geometry.location,
-          animation: google.maps.Animation.DROP
-        })
-        );
-      //-------------------end
-      //markerclick-----------------------------
-    	google.maps.event.addListener(markers[index], 'click', function() {
-  		var body=$('.viewDetail');
-		var li = body.find('ul');
-		li.empty();
-		
-		body.css("display","block")
-		body.find('h5').text(place.name)
-		body.find('h5').attr('data-location',place.geometry.location)
-		body.append('<input type="hidden" class="placeId" value='+place.place_id+'>') 
-  		body.find('img').attr('src',place.photos[0].getUrl({'maxWidth': 100, 'maxHeight': 100}));
-		li.empty();
-		var address = $('<li class="list-group-item address">地址:<h5>'+place.formatted_address+'</h5></li>');
-		li.append(address)
-		if(!(place.rating==undefined)){
-	  		var rating= $('<li class="list-group-item rating">景點評分:<h5>'+place.rating +'</h5></li>');
-	  		li.append(rating);
-		}
-		if(!(place.formatted_phone_number==undefined)){
-			var phone = $('<li class="list-group-item phone">電話:<h5>'+place.formatted_phone_number+'</h5></li>');
-			li.append(phone);
-		}
-	
-		if(!(place.website==undefined)){
-			var website = $('<li class="list-group-item website">網址:<h5>'+place.website+'</h5></li>');
-			li.append(website);
-		}
-		var btn = $('<button id="insertList" type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addList" >加入行程</button>');
-		var imgrow = $('<div class="checkview row"></div>');
-		var daysrow = $('<div class="checkview row"></div>');
-		var imgs=$('<div class="list-group-item col-3" id="food" src="/startrip/assets/Travel/img/food.png"></div><div id="shop" class="list-group-item col-3" src="/startrip/assets/Travel/img/shop.png"></div><div id="travel" class="list-group-item col-3" src="/startrip/assets/Travel/img/mountain.png"></div><div id="rest" class="list-group-item col-3" src="/startrip/assets/Travel/img/zzz.png"><div><hr>');
-		var docFrag = $(document.createDocumentFragment());
-
-		var days=${Travel.travelDays};
-		
-		for(var i =1;i<=days;i++){
-		var selectday=$('<div class="circle col-2" id="chioceday'+i+'">'+i+'</div>')
-		docFrag.append(selectday);
-		}
-		
-		$('#viewName').val(place.name)
-		li.append(btn);
-		
-		imgrow.append(imgs);
-		$('#type').html(imgrow)
-		daysrow.append(docFrag);
-		$('#days').html(daysrow); 
-        });
-
-
-      if (place.geometry.viewport) {
-        // Only geocodes have viewport.
-        bounds.union(place.geometry.viewport);
-      } else {
-        bounds.extend(place.geometry.location);
-      }
-
-     
-    	});
-		//place.each-----end
-    
-    	map.fitBounds(bounds);
-  	});
-		//placechange-----end------------------------------------
-
-      directionsService = new google.maps.DirectionsService;
-	   directionsDisplay = new google.maps.DirectionsRenderer({
-          draggable: true,
-          map: map,
-       });
+  }//init end 
   
-  
-  }//init end
-  
+	function createSearch(icon,map,searchBox){
+	    // Bias the SearchBox results towards current map's viewport.
+	      map.addListener('bounds_changed', function() {
+	        searchBox.setBounds(map.getBounds());
+	      });
+			
+	      var markers = [];
+	      // Listen for the event fired when the user selects a prediction and retrieve
+	      // more details for that place.
+	      //placechange-----
+	      searchBox.addListener('places_changed', function() {
+	    	  marker.setMap(null);
+	   var places = searchBox.getPlaces();
+			console.log(places)
+	   if (places.length == 0) {
+	      return;
+	   }
+
+	    // Clear out the old markers.
+	    markers.forEach(function(marker) {
+	      marker.setMap(null);
+	    });
+	    markers = [];
+
+	    // For each place, get the icon, name and location.
+	    var bounds = new google.maps.LatLngBounds();
+	    
+	    
+	    places.forEach(function(place,index) {
+	    	var photoslen = place.photos
+	    	console.log("photoslen="+photoslen)
+	    	if (!place.geometry||(photoslen.length!=1&&photoslen==undefined )) {
+	        console.log("Returned place contains no geometry");
+	        return;
+	      }
+	      // Create a marker for each place.
+	      markers.push(
+	        new google.maps.Marker({
+	          map: map,
+	          icon: icon,
+	          title: place.name,
+	          position: place.geometry.location,
+	          animation: google.maps.Animation.DROP
+	        })
+	        );
+	      //-------------------end
+	      //markerclick-----------------------------
+	    	google.maps.event.addListener(markers[index], 'click', function() {
+	  		var body=$('.viewDetail');
+			var li = body.find('ul');
+			li.empty();
+			
+			body.css("display","block")
+			body.find('h5').text(place.name)
+			body.find('h5').attr('data-location',place.geometry.location)
+			body.append('<input type="hidden" class="placeId" value='+place.place_id+'>') 
+	  		body.find('img').attr('src',place.photos[0].getUrl({'maxWidth': 100, 'maxHeight': 100}));
+			li.empty();
+			var address = $('<li class="list-group-item address">地址:<h5>'+place.formatted_address+'</h5></li>');
+			li.append(address)
+			if(!(place.rating==undefined)){
+		  		var rating= $('<li class="list-group-item rating">景點評分:<h5>'+place.rating +'</h5></li>');
+		  		li.append(rating);
+			}
+			if(!(place.formatted_phone_number==undefined)){
+				var phone = $('<li class="list-group-item phone">電話:<h5>'+place.formatted_phone_number+'</h5></li>');
+				li.append(phone);
+			}
+		
+			if(!(place.website==undefined)){
+				var website = $('<li class="list-group-item website">網址:<h5>'+place.website+'</h5></li>');
+				li.append(website);
+			}
+			var btn = $('<button id="insertList" type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addList" >加入行程</button>');
+			var imgrow = $('<div class="checkview row"></div>');
+			var daysrow = $('<div class="checkview row"></div>');
+			var imgs=$('<div class="list-group-item col-3" id="food" src="/startrip/assets/Travel/img/food.png"></div><div id="shop" class="list-group-item col-3" src="/startrip/assets/Travel/img/shop.png"></div><div id="travel" class="list-group-item col-3" src="/startrip/assets/Travel/img/mountain.png"></div><div id="rest" class="list-group-item col-3" src="/startrip/assets/Travel/img/zzz.png"><div><hr>');
+			var docFrag = $(document.createDocumentFragment());
+
+			var days=${Travel.travelDays};
+			
+			for(var i =1;i<=days;i++){
+			var selectday=$('<div class="circle col-2" id="chioceday'+i+'">'+i+'</div>')
+			docFrag.append(selectday);
+			}
+			
+			$('#viewName').val(place.name)
+			li.append(btn);
+			
+			imgrow.append(imgs);
+			$('#type').html(imgrow)
+			daysrow.append(docFrag);
+			$('#days').html(daysrow); 
+	        });
 
 
+	      if (place.geometry.viewport) {
+	        // Only geocodes have viewport.
+	        bounds.union(place.geometry.viewport);
+	      } else {
+	        bounds.extend(place.geometry.location);
+	      }
 
- 
+	     
+	    	});
+			//place.each-----end
+	    
+	    	map.fitBounds(bounds);
+	  	});
+			//placechange-----end------------------------------------
+
+	      directionsService = new google.maps.DirectionsService;
+		   directionsDisplay = new google.maps.DirectionsRenderer({
+	          draggable: true,
+	          map: map,
+	       });
+		}
   
   //(回傳直,狀態)
   function callback(results, status) {
@@ -1049,16 +1046,6 @@ function initMap() {
         });
 
         //-----------------------------
-//	        google.maps.event.addListener(marker, 'click', function() {
-
-//// 	        infowindow.setContent('<div><strong>' + place.name + '</strong><br>' 
-//// 	        + place.formatted_phone_number+'<br>'
-//// 	        +place.rating +'<br>'
-//// 	        +place.website  +'<br>'
-//// 	        + place.formatted_address + '</div>'
-//// 	        +"<img src="+place.photos[0].getUrl({'maxWidth': 100, 'maxHeight': 100})+'>');
-//// 	          infowindow.open(map, this);
-//	        });
         }
         });
 
