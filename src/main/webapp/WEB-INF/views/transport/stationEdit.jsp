@@ -240,8 +240,6 @@
 
 
 <input type="submit" value="送出" class="btn btn-primary btn-block">
-
-
        </div>
         <form action="/startrip/stationEdit" class="probootstrap-form" style="border-radius: 30px;">
         <br>

@@ -15,7 +15,7 @@ public interface OrderListRepositoryInterface {
 
 	void update(String scId,String scName,  String sMail, Integer sPhone, String crderKind,Timestamp orderTime,
 			
-			String StarStation ,String EndStation
+			String starStation ,String endStation
 			
 			
 			);
