@@ -45,7 +45,7 @@ public class HotelReviewRepositoryImp implements HotelReviewRepository {
 	}
 
 	@Override
-	public void addHotelReview(HotelReview hotelReview){
+	public void addHotelReview(HotelReview hotelReview) {
 		Session session = sessionFactory.getCurrentSession();
 		hotelReview.setUpdateTime(new Timestamp(new Date().getTime()));
 		session.save(hotelReview);
@@ -63,12 +63,12 @@ public class HotelReviewRepositoryImp implements HotelReviewRepository {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Long> getRankByHotelId(Integer hotelId) {
-		String hql = "SELECT count(overallRank) FROM HotelReview hr WHERE hr.hotelId = :hotelId GROUP BY hr.overallRank";
+	public List<Object[]> getRankByHotelId(Integer hotelId) {
+		String hql = "SELECT hr.overallRank, COUNT(overallRank) FROM HotelReview hr WHERE hr.hotelId = :hotelId GROUP BY hr.overallRank";
 		Session session = sessionFactory.getCurrentSession();
-		List<Long> list = new ArrayList<>();
+		List<Object[]> list = new ArrayList<>();
 		list = session.createQuery(hql).setParameter("hotelId", hotelId).list();
-		// System.out.println(list);
+
 		return list;
 	}
 

@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Timestamp;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -132,19 +133,19 @@ public class RestaurantController {
 	// 前台新增訂單---------------------------------------------------------------------------------------------
 
 	@RequestMapping(value = "/reservation/{rtId}", method = RequestMethod.GET)
-	public String insertRtBooking(@PathVariable("rtId") Integer rtId,Model model) {
-		
+	public String insertRtBooking(@PathVariable("rtId") Integer rtId, Model model) {
+
 		RtDetailsBean rbb = rtDetailsService.getAllRtDetailsrtId(rtId);
 		RtBookingBean rtBookingBean = new RtBookingBean();
 		model.addAttribute("RtDetailsBean", rbb);
 		model.addAttribute("RtBookingBean", rtBookingBean);
-		
+
 		return "restaurant/reservation";
 	}
 
 	@RequestMapping(value = "/insertRtBooking/", method = RequestMethod.POST)
-	public String insertRtBooking(@ModelAttribute("RtBookingBean") RtBookingBean rbb, Model model , BindingResult result, HttpServletRequest request,
-			HttpSession session) {
+	public String insertRtBooking(@ModelAttribute("RtBookingBean") RtBookingBean rbb, Model model, BindingResult result,
+			HttpServletRequest request, HttpSession session) {
 
 		MemberBean memberBean = (MemberBean) session.getAttribute("LoginOK");
 		Timestamp outDate = new Timestamp(System.currentTimeMillis());
@@ -207,18 +208,27 @@ public class RestaurantController {
 
 		// review
 		// 評等
-		List<Long> ranks = restaurantReviewService.getRankByRestaurantId(restaurantId);
+		// [星等, 數量]
+		List<Object[]> list = restaurantReviewService.getRankByRestaurantId(restaurantId);
+
 		Integer rankSize = 0;
-		for (Long rank : ranks) {
-			Integer tmp = rank.intValue();
-			rankSize += tmp;
+		int[] rankArr = { 0, 0, 0, 0, 0 };
+		// 根本不能轉型成Integer[]??
+		for (Object[] intArr : list) {
+			// 用String取值超彆扭
+			String var = intArr[0].toString();
+			int toInt = Integer.valueOf(var);
+			rankArr[toInt - 1] = Integer.valueOf(intArr[1].toString());
+			rankSize += Integer.valueOf(intArr[1].toString());
 		}
+
+		System.out.println("rankArr=    " + Arrays.toString(rankArr));
 		// 避免0/0
 		if (rankSize == 0) {
 			rankSize = -1;
 		}
 		model.addAttribute("rankSize", rankSize);
-		model.addAttribute("ranks", ranks);
+		model.addAttribute("rankArr", rankArr);
 		// 評論bean
 		List<RestaurantReview> reviews = restaurantReviewService.getRestaurantReviewsByRestaurantId(restaurantId);
 		model.addAttribute("reviews", reviews);
