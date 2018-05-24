@@ -88,9 +88,10 @@ public class TravelAllDao implements ITripAllDao {
 
 	@Override
 	public void updateDays(TravelAllBean bean) throws SQLException {
-		String hql = "UPDATE TravelAllBean SET travelDays = :travelDays WHERE travelId = :travelId AND memberId=:memberId";
+		String hql = "UPDATE TravelAllBean SET endDate=:endDate, travelDays = :travelDays WHERE travelId = :travelId AND memberId=:memberId";
 		System.out.println(bean.toString());
-		getSession().createQuery(hql).setParameter("travelDays", bean.getTravelDays())
+		getSession().createQuery(hql).setParameter("endDate", bean.getEndDate())
+									 .setParameter("travelDays", bean.getTravelDays())
 									 .setParameter("travelId", bean.getTravelId())
 									 .setParameter("memberId", bean.getMemberId()).executeUpdate();
 	}
