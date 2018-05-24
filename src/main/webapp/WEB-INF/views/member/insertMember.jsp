@@ -49,6 +49,9 @@
 	padding-top: 45px;
 	padding-bottom: 45px;
 }
+.modal-body{
+	border-top: #00CA4C 2px solid;
+}
 </style>
 
 
@@ -222,11 +225,11 @@
 		$("#backbutton").click(function() {
 			$("#insertform").submit();
 		})
-
+ 
+		
+		
 		$(function ckpass() {
-			$("#passck")
-					.on(
-							'keyup',
+			$("#passck").on('keyup',
 							function() {
 								var ckpassword = document
 										.getElementById("passck").value;
@@ -240,21 +243,24 @@
 								if (ckpassword == "") {
 									document.getElementById("passtext").innerHTML = "";
 								} else if (strongRegex.test(ckpassword)) {
-									document.getElementById("passtext").innerHTML = "<img src='/StarTrip/assets/images/membericon/e.jpg'>";
+									document.getElementById("passtext").innerHTML = "<img src='/startrip/assets/images/membericon/e.jpg'>";
 								} else if (mediumRegex.test(ckpassword)) {
-									document.getElementById("passtext").innerHTML = "<img src='/StarTrip/assets/images/membericon/c.jpg'>";
+									document.getElementById("passtext").innerHTML = "<img src='/startrip/assets/images/membericon/c.jpg'>";
 								} else if (enoughRegex.test(ckpassword)) {
-									document.getElementById("passtext").innerHTML = "<img src='/StarTrip/assets/images/membericon/b.jpg'>";
+									document.getElementById("passtext").innerHTML = "<img src='/startrip/assets/images/membericon/b.jpg'>";
 								}
 
 							})
 		})
 
+		var flag1= false;
+		var flag2= false;
+		var flag3= false;
+		var flag4= false;
+		
+		
 		$(function insertform() {
-			$("#hahaha")
-					.click(
-							function() {
-
+			$("#hahaha").click(function() {
 								$("#err").html("");
 								document.getElementById("errarea").innerHTML = "";
 								$("#tips").html("");
@@ -262,9 +268,7 @@
 								if ($('#phone').val().match(/^09[0-9]{8}$/)) {
 									$("#err").html("");
 								} else {
-									$("#err")
-											.html(
-													"<font color=\'red\'>請輸入正確的手機</font> ");
+									$("#err").html("<font color=\'red\'>請輸入正確的手機</font> ");
 								}
 								var ajaxdata = {
 									mail : $('#mail').val()
