@@ -41,6 +41,8 @@ public class OrderListBean implements Serializable{
 	
 	private Date orderDate;
 
+	
+	
 	public Integer getOrderNumber() {
 		return orderNumber;
 	}

@@ -84,11 +84,21 @@
 
         function mouseover() {			
             this.src = "/startrip/assets/transport/images/setOn.png";
+        
+            if(){
+                   	function mouseout() {
+                       	this.src = "/startrip/assets/transport/images/setOn.jpg";    
+            }
+            	   else{
+            	  function mouseout() {
+                  	this.src = "/startrip/assets/transport/images/setOff.jpg";
+                  }}
         }
-        function mouseout() {
-        	this.src = "/startrip/assets/transport/images/setOff.jpg";
-        }
+       
         function click1() {
+        	function mouseout() {
+            	this.src = "/startrip/assets/transport/images/setOn.jpg";
+            }
         	this.src = "/startrip/assets/transport/images/setOn.png";
         	 this.innerHTML = '您選的座位為' + this.id.substr(5) + '號';
              $("#QQ").html("<span>"+'您選的座位為'+this.id.substr(5)+'號'+"</span>");

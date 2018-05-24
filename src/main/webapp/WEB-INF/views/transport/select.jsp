@@ -293,7 +293,6 @@
                 <!-- 以上為地圖顯示區塊 -->
                 <!-- 	以下為顯示地區車站 -->
                 <script>
-
                     function getArea(data) {
                         // 	alert($('#FPMap0'));
                         //	alert(data);
@@ -325,16 +324,12 @@
                             console.log("地址: " + googleAddress);
                             $($("#gm")).hide().append(
                                 "<a href='https://maps.google.com/maps?q=" + googleAddress + "&amp;z=11"
-                                + "data-geo='' target='_blank'> <img class='map' alt=" + googleAddress + "src='https://maps.google.com/maps/api/staticmap?zoom=15&size=300x300&maptype=terrain&sensor=false&center=" + googleAddress + "&markers=color:green%7Clabel:S%7C$" + googleAddress + "&key=AIzaSyARfDct4ecrevMJjHgcrjmPOLfbM6X9N7w'></a>"
+                                + "data-geo='' target='_blank'> <img class='map' alt=" + googleAddress + "src='https://maps.google.com/maps/api/staticmap?zoom=15&size=330x500&maptype=terrain&sensor=false&center=" + googleAddress + "&markers=color:green%7Clabel:S%7C$" + googleAddress + "&key=AIzaSyARfDct4ecrevMJjHgcrjmPOLfbM6X9N7w'></a>"
                             ).slideDown(2000) ;
                         });
 
                     };
                 </script>
-
-
-
-
                 <!-- 產生出的車站資訊表格 -->
                 <div>
                     <table class="for-table table">
