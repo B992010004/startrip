@@ -227,19 +227,18 @@
 			document.getElementById("mail").addEventListener("blur", ckmail);
 			document.getElementById("phone").addEventListener("blur", ckphone);
 			document.getElementById("passck").addEventListener("blur", ckpswd);
-			document.getElementById("passck2").addEventListener("blur", ckpswd2);
+			document.getElementById("passck2")
+					.addEventListener("blur", ckpswd2);
 		});
 
 		function ckpswd2() {
 			var fgpassword = document.getElementById("passck").value;
 			var ckpassword = document.getElementById("passck2").value;
-		 if (fgpassword != ckpassword) {
+			if (fgpassword != ckpassword) {
 				document.getElementById("errarea").innerHTML = "<font color=\'red\'>請輸入相同密碼</font>";
-			}		
 			}
-		
-		
-		
+		}
+
 		function ckpswd() {
 			var fgpassword = document.getElementById("passck").value;
 			var passwordlength = document.getElementById("passck").value.length
@@ -251,7 +250,7 @@
 		}
 
 		function ckphone() {
-	
+
 			if ($('#phone').val().match(/^09[0-9]{8}$/)) {
 				$("#err").html("");
 			} else {
@@ -268,35 +267,37 @@
 			var aa1 = aa.match('@gmail.com');
 			var aa2 = aa.match('@yahoo.com.tw');
 			var aa3 = aa.match('@outlook.com');
-			$
-					.ajax({
-						url : "/startrip/checkid",
-						type : "GET",
-						data : ajaxdata,
-						success : function(responseText, textStatus) {
-							if (aa == "") {
-								$("#tips").html(
-										"<font color=\"red\">請輸入信箱！</font>");
-							} else if (aa1 == null || aa2 == null
-									|| aa3 == null) {
-								$("#tips")
-										.html(
-												" <font color=\'red\'>信箱格式不正確  請使用Google，Yahoo或者outlook信箱</font> ");
-							} else if (responseText == 1) {
-								$("#tips")
-										.html(
-												"<font color=\"red\">帳號已存在，請重新輸入！</font>");
-							} else if (responseText == 0) {
-								$("#tips")
-										.html(
-												"<font color=\"green\">恭喜，此帳號可以使用！</font>")
-							}
-						},
-						error : function() {
-							alert("error");
+			if (aa == "") {
+				$("#tips").html("<font color=\"red\">請輸入信箱！</font>");
+			} else if (aa1 != null || aa2 != null || aa3 != null) {
+				$.ajax({
+					url : "/startrip/checkid",
+					type : "GET",
+					data : ajaxdata,
+					success : function(responseText, textStatus) {
+						if (responseText == 1) {
+							$("#tips").html(
+									"<font color=\"red\">帳號已存在，請重新輸入！</font>");
+						} else if (responseText == 0) {
+							$("#tips").html(
+									"<font color=\"green\">恭喜，此帳號可以使用！</font>")
 						}
 
-					});
+					},
+					error : function() {
+						alert("error");
+					}
+
+				});
+
+			}
+
+			else {
+				$("#tips")
+						.html(
+								" <font color=\'red\'>信箱格式不正確  請使用Google，Yahoo或者outlook信箱</font> ");
+			}
+
 		}
 	</script>
 	<script>
