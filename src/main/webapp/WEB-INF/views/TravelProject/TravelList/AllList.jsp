@@ -271,7 +271,7 @@ function changetype(){
         zoom: 13,
         center:pyrmont
       })
-	
+	 infowindow = new google.maps.InfoWindow();
 	 directionsService = new google.maps.DirectionsService;
 	 directionsDisplay = new google.maps.DirectionsRenderer({
         map: map,
@@ -314,6 +314,8 @@ function changetype(){
 			      travelMode: 'DRIVING'//模式
 			      }, function(response, status) {
 			        	if (status === 'OK') {
+			        		console.log(response)
+			        		directionsDisplay.setOptions(infowindow.setContent('123456'))
 				        	directionsDisplay.setDirections(response);
 				        	var input = document.getElementById('pac-input');
 				        	 var searchBox = new google.maps.places.SearchBox(input);
@@ -403,6 +405,7 @@ $(document).on('click','.list-group-item.col-3',function(e){
 	})
 
 	var inputDay = $('#travelDay')
+	
 //新增行程的圖片css切換
 $(document).on('click','.circle',function(e){
 	var all = $('.circle')
@@ -569,10 +572,8 @@ $(document).on('click','#checklist',function(){
 					searchDays();
 					}
 				})
-				
-						
-						})
 			})
+		})
 				
 		}else if(check==false){
 				console.log('沒有行程')
@@ -988,12 +989,17 @@ function initMap() {
 			var docFrag = $(document.createDocumentFragment());
 
 			var days=${Travel.travelDays};
-			
+			if(days==0){
+				$('#starttime').parent().css('display','none');
+				$('#endtime').parent().css('display','none');
+				
+			}else{
+				$('#time').parent().css('display','none');
 			for(var i =1;i<=days;i++){
-			var selectday=$('<div class="circle col-2" id="chioceday'+i+'">'+i+'</div>')
-			docFrag.append(selectday);
+				var selectday=$('<div class="circle col-2" id="chioceday'+i+'">'+i+'</div>')
+				docFrag.append(selectday);
+				}
 			}
-			
 			$('#viewName').val(place.name)
 			li.append(btn);
 			
@@ -1069,9 +1075,9 @@ function initMap() {
 		$('#endtime').timepicker();
 		$('#time').timepicker();
 		
-		$('#myModal').on('shown.bs.modal', function () {
-			  $('#myInput').trigger('focus')
-			})
+// 		$('#myModal').on('shown.bs.modal', function () {
+// 			  $('#myInput').trigger('focus')
+// 			})
 
  }); 
  </script>        
