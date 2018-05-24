@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.hibernate.cfg.JoinedSubclassFkSecondPass;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.CacheControl;
 import org.springframework.http.HttpHeaders;
@@ -33,6 +34,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonParser;
 import com.startrip.member.Service.MemberServiceInterface;
 import com.startrip.member.memberModle.MemberBean;
 import com.startrip.travelPlan.model.TravelAllBean;
@@ -118,14 +121,14 @@ public class TravelPlanController {
 	//查詢ALL Travel-----------------------------------------
 	@RequestMapping(value="travel/all",method=RequestMethod.GET)
 	@ResponseBody
-	public List<Object> travelAll(Model model,String mail) {
+	public List<TravelAllBean> travelAll(Model model,String mail) {
 		
 		HashMap<String , String > map = new HashMap<>();
 		System.out.println("mail="+mail);
 		MemberBean mb = memberservice.select(mail);
 		Integer id = mb.getMemberid();
 		System.out.println("id="+id);
-		List<Object> all = new ArrayList<>();
+		List<TravelAllBean> all = new ArrayList<>();
 		List<TravelAllBean> list = travelservice.select_mail(id);
 		for(TravelAllBean bean :list) {
 			all.add(bean);
@@ -184,15 +187,17 @@ public class TravelPlanController {
 		tb.setTravelName(travelName);
 		tb.setStartDate(startDate);
 		tb.setEndDate(endDate);
+		
+		
 		tb.setMail(mail);
 		tb.setMemberId(memberId);
 		tb.setTravelId(travelId);
 		int days = (int)((endDate.getTime()-startDate.getTime())/(1000*60*60*24)+1);
 		tb.setTravelDays(days);
+		System.out.println("update/travel="+tb);
 		try {
 			travelservice.updateTravel(tb);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -235,7 +240,7 @@ public class TravelPlanController {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-//		System.out.println();
+	
 		return bean;
 	}
 	//show行程圖片

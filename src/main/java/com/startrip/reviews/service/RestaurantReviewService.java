@@ -11,7 +11,7 @@ public interface RestaurantReviewService {
 
 	List<RestaurantReview> getRestaurantReviewsByRestaurantId(Integer restaurantId);
 
-	List<Long> getRankByRestaurantId(Integer restaurantId);
+	List<Object[]> getRankByRestaurantId(Integer restaurantId);
 
 	void addRestaurantReview(RestaurantReview restaurantReview);
 

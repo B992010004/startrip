@@ -4,7 +4,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Array;
 import java.text.ParseException;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -87,18 +89,27 @@ public class HotelController {
 
 		// review
 		// 評等
-		List<Long> ranks = hotelReviewService.getRankByHotelId(hotelId);
+		//[星等, 數量]
+		List<Object[]> list = hotelReviewService.getRankByHotelId(hotelId);
+
 		Integer rankSize = 0;
-		for (Long rank : ranks) {
-			Integer tmp = rank.intValue();
-			rankSize += tmp;
+		int[] rankArr = { 0, 0, 0, 0, 0 };
+		//根本不能轉型成Integer[]??
+		for (Object[] intArr : list) {
+			//用String取值超彆扭
+			String var = intArr[0].toString();
+			int toInt = Integer.valueOf(var);
+			rankArr[toInt - 1] = Integer.valueOf(intArr[1].toString());
+			rankSize += Integer.valueOf(intArr[1].toString());
 		}
+		
+		System.out.println("rankArr=    " + Arrays.toString(rankArr));
 		// 避免0/0
 		if (rankSize == 0) {
 			rankSize = -1;
 		}
 		model.addAttribute("rankSize", rankSize);
-		model.addAttribute("ranks", ranks);
+		 model.addAttribute("rankArr", rankArr);
 
 		// 評論bean
 		List<HotelReview> reviews = hotelReviewService.getHotelReviewsByHotelId(hotelId);
@@ -121,7 +132,7 @@ public class HotelController {
 		String[] photoArr = null;
 		photoArr = bean.getPhotoString().split(";");
 		bean.setPhotoArr(photoArr);
-		
+
 		// 目前並沒有房型資料
 		// roomtype 塞hotelBean裡
 		bean.setRoomtype(roomType);

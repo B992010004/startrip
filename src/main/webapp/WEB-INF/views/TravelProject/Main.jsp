@@ -56,12 +56,14 @@
 		<div class="row">
 			<div class="col-md-3" style="background-color: blcak;">
 				<ul class="list-group list-group-flush">
-					<li class="list-group-item " align="center"><a	href="/startrip/Travel/addPlan/${LoginOK.mail}">新增行程</a></li>
-<%-- 					<li class="list-group-item " align="center"><a	href="Travel/addPlan/${LoginOK.mail}">新增行程</a></li> --%>
+					<a class="list-group-flush list-group-item"	href="/startrip/Travel/addPlan/${LoginOK.mail}">新增行程</a>
+<%-- 					
+						<li class="list-group-item " align="center"><a	href="Travel/addPlan/${LoginOK.mail}">新增行程</a></li> --%>
 <!-- 					<li class="list-group-item " align="center"><a href="Travel/addList">新增清單</a></li> -->
 <!-- 					<li class="list-group-item " align="center"><a	href="Views/add">新增景點</a></li> -->
 <!-- 					<li class="list-group-item " align="center"><a	href="TravelViews/all">查詢景點</a></li> -->
 				</ul> 
+					<img style="width:100%;height:100%;opacity: 0.5;"	alt="" src="/startrip/assets/Travel/img/BG.jpg">
 			</div>
 
 			<div class="col-md-9" id="travels">
@@ -87,6 +89,13 @@
 						</div>
 					</div>
 				</div>
+				<div>
+				<ul class="pagination">
+			        <li><a id="left" href="#" class="page not-active">上一页</a></li>  
+			        <li class="active"><a id="now" href="#">1</a></li>
+			        <li><a id="right" href="#" class="page">下一页</a></li>
+			    </ul>
+				</div>
 			</div>
 		</div>
 	</section>
@@ -108,6 +117,8 @@
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
+				
+			
 				</div>
 				<!-- -------------------------------------------------------- -->
 				<form method='GET' name="update">
@@ -182,6 +193,7 @@
 											success : function(data) {
 												console.log(e.target.id)
 												$('#' + e.target.id).parent().parent().remove();
+												i
 											}
 										})
 							})//click end
@@ -267,56 +279,138 @@
 		})//end
 
 		//搜尋會員行程
+		
+		
 		function searchTravels() {
+			var num=6;//每页显示多少条数据，暂定设为6.
+			var page;//总页数
+			var now_page=1;//当前页数
+			var result
+			
 			var all = {};
 			all.mail = "${LoginOK.mail}";
-
-			$.ajax({
+			
+			$.ajax({ 
 					url : "/startrip/travel/all",
 					type : "GET",
-					dataType : "json",
 					data : all,
-					contentType : "application/json; charset=utf-8",
+					 dataType : "json",
+				        contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
 					success : function(data) {
-							$('#row').empty();
-							var docFrag = $(document.createDocumentFragment());
-							var start;
-							var end;
-							for (var i = 0, len = data.length; i < len; i++) {
-								var card = $('<div class="card col-5" id="plan" style="width: 18rem;"></div>')
-								var imgrow = $('<div class="row" "></div>');
-								var img = $('<img id="travelimg" class="card-img-top col-8" src="/startrip/show/'+data[i].img+'" alt="Card image cap"><img src = /startrip/assets/Travel/img/marker.png class="icon col-2 update" id="update'
-										+ (i + 1)
-										+ '"><img id="del'
-										+ (i + 1)
-										+ '" class="icon col-2 del" src = "/startrip/assets/Travel/img/close2.png">')
-								var body = $('<div class="card-body"></div>')
-								var title = $('<h5 class="card-title">'
-										+ data[i].travelName
-										+ '</h5><div class="id"  style="display:none;">'
-										+ data[i].travelId + '</div>')
-
-								start = new Date(data[i].startDate);
-								StartDate = format(start);
-								end = new Date(data[i].endDate);
-								endDate = format(end);
-								var text = $('<p class="card-text">'
-										+ StartDate
-										+ '-'
-										+ endDate
-										+ '</p><button  id="planset'+i+'"  class="btn btn-primary btn-lg btn-block" type="submit" id=btn'+i+'>確定</button>')
-								body.append([ title, text ]);
-								imgrow.append(img);
-								card.append([ imgrow, body ]);
-								docFrag.append(card);
-							}
-							$('#row').append(docFrag);
+						
+						 result=data;
+						if(result.length%num==0){
+							page=result.length/num
+						}else{ 
+							page=Math.ceil(result.length/num);
 						}
+							
+						var index=num;
+						dataDisplay(result,0,index)
+							
+						 $("#right").click(function(){
+							
+					            now_page++; /*每次点击下一页，页数+1*/
+					            $("#now").text(now_page);/*改变分页按钮上显示的页数*/
+					            
+					            if(now_page+1>=page){
+					            $("#right").addClass('not-active') 
+					              
+					            }else{
+							         $("#right").removeClass('not-active');
+					            }
+					            
+					            if(now_page-1<page){
+					                $("#left").removeClass('not-active');
+					                /*如果是最后一页，就禁用a标签*/
+					            } 
+					            else{
+					                $("#left").addClass('not-active');
+					                /*如果不是最后一页，就重新启用a标签*/
+					            }
+					           
+			            		
+				            $('#row').empty();/*清空上一页显示的数据*/
+			            		  dataDisplay(result,index,index=index+num)
+						        });  
+							
+							 $("#left").click(function(){
+						            now_page--;/*每次点击上一页，页数-1*/
+						            $("#now").text(now_page);  //改变分页按钮上显示的页数
+						            if(now_page-1<=1){
+						            	$("#left").addClass('not-active') 
+						                /*如果是第一页，就禁用a标签*/
+						            }
+						            else{
+						            	  $("#left").removeClass('not-active');
+						                /*如果不是第一页，就重新启用a标签*/
+						            }
 
-					})
+						            if(now_page+1>1){
+						                $("#right").removeClass('not-active');
+						                /*如果是最后一页，就禁用a标签*/
+						            } 
+						            else{
+						                $("#right").addClass('not-active');
+						                /*如果不是最后一页，就重新启用a标签*/
+						            }
+						            $('#row').empty();/*清空上一页显示的数据*/
+						            dataDisplay(result,index=index-2*num,index=index+num);
+						            /*显示新一页的数据，*/                    
+							 });
+							 
+							 function  dataDisplay(data,start,end){
+									console.log("display="+data)
+									console.log("display="+data[0].img)
+										$('#row').empty();
+										 
+									var docFrag = $(document.createDocumentFragment());
+									var start;
+									var end;
+									if(end>result.length){
+										end=result.length
+									}
+									for (var i = start, len = end; i < len; i++) {
+// 										console.log("displayi="+data[i].img)
+// 									for (var i = start; i < end; i++) {
+// 										console.log(data[i].img)
+										var card = $('<div class="card col-5" id="plan" style="width: 18rem;"></div>')
+										var imgrow = $('<div class="row" "></div>');
+										var img = $('<img id="travelimg" class="card-img-top col-8" src="/startrip/show/'+data[i].img+'" alt="Card image cap"><img src = /startrip/assets/Travel/img/marker.png class="icon col-2 update" id="update'
+												+ (i + 1)+ '"><img id="del'+ (i + 1)+ '" class="icon col-2 del" src = "/startrip/assets/Travel/img/close2.png">')
+										var body = $('<div class="card-body"></div>')
+										var title = $('<h5 class="card-title">'	+ data[i].travelName + '</h5><div class="id"  style="display:none;">'+ data[i].travelId + '</div>')
 
+										start = new Date(data[i].startDate);
+										StartDate = format(start);
+										end = new Date(data[i].endDate);
+										endDate = format(end);
+										var text = $('<p class="card-text">'
+												+ StartDate
+												+ '-'
+												+ endDate
+												+ '</p><button  id="planset'+i+'"  class="btn btn-primary btn-lg btn-block" type="submit" id=btn'+i+'>確定</button>')
+										body.append([ title, text ]);
+										imgrow.append(img);
+										card.append([ imgrow, body ]);
+										docFrag.append(card);
+									}
+									
+									$('#row').append(docFrag);
+									}
+							
+						
+							
+						
+						
+						}//success---end
+					})//ajax --end
 		}
-
+		
+			
+		
+		
+		
 		function format(time) {
 			var y = time.getFullYear();
 			var M = time.getMonth();

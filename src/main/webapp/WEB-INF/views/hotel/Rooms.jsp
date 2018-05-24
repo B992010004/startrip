@@ -134,9 +134,9 @@
 <body>
 
 
-    
-        <jsp:include page="/WEB-INF/views/header.jsp" flush="true" />
-
+    <div>
+		<jsp:include page="/WEB-INF/views/header.jsp" flush="true" />
+	</div>
     <!-- END nav -->
   	<section class="probootstrap-cover overflow-hidden relative" style="background-image: url('/startrip/assets/images/bg_1.jpg');" data-stellar-background-ratio="0.5"
     	id="section-home">
@@ -341,6 +341,7 @@
                                 </tr>
                             </thead>
                             <tbody>
+							<!-- 靜態資料 -->
                             <tr>
                                     <th scope="row">
                                         <img src="/startrip/assets/images/roomStyle.jpg">
@@ -481,27 +482,27 @@
                                 <div class="travler-rank col-md-3" >                            
 		                            <div class="progress">
 		                            	<span class="progress-label">很棒</span>
-										<div class="progress-bar" role="progressbar" style="width: ${ranks[0]/rankSize *100}%"aria-valuenow="${ranks[0]/rankSize *100}" aria-valuemin="0" aria-valuemax="100"><fmt:formatNumber type="number" value="${ranks[0]/rankSize *100}" maxFractionDigits="0"/>%</div>
+										<div class="progress-bar" role="progressbar" style="width: ${rankArr[4]/rankSize *100}%" aria-valuenow="${rankArr[0]/rankSize *100}" aria-valuemin="0" aria-valuemax="100"><fmt:formatNumber type="number" value="${ranks[0]/rankSize *100}" maxFractionDigits="0"/>%</div>
 									</div>							
 									
 									<div class="progress">
 										<span class="progress-label">非常好</span>							  							  
-									  	<div class="progress-bar" role="progressbar" style="width: ${ranks[1]/rankSize *100}%" aria-valuenow="${ranks[1]/rankSize *100}" aria-valuemin="0" aria-valuemax="100"><fmt:formatNumber type="number" value="${ranks[1]/rankSize *100}" maxFractionDigits="0"/>%</div>
+									  	<div class="progress-bar" role="progressbar" style="width: ${rankArr[3]/rankSize *100}%" aria-valuenow="${rankArr[1]/rankSize *100}" aria-valuemin="0" aria-valuemax="100"><fmt:formatNumber type="number" value="${rankArr[1]/rankSize *100}" maxFractionDigits="0"/>%</div>
 									</div>					
 									
 									<div class="progress">
 										<span class="progress-label">普通</span>							  		
-									  	<div class="progress-bar" role="progressbar" style="width: ${ranks[2]/rankSize *100}%" aria-valuenow="${ranks[2]/rankSize *100}" aria-valuemin="0" aria-valuemax="100"><fmt:formatNumber type="number" value="${ranks[2]/rankSize *100}" maxFractionDigits="0"/>%</div>
+									  	<div class="progress-bar" role="progressbar" style="width: ${rankArr[2]/rankSize *100}%" aria-valuenow="${rankArr[2]/rankSize *100}" aria-valuemin="0" aria-valuemax="100"><fmt:formatNumber type="number" value="${rankArr[2]/rankSize *100}" maxFractionDigits="0"/>%</div>
 									</div>							
 									
 									<div class="progress">
 										<span class="progress-label">差</span>
-										<div class="progress-bar" role="progressbar" style="width: ${ranks[3]/rankSize *100}%" aria-valuenow="${ranks[3]/rankSize *100}" aria-valuemin="0" aria-valuemax="100"><fmt:formatNumber type="number" value="${ranks[3]/rankSize *100}" maxFractionDigits="0"/>%</div>
+										<div class="progress-bar" role="progressbar" style="width: ${rankArr[1]/rankSize *100}%" aria-valuenow="${rankArr[3]/rankSize *100}" aria-valuemin="0" aria-valuemax="100"><fmt:formatNumber type="number" value="${rankArr[3]/rankSize *100}" maxFractionDigits="0"/>%</div>
 									</div>						
 									
 									<div class="progress">
 										<span class="progress-label">糟透了</span>
-									  	<div class="progress-bar" role="progressbar" style="width: ${ranks[4]/rankSize *100}%" aria-valuenow="${ranks[4]/rankSize *100}" aria-valuemin="0" aria-valuemax="100"><fmt:formatNumber type="number" value="${ranks[4]/rankSize *100}" maxFractionDigits="0"/>%</div>
+									  	<div class="progress-bar" role="progressbar" style="width: ${rankArr[0]/rankSize *100}%" aria-valuenow="${rankArr[4]/rankSize *100}" aria-valuemin="0" aria-valuemax="100"><fmt:formatNumber type="number" value="${rankArr[4]/rankSize *100}" maxFractionDigits="0"/>%</div>
 									</div>       
 								</div>
 						
@@ -567,7 +568,7 @@
             <div>
                 <textarea id="messages" rows="1" cols="25;" style="resize:none;" placeholder="請輸入訊息" maxlength="250"></textarea>
             </div>
-            <div class="btn btn-secondary" id="sendText" onclick="initChat('${LoginOK.memberid }', 2)">傳二</div>
+            <div class="btn btn-secondary" id="sendText" onclick="initChat('${LoginOK.memberid }', 1)">傳訊給業主</div>
         </div>
 
 	</div>

@@ -31,7 +31,7 @@ public class RestaurantReviewServiceImp implements RestaurantReviewService {
 
 	@Transactional
 	@Override
-	public List<Long> getRankByRestaurantId(Integer restaurantId) {
+	public List<Object[]> getRankByRestaurantId(Integer restaurantId) {
 		return restaurantReviewRepository.getRankByRestaurantId(restaurantId);
 	}
 

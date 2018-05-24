@@ -49,7 +49,7 @@ public class HotelReviewServiceImp implements HotelReviewService {
 
 	@Transactional
 	@Override
-	public List<Long> getRankByHotelId(Integer hotelId) {
+	public List<Object[]> getRankByHotelId(Integer hotelId) {
 		// return reviewRepositoryImp.getRankByRestaurantId(restaurantId);
 		return reviewRepositoryImp.getRankByHotelId(hotelId);
 	}

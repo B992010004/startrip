@@ -38,10 +38,9 @@
 
 <body>
 
-
-
-    <jsp:include page="/WEB-INF/views/header.jsp" flush="true" />
-
+    <div>
+        <jsp:include page="/WEB-INF/views/header.jsp" flush="true" />
+    </div>
     <!-- END nav -->
     <section class="probootstrap-cover overflow-hidden relative" style="background-image: url('/startrip/assets/images/bg_1.jpg');"
         data-stellar-background-ratio="0.5" id="section-home">
@@ -236,6 +235,14 @@
             </div>
         </div>
     </footer>
+    <!-- END section -->
+    <div>
+        <jsp:include page="/WEB-INF/views/footer.jsp" flush="true" />
+    </div>
+    <div>
+        <jsp:include page="/WEB-INF/views/member/login.jsp" flush="true" />
+    </div>
+
     <div id="responce">
     </div>
     <!-- END footer -->
@@ -258,22 +265,22 @@
     <script>
         $(document).ready(function () {
             $('#allPay').click(function () {
-// 				var formData = new FormData(document.userinfo);
-				var formData = {};
-				formData.lastname = $('#lastname').val();
-				formData.firstname = $('#firstname').val();
-				formData.email = $('#email').val();
-				formData.cellphone = $('#cellphone').val();
-				formData.memberid = $('#memberid').val();
-				formData.password = $('#password').val();
-				console.log(formData);
-				$.ajax({
+                // 				var formData = new FormData(document.userinfo);
+                var formData = {};
+                formData.lastname = $('#lastname').val();
+                formData.firstname = $('#firstname').val();
+                formData.email = $('#email').val();
+                formData.cellphone = $('#cellphone').val();
+                formData.memberid = $('#memberid').val();
+                formData.password = $('#password').val();
+                console.log(formData);
+                $.ajax({
                     url: '/startrip/frontEnd/aioCheckOut/aioCheckOutALL/${hotel.hotelid }/${room.roomtype }',
                     type: 'POST',
                     //enctype: "multipart/form-data",
                     //contentType : false,
                     //processData : false,
-					//dataType:"json",
+                    //dataType:"json",
                     data: formData,
                     success: function (responce) {
                         $('#responce').html(responce);

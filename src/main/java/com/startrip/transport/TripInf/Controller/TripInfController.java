@@ -2,32 +2,38 @@ package com.startrip.transport.TripInf.Controller;
 
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.startrip.transport.TripInf.Service.TripInfService;
+import com.startrip.transport.TripInf.Service.TripInfServiceInterface;
 import com.startrip.transport.TripInf.TripInfModle.TripInfBean;
 
 @Controller
 public class TripInfController {
 
-	@RequestMapping(value = "/selectTripInf", method = RequestMethod.GET)
-	public String select(Model model) {
-		
-		
-		System.out.println("近來了嗎????????");
-		List<TripInfBean> all = TripInfService.select();
-		System.out.println("TripInfBean=" + all);
+	@Autowired
+	TripInfServiceInterface TripInfService;
+	@Autowired
+	ServletContext context;
 
-		model.addAttribute("TripInfList", all);// 標籤名stationList
-		System.out.println("tripInfBean=" + all);
-		return "transport/TripInfSelect";
+	@RequestMapping(value = "/selectTripInf", method = RequestMethod.GET)
+
+	public String select(Model model, HttpServletRequest request) {
+
+		List<TripInfBean> all = TripInfService.select1();
+
+		model.addAttribute("TripInfList", all);// 標籤名TripInfList
+System.out.println(all);
+		return "/transport/TripInfSelect";
 	}
 
 	// ------------------------------------------
@@ -37,10 +43,7 @@ public class TripInfController {
 	@RequestMapping(value = "/selectTrip", method = RequestMethod.POST)
 
 	public String selectTrip(HttpServletRequest req, Model model) {
-		System.out.println(req.getParameter("local"));
-		List<TripInfBean> Date = TripInfService.selectTrip(req.getParameter("local"));
-		List<TripInfBean> StarStation = TripInfService.selectTrip(req.getParameter("local"));
-		List<TripInfBean> EndStation = TripInfService.selectTrip(req.getParameter("local"));
+		
 
 		return "/transport/TripInfSelect";
 	}
@@ -49,14 +52,14 @@ public class TripInfController {
 	public String saveTrip(@ModelAttribute("TripInfBean") TripInfBean TIB, BindingResult result,
 			HttpServletRequest request) {
 		TripInfService.insert(TIB);
-		return "redirect:/stationEdit";
+		return "redirect:/selectTrip123";
 	}
 
-	@RequestMapping(value = "/selectTrip", method = RequestMethod.GET)
+	@RequestMapping(value = "/selectTrip321", method = RequestMethod.GET)
 	public String InputTrip(Model model) {
 		TripInfBean TIB = new TripInfBean();
 		model.addAttribute("inputStation", TIB);
-		return "transport/stationEdit";
+		return "transport/selectTrip321";
 	}
 
 }

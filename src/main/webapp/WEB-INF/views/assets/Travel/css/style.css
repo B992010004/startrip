@@ -4,7 +4,7 @@
   }
 .switch{
 	position: fixed;
-	top:60px;
+	top:80px;
 	left:0px;
 	
 }
@@ -44,14 +44,15 @@
 /* ---------------------------------------------- */
 
 .aside1{
-      z-index: 2;
-      width:360px;
-      margin-left: 20px;
-      position: fixed;
-      display: none; 
-      overflow-y: auto;
-      height: 695px;
-      top:110px;
+       z-index: 2;
+    width: 320px;
+    margin-left: 20px;
+    position: fixed;
+    display: none;
+    overflow-y: auto;
+    height: 810px;
+    top: 130px;
+
   }
 
 .iconImg{
@@ -65,7 +66,7 @@
 	 position: fixed;
     width: 355px;
     height: 100%;
-    top: 109px;
+    top: 130px;
 }
 
 #tripcontext{
@@ -82,8 +83,10 @@
     width: 300px;
   }
   #travelName{
-  color: white;
+  		color: white;
       padding: 1px 20px;
+      font-family: fantasy;
+      font-weight: 1em;
   }
   
   .time.contex{
@@ -97,7 +100,7 @@
      width:200px;
   }
   .triplist{
-      height: 640px;
+      height: 570px;
     background-color: #89ccbb;
     overflow-y: auto;
     position: fixed;
@@ -384,10 +387,10 @@ blockquote {
       width:200px;
   }
   .listcard{
-  position:absolute;
-  width:350px;
-  z-index: 1;
-  top:38px;
+    position: absolute;
+    width: 300px;
+    z-index: 1;
+    top: 38px;
   }
 
   
@@ -438,8 +441,8 @@ blockquote {
       z-index: 15;
       position: fixed;
       left:350px;
-      top:60px;
-      background-color: aquamarine;
+      top:80px;
+      background-color: white;
       width: 100%;
       height: 100%;
   }
@@ -553,7 +556,7 @@ blockquote {
     height: 695px;
     position: fixed;
     z-index: 2;
-    top:  100px;
+    top:  110px;
     display:none;
     padding:40px 30px;
 }

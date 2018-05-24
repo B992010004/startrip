@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -21,9 +22,12 @@ public class OrderListRepository implements OrderListRepositoryInterface{
 	@Override
 	public List<OrderListBean> select() {
 		String hql = "FROM OrderListBean";
-		Session session = factory.getCurrentSession();
-		List<OrderListBean> list = new ArrayList<>();
-		list = session.createQuery(hql, OrderListBean.class).getResultList();
+//		Session session = factory.getCurrentSession();
+		System.out.println("DAO測試");
+		List<OrderListBean> list = null;
+//		Query query = session.createQuery(hql);
+//		list=query.getResultList();
+//		System.out.println("這是測試的LIST"+list);
 		return list;
 	
 	

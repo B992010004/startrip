@@ -9,7 +9,7 @@ public interface HotelReviewRepository {
 	
 	List<HotelReview> getAllHotelReviews();
 	List<HotelReview> getHotelReviewsByHotelId(Integer hotelId);
-	List<Long> getRankByHotelId(Integer hotelId);
+	List<Object[]> getRankByHotelId(Integer hotelId);
 	
 	void addHotelReview(HotelReview hotelReview);
 	

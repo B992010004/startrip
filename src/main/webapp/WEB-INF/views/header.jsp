@@ -60,7 +60,7 @@
 				data : ajaxdata,
 				async : false,
 				success : function(responseText, textStatus) {
-					window.location = "https://startrip.southeastasia.cloudapp.azure.com:8443/startrip";
+					document.location.href = "https://startrip.southeastasia.cloudapp.azure.com:8443/startrip";
 				},
 				error : function() {
 

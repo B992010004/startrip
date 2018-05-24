@@ -62,12 +62,12 @@ public class RestaurantReviewRepositoryImp implements RestaurantReviewRepository
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Long> getRankByRestaurantId(Integer restaurantId) {
-		String hql = "SELECT COUNT(overallRank) FROM RestaurantReview rr WHERE rr.restaurantId = :restaurantId GROUP BY rr.overallRank";
+	public List<Object[]> getRankByRestaurantId(Integer restaurantId) {
+		String hql = "SELECT rr.overallRank,COUNT(overallRank) FROM RestaurantReview rr WHERE rr.restaurantId = :restaurantId GROUP BY rr.overallRank";
 		Session session = sessionFactory.getCurrentSession();
-		List<Long> list = new ArrayList<>();
+		List<Object[]> list = new ArrayList<>();
 		list = session.createQuery(hql).setParameter("restaurantId", restaurantId).list();
-		// System.out.println(list);
+//		System.out.println("在這:    " + list);
 		return list;
 	}
 
