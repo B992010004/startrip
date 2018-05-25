@@ -45,6 +45,7 @@ public class MessengerController extends AbstractWebSocketHandler {
 		outgoing.setReceiverAccount(receiverPk);
 		outgoing.setMessage(messageBean.getMessage());
 		outgoing.setMessageStatus(messageBean.getMessageStatus());
+		outgoing.setSenderAccName(messageBean.getSenderAccName());
 		return outgoing;
 	}
 }
