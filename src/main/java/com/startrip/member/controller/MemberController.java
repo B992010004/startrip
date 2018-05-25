@@ -60,6 +60,8 @@ public class MemberController {
 		HttpSession session = request.getSession();
 		session.removeAttribute("LoginOK");
 		return "redirect:/";
+		
+		
 	}
 
 	@RequestMapping(value = "/selectdata/{memberid}", method = RequestMethod.GET)
@@ -83,6 +85,7 @@ public class MemberController {
 	public void deletedata(Model model, HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String bgida = request.getParameter("bgId");
 		int bgid = Integer.parseInt(bgida);
+		
 		boolean ny = rtBookingService.deleteRtBookingbgId(bgid);
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter writer = response.getWriter();
