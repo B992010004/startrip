@@ -240,7 +240,8 @@
                         <div class="row">
                             <div class="col-md-9">${hotel.hotelname }
                             </div>
-                            <div class="col-md-3">最低訂房價格：${hotel.lowestPrice }</div>
+                            
+                            <div class="col-md-3">最低訂房價格：NT$ <fmt:formatNumber value="${hotel.lowestPrice }" type="number" /></div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">${hotel.hoteladdress }</div>
@@ -355,9 +356,9 @@
                                         1 張雙人床 / 2 張單人床
                                         <br>室內WIFI
                                     </td>
-                                    <td>3000</td>
+                                    <td>NT$ <fmt:formatNumber value="3000" type="number" /></td>
                                     <td>
-										<!-- 房型roomType寫死 -->
+										<!-- 房型roomType寫死  1-->
 										<!-- 數量1 被固定-->
                                         <form action="/startrip/Booking/${hotel.hotelid }/1" method="POST">
                                             <button type="submit" class="btn btn-outline-warning">預定</button>
@@ -385,7 +386,7 @@
                                         1 張雙人床 / 2 張單人床
                                         <br>室內WIFI
                                     </td>
-                                    <td>${room.basicprice }</td>
+                                    <td>NT$ <fmt:formatNumber value="${room.basicprice }" type="number" /></td>
                                     <td>
 										<!-- 房型roomType寫死 -->
 										<!-- 數量1 被固定-->
@@ -471,7 +472,7 @@
                     </div>
                     <div class="col-md-4">
                         <a href="/startrip/review/UserReviewEdit/${hotel.hotelid }" class="btn btn-primary">發表評論</a>
-                        <a href="" class="btn btn-outline-primary">即時客服</a>
+                        <a id="dropdownMessageButton" class="btn btn-outline-primary" onclick="slideFrame()">即時客服</a>
                     </div>
                 </div>
 				<div class="row">
@@ -562,7 +563,7 @@
         </button>
         <div id="dropdownMessage" style="padding:0px;display:none;border:#F8F8FF 1px solid">
             <div style="color: #fff;background-color: #00CA4C;
-            border-color: #00CA4C;"> 對方帳號名</div>
+            border-color: #00CA4C;"> <span style="padding:5px" id="receiverAcc">startrip00</span></div>
             <div id="displayMessage" style="width:250px;height:250px;overflow-y:auto;"></div>
             <div class="dropdown-divider "></div>
             <div>
@@ -637,6 +638,7 @@
 	
 	var subscribedArr = [];
 	
+	//上雲端要改回https
 	 var url = 'https://'+ window.location.host +'/startrip/chat';
      var sock = new SockJS(url);
      var stomp = Stomp.over(sock);
@@ -659,11 +661,11 @@
 		      //清空輸入欄 並加入文字至上方顯示窗
 		      var message = $('#messages').val();    
 		      $('#messages').val("");
-		      var myText = $("<span class='myText' style='color:#FFFFFF;text-align:center;'></span>").text(message);
+		      var myText = $("<span class='myText' style='color:#FFFFFF;text-align:center;padding:5px;'></span>").text(message);
 		      var myTextdiv = $("<div class='myTextDiv' style='border-radius:10px;background-color:#0066FF;float:right;clear:both;max-width:146px;word-wrap: break-word;margin-bottom:5px;'></div>").append(myText);
 		      $('#displayMessage').append(myTextdiv);		      
 		//       var payload = JSON.stringify({'message':'Marco!'});
-		      var payload = JSON.stringify({"message":message, "messageStatus":"1"});		      
+		      var payload = JSON.stringify({"message":message, "messageStatus":"1", "senderAccName":'${LoginOK.firstname }'});		      
 		      //stomp.send("/app/chatRoom/" + senderPk + "/" + receiverPk, {}, payload);
 		      //一開始先推到對方廣播
 		      stomp.send("/app/brocast/message/" + senderPk + "/" + receiverPk, {}, payload);
@@ -681,7 +683,7 @@
 		      //清空輸入欄 並加入文字至上方顯示窗
 		      var message = $('#messages').val();    
 		      $('#messages').val("");
-		      var myText = $("<span class='myText' style='color:#FFFFFF;text-align:center;'></span>").text(message);
+		      var myText = $("<span class='myText' style='color:#FFFFFF;text-align:center;padding:5px;'></span>").text(message);
 		      var myTextdiv = $("<div class='myTextDiv' style='border-radius:10px;background-color:#0066FF;float:right;clear:both;max-width:146px;word-wrap: break-word;margin-bottom:5px;'></div>").append(myText);
 		      $('#displayMessage').append(myTextdiv);
 		      
@@ -696,18 +698,21 @@
       function handleInitP2P(message){
     	  console.log('handleInitP2P message:', message);
     	  var object = JSON.parse(message.body);
-    	  //$('#output').append("<b>Received spittle: " + JSON.parse(message.body).message + "</b><br/>");
-		  var callBackText = $("<span class='callBackText' style='text-align:center;'></span>").text(JSON.parse(message.body).message);
-	      var callBackTextdiv = $("<div class='callBackTextDiv' style='border-radius:10px;background-color:#DDDDDD;float:left;clear:both;max-width:146px;word-wrap:break-word;margin-bottom:5px;'></div>").html(callBackText);
-	      $('#displayMessage').append(callBackTextdiv);
+    	  if(object.message != null){
+	    	  //$('#output').append("<b>Received spittle: " + JSON.parse(message.body).message + "</b><br/>");
+			  var callBackText = $("<span class='callBackText' style='text-align:center;padding:5px;'></span>").text(JSON.parse(message.body).message);
+		      var callBackTextdiv = $("<div class='callBackTextDiv' style='border-radius:10px;background-color:#DDDDDD;float:left;clear:both;max-width:146px;word-wrap:break-word;margin-bottom:5px;'></div>").html(callBackText);
+		      $('#displayMessage').append(callBackTextdiv);
+    	  }
 	      //更改訊息發送位置
 	      //硬改改掉 好醜
 	      $('#sendText').attr('onclick', "sendMessage("+ object.receiverAccount + "," + object.senderAccount + ")");
-	      $('#sendText').text("發送至" + object.senderAccount);      
+	      $('#sendText').text("發送至" + object.senderAccName);
+	      $('#receiverAcc').text(object.senderAccName);
 	      
 	      if(object.messageStatus == 1){
 		      //通知對方 建立點對點通道
-		      var payload = JSON.stringify({"messageStatus":"2"});		      
+		      var payload = JSON.stringify({"messageStatus":"2", "senderAccName":'${LoginOK.firstname }'});		      
 		      //stomp.send("/app/chatRoom/" + senderPk + "/" + receiverPk, {}, payload);
 		      //利用brocast通知對方建立點對點通道
 		      stomp.send("/app/brocast/message/" + object.receiverAccount + "/" + object.senderAccount, {}, payload);
@@ -719,7 +724,7 @@
       function handleText(message) {
     	  console.log('message:', message);
 		  //$('#output').append("<b>Received spittle: " + JSON.parse(message.body).message + "</b><br/>");
-		  var callBackText = $("<span class='callBackText' style='text-align:center;'></span>").text(JSON.parse(message.body).message);
+		  var callBackText = $("<span class='callBackText' style='text-align:center;padding:5px;'></span>").text(JSON.parse(message.body).message);
 	      var callBackTextdiv = $("<div class='callBackTextDiv' style='border-radius:10px;background-color:#DDDDDD;float:left;clear:both;max-width:146px;word-wrap:break-word;margin-bottom:5px;'></div>").html(callBackText);
 	      $('#displayMessage').append(callBackTextdiv);      
       }
