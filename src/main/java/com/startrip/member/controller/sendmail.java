@@ -38,11 +38,12 @@ public class sendmail {
 		});
 		// -- Create a new message --
 		Message msg = new MimeMessage(session);
+		
 		// -- Set the FROM and TO fields --
 		msg.setFrom(new InternetAddress(username + "@gmail.com"));
 		msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(sendWho, false));
 		msg.setSubject(emailTitle);//標頭
-		msg.setText(emailContent);//內文
+		msg.setContent(emailContent, "text/html;charset=UTF-8");//內文
 		msg.setSentDate(new Date());//日期
 		Transport.send(msg);
 		System.out.println(msg);

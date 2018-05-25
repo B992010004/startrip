@@ -149,9 +149,9 @@
 			     if(ckpassword==""){
 			    	 document.getElementById("CKpasstext").innerHTML = "";
 			     }
-			     else if(strongRegex.test(ckpassword)){ document.getElementById("CKpasstext").innerHTML = "<img src='/StarTrip/assets/images/membericon/e.jpg'>";}
-			     else if(mediumRegex.test(ckpassword)){ document.getElementById("CKpasstext").innerHTML = "<img src='/StarTrip/assets/images/membericon/c.jpg'>";}	
-			     else if(enoughRegex.test(ckpassword)){ document.getElementById("CKpasstext").innerHTML = "<img src='/StarTrip/assets/images/membericon/b.jpg'>";}
+			     else if(strongRegex.test(ckpassword)){ document.getElementById("CKpasstext").innerHTML = "<img src='/startrip/assets/images/membericon/e.jpg'>";}
+			     else if(mediumRegex.test(ckpassword)){ document.getElementById("CKpasstext").innerHTML = "<img src='/startrip/assets/images/membericon/c.jpg'>";}	
+			     else if(enoughRegex.test(ckpassword)){ document.getElementById("CKpasstext").innerHTML = "<img src='/startrip/assets/images/membericon/b.jpg'>";}
 			     
 			})	
 	})

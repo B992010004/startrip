@@ -262,6 +262,20 @@ public class MemberController {
 					e.printStackTrace();
 					throw new RuntimeException("檔案上傳發生異常" + e.getMessage());
 				}
+				String rootDirectory = "C:\\temp\\";
+				String fileurl = mb.getMail() + ext;
+				try {
+					File imageFolder = new File(rootDirectory, "memberIcon");
+					if (!imageFolder.exists()) {
+						imageFolder.mkdirs();
+					}
+					File file = new File(imageFolder, fileurl);
+					avatarImage.transferTo(file);
+				} catch (IllegalStateException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 
@@ -411,7 +425,8 @@ public class MemberController {
 						+ path + "/";
 				String resetPassHref = basePath + "member/changepassword?sid=" + digitalSignature + "&mail="
 						+ mb.getMail();
-				String emailContent = "點選下方連結重設密碼" + resetPassHref + " 30分鐘後郵件失效，感謝您對StarTrip的支持";
+				String lastname=mb.getLastname();
+				String emailContent = "<H1>"+lastname+"您好</H1><BR>"+"<h2>請點選下方連結重設密碼</h2><br>" + resetPassHref + " <br><BR>連結30分鐘後失效，請盡速修改您的密碼。<br><H4>感謝您對StarTrip的支持</h4>";
 				System.out.print(resetPassHref);
 				sendmail send = new sendmail();
 				send.sendemail(emailTitle, emailContent, mb.getMail());
