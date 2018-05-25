@@ -51,9 +51,6 @@
 	width: 20px;
 	height: 20px;
 }
-#errorMsg{
-padding-left:0px;
-}
 </style>
 </head>
 <body>
@@ -75,14 +72,13 @@ padding-left:0px;
 
 						<P>StarTrip 會寄送一封電子郵件給您，幫助您修改您的密碼</P>
 						<div class="col-md-6">
-
 							<div class="form-group">
 								<label for="fgmail">信箱:</label> <input type="text"
 									class="form-control" name="fgmail" placeholder="請輸入"
 									id="fgmail" autofocus="autofocus" required="required" />
 							</div>
-							<div class="col-md-10" id="errorMsg"></div>
-						</div>
+							
+						</div><div class="col-md-10" id="errorMsg"></div>
 					</div>
 					<div style="margin: auto" class="col-md-6  probootstrap-animate">
 						<div class="form-group">
@@ -136,7 +132,7 @@ padding-left:0px;
 						async : false,
 						success : function(responseText, textStatus) {
 							if (responseText == 0) {
-								document.getElementById("errorMsg").innerHTML = "<img id='imgicon' src='/startrip/assets/images/membericon/check.png'><font color=\"green\">已發送信件至您的信箱，請在30分鐘內重新設定密碼</BR>網頁將在五秒後返回上一頁</font>"
+								document.getElementById("errorMsg").innerHTML = "<img id='imgicon' src='/startrip/assets/images/membericon/check.png'><font color=\"green\">已發送信件至您的信箱，請在30分鐘內重新設定密碼。網頁將在五秒後返回上一頁</font>"
 								var speed = 5000
 								setTimeout("history.back()", speed);
 							} else if (responseText == 1) {
