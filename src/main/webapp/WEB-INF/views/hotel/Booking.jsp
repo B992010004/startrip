@@ -135,7 +135,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>總金額 NT ${room.basicprice*searchBean.night } 元</td>
+                            <td>總金額 NT$ <fmt:formatNumber value="${room.basicprice*searchBean.night }" type="number" />元</td>
                         </tr>
                     </tbody>
                 </table>
