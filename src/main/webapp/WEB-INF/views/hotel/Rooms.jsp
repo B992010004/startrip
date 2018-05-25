@@ -240,7 +240,8 @@
                         <div class="row">
                             <div class="col-md-9">${hotel.hotelname }
                             </div>
-                            <div class="col-md-3">最低訂房價格：${hotel.lowestPrice }</div>
+                            
+                            <div class="col-md-3">最低訂房價格：NT$ <fmt:formatNumber value="${hotel.lowestPrice }" type="number" /></div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">${hotel.hoteladdress }</div>
@@ -355,9 +356,9 @@
                                         1 張雙人床 / 2 張單人床
                                         <br>室內WIFI
                                     </td>
-                                    <td>3000</td>
+                                    <td>NT$ <fmt:formatNumber value="3000" type="number" /></td>
                                     <td>
-										<!-- 房型roomType寫死 -->
+										<!-- 房型roomType寫死  1-->
 										<!-- 數量1 被固定-->
                                         <form action="/startrip/Booking/${hotel.hotelid }/1" method="POST">
                                             <button type="submit" class="btn btn-outline-warning">預定</button>
@@ -385,7 +386,7 @@
                                         1 張雙人床 / 2 張單人床
                                         <br>室內WIFI
                                     </td>
-                                    <td>${room.basicprice }</td>
+                                    <td>NT$ <fmt:formatNumber value="${room.basicprice }" type="number" /></td>
                                     <td>
 										<!-- 房型roomType寫死 -->
 										<!-- 數量1 被固定-->
