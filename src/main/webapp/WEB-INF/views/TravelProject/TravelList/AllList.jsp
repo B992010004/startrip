@@ -255,6 +255,10 @@ $(function(){
 // 	searchView();
 
 })
+
+
+
+
 	
 //天數行程切換
 function changetype(){
@@ -371,6 +375,23 @@ $('#insertday').on('click',function(){
 		}
 	})
 })//新增天數END
+
+$(document).on('click','.closeday',function(e){
+	console.log($(e.target))
+	var daybody=$(e.target).parent().attr('id');
+	
+	console.log(daybody)
+	var day = daybody.substr(7,1)
+	console.log(day)
+	console.log(${Travel.travelId})
+	console.log(${LoginOK.mail})
+	
+	// 	$(e.taget).parent().remove();
+	
+})
+
+
+
 
 //查詢景點相關資訊
 $(document).on('click','.card-img-top',function(e){
