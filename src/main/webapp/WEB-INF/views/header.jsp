@@ -41,11 +41,11 @@
 		document.getElementById("logout").addEventListener("click",
 				fblogout);})
 	
-	function fblogout(){     
-		FB.logout(function(response){    
-		localStorage.clear();	
-		location.replace( "https://startrip.southeastasia.cloudapp.azure.com:8443/startrip");
-		})}
+// 	function fblogout(){     
+// 		FB.logout(function(response){    
+// 		localStorage.clear();	
+// 		location.replace( "https://startrip.southeastasia.cloudapp.azure.com:8443/startrip");
+// 		})}
 	
 		
 	function testAPI() {
