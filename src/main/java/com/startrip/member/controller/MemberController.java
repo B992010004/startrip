@@ -178,54 +178,54 @@ public class MemberController {
 		}
 		return "redirect:/";
 	}
-    
-	@RequestMapping(value = "/facebooklogin", method = RequestMethod.POST)
-    public String facebooklogin(MemberBean mb,HttpServletRequest request, HttpServletResponse response) throws IOException {
-        HttpSession session = request.getSession();
-        String mail = request.getParameter("userid");
-        String username = request.getParameter("username");
-        MemberBean bean= memberservice.select(mail);
-        if(bean==null) {
-            String pass = UUID.randomUUID().toString();
-            System.out.println(mail);
-            mb.setMail(mail);    
-            mb.setPassword(pass);
-            mb.setAddress("");
-            mb.setAvatar("");
-            mb.setBirthday("");
-            mb.setPhone("");
-            mb.setPhoto(null);
-            mb.setLastname(username);
-            memberservice.insert(mb);
-            session.setAttribute("LoginOK", mb);
-            return "index";
-        }
-        else {
-            session.setAttribute("LoginOK", bean);
-            return "redirect:/";
-        }        
-    }
 
-	
-	
-	
-	
-	
-	
+	@RequestMapping(value = "/facebooklogin", method = RequestMethod.POST)
+	public String facebooklogin(MemberBean mb, HttpServletRequest request, HttpServletResponse response)
+			throws IOException {
+		HttpSession session = request.getSession();
+		String mail = request.getParameter("userid");
+		String username = request.getParameter("username");
+		MemberBean bean = memberservice.select(mail);
+		if (bean == null) {
+			String pass = UUID.randomUUID().toString();
+			System.out.println(mail);
+			mb.setMail(mail);
+			mb.setPassword(pass);
+			mb.setAddress("");
+			mb.setAvatar("");
+			mb.setBirthday("");
+			mb.setPhone("");
+			mb.setPhoto(null);
+			mb.setLastname(username);
+			memberservice.insert(mb);
+			session.setAttribute("LoginOK", mb);
+			return "index";
+		} else {
+			session.setAttribute("LoginOK", bean);
+			return "redirect:/";
+		}
+	}
+
 	@RequestMapping(value = "/LoginServlet", method = RequestMethod.POST)
 	public String Login(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		HttpSession session = request.getSession();
 		String mail = request.getParameter("mail");
 		String password = request.getParameter("password");
 		String remember = request.getParameter("remember");
+		String admin = "startrip00@gmail.com";
+		boolean flag = admin.equals(mail);
 		System.out.println("remember= " + remember);
 		Cookie mailcookie = new Cookie("mail", mail);
 		Cookie passwordcookie = new Cookie("password", password);
 		Cookie remembercookie = new Cookie("remember", remember);
 		MemberBean mm = memberservice.select(mail);
 		if (mm != null && password.equals(mm.getPassword())) {
-			session.setAttribute("LoginOK", mm);
-
+			if (flag) {
+				session.setAttribute("adminLoginOK", mm);
+				session.setAttribute("LoginOK", mm);
+			} else {
+				session.setAttribute("LoginOK", mm);
+			}
 			if (remember != null) {
 				mailcookie.setMaxAge(60 * 60 * 24 * 7);
 				passwordcookie.setMaxAge(60 * 60 * 24 * 7);
@@ -458,8 +458,9 @@ public class MemberController {
 						+ path + "/";
 				String resetPassHref = basePath + "member/changepassword?sid=" + digitalSignature + "&mail="
 						+ mb.getMail();
-				String lastname=mb.getLastname();
-				String emailContent = "<H1>"+lastname+"您好</H1><BR>"+"<h2>請點選下方連結重設密碼</h2><br>" + resetPassHref + " <br><BR>連結30分鐘後失效，請盡速修改您的密碼。<br><H4>感謝您對StarTrip的支持</h4>";
+				String lastname = mb.getLastname();
+				String emailContent = "<H1>" + lastname + "您好</H1><BR>" + "<h2>請點選下方連結重設密碼</h2><br>" + resetPassHref
+						+ " <br><BR>連結30分鐘後失效，請盡速修改您的密碼。<br><H4>感謝您對StarTrip的支持</h4>";
 				System.out.print(resetPassHref);
 				sendmail send = new sendmail();
 				send.sendemail(emailTitle, emailContent, mb.getMail());
