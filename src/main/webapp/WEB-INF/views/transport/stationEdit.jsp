@@ -82,26 +82,36 @@
                 document.getElementById("random" ).addEventListener("click", getRandom);   
         });
 
-        function mouseover() {			
+        
+     var flage1 =flase;
+        
+        function mouseover() {	
+        	if (flage1==false){
+        	
             this.src = "/startrip/assets/transport/images/setOn.png";
-        
-            function mouseout() {
-            	this.src = "/startrip/assets/transport/images/setOff.jpg";
-            }
-        
-        
         }
+        	}
+        function mouseout() {
+        	if (flage1==false){
+            	this.src = "/startrip/assets/transport/images/setOff.jpg";
+        }
+        	}
        
         function click1() {
         	console.log(this)
-//         	function mouseout() {
-//             	this.src = "/startrip/assets/transport/images/setOn.jpg";
-//             }
+if (flage1==false){
         	this.src = "/startrip/assets/transport/images/setOn.png";
         	 this.innerHTML = '您選的座位為' + this.id.substr(5) + '號';
              $("#QQ").html("<span>"+'您選的座位為'+this.id.substr(5)+'號'+"</span>");
+        }else {
+			
+            	this.src = "/startrip/assets/transport/images/setOff.jpg";
+            	flage1= flase:
         }
-		function getRandom(){
+        }
+        
+        
+        function getRandom(){
 			$("#QQ").html("<span>"+'您選的座位為'+Math.floor(Math.random()*31+1)+'號'+"</span>");
 			
 		}	
@@ -254,7 +264,7 @@
         <h1 id="QQ"></h1>                                                                                    
                     
                     
-                    <!-- summit -->
+                   
                 </div>
           
     </section> 
