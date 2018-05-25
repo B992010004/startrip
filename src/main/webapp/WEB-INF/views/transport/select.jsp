@@ -66,11 +66,95 @@
         
 </head>
 <!--     搜尋車站vvv -->
-    <script>
-    document.addEventListener("DOMContentLoaded",function () {
-    		
-    });
-    </script>
+                   <script>
+                    function getArea(data) {
+                        //     alert($('#FPMap0'));
+                        //    alert(data);
+                        var abb = {};
+                        abb.local = data;
+                        $.ajax({
+                            type: 'POST',
+                            url: 'selectArea',
+                            data: abb,
+                            success: function (response) {
+                                $("#tbo").empty();
+                                $("#gm").empty();
+                                for (var i = 0; i < response.length; i++) {
+                                    $("#tbo").append("<tr><td>" + response[i].area + "</td>" +
+                                        "<td>" + response[i].stationName + "</td>" +
+                                        "<td >" + "<img class='mapImage' id='getAddress' width='30' height='30' src='/startrip/assets/transport/images/mapicon.png' ><span>" + response[i].address + "</span></td></tr>");
+                                }
+
+                            }, error: function (jqXHR, textStatus, errorThrown) { alert("no") },
+
+                        });
+
+                        $(document).on('click', '.mapImage', function () {
+                            //    alert(this)
+                            //    alert('aaaa')
+                            $("#gm").empty();
+                            var googleAddress = $(this).parent('td').children('span').text()
+                            //                             alert(googleAddress)
+                            console.log("地址: " + googleAddress);
+                            $($("#gm")).hide().append(
+                                "<a href='https://maps.google.com/maps?q=" + googleAddress + "&amp;z=11"
+                                + "data-geo='' target='_blank'> <img class='map' alt=" + googleAddress + "src='https://maps.google.com/maps/api/staticmap?zoom=15&size=330x500&maptype=terrain&sensor=false&center=" + googleAddress + "&markers=color:green%7Clabel:S%7C$" + googleAddress + "&key=AIzaSyARfDct4ecrevMJjHgcrjmPOLfbM6X9N7w'></a>"
+                            ).slideDown(2000) ;
+                        });
+
+                    };
+                </script>          
+                  <script>
+                  document.addEventListener("DOMContentLoaded",function(){
+                		 document.getElementById("inputArea").addEventListener("change", change1);
+                		} )
+                  function change1() {             	    
+                  
+                	  var abb = { local : $("#inputArea").val()
+                    		  };
+                		 document.getElementById('inputStation').innerHTML = "";
+                        $.ajax({
+                            type: 'POST',
+                            url: 'selectArea',
+                            data: abb,
+                            success: function (response) {                 
+                            	var aaa=$("#inputArea").val();                     
+                            	for (var i = 0; i < response.length; i++) {                       	                  		
+                            		var opt1 = document.createElement("option");
+                                        opt1.setAttribute("value", response[i].stationName);   
+                                        opt1.appendChild( document.createTextNode(response[i].stationName));
+                                        document.getElementById('inputStation').appendChild(opt1);                       		                 	                          	
+                                }
+                            }, error: function (jqXHR, textStatus, errorThrown) { alert("no") },
+
+                        });     }           
+                </script>
+     <script>
+                  document.addEventListener("DOMContentLoaded",function(){
+                		 document.getElementById("inputArea2").addEventListener("change", change2);
+                		} )
+                  function change2() {             	    
+                  
+                	  var abb = { local : $("#inputArea2").val()
+                    		  };
+                		 document.getElementById('inputStation2').innerHTML = "";
+                        $.ajax({
+                            type: 'POST',
+                            url: 'selectArea',
+                            data: abb,
+                            success: function (response) {                 
+                            	var aaa=$("#inputArea2").val();                     
+                            	for (var i = 0; i < response.length; i++) {                       	                  		
+                            		var opt1 = document.createElement("option");
+                                        opt1.setAttribute("value", response[i].stationName);   
+                                        opt1.appendChild( document.createTextNode(response[i].stationName));
+                                        document.getElementById('inputStation2').appendChild(opt1);                       		                 	                          	
+                                }
+                            }, error: function (jqXHR, textStatus, errorThrown) { alert("no") },
+
+                        });     }           
+                </script>
+
     <!-- 以下為地圖查車站function -->
 
     <script>
@@ -129,6 +213,8 @@
 <!--  								選擇出發時間                      -->
 <!--                  選擇出發時間      -->
 
+
+
                                 <!-- 選擇出發地點 -->
                                 <div class="col-md">
                                     <div class="form-group inputState">
@@ -166,13 +252,7 @@
                                             出發站名<select id="inputStation" class="form-control" name="StarStation">
 
                                                 <option value="" selected="selected">選擇出發車站</option>
-                                                <option value="台北車站">台北車站</option>
-                                                <option value="市府轉運站	">市府轉運站</option>
-                                                <option value="	士林轉運站">士林轉運站</option>
-                                                <option value="松山機場站">松山機場站</option>
-                                                <option value="南港轉運站">南港轉運站	</option>
-                                                <option value="捷運南港展覽館">捷運南港展覽館</option>
-                                                <option value="捷運圓山站">捷運圓山站</option>
+   
                                             </select>
                                         </label>
                                     </div>
@@ -182,9 +262,9 @@
                                 <div class="col-md">
                                     <div class="form-group inputState">
                                         <label for="id_label_people">
-                                            到達地點<select id="inputArea" class="form-control" name="poeple">
+                                            到達地點<select id="inputArea2" class="form-control" name="poeple" >
                                                 <option value="">請選擇前往地點</option>
-                                                <option value="基隆">基隆</option>
+                                                <option id="aaa" value="基隆">基隆</option>
                                                 <option value="台北">台北</option>
                                                 <option value="新北">新北</option>
                                                 <option value="桃園">桃園</option>
@@ -210,9 +290,9 @@
                                 <div class="col-md">
                                     <div class="form-group inputState">
                                         <label for="id_label_people">
-                                            到達車站<select id="inputStation" class="form-control" name="EndStation">
+                                            到達車站<select id="inputStation2" class="form-control" name="EndStation">
                                                 <option value="">請選擇目的車站</option>
-                                                <option value="花蓮站">花蓮站</option>
+                                                
 
                                                
                                             </select>
