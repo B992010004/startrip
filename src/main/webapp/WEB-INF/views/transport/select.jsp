@@ -66,11 +66,46 @@
         
 </head>
 <!--     搜尋車站vvv -->
-    <script>
-    document.addEventListener("DOMContentLoaded",function () {
-    		
-    });
-    </script>
+                   <script>
+                    function getArea(data) {
+                        //     alert($('#FPMap0'));
+                        //    alert(data);
+                        var abb = {};
+                        abb.local = data;
+                        $.ajax({
+                            type: 'POST',
+                            url: 'selectArea',
+                            data: abb,
+                            success: function (response) {
+                                $("#tbo").empty();
+                                $("#gm").empty();
+                                for (var i = 0; i < response.length; i++) {
+                                    $("#tbo").append("<tr><td>" + response[i].area + "</td>" +
+                                        "<td>" + response[i].stationName + "</td>" +
+                                        "<td >" + "<img class='mapImage' id='getAddress' width='30' height='30' src='/startrip/assets/transport/images/mapicon.png' ><span>" + response[i].address + "</span></td></tr>");
+                                }
+
+                            }, error: function (jqXHR, textStatus, errorThrown) { alert("no") },
+
+                        });
+
+                        $(document).on('click', '.mapImage', function () {
+                            //    alert(this)
+                            //    alert('aaaa')
+                            $("#gm").empty();
+                            var googleAddress = $(this).parent('td').children('span').text()
+                            //                             alert(googleAddress)
+                            console.log("地址: " + googleAddress);
+                            $($("#gm")).hide().append(
+                                "<a href='https://maps.google.com/maps?q=" + googleAddress + "&amp;z=11"
+                                + "data-geo='' target='_blank'> <img class='map' alt=" + googleAddress + "src='https://maps.google.com/maps/api/staticmap?zoom=15&size=330x500&maptype=terrain&sensor=false&center=" + googleAddress + "&markers=color:green%7Clabel:S%7C$" + googleAddress + "&key=AIzaSyARfDct4ecrevMJjHgcrjmPOLfbM6X9N7w'></a>"
+                            ).slideDown(2000) ;
+                        });
+
+                    };
+                </script>
+    
+
     <!-- 以下為地圖查車站function -->
 
     <script>
@@ -128,6 +163,119 @@
 <!-- 							以上選擇出發日期 -->
 <!--  								選擇出發時間                      -->
 <!--                  選擇出發時間      -->
+<script>
+document.addEventListener("DOMContentLoaded",function(){
+	 document.getElementById("inputArea").addEventListener("change", preparArea);
+	 document.getElementById("inputArea2").addEventListener("change", preparArea2);
+	} )
+
+
+	 function preparArea() {
+	       var area1 =document.getElementById("inputArea").value     
+	  if(area1=="台北"){
+	      document.getElementById('inputStation').innerHTML = "";
+		  var opt1 = document.createElement("option");
+          opt1.setAttribute("value", "台北車站");   
+          opt1.appendChild( document.createTextNode("台北車站"));
+          document.getElementById('inputStation').appendChild(opt1);
+     
+          var opt2 = document.createElement("option");
+          opt2.setAttribute("value", "市府轉運站");   
+          opt2.appendChild( document.createTextNode("市府轉運站"));
+          document.getElementById('inputStation').appendChild(opt2);
+   
+          var opt3 = document.createElement("option");
+          opt3.setAttribute("value", "士林轉運站");   
+          opt3.appendChild( document.createTextNode("士林轉運站"));
+          document.getElementById('inputStation').appendChild(opt3);
+          
+        
+          var opt4 = document.createElement("option");
+          opt4.setAttribute("value", "松山機場站");   
+          opt4.appendChild( document.createTextNode("松山機場站"));
+          document.getElementById('inputStation').appendChild(opt4);
+          
+      
+          var opt5 = document.createElement("option");
+          opt5.setAttribute("value", "南港轉運站");   
+          opt5.appendChild( document.createTextNode("南港轉運站"));
+          document.getElementById('inputStation').appendChild(opt5);
+          
+         
+          var opt6 = document.createElement("option");
+          opt6.setAttribute("value", "捷運南港展覽館");   
+          opt6.appendChild( document.createTextNode("捷運南港展覽館"));
+          document.getElementById('inputStation').appendChild(opt6);
+          
+      
+          var opt7 = document.createElement("option");
+          opt7.setAttribute("value", "捷運圓山站");   
+          opt7.appendChild( document.createTextNode("捷運圓山站"));
+          document.getElementById('inputStation').appendChild(opt7);
+          
+	  }else if (area1=="花蓮") {
+		  document.getElementById('inputStation').innerHTML = "";
+		  
+		  var opt1 = document.createElement("option");
+          opt1.setAttribute("value", "花蓮站");   
+          opt1.appendChild( document.createTextNode("花蓮站"));
+          document.getElementById('inputStation').appendChild(opt1);
+	}
+	       
+	            }
+function preparArea2() {
+    var area1 =document.getElementById("inputArea2").value     
+if(area1=="台北"){
+   document.getElementById('inputStation2').innerHTML = "";
+	  var opt1 = document.createElement("option");
+   opt1.setAttribute("value", "台北車站");   
+   opt1.appendChild( document.createTextNode("台北車站"));
+   document.getElementById('inputStation2').appendChild(opt1);
+
+   var opt2 = document.createElement("option");
+   opt2.setAttribute("value", "市府轉運站");   
+   opt2.appendChild( document.createTextNode("市府轉運站"));
+   document.getElementById('inputStation2').appendChild(opt2);
+
+   var opt3 = document.createElement("option");
+   opt3.setAttribute("value", "士林轉運站");   
+   opt3.appendChild( document.createTextNode("士林轉運站"));
+   document.getElementById('inputStation2').appendChild(opt3);
+   
+ 
+   var opt4 = document.createElement("option");
+   opt4.setAttribute("value", "松山機場站");   
+   opt4.appendChild( document.createTextNode("松山機場站"));
+   document.getElementById('inputStation2').appendChild(opt4);
+   
+
+   var opt5 = document.createElement("option");
+   opt5.setAttribute("value", "南港轉運站");   
+   opt5.appendChild( document.createTextNode("南港轉運站"));
+   document.getElementById('inputStation2').appendChild(opt5);
+   
+  
+   var opt6 = document.createElement("option");
+   opt6.setAttribute("value", "捷運南港展覽館");   
+   opt6.appendChild( document.createTextNode("捷運南港展覽館"));
+   document.getElementById('inputStation2').appendChild(opt6);
+   
+
+   var opt7 = document.createElement("option");
+   opt7.setAttribute("value", "捷運圓山站");   
+   opt7.appendChild( document.createTextNode("捷運圓山站"));
+   document.getElementById('inputStation2').appendChild(opt7);
+}else if (area1=="花蓮") {
+	  document.getElementById('inputStation2').innerHTML = "";
+	  var opt1 = document.createElement("option");
+   opt1.setAttribute("value", "花蓮站");   
+   opt1.appendChild( document.createTextNode("花蓮站"));
+   document.getElementById('inputStation2').appendChild(opt1);
+}
+	        
+}	
+</script>
+
 
                                 <!-- 選擇出發地點 -->
                                 <div class="col-md">
@@ -166,13 +314,7 @@
                                             出發站名<select id="inputStation" class="form-control" name="StarStation">
 
                                                 <option value="" selected="selected">選擇出發車站</option>
-                                                <option value="台北車站">台北車站</option>
-                                                <option value="市府轉運站	">市府轉運站</option>
-                                                <option value="	士林轉運站">士林轉運站</option>
-                                                <option value="松山機場站">松山機場站</option>
-                                                <option value="南港轉運站">南港轉運站	</option>
-                                                <option value="捷運南港展覽館">捷運南港展覽館</option>
-                                                <option value="捷運圓山站">捷運圓山站</option>
+   
                                             </select>
                                         </label>
                                     </div>
@@ -182,9 +324,9 @@
                                 <div class="col-md">
                                     <div class="form-group inputState">
                                         <label for="id_label_people">
-                                            到達地點<select id="inputArea" class="form-control" name="poeple">
+                                            到達地點<select id="inputArea2" class="form-control" name="poeple">
                                                 <option value="">請選擇前往地點</option>
-                                                <option value="基隆">基隆</option>
+                                                <option id="aaa" value="基隆">基隆</option>
                                                 <option value="台北">台北</option>
                                                 <option value="新北">新北</option>
                                                 <option value="桃園">桃園</option>
@@ -210,9 +352,9 @@
                                 <div class="col-md">
                                     <div class="form-group inputState">
                                         <label for="id_label_people">
-                                            到達車站<select id="inputStation" class="form-control" name="EndStation">
+                                            到達車站<select id="inputStation2" class="form-control" name="EndStation">
                                                 <option value="">請選擇目的車站</option>
-                                                <option value="花蓮站">花蓮站</option>
+                                                
 
                                                
                                             </select>
