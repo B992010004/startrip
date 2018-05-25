@@ -258,24 +258,8 @@ $(function(){
 	
 //天數行程切換
 function changetype(){
-	 var icon = {
-	          url: '/startrip/assets/Travel/img/local.ico',
-	          size: new google.maps.Size(90, 90),
-	          //mark位置
-	          anchor: new google.maps.Point(-0, 80),
-	          scaledSize: new google.maps.Size(90, 90)
-	        };
 	
-	var pyrmont = new google.maps.LatLng(25.0337409,121.5416216);
-	 map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 13,
-        center:pyrmont
-      })
-	 infowindow = new google.maps.InfoWindow();
-	 directionsService = new google.maps.DirectionsService;
-	 directionsDisplay = new google.maps.DirectionsRenderer({
-        map: map,
-     });
+	
 	
 	var k = event.target.id;
 	//當天行程數
@@ -284,48 +268,92 @@ function changetype(){
 	var start;
 	var end;
 	var waypts=[];
+	
+	
 	if(right.is(':visible')==true){
 		right.hide(1000);
 		$('#'+k).parent().parent().find('.timediv').hide(1000); 
-		var input = document.getElementById('pac-input');
-   	 	var searchBox = new google.maps.places.SearchBox(input);
-        createSearch(icon,map,searchBox)
+		
+		
+		placeroute(len,right);
 	}else{
 		right.show(1000);
 		$('#'+k).parent().parent().find('.timediv').show(1000);
-		for(var i = 0;i<len;i++){
-			if(i==0){
-				start =$('#'+k).parent().parent().find('.right').eq(i).find('h5').text()
-				console.log('start'+start)
-			}else if(i==(len-1)){
-				end = $('#'+k).parent().parent().find('.right').eq(i).find('h5').text()
-				
-			}else{
-				waypts.push({
-				location: $('#'+k).parent().parent().find('.right').eq(i).find('h5').text(),
-				stopover: true
-					})
-				}
-			}//for---end	
-			directionsService.route({
-			      origin: start,//起始
-			      destination: end,//目的
-			      waypoints: waypts,//中途點
-			      travelMode: 'DRIVING'//模式
-			      }, function(response, status) {
-			        	if (status === 'OK') {
-			        		console.log(response)
-			        		directionsDisplay.setOptions(infowindow.setContent('123456'))
-				        	directionsDisplay.setDirections(response);
-				        	var input = document.getElementById('pac-input');
-				        	 var searchBox = new google.maps.places.SearchBox(input);
-				             createSearch(icon,map,searchBox)
-				        } else {
-				         console.log('Could not display directions due to: ' + status);
-				        }
-					})
+		
+		placeroute(len,right);
+		
+					
 			}
 }//changetype---end
+function createMarker(lat,lng){
+	 var marker = new google.maps.Marker({
+	        position: latlng,
+	        title: title,
+	        map: map
+	    });
+
+	    google.maps.event.addListener(marker, 'click', function () {
+	        infowindow.setContent(title);
+	        infowindow.open(map, marker);
+	    });
+}
+
+function placeroute(len,right){
+	
+	 var icon = {
+	          url: '/startrip/assets/Travel/img/local.ico',
+	          size: new google.maps.Size(90, 90),
+	          //mark位置
+	          anchor: new google.maps.Point(-0, 80),
+	          scaledSize: new google.maps.Size(90, 90)
+	        };
+	var pyrmont = new google.maps.LatLng(25.0337409,121.5416216);
+	 map = new google.maps.Map(document.getElementById('map'), {
+       zoom: 13,
+       center:pyrmont
+     })
+	 infowindow = new google.maps.InfoWindow();
+	 directionsService = new google.maps.DirectionsService;
+	 directionsDisplay = new google.maps.DirectionsRenderer({
+       map: map,
+       suppressMarkers: true//隱藏support marker
+    });
+	
+	var waypts=[];
+	for(var i = 0;i<len;i++){
+		if(i==0){
+			start =right.eq(i).find('h5').text()
+			console.log('start'+start)
+		}else if(i==(len-1)){
+			end = right.eq(i).find('h5').text()
+			
+		}else{
+			waypts.push({
+			location: right.eq(i).find('h5').text(),
+			stopover: true
+				})
+			}
+		}//for---end	
+		directionsService.route({
+		      origin: start,//起始
+		      destination: end,//目的
+		      waypoints: waypts,//中途點
+		      travelMode: 'DRIVING'//模式
+		      }, function(response, status) {
+		        	if (status === 'OK') {
+		        		console.log(response)
+// 		        		console.log('startlocation='+response.route[0].leg[0].start_location)
+			        	directionsDisplay.setDirections(response);
+			        	var input = document.getElementById('pac-input');
+			        	 var searchBox = new google.maps.places.SearchBox(input);
+			             createSearch(icon,map,searchBox)
+			        } else {
+			         console.log('Could not display directions due to: ' + status);
+			        }
+				})
+			}	
+
+
 	
 //新增行程天數
 var add={}
@@ -384,6 +412,7 @@ $(document).on('click','.card-img-top',function(e){
 $(document).on('click','.close',function(){
 	var body=$('.viewDetail');
 	body.css("display","none")
+	body.animate({left:"-350px"},500);
 	}
 )
 
@@ -391,6 +420,7 @@ $(document).mouseup(function(e){
 	  var container =$(".viewDetail"); // 這邊放你想要排除的區塊
 	  if (!container.is(e.target) && container.has(e.target).length === 0) {
 	       container.hide(); 
+	       container.animate({left:"-350px"},500);
 	    }
 	  })
 	var inputType=$('#travelType');
@@ -611,23 +641,21 @@ $(document).on('click','#checklist',function(){
 $(document).on('click','.closelist',function(e){
 	console.log(e.target.id)
 	var nextid=e.target.id
-// 	console.log($('#'+e.target.id).parent().parent().parent().attr('id'))
-// 	console.log($('#'+e.target.id).next().next().text())
-// 	console.log(day)
 	var daybody=$('#'+e.target.id).parent().parent().parent().attr('id');
 	var day = daybody.substr(7,1);
 	var list={}
 	list.travelId=${Travel.travelId}
 	list.tripday=day
   	list.endtime=$('#'+e.target.id).parent().find('.end').text()
-	console.log('endtime ='+list.endtime)
-  	console.log(list)
  	$.get('/startrip/list/remove',list,function(data){
  		console.log(data);
  		$('#'+e.target.id).parent().parent().remove();
  		searchDays();
- 		
-
+ 		console.log("daybody="+daybody)
+ 		var len = $('#'+daybody).find('.right').length;
+ 		var right =  $('#'+daybody).find('.right');
+ 		console.log("len="+len)
+		placeroute(len,right);
 
  		
  	})
@@ -717,7 +745,8 @@ function searchList(day){
 					
 					var right=$('<div class="container1 right"  id="dayTile'+(i+1)+'"> </div>')
 					var content = $('<div class="content"><div class="closelist" id="closelist'+(i+1)+'" ></div></div>')
-					var title = $('<h5 class="listtitle" name="title">'+data[i].viewName+'</h5>');
+					var title = $('<h5 class="listtitle" name="title" data-viewLatLng="'+data[i].viewbean.latlng+'">'+data[i].viewName+'</h5>');
+				
 					var start = $('<div class="start">'+data[i].startTime+'</div>');
 					var end = $('<div class="end">'+data[i].endTime+'</div>');
 					content.append([title,start,end])
@@ -957,6 +986,8 @@ function initMap() {
 	      //-------------------end
 	      //markerclick-----------------------------
 	    	google.maps.event.addListener(markers[index], 'click', function() {
+	    		
+	    		
 	  		var body=$('.viewDetail');
 			var li = body.find('ul');
 			li.empty();
@@ -989,17 +1020,21 @@ function initMap() {
 			var docFrag = $(document.createDocumentFragment());
 
 			var days=${Travel.travelDays};
-			if(days==0){
+			var day1=$('#daybody1').find('.right').length;
+			console.log(day1)
+			
+			if(!(day1==0)){
 				$('#starttime').parent().css('display','none');
 				$('#endtime').parent().css('display','none');
 				
 			}else{
 				$('#time').parent().css('display','none');
+				
+			}
 			for(var i =1;i<=days;i++){
 				var selectday=$('<div class="circle col-2" id="chioceday'+i+'">'+i+'</div>')
 				docFrag.append(selectday);
 				}
-			}
 			$('#viewName').val(place.name)
 			li.append(btn);
 			
@@ -1007,7 +1042,12 @@ function initMap() {
 			$('#type').html(imgrow)
 			daysrow.append(docFrag);
 			$('#days').html(daysrow); 
-	        });
+	        
+			
+	    	body.animate({left:"+350px"},500);
+	       
+	       
+	    	});
 
 
 	      if (place.geometry.viewport) {

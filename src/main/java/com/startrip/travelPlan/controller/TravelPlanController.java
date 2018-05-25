@@ -354,6 +354,9 @@ public class TravelPlanController {
 		//取得行程名稱
 		bean.setTravelName(travelservice.Select_Travel(memberId,bean.getTravelId()).getTravelName());
 //		System.out.println(bean.toString());
+		List<TravelViewBean> list=viewService.getViewPoint(bean.getViewName());
+		bean.setViewbean(list.get(0));
+		
 		all.add(bean);
 		}
 		
