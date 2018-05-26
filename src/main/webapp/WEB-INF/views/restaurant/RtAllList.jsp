@@ -113,12 +113,12 @@
 
 		<div class="row">
 		<c:forEach var='rtDetails' items='${RtDetails}'>
-				<div class="col-lg-6 portfolio-item">
+				<div class="col-lg-4 portfolio-item">
 					<div class="card h-100">
 						<a href="/startrip/restaurant/${rtDetails.rtId}"><img
 							class="card-img-top"
-							src="/startrip/getPicture/rtImage/${rtDetails.photoArr[4]}"
-							alt=""></a>
+							src="/startrip/getPicture/rtImage/${rtDetails.photoArr[0]}"
+							alt="" height='229.2' width='345.98'></a>
 						<div class="card-body">
 							<h4 class="card-title">
 								<a href="/startrip/restaurant/${rtDetails.rtId}">${rtDetails.rtName}</a>

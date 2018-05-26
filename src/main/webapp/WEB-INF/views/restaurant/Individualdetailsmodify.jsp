@@ -80,7 +80,7 @@
 }
 
 .btn11 {
-	text-align: right;
+	text-align: center;
 }
 
 .card {
@@ -88,8 +88,9 @@
 }
 
 .btnn {
-	width: 15%;
-	height: 15%;
+	width: 20%;
+	height: 20%;
+	padding-top: 10%;
 }
 
 .card-body {
@@ -134,13 +135,13 @@
 		</div>
 		<div class="row">
 			<c:forEach var='rtDetails' items='${RtDetails}'>
-				<div class="col-lg-6 portfolio-item">
+				<div class="col-lg-3 portfolio-item">
 					<div class="card h-100">
 
 						<a href="/startrip/restaurant/${rtDetails.rtId}"><img
 							class="card-img-top"
 							src="/startrip/getPicture/rtImage/${rtDetails.photoArr[0]}"
-							alt=""></a>
+							alt="" height='166.28' width='251'></a>
 						<div class="card-body">
 							<h4 class="card-title">
 								<a href="/startrip/restaurant/${rtDetails.rtId}">${rtDetails.rtId}</a>
@@ -177,11 +178,14 @@
 							</p>
 
 							<div class="btn11">
-								<input type="image" class="btn btnn repairButton" id="repair"
-									img src="/startrip/assets/images/rt/pencil.png">
-								<button id="submitOK">完成送出</button>
-								<input type="image" class="btn btnn deleteButton" id="delectOne"
-									img src="/startrip/assets/images/rt/delete.png">
+								<input type="image" class="btnn repairButton" id="repair" img
+									src="/startrip/assets/images/rt/pencil.png"> 
+								<input
+									type="image" class="btnn insideButton" id="submitOK" img
+									src="/startrip/assets/images/rt/inside.png"> 
+								<input
+									type="image" class="btnn deleteButton" id="delectOne" img
+									src="/startrip/assets/images/rt/delete.png">
 
 							</div>
 						</div>
@@ -244,73 +248,62 @@
 
 	<script>
 	<!-- icons送出    -->
-		$(document)
-				.ready(
-						function() {
+		$(document).ready(
+				function() {
 
-							$(document)
-									.on(
-											'click',
-											'#submitOK',
-											function() {
-												
-												var id = $(this).parents('.card-body').find('a:first').text();
-												var text2 = $(this).parents(
-														'.card-body').find(
-														'input:eq(0)').val();
-												var text4 = $(this).parents(
-														'.card-body').find(
-														'input:eq(1)').val();
-												var text6 = $(this).parents(
-														'.card-body').find(
-														'input:eq(2)').val();
-												var text8 = $(this).parents(
-														'.card-body').find(
-														'input:eq(3)').val();
-												var text10 = $(this).parents(
-														'.card-body').find(
-														'input:eq(4)').val();
-												var text12 = $(this).parents(
-														'.card-body').find(
-														'input:eq(5)').val();
-												var text14 = $(this).parents(
-														'.card-body').find(
-														'input:eq(6)').val();
-												var text16 = $(this).parents(
-														'.card-body').find(
-														'input:eq(7)').val();
-												var text18 = $(this).parents(
-														'.card-body').find(
-														'input:eq(8)').val();
-												
-												var ajaxall = {
-														rtId : id,
-														rtCounty : text2,
-														rtArea : text4,
-														rtCuisine : text6,
-														teCategory : text8,
-														rtAddress : text10,
-														rtPhone : text12,
-														rtUrl : text14,
-														rtPricepount : text16,
-														rtBusinesshours : text18,
-													};
-												
-												$
-														.ajax({
-															url : "/startrip/updateAll",
-															type : "GET",
-															data : ajaxall,
-															success : function(
-																	responseText,
-																	textStatus) {
+					$(document).on(
+							'click',
+							'.insideButton',
+							function() {
 
-															}
-														})
+								var id = $(this).parents('.card-body').find(
+										'a:first').text();
+								var text2 = $(this).parents('.card-body').find(
+										'input:eq(0)').val();
+								var text4 = $(this).parents('.card-body').find(
+										'input:eq(1)').val();
+								var text6 = $(this).parents('.card-body').find(
+										'input:eq(2)').val();
+								var text8 = $(this).parents('.card-body').find(
+										'input:eq(3)').val();
+								var text10 = $(this).parents('.card-body')
+										.find('input:eq(4)').val();
+								var text12 = $(this).parents('.card-body')
+										.find('input:eq(5)').val();
+								var text14 = $(this).parents('.card-body')
+										.find('input:eq(6)').val();
+								var text16 = $(this).parents('.card-body')
+										.find('input:eq(7)').val();
+								var text18 = $(this).parents('.card-body')
+										.find('input:eq(8)').val();
 
-											})
+								var ajaxall = {
+									rtId : id,
+									rtCounty : text2,
+									rtArea : text4,
+									rtCuisine : text6,
+									teCategory : text8,
+									rtAddress : text10,
+									rtPhone : text12,
+									rtUrl : text14,
+									rtPricepount : text16,
+									rtBusinesshours : text18,
+								};
 
-						})
+								$
+										.ajax({
+											url : "/startrip/updateAll",
+											type : "GET",
+											data : ajaxall,
+											success : function(responseText,
+													textStatus) {
+
+											}
+										})
+
+							})
+
+				})
 	</script>
 
 	<script>

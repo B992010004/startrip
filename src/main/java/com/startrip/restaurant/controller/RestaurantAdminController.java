@@ -147,7 +147,7 @@ public class RestaurantAdminController {
 	// 後台修改餐廳---------------------------------------------------------------------------------------------
 	
 	@RequestMapping(value = "/updateAll", method = RequestMethod.GET)
-	public @ResponseBody String updateRtDetails(RtDetailsBean bean, HttpServletRequest request, HttpServletResponse response)
+	public @ResponseBody String updateRtDetails(Model model, RtDetailsBean bean, HttpServletRequest request, HttpServletResponse response)
 			throws IOException {
 		
 		String rtId = request.getParameter("rtId");
@@ -163,6 +163,19 @@ public class RestaurantAdminController {
 		bean.setRtCounty(request.getParameter("rtPricepount"));
 		bean.setRtCounty(request.getParameter("rtBusinesshours"));
 		rtDetailsService.updateRtDetails(bean);
+		
+		RtDetailsBean rdb = rtDetailsService.getAllRtDetailsrtId(rtIdc);
+		model.addAttribute("all", rdb);
+		
+//		List<RtDetailsBean> list = rtDetailsService.getAllall();
+//		String[] photoArr = null;
+//		for (RtDetailsBean bean : list) {
+//			if (bean.getPhotoPaths() != null) {
+//				photoArr = bean.getPhotoPaths().split(";");
+//				bean.setPhotoArr(photoArr);
+//			}
+//		}
+//		model.addAttribute("RtDetails", list);
 
 		return "restaurant/Individualdetailsmodify";
 
@@ -233,6 +246,6 @@ public class RestaurantAdminController {
 
 		}
 
-		// /後台刪除訂位/---------------------------------------------------------------------------------------------
-
+	// /後台刪除訂位/---------------------------------------------------------------------------------------------
+		
 }

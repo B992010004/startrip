@@ -8,7 +8,7 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>後台-個別資訊</title>
+<title>後台-訂單資訊總攬</title>
 <meta name="description"
 	content="Free Bootstrap 4 Theme by ProBootstrap.com">
 <meta name="keywords"

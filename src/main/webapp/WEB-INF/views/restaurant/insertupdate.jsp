@@ -17,7 +17,7 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<title>後台-新稱查詢</title>
+<title>後台-新增查詢</title>
 <meta name="description"
 	content="Free Bootstrap 4 Theme by ProBootstrap.com">
 <meta name="keywords"
