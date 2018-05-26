@@ -118,6 +118,7 @@ public class HotelPaymentController {
 		order.setRoomid(room.getRoomid());
 		order.setSinglenightprice(room.getBasicprice());
 		order.setTotalamount(totalAmount);
+		
 		hotelOrderServiceInterface.save(order);
 		System.out.println(order);
 
