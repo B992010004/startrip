@@ -14,7 +14,7 @@ public class HotelOrder implements Serializable {
 
 	@Id
 	private String orderId;
-	// yyyyMMdd + serial number
+	// orderNo.substring(0, 7)
 
 	private Integer hotelid;
 	// 多間的話我的roomid應該要是陣列

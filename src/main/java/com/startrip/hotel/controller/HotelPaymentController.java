@@ -104,8 +104,11 @@ public class HotelPaymentController {
 		// 顯示付款成功的頁面（預設
 		// aio.setReturnURL("https://developers.opay.tw/AioMock/MerchantReturnUrl");
 		aio.setReturnURL("https://startrip.southeastasia.cloudapp.azure.com:8443/startrip/PayEnd");
+		//新方法測試
+//		aio.setOrderResultURL("https://startrip.southeastasia.cloudapp.azure.com:8443/startrip/PayEnd");
+		
 		// 付款成功後轉跳的頁面
-		aio.setClientBackURL("https://startrip.southeastasia.cloudapp.azure.com:8443/startrip/PayEnd");
+//		aio.setClientBackURL("https://startrip.southeastasia.cloudapp.azure.com:8443/startrip/PayEnd");
 
 		// 準備訂單
 		order.setOrderId(orderNo.substring(0, 7));

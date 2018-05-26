@@ -1,5 +1,7 @@
 package com.startrip.hotel.service;
 
+import java.util.List;
+
 import com.startrip.hotel.model.HotelOrder;
 
 public interface HotelOrderServiceInterface {
@@ -8,4 +10,5 @@ public interface HotelOrderServiceInterface {
 
 	HotelOrder selectByPk(String ordernumber);
 
+	List<HotelOrder> selectByMemberId(Integer memberId);
 }
