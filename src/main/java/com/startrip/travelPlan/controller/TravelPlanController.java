@@ -276,8 +276,6 @@ public class TravelPlanController {
 					continue;
 				}
 				listservice.updateListDay(travelId,i);
-					
-				
 			}
 			try {
 			travelservice.updateDays(bean);

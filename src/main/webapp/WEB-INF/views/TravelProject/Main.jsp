@@ -172,6 +172,10 @@
 	<script type="text/javascript">
 		$(function() {
 			searchTravels();
+			$('.navbar-nav.ml-auto').children().eq(0).removeClass('active');
+			$('.navbar-nav.ml-auto').children().eq(3).addClass('active')
+			
+			
 			//表單狀態  
 			$('.list-group-item').hover(function(e) {
 				$(e.target).addClass('active');

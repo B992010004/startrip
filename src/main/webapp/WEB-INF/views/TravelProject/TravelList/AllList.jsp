@@ -253,7 +253,9 @@ $(function(){
 	searchDays();
 	//搜尋景點
 // 	searchView();
-
+$('.navbar-nav.ml-auto').children().eq(0).removeClass('active');
+$('.navbar-nav.ml-auto').children().eq(3).addClass('active')
+	
 })
 
 

@@ -253,6 +253,16 @@
 	<script src="/startrip/assets/js/main.js"></script>
 
 	<script>
+	$(function(){
+		$('.navbar-nav.ml-auto').children().eq(0).removeClass('active');
+	
+	
+	
+	
+	})
+	
+	
+	
 		$('#probootstrap-date-departure, #probootstrap-date-arrival')
 				.datepicker({
 					'format' : 'yyyy/m/d',
