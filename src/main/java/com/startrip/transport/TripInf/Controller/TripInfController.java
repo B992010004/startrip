@@ -32,7 +32,8 @@ public class TripInfController {
 		List<TripInfBean> all = TripInfService.select1();
 
 		model.addAttribute("TripInfList", all);// 標籤名TripInfList
-System.out.println(all);
+      
+		System.out.println(all);
 		return "/transport/TripInfSelect";
 	}
 

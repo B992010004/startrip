@@ -17,7 +17,7 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<title>後台-新稱查詢</title>
+<title>後台-新增查詢</title>
 <meta name="description"
 	content="Free Bootstrap 4 Theme by ProBootstrap.com">
 <meta name="keywords"
@@ -184,6 +184,7 @@
 							for="id_label_single" style="width: 100%;"> <form:select
 								class="js-states form-control" id="id_label_single"
 								path="teCategory" name="teCategory" style="width: 100%;">
+								<form:option value="">請選擇</form:option>
 								<form:option value="早餐">早餐</form:option>
 								<form:option value="早午餐">早午餐</form:option>
 								<form:option value="午餐">午餐</form:option>
@@ -196,6 +197,7 @@
 							for="id_label_single" style="width: 100%;"> <form:select
 								class="js-states form-control" id="id_label_single"
 								path="rtCuisine" name="rtCuisine" style="width: 100%;">
+								<form:option value="">請選擇</form:option>
 								<form:option value="中式料理">中式料理</form:option>
 								<form:option value="日式料理">日式料理</form:option>
 								<form:option value="港式料理">港式料理</form:option>
@@ -216,6 +218,7 @@
 							for="id_label_single" style="width: 100%;"> <form:select
 								class="js-states form-control" id="id_label_single"
 								path="rtPricepount" name="rtPricepount" style="width: 100%;">
+								<form:option value="">請選擇</form:option>
 								<form:option value="高級餐廳">高級餐廳</form:option>
 								<form:option value="中等價位">中等價位</form:option>
 								<form:option value="平價美食">平價美食</form:option>
@@ -224,6 +227,7 @@
 							for="id_label_single" style="width: 100%;"> <form:select
 								class="js-states form-control" id="id_label_single"
 								path="rtCounty" name="rtCounty" style="width: 100%;">
+								<form:option value="">請選擇</form:option>
 								<form:option value="臺北市">臺北市</form:option>
 								<form:option value="新北市">新北市</form:option>
 								<form:option value="桃園市">桃園市</form:option>
@@ -249,6 +253,7 @@
 							for="id_label_single" style="width: 100%;"> <form:select
 								class="js-states form-control" id="id_label_single"
 								name="rtArea" path="rtArea" style="width: 100%;">
+								<form:option value="">請選擇</form:option>
 								<form:option value="花蓮市">花蓮市</form:option>
 								<form:option value="鳳林鎮">玉里鎮</form:option>
 								<form:option value="鳳林鎮">鳳林鎮</form:option>
@@ -293,7 +298,7 @@
 
 		<div class="col-md1">
 			<div class="bigheadline1">
-				<h1 class="headline1">查看所有餐廳訂單</h1>
+				<h1 class="headline1">所有餐廳訂單資料</h1>
 			</div>
 			<a href="/startrip/AllListBooking" class="btn btn-primary btn-block">查&nbsp;&nbsp;&nbsp;&nbsp;看&nbsp;&nbsp;&nbsp;&nbsp;所&nbsp;&nbsp;&nbsp;&nbsp;有&nbsp;&nbsp;&nbsp;&nbsp;餐&nbsp;&nbsp;&nbsp;&nbsp;廳&nbsp;&nbsp;&nbsp;&nbsp;訂&nbsp;&nbsp;&nbsp;&nbsp;單</a>
 		</div>

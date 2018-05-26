@@ -41,11 +41,11 @@
 		document.getElementById("logout").addEventListener("click",
 				fblogout);})
 	
-	function fblogout(){     
-		FB.logout(function(response){    
-		localStorage.clear();	
-		location.replace( "https://startrip.southeastasia.cloudapp.azure.com:8443/startrip");
-		})}
+// 	function fblogout(){     
+// 		FB.logout(function(response){    
+// 		localStorage.clear();	
+// 		location.replace( "https://startrip.southeastasia.cloudapp.azure.com:8443/startrip");
+// 		})}
 	
 		
 	function testAPI() {
@@ -81,7 +81,7 @@
 		<div class="collapse navbar-collapse" id="probootstrap-menu">
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item  active"><a class="nav-link"
-					href="/startrip/">Home</a></li>
+					href="/startrip/">旅店</a></li>
 
 				<li class="nav-item"><a class="nav-link"
 					href="/startrip/restaurantHome">餐廳</a></li>
@@ -95,11 +95,10 @@
 					<li class="nav-item"><a class="nav-link"
 						href="/startrip/admin/HostManage">✎住宿管理</a></li>
 				</c:if>
-				<c:if test="${not empty LoginOK}">
+				<c:if test="${not empty adminLoginOK}">
 					<li class="nav-item"><a class="nav-link"
 						href="/startrip/insertupdate">✎餐廳管理</a></li>
 				</c:if>
-
 				<li class="nav-item"><c:if test="${ empty LoginOK }">
 						<a class="nav-link" href="" data-toggle="modal"
 							data-target=".bd-example-modal-lg">登入</a>

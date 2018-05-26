@@ -80,7 +80,8 @@
 }
 
 .btn11 {
-	text-align: right;
+	text-align: center;
+	padding-top: 10%;
 }
 
 .card {
@@ -88,12 +89,19 @@
 }
 
 .btnn {
-	width: 15%;
-	height: 15%;
+	width: 20%;
+	height: 20%;
+	padding-top: 10%;
+	padding: 4%;
 }
 
 .card-body {
 	padding-botton: 0%;
+}
+
+.row {
+	margin-left: 10%;
+	margin-right: 10%;
 }
 </style>
 
@@ -132,66 +140,64 @@
 				</div>
 			</div>
 		</div>
-		<div class="row">
-			<c:forEach var='rtDetails' items='${RtDetails}'>
-				<div class="col-lg-6 portfolio-item">
-					<div class="card h-100">
+	</div>
+	<div class="row">
+		<c:forEach var='rtDetails' items='${RtDetails}'>
+			<div class="col-lg-3 portfolio-item">
+				<div class="card h-100">
 
-						<a href="/startrip/restaurant/${rtDetails.rtId}"><img
-							class="card-img-top"
-							src="/startrip/getPicture/rtImage/${rtDetails.photoArr[0]}"
-							alt=""></a>
-						<div class="card-body">
-							<h4 class="card-title">
-								<a href="/startrip/restaurant/${rtDetails.rtId}">${rtDetails.rtId}</a>
-							</h4>
-							<h4 class="card-title">
-								<a href="/startrip/restaurant/${rtDetails.rtId}">餐廳名稱&nbsp;:&nbsp;${rtDetails.rtName}</a>
-							</h4>
-							<p class="card-text">
-								<span>縣市&nbsp;:&nbsp;</span><span>${rtDetails.rtCounty}</span>
-							</p>
-							<p class="card-text">
-								<span>地區&nbsp;:&nbsp;</span><span>${rtDetails.rtArea}</span>
-							</p>
-							<p class="card-text">
-								<span>菜系類別&nbsp;:&nbsp;</span><span>${rtDetails.rtCuisine}</span>
-							</p>
-							<p class="card-text">
-								<span>餐點類別&nbsp;:&nbsp;</span><span>${rtDetails.teCategory}</span>
-							</p>
-							<p class="card-text">
-								<span>地址&nbsp;:&nbsp;</span><span>${rtDetails.rtAddress}</span>
-							</p>
-							<p class="card-text">
-								<span>電話&nbsp;:&nbsp;</span><span>${rtDetails.rtPhone}</span>
-							</p>
-							<p class="card-text">
-								<span>網址&nbsp;:&nbsp;</span><span>${rtDetails.rtUrl}</span>
-							</p>
-							<p class="card-text">
-								<span>價位&nbsp;:&nbsp;</span><span>${rtDetails.rtPricepount}</span>
-							</p>
-							<p class="card-text">
-								<span>營業時間&nbsp;:&nbsp;</span><span>${rtDetails.rtBusinesshours}</span>
-							</p>
-							<p class="card-text">
-								<span>E-mail&nbsp;:&nbsp;</span><span>${rtDetails.rtEmail}</span>
-							</p>
+					<a href="/startrip/restaurant/${rtDetails.rtId}"><img
+						class="card-img-top"
+						src="/startrip/getPicture/rtImage/${rtDetails.photoArr[0]}" alt=""
+						height='229.2' width='345.98'></a>
+					<div class="card-body">
+						<h4 class="card-title">
+							<a href="/startrip/restaurant/${rtDetails.rtId}">${rtDetails.rtId}</a>
+						</h4>
+						<h4 class="card-title">
+							<a href="/startrip/restaurant/${rtDetails.rtId}">餐廳名稱&nbsp;:&nbsp;${rtDetails.rtName}</a>
+						</h4>
+						<p class="card-text">
+							<span>縣市&nbsp;:&nbsp;</span><span>${rtDetails.rtCounty}</span>
+						</p>
+						<p class="card-text">
+							<span>地區&nbsp;:&nbsp;</span><span>${rtDetails.rtArea}</span>
+						</p>
+						<p class="card-text">
+							<span>菜系類別&nbsp;:&nbsp;</span><span>${rtDetails.rtCuisine}</span>
+						</p>
+						<p class="card-text">
+							<span>餐點類別&nbsp;:&nbsp;</span><span>${rtDetails.teCategory}</span>
+						</p>
+						<p class="card-text">
+							<span>地址&nbsp;:&nbsp;</span><span>${rtDetails.rtAddress}</span>
+						</p>
+						<p class="card-text">
+							<span>電話&nbsp;:&nbsp;</span><span>${rtDetails.rtPhone}</span>
+						</p>
+						<p class="card-text">
+							<span>網址&nbsp;:&nbsp;</span><span>${rtDetails.rtUrl}</span>
+						</p>
+						<p class="card-text">
+							<span>價位&nbsp;:&nbsp;</span><span>${rtDetails.rtPricepount}</span>
+						</p>
+						<p class="card-text">
+							<span>營業時間&nbsp;:&nbsp;</span><span>${rtDetails.rtBusinesshours}</span>
+						</p>
 
-							<div class="btn11">
-								<input type="image" class="btn btnn repairButton" id="repair"
-									img src="/startrip/assets/images/rt/pencil.png">
-								<button id="submitOK">完成送出</button>
-								<input type="image" class="btn btnn deleteButton" id="delectOne"
-									img src="/startrip/assets/images/rt/delete.png">
+						<div class="btn11">
+							<input type="image" class="btnn repairButton" id="repair" img
+								src="/startrip/assets/images/rt/pencil.png"> <input
+								type="image" class="btnn insideButton" id="submitOK" img
+								src="/startrip/assets/images/rt/inside.png"> <input
+								type="image" class="btnn deleteButton" id="delectOne" img
+								src="/startrip/assets/images/rt/delete.png">
 
-							</div>
 						</div>
 					</div>
 				</div>
-			</c:forEach>
-		</div>
+			</div>
+		</c:forEach>
 	</div>
 
 
@@ -252,8 +258,11 @@
 
 					$(document).on(
 							'click',
-							'#submitOK',
+							'.insideButton',
 							function() {
+
+								var id = $(this).parents('.card-body').find(
+										'a:first').text();
 								var text2 = $(this).parents('.card-body').find(
 										'input:eq(0)').val();
 								var text4 = $(this).parents('.card-body').find(
@@ -272,26 +281,31 @@
 										.find('input:eq(7)').val();
 								var text18 = $(this).parents('.card-body')
 										.find('input:eq(8)').val();
-								var text20 = $(this).parents('.card-body')
-										.find('input:eq(9)').val();
 
-								alert(text2);
-								alert(text4);
-								alert(text6);
-								alert(text8);
-								alert(text10);
-								alert(text12);
-								alert(text14);
-								alert(text16);
-								alert(text18);
-								alert(text20);
-								
-								// 				$.ajax({
-								// 					url : "/startrip/deleteRtDetailsrtId",
-								// 					type : "GET",
-								// 					data : ajaxrtid,
-								// 				})
-								// 				location.reload();
+								var ajaxall = {
+									rtId : id,
+									rtCounty : text2,
+									rtArea : text4,
+									rtCuisine : text6,
+									teCategory : text8,
+									rtAddress : text10,
+									rtPhone : text12,
+									rtUrl : text14,
+									rtPricepount : text16,
+									rtBusinesshours : text18,
+								};
+
+								$
+										.ajax({
+											url : "/startrip/updateAll",
+											type : "GET",
+											data : ajaxall,
+											success : function(responseText,
+													textStatus) {
+
+											}
+										})
+
 							})
 
 				})
@@ -380,14 +394,6 @@
 												$(this).parents('.card-body')
 														.find('span:eq(17)')
 														.html(input18);
-
-												var text20 = $(this).parents(
-														'.card-body').find(
-														'span:eq(19)').text();
-												var input20 = $('<input type="text" class="edit" value="'+text20+'">');
-												$(this).parents('.card-body')
-														.find('span:eq(19)')
-														.html(input20);
 
 											})
 						})

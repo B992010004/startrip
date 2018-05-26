@@ -53,11 +53,13 @@ public class RestaurantController {
 
 	@Autowired
 	ServletContext context;
-
+	
+	
 	// 前台餐廳首頁---------------------------------------------------------------------------------------------
 
 	@RequestMapping(value = "/restaurantHome")
 	public String getAllListRtDetails(Model model) {
+		
 		List<RtDetailsBean> list = rtDetailsService.getAll();
 		List<RtDetailsBean> list2 = rtDetailsService.getrtArea();
 		List<RtDetailsBean> list3 = rtDetailsService.getrtPricepountH();
@@ -106,6 +108,7 @@ public class RestaurantController {
 		model.addAttribute("HH", list3);
 		model.addAttribute("MM", list4);
 		model.addAttribute("LL", list5);
+		
 		return "restaurant/restaurantHome";
 	}
 
@@ -116,7 +119,7 @@ public class RestaurantController {
 	@RequestMapping(value = "/RtAllList")
 	public String getAllRt(Model model) {
 
-		List<RtDetailsBean> list = rtDetailsService.getAllOne();
+		List<RtDetailsBean> list = rtDetailsService.getAllall();
 		String[] photoArr = null;
 		for (RtDetailsBean bean : list) {
 			if (bean.getPhotoPaths() != null) {

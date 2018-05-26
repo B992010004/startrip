@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="TravelList")
@@ -37,10 +38,19 @@ public class TravelListBean {
 	private Integer tripday;
 	private Integer state;
 	
+	private TravelViewBean viewbean;
 	
 	
 	
-	
+	@Transient
+	public TravelViewBean getViewbean() {
+		return viewbean;
+	}
+
+	public void setViewbean(TravelViewBean viewbean) {
+		this.viewbean = viewbean;
+	}
+
 	public TravelListBean(String viewName, String startTime, String endTime, String travelType, String travelName,
 			Integer listId, Integer travelId, Integer viewid, Integer tripday, Integer state) {
 		super();
@@ -54,6 +64,21 @@ public class TravelListBean {
 		this.viewid = viewid;
 		this.tripday = tripday;
 		this.state = state;
+	}
+	public TravelListBean(String viewName, String startTime, String endTime, String travelType, String travelName,
+			Integer listId, Integer travelId, Integer viewid, Integer tripday, Integer state,TravelViewBean viewbean) {
+		super();
+		this.viewName = viewName;
+		this.startTime = startTime;
+		this.endTime = endTime;
+		this.travelType = travelType;
+		this.travelName = travelName;
+		this.listId = listId;
+		this.travelId = travelId;
+		this.viewid = viewid;
+		this.tripday = tripday;
+		this.state = state;
+		this.viewbean=viewbean;
 	}
 
 	public String getViewName() {

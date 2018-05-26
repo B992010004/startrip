@@ -4,7 +4,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.Array;
 import java.text.ParseException;
 import java.util.Arrays;
 import java.util.List;
@@ -24,12 +23,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.startrip.hotel.model.HotelsBean;
 import com.startrip.hotel.model.Rooms;
 import com.startrip.hotel.model.SearchHotel;
 import com.startrip.hotel.service.HotelServiceInterface;
 import com.startrip.hotel.service.RoomsServiceInterface;
+import com.startrip.restaurant.model.RtDetailsBean;
+import com.startrip.restaurant.service.RtDetailsService;
 import com.startrip.reviews.model.HotelReview;
 import com.startrip.reviews.service.HotelReviewService;
 
@@ -44,6 +46,9 @@ public class HotelController {
 
 	@Autowired
 	ServletContext context;
+	
+	@Autowired
+	RtDetailsService rtDetailsService;
 
 	// 評論內容
 	@Autowired
@@ -70,7 +75,7 @@ public class HotelController {
 		// 搜尋字串丟session保存
 		HttpSession session = request.getSession();
 		session.setAttribute("searchBean", searchHotel);
-
+		
 		model.addAttribute("results", list);
 		return "hotel/HotelsSearchResult";
 	}
@@ -89,14 +94,14 @@ public class HotelController {
 
 		// review
 		// 評等
-		//[星等, 數量]
+		// [星等, 數量]
 		List<Object[]> list = hotelReviewService.getRankByHotelId(hotelId);
 
 		Integer rankSize = 0;
 		int[] rankArr = { 0, 0, 0, 0, 0 };
-		//根本不能轉型成Integer[]??
+		// 根本不能轉型成Integer[]??
 		for (Object[] intArr : list) {
-			//用String取值超彆扭
+			// 用String取值超彆扭
 			String var = intArr[0].toString();
 			int toInt = Integer.valueOf(var);
 			rankArr[toInt - 1] = Integer.valueOf(intArr[1].toString());
@@ -109,7 +114,7 @@ public class HotelController {
 			rankSize = -1;
 		}
 		model.addAttribute("rankSize", rankSize);
-		 model.addAttribute("rankArr", rankArr);
+		model.addAttribute("rankArr", rankArr);
 
 		// 評論bean
 		List<HotelReview> reviews = hotelReviewService.getHotelReviewsByHotelId(hotelId);
@@ -203,5 +208,7 @@ public class HotelController {
 
 		return responseEntity;
 	}
+	
+	
 	// 以上非會員也可瀏覽
 }

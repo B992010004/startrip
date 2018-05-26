@@ -91,22 +91,23 @@
 			<th>日期</th>
 			<th>發車時間</th>
 			<th>起站名稱</th>
-			<th></th>>
+			<th></th>
 			<th>迄站名稱</th>
 			<th>座位編號</th>
-			<th>票價</th>
-			<th></th>
+		
+
 			
 		</tr>
 			<c:forEach items='${OrerList}' var='select'>
 			<tr>
-				<td>${selectAllOrerList.trip}</td>			
-				<td><fmt:formatDate pattern="yyyy-MM-dd"  value="${selectAllOrerList.orderDate }" /></td>
-				<td>${selectAllOrerList.orderTime}</td>
-				<td>${selectAllOrerList.starStation}</td>
-				<td>--------></td>
-				<td>${selectAllOrerList.endStation}</td>
-				<td>${select.price}</td>
+				<td>1</td>
+				<td>${select.orderDate}</td>			
+				<td><fmt:formatDate pattern="yyyy-MM-dd"  value="${select.orderDate }" /></td>
+				<td>${select.orderTime}</td>
+				<td>${select.starStation}</td>
+				<td align="center"><img width="200" height="20" src="/startrip/assets/transport/images/arow.jpg"></td>
+				<td>${select.endStation}</td>
+				
 				<td></td>
 	
 			</tr>

@@ -44,7 +44,7 @@
 /* ---------------------------------------------- */
 
 .aside1{
-       z-index: 2;
+     z-index: 3;
     width: 320px;
     margin-left: 20px;
     position: fixed;
@@ -63,6 +63,7 @@
 /* aside1-------end */
 /* aside------- */
 .aside{
+	z-index:3;
 	 position: fixed;
     width: 355px;
     height: 100%;
@@ -100,7 +101,7 @@
      width:200px;
   }
   .triplist{
-      height: 570px;
+      height: 620px;
     background-color: #89ccbb;
     overflow-y: auto;
     position: fixed;
@@ -315,7 +316,7 @@
       background-color: red;
       border-radius: 30px;
       border: white solid 5px;
-      color: #22b7ff;
+      color: whites;
       
   }
 
@@ -551,14 +552,15 @@ blockquote {
 
 
 .viewDetail{
-	 background-color: #f8f9fa;
+	background-color: #f8f9fa;
     width: 350px;
     height: 695px;
     position: fixed;
-    z-index: 2;
-    top:  110px;
-    display:none;
-    padding:40px 30px;
+    z-index: 1;
+    top: 110px;
+    display: none;
+    padding: 40px 30px;
+    left: -350px;
 }
 .closelist:hover{
 	background-color: #0080ff;

@@ -1,7 +1,6 @@
 package com.startrip.transport.OrderList.OrderListDao;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -22,17 +21,13 @@ public class OrderListRepository implements OrderListRepositoryInterface{
 	@Override
 	public List<OrderListBean> select() {
 		String hql = "FROM OrderListBean";
-//		Session session = factory.getCurrentSession();
+		Session session = factory.getCurrentSession();
 		System.out.println("DAO測試");
 		List<OrderListBean> list = null;
-//		Query query = session.createQuery(hql);
-//		list=query.getResultList();
-//		System.out.println("這是測試的LIST"+list);
+		Query query = session.createQuery(hql);
+		list=query.getResultList();
+		System.out.println("這是測試的LIST"+list);
 		return list;
-	
-	
-	
-	
 }
 
 	@Override

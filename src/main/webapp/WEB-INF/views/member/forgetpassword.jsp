@@ -41,8 +41,15 @@
 #section-home {
 	padding-top: 45px;
 	padding-bottom: 45px;
-}.modal-body{
+}
+
+.modal-body {
 	border-top: #00CA4C 2px solid;
+}
+
+#imgicon {
+	width: 20px;
+	height: 20px;
 }
 </style>
 </head>
@@ -65,23 +72,22 @@
 
 						<P>StarTrip 會寄送一封電子郵件給您，幫助您修改您的密碼</P>
 						<div class="col-md-6">
-
 							<div class="form-group">
 								<label for="fgmail">信箱:</label> <input type="text"
 									class="form-control" name="fgmail" placeholder="請輸入"
 									id="fgmail" autofocus="autofocus" required="required" />
 							</div>
-							<div class="col-md-10" id="errorMsg"></div>
-						</div>
+							
+						</div><div class="col-md-10" id="errorMsg"></div>
 					</div>
 					<div style="margin: auto" class="col-md-6  probootstrap-animate">
-				<div class="form-group">
-						<button id="submitbutton" class="btn btn-primary">寄送電子郵件</button>
+						<div class="form-group">
+							<button id="submitbutton" class="btn btn-primary">寄送電子郵件</button>
+						</div>
 					</div>
+
 				</div>
-				
-				</div>
-				
+
 			</div>
 		</div>
 	</section>
@@ -104,37 +110,42 @@
 			document.getElementById("submitbutton").addEventListener("click",
 					fgpassword);
 		})
-
 		function fgpassword() {
-
+			
+			var delay = function(s){
+				  return new Promise(function(resolve,reject){
+				   setTimeout(resolve,s); 
+				  });
+				};
+				delay().then(function(){
+					document.getElementById("errorMsg").innerHTML = "<img id='imgicon' src='/startrip/assets/images/membericon/loading.gif'>Loading"   // 顯示 1
+					  return delay(1000); // 延遲ㄧ秒
+					}).then(function(){     	
 			var ajaxdata = {
 				mail : $('#fgmail').val(),
 			}
-
-			$
-					.ajax({
+			
+			$.ajax({
 						url : "/startrip/member/forgetpassword",
 						type : "POST",
 						data : ajaxdata,
 						async : false,
 						success : function(responseText, textStatus) {
 							if (responseText == 0) {
-								document.getElementById("errorMsg").innerHTML = "<font color=\"green\">已發送信件至您的信箱，請在30分鐘內重新設定密碼</BR>網頁將在五秒後返回上一頁</font>"
+								document.getElementById("errorMsg").innerHTML = "<img id='imgicon' src='/startrip/assets/images/membericon/check.png'><font color=\"green\">已發送信件至您的信箱，請在30分鐘內重新設定密碼。網頁將在五秒後返回上一頁</font>"
 								var speed = 5000
 								setTimeout("history.back()", speed);
-
 							} else if (responseText == 1) {
-								document.getElementById("errorMsg").innerHTML = "<font color=\"red\">帳號不存在</red>"
+								document.getElementById("errorMsg").innerHTML = "<img id='imgicon' src='/startrip/assets/images/membericon/err.png'><font color=\"red\">帳號不存在</red>"
 							} else {
-								document.getElementById("errorMsg").innerHTML = "<font color=\"red\">請不要玩系統</red>"
+								document.getElementById("errorMsg").innerHTML = "<img id='imgicon' src='/startrip/assets/images/membericon/err.png'><font color=\"red\">請不要玩系統</red>"
 							}
 						},
 						error : function() {
 
 						}
 					});
-
-		}
+					})}
 	</script>
 </body>
 </html>
