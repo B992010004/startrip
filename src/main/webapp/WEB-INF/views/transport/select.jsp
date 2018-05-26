@@ -86,19 +86,24 @@
                 }, error: function (jqXHR, textStatus, errorThrown) { alert("no") },
 
             });
-
+//-------------------------VVVVVVV 點地址產生地圖
             $(document).on('click', '.mapImage', function () {
                 //    alert(this)
                 //    alert('aaaa')
                 $("#gm").empty();
                 var googleAddress = $(this).parent('td').children('span').text()
                 //                             alert(googleAddress)
-                console.log("地址: " + googleAddress);
+ //               console.log("地址: " + googleAddress);
                 $($("#gm")).hide().append(
                     "<a href='https://maps.google.com/maps?q=" + googleAddress + "&amp;z=11"
-                    + "data-geo='' target='_blank'> <img class='map' alt=" + googleAddress + "src='https://maps.google.com/maps/api/staticmap?zoom=15&size=500x500&maptype=terrain&sensor=false&center=" + googleAddress + "&markers=color:green%7Clabel:S%7C$" + googleAddress + "&key=AIzaSyARfDct4ecrevMJjHgcrjmPOLfbM6X9N7w'></a>"
-                ).slideDown(2000);
+                    + "data-geo='' target='_blank'> <img class='map' alt=" + googleAddress + "src='https://maps.google.com/maps/api/staticmap?zoom=15&size=900x700&maptype=terrain&sensor=false&center=" + googleAddress + "&markers=color:green%7Clabel:S%7C$" + googleAddress + "&key=AIzaSyDl3nl3wQF2mlYkw87KHByGF9dB9In_fGQ'></a>"
+                ).slideDown(1000);
             });
+//------------------------------------------------
+
+
+
+
 
         };
     </script>
@@ -128,8 +133,7 @@
 
             });
         }           
-    </script>
-    <script>
+ 
         document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("inputArea2").addEventListener("change", change2);
         })
@@ -154,6 +158,23 @@
                 }, error: function (jqXHR, textStatus, errorThrown) { alert("no") },
 
             });
+//---------------產生兩點地圖--------
+            $(document).on('click', '.inputStation2', function () {
+                //    alert(this)
+                //    alert('aaaa')
+                $("#twoPoints").empty();
+                var googleAddress1 = $(this).id.text()
+                //                             alert(googleAddress)
+                console.log("地址: " + googleAddress1);
+                $($("#twoPoints")).hide().append(
+                    "<a href='https://maps.google.com/maps?q=" + googleAddress + "&amp;z=11"
+                    + "data-geo='' target='_blank'> <img class='map' alt=" + googleAddress + "src='https://maps.google.com/maps/api/staticmap?zoom=15&size=900x700&maptype=terrain&sensor=false&center=" + googleAddress + "&markers=color:green%7Clabel:S%7C$" + googleAddress + "&key=AIzaSyDl3nl3wQF2mlYkw87KHByGF9dB9In_fGQ'></a>"
+                ).slideDown(1000);
+            });
+            
+            
+            
+            
         }           
     </script>
 
@@ -192,9 +213,7 @@
     <div>
         <jsp:include page="/WEB-INF/views/header.jsp" flush="true" />
     </div>
-    <div>
-
-    </div>
+    
     <!-- 以下為訂票功能 -->
 
     <section class="probootstrap-cover overflow-hidden relative" style="background-image: url('/startrip/assets/transport/images/into.jpg');"
@@ -218,17 +237,11 @@
                                 </div>
                             </div>
                             <!-- 							以上選擇出發日期 -->
-
-
-
-
-
-
                             <!-- 選擇出發地點 -->
                             <div class="col-md">
                                 <div class="form-group inputState">
                                     <label for="id_label_people">
-                                        出發地點
+                                       <a > 出發地點</a>
                                         <select id="inputArea" class="form-control" name="">
                                             <option value="">請選擇出發地點</option>
                                             <option value="基隆">基隆</option>
@@ -252,9 +265,7 @@
                                     </label>
                                 </div>
                             </div>
-
                             <!-- 選擇出發地點 -->
-
                             <!-- 選擇出發站名 -->
                             <div class="col-md">
                                 <div class="form-group inputState">
@@ -331,9 +342,26 @@
                 </form>
             </div>
         </div>
+		
+	
+	
     </section>
+<!--     選擇出發站及終點站產生地圖路線 -->
+    <div id="twoPoints" align="center">
+<iframe
+    width="600"
+    height="450"
+    frameborder="0" 
+    style="border:0"
+    src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyDl3nl3wQF2mlYkw87KHByGF9dB9In_fGQ
+    &origin=台北車站1&destination=花蓮車站">
+  </iframe>
+    </div>
+    
+    
     <!-- 以上為訂票功能版面 -->
     <!-- 以下為地圖標註顯示 -->
+
 
     <div align="left" style="margin-left:100px">
         <div class="row text-center mb-5 probootstrap-animate">
@@ -439,22 +467,20 @@
 
 
             </div>
-            <div id="gm">
-                <div class="row">
-                    <div class="col-md">
+            <div class="row">
+                    <div id="gm" class="col-md">
                         <!-- 地圖 -->
                         <a href="https://maps.google.com/maps?q=台北市中正區市民大道一段168號&amp;z=11" data-geo="" target="_blank">
-                            <img class="map" alt=台北市中正區市民大道一段168號 src="https://maps.google.com/maps/api/staticmap?zoom=15&size=330x500&maptype=terrain&sensor=false&center=台北市中正區市民大道一段168號&markers=color:blue%7Clabel:S%7C台北市中正區市民大道一段168號&key=AIzaSyARfDct4ecrevMJjHgcrjmPOLfbM6X9N7w">
+                            <img class="map" alt=台北市中正區市民大道一段168號 src="https://maps.google.com/maps/api/staticmap?zoom=15&size=900x700&maptype=terrain&sensor=false&center=台北市中正區市民大道一段168號&markers=color:blue%7Clabel:S%7C台北市中正區市民大道一段168號&key=AIzaSyARfDct4ecrevMJjHgcrjmPOLfbM6X9N7w">
                         </a>
                     </div>
                 </div>
-            </div>
+              <div>
+              
+              </div>  
+                
         </div>
     </div>
-
-
-
-
     <!-- 以上為地區顯示車站 -->
 
 
@@ -479,103 +505,7 @@
     <script src="/startrip/assets/js/main.js"></script>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            document.getElementById("inputArea").addEventListener("change", preparArea);
-            document.getElementById("inputArea2").addEventListener("change", preparArea2);
-        })
 
-
-        function preparArea() {
-            var area1 = document.getElementById("inputArea").value
-            if (area1 == "台北") {
-                document.getElementById('inputStation').innerHTML = "";
-                var opt1 = document.createElement("option");
-                opt1.setAttribute("value", "台北車站");
-                opt1.appendChild(document.createTextNode("台北車站"));
-                document.getElementById('inputStation').appendChild(opt1);
-
-                var opt2 = document.createElement("option");
-                opt2.setAttribute("value", "市府轉運站");
-                opt2.appendChild(document.createTextNode("市府轉運站"));
-                document.getElementById('inputStation').appendChild(opt2);
-
-                var opt3 = document.createElement("option");
-                opt3.setAttribute("value", "士林轉運站");
-                opt3.appendChild(document.createTextNode("士林轉運站"));
-                document.getElementById('inputStation').appendChild(opt3);
-
-
-                var opt4 = document.createElement("option");
-                opt4.setAttribute("value", "松山機場站");
-                opt4.appendChild(document.createTextNode("松山機場站"));
-                document.getElementById('inputStation').appendChild(opt4);
-
-
-                var opt5 = document.createElement("option");
-                opt5.setAttribute("value", "南港轉運站");
-                opt5.appendChild(document.createTextNode("南港轉運站"));
-                document.getElementById('inputStation').appendChild(opt5);
-
-
-                var opt6 = document.createElement("option");
-                opt6.setAttribute("value", "捷運南港展覽館");
-                opt6.appendChild(document.createTextNode("捷運南港展覽館"));
-                document.getElementById('inputStation').appendChild(opt6);
-
-
-                var opt7 = document.createElement("option");
-                opt7.setAttribute("value", "捷運圓山站");
-                opt7.appendChild(document.createTextNode("捷運圓山站"));
-                document.getElementById('inputStation').appendChild(opt7);
-
-            } else if (area1 == "花蓮") {
-                document.getElementById('inputStation').innerHTML = "";
-
-                var opt1 = document.createElement("option");
-                opt1.setAttribute("value", "花蓮站");
-                opt1.appendChild(document.createTextNode("花蓮站"));
-                document.getElementById('inputStation').appendChild(opt1);
-            }
-
-        }
-        function preparArea2() {
-            var area1 = document.getElementById("inputArea2").value
-            if (area1 == "台北") {
-                document.getElementById('inputStation2').innerHTML = "";
-                var opt1 = document.createElement("option");
-                opt1.setAttribute("value", "台北車站");
-                opt1.appendChild(document.createTextNode("台北車站"));
-                document.getElementById('inputStation2').appendChild(opt1);
-
-                var opt2 = document.createElement("option");
-                opt2.setAttribute("value", "市府轉運站");
-                opt2.appendChild(document.createTextNode("市府轉運站"));
-                document.getElementById('inputStation2').appendChild(opt2);
-
-                var opt3 = document.createElement("option");
-                opt3.setAttribute("value", "士林轉運站");
-                opt3.appendChild(document.createTextNode("士林轉運站"));
-                document.getElementById('inputStation2').appendChild(opt3);
-
-
-                var opt4 = document.createElement("option");
-                opt4.setAttribute("value", "松山機場站");
-                opt4.appendChild(document.createTextNode("松山機場站"));
-                document.getElementById('inputStation2').appendChild(opt4);
-
-
-                var opt5 = document.createElement("option");
-                opt5.setAttribute("value", "南港轉運站");
-                opt5.appendChild(document.createTextNode("南港轉運站"));
-                document.getElementById('inputStation2').appendChild(opt5);
-
-
-                var opt6 = document.createElement("option");
-                opt6.setAttribute("value", "捷運南港展覽館");
-                opt6.appendChild(document.createTextNode("捷運南港展覽館"));
-                document.getElementById('inputStation2').appendChild(opt6);
-            }
-        }
     </script>
 
 </body>
