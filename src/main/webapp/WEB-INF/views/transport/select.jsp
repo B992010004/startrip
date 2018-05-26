@@ -100,16 +100,13 @@
                 ).slideDown(1000);
             });
 //------------------------------------------------
-
-
-
-
-
         };
     </script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("inputArea").addEventListener("change", change1);
+        
+            
         })
         function change1() {
 
@@ -133,9 +130,12 @@
 
             });
         }           
- 
+        </script>
+        <script>
         document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("inputArea2").addEventListener("change", change2);
+
+            
         })
         function change2() {
 
@@ -159,23 +159,7 @@
 
             });
 //---------------產生兩點地圖--------
-            $(document).on('click', '.inputStation2', function () {
-                //    alert(this)
-                //    alert('aaaa')
-                $("#twoPoints").empty();
-                var googleAddress1 = $(this).id.text()
-                //                             alert(googleAddress)
-                console.log("地址: " + googleAddress1);
-                $($("#twoPoints")).hide().append(
-                    "<a href='https://maps.google.com/maps?q=" + googleAddress + "&amp;z=11"
-                    + "data-geo='' target='_blank'> <img class='map' alt=" + googleAddress + "src='https://maps.google.com/maps/api/staticmap?zoom=15&size=900x700&maptype=terrain&sensor=false&center=" + googleAddress + "&markers=color:green%7Clabel:S%7C$" + googleAddress + "&key=AIzaSyDl3nl3wQF2mlYkw87KHByGF9dB9In_fGQ'></a>"
-                ).slideDown(1000);
-            });
-            
-            
-            
-            
-        }           
+           
     </script>
 
     <!-- 以下為地圖查車站function -->
@@ -348,14 +332,7 @@
     </section>
 <!--     選擇出發站及終點站產生地圖路線 -->
     <div id="twoPoints" align="center">
-<iframe
-    width="600"
-    height="450"
-    frameborder="0" 
-    style="border:0"
-    src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyDl3nl3wQF2mlYkw87KHByGF9dB9In_fGQ
-    &origin=台北車站1&destination=花蓮車站">
-  </iframe>
+
     </div>
     
     
@@ -413,7 +390,7 @@
                             <td>台北車站 </td>
                             <td>
                                 <img class='mapImage' id='getAddress' width='30' height='30' src='/startrip/assets/transport/images/mapicon.png'>
-                                <span>台北市中正區市民大道一段168號 /span></td>
+                                <span>台北市中正區市民大道一段168號< /span></td>
                         </tr>
                         <tr>
                             <td>台北 </td>
@@ -507,7 +484,24 @@
     <script>
 
     </script>
-
+<button class="btn-info" onclick="qqq()">測試</button>
 </body>
+<!-- 顯示兩點地圖 -->
+<script>
+$("#inputStation2").change(function(){
+	$("#twoPoints").empty();
+	$($("#twoPoints")).hide().html("<iframe width='600' height='450' frameborder='0' style='border:0' src='https://www.google.com/maps/embed/v1/directions?key=AIzaSyDl3nl3wQF2mlYkw87KHByGF9dB9In_fGQ&origin="+$('#inputStation').val()+"1&destination="+$('#inputStation2').val()+"'>  </iframe>").slideDown(1000);
+	
+	
+	
+	
+	
+	console.log($("#inputStation").val());
+	console.log($("#inputStation2").val());
+	});
 
+
+
+}
+</script>
 </html>
