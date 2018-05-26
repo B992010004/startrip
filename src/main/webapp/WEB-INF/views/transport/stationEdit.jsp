@@ -76,34 +76,46 @@
             for (var i = 1; i <= 31; i++) {
                 document.getElementById("idimg" + i).addEventListener("mouseover", mouseover);  //事件繫結，滑鼠滑入
                 document.getElementById("idimg" + i).addEventListener("mouseout", mouseout);//事件繫結，滑鼠滑出
-                document.getElementById("idimg" + i).addEventListener("click", click1);   
-                
+                document.getElementById("idimg" + i).addEventListener("click", click1);         
             }
                 document.getElementById("random" ).addEventListener("click", getRandom);   
         });
-
-        function mouseover() {			
-            this.src = "/startrip/assets/transport/images/setOn.png";
-        
-            if(){
-                   	function mouseout() {
-                       	this.src = "/startrip/assets/transport/images/setOn.jpg";    
-            }
-            	   else{
-            	  function mouseout() {
-                  	this.src = "/startrip/assets/transport/images/setOff.jpg";
-                  }}
-        }
+  
+      
+        function mouseover() {	
+ 
+        	if( this.alt == ""){
+        	this.src = "/startrip/assets/transport/images/setOn.png";
+        	}
+        	alert(id);
+        	}
+        function mouseout() {
+        	if(this.alt == ""){    
+        	this.src = "/startrip/assets/transport/images/setOff.jpg";
+        	 }
+        	}
        
-        function click1() {
-        	function mouseout() {
-            	this.src = "/startrip/assets/transport/images/setOn.jpg";
-            }
+        function click1() {       	
+        	
+        	if(this.alt == ""){ 
         	this.src = "/startrip/assets/transport/images/setOn.png";
         	 this.innerHTML = '您選的座位為' + this.id.substr(5) + '號';
              $("#QQ").html("<span>"+'您選的座位為'+this.id.substr(5)+'號'+"</span>");
+           
+             for (var i = 1; i <= 31; i++) {
+            	 document.getElementById("idimg" + i).alt="1"; 
+             }this.alt="2";
+        	}else if(this.alt == "2"){	     
+        		this.src = "/startrip/assets/transport/images/setOff.jpg";
+               for (var i = 1; i <= 31; i++) {
+              	 document.getElementById("idimg" + i).alt=""; 
+               } 
+            
+    	  	}    
         }
-		function getRandom(){
+        
+        
+        function getRandom(){
 			$("#QQ").html("<span>"+'您選的座位為'+Math.floor(Math.random()*31+1)+'號'+"</span>");
 			
 		}	
@@ -256,7 +268,7 @@
         <h1 id="QQ"></h1>                                                                                    
                     
                     
-                    <!-- summit -->
+                   
                 </div>
           
     </section> 

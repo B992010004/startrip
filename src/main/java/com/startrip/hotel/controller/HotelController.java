@@ -94,14 +94,14 @@ public class HotelController {
 
 		// review
 		// 評等
-		//[星等, 數量]
+		// [星等, 數量]
 		List<Object[]> list = hotelReviewService.getRankByHotelId(hotelId);
 
 		Integer rankSize = 0;
 		int[] rankArr = { 0, 0, 0, 0, 0 };
-		//根本不能轉型成Integer[]??
+		// 根本不能轉型成Integer[]??
 		for (Object[] intArr : list) {
-			//用String取值超彆扭
+			// 用String取值超彆扭
 			String var = intArr[0].toString();
 			int toInt = Integer.valueOf(var);
 			rankArr[toInt - 1] = Integer.valueOf(intArr[1].toString());
@@ -114,7 +114,7 @@ public class HotelController {
 			rankSize = -1;
 		}
 		model.addAttribute("rankSize", rankSize);
-		 model.addAttribute("rankArr", rankArr);
+		model.addAttribute("rankArr", rankArr);
 
 		// 評論bean
 		List<HotelReview> reviews = hotelReviewService.getHotelReviewsByHotelId(hotelId);

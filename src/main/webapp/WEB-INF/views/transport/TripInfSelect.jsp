@@ -58,7 +58,7 @@
 			<c:forEach items='${TripInfList}' var='select'>
 			<tr>
 				<td>${select.trip}</td>			
-				<td><fmt:formatDate pattern="yyyy-MM-dd"  value="${select.date }" /></td>
+				<td><fmt:formatDate pattern="yyyy-MM-dd"  value="${select.date}" /></td>
 				<td>${select.starStation}</td>
 				<td>${select.endStation}</td>
 				<td>${select.seateList}</td>

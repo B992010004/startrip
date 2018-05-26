@@ -178,12 +178,14 @@
           <br>
           <br>
           <form class="range1">
+          <span class="rspan1">NT$</span>
             <input disabled type="number" value="0" min="0" max="12000" />
-            <span class="rspan1">$</span>
+            
           </form>
           <form class="range2">
+          <span class="rspan2">NT$</span>
             <input disabled type="number" value="12000" min="0" max="12000" />
-            <span class="rspan2">$</span>
+            
           </form>
         </div>
         <!-- range-slider -->
@@ -370,7 +372,7 @@
                     <br>
                     <div class="row">
                       <div class="col-md-8">服務種類</div>
-                      <div class="col-md-4">價格：${hotel.lowestPrice }</div>
+                      <div class="col-md-4">價格：NT$ <fmt:formatNumber value="${hotel.lowestPrice }" type="number" /></div>
                     </div>
                   </div>
                 </div>

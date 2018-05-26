@@ -100,12 +100,13 @@
 		</tr>
 			<c:forEach items='${OrerList}' var='select'>
 			<tr>
-				<td>1</td>			
-				<td><fmt:formatDate pattern="yyyy-MM-dd"  value="${OrerList.orderDate }" /></td>
-				<td>${OrerList.orderTime}</td>
-				<td>${OrerList.starStation}</td>
+				<td>1</td>
+				<td>${select.orderDate}</td>			
+				<td><fmt:formatDate pattern="yyyy-MM-dd"  value="${select.orderDate }" /></td>
+				<td>${select.orderTime}</td>
+				<td>${select.starStation}</td>
 				<td align="center"><img width="200" height="20" src="/startrip/assets/transport/images/arow.jpg"></td>
-				<td>${OrerList.endStation}</td>
+				<td>${select.endStation}</td>
 				
 				<td></td>
 	
