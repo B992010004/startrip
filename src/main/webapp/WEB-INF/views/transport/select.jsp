@@ -159,20 +159,7 @@
 
             });
 //---------------產生兩點地圖--------
-            $(document).on('click', '.inputStation2', function () {
-                //    alert(this)
-                //    alert('aaaa')
-                $("#twoPoints").empty();
-                var googleAddress1 = $(this).id.text()
-                //                             alert(googleAddress)
-                console.log("地址: " + googleAddress1);
-                $($("#twoPoints")).hide().append(
-                    "<a href='https://maps.google.com/maps?q=" + googleAddress + "&amp;z=11"
-                    + "data-geo='' target='_blank'> <img class='map' alt=" + googleAddress + "src='https://maps.google.com/maps/api/staticmap?zoom=15&size=900x700&maptype=terrain&sensor=false&center=" + googleAddress + "&markers=color:green%7Clabel:S%7C$" + googleAddress + "&key=AIzaSyDl3nl3wQF2mlYkw87KHByGF9dB9In_fGQ'></a>"
-                ).slideDown(1000);
-            });
-            
-            
+ 
             
             
         }           
@@ -348,14 +335,7 @@
     </section>
 <!--     選擇出發站及終點站產生地圖路線 -->
     <div id="twoPoints" align="center">
-<iframe
-    width="600"
-    height="450"
-    frameborder="0" 
-    style="border:0"
-    src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyDl3nl3wQF2mlYkw87KHByGF9dB9In_fGQ
-    &origin=台北車站1&destination=花蓮車站">
-  </iframe>
+
     </div>
     
     
@@ -413,7 +393,7 @@
                             <td>台北車站 </td>
                             <td>
                                 <img class='mapImage' id='getAddress' width='30' height='30' src='/startrip/assets/transport/images/mapicon.png'>
-                                <span>台北市中正區市民大道一段168號 /span></td>
+                                <span>台北市中正區市民大道一段168號</span></td>
                         </tr>
                         <tr>
                             <td>台北 </td>
@@ -444,7 +424,7 @@
                             <td>南港轉運站 </td>
                             <td>
                                 <img class="mapImage" id="getAddress" width="30" height="30" src="/startrip/assets/transport/images/mapicon.png">
-                                <span>台北市南港區南港路一段313號 </span>
+                                台北市南港區南港路一段313號 
                             </td>
                         </tr>
                         <tr>
@@ -452,7 +432,7 @@
                             <td>捷運南港展覽館 </td>
                             <td>
                                 <img class="mapImage" id="getAddress" width="30" height="30" src="/startrip/assets/transport/images/mapicon.png">
-                                <span>台北市南港區經貿二路1號(163櫃) </span>
+                                台北市南港區經貿二路1號(163櫃) 
                             </td>
                         </tr>
                         <tr>
@@ -460,7 +440,7 @@
                             <td>捷運圓山站 </td>
                             <td>
                                 <img class="mapImage" id="getAddress" width="30" height="30" src="/startrip/assets/transport/images/mapicon.png">
-                                <span>台北市大同區酒泉街9-1號
+                                台北市大同區酒泉街9-1號
                     </tbody>
                     <tfoot>
                 </table>
@@ -490,6 +470,22 @@
     <div>
         <jsp:include page="/WEB-INF/views/member/login.jsp" flush="true" />
     </div>
+    <script>
+$("#inputStation2").change(function(){
+	$("#twoPoints").empty();
+	$($("#twoPoints")).hide().html("<iframe width='600' height='450' frameborder='0' style='border:0' src='https://www.google.com/maps/embed/v1/directions?key=AIzaSyDl3nl3wQF2mlYkw87KHByGF9dB9In_fGQ&origin="+$('#inputStation').val()+"1&destination="+$('#inputStation2').val()+"'></iframe>").slideDown(1000);
+//	                                <iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyDl3nl3wQF2mlYkw87KHByGF9dB9In_fGQ&origin=           台北車站                             1&destination=           花蓮車站                                "></iframe>	
+	
+	
+	a
+	console.log($("#inputStation").val());
+	console.log($("#inputStation2").val());
+	});
+
+
+
+
+</script>
     <script src="/startrip/assets/js/jquery.min.js"></script>
 
     <script src="/startrip/assets/js/popper.min.js"></script>
