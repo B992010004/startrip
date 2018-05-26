@@ -91,6 +91,7 @@
 	width: 20%;
 	height: 20%;
 	padding-top: 10%;
+	padding: 4%; 
 }
 
 .card-body {
