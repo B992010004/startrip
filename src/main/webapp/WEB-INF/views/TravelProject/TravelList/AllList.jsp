@@ -383,10 +383,19 @@ $(document).on('click','.closeday',function(e){
 	console.log(daybody)
 	var day = daybody.substr(7,1)
 	console.log(day)
-	console.log(${Travel.travelId})
-	console.log(${LoginOK.mail})
+	console.log('${Travel.travelId}')
+	console.log('${LoginOK.mail}')
+	var travel={}
+	travel.mail='${LoginOK.mail}'
+	travel.travelId ='${Travel.travelId}'
+	travel.listday=day;
 	
-	// 	$(e.taget).parent().remove();
+	$.get('/startrip/travel/remove/day',travel,function(data){
+		console.log(data)
+		searchDays();
+		
+	})
+	
 	
 })
 

@@ -177,4 +177,25 @@ public class TravelListDao implements ITravelListDao  {
 		.setParameter("tripday", bean.getTripday()).setParameter("travelid", bean.getTravelId()).executeUpdate();
 		return "success";
 	}
+
+
+	@Override
+	public String updateListDay(Integer travelId, Integer travelListDay) {
+		System.out.println("travellistDay ="+travelId+","+travelListDay);
+		String sql = "  update TravelList set tripday=:prevtripday where travelId=:travelId and tripday=:tripday";
+		factory.getCurrentSession().createNativeQuery(sql, TravelListBean.class)
+		.setParameter("prevtripday", travelListDay-1).setParameter("travelId", travelId).setParameter("tripday", travelListDay).executeUpdate();
+		
+		return null;
+	}
+	
+	@Override
+	public String updateListDayState(Integer travelId, Integer travelListDay) {
+		String sql = "  update TravelList set state=:state where travelId=:travelId and tripday=:tripday";
+		factory.getCurrentSession().createNativeQuery(sql, TravelListBean.class)
+		.setParameter("state", 0).setParameter("travelId", travelId).setParameter("tripday", travelListDay).executeUpdate();
+		
+		return null;
+	}
+	
 }

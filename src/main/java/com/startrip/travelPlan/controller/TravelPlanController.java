@@ -240,9 +240,56 @@ public class TravelPlanController {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-	
 		return bean;
 	}
+//------------------------------------------
+	@RequestMapping(value="/travel/remove/day",method=RequestMethod.GET)
+	@ResponseBody
+	public TravelAllBean removeDay(@RequestParam("mail")String mail,@RequestParam("travelId")Integer travelId
+			,@RequestParam("listday")Integer listday) {
+		TravelAllBean bean = new TravelAllBean();
+		Integer memberId =memberservice.select(mail).getMemberid(); 
+		bean = travelservice.Select_Travel(memberId,travelId);
+		Integer days =bean.getTravelDays();
+		
+		java.util.Date convert = new java.util.Date(bean.getEndDate().getTime());
+		Calendar   calendar = new GregorianCalendar(); 
+		calendar.setTime(convert); 
+		calendar.add(calendar.DATE,-1); //把日期往后增加一天,整数  往后推,负数往前移动 
+		convert= calendar.getTime(); //这个时间就是日期往后推一天的结果 
+		Date endDate = new java.sql.Date(convert.getTime());
+//		System.out.println(endDate);
+//		System.out.println("--------------------------------------------");
+		bean.setTravelDays(days-1);
+		bean.setEndDate(endDate);
+		bean.toString();
+		
+		Integer updatedays = days-listday;
+		int i ;
+			for(i =listday;i<=days;i++) {
+				System.out.println("i="+i);
+				System.out.println("remove/day/list="+days);
+				
+				if(i==listday) {
+					System.out.println("i="+i+",listday="+listday);
+					listservice.updateListDayState(travelId, listday);
+					continue;
+				}
+				listservice.updateListDay(travelId,i);
+					
+				
+			}
+			try {
+			travelservice.updateDays(bean);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return bean;
+	}
+	
+	
+	
 	//show行程圖片
 	@RequestMapping(value="/show/{fileName}.{suffix}" ,method =RequestMethod.GET)
 	public ResponseEntity<byte[]> showtravel(
