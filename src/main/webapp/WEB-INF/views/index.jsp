@@ -253,15 +253,7 @@
 	<script src="/startrip/assets/js/main.js"></script>
 
 	<script>
-	$(function(){
-		$('.navbar-nav.ml-auto').children().eq(1).addClass('active');
-		$('.navbar-nav.ml-auto').children().eq(2).addClass('active');
-		$('.navbar-nav.ml-auto').children().eq(3).addClass('active');
-		$('.navbar-nav.ml-auto').children().eq(4).addClass('active');
 	
-	
-	
-	})
 	
 	
 	
