@@ -14,7 +14,7 @@
 	content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
 
 
-<title>StarTrip&mdash;星遊網</title>
+<title>StarTrip&nbsp;星遊網&mdash;歡迎您</title>
 
 <link
 	href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,700"
@@ -223,7 +223,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 		
 	</section>
 	<!-- END section -->

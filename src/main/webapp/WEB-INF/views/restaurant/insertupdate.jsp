@@ -298,7 +298,7 @@
 
 		<div class="col-md1">
 			<div class="bigheadline1">
-				<h1 class="headline1">查看所有餐廳訂單</h1>
+				<h1 class="headline1">所有餐廳訂單資料</h1>
 			</div>
 			<a href="/startrip/AllListBooking" class="btn btn-primary btn-block">查&nbsp;&nbsp;&nbsp;&nbsp;看&nbsp;&nbsp;&nbsp;&nbsp;所&nbsp;&nbsp;&nbsp;&nbsp;有&nbsp;&nbsp;&nbsp;&nbsp;餐&nbsp;&nbsp;&nbsp;&nbsp;廳&nbsp;&nbsp;&nbsp;&nbsp;訂&nbsp;&nbsp;&nbsp;&nbsp;單</a>
 		</div>

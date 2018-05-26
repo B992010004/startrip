@@ -209,5 +209,6 @@ public class HotelController {
 		return responseEntity;
 	}
 	
+	
 	// 以上非會員也可瀏覽
 }
