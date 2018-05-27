@@ -63,4 +63,12 @@ public class TripInfController {
 		return "transport/selectTrip321";
 	}
 
+	@RequestMapping(value = "/selectCMTrip", method = RequestMethod.GET)
+	public String tripInfOrderList(Model model, HttpServletRequest request) {
+//		List<TripInfBean> all = TripInfService.select1();
+//		model.addAttribute("TripInfList", all);// 標籤名TripInfList
+//		System.out.println(all);
+		return "/transport/selectAllOrderlist";
+	}
+	
 }
