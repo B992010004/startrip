@@ -75,12 +75,12 @@
 	background-size:25em;
 	background-repeat:no-repeat;
     background-color: aqua;
-    height: 120px;
+    height: 150px;
   }
   .bgImg{
-  background-image:url("/startrip/assets/Travel/img/icon-black-corner.png");
-  background-size:20em;
-      height: 100%;
+    background-image: url(/startrip/assets/Travel/img/icon-black-corner.png);
+    background-size: 28em;
+    height: 100%;
     width: 300px;
   }
   #travelName{
@@ -89,10 +89,11 @@
       font-family: fantasy;
       font-weight: 1em;
   }
-  
+   
   .time.contex{
   color: white;
-  font-size: 2em;
+  font-size: 1em;
+  font-family: sans-serif;
   }
   
    .timestyle{
@@ -101,17 +102,14 @@
      width:200px;
   }
   .triplist{
-      height: 620px;
+      height: 590px;
     background-color: #89ccbb;
     overflow-y: auto;
     position: fixed;
     width: 350px;
   }
 
- .time.contex{
-      font-size: 10px;
-      
-  }
+ 
 
 /* The actual timeline (the vertical ruler) */
 .timeline {
@@ -214,6 +212,7 @@
     background-color: white;
     position: relative;
     border-radius: 25px;
+    box-shadow:2px 2px 2px rgba(20%,20%,40%,0.6),4px 4px 6px rgba(20%,20%,40%,0.4),6px 6px 12px rgba(20%,20%,40%,0.4);
 }
 
 /* The actual content */
@@ -223,7 +222,7 @@
     background-color: white;
     position: relative;
     border-radius: 6px;
-       
+        box-shadow:2px 2px 2px rgba(20%,20%,40%,0.6),4px 4px 6px rgba(20%,20%,40%,0.4),6px 6px 12px rgba(20%,20%,40%,0.4);
 }
 
 .timeline-content1 {
@@ -601,7 +600,25 @@ blockquote {
 .timediv{
 	background-color: white;
 }
+.closeday{
+	background-image: url("/startrip/assets/Travel/img/clear.png");
+	width:48px;
+	height: 48px;
+}
+.title:hover{
+	cursor: pointer;
+}
+.closeday:hover{
+	cursor: pointer;
+}
+.closelist:hover{
+	cursor: pointer;
+}
 
+.start,.end,.line{
+	font-family: sans-serif;
+	color:black;
+}
 
 @media screen and (max-width: 768px) {
   .timeline::before {
