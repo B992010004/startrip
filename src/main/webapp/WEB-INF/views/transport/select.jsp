@@ -78,7 +78,7 @@
 
         }
     </style>
-    <title>站名編號查詢</title>
+   
     <script>
         function getArea(data) {
             //     alert($('#FPMap0'));
@@ -215,6 +215,7 @@ $('.navbar-nav.ml-auto').children().eq(2).addClass('active')
 });
 
 </script>
+ <title>站名編號查詢</title>
 </head>
 <!--     搜尋車站vvv -->
 
@@ -360,7 +361,7 @@ $('.navbar-nav.ml-auto').children().eq(2).addClass('active')
     </section>
 <!--     選擇出發站及終點站產生地圖路線 -->
     <div id="twoPoints" align="center">
-
+   
     </div>
      
     <!-- 以上為訂票功能版面 -->
@@ -374,7 +375,7 @@ $('.navbar-nav.ml-auto').children().eq(2).addClass('active')
         
         <div style="width:200%" class="row">
            <div>
-  <form action="/startrip/selectTripInf" class="probootstrap-form" style="border-radius: 30px;">
+<form action="/startrip/selectCMTrip" class="probootstrap-form" style="border-radius: 30px;">
 
 <h3>已訂車票查詢</h3>
 <label for="id_label_location">
@@ -393,7 +394,7 @@ class="form-control" placeholder="請輸入身份證字號">
 class="form-control" placeholder="請輸入訂票電話">
 </div>
 <div align="center">
-<input type="submit" value="查詢" >
+<input type="submit" value="查詢" src="/selectAllOrderlist">
 </div>
 
 
@@ -475,15 +476,15 @@ class="form-control" placeholder="請輸入訂票電話">
                             <td>台北 </td>
                             <td>南港轉運站 </td>
                             <td>
-                                <img class="mapImage" id="getAddress" width="30" height="30" src="/startrip/assets/transport/images/mapicon.png">
-                                台北市南港區南港路一段313號 
+      							<img class="mapImage" id="getAddress" width="30" height="30" src="/startrip/assets/transport/images/mapicon.png">
+      							   台北市南港區南港路一段313號 
                             </td>
                         </tr>
                         <tr>
                             <td>台北 </td>
                             <td>捷運南港展覽館 </td>
                             <td>
-                                <img class="mapImage" id="getAddress" width="30" height="30" src="/startrip/assets/transport/images/mapicon.png">
+                       <img class="mapImage" id="getAddress" width="30" height="30" src="/startrip/assets/transport/images/mapicon.png">
                                 台北市南港區經貿二路1號(163櫃) 
                             </td>
                         </tr>
@@ -523,17 +524,6 @@ class="form-control" placeholder="請輸入訂票電話">
         <jsp:include page="/WEB-INF/views/member/login.jsp" flush="true" />
     </div>
     <script>
-$("#inputStation2").change(function(){
-	$("#twoPoints").empty();
-	$($("#twoPoints")).hide().html("<iframe width='600' height='450' frameborder='0' style='border:0' src='https://www.google.com/maps/embed/v1/directions?key=AIzaSyDl3nl3wQF2mlYkw87KHByGF9dB9In_fGQ&origin="+$('#inputStation').val()+"1&destination="+$('#inputStation2').val()+"'></iframe>").slideDown(1000);
-//	                                <iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyDl3nl3wQF2mlYkw87KHByGF9dB9In_fGQ&origin=           台北車站                             1&destination=           花蓮車站                                "></iframe>	
-	
-	
-	a
-	console.log($("#inputStation").val());
-	console.log($("#inputStation2").val());
-	});
-
 
 
 
@@ -541,24 +531,16 @@ $("#inputStation2").change(function(){
     
 
    
-<button class="btn-info" onclick="qqq()">測試</button>
+
 </body>
 <!-- 顯示兩點地圖 -->
 <script>
 $("#inputStation2").change(function(){
 	$("#twoPoints").empty();
-	$($("#twoPoints")).hide().html("<iframe width='600' height='450' frameborder='0' style='border:0' src='https://www.google.com/maps/embed/v1/directions?key=AIzaSyDl3nl3wQF2mlYkw87KHByGF9dB9In_fGQ&origin="+$('#inputStation').val()+"1&destination="+$('#inputStation2').val()+"'>  </iframe>").slideDown(1000);
-	
-	
-	
-	
-	
+	$($("#twoPoints")).hide().html("<iframe width='600' height='450' alternatives='true' frameborder='0' units='metric' style='border:0' src='https://www.google.com/maps/embed/v1/directions?key=AIzaSyDl3nl3wQF2mlYkw87KHByGF9dB9In_fGQ&origin="+$('#inputStation').val()+"1&destination="+$('#inputStation2').val()+"'>  </iframe>").slideDown(1000);
 	console.log($("#inputStation").val());
 	console.log($("#inputStation2").val());
 	});
 
-
-
-}
 </script>
 </html>

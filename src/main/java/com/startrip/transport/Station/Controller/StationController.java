@@ -54,10 +54,10 @@ public class StationController {
 		StationService.insert(ist);
 		return "redirect:/stationEdit";
 	}
-	@RequestMapping(value = "/stationEdit", method = RequestMethod.GET)
-	public String InputStation(Model model) {
-		StationBean ist = new StationBean();
-		model.addAttribute("inputStation", ist);
-		return "transport/stationEdit";
-	}	
+	
+	
+	
+	
+	
+	
 }

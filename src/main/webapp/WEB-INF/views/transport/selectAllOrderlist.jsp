@@ -81,7 +81,7 @@
     <script src="/startrip/assets/js/main.js"></script> 
   
 
-<title>顯示訂票成功</title>
+<title>顯示訂票資料</title>
 </head>
 <script>
 $(function(){
@@ -103,7 +103,7 @@ $('.navbar-nav.ml-auto').children().eq(2).addClass('active')
             <div class="row align-items-center">
                 <div class="col-md probootstrap-animate">
  <form action="/startrip/insertSeatList" class="probootstrap-form" style="border-radius: 30px;">                   
-                   <h1 align="center" style="color:#E8CCFF" id="QQ">這是您預訂的車票</h1>
+ <h1 align="center" style="color:#E8CCFF" id="QQ">這是您已預定的車票</h1>
 	
     <div class="div">
 <table border="1" cellpadding="10" cellspacing="0" class="table  table-bordered">
@@ -135,9 +135,7 @@ $('.navbar-nav.ml-auto').children().eq(2).addClass('active')
 	</table>
 
 
-<h1 align="center">訂票成功請於發車前</h1>
-<h1 align="center">請於5分鐘前至出發站領票</h1>
-<h1 align="center">祝您旅途愉快</h1>
+>
 
 		<a href="/startrip/select">回到大眾運輸首頁</a>
 </div>
