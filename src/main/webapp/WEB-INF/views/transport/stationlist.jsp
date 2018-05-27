@@ -34,6 +34,15 @@
   <link rel="stylesheet" href="assets/css/style.css">
 <title>stationlist</title>
 </head>
+<script>
+$(function(){
+$('.navbar-nav.ml-auto').children().eq(0).removeClass('active');
+$('.navbar-nav.ml-auto').children().eq(2).addClass('active')
+});
+
+</script>
+
+
 <body>
 <c:if test="${! empty rquestScope.station }">
 <table border="1" cellpadding="10" cellspacing="0">

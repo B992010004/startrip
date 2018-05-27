@@ -63,11 +63,34 @@
         
         }
     </style>
-    
+   <script src="/startrip/assets/js/jquery.min.js"></script>
+    <script src="/startrip/assets/js/popper.min.js"></script>
+    <script src="/startrip/assets/js/bootstrap.min.js"></script>
+    <script src="/startrip/assets/js/owl.carousel.min.js"></script>
+    <script src="/startrip/assets/js/jquery.waypoints.min.js"></script>
+    <script src="/startrip/assets/js/jquery.easing.1.3.js"></script>
+    <script src="/startrip/assets/js/select2.min.js"></script>
+    <script src="/startrip/assets/js/main.js"></script>
+    <script src="/startrip/assets/js/jquery.min.js"></script>
+    <script src="/startrip/assets/js/popper.min.js"></script>
+    <script src="/startrip/assets/js/bootstrap.min.js"></script>
+    <script src="/startrip/assets/js/owl.carousel.min.js"></script>
+    <script src="/startrip/assets/js/jquery.waypoints.min.js"></script>
+    <script src="/startrip/assets/js/jquery.easing.1.3.js"></script>
+    <script src="/startrip/assets/js/select2.min.js"></script>
+    <script src="/startrip/assets/js/main.js"></script> 
   
 
 <title>顯示訂票成功</title>
 </head>
+<script>
+$(function(){
+$('.navbar-nav.ml-auto').children().eq(0).removeClass('active');
+$('.navbar-nav.ml-auto').children().eq(2).addClass('active')
+});
+
+</script>
+
 <body>
 <div>
 <jsp:include page="/WEB-INF/views/header.jsp" flush="true" />
@@ -100,14 +123,12 @@
 			<c:forEach items='${OrerList}' var='select'>
 			<tr>
 				<td>1</td>
-				<td>${select.orderDate}</td>			
+				<td><fmt:formatDate pattern="yyyy-MM-dd"  value="${select.orderDate }" /></td>						
 				<td>${select.orderTime}</td>
 				<td>${select.starStation}</td>
-				<td><fmt:formatDate pattern="yyyy-MM-dd"  value="${select.orderDate }" /></td>
 				<td align="center"><img width="200" height="20" src="/startrip/assets/transport/images/arow.jpg"></td>
 				<td>${select.endStation}</td>
-				
-				<td></td>
+				<td>12</td>
 	
 			</tr>
 		</c:forEach>
@@ -123,21 +144,6 @@
 
 
 
-<script src="/startrip/assets/js/jquery.min.js"></script>
-    <script src="/startrip/assets/js/popper.min.js"></script>
-    <script src="/startrip/assets/js/bootstrap.min.js"></script>
-    <script src="/startrip/assets/js/owl.carousel.min.js"></script>
-    <script src="/startrip/assets/js/jquery.waypoints.min.js"></script>
-    <script src="/startrip/assets/js/jquery.easing.1.3.js"></script>
-    <script src="/startrip/assets/js/select2.min.js"></script>
-    <script src="/startrip/assets/js/main.js"></script>
-    <script src="/startrip/assets/js/jquery.min.js"></script>
-    <script src="/startrip/assets/js/popper.min.js"></script>
-    <script src="/startrip/assets/js/bootstrap.min.js"></script>
-    <script src="/startrip/assets/js/owl.carousel.min.js"></script>
-    <script src="/startrip/assets/js/jquery.waypoints.min.js"></script>
-    <script src="/startrip/assets/js/jquery.easing.1.3.js"></script>
-    <script src="/startrip/assets/js/select2.min.js"></script>
-    <script src="/startrip/assets/js/main.js"></script>
+
 </body>
 </html>
