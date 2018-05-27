@@ -80,37 +80,37 @@ public class RootAppConfig {
 	 * 需要上傳雲端打開以下註解
 	 *
 	 */
-	// @Bean
-	// public LocalSessionFactoryBean sessionFactoryBean() {
-	// System.out.println("SessionFactory... in RootAppConfig");
-	// LocalSessionFactoryBean factory = new LocalSessionFactoryBean();
-	// factory.setPackagesToScan(new String[] { "com.startrip" });
-	// factory.setHibernateProperties(additionalProperties());
-	// return factory;
-	// }
-	//
-	// @Bean(name = "transactionManager")
-	// @Autowired
-	// public HibernateTransactionManager transactionManager(SessionFactory
-	// sessionFactory) {
-	//
-	// System.out.println("transactionManager.. in RootAppConfig");
-	// HibernateTransactionManager txManager = new HibernateTransactionManager();
-	// txManager.setSessionFactory(sessionFactory);
-	// return txManager;
-	// }
-	//
-	// private Properties additionalProperties() {
-	// Properties properties = new Properties();
-	// properties.put("hibernate.dialect",
-	// org.hibernate.dialect.SQLServer2012Dialect.class);
-	// properties.put("hibernate.show_sql", Boolean.TRUE);
-	// properties.put("hibernate.format_sql", Boolean.TRUE);
-	// properties.put("default_batch_fetch_size", 10);
-	// properties.put("hibernate.hbm2ddl.auto", "update");
-	// properties.put("hibernate.connection.datasource",
-	// "java:comp/env/jdbc/startrip");
-	// return properties;
-	// }
+//	 @Bean
+//	 public LocalSessionFactoryBean sessionFactoryBean() {
+//	 System.out.println("SessionFactory... in RootAppConfig");
+//	 LocalSessionFactoryBean factory = new LocalSessionFactoryBean();
+//	 factory.setPackagesToScan(new String[] { "com.startrip" });
+//	 factory.setHibernateProperties(additionalProperties());
+//	 return factory;
+//	 }
+//	
+//	 @Bean(name = "transactionManager")
+//	 @Autowired
+//	 public HibernateTransactionManager transactionManager(SessionFactory
+//	 sessionFactory) {
+//	
+//	 System.out.println("transactionManager.. in RootAppConfig");
+//	 HibernateTransactionManager txManager = new HibernateTransactionManager();
+//	 txManager.setSessionFactory(sessionFactory);
+//	 return txManager;
+//	 }
+//	
+//	 private Properties additionalProperties() {
+//	 Properties properties = new Properties();
+//	 properties.put("hibernate.dialect",
+//	 org.hibernate.dialect.SQLServer2012Dialect.class);
+//	 properties.put("hibernate.show_sql", Boolean.TRUE);
+//	 properties.put("hibernate.format_sql", Boolean.TRUE);
+//	 properties.put("default_batch_fetch_size", 10);
+//	 properties.put("hibernate.hbm2ddl.auto", "update");
+//	 properties.put("hibernate.connection.datasource",
+//	 "java:comp/env/jdbc/startrip");
+//	 return properties;
+//	 }
 
 }

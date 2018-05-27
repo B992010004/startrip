@@ -46,7 +46,7 @@ public class HotelController {
 
 	@Autowired
 	ServletContext context;
-	
+
 	@Autowired
 	RtDetailsService rtDetailsService;
 
@@ -55,10 +55,6 @@ public class HotelController {
 	HotelReviewService hotelReviewService;
 
 	// 以下非會員也可瀏覽
-	@RequestMapping(value = "/Hotels")
-	public String hotels(Model model) {
-		return "hotel/Hotels";
-	}
 
 	@RequestMapping(value = "/HotelsSearchResult")
 	public String hotelsSearchResult(Model model, SearchHotel searchHotel, HttpServletRequest request)
@@ -75,7 +71,7 @@ public class HotelController {
 		// 搜尋字串丟session保存
 		HttpSession session = request.getSession();
 		session.setAttribute("searchBean", searchHotel);
-		
+
 		model.addAttribute("results", list);
 		return "hotel/HotelsSearchResult";
 	}
@@ -96,7 +92,7 @@ public class HotelController {
 		// 評等
 		// [星等, 數量]
 		List<Object[]> list = hotelReviewService.getRankByHotelId(hotelId);
-
+		System.out.println("debug:   " + list);
 		Integer rankSize = 0;
 		int[] rankArr = { 0, 0, 0, 0, 0 };
 		// 根本不能轉型成Integer[]??
@@ -107,7 +103,7 @@ public class HotelController {
 			rankArr[toInt - 1] = Integer.valueOf(intArr[1].toString());
 			rankSize += Integer.valueOf(intArr[1].toString());
 		}
-		
+
 		System.out.println("rankArr=    " + Arrays.toString(rankArr));
 		// 避免0/0
 		if (rankSize == 0) {
@@ -124,16 +120,16 @@ public class HotelController {
 		// Group by 失敗
 		List<Rooms> roomList = roomsServiceInterface.selectByHotelIdGroupByType(hotelId);
 		String[] serviceArr = null;
-		for(Rooms room:roomList) {
+		for (Rooms room : roomList) {
 			serviceArr = room.getService().split(";");
 			room.setServiceArr(serviceArr);
 		}
 		String[] facilityArr = null;
-		for(Rooms room:roomList) {
+		for (Rooms room : roomList) {
 			facilityArr = room.getFacility().split(";");
 			room.setFacilityArr(facilityArr);
 		}
-		
+
 		model.addAttribute("roomList", roomList);
 
 		return "hotel/Rooms";
@@ -219,7 +215,6 @@ public class HotelController {
 
 		return responseEntity;
 	}
-	
-	
+
 	// 以上非會員也可瀏覽
 }

@@ -35,11 +35,15 @@ public class HotelOrderDAO implements HotelOrderInterface {
 	 * 
 	 * @see
 	 * com.startrip.hotel.repository.HotelOrderInterface#selectByPk(java.lang.Long)
+	 * 沒收到歐付寶回傳資訊 展示先以最新筆資料代替
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public HotelOrder selectByPk(String ordernumber) {
 		Session session = factory.getCurrentSession();
-		return session.get(HotelOrder.class, ordernumber);
+		List<HotelOrder> list = new ArrayList<>();
+		list = session.createQuery("FROM HotelOrder ho ORDER BY orderTimeStamp").setMaxResults(1).list();
+		return list.get(0);
 	}
 
 	@SuppressWarnings("unchecked")

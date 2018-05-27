@@ -85,18 +85,25 @@
                                     <tr>
                                         <th scope="row">
                                             <img class="roomPhoto" src="/startrip/assets/images/roomStyle.jpg">
-                                            <br> 豪華雙人房
+                                            <br> ${room.roomname }
+<!--                                             	豪華雙人房 -->
                                         </th>
-                                        <td>太魯閣晶英酒店 (Silks Place Taroko Hotel)
-                                            <br>972花蓮縣秀林鄉天祥路18號
-                                            <br>38691155
-                                            <br>入住日期:
-                                            <br>退房日期:
+                                        <td>
+<!--                                         太魯閣晶英酒店 (Silks Place Taroko Hotel) -->
+                                            ${room.roomname }
+                                            <br>
+<!--                                             972花蓮縣秀林鄉天祥路18號 -->
+                                            ${hotel.hoteladdress }
+                                            <br>
+<!--                                             38691155 -->
+											${hotel.hotelphone }
+                                            <br>入住日期: ${order.checkin }
+                                            <br>退房日期: ${order.checkout }
                                         </td>
                                         <td>1 張雙人床 / 2 張單人床
                                             <br>室內WIFI
                                         </td>
-                                        <td>3000</td>
+                                        <td>${room.basicprice }</td>
 
                                     </tr>
 

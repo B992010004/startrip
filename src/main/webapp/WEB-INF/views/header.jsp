@@ -81,7 +81,7 @@
 		<div class="collapse navbar-collapse" id="probootstrap-menu">
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item  active"><a class="nav-link"
-					href="/startrip/">旅店</a></li>
+					href="/startrip/">飯店</a></li>
 
 				<li class="nav-item"><a class="nav-link"
 					href="/startrip/restaurantHome">餐廳</a></li>
