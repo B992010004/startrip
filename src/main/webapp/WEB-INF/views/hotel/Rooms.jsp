@@ -387,8 +387,11 @@
                                         </c:forEach>
                                     </td>
                                     <td>
-                                        1 張雙人床 / 2 張單人床
-                                        <br>室內WIFI
+                                    <c:forEach var="facility" items="${room.facilityArr }">
+                                    ${facility }<br>
+<!--                                         1 張雙人床 / 2 張單人床 -->
+<!--                                         <br>室內WIFI -->
+</c:forEach>
                                     </td>
                                     <td>NT$ <fmt:formatNumber value="${room.basicprice }" type="number" /></td>
                                     <td>
