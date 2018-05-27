@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -273,6 +274,7 @@
                 formData.cellphone = $('#cellphone').val();
                 formData.memberid = $('#memberid').val();
                 formData.password = $('#password').val();
+                formData.ordernote = $('#ordernote').val();
                 console.log(formData);
                 $.ajax({
                     url: '/startrip/frontEnd/aioCheckOut/aioCheckOutALL/${hotel.hotelid }/${room.roomtype }',
