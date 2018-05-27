@@ -378,13 +378,20 @@
                                         <img src="/startrip/assets/images/roomStyle.jpg">
                                         <br> ${room.roomname }
                                     </th>
-                                    <td>附早餐
-                                        <br>可加床
-                                        <br>不可退款
+                                    <td>
+                                    	<c:forEach var="service" items="${room.serviceArr }">
+                                    ${service }<br>
+<!--                                     		附早餐 -->
+<!--                                         <br>可加床 -->
+<!--                                         <br>不可退款 -->
+                                        </c:forEach>
                                     </td>
                                     <td>
-                                        1 張雙人床 / 2 張單人床
-                                        <br>室內WIFI
+                                    <c:forEach var="facility" items="${room.facilityArr }">
+                                    ${facility }<br>
+<!--                                         1 張雙人床 / 2 張單人床 -->
+<!--                                         <br>室內WIFI -->
+</c:forEach>
                                     </td>
                                     <td>NT$ <fmt:formatNumber value="${room.basicprice }" type="number" /></td>
                                     <td>

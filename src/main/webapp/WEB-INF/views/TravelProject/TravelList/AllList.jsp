@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>行程清單</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,700" rel="stylesheet">
@@ -253,7 +253,9 @@ $(function(){
 	searchDays();
 	//搜尋景點
 // 	searchView();
-
+$('.navbar-nav.ml-auto').children().eq(0).removeClass('active');
+$('.navbar-nav.ml-auto').children().eq(3).addClass('active')
+	
 })
 
 
@@ -262,8 +264,6 @@ $(function(){
 	
 //天數行程切換
 function changetype(){
-	
-	
 	
 	var k = event.target.id;
 	//當天行程數
@@ -320,13 +320,14 @@ function placeroute(len,right){
 	 directionsService = new google.maps.DirectionsService;
 	 directionsDisplay = new google.maps.DirectionsRenderer({
        map: map,
-       suppressMarkers: true//隱藏support marker
+//        suppressMarkers: true//隱藏support marker
     });
 	
 	var waypts=[];
 	for(var i = 0;i<len;i++){
 		if(i==0){
 			start =right.eq(i).find('h5').text()
+			
 			console.log('start'+start)
 		}else if(i==(len-1)){
 			end = right.eq(i).find('h5').text()
@@ -376,6 +377,10 @@ $('#insertday').on('click',function(){
 	})
 })//新增天數END
 
+
+
+
+
 $(document).on('click','.closeday',function(e){
 	console.log($(e.target))
 	var daybody=$(e.target).parent().attr('id');
@@ -383,10 +388,19 @@ $(document).on('click','.closeday',function(e){
 	console.log(daybody)
 	var day = daybody.substr(7,1)
 	console.log(day)
-	console.log(${Travel.travelId})
-	console.log(${LoginOK.mail})
+	console.log('${Travel.travelId}')
+	console.log('${LoginOK.mail}')
+	var travel={}
+	travel.mail='${LoginOK.mail}'
+	travel.travelId ='${Travel.travelId}'
+	travel.listday=day;
 	
-	// 	$(e.taget).parent().remove();
+	$.get('/startrip/travel/remove/day',travel,function(data){
+		console.log(data)
+		searchDays();
+		
+	})
+	
 	
 })
 
@@ -708,10 +722,10 @@ function searchDays(){
 		success:function(data){
 			$('#tripcontext').empty();
 			var bg=$('<div class="bgImg"></div>')
-			var travelNmae = $("<h4 id='travelName'>"+data.Name.travelName+"</h4>");
-			var col =$("<div class='timestyle col-4'></div>");
+			var travelNmae = $("<h3 id='travelName'>"+data.Name.travelName+"</h3>");
+			var col =$("<div class='timestyle col-5'></div>");
 			var starttime = $('<span id ="startDate" class="time contex">'+data.startDate+'</span><br>')
-			var line=$("<span class='time contex' style='margin-left:25px;'>|</span><br>");
+			var line=$("<span class='time contex' style='margin-left:40px;'>|</span><br>");
 			var endtime=$("<span id='endDate'  class='time contex'>"+data.endDate+"</span>")
 			col.html([starttime,line,endtime]);
 			bg.html([travelNmae,col])
@@ -725,14 +739,15 @@ function searchDays(){
 				console.log('第'+i+'天')
 				//---天數新增
 				var title=$('<h2 class="title" onclick="changetype()" id="day'+i+'" >Day'+i+'</h2>');
-				var dayremove=$('<div class="closeday" style="float:right;">x</div>')
-				var daycontent=$('<div class="contentDay"></div>');
+				var dayremove=$('<div class="closeday" style="float:right;"></div>')
+				var daycontent=$('<div class="title contentDay"></div>');
 				var right1 = $("<div class='container1 right1 ' id='daybody"+i+"' ></div>");
- 
+ 				
 					daycontent.html(title);
 					right1.html([dayremove,daycontent]);
 					docFrag.append(right1);
 					console.log('i='+i)
+					
 					searchList(i);
 			}
 			main.append(docFrag);
@@ -769,8 +784,9 @@ function searchList(day){
 					var title = $('<h5 class="listtitle" name="title" data-viewLatLng="'+data[i].viewbean.latlng+'">'+data[i].viewName+'</h5>');
 				
 					var start = $('<div class="start">'+data[i].startTime+'</div>');
+					var line = $('<div class= "line" style="margin-left:15px;">|</div>');
 					var end = $('<div class="end">'+data[i].endTime+'</div>');
-					content.append([title,start,end])
+					content.append([title,start,line,end])
 					right.append(content)
 					var day1=data[i].tripday
 					
@@ -1169,12 +1185,12 @@ function initMap() {
 // 	                  console.log(data.articles[i])
 	                 
 	         if(!(data.articles[i].location==undefined)){
-	            	 console.log(data.articles[i].title)
-	                  console.log("tumb="+data.articles[i].thumb)
-	                  console.log(data.articles[i].link)
-	                  console.log(data.articles[i].cover) 
-	                  console.log("i =" +data.articles[i].location)
-	                console.log(data.articles[i])
+// 	            	 console.log(data.articles[i].title)
+// 	                  console.log("tumb="+data.articles[i].thumb)
+// 	                  console.log(data.articles[i].link)
+// 	                  console.log(data.articles[i].cover) 
+// 	                  console.log("i =" +data.articles[i].location)
+// 	                console.log(data.articles[i])
 // 				var split =data[i].imgName.split(";");
 				var img = $('<img  class="card-img-top hover-shadow" id="img'+(0+1)+'"  alt="Card image cap">').attr("src",data.articles[i].thumb);
 				var a = $('<a href="'+data.articles[i].link+'"></a>')

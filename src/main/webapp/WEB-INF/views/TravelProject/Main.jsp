@@ -167,11 +167,20 @@
 	<script src="/startrip/assets/js/main.js"></script>
 
 	<script src="/startrip/assets/Travel/js/jquery-ui.min.js"></script>
+<!-- 	//圖表 -->
+	
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src="https://code.highcharts.com/modules/data.js"></script>
+	<script src="https://code.highcharts.com/modules/drilldown.js"></script>
 
 
 	<script type="text/javascript">
 		$(function() {
 			searchTravels();
+			$('.navbar-nav.ml-auto').children().eq(0).removeClass('active');
+			$('.navbar-nav.ml-auto').children().eq(3).addClass('active')
+			
+			
 			//表單狀態  
 			$('.list-group-item').hover(function(e) {
 				$(e.target).addClass('active');
@@ -376,8 +385,8 @@
 // 										console.log(data[i].img)
 										var card = $('<div class="card col-5" id="plan" style="width: 18rem;"></div>')
 										var imgrow = $('<div class="row" "></div>');
-										var img = $('<img id="travelimg" class="card-img-top col-8" src="/startrip/show/'+data[i].img+'" alt="Card image cap"><img src = /startrip/assets/Travel/img/marker.png class="icon col-2 update" id="update'
-												+ (i + 1)+ '"><img id="del'+ (i + 1)+ '" class="icon col-2 del" src = "/startrip/assets/Travel/img/close2.png">')
+										var img = $('<img id="travelimg" class="card-img-top col-8" src="/startrip/show/'+data[i].img+'" alt="Card image cap"><div  class="icon update" id="update'
+												+ (i + 1)+ '"></div><div id="del'+ (i + 1)+ '" class="icon  del" ></div>')
 										var body = $('<div class="card-body"></div>')
 										var title = $('<h5 class="card-title">'	+ data[i].travelName + '</h5><div class="id"  style="display:none;">'+ data[i].travelId + '</div>')
 
@@ -387,7 +396,7 @@
 										endDate = format(end);
 										var text = $('<p class="card-text">'
 												+ StartDate
-												+ '-'
+												+ ' - '
 												+ endDate
 												+ '</p><button  id="planset'+i+'"  class="btn btn-primary btn-lg btn-block" type="submit" id=btn'+i+'>確定</button>')
 										body.append([ title, text ]);

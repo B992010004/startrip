@@ -253,6 +253,10 @@
 	<script src="/startrip/assets/js/main.js"></script>
 
 	<script>
+	
+	
+	
+	
 		$('#probootstrap-date-departure, #probootstrap-date-arrival')
 				.datepicker({
 					'format' : 'yyyy/m/d',

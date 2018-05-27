@@ -1,12 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
  
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -63,34 +60,11 @@
         
         }
     </style>
-   <script src="/startrip/assets/js/jquery.min.js"></script>
-    <script src="/startrip/assets/js/popper.min.js"></script>
-    <script src="/startrip/assets/js/bootstrap.min.js"></script>
-    <script src="/startrip/assets/js/owl.carousel.min.js"></script>
-    <script src="/startrip/assets/js/jquery.waypoints.min.js"></script>
-    <script src="/startrip/assets/js/jquery.easing.1.3.js"></script>
-    <script src="/startrip/assets/js/select2.min.js"></script>
-    <script src="/startrip/assets/js/main.js"></script>
-    <script src="/startrip/assets/js/jquery.min.js"></script>
-    <script src="/startrip/assets/js/popper.min.js"></script>
-    <script src="/startrip/assets/js/bootstrap.min.js"></script>
-    <script src="/startrip/assets/js/owl.carousel.min.js"></script>
-    <script src="/startrip/assets/js/jquery.waypoints.min.js"></script>
-    <script src="/startrip/assets/js/jquery.easing.1.3.js"></script>
-    <script src="/startrip/assets/js/select2.min.js"></script>
-    <script src="/startrip/assets/js/main.js"></script> 
+    
   
 
-<title>顯示訂票成功</title>
+<title>顯示訂票資訊</title>
 </head>
-<script>
-$(function(){
-$('.navbar-nav.ml-auto').children().eq(0).removeClass('active');
-$('.navbar-nav.ml-auto').children().eq(2).addClass('active')
-});
-
-</script>
-
 <body>
 <div>
 <jsp:include page="/WEB-INF/views/header.jsp" flush="true" />
@@ -123,27 +97,37 @@ $('.navbar-nav.ml-auto').children().eq(2).addClass('active')
 			<c:forEach items='${OrerList}' var='select'>
 			<tr>
 				<td>1</td>
-				<td><fmt:formatDate pattern="yyyy-MM-dd"  value="${select.orderDate }" /></td>						
+				<td>${select.orderDate}</td>			
+				<td><fmt:formatDate pattern="yyyy-MM-dd"  value="${select.orderDate }" /></td>
 				<td>${select.orderTime}</td>
 				<td>${select.starStation}</td>
 				<td align="center"><img width="200" height="20" src="/startrip/assets/transport/images/arow.jpg"></td>
 				<td>${select.endStation}</td>
-				<td>12</td>
+				
+				<td></td>
 	
 			</tr>
 		</c:forEach>
 	</table>
-
-
-<h1>訂票成功請於發車前</h1>
-<h1>5分鐘至出發站領票</h1>
-<h1>祝您旅途愉快</h1>
-
-		<a href="/startrip/select">回到大眾運輸首頁</a>
 </div>
 
 
 
-
+<script src="/startrip/assets/js/jquery.min.js"></script>
+    <script src="/startrip/assets/js/popper.min.js"></script>
+    <script src="/startrip/assets/js/bootstrap.min.js"></script>
+    <script src="/startrip/assets/js/owl.carousel.min.js"></script>
+    <script src="/startrip/assets/js/jquery.waypoints.min.js"></script>
+    <script src="/startrip/assets/js/jquery.easing.1.3.js"></script>
+    <script src="/startrip/assets/js/select2.min.js"></script>
+    <script src="/startrip/assets/js/main.js"></script>
+    <script src="/startrip/assets/js/jquery.min.js"></script>
+    <script src="/startrip/assets/js/popper.min.js"></script>
+    <script src="/startrip/assets/js/bootstrap.min.js"></script>
+    <script src="/startrip/assets/js/owl.carousel.min.js"></script>
+    <script src="/startrip/assets/js/jquery.waypoints.min.js"></script>
+    <script src="/startrip/assets/js/jquery.easing.1.3.js"></script>
+    <script src="/startrip/assets/js/select2.min.js"></script>
+    <script src="/startrip/assets/js/main.js"></script>
 </body>
 </html>
