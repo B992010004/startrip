@@ -8,11 +8,26 @@
 <html>
 
 <head>
+
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Free Bootstrap 4 Theme by ProBootstrap.com">
     <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script src="/startrip/assets/js/jquery.min.js"></script>
+
+    <script src="/startrip/assets/js/popper.min.js"></script>
+    <script src="/startrip/assets/js/bootstrap.min.js"></script>
+    <script src="/startrip/assets/js/owl.carousel.min.js"></script>
+
+    <script src="/startrip/assets/js/bootstrap-datepicker.js"></script>
+    <script src="/startrip/assets/js/jquery.waypoints.min.js"></script>
+    <script src="/startrip/assets/js/jquery.easing.1.3.js"></script>
+
+    <script src="/startrip/assets/js/select2.min.js"></script>
+
+    <script src="/startrip/assets/js/main.js"></script>
+    
     <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,700" rel="stylesheet">
 
     <link rel="stylesheet" href="/startrip/assets/css/bootstrap/bootstrap.css">
@@ -149,6 +164,10 @@
                 data: abb,
                 success: function (response) {
                     var aaa = $("#inputArea2").val();
+                    var opt1 = document.createElement("option");
+                    opt1.setAttribute("value", "請選擇車站");
+                    opt1.appendChild(document.createTextNode( "請選擇車站"));
+                    document.getElementById('inputStation2').appendChild(opt1);
                     for (var i = 0; i < response.length; i++) {
                         var opt1 = document.createElement("option");
                         opt1.setAttribute("value", response[i].stationName);
@@ -159,14 +178,9 @@
 
             });
 //---------------產生兩點地圖--------
-<<<<<<< HEAD
-           
-=======
- 
-            
-            
+         
         }           
->>>>>>> 29787c67df6bd1dc458a7e1cc02d4d185d29f565
+
     </script>
 
     <!-- 以下為地圖查車站function -->
@@ -195,14 +209,17 @@
         }
     </script>
 <script>
-
-
+$(function(){
+$('.navbar-nav.ml-auto').children().eq(0).removeClass('active');
+$('.navbar-nav.ml-auto').children().eq(2).addClass('active')
+});
 
 </script>
 </head>
 <!--     搜尋車站vvv -->
 
 <!-- 以上為地圖查車站function -->
+
 
 <body>
     <div>
@@ -345,12 +362,9 @@
     <div id="twoPoints" align="center">
 
     </div>
-           
-    
+     
     <!-- 以上為訂票功能版面 -->
     <!-- 以下為地圖標註顯示 -->
-
-
     <div align="left" style="margin-left:100px" id="mapDiv">
         <div class="row text-center mb-5 probootstrap-animate">
             <div class="col-md-12">
@@ -385,12 +399,8 @@ class="form-control" placeholder="請輸入訂票電話">
 
 </label>
 </form>
-</div>      
-        
-        
+</div>        
             <div id="mapDiv">
-   
-            
                 <a id="mapDiv" class="probootstrap-thumbnail">
                     <img style="width:200% " id="imgMap" class="img-fluid" alt="Free Template by ProBootstrap.com" src="/startrip/assets/transport/images/taiwan.png"
                         usemap="#FPMap0" width="280" height="460" usemap="#Map" border="0">
@@ -433,11 +443,9 @@ class="form-control" placeholder="請輸入訂票電話">
                             <td>台北車站 </td>
                             <td>
                                 <img class='mapImage' id='getAddress' width='30' height='30' src='/startrip/assets/transport/images/mapicon.png'>
-<<<<<<< HEAD
-                                <span>台北市中正區市民大道一段168號< /span></td>
-=======
+
                                 <span>台北市中正區市民大道一段168號</span></td>
->>>>>>> 29787c67df6bd1dc458a7e1cc02d4d185d29f565
+
                         </tr>
                         <tr>
                             <td>台北 </td>
@@ -530,23 +538,9 @@ $("#inputStation2").change(function(){
 
 
 </script>
-    <script src="/startrip/assets/js/jquery.min.js"></script>
+    
 
-    <script src="/startrip/assets/js/popper.min.js"></script>
-    <script src="/startrip/assets/js/bootstrap.min.js"></script>
-    <script src="/startrip/assets/js/owl.carousel.min.js"></script>
-
-    <script src="/startrip/assets/js/bootstrap-datepicker.js"></script>
-    <script src="/startrip/assets/js/jquery.waypoints.min.js"></script>
-    <script src="/startrip/assets/js/jquery.easing.1.3.js"></script>
-
-    <script src="/startrip/assets/js/select2.min.js"></script>
-
-    <script src="/startrip/assets/js/main.js"></script>
-
-    <script>
-
-    </script>
+   
 <button class="btn-info" onclick="qqq()">測試</button>
 </body>
 <!-- 顯示兩點地圖 -->

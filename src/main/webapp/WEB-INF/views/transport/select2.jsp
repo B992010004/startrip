@@ -35,7 +35,22 @@
 <link rel="stylesheet" href="/startrip/assets/css/select2.css">
 <link rel="stylesheet" href="/startrip/assets/css/helpers.css">
 <link rel="stylesheet" href="/startrip/assets/css/style.css">
-
+<script src="/startrip/assets/js/jquery.min.js"></script>
+	<script src="/startrip/assets/js/popper.min.js"></script>
+	<script src="/startrip/assets/js/bootstrap.min.js"></script>
+	<script src="/startrip/assets/js/owl.carousel.min.js"></script>
+	<script src="/startrip/assets/js/jquery.waypoints.min.js"></script>
+	<script src="/startrip/assets/js/jquery.easing.1.3.js"></script>
+	<script src="/startrip/assets/js/select2.min.js"></script>
+	<script src="/startrip/assets/js/main.js"></script>
+	<script src="/startrip/assets/js/jquery.min.js"></script>
+	<script src="/startrip/assets/js/popper.min.js"></script>
+	<script src="/startrip/assets/js/bootstrap.min.js"></script>
+	<script src="/startrip/assets/js/owl.carousel.min.js"></script>
+	<script src="/startrip/assets/js/jquery.waypoints.min.js"></script>
+	<script src="/startrip/assets/js/jquery.easing.1.3.js"></script>
+	<script src="/startrip/assets/js/select2.min.js"></script>
+	<script src="/startrip/assets/js/main.js"></script>
 <style>
 #showMap {
 	width: 300px;
@@ -74,7 +89,13 @@
 </style>
 <title>訂位系統</title>
 </head>
+<script>
+$(function(){
+$('.navbar-nav.ml-auto').children().eq(0).removeClass('active');
+$('.navbar-nav.ml-auto').children().eq(2).addClass('active')
+});
 
+</script>
 <body>
 	<div>
 		<jsp:include page="/WEB-INF/views/header.jsp" flush="true" />
@@ -143,22 +164,7 @@
 	<div>
 		<jsp:include page="/WEB-INF/views/member/login.jsp" flush="true" />
 	</div>
-	<script src="/startrip/assets/js/jquery.min.js"></script>
-	<script src="/startrip/assets/js/popper.min.js"></script>
-	<script src="/startrip/assets/js/bootstrap.min.js"></script>
-	<script src="/startrip/assets/js/owl.carousel.min.js"></script>
-	<script src="/startrip/assets/js/jquery.waypoints.min.js"></script>
-	<script src="/startrip/assets/js/jquery.easing.1.3.js"></script>
-	<script src="/startrip/assets/js/select2.min.js"></script>
-	<script src="/startrip/assets/js/main.js"></script>
-	<script src="/startrip/assets/js/jquery.min.js"></script>
-	<script src="/startrip/assets/js/popper.min.js"></script>
-	<script src="/startrip/assets/js/bootstrap.min.js"></script>
-	<script src="/startrip/assets/js/owl.carousel.min.js"></script>
-	<script src="/startrip/assets/js/jquery.waypoints.min.js"></script>
-	<script src="/startrip/assets/js/jquery.easing.1.3.js"></script>
-	<script src="/startrip/assets/js/select2.min.js"></script>
-	<script src="/startrip/assets/js/main.js"></script>
+	
 </body>
 
 </html>
