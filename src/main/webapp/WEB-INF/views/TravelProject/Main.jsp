@@ -167,6 +167,11 @@
 	<script src="/startrip/assets/js/main.js"></script>
 
 	<script src="/startrip/assets/Travel/js/jquery-ui.min.js"></script>
+<!-- 	//圖表 -->
+	
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src="https://code.highcharts.com/modules/data.js"></script>
+	<script src="https://code.highcharts.com/modules/drilldown.js"></script>
 
 
 	<script type="text/javascript">
