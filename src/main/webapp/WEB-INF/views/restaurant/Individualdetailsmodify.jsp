@@ -81,6 +81,7 @@
 
 .btn11 {
 	text-align: center;
+	padding-top: 10%;
 }
 
 .card {
@@ -91,11 +92,16 @@
 	width: 20%;
 	height: 20%;
 	padding-top: 10%;
-	padding: 4%; 
+	padding: 4%;
 }
 
 .card-body {
 	padding-botton: 0%;
+}
+
+.row {
+	margin-left: 10%;
+	margin-right: 10%;
 }
 </style>
 
@@ -134,66 +140,64 @@
 				</div>
 			</div>
 		</div>
-		<div class="row">
-			<c:forEach var='rtDetails' items='${RtDetails}'>
-				<div class="col-lg-3 portfolio-item">
-					<div class="card h-100">
+	</div>
+	<div class="row">
+		<c:forEach var='rtDetails' items='${RtDetails}'>
+			<div class="col-lg-3 portfolio-item">
+				<div class="card h-100">
 
-						<a href="/startrip/restaurant/${rtDetails.rtId}"><img
-							class="card-img-top"
-							src="/startrip/getPicture/rtImage/${rtDetails.photoArr[0]}"
-							alt="" height='166.28' width='251'></a>
-						<div class="card-body">
-							<h4 class="card-title">
-								<a href="/startrip/restaurant/${rtDetails.rtId}">${rtDetails.rtId}</a>
-							</h4>
-							<h4 class="card-title">
-								<a href="/startrip/restaurant/${rtDetails.rtId}">餐廳名稱&nbsp;:&nbsp;${rtDetails.rtName}</a>
-							</h4>
-							<p class="card-text">
-								<span>縣市&nbsp;:&nbsp;</span><span>${rtDetails.rtCounty}</span>
-							</p>
-							<p class="card-text">
-								<span>地區&nbsp;:&nbsp;</span><span>${rtDetails.rtArea}</span>
-							</p>
-							<p class="card-text">
-								<span>菜系類別&nbsp;:&nbsp;</span><span>${rtDetails.rtCuisine}</span>
-							</p>
-							<p class="card-text">
-								<span>餐點類別&nbsp;:&nbsp;</span><span>${rtDetails.teCategory}</span>
-							</p>
-							<p class="card-text">
-								<span>地址&nbsp;:&nbsp;</span><span>${rtDetails.rtAddress}</span>
-							</p>
-							<p class="card-text">
-								<span>電話&nbsp;:&nbsp;</span><span>${rtDetails.rtPhone}</span>
-							</p>
-							<p class="card-text">
-								<span>網址&nbsp;:&nbsp;</span><span>${rtDetails.rtUrl}</span>
-							</p>
-							<p class="card-text">
-								<span>價位&nbsp;:&nbsp;</span><span>${rtDetails.rtPricepount}</span>
-							</p>
-							<p class="card-text">
-								<span>營業時間&nbsp;:&nbsp;</span><span>${rtDetails.rtBusinesshours}</span>
-							</p>
+					<a href="/startrip/restaurant/${rtDetails.rtId}"><img
+						class="card-img-top"
+						src="/startrip/getPicture/rtImage/${rtDetails.photoArr[0]}" alt=""
+						height='229.2' width='345.98'></a>
+					<div class="card-body">
+						<h4 class="card-title">
+							<a href="/startrip/restaurant/${rtDetails.rtId}">${rtDetails.rtId}</a>
+						</h4>
+						<h4 class="card-title">
+							<a href="/startrip/restaurant/${rtDetails.rtId}">餐廳名稱&nbsp;:&nbsp;${rtDetails.rtName}</a>
+						</h4>
+						<p class="card-text">
+							<span>縣市&nbsp;:&nbsp;</span><span>${rtDetails.rtCounty}</span>
+						</p>
+						<p class="card-text">
+							<span>地區&nbsp;:&nbsp;</span><span>${rtDetails.rtArea}</span>
+						</p>
+						<p class="card-text">
+							<span>菜系類別&nbsp;:&nbsp;</span><span>${rtDetails.rtCuisine}</span>
+						</p>
+						<p class="card-text">
+							<span>餐點類別&nbsp;:&nbsp;</span><span>${rtDetails.teCategory}</span>
+						</p>
+						<p class="card-text">
+							<span>地址&nbsp;:&nbsp;</span><span>${rtDetails.rtAddress}</span>
+						</p>
+						<p class="card-text">
+							<span>電話&nbsp;:&nbsp;</span><span>${rtDetails.rtPhone}</span>
+						</p>
+						<p class="card-text">
+							<span>網址&nbsp;:&nbsp;</span><span>${rtDetails.rtUrl}</span>
+						</p>
+						<p class="card-text">
+							<span>價位&nbsp;:&nbsp;</span><span>${rtDetails.rtPricepount}</span>
+						</p>
+						<p class="card-text">
+							<span>營業時間&nbsp;:&nbsp;</span><span>${rtDetails.rtBusinesshours}</span>
+						</p>
 
-							<div class="btn11">
-								<input type="image" class="btnn repairButton" id="repair" img
-									src="/startrip/assets/images/rt/pencil.png"> 
-								<input
-									type="image" class="btnn insideButton" id="submitOK" img
-									src="/startrip/assets/images/rt/inside.png"> 
-								<input
-									type="image" class="btnn deleteButton" id="delectOne" img
-									src="/startrip/assets/images/rt/delete.png">
+						<div class="btn11">
+							<input type="image" class="btnn repairButton" id="repair" img
+								src="/startrip/assets/images/rt/pencil.png"> <input
+								type="image" class="btnn insideButton" id="submitOK" img
+								src="/startrip/assets/images/rt/inside.png"> <input
+								type="image" class="btnn deleteButton" id="delectOne" img
+								src="/startrip/assets/images/rt/delete.png">
 
-							</div>
 						</div>
 					</div>
 				</div>
-			</c:forEach>
-		</div>
+			</div>
+		</c:forEach>
 	</div>
 
 

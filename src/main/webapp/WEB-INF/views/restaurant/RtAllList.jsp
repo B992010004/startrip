@@ -60,7 +60,7 @@
 }
 
 .bigheadline1 {
-	padding-top: 10%;
+	padding-top: 7%;
 	text-align: center;
 }
 
@@ -76,8 +76,25 @@
 .btn11 {
 	text-align: center;
 }
-.card{
+
+.card {
 	border: #00CA4C 2px outset;
+}
+
+.container {
+	padding: 0%;
+}
+.portfolio-item{
+	weight:100px;
+}
+.row{
+margin-left:10%;
+margin-right:10%;
+margin-bottom:4%;
+}
+.row2{
+margin-left:15%;
+margin-right:15%;
 }
 </style>
 
@@ -99,8 +116,6 @@
 	<!------------------------------------------------------------------------------>
 
 
-	<div class="container">
-
 
 
 		<div class="col-md1">
@@ -112,8 +127,8 @@
 		<!-- --------------------------------------------------------------------------------------------------- -->
 
 		<div class="row">
-		<c:forEach var='rtDetails' items='${RtDetails}'>
-				<div class="col-lg-4 portfolio-item">
+			<c:forEach var='rtDetails' items='${RtDetails}'>
+				<div class="col-lg-3 portfolio-item">
 					<div class="card h-100">
 						<a href="/startrip/restaurant/${rtDetails.rtId}"><img
 							class="card-img-top"
@@ -128,7 +143,8 @@
 							<p class="card-text">${rtDetails.rtPricepount}</p>
 							<p class="card-text">${rtDetails.rtCounty}</p>
 							<div class="btn11">
-								<a href="/startrip/restaurant/${rtDetails.rtId}" class="btn btn-primary">去了解</a>
+								<a href="/startrip/restaurant/${rtDetails.rtId}"
+									class="btn btn-primary">去了解</a>
 							</div>
 						</div>
 					</div>
@@ -137,7 +153,7 @@
 		</div>
 
 		<!-- --------------------------------------------------------------------------------------------------- -->
-
+<div class="row2">
 
 		<div class="form-group">縣市&nbsp;:&nbsp;</div>
 		<select path="" class="js-states form-control" id="id_label_single"

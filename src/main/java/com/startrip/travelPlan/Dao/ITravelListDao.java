@@ -27,4 +27,7 @@ public interface ITravelListDao {
 	
 	public String update_List(TravelListBean bean);
 	
+	public String updateListDay(Integer travelId,Integer travelListDay);
+	
+	public String updateListDayState(Integer travelId,Integer travelListDay);
 }

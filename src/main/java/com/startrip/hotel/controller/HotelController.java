@@ -123,6 +123,12 @@ public class HotelController {
 		// 房型
 		// Group by 失敗
 		List<Rooms> roomList = roomsServiceInterface.selectByHotelIdGroupByType(hotelId);
+		String[] serviceArr = null;
+		for(Rooms room:roomList) {
+			serviceArr = room.getService().split(";");
+			room.setServiceArr(serviceArr);
+		}	
+		
 		model.addAttribute("roomList", roomList);
 
 		return "hotel/Rooms";
@@ -208,6 +214,7 @@ public class HotelController {
 
 		return responseEntity;
 	}
+	
 	
 	// 以上非會員也可瀏覽
 }

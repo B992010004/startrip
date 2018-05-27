@@ -96,7 +96,7 @@
  //               console.log("地址: " + googleAddress);
                 $($("#gm")).hide().append(
                     "<a href='https://maps.google.com/maps?q=" + googleAddress + "&amp;z=11"
-                    + "data-geo='' target='_blank'> <img class='map' alt=" + googleAddress + "src='https://maps.google.com/maps/api/staticmap?zoom=15&size=900x700&maptype=terrain&sensor=false&center=" + googleAddress + "&markers=color:green%7Clabel:S%7C$" + googleAddress + "&key=AIzaSyDl3nl3wQF2mlYkw87KHByGF9dB9In_fGQ'></a>"
+                    + "data-geo='' target='_blank'> <img class='map' alt=" + googleAddress + "src='https://maps.google.com/maps/api/staticmap?zoom=15&size=700x700&maptype=terrain&sensor=false&center=" + googleAddress + "&markers=color:blue%7Clabel:S%7C$" + googleAddress + "&key=AIzaSyDl3nl3wQF2mlYkw87KHByGF9dB9In_fGQ'></a>"
                 ).slideDown(1000);
             });
 //------------------------------------------------
@@ -159,7 +159,14 @@
 
             });
 //---------------產生兩點地圖--------
+<<<<<<< HEAD
            
+=======
+ 
+            
+            
+        }           
+>>>>>>> 29787c67df6bd1dc458a7e1cc02d4d185d29f565
     </script>
 
     <!-- 以下為地圖查車站function -->
@@ -187,7 +194,11 @@
             document.images[0].src = "/startrip/assets/transport/images/taiwan.png";
         }
     </script>
+<script>
 
+
+
+</script>
 </head>
 <!--     搜尋車站vvv -->
 
@@ -334,20 +345,52 @@
     <div id="twoPoints" align="center">
 
     </div>
-    
+           
     
     <!-- 以上為訂票功能版面 -->
     <!-- 以下為地圖標註顯示 -->
 
 
-    <div align="left" style="margin-left:100px">
+    <div align="left" style="margin-left:100px" id="mapDiv">
         <div class="row text-center mb-5 probootstrap-animate">
             <div class="col-md-12">
                 <h4 class="display-4 probootstrap-section-heading">查詢車站</h4>
             </div>
         </div>
+        
         <div style="width:200%" class="row">
+           <div>
+  <form action="/startrip/selectTripInf" class="probootstrap-form" style="border-radius: 30px;">
+
+<h3>已訂車票查詢</h3>
+<label for="id_label_location">
+<div>
+身分證字號
+ <input type="text" 
+ id="id_label_location" 
+ name="searchId"
+class="form-control" placeholder="請輸入身份證字號">
+</div>
+<div>
+電話
+ <input type="text" 
+ id="id_label_location" 
+ name="searchPhone"
+class="form-control" placeholder="請輸入訂票電話">
+</div>
+<div align="center">
+<input type="submit" value="查詢" >
+</div>
+
+
+</label>
+</form>
+</div>      
+        
+        
             <div id="mapDiv">
+   
+            
                 <a id="mapDiv" class="probootstrap-thumbnail">
                     <img style="width:200% " id="imgMap" class="img-fluid" alt="Free Template by ProBootstrap.com" src="/startrip/assets/transport/images/taiwan.png"
                         usemap="#FPMap0" width="280" height="460" usemap="#Map" border="0">
@@ -375,7 +418,7 @@
             </div>
             <!-- 以上為地圖顯示區塊 -->
             <!-- 產生出的車站資訊表格 -->
-            <div style="margin-left:100px">
+            <div style="margin-left:50px">
                 <table class="for-table table">
                     <thead>
                         <tr>
@@ -390,7 +433,11 @@
                             <td>台北車站 </td>
                             <td>
                                 <img class='mapImage' id='getAddress' width='30' height='30' src='/startrip/assets/transport/images/mapicon.png'>
+<<<<<<< HEAD
                                 <span>台北市中正區市民大道一段168號< /span></td>
+=======
+                                <span>台北市中正區市民大道一段168號</span></td>
+>>>>>>> 29787c67df6bd1dc458a7e1cc02d4d185d29f565
                         </tr>
                         <tr>
                             <td>台北 </td>
@@ -421,7 +468,7 @@
                             <td>南港轉運站 </td>
                             <td>
                                 <img class="mapImage" id="getAddress" width="30" height="30" src="/startrip/assets/transport/images/mapicon.png">
-                                <span>台北市南港區南港路一段313號 </span>
+                                台北市南港區南港路一段313號 
                             </td>
                         </tr>
                         <tr>
@@ -429,7 +476,7 @@
                             <td>捷運南港展覽館 </td>
                             <td>
                                 <img class="mapImage" id="getAddress" width="30" height="30" src="/startrip/assets/transport/images/mapicon.png">
-                                <span>台北市南港區經貿二路1號(163櫃) </span>
+                                台北市南港區經貿二路1號(163櫃) 
                             </td>
                         </tr>
                         <tr>
@@ -437,7 +484,7 @@
                             <td>捷運圓山站 </td>
                             <td>
                                 <img class="mapImage" id="getAddress" width="30" height="30" src="/startrip/assets/transport/images/mapicon.png">
-                                <span>台北市大同區酒泉街9-1號
+                                台北市大同區酒泉街9-1號
                     </tbody>
                     <tfoot>
                 </table>
@@ -448,13 +495,13 @@
                     <div id="gm" class="col-md">
                         <!-- 地圖 -->
                         <a href="https://maps.google.com/maps?q=台北市中正區市民大道一段168號&amp;z=11" data-geo="" target="_blank">
-                            <img class="map" alt=台北市中正區市民大道一段168號 src="https://maps.google.com/maps/api/staticmap?zoom=15&size=900x700&maptype=terrain&sensor=false&center=台北市中正區市民大道一段168號&markers=color:blue%7Clabel:S%7C台北市中正區市民大道一段168號&key=AIzaSyARfDct4ecrevMJjHgcrjmPOLfbM6X9N7w">
+                            <img class="map" 
+                            alt=台北市中正區市民大道一段168號 
+                            src="https://maps.google.com/maps/api/staticmap?zoom=15&size=700x700&maptype=terrain&sensor=false&center=台北市中正區市民大道一段168號&markers=color:blue%7Clabel:S%7C台北市中正區市民大道一段168號&key=AIzaSyARfDct4ecrevMJjHgcrjmPOLfbM6X9N7w">
                         </a>
                     </div>
                 </div>
-              <div>
-              
-              </div>  
+
                 
         </div>
     </div>
@@ -467,6 +514,22 @@
     <div>
         <jsp:include page="/WEB-INF/views/member/login.jsp" flush="true" />
     </div>
+    <script>
+$("#inputStation2").change(function(){
+	$("#twoPoints").empty();
+	$($("#twoPoints")).hide().html("<iframe width='600' height='450' frameborder='0' style='border:0' src='https://www.google.com/maps/embed/v1/directions?key=AIzaSyDl3nl3wQF2mlYkw87KHByGF9dB9In_fGQ&origin="+$('#inputStation').val()+"1&destination="+$('#inputStation2').val()+"'></iframe>").slideDown(1000);
+//	                                <iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyDl3nl3wQF2mlYkw87KHByGF9dB9In_fGQ&origin=           台北車站                             1&destination=           花蓮車站                                "></iframe>	
+	
+	
+	a
+	console.log($("#inputStation").val());
+	console.log($("#inputStation2").val());
+	});
+
+
+
+
+</script>
     <script src="/startrip/assets/js/jquery.min.js"></script>
 
     <script src="/startrip/assets/js/popper.min.js"></script>

@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>行程清單</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,700" rel="stylesheet">
@@ -253,7 +253,9 @@ $(function(){
 	searchDays();
 	//搜尋景點
 // 	searchView();
-
+$('.navbar-nav.ml-auto').children().eq(0).removeClass('active');
+$('.navbar-nav.ml-auto').children().eq(3).addClass('active')
+	
 })
 
 
@@ -383,10 +385,19 @@ $(document).on('click','.closeday',function(e){
 	console.log(daybody)
 	var day = daybody.substr(7,1)
 	console.log(day)
-	console.log(${Travel.travelId})
-	console.log(${LoginOK.mail})
+	console.log('${Travel.travelId}')
+	console.log('${LoginOK.mail}')
+	var travel={}
+	travel.mail='${LoginOK.mail}'
+	travel.travelId ='${Travel.travelId}'
+	travel.listday=day;
 	
-	// 	$(e.taget).parent().remove();
+	$.get('/startrip/travel/remove/day',travel,function(data){
+		console.log(data)
+		searchDays();
+		
+	})
+	
 	
 })
 
