@@ -74,7 +74,7 @@
 					enctype="multipart/form-data" id="modlifyform">
 
 					<H2 class="display-4 border-bottom probootstrap-section-heading"
-						style="text-align: center">Modify Personal Information</H2>
+						style="text-align: center">修改個人資料</H2>
 					<div class="row">
 						<div class="col-md-6  probootstrap-animate">
 							<div class="form-group">

@@ -38,7 +38,7 @@
 
 				<!-- /.login-logo -->
 				<div class="col-md">
-					<H2 class="col-md" style="text-align: center">Login in</h2>
+					<H2 class="col-md" style="text-align: center">Star ★ Trip</h2>
 					<%--  --%>
 					<form id="loginform" method="POST"
 						action="<c:url value="/LoginServlet"/>" onsubmit="return false"
