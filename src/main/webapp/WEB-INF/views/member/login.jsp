@@ -82,7 +82,7 @@
 
 						<fb:login-button class="fb-login-button" data-max-rows="1"
 							data-size="large" data-button-type="login_with"
-							data-show-faces="false" data-auto-logout-link="true"
+							data-show-faces="false" 
 							data-use-continue-as="false" scope="public_profile,email"
 							onlogin="checkLoginState();">
 						</fb:login-button>
