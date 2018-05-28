@@ -91,16 +91,20 @@ public class HotelController {
 		// review
 		// 評等
 		// [星等, 數量]
-		List<Object[]> list = hotelReviewService.getRankByHotelId(hotelId);
+		List<Object[]> rankList = hotelReviewService.getRankByHotelId(hotelId);
 		Integer rankSize = 0;
 		int[] rankArr = { 0, 0, 0, 0, 0 };
 		// 根本不能轉型成Integer[]??
-		for (Object[] intArr : list) {
+		for (Object[] intArr : rankList) {
 			// 用String取值超彆扭
-			String var = intArr[0].toString();
-			int toInt = Integer.valueOf(var);
-			rankArr[toInt - 1] = Integer.valueOf(intArr[1].toString());
-			rankSize += Integer.valueOf(intArr[1].toString());
+			//避免NullException
+			if(intArr[0]!=null) {
+				String var = intArr[0].toString();
+				int toInt = Integer.valueOf(var);
+				rankArr[toInt - 1] = Integer.valueOf(intArr[1].toString());
+				rankSize += Integer.valueOf(intArr[1].toString());
+				
+			}
 		}
 
 		System.out.println("rankArr=    " + Arrays.toString(rankArr));
