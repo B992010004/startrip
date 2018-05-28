@@ -194,6 +194,7 @@ $('.navbar-nav.ml-auto').children().eq(2).addClass('active')
                     for (var i = 0; i < response.length; i++) {
                         $("#tbo").append("<tr><td>" + response[i].area + "</td>" +
                             "<td>" + response[i].stationName + "</td>" +
+                            
                             "<td >" + "<img class='mapImage' id='getAddress' width='30' height='30' src='/startrip/assets/transport/images/mapicon.png' ><span>" + response[i].address + "</span></td></tr>");
                     }
 
@@ -400,13 +401,13 @@ class="form-control" placeholder="請輸入訂票電話">
 
 <div align="center">
 <input type="submit" value="查詢" src="/selectAllOrderlist">
-
+<br>
+<input type="button" id="CEle" value="一鍵寫入">
 </div>
 
 </label>
 </form>
-<br>
-<input type="button" id="CEle" value="一鍵寫入">
+
 </div>   
 <script>
 $("#CEle").click(function(){

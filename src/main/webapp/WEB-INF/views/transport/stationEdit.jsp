@@ -77,6 +77,14 @@
         	cursor: pointer;
         
         }
+        .random{
+        
+        cursor: pointer;
+        }
+        
+        
+        
+        
     </style>
     
     
@@ -273,9 +281,9 @@ $('.navbar-nav.ml-auto').children().eq(2).addClass('active')
                 </td>
             </tr>
         </table>
-
-
-<button align="center" id="random" >電腦選位</button>
+        <div align="center">
+<a  id="random" style="border-color:green;border-width:3px;border-style:outset ;">電腦選位</a>
+ </div>>
 
 <input type="submit" value="送出" class="btn btn-primary btn-block">
        </div>
@@ -289,7 +297,9 @@ $('.navbar-nav.ml-auto').children().eq(2).addClass('active')
                 <br>
           
     </section> 
- 
+    
+
+
                               
                           
 

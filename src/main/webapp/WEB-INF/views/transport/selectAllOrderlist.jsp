@@ -103,7 +103,7 @@ $('.navbar-nav.ml-auto').children().eq(2).addClass('active')
                 
  <h1 align="center" style="color:#E8CCFF" id="QQ">這是您已預定的車票</h1>
 	
-    <div class="div">
+    <div  style="width: 500">
  <form action="/startrip/stationEdit" class="probootstrap-form" style="border-radius: 30px;">
 
 <table border="1" cellpadding="10" cellspacing="0" class="table  table-bordered">
@@ -120,7 +120,7 @@ $('.navbar-nav.ml-auto').children().eq(2).addClass('active')
 		</tr>			
 			<tr>
 				<td>01</td>			
-				<td>2018-05-29</td>
+				<td>2018-06-01</td>
 				<td>台北車站</td>
 				<td align="center"><img width="200" height="20" src="/startrip/assets/transport/images/arow.jpg"></td>
 				<td>花蓮車站</td>
