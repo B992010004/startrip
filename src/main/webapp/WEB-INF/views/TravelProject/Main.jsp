@@ -203,8 +203,8 @@
 											success : function(data) {
 												console.log(e.target.id)
 												$('#' + e.target.id).parent().parent().remove();
-												searchTravels();
-											}
+												
+											},complete:searchTravels()
 										})
 							})//click end
 

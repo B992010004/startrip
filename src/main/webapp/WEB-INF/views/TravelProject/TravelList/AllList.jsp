@@ -33,7 +33,7 @@
 </head>
 <body> 
 <c:if test="${ empty Travel}">
-<script >  document.execCommand('Refresh') </script>
+<script>history.go(0)</script>
 </c:if>
 <c:if test="${ empty LoginOK }">
 			<a class="nav-link" href="" data-toggle="modal" data-target=".bd-example-modal-lg">登入</a>
@@ -258,7 +258,7 @@ $(function(){
 // 	searchView();
 $('.navbar-nav.ml-auto').children().eq(0).removeClass('active');
 $('.navbar-nav.ml-auto').children().eq(3).addClass('active')
-	
+
 })
 
 
@@ -766,6 +766,7 @@ function searchDays(){
 					searchList(i);
 			}
 			main.append(docFrag);
+			  
 		}
 	})
 } 
