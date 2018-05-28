@@ -37,6 +37,10 @@
             max-width: 180px;
             height: 130px;
         }
+         .roomPhoto {
+        	width: 200px;
+        	
+        }
     </style>
 </head>
 
@@ -81,33 +85,34 @@
                            
                            
                              <c:forEach var='hotelLists' items='${hotelList}'>
+                         
                                         <tr>
                                             <td scope="row">
-                                                <input type="text" style="display: none;" value="${rtlists.bgId}">
-                                                <img src="<c:url value='/getrtPicture/${rtlists.rtId}'/>">
+                                              <c:forEach var="photo" items="${hotelLists.room.photoArr }">
+                                                 <img class="roomPhoto" src="/startrip/getPicture/rooms/${hotelLists.hotelid }/${photo }">
+                                               </c:forEach>
                                                 <br>
-                                                <span>${rtlists.rtname}</span>
+                                                <span> ${hotelLists.hotelBean.hotelname }
+                                              </span>
                                             </td>
-
                                            <td>
-<!--                                         太魯閣晶英酒店 (Silks Place Taroko Hotel) -->
-                                            ${room.roomname }
+
+                                                  房型:&nbsp${hotelLists.room.roomname }
+                                            
+
+                                          <br>地址:&nbsp${hotelLists.hotelBean.hoteladdress }
+                                            
                                             <br>
-<!--                                             972花蓮縣秀林鄉天祥路18號 -->
-                                            ${hotel.hoteladdress }
-                                            <br>
-<!--                                             38691155 -->
-											${hotel.hotelphone }
-                                            <br>入住日期: ${order.checkin }
-                                            <br>退房日期: ${order.checkout }
+
+											<span>電話:&nbsp${hotelLists.hotelBean.hotelphone}</span>
+                                            <br>入住日期: &nbsp${hotelLists.checkin}
+                                            <br>退房日期:&nbsp ${hotelLists.checkout }
                                         </td>
                                         <td>1 張雙人床 / 2 張單人床
                                             <br>室內WIFI
                                         </td>
-                                        <td>${room.basicprice }</td>
-                                            <td>
-                                                <button type="button" class="btn btn-primary" id="canclebutton">取消訂位</button>
-                                            </td>
+                                        <td>&nbsp${hotelLists.room.basicprice}</td>
+                                            
                                         </tr>
                                     </c:forEach>
                                 </tbody>
@@ -133,18 +138,18 @@
                                                 <input type="text" style="display: none;" value="${rtlists.bgId}">
                                                 <img src="<c:url value='/getrtPicture/${rtlists.rtId}'/>">
                                                 <br>
-                                                <span>${rtlists.rtname}</span>
+                                                <span>&nbsp${rtlists.rtname}</span>
                                             </td>
 
-                                            <td>用餐日期:${rtlists.bgDate}
-                                                <BR>用餐時段:${rtlists.bgPeriod}
+                                            <td>用餐日期:&nbsp${rtlists.bgDate}
+                                                <BR>用餐時段:&nbsp${rtlists.bgPeriod}
                                             </td>
-                                            <td>訂位人數:${rtlists.bgPeople}
+                                            <td>訂位人數:&nbsp${rtlists.bgPeople}
                                                 <c:if test="${rtlists.cnPeople!=0}">+${rtlists.cnPeople}</c:if>
-                                                <br>兒童專用椅:${rtlists.cnChair}
+                                                <br>兒童專用椅:&nbsp${rtlists.cnChair}
                                                 <br>
                                             </td>
-                                            <td>${rtlists.bgNote}
+                                            <td>&nbsp${rtlists.bgNote}
                                                 <br>
                                             </td>
                                             <td>

@@ -108,34 +108,37 @@ $('.navbar-nav.ml-auto').children().eq(2).addClass('active')
     <div class="div">
 <table border="1" cellpadding="10" cellspacing="0" class="table  table-bordered">
 		
-		<tr align="center">訂單資訊
+		<tr align="center">班次資訊
 			<th>班次編號</th>
 			<th>日期</th>
-			<th>發車時間</th>
 			<th>起站名稱</th>
 			<th></th>
 			<th>迄站名稱</th>
-			<th>座位編號</th>
+			<th>座號</th>
+			<th>發車時間</th>
+			<th>票價</th>
 		
-
 			
 		</tr>
-			<c:forEach items='${OrerList}' var='select'>
+			
 			<tr>
-				<td>1</td>
-				<td><fmt:formatDate pattern="yyyy-MM-dd"  value="${select.orderDate }" /></td>						
-				<td>${select.orderTime}</td>
-				<td>${select.starStation}</td>
+				<td>01</td>			
+				<td>2018-05-29</td>
+				<td>台北車站</td>
 				<td align="center"><img width="200" height="20" src="/startrip/assets/transport/images/arow.jpg"></td>
-				<td>${select.endStation}</td>
+				<td>花蓮車站</td>
 				<td>12</td>
+				<td>12:00:00</td>
+				<td>250</td>
+				
+			</tr>
+	
 	
 			</tr>
-		</c:forEach>
-	</table>
+		 	</table>
 
 
->
+
 
 		<a href="/startrip/select">回到大眾運輸首頁</a>
 </div>

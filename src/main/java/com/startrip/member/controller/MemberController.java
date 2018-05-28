@@ -36,7 +36,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.startrip.hotel.model.HotelOrder;
+import com.startrip.hotel.model.HotelsBean;
+import com.startrip.hotel.model.Rooms;
 import com.startrip.hotel.service.HotelOrderServiceInterface;
+import com.startrip.hotel.service.HotelServiceInterface;
+import com.startrip.hotel.service.RoomsServiceInterface;
 import com.startrip.member.Service.MemberServiceInterface;
 import com.startrip.member.controller.md5.MD5Util;
 import com.startrip.member.memberModle.MemberBean;
@@ -56,10 +60,13 @@ public class MemberController {
 
 	@Autowired
 	ServletContext context;
-	
+	@Autowired
+	HotelServiceInterface hotelservice;
+	@Autowired
+	HotelOrderServiceInterface orderservice;
 	
 	@Autowired
-	HotelOrderServiceInterface hotelservice;
+	RoomsServiceInterface roomsServiceInterface;
 
 	@RequestMapping(value = "/logout")
 	public String logout(HttpServletRequest request) {
@@ -74,10 +81,11 @@ public class MemberController {
 	public String selectdata(Model model, HttpServletRequest request, @PathVariable int memberid) {
 
 		List<RtBookingBean> rbList = rtBookingService.getRtBookingmember(memberid);
-		List<HotelOrder> hotelList=hotelservice.selectByMemberId(memberid);
+		List<HotelOrder> hotelList=orderservice.selectByMemberId(memberid);
+		
+		//餐廳
 		if (rbList != null) {
 			for (RtBookingBean bean : rbList) {
-
 				RtDetailsBean rtdbean = rtDetailsService.getAllRtDetailsrtId(bean.getRtId());
 				if (rtdbean != null) {
 					bean.setRtname(rtdbean.getRtName());
@@ -85,10 +93,24 @@ public class MemberController {
 			}
 			model.addAttribute("rtlist", rbList);
 		}
-		
-		if (hotelList != null) {			
+		//飯店
+		if (hotelList != null) {
+			for (HotelOrder bean : hotelList) {
+				List<Rooms> roomList = roomsServiceInterface.selectByHotelIdGroupByType(bean.getHotelid());
+				Rooms room = roomList.get(0);
+				String[] roomPhotoArr = null;
+				roomPhotoArr = room.getPhotoString().split(";");
+				System.out.println(roomPhotoArr);
+				room.setPhotoArr(roomPhotoArr);
+				bean.setRoom(room);
+				
+				HotelsBean hotelsBean = hotelservice.selectByPk(bean.getHotelid());
+				bean.setHotelBean(hotelsBean);				
+			}
+			
 			model.addAttribute("hotelList", hotelList);
 		}
+		
 		return "/member/mydata";
 	}
 
