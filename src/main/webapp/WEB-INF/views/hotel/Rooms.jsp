@@ -238,10 +238,10 @@
                     <!-- 主要資訊 -->
                     <div class="col-md">
                         <div class="row">
-                            <div class="col-md-9">${hotel.hotelname }
+                            <div class="col-md-9" style="font-weight:bold;font-size:20px;">${hotel.hotelname }
                             </div>
                             
-                            <div class="col-md-3">最低訂房價格：NT$ <fmt:formatNumber value="${hotel.lowestPrice }" type="number" /></div>
+                            <div class="col-md-3" style="color:#ed5c59">最低訂房價格： NT$ <fmt:formatNumber value="${hotel.lowestPrice }" type="number" /></div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">${hotel.hoteladdress }</div>
@@ -308,7 +308,7 @@
                             <div class="col-md">
                                 <!-- 評分 -->
                                 旅客評分 5.7/10
-                                <br> 查看所有旅客評論(預定)
+                                <br> 查看所有旅客評論
                             </div>
                         </div>
                         <br>

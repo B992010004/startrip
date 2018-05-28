@@ -359,7 +359,7 @@
                   </div>
                   <div class="col-md-8">
                     <div class="row">
-                      <div class="col-md-8">${hotel.hotelname }</div>
+                      <div class="col-md-8" style="font-weight:bold;font-size:16px;">${hotel.hotelname }</div>
                       <div class="col-md-4">5.7</div>
                     </div>
                     <div class="row">

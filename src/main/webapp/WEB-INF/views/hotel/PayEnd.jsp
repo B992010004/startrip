@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 
@@ -70,6 +71,10 @@
                         <br>
                         <h6>祝您旅途愉快</h6>
                         <br>
+                        <br>
+                        <h6>訂單編號: <span style="font-weight:bold;">${order.orderId }</span></h6>
+                        <h6>會員姓名: ${order.lastname } 先生/女士</h6>
+                        <br>
                             <h4>飯店資訊</h4>
                             <table class="table table-bordered">
                                 <thead>
@@ -104,19 +109,22 @@
 											${hotel.hotelphone }
                                             <br>入住日期: ${order.checkin }
                                             <br>退房日期: ${order.checkout }
+                                            <br>共 ${order.night } 晚
                                         </td>
                                         <td>1 張雙人床 / 2 張單人床
                                             <br>室內WIFI
                                         </td>
-                                        <td>${room.basicprice }</td>
+                                        <td><fmt:formatNumber value="${room.basicprice }" type="number" /></td>
 
                                     </tr>
 
                                 </tbody>
                             </table>
+                            <span style="font-weight:bold;">總金額: NT$<fmt:formatNumber value="${order.totalamount }" type="number" /> 元</span>
                             <br>
 <%--                         </c:if> --%>
-                        
+						<br>
+                        <a href="/startrip/" class='btn btn-primary btn-block'>點我回到首頁</a>
                     </div>
                 </div>
             </div>
