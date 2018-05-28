@@ -147,37 +147,26 @@ public class RestaurantAdminController {
 	// 後台修改餐廳---------------------------------------------------------------------------------------------
 	
 	@RequestMapping(value = "/updateAll", method = RequestMethod.GET)
-	public @ResponseBody String updateRtDetails(Model model, RtDetailsBean bean, HttpServletRequest request, HttpServletResponse response)
+	public @ResponseBody RtDetailsBean updateRtDetails(Model model, HttpServletRequest request, HttpServletResponse response)
 			throws IOException {
 		
 		String rtId = request.getParameter("rtId");
 		Integer rtIdc = Integer.valueOf(rtId);
-		bean.setRtId(rtIdc);
+		RtDetailsBean bean = rtDetailsService.getAllRtDetailsrtId(rtIdc);
 		bean.setRtCounty(request.getParameter("rtCounty"));
-		bean.setRtCounty(request.getParameter("rtArea"));
-		bean.setRtCounty(request.getParameter("rtCuisine"));
-		bean.setRtCounty(request.getParameter("teCategory"));
-		bean.setRtCounty(request.getParameter("rtAddress"));
-		bean.setRtCounty(request.getParameter("rtPhone"));
-		bean.setRtCounty(request.getParameter("rtUrl"));
-		bean.setRtCounty(request.getParameter("rtPricepount"));
-		bean.setRtCounty(request.getParameter("rtBusinesshours"));
+		bean.setRtArea(request.getParameter("rtArea"));
+		bean.setRtCuisine(request.getParameter("rtCuisine"));
+		bean.setTeCategory(request.getParameter("teCategory"));
+		bean.setRtAddress(request.getParameter("rtAddress"));
+		bean.setRtPhone(request.getParameter("rtPhone"));
+		bean.setRtUrl(request.getParameter("rtUrl"));
+		bean.setRtPricepount(request.getParameter("rtPricepount"));
+		bean.setRtBusinesshours(request.getParameter("rtBusinesshours"));
 		rtDetailsService.updateRtDetails(bean);
 		
-		RtDetailsBean rdb = rtDetailsService.getAllRtDetailsrtId(rtIdc);
-		model.addAttribute("all", rdb);
-		
-//		List<RtDetailsBean> list = rtDetailsService.getAllall();
-//		String[] photoArr = null;
-//		for (RtDetailsBean bean : list) {
-//			if (bean.getPhotoPaths() != null) {
-//				photoArr = bean.getPhotoPaths().split(";");
-//				bean.setPhotoArr(photoArr);
-//			}
-//		}
-//		model.addAttribute("RtDetails", list);
+	System.out.println("===============" + bean);
 
-		return "restaurant/Individualdetailsmodify";
+		return bean;
 
 	}
 	

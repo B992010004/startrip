@@ -7,6 +7,8 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.startrip.hotel.model.HotelsBean;
+import com.startrip.hotel.model.SearchHotel;
 import com.startrip.restaurant.model.RtDetailsBean;
 import com.startrip.restaurant.repository.RtDetailsRepository;
 
@@ -76,5 +78,6 @@ public class RtDetailsServiceImp implements RtDetailsService {
 	public List<RtDetailsBean> getAllall() {
 		return RtDetailsRepositoryImp.getAllall();
 	}
+
 
 }
