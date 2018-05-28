@@ -69,26 +69,27 @@ $('.navbar-nav.ml-auto').children().eq(2).addClass('active')
 			<th>班次編號</th>
 			<th>日期</th>
 			<th>起站名稱</th>
+			<th></th>
 			<th>迄站名稱</th>
-			<th>剩餘座位</th>
+			<th>座號</th>
 			<th>發車時間</th>
 			<th>票價</th>
-			<th>選擇班次</th>
+		
 			
 		</tr>
-			<c:forEach items='${TripInfList}' var='select'>
+			
 			<tr>
-				<td>${select.trip}</td>			
-				<td><fmt:formatDate pattern="yyyy-MM-dd"  value="${select.date}" /></td>
-				<td>${select.starStation}</td>
-				<td>${select.endStation}</td>
-				<td>${select.seateList}</td>
-				<td>${select.starTime}</td>
-				<td>${select.price}</td>
-				<td><input type="submit" value="選擇班次" class="btn btn-primary btn-block"></td>
-	
+				<td>01</td>			
+				<td>2018-05-29</td>
+				<td>台北車站</td>
+				<td align="center"><img width="200" height="20" src="/startrip/assets/transport/images/arow.jpg"></td>
+				<td>花蓮車站</td>
+				<td>12</td>
+				<td>12:00:00</td>
+				<td>250</td>
+				
 			</tr>
-		</c:forEach>
+	
 	</table>
 		</form>
   </section>
