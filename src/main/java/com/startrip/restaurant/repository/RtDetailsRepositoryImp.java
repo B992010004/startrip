@@ -78,7 +78,7 @@ public class RtDetailsRepositoryImp implements RtDetailsRepository {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<RtDetailsBean> getAllall() {
-		String hql="FROM RtDetailsBean";
+		String hql="FROM RtDetailsBean order by rtId desc";
 		Session session = null;
 		List<RtDetailsBean> list = new ArrayList<>();
 		session = factory.getCurrentSession();
