@@ -9,7 +9,7 @@ import com.startrip.travelPlan.model.TravelViewBean;
 public interface ITravelViewService {
 	
 	TravelViewBean select_ViewId(Integer viewId);
-	List<TravelViewBean> select_ViewName(String viewName);
+	List<TravelViewBean> select_latlng(String latlng);
 
 
 	List<TravelViewBean> select();

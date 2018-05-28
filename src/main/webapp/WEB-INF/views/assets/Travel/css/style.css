@@ -178,7 +178,9 @@
     border-radius: 50%;
     z-index: 1;
 }
-
+.container1.right {
+    display: none;
+}
 
 /* Place the container to the right */
 .right {
@@ -572,6 +574,7 @@ blockquote {
     float: right;
     width: 30px;
     margin-right:10px;
+    display:none;
    
 }
 .updatelist{
@@ -599,11 +602,13 @@ blockquote {
 
 .timediv{
 	background-color: white;
+	display: none;
 }
 .closeday{
 	background-image: url("/startrip/assets/Travel/img/clear.png");
 	width:48px;
 	height: 48px;
+	display:none;
 }
 .title:hover{
 	cursor: pointer;
@@ -613,6 +618,7 @@ blockquote {
 }
 .closelist:hover{
 	cursor: pointer;
+	
 }
 
 .start,.end,.line{

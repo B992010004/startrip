@@ -40,12 +40,16 @@ public class Rooms implements Serializable {
 	private String roomnote;
 	private String service;
 	private String facility;
+	private String photoString;
 
 	// 將service, facility的string切開
 	@Transient
 	private String[] serviceArr;
 	@Transient
 	private String[] facilityArr;
+	
+	@Transient
+	private String photoArr[];
 
 	public Integer getRoomid() {
 		return roomid;
@@ -159,13 +163,32 @@ public class Rooms implements Serializable {
 		this.facilityArr = facilityArr;
 	}
 
+	public String getPhotoString() {
+		return photoString;
+	}
+
+	public void setPhotoString(String photoString) {
+		this.photoString = photoString;
+	}
+
+	public String[] getPhotoArr() {
+		return photoArr;
+	}
+
+	public void setPhotoArr(String[] photoArr) {
+		this.photoArr = photoArr;
+	}
+
 	@Override
 	public String toString() {
 		return "Rooms [roomid=" + roomid + ", hotelid=" + hotelid + ", roomstate=" + roomstate + ", roomtype="
 				+ roomtype + ", roomname=" + roomname + ", numberofpeople=" + numberofpeople + ", opendate=" + opendate
 				+ ", enddate=" + enddate + ", basicprice=" + basicprice + ", roomnote=" + roomnote + ", service="
-				+ service + ", facility=" + facility + ", serviceArr=" + Arrays.toString(serviceArr) + ", facilityArr="
-				+ Arrays.toString(facilityArr) + "]";
+				+ service + ", facility=" + facility + ", photoString=" + photoString + ", serviceArr="
+				+ Arrays.toString(serviceArr) + ", facilityArr=" + Arrays.toString(facilityArr) + ", photoArr="
+				+ Arrays.toString(photoArr) + "]";
 	}
+
+
 
 }

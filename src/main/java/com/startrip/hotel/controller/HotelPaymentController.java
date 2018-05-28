@@ -18,9 +18,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.startrip.hotel.model.HotelOrder;
+import com.startrip.hotel.model.HotelsBean;
 import com.startrip.hotel.model.Rooms;
 import com.startrip.hotel.model.SearchHotel;
 import com.startrip.hotel.service.HotelOrderServiceInterface;
+import com.startrip.hotel.service.HotelServiceInterface;
 import com.startrip.hotel.service.RoomsServiceInterface;
 import com.startrip.member.Service.MemberServiceInterface;
 import com.startrip.member.memberModle.MemberBean;
@@ -41,6 +43,9 @@ public class HotelPaymentController {
 
 	@Autowired
 	HotelOrderServiceInterface hotelOrderServiceInterface;
+
+	@Autowired
+	HotelServiceInterface hotelService;
 
 	@RequestMapping(value = "/frontEnd/aioCheckOut/aioCheckOutALL/{hotelId}/{roomType}", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
 	public @ResponseBody String aioCheckOutALL(@PathVariable Integer hotelId, @PathVariable Integer roomType,
@@ -101,19 +106,19 @@ public class HotelPaymentController {
 		// 交易描述
 		aio.setTradeDesc("房型");
 		aio.setHoldTradeAMT("0");
-		// 顯示付款成功的頁面（預設
+		// 這方法一定要有
 		// aio.setReturnURL("https://developers.opay.tw/AioMock/MerchantReturnUrl");
 		aio.setReturnURL("https://startrip.southeastasia.cloudapp.azure.com:8443/startrip/PayEnd");
-		//新方法測試
-//		aio.setOrderResultURL("https://startrip.southeastasia.cloudapp.azure.com:8443/startrip/PayEnd");
-		
+		// 新方法測試
+		// aio.setOrderResultURL("https://startrip.southeastasia.cloudapp.azure.com:8443/startrip/PayEnd");
+
 		// 付款成功後轉跳的頁面
-//		aio.setClientBackURL("https://startrip.southeastasia.cloudapp.azure.com:8443/startrip/PayEnd");
+		aio.setClientBackURL("https://startrip.southeastasia.cloudapp.azure.com:8443/startrip/PayEnd");
 
 		// 準備訂單
 		order.setOrderId(orderNo.substring(0, 7));
 		order.setHotelid(hotelId);
-		order.setOrderdate(new java.sql.Date(date.getTime()));
+		order.setOrderTimeStamp(new java.sql.Timestamp(date.getTime()));
 		SimpleDateFormat format = new java.text.SimpleDateFormat("yyyy/MM/dd");
 		order.setCheckin(new java.sql.Date(format.parse(searchBean.getCheckIn()).getTime()));
 		order.setCheckout(new java.sql.Date(format.parse(searchBean.getCheckOut()).getTime()));
@@ -121,7 +126,7 @@ public class HotelPaymentController {
 		order.setRoomid(room.getRoomid());
 		order.setSinglenightprice(room.getBasicprice());
 		order.setTotalamount(totalAmount);
-		
+
 		hotelOrderServiceInterface.save(order);
 		System.out.println(order);
 
@@ -138,6 +143,23 @@ public class HotelPaymentController {
 	@RequestMapping(value = "/PayEnd")
 	public String payEnd(Model model) {
 
+		// 沒收到歐付寶回傳資訊 展示先以最新筆資料代替
+		HotelOrder order = hotelOrderServiceInterface.selectByPk("ordernumber");
+		model.addAttribute("order", order);
+
+		// 房型資訊
+		// 依照選定數量找出roomid
+		// 目前groupByType未完成
+		List<Rooms> roomList = roomsServiceInterface.selectByHotelIdGroupByType(order.getHotelid());
+		Rooms room = roomList.get(0);
+		String[] roomPhotoArr = null;
+		roomPhotoArr = room.getPhotoString().split(";");
+		room.setPhotoArr(roomPhotoArr);
+		model.addAttribute("room", room);
+
+		// Hotel資訊
+		HotelsBean bean = hotelService.selectByPk(order.getHotelid());
+		model.addAttribute("hotel", bean);
 		return "hotel/PayEnd";
 	}
 }

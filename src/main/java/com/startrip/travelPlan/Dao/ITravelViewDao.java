@@ -10,7 +10,7 @@ public interface ITravelViewDao {
 
 	TravelViewBean select_ViewId(Integer viewId);
 
-	public List<TravelViewBean> select_ViewName(String viewName);
+	public List<TravelViewBean> select_latlng(String latlng);
 
 	List<TravelViewBean> select();
 

@@ -78,45 +78,8 @@
 
         }
     </style>
-    <title>站名編號查詢</title>
-    <script>
-        function getArea(data) {
-            //     alert($('#FPMap0'));
-            //    alert(data);
-            var abb = {};
-            abb.local = data;
-            $.ajax({
-                type: 'POST',
-                url: 'selectArea',
-                data: abb,
-                success: function (response) {
-                    $("#tbo").empty();
-                    $("#gm").empty();
-                    for (var i = 0; i < response.length; i++) {
-                        $("#tbo").append("<tr><td>" + response[i].area + "</td>" +
-                            "<td>" + response[i].stationName + "</td>" +
-                            "<td >" + "<img class='mapImage' id='getAddress' width='30' height='30' src='/startrip/assets/transport/images/mapicon.png' ><span>" + response[i].address + "</span></td></tr>");
-                    }
-
-                }, error: function (jqXHR, textStatus, errorThrown) { alert("no") },
-
-            });
-//-------------------------VVVVVVV 點地址產生地圖
-            $(document).on('click', '.mapImage', function () {
-                //    alert(this)
-                //    alert('aaaa')
-                $("#gm").empty();
-                var googleAddress = $(this).parent('td').children('span').text()
-                //                             alert(googleAddress)
- //               console.log("地址: " + googleAddress);
-                $($("#gm")).hide().append(
-                    "<a href='https://maps.google.com/maps?q=" + googleAddress + "&amp;z=11"
-                    + "data-geo='' target='_blank'> <img class='map' alt=" + googleAddress + "src='https://maps.google.com/maps/api/staticmap?zoom=15&size=700x700&maptype=terrain&sensor=false&center=" + googleAddress + "&markers=color:blue%7Clabel:S%7C$" + googleAddress + "&key=AIzaSyDl3nl3wQF2mlYkw87KHByGF9dB9In_fGQ'></a>"
-                ).slideDown(1000);
-            });
-//------------------------------------------------
-        };
-    </script>
+   
+    
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("inputArea").addEventListener("change", change1);
@@ -215,6 +178,49 @@ $('.navbar-nav.ml-auto').children().eq(2).addClass('active')
 });
 
 </script>
+<script>
+        function getArea(data) {
+            //     alert($('#FPMap0'));
+            //    alert(data);
+            var abb = {};
+            abb.local = data;
+            $.ajax({
+                type: 'POST',
+                url: 'selectArea',
+                data: abb,
+                success: function (response) {
+                    $("#tbo").empty();
+                    $("#gm").empty();
+                    for (var i = 0; i < response.length; i++) {
+                        $("#tbo").append("<tr><td>" + response[i].area + "</td>" +
+                            "<td>" + response[i].stationName + "</td>" +
+                            "<td >" + "<img class='mapImage' id='getAddress' width='30' height='30' src='/startrip/assets/transport/images/mapicon.png' ><span>" + response[i].address + "</span></td></tr>");
+                    }
+
+                }, error: function (jqXHR, textStatus, errorThrown) { alert("no") },
+
+            });
+//-------------------------VVVVVVV 點地址產生地圖
+            $(document).on('click', '.mapImage', function () {
+                //    alert(this)
+                //    alert('aaaa')
+                console.log("事件");
+                $("#gm").empty();
+                var googleAddress = $(this).parent('td').children('span').text();
+                //                             alert(googleAddress)
+ //               console.log("地址: " + googleAddress);
+                $($("#gm")).hide().append(
+                    "<a href='https://maps.google.com/maps?q=" + googleAddress + "&amp;z=11"
+                    + "data-geo='' target='_blank'> <img class='map' alt=" + googleAddress + "src='https://maps.google.com/maps/api/staticmap?zoom=15&size=700x700&maptype=terrain&sensor=false&center=" + googleAddress + "&markers=color:blue%7Clabel:S%7C$" + googleAddress + "&key=AIzaSyDl3nl3wQF2mlYkw87KHByGF9dB9In_fGQ'></a>"
+                ).slideDown(1000);
+            });
+//------------------------------------------------
+        };
+    </script>   
+
+
+
+ <title>站名編號查詢</title>
 </head>
 <!--     搜尋車站vvv -->
 
@@ -360,7 +366,7 @@ $('.navbar-nav.ml-auto').children().eq(2).addClass('active')
     </section>
 <!--     選擇出發站及終點站產生地圖路線 -->
     <div id="twoPoints" align="center">
-
+   
     </div>
      
     <!-- 以上為訂票功能版面 -->
@@ -374,7 +380,7 @@ $('.navbar-nav.ml-auto').children().eq(2).addClass('active')
         
         <div style="width:200%" class="row">
            <div>
-  <form action="/startrip/selectTripInf" class="probootstrap-form" style="border-radius: 30px;">
+<form action="/startrip/selectCMTrip" class="probootstrap-form" style="border-radius: 30px;">
 
 <h3>已訂車票查詢</h3>
 <label for="id_label_location">
@@ -393,7 +399,7 @@ class="form-control" placeholder="請輸入身份證字號">
 class="form-control" placeholder="請輸入訂票電話">
 </div>
 <div align="center">
-<input type="submit" value="查詢" >
+<input type="submit" value="查詢" src="/selectAllOrderlist">
 </div>
 
 
@@ -438,14 +444,12 @@ class="form-control" placeholder="請輸入訂票電話">
                         </tr>
                     </thead>
                     <tbody id="tbo">
-                        <tr>
-                            <td>台北 </td>
+                        <tr><td>台北 </td>
                             <td>台北車站 </td>
                             <td>
                                 <img class='mapImage' id='getAddress' width='30' height='30' src='/startrip/assets/transport/images/mapicon.png'>
-
-                                <span>台北市中正區市民大道一段168號</span></td>
-
+                                <span>台北市中正區市民大道一段168號</span>
+                                </td>
                         </tr>
                         <tr>
                             <td>台北 </td>
@@ -475,16 +479,16 @@ class="form-control" placeholder="請輸入訂票電話">
                             <td>台北 </td>
                             <td>南港轉運站 </td>
                             <td>
-                                <img class="mapImage" id="getAddress" width="30" height="30" src="/startrip/assets/transport/images/mapicon.png">
-                                台北市南港區南港路一段313號 
+      							<img class="mapImage" id="getAddress" width="30" height="30" src="/startrip/assets/transport/images/mapicon.png">
+      							   <span>台北市南港區南港路一段313號 </span>
                             </td>
                         </tr>
                         <tr>
                             <td>台北 </td>
                             <td>捷運南港展覽館 </td>
                             <td>
-                                <img class="mapImage" id="getAddress" width="30" height="30" src="/startrip/assets/transport/images/mapicon.png">
-                                台北市南港區經貿二路1號(163櫃) 
+                       <img class="mapImage" id="getAddress" width="30" height="30" src="/startrip/assets/transport/images/mapicon.png">
+                                <span>台北市南港區經貿二路1號(163櫃)</span> 
                             </td>
                         </tr>
                         <tr>
@@ -492,7 +496,7 @@ class="form-control" placeholder="請輸入訂票電話">
                             <td>捷運圓山站 </td>
                             <td>
                                 <img class="mapImage" id="getAddress" width="30" height="30" src="/startrip/assets/transport/images/mapicon.png">
-                                台北市大同區酒泉街9-1號
+                                <span>台北市大同區酒泉街9-1號</span>
                     </tbody>
                     <tfoot>
                 </table>
@@ -521,44 +525,31 @@ class="form-control" placeholder="請輸入訂票電話">
     </div>
     <div>
         <jsp:include page="/WEB-INF/views/member/login.jsp" flush="true" />
-    </div>
-    <script>
-$("#inputStation2").change(function(){
-	$("#twoPoints").empty();
-	$($("#twoPoints")).hide().html("<iframe width='600' height='450' frameborder='0' style='border:0' src='https://www.google.com/maps/embed/v1/directions?key=AIzaSyDl3nl3wQF2mlYkw87KHByGF9dB9In_fGQ&origin="+$('#inputStation').val()+"1&destination="+$('#inputStation2').val()+"'></iframe>").slideDown(1000);
-//	                                <iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyDl3nl3wQF2mlYkw87KHByGF9dB9In_fGQ&origin=           台北車站                             1&destination=           花蓮車站                                "></iframe>	
-	
-	
-	a
-	console.log($("#inputStation").val());
-	console.log($("#inputStation2").val());
-	});
-
-
-
+    </div> 
+<script>
+$(document).on('click', '.mapImage', function () {
+    //    alert(this)
+    //    alert('aaaa')
+    console.log("事件");
+    $("#gm").empty();
+    var googleAddress = $(this).parent('td').children('span').text();
+    //                             alert(googleAddress)
+//               console.log("地址: " + googleAddress);
+    $($("#gm")).hide().append(
+        "<a href='https://maps.google.com/maps?q=" + googleAddress + "&amp;z=11"
+        + "data-geo='' target='_blank'> <img class='map' alt=" + googleAddress + " src='https://maps.google.com/maps/api/staticmap?zoom=15&size=700x700&maptype=terrain&sensor=false&center=" + googleAddress + "&markers=color:blue%7Clabel:S%7C$" + googleAddress + "&key=AIzaSyDl3nl3wQF2mlYkw87KHByGF9dB9In_fGQ'></a>"
+    ).slideDown(1000);
+});
 
 </script>
-    
-
-   
-<button class="btn-info" onclick="qqq()">測試</button>
-</body>
 <!-- 顯示兩點地圖 -->
 <script>
 $("#inputStation2").change(function(){
 	$("#twoPoints").empty();
-	$($("#twoPoints")).hide().html("<iframe width='600' height='450' frameborder='0' style='border:0' src='https://www.google.com/maps/embed/v1/directions?key=AIzaSyDl3nl3wQF2mlYkw87KHByGF9dB9In_fGQ&origin="+$('#inputStation').val()+"1&destination="+$('#inputStation2').val()+"'>  </iframe>").slideDown(1000);
-	
-	
-	
-	
-	
+	$($("#twoPoints")).hide().html("<iframe width='600' height='450' alternatives='true' frameborder='0' units='metric' style='border:0' src='https://www.google.com/maps/embed/v1/directions?key=AIzaSyDl3nl3wQF2mlYkw87KHByGF9dB9In_fGQ&origin="+$('#inputStation').val()+"1&destination="+$('#inputStation2').val()+"'>  </iframe>").slideDown(1000);
 	console.log($("#inputStation").val());
 	console.log($("#inputStation2").val());
 	});
-
-
-
-}
 </script>
+</body>
 </html>

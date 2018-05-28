@@ -23,8 +23,8 @@ public class viewService implements ITravelViewService {
 	}
 	@Transactional
 	@Override
-	public List<TravelViewBean> select_ViewName(String viewName) {
-		return viewDao.select_ViewName(viewName);
+	public List<TravelViewBean> select_latlng(String latlng) {
+		return viewDao.select_latlng(latlng);
 	}
 	
 	@Transactional

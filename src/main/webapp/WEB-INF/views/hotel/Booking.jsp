@@ -121,7 +121,11 @@
             </div>
             <div class="col-md-4">
                 <br>
-                <img src="/startrip/assets/images/roomStyle.jpg" width="100%">
+				<!-- <img src="/startrip/assets/images/roomStyle.jpg" width="100%"> -->
+                <!-- 只有一張相片 -->
+										<c:forEach var="photo" items="${room.photoArr }">
+                                        <img src="/startrip/getPicture/rooms/${hotel.hotelid }/${photo }" width="100%">
+                                        </c:forEach>
                 <table class="table">
                     <tbody>
                         <tr>
@@ -131,11 +135,15 @@
                             <td>${room.roomname }</td>
                         </tr>
                         <tr>
-                            <td>${searchBean.checkIn } ~ ${searchBean.checkOut } (${searchBean.night}晚 )
-                                <br>// 點擊查看每晚明細
-                            </td>
+                            <td>${searchBean.checkIn } ~ ${searchBean.checkOut } (${searchBean.night}晚 )</td>
                         </tr>
                         <tr>
+                        	<td>每晚價格 NT$ <fmt:formatNumber value="${room.basicprice }" type="number" />元
+                        	<br>// 點擊查看每晚明細
+                        	</td>
+                        </tr>
+                        <tr>
+                        	
                             <td>總金額 NT$ <fmt:formatNumber value="${room.basicprice*searchBean.night }" type="number" />元</td>
                         </tr>
                     </tbody>

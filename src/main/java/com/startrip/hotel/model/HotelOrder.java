@@ -22,7 +22,7 @@ public class HotelOrder implements Serializable {
 	private Integer memberid;
 	private Integer orderstateid;
 	private Integer paymentmethodid;
-	private java.sql.Date orderdate;
+	private java.sql.Timestamp orderTimeStamp;
 	private String ordernote;
 	private Integer totalamount;
 	private Integer singlenightprice;
@@ -76,12 +76,12 @@ public class HotelOrder implements Serializable {
 		this.paymentmethodid = paymentmethodid;
 	}
 
-	public java.sql.Date getOrderdate() {
-		return orderdate;
+	public java.sql.Timestamp getOrderTimeStamp() {
+		return orderTimeStamp;
 	}
 
-	public void setOrderdate(java.sql.Date orderdate) {
-		this.orderdate = orderdate;
+	public void setOrderTimeStamp(java.sql.Timestamp orderTimeStamp) {
+		this.orderTimeStamp = orderTimeStamp;
 	}
 
 	public String getOrdernote() {
@@ -175,11 +175,11 @@ public class HotelOrder implements Serializable {
 	@Override
 	public String toString() {
 		return "HotelOrder [orderId=" + orderId + ", hotelid=" + hotelid + ", roomid=" + roomid + ", memberid="
-				+ memberid + ", orderstateid=" + orderstateid + ", paymentmethodid=" + paymentmethodid + ", orderdate="
-				+ orderdate + ", ordernote=" + ordernote + ", totalamount=" + totalamount + ", singlenightprice="
-				+ singlenightprice + ", checkin=" + checkin + ", checkout=" + checkout + ", lastname=" + lastname
-				+ ", firstname=" + firstname + ", email=" + email + ", cellphone=" + cellphone + ", password="
-				+ password + "]";
+				+ memberid + ", orderstateid=" + orderstateid + ", paymentmethodid=" + paymentmethodid
+				+ ", orderTimeStamp=" + orderTimeStamp + ", ordernote=" + ordernote + ", totalamount=" + totalamount
+				+ ", singlenightprice=" + singlenightprice + ", checkin=" + checkin + ", checkout=" + checkout
+				+ ", lastname=" + lastname + ", firstname=" + firstname + ", email=" + email + ", cellphone="
+				+ cellphone + ", password=" + password + "]";
 	}
 
 }
