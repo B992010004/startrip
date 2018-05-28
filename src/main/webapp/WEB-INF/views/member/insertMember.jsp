@@ -82,7 +82,7 @@
 				enctype="multipart/form-data" id="insertform">
 
 				<H2 class="display-4 border-bottom probootstrap-section-heading"
-					style="text-align: center">Sign Up</H2>
+					style="text-align: center">會員註冊</H2>
 				<div class="row">
 
 					<div class="col-md-6  probootstrap-animate">

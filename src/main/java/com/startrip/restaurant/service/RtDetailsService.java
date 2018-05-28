@@ -2,6 +2,8 @@ package com.startrip.restaurant.service;
 
 import java.util.List;
 
+import com.startrip.hotel.model.HotelsBean;
+import com.startrip.hotel.model.SearchHotel;
 import com.startrip.restaurant.model.RtDetailsBean;
 
 public interface RtDetailsService {

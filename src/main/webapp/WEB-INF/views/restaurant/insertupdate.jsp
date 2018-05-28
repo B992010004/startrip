@@ -121,25 +121,6 @@
 
 		<!-- -------------------------------------------------------------------------------------------------- -->
 
-		<div class="intermediate">
-			<div class="container">
-				<div class="bigheadline1">
-					<h1 class="headline1">查詢餐廳資料</h1>
-				</div>
-				<div class="input-group mb-3">
-					<input type="text" class="form-control" placeholder="編號，餐廳名稱"
-						aria-label="Recipient's username" aria-describedby="basic-addon2">
-				</div>
-				<div class="col-md">
-					<input type="submit"
-						value="查&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;詢"
-						class="btn btn-primary btn-block">
-				</div>
-			</div>
-		</div>
-
-		<!-- -------------------------------------------------------------------------------------------------- -->
-
 		<form:form method="post" modelAttribute="RtDetailsBean" enctype="multipart/form-data">
 			<div class="intermediate">
 				<div class="container">

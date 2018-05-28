@@ -3,11 +3,15 @@ package com.startrip.restaurant.repository;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Query;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.startrip.hotel.model.HotelsBean;
+import com.startrip.hotel.model.SearchHotel;
 import com.startrip.restaurant.exception.RtDetailsNotFoundException;
 import com.startrip.restaurant.model.RtBookingBean;
 import com.startrip.restaurant.model.RtDetailsBean;
@@ -49,9 +53,8 @@ public class RtDetailsRepositoryImp implements RtDetailsRepository {
 	@Override
 	public RtDetailsBean updateRtDetails(RtDetailsBean bean) {
 		Session session = factory.getCurrentSession();
-		RtDetailsBean rdb = session.get(RtDetailsBean.class, bean.getRtId());
-		session.save(rdb);
-		return rdb;
+		session.update(bean);
+		return bean;
 	}
 
 	@Override
@@ -148,6 +151,6 @@ public class RtDetailsRepositoryImp implements RtDetailsRepository {
 		list5 = session.createQuery(hql).setParameter("L", "平價美食").setMaxResults(4).getResultList();
 		return list5;
 	}
-
+	
 
 }

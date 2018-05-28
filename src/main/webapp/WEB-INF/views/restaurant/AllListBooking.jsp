@@ -134,7 +134,7 @@
 		</div>
 		<div class="row">
 			<c:forEach var='rtBookings' items='${RtBookings}'>
-				<div class="col-lg-6 portfolio-item">
+				<div class="col-lg-4 portfolio-item">
 					<div class="card h-100">
 						<img class="card-img-top"
 							src="<c:url value='/startrip/${rtBookings.memberId}'/>" alt="">

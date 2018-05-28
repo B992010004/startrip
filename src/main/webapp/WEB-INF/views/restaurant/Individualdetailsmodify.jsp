@@ -37,10 +37,10 @@
 
 <link rel="stylesheet" href="/startrip/assets/css/helpers.css">
 <link rel="stylesheet" href="/startrip/assets/css/style.css">
-<link rel="stylesheet" href="/startrip/assets/css/rthome.css">
-<link rel="stylesheet" href="/startrip/assets/css/rthome2.css">
-<link rel="stylesheet" href="/startrip/assets/css/rthome3.css">
-<link rel="stylesheet" href="/startrip/assets/css/rthome4.css">
+<!-- <link rel="stylesheet" href="/startrip/assets/css/rthome.css"> -->
+<!-- <link rel="stylesheet" href="/startrip/assets/css/rthome2.css"> -->
+<!-- <link rel="stylesheet" href="/startrip/assets/css/rthome3.css"> -->
+<!-- <link rel="stylesheet" href="/startrip/assets/css/rthome4.css"> -->
 
 <style>
 .probootstrap-cover .overlay {
@@ -185,11 +185,13 @@
 							<span>營業時間&nbsp;:&nbsp;</span><span>${rtDetails.rtBusinesshours}</span>
 						</p>
 
-						<div class="btn11">
+						<div class="btn11" id="btn11">
 							<input type="image" class="btnn repairButton" id="repair" img
-								src="/startrip/assets/images/rt/pencil.png"> <input
-								type="image" class="btnn insideButton" id="submitOK" img
-								src="/startrip/assets/images/rt/inside.png"> <input
+								src="/startrip/assets/images/rt/pencil.png"> 
+<!-- 								<input -->
+<!-- 								type="image" class="btnn insideButton" id="submitOK" img -->
+<!-- 								src="/startrip/assets/images/rt/inside.png"> -->
+								 <input
 								type="image" class="btnn deleteButton" id="delectOne" img
 								src="/startrip/assets/images/rt/delete.png">
 
@@ -259,29 +261,50 @@
 					$(document).on(
 							'click',
 							'.insideButton',
-							function() {
-
+							function() {				
+								
 								var id = $(this).parents('.card-body').find(
 										'a:first').text();
+								
 								var text2 = $(this).parents('.card-body').find(
 										'input:eq(0)').val();
+																
+								
 								var text4 = $(this).parents('.card-body').find(
 										'input:eq(1)').val();
+								
+								
 								var text6 = $(this).parents('.card-body').find(
-										'input:eq(2)').val();
+										'input:eq(2)').val();								
+								
+								
 								var text8 = $(this).parents('.card-body').find(
-										'input:eq(3)').val();
+										'input:eq(3)').val();															
+								
+								
 								var text10 = $(this).parents('.card-body')
-										.find('input:eq(4)').val();
+										.find('input:eq(4)').val();								
+								
+								
 								var text12 = $(this).parents('.card-body')
-										.find('input:eq(5)').val();
+										.find('input:eq(5)').val();								
+								
+								
 								var text14 = $(this).parents('.card-body')
-										.find('input:eq(6)').val();
+										.find('input:eq(6)').val();								
+								
+								
 								var text16 = $(this).parents('.card-body')
-										.find('input:eq(7)').val();
+										.find('input:eq(7)').val();								
+								
+								
+								
 								var text18 = $(this).parents('.card-body')
-										.find('input:eq(8)').val();
-
+										.find('input:eq(8)').val();													
+							
+								
+								
+								
 								var ajaxall = {
 									rtId : id,
 									rtCounty : text2,
@@ -294,18 +317,31 @@
 									rtPricepount : text16,
 									rtBusinesshours : text18,
 								};
-
-								$
-										.ajax({
+							
+								$.ajax({
 											url : "/startrip/updateAll",
 											type : "GET",
 											data : ajaxall,
 											success : function(responseText,
 													textStatus) {
-
+												
 											}
 										})
-
+										
+										$(this).parents('.card-body').find('span:eq(1)').html(text2);
+										$(this).parents('.card-body').find('span:eq(3)').html(text4);
+										$(this).parents('.card-body').find('span:eq(5)').html(text6);
+										$(this).parents('.card-body').find('span:eq(7)').html(text8);
+										$(this).parents('.card-body').find('span:eq(9)').html(text10);
+										$(this).parents('.card-body').find('span:eq(11)').html(text12);
+										$(this).parents('.card-body').find('span:eq(13)').html(text14);
+										$(this).parents('.card-body').find('span:eq(15)').html(text16);
+										$(this).parents('.card-body').find('span:eq(17)').html(text18);
+										
+										var but=$('<input type="image" class="btnn repairButton" id="repair" img src="/startrip/assets/images/rt/pencil.png"> '
+												+'<input type="image" class="btnn deleteButton" id="delectOne" img src="/startrip/assets/images/rt/delete.png">')										
+												$(this).parents('.card-body').find("#btn11").html(but);
+										
 							})
 
 				})
@@ -394,6 +430,11 @@
 												$(this).parents('.card-body')
 														.find('span:eq(17)')
 														.html(input18);
+											
+												var but=$('<input type="image" class="btnn insideButton" id="submitOK" img src="/startrip/assets/images/rt/inside.png">'
+														+'<input type="image" class="btnn deleteButton" id="delectOne" img src="/startrip/assets/images/rt/delete.png">')
+												
+													$(this).parents('.card-body').find("#btn11").html(but);
 
 											})
 						})
