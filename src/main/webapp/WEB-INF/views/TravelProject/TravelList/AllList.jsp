@@ -638,11 +638,12 @@ $(document).on('click','#checklist',function(){
 				contentType: "application/json; charset=utf-8",
 				success:function(data){
 					console.log('新增行程')
-					console.log(data)
+					console.log('tripday = '+data.tripday)
 					searchDays();
+					
 					}
 				})
-						}
+			}
 			})
 		})
 				
@@ -1029,7 +1030,7 @@ function initMap() {
 	    places.forEach(function(place,index) {
 	    	var photoslen = place.photos
 	    	console.log("photoslen="+photoslen)
-	    	if (!place.geometry||(photoslen.length!=1)&&(photoslen==undefined)) {
+	    	if (!place.geometry||(photoslen.length!=1)||(photoslen==undefined)) {
 	        console.log("Returned place contains no geometry");
 	        return;
 	      }
