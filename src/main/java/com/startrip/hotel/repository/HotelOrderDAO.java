@@ -42,7 +42,7 @@ public class HotelOrderDAO implements HotelOrderInterface {
 	public HotelOrder selectByPk(String ordernumber) {
 		Session session = factory.getCurrentSession();
 		List<HotelOrder> list = new ArrayList<>();
-		list = session.createQuery("FROM HotelOrder ho ORDER BY orderTimeStamp").setMaxResults(1).list();
+		list = session.createQuery("FROM HotelOrder ho ORDER BY orderTimeStamp DESC").setMaxResults(1).list();
 		return list.get(0);
 	}
 
