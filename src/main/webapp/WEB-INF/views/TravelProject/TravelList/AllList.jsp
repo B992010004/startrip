@@ -579,8 +579,11 @@ $(document).on('click','#checklist',function(){
 					  		var result=response.routes[0];
 					  		var duration=result.legs[0].duration.value;
 					  		var routehour=Math.round((duration/3600)); 
-				        	var routemin = Math.round(duration%3600/60);
-					  	
+				        	var routemin = Math.ceil(duration%3600/60);
+				        	if(routemin==0){
+				        		routemin=1;
+				        	}
+					  	console.log('routehour = '+routehour+',routemin = '+routemin)
 					   
 					datas.starttime=data.endTime;
 					
@@ -627,8 +630,6 @@ $(document).on('click','#checklist',function(){
 					datas.tripday=inputDay.val();
 					datas.travelId='${Travel.travelId}';
 					datas.memberId='${LoginOK.memberid}';
-					console.log("datas=")
-						}
 				$.ajax({
 				url:"/startrip/Travel/add/list",
 				type:"GET",
@@ -637,9 +638,11 @@ $(document).on('click','#checklist',function(){
 				contentType: "application/json; charset=utf-8",
 				success:function(data){
 					console.log('新增行程')
+					console.log(data)
 					searchDays();
 					}
 				})
+						}
 			})
 		})
 				
@@ -1026,7 +1029,7 @@ function initMap() {
 	    places.forEach(function(place,index) {
 	    	var photoslen = place.photos
 	    	console.log("photoslen="+photoslen)
-	    	if (!place.geometry||(photoslen.length!=1&&photoslen==undefined )) {
+	    	if (!place.geometry||(photoslen.length!=1)&&(photoslen==undefined)) {
 	        console.log("Returned place contains no geometry");
 	        return;
 	      }
