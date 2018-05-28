@@ -43,7 +43,7 @@ public class HotelPaymentController {
 
 	@Autowired
 	HotelOrderServiceInterface hotelOrderServiceInterface;
-	
+
 	@Autowired
 	HotelServiceInterface hotelService;
 
@@ -152,6 +152,9 @@ public class HotelPaymentController {
 		// 目前groupByType未完成
 		List<Rooms> roomList = roomsServiceInterface.selectByHotelIdGroupByType(order.getHotelid());
 		Rooms room = roomList.get(0);
+		String[] roomPhotoArr = null;
+		roomPhotoArr = room.getPhotoString().split(";");
+		room.setPhotoArr(roomPhotoArr);
 		model.addAttribute("room", room);
 
 		// Hotel資訊

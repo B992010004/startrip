@@ -92,7 +92,6 @@ public class HotelController {
 		// 評等
 		// [星等, 數量]
 		List<Object[]> list = hotelReviewService.getRankByHotelId(hotelId);
-		System.out.println("debug:   " + list);
 		Integer rankSize = 0;
 		int[] rankArr = { 0, 0, 0, 0, 0 };
 		// 根本不能轉型成Integer[]??
@@ -129,6 +128,11 @@ public class HotelController {
 			facilityArr = room.getFacility().split(";");
 			room.setFacilityArr(facilityArr);
 		}
+		String[] roomPhotoArr = null;
+		for (Rooms room : roomList) {
+			roomPhotoArr = room.getPhotoString().split(";");
+			room.setPhotoArr(roomPhotoArr);
+		}
 
 		model.addAttribute("roomList", roomList);
 
@@ -154,6 +158,12 @@ public class HotelController {
 		// 應該照選定房型選出來
 		// 目前groupByType未完成
 		List<Rooms> roomList = roomsServiceInterface.selectByHotelIdGroupByType(hotelId);
+		String[] roomPhotoArr = null;
+		for (Rooms room : roomList) {
+			roomPhotoArr = room.getPhotoString().split(";");
+			room.setPhotoArr(roomPhotoArr);
+		}
+		
 		Rooms room = roomList.get(0);
 		model.addAttribute("room", room);
 
@@ -203,6 +213,52 @@ public class HotelController {
 				}
 			} catch (IOException e) {
 				throw new RuntimeException("ProductController 的  getPicture() 發生 IOException:" + e.getMessage());
+			}
+			media = baos.toByteArray();
+		}
+
+		headers.setCacheControl(CacheControl.noCache().getHeaderValue());
+		String mimeType = context.getMimeType(photoName);
+		headers.setContentType(MediaType.IMAGE_JPEG);
+		headers.setContentType(MediaType.parseMediaType(mimeType));
+		ResponseEntity<byte[]> responseEntity = new ResponseEntity<>(media, headers, HttpStatus.OK);
+
+		return responseEntity;
+	}
+	
+	@RequestMapping(value = "/getPicture/rooms/{hotelId}/{photoName:.+}")
+	public ResponseEntity<byte[]> getRoomPicture(HttpServletResponse resp, @PathVariable String hotelId,
+			@PathVariable String photoName) {
+		HttpHeaders headers = new HttpHeaders();
+		ByteArrayOutputStream baos = null;
+		int len = 0;
+		byte[] media = null;
+
+		// 7以下的id為靜態資料
+		if (Integer.valueOf(hotelId) <= 7) {
+
+			InputStream is = context
+					.getResourceAsStream("/WEB-INF/views/assets/images/hotels/" + hotelId + "/rooms/" + photoName);
+			baos = new ByteArrayOutputStream();
+			byte[] b = new byte[8192];
+			try {
+				while ((len = is.read(b)) != -1) {
+					baos.write(b, 0, len);
+				}
+			} catch (Exception e) {
+				throw new RuntimeException("productcontroller的getRoomPicture發生IOException" + e.getMessage());
+			}
+			media = baos.toByteArray();
+		} else {
+			try (InputStream is = new FileInputStream("C:/temp/hotel/" + hotelId + "/rooms/" + photoName)) {
+				baos = new ByteArrayOutputStream();
+				byte[] b = new byte[8192];
+
+				while ((len = is.read(b)) != -1) {
+					baos.write(b, 0, len);
+				}
+			} catch (IOException e) {
+				throw new RuntimeException("ProductController 的  getRoomPicture() 發生 IOException:" + e.getMessage());
 			}
 			media = baos.toByteArray();
 		}

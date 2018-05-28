@@ -84,7 +84,12 @@
 
                                     <tr>
                                         <th scope="row">
-                                            <img class="roomPhoto" src="/startrip/assets/images/roomStyle.jpg">
+<!--                                             <img class="roomPhoto" src="/startrip/assets/images/roomStyle.jpg"> -->
+											<!-- 只有一張相片 -->
+										<!-- <img src="/startrip/assets/images/roomStyle.jpg"> -->
+										<c:forEach var="photo" items="${room.photoArr }">
+                                        <img class="roomPhoto" src="/startrip/getPicture/rooms/${hotel.hotelid }/${photo }">
+                                        </c:forEach>
                                             <br> ${room.roomname }
 <!--                                             	豪華雙人房 -->
                                         </th>

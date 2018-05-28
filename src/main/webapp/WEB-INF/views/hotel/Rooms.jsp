@@ -343,39 +343,43 @@
                             </thead>
                             <tbody>
 							<!-- 靜態資料 -->
-                            <tr>
-                                    <th scope="row">
-                                        <img src="/startrip/assets/images/roomStyle.jpg">
-                                        <br> 豪華雙人房
-                                    </th>
-                                    <td>附早餐
-                                        <br>可加床
-                                        <br>不可退款
-                                    </td>
-                                    <td>
-                                        1 張雙人床 / 2 張單人床
-                                        <br>室內WIFI
-                                    </td>
-                                    <td>NT$ <fmt:formatNumber value="3000" type="number" /></td>
-                                    <td>
-										<!-- 房型roomType寫死  1-->
-										<!-- 數量1 被固定-->
-                                        <form action="/startrip/Booking/${hotel.hotelid }/1" method="POST">
-                                            <button type="submit" class="btn btn-outline-warning">預定</button>
-                                            <br>
-                                            <br>
-                                            <label for="extrabed">
-                                                是否加床
-                                                <input type="checkbox" id="extrabed" name="extrabed">
-                                            </label>
-                                        </form>
-                                    </td>
-                                </tr>
-                                <!-- 房間資料起始 -->
+<!--                             <tr> -->
+<!--                                     <th scope="row"> -->
+<!--                                         <img src="/startrip/assets/images/roomStyle.jpg"> -->
+<!--                                         <br> 豪華雙人房 -->
+<!--                                     </th> -->
+<!--                                     <td>附早餐 -->
+<!--                                         <br>可加床 -->
+<!--                                         <br>不可退款 -->
+<!--                                     </td> -->
+<!--                                     <td> -->
+<!--                                         1 張雙人床 / 2 張單人床 -->
+<!--                                         <br>室內WIFI -->
+<!--                                     </td> -->
+<%--                                     <td>NT$ <fmt:formatNumber value="3000" type="number" /></td> --%>
+<!--                                     <td> -->
+<!-- 										房型roomType寫死  1 -->
+<!-- 										數量1 被固定 -->
+<%--                                         <form action="/startrip/Booking/${hotel.hotelid }/1" method="POST"> --%>
+<!--                                             <button type="submit" class="btn btn-outline-warning">預定</button> -->
+<!--                                             <br> -->
+<!--                                             <br> -->
+<!--                                             <label for="extrabed"> -->
+<!--                                                 是否加床 -->
+<!--                                                 <input type="checkbox" id="extrabed" name="extrabed"> -->
+<!--                                             </label> -->
+<!--                                         </form> -->
+<!--                                     </td> -->
+<!--                                 </tr> -->
+                                <!-- 動態房間資料起始 -->
                             <c:forEach var="room" items="${roomList }">
                                 <tr>
                                     <th scope="row">
-                                        <img src="/startrip/assets/images/roomStyle.jpg">
+										<!-- 只有一張相片 -->
+										<!-- <img src="/startrip/assets/images/roomStyle.jpg"> -->
+										<c:forEach var="photo" items="${room.photoArr }">
+                                        <img src="/startrip/getPicture/rooms/${hotel.hotelid }/${photo }">
+                                        </c:forEach>
                                         <br> ${room.roomname }
                                     </th>
                                     <td>
