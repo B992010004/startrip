@@ -135,8 +135,8 @@ $('.navbar-nav.ml-auto').children().eq(2).addClass('active')
 	</table>
 
 
-<h1 align="center">訂票成功請於發車前</h1>
-<h1 align="center">請於5分鐘前至出發站領票</h1>
+<h1 align="center">訂票成功請於發車前請於5分鐘前至出發站領票</h1>
+
 <h1 align="center">祝您旅途愉快</h1>
 
 		<a href="/startrip/select">回到大眾運輸首頁</a>

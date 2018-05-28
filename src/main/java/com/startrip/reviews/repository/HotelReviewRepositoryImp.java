@@ -78,13 +78,29 @@ public class HotelReviewRepositoryImp implements HotelReviewRepository {
 		String hql = null;
 		StringBuffer queryString = new StringBuffer();
 		boolean crteriaIsAvailable = false;
+		boolean isFirst = true;
+		// 塞Pk鍵
+		// 製作SQL語法有順序性
+		if (reviewSelectCriteria.getpK() != null) {
+			queryString.append("hotelId = :hotelId ");
+			// crteriaIsAvailable = true;
+		}
 
 		if (reviewSelectCriteria.getFamily() != null) {
+			if (isFirst) {
+				queryString.append("AND ( ");
+				isFirst = false;
+			}
 			queryString.append("tripType = :family ");
 			crteriaIsAvailable = true;
 		}
 
 		if (reviewSelectCriteria.getCouple() != null) {
+			if (isFirst) {
+				queryString.append("AND ( ");
+				isFirst = false;
+			}
+
 			if (crteriaIsAvailable) {
 				queryString.append("OR ");
 			}
@@ -93,6 +109,11 @@ public class HotelReviewRepositoryImp implements HotelReviewRepository {
 		}
 
 		if (reviewSelectCriteria.getAlone() != null) {
+			if (isFirst) {
+				queryString.append("AND ( ");
+				isFirst = false;
+			}
+
 			if (crteriaIsAvailable) {
 				queryString.append("OR ");
 			}
@@ -101,6 +122,11 @@ public class HotelReviewRepositoryImp implements HotelReviewRepository {
 		}
 
 		if (reviewSelectCriteria.getBusiness() != null) {
+			if (isFirst) {
+				queryString.append("AND ( ");
+				isFirst = false;
+			}
+
 			if (crteriaIsAvailable) {
 				queryString.append("OR ");
 			}
@@ -109,6 +135,11 @@ public class HotelReviewRepositoryImp implements HotelReviewRepository {
 		}
 
 		if (reviewSelectCriteria.getFriends() != null) {
+			if (isFirst) {
+				queryString.append("AND ( ");
+				isFirst = false;
+			}
+
 			if (crteriaIsAvailable) {
 				queryString.append("OR ");
 			}
@@ -116,21 +147,20 @@ public class HotelReviewRepositoryImp implements HotelReviewRepository {
 			crteriaIsAvailable = true;
 		}
 
-		// 塞Pk鍵
-		if (reviewSelectCriteria.getpK() != null) {
-			if (crteriaIsAvailable) {
-				queryString.append("AND ");
-			}
-			queryString.append("hotelId = :hotelId ");
-			crteriaIsAvailable = true;
+		// 有括號要封括號
+		if (!isFirst) {
+			queryString.append(")");
+
 		}
 
-		String fromClause = crteriaIsAvailable ? "FROM HotelReview hr WHERE " : "FROM HotelReview hr ";
-		if (crteriaIsAvailable) {
-			hql = fromClause + queryString;
-		} else {
-			hql = fromClause;
-		}
+//		String fromClause = crteriaIsAvailable ? "FROM HotelReview hr WHERE " : "FROM HotelReview hr ";
+		String fromClause =  "FROM HotelReview hr WHERE ";
+		hql = fromClause + queryString;
+//		if (crteriaIsAvailable) {
+//			hql = fromClause + queryString;
+//		} else {
+//			hql = fromClause;
+//		}
 
 		System.out.println("hql看這裡 " + hql);
 
