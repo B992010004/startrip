@@ -665,6 +665,7 @@ $(document).on('click','#checklist',function(){
 				data:datas,
 				contentType: "application/json; charset=utf-8",
 				success:function(data){
+					
 					console.log('新增行程')
 					console.log(data)
 					searchDays();
@@ -690,15 +691,15 @@ $(document).on('click','.closelist',function(e){
 	list.tripday=day
   	list.endtime=$('#'+e.target.id).parent().find('.end').text()
  	$.get('/startrip/list/remove',list,function(data){
- 		console.log(data);
+ 		console.log('data='+data);
  		$('#'+e.target.id).parent().parent().remove();
- 		searchDays();
- 		console.log("daybody="+daybody)
- 		var len = $('#'+daybody).find('.right').length;
- 		var right =  $('#'+daybody).find('.right');
- 		console.log("len="+len)
-		placeroute(len,right);
-
+//  		searchDays();
+//  		console.log("daybody="+daybody)
+//  		var len = $('#'+daybody).find('.right').length;
+//  		var right =  $('#'+daybody).find('.right');
+//  		console.log("len="+len)
+// 		placeroute(len,right);
+		searchList(data)
  		
  	})
 	
@@ -782,7 +783,8 @@ function searchList(day){
 	travel.mail="${LoginOK.mail}"
 	travel.travelId="${Travel.travelId}"
 	travel.day=day
-	
+	$('#daybody'+day).find('.right').remove();
+	$('#daybody'+day).find('.timediv').remove();
 	console.log("day="+day)
 	
 	$.ajax({

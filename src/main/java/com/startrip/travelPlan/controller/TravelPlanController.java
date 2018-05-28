@@ -445,8 +445,8 @@ public class TravelPlanController {
 		
 				
 		Integer a= listservice.update_ListState(travelId, tripday,endtime);
+		return tripday;
 		
-		return a;
 	}
 	@RequestMapping(value="list/update",method=RequestMethod.GET)
 	@ResponseBody
