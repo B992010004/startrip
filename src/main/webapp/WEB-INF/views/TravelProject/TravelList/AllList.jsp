@@ -376,6 +376,14 @@ $('#insertday').on('click',function(){
 			contentType: "application/json; charset=utf-8",
 			success:function(data){
 				searchDays();
+				var docFrag = $(document.createDocumentFragment());
+				for(var i =1;i<=data.travelDays;i++){
+					var selectday=$('<div class="circle col-2" id="chioceday'+i+'">'+i+'</div>')
+					docFrag.append(selectday);
+					}
+				$('.modal-body').find('.checkview').empty();
+				$('.modal-body').find('.checkview').append(docFrag)
+				
 		}
 	})
 })//新增天數END
@@ -1095,6 +1103,7 @@ function initMap() {
 				
 			}
 			for(var i =1;i<=days;i++){
+				console.log('circle days='+days)
 				var selectday=$('<div class="circle col-2" id="chioceday'+i+'">'+i+'</div>')
 				docFrag.append(selectday);
 				}
