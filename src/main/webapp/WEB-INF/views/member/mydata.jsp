@@ -61,41 +61,57 @@
                         <h6>這些是您在 Star Trip 上已經完成的預訂。</h6>
                         <br>
 
-                        <c:if test="${ empty rtlist }">
+                        <c:if test="${ empty rtlist &&empty hotelList}">
                             <h6>您目前沒有訂單</h6>
                         </c:if>
-                        <c:if test="${ !empty hotellist }">
-                            <h4>飯店</h4>
-                            <table class="table table-bordered">
+                        <c:if test="${ !empty hotelList }">
+                              <h4>飯店</h4>
+                            <div id="hotelerror"></div>
+                            <table class="table table-bordered" id="hotelTable">
                                 <thead>
                                     <tr>
-                                        <th width="20%" scope="col">房型</th>
-                                        <th width="25%" scope="col">服務</th>
+                                        <th width="20%" scope="col">飯店</th>
+                                        <th width="25%" scope="col">房型介紹</th>
                                         <th width="25%" scope="col">設施</th>
                                         <th width="15%" scope="col">每晚平均房價</th>
+                                        
                                     </tr>
                                 </thead>
                                 <tbody>
+                           
+                           
+                             <c:forEach var='hotelLists' items='${hotelList}'>
+                                        <tr>
+                                            <td scope="row">
+                                                <input type="text" style="display: none;" value="${rtlists.bgId}">
+                                                <img src="<c:url value='/getrtPicture/${rtlists.rtId}'/>">
+                                                <br>
+                                                <span>${rtlists.rtname}</span>
+                                            </td>
 
-                                    <tr>
-                                        <th scope="row">
-                                            <img src="/startrip/assets/images/sq_img_2.jpg">
-                                            <br> 豪華雙人房
-                                        </th>
-                                        <td>附早餐
-                                            <br>可加床
-                                            <br>不可退款
+                                           <td>
+<!--                                         太魯閣晶英酒店 (Silks Place Taroko Hotel) -->
+                                            ${room.roomname }
+                                            <br>
+<!--                                             972花蓮縣秀林鄉天祥路18號 -->
+                                            ${hotel.hoteladdress }
+                                            <br>
+<!--                                             38691155 -->
+											${hotel.hotelphone }
+                                            <br>入住日期: ${order.checkin }
+                                            <br>退房日期: ${order.checkout }
                                         </td>
                                         <td>1 張雙人床 / 2 張單人床
                                             <br>室內WIFI
                                         </td>
-                                        <td>3000</td>
-
-                                    </tr>
-
+                                        <td>${room.basicprice }</td>
+                                            <td>
+                                                <button type="button" class="btn btn-primary" id="canclebutton">取消訂位</button>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
                                 </tbody>
-                            </table>
-                            <br>
+                            </table>                       
                         </c:if>
                         <c:if test="${ !empty rtlist }">
                             <h4>餐廳</h4>

@@ -35,6 +35,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.startrip.hotel.model.HotelOrder;
+import com.startrip.hotel.service.HotelOrderServiceInterface;
 import com.startrip.member.Service.MemberServiceInterface;
 import com.startrip.member.controller.md5.MD5Util;
 import com.startrip.member.memberModle.MemberBean;
@@ -54,6 +56,10 @@ public class MemberController {
 
 	@Autowired
 	ServletContext context;
+	
+	
+	@Autowired
+	HotelOrderServiceInterface hotelservice;
 
 	@RequestMapping(value = "/logout")
 	public String logout(HttpServletRequest request) {
@@ -68,6 +74,7 @@ public class MemberController {
 	public String selectdata(Model model, HttpServletRequest request, @PathVariable int memberid) {
 
 		List<RtBookingBean> rbList = rtBookingService.getRtBookingmember(memberid);
+		List<HotelOrder> hotelList=hotelservice.selectByMemberId(memberid);
 		if (rbList != null) {
 			for (RtBookingBean bean : rbList) {
 
@@ -77,6 +84,10 @@ public class MemberController {
 				}
 			}
 			model.addAttribute("rtlist", rbList);
+		}
+		
+		if (hotelList != null) {			
+			model.addAttribute("hotelList", hotelList);
 		}
 		return "/member/mydata";
 	}
