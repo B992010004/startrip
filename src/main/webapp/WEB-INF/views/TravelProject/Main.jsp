@@ -54,6 +54,7 @@
 	<section class="probootstrap_section" id="section-feature-testimonial" style="padding: 2em 8em;">
 
 		<div class="row">
+<!-- 		<img src="/startrip/assets/Travel/img/loading.gif" id="loading_img" style="display: none;position:fixed;"> -->
 			<div class="col-md-3" style="background-color: blcak;">
 				<ul class="list-group list-group-flush">
 					<a class="list-group-flush list-group-item"	href="/startrip/Travel/addPlan/${LoginOK.mail}">新增行程</a>
@@ -303,9 +304,9 @@
 					url : "/startrip/travel/all",
 					type : "GET",
 					data : all,
-					 dataType : "json",
-				        contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
-					success : function(data) {
+					dataType : "json",
+				    contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
+				    success : function(data) {
 						
 						 result=data;
 						if(result.length%num==0){
@@ -322,7 +323,7 @@
 					            now_page++; /*每次点击下一页，页数+1*/
 					            $("#now").text(now_page);/*改变分页按钮上显示的页数*/
 					            
-					            if(now_page+1>=page){
+					            if(now_page==page){
 					            $("#right").addClass('not-active') 
 					              
 					            }else{
@@ -337,7 +338,8 @@
 					                $("#left").addClass('not-active');
 					                /*如果不是最后一页，就重新启用a标签*/
 					            }
-					           
+					          
+					            
 			            		
 				            $('#row').empty();/*清空上一页显示的数据*/
 			            		  dataDisplay(result,index,index=index+num)
@@ -367,6 +369,8 @@
 						            dataDisplay(result,index=index-2*num,index=index+num);
 						            /*显示新一页的数据，*/                    
 							 });
+							 $("#loading_img").ajaxStart(function(){ $(this).show(); }); 
+							 $("#loading_img").ajaxStop(function(){ $(this).hide(); }); 
 							 
 							 function  dataDisplay(data,start,end){
 									console.log("display="+data)
