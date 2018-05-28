@@ -889,7 +889,7 @@
 								var memberImg = $('<img class="review-memberphoto" src="/startrip/getPicture/memberIcon/' + responce[i].memberBean.avatar +'" />');
 							}						
 						var innerRow2 = $('<div class="row justify-content-center"></div>');
-						var innerRow2content = $('<div><h6>' + responce[i].memberBean.username + '</h6></div>');
+						var innerRow2content = $('<div><h6>' + responce[i].memberBean.lastname + '</h6></div>');
 						innerRow2.append(innerRow2content);
 						innerRow1.append(memberImg);
 						col1.append([innerRow1, innerRow2]);
