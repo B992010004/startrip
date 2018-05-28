@@ -54,10 +54,14 @@ public class TravelListDao implements ITravelListDao  {
 
 	@Override
 	public Integer insert(TravelListBean bean) {
+		
+		String sql  = "insert into travellist (travelId,viewId,starttime,endtime,travelType,tripday,state,travelName,viewName) values(:travelId,:viewId,:starttime,:endtime,:travelType,:tripday,:state,:travelName,:viewName)";
 		Session session = factory.getCurrentSession();
 		System.out.println(bean.toString());
-		Integer pk =(int)session.save(bean);
-		return pk;
+		session.createNativeQuery(sql, TravelListBean.class).setParameter("travelId", bean.getTravelId()).setParameter("viewId", bean.getViewid()).setParameter("starttime", bean.getStartTime())
+		.setParameter("endtime", bean.getEndTime()).setParameter("travelType", bean.getTravelType()).setParameter("tripday", bean.getTripday())
+		.setParameter("state", bean.getState()).setParameter("travelName", bean.getTravelName()).setParameter("viewName", bean.getViewName()).executeUpdate();
+		return 1;
 	}
 
 	
