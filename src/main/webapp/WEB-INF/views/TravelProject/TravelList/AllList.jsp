@@ -383,7 +383,6 @@ $('#insertday').on('click',function(){
 					}
 				$('.modal-body').find('.checkview').empty();
 				$('.modal-body').find('.checkview').append(docFrag)
-				
 		}
 	})
 })//新增天數END
@@ -638,6 +637,7 @@ $(document).on('click','#checklist',function(){
 					datas.tripday=inputDay.val();
 					datas.travelId='${Travel.travelId}';
 					datas.memberId='${LoginOK.memberid}';
+					
 				$.ajax({
 				url:"/startrip/Travel/add/list",
 				type:"GET",
@@ -645,10 +645,9 @@ $(document).on('click','#checklist',function(){
 				data:datas,
 				contentType: "application/json; charset=utf-8",
 				success:function(data){
-					console.log('新增行程')
-					console.log('tripday = '+data.tripday)
-					searchDays();
-					
+					console.log('新增行程');
+					console.log('tripday = '+data.tripday);
+					searchList(data.tripday);
 					}
 				})
 			}
@@ -676,7 +675,7 @@ $(document).on('click','#checklist',function(){
 					
 					console.log('新增行程')
 					console.log(data)
-					searchDays();
+					searchList(data.tripday);
 					
 				}
 			})
@@ -922,11 +921,6 @@ function searchList(day){
 			  					})
 				  					} //else end
 				  				}
-				  				
-				  					  
-				  					
-				          
-				          
 			  			}         
 					}
 				})//directionsService end
@@ -1241,11 +1235,11 @@ function initMap() {
 				docFrag.html(view);
 				}
 				}
-			$('#views').html(docFrag);
+			$('#views').html(docFrag); 
 				
               })
  
  </script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzJ1t4g1piJ5W74CnSofqbkkzmPqhItYs&libraries=places&callback=initMap&language=zh-tw" async defer></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcJ_tKbqeZBaicggo1H1eTzqQZCx_EOK0&libraries=places&callback=initMap&language=zh-tw" async defer></script>
 </body>
 </html>
