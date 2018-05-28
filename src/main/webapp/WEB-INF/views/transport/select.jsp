@@ -384,28 +384,40 @@ $('.navbar-nav.ml-auto').children().eq(2).addClass('active')
 
 <h3>已訂車票查詢</h3>
 <label for="id_label_location">
-<div>
+
 身分證字號
  <input type="text" 
- id="id_label_location" 
+ id="id" 
  name="searchId"
 class="form-control" placeholder="請輸入身份證字號">
-</div>
-<div>
+
+
 電話
  <input type="text" 
- id="id_label_location" 
+ id="phone" 
  name="searchPhone"
 class="form-control" placeholder="請輸入訂票電話">
-</div>
+
 <div align="center">
 <input type="submit" value="查詢" src="/selectAllOrderlist">
-</div>
 
+</div>
 
 </label>
 </form>
-</div>        
+<br>
+<input type="button" id="CEle" value="一鍵寫入">
+</div>   
+<script>
+$("#CEle").click(function(){
+	$("#id").empty();
+	$("#id").val("A123456789");
+	$("#phone").empty();
+	$("#phone").val("0987654321");
+	
+	}); 
+       
+</script>     
             <div id="mapDiv">
                 <a id="mapDiv" class="probootstrap-thumbnail">
                     <img style="width:200% " id="imgMap" class="img-fluid" alt="Free Template by ProBootstrap.com" src="/startrip/assets/transport/images/taiwan.png"

@@ -96,6 +96,20 @@ $('.navbar-nav.ml-auto').children().eq(2).addClass('active')
 });
 
 </script>
+<script>
+$("#infinput").click(function(){
+	$("#inputId").empty();
+	$("#inputId").val("A123456789");
+	$("#inputphone").empty();
+	$("#inputphone").val("0987654321");
+	$("#inputName").empty();
+	$("#inputName").val("城武本人");
+	$("#inputEmail").empty();
+	$("#inputEmail").val("jack@gmail.com");
+	
+	}); 
+       
+</script>   
 <body>
 	<div>
 		<jsp:include page="/WEB-INF/views/header.jsp" flush="true" />
@@ -111,33 +125,38 @@ $('.navbar-nav.ml-auto').children().eq(2).addClass('active')
 		<div class="container">
 			<div class="row align-items-center">
 				<div class="col-md probootstrap-animate">
-					<h3 style="color: #E8CCFF" align="center">請輸入基本資料</h3>
+					<h3 id="infinput" style="color: #E8CCFF" align="center">請輸入基本資料</h3>
+					<div align="center">
+					
+					</div>
 					<form action="/startrip/selectAllOrerList" class="probootstrap-form"
 						style="border-radius: 30px;">
 						<div class="form-group">
 							<div class="form-group ">
-								<label for=" "> 身分證字號: </label> <input type="text"
-									id="id_label_location" name="identity" class="form-control"
-									placeholder="">
+								<label for=" "> 身分證字號: </label> 
+								<input type="text"
+									id="inputId" name="identity" class="form-control"
+									placeholder="A123456789">
 							</div>
 							<!-- 分隔線								 -->
 							<div class="form-group">
 								<label for="id_label_location"> 姓名 </label> <input type="text"
-									id="id_label_location" name="custname" class="form-control"
-									placeholder="">
+									id="inputName" name="custname" class="form-control"
+									placeholder="城武本人">
 							</div>
 							<!-- 分隔線 -->
 							<div class="form-group inputState">
-								<label for="id_label_location"> 電子郵件: </label> <input
-									type="text" id="id_label_location" name="sMail"
-									class="form-control" placeholder="">
+								<label for="id_label_location"> 電子郵件: </label> 
+								<input
+									type="text" id="inputEmail" name="sMail"
+									class="form-control" placeholder="jack@gmail.com">
 							</div>
 							<!-- 分隔線 -->
 							<!-- 連絡電話 -->
 							<div class="form-group inputState">
 								<label for="id_label_location"> 連絡電話:<input type="text"
-									id="id_label_location" name="phone" class="form-control"
-									placeholder="">
+									id="inputphone" name="phone" class="form-control"
+									placeholder="0987654321">
 								</label>
 							</div>
 						</div>
@@ -154,6 +173,7 @@ $('.navbar-nav.ml-auto').children().eq(2).addClass('active')
 					<!-- summit -->
 				</div>
 			</div>
+			
 	</section>
 
 
