@@ -232,8 +232,17 @@ tbody th img {
 }
 
 ul li {
-			list-style-type: none;
-		}
+	ist-style-type: none;
+}
+.littletitle1{
+font-size:20px;
+}
+.ml-3{
+font-size:20px;
+}
+.word{
+font-size:24px;
+}
 </style>
 
 </head>
@@ -355,7 +364,7 @@ ul li {
 				<div class="col-md">
 					<!-- 規定 -->
 					<br>
-					<h5>餐廳詳細資料：</h5>
+					<h5 class="word">餐廳詳細資料：</h5>
 					<br>
 					<table rules="none" class="table table-hover ml-3">
 						<tbody>
@@ -415,8 +424,8 @@ ul li {
 						style="width: ${rankArr[4]/rankSize *100}%"
 						aria-valuenow="${rankArr[4]/rankSize *100}" aria-valuemin="0"
 						aria-valuemax="100">
-						<fmt:formatNumber type="number" value="${rankArr[4]/rankSize *100}"
-							maxFractionDigits="0" />
+						<fmt:formatNumber type="number"
+							value="${rankArr[4]/rankSize *100}" maxFractionDigits="0" />
 						%
 					</div>
 				</div>
@@ -427,8 +436,8 @@ ul li {
 						style="width: ${rankArr[3]/rankSize *100}%"
 						aria-valuenow="${rankArr[3]/rankSize *100}" aria-valuemin="0"
 						aria-valuemax="100">
-						<fmt:formatNumber type="number" value="${rankArr[3]/rankSize *100}"
-							maxFractionDigits="0" />
+						<fmt:formatNumber type="number"
+							value="${rankArr[3]/rankSize *100}" maxFractionDigits="0" />
 						%
 					</div>
 				</div>
@@ -439,8 +448,8 @@ ul li {
 						style="width: ${rankArr[2]/rankSize *100}%"
 						aria-valuenow="${rankArr[2]/rankSize *100}" aria-valuemin="0"
 						aria-valuemax="100">
-						<fmt:formatNumber type="number" value="${rankArr[2]/rankSize *100}"
-							maxFractionDigits="0" />
+						<fmt:formatNumber type="number"
+							value="${rankArr[2]/rankSize *100}" maxFractionDigits="0" />
 						%
 					</div>
 				</div>
@@ -451,8 +460,8 @@ ul li {
 						style="width: ${rankArr[1]/rankSize *100}%"
 						aria-valuenow="${rankArr[1]/rankSize *100}" aria-valuemin="0"
 						aria-valuemax="100">
-						<fmt:formatNumber type="number" value="${rankArr[1]/rankSize *100}"
-							maxFractionDigits="0" />
+						<fmt:formatNumber type="number"
+							value="${rankArr[1]/rankSize *100}" maxFractionDigits="0" />
 						%
 					</div>
 				</div>
@@ -463,8 +472,8 @@ ul li {
 						style="width: ${rankArr[0]/rankSize *100}%"
 						aria-valuenow="${rankArr[0]/rankSize *100}" aria-valuemin="0"
 						aria-valuemax="100">
-						<fmt:formatNumber type="number" value="${rankArr[0]/rankSize *100}"
-							maxFractionDigits="0" />
+						<fmt:formatNumber type="number"
+							value="${rankArr[0]/rankSize *100}" maxFractionDigits="0" />
 						%
 					</div>
 				</div>
@@ -475,11 +484,16 @@ ul li {
 			<div class="travler-rank col-md-2" id="selectCheckBox">
 				<label class="sr-only-focusable">旅客類型</label>
 				<ul>
-					<li><input id="cr1" type="checkbox" name="family" value="家庭" onclick="selectByCriteria('${hotel.hotelid }')">家庭出遊</li>
-					<li><input id="cr2" type="checkbox" name="couple" value="伴侶旅行" onclick="selectByCriteria('${hotel.hotelid }')">伴侶旅行</li>
-					<li><input id="cr3" type="checkbox" name="alone" value="單獨旅行" onclick="selectByCriteria('${hotel.hotelid }')">單獨旅行</li>
-					<li><input id="cr4" type="checkbox" name="business" value="商務" onclick="selectByCriteria('${hotel.hotelid }')">商務出差</li>
-					<li><input id="cr5" type="checkbox" name="friends" value="朋友" onclick="selectByCriteria('${hotel.hotelid }')">好友旅行</li>
+					<li><input id="cr1" type="checkbox" name="family" value="家庭"
+						onclick="selectByCriteria('${hotel.hotelid }')">家庭出遊</li>
+					<li><input id="cr2" type="checkbox" name="couple" value="伴侶旅行"
+						onclick="selectByCriteria('${hotel.hotelid }')">伴侶旅行</li>
+					<li><input id="cr3" type="checkbox" name="alone" value="單獨旅行"
+						onclick="selectByCriteria('${hotel.hotelid }')">單獨旅行</li>
+					<li><input id="cr4" type="checkbox" name="business" value="商務"
+						onclick="selectByCriteria('${hotel.hotelid }')">商務出差</li>
+					<li><input id="cr5" type="checkbox" name="friends" value="朋友"
+						onclick="selectByCriteria('${hotel.hotelid }')">好友旅行</li>
 				</ul>
 			</div>
 
