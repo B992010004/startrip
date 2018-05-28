@@ -202,7 +202,7 @@
 											success : function(data) {
 												console.log(e.target.id)
 												$('#' + e.target.id).parent().parent().remove();
-												i
+												searchTravels();
 											}
 										})
 							})//click end

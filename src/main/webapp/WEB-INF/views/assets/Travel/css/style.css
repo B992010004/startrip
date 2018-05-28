@@ -572,6 +572,7 @@ blockquote {
     float: right;
     width: 30px;
     margin-right:10px;
+    display:none;
    
 }
 .updatelist{
@@ -604,6 +605,7 @@ blockquote {
 	background-image: url("/startrip/assets/Travel/img/clear.png");
 	width:48px;
 	height: 48px;
+	display:none;
 }
 .title:hover{
 	cursor: pointer;
@@ -613,6 +615,7 @@ blockquote {
 }
 .closelist:hover{
 	cursor: pointer;
+	
 }
 
 .start,.end,.line{

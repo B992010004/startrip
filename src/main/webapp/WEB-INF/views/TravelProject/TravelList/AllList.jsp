@@ -32,6 +32,9 @@
 <!-- <link rel="stylesheet" href="/startrip/assets/Travel/css/lightbox.css"> -->
 </head>
 <body> 
+<c:if test="${ empty Travel}">
+<script >  document.execCommand('Refresh') </script>
+</c:if>
 <c:if test="${ empty LoginOK }">
 			<a class="nav-link" href="" data-toggle="modal" data-target=".bd-example-modal-lg">登入</a>
 	</c:if>
@@ -698,11 +701,23 @@ $(document).on('click','.closelist',function(e){
 
 })
 
+$(document).on('mouseenter',".contentDay",function(e){
+	$(e.target).prev().css('display','block')
+})
 
+$(document).on('mouseleave',".right1",function(e){
+	
+	$('.closeday').css('display','none')
+})
 
+$(document).on('mouseenter',".content",function(e){
+	$(e.target).find('.closelist').css('display','block')
+})
 
-
-
+$(document).on('mouseleave',".content",function(e){
+	
+	$('.closelist').css('display','none')
+})
 
 
 
@@ -901,8 +916,12 @@ function searchList(day){
 					}
 				})//directionsService end
 			}
-		}
-	}) 
+		},
+	complete:function(){
+		 document.execCommand('Refresh') 
+	}
+	})
+		
 }
 
 

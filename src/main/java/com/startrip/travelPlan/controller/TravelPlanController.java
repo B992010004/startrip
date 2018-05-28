@@ -556,7 +556,7 @@ public class TravelPlanController {
 		Integer count;
 		List<TravelViewBean> list = new ArrayList<>();
 		System.out.println("add/view.bean="+bean.toString());
-		list =viewService.select_ViewName(bean.getViewName());
+		list =viewService.select_latlng(bean.getLatlng());
 		if(list.size()<=0) {
 			count=1;
 			System.out.println(bean.toString());

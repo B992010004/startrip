@@ -47,12 +47,12 @@ public class TravelViewDao implements ITravelViewDao {
 		}
 	}
 	@Override
-	public List<TravelViewBean> select_ViewName(String viewName) {
+	public List<TravelViewBean> select_latlng(String latlng) {
 		TravelViewBean bean = null;
-		System.out.println(viewName);
-		String sql = "select * from travelview where viewName=:viewName";
+		System.out.println(latlng);
+		String sql = "select * from travelview where latlng=:latlng";
 		Session session = factory.getCurrentSession();
-		List<TravelViewBean> list= session.createNativeQuery(sql, TravelViewBean.class).setParameter("viewName", viewName).list();
+		List<TravelViewBean> list= session.createNativeQuery(sql, TravelViewBean.class).setParameter("latlng", latlng).list();
 		
 			
 			return list;
