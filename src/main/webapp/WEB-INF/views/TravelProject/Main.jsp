@@ -222,6 +222,7 @@
 							$('input[name="travelName"]').val(data.Name.travelName);
 							$('input[name="startDate"]').val(data.startDate);
 							$('input[name="endDate"]').val(data.endDate);
+							
 							$('input[name="travelId"]').val(data.Name.travelId);
 							$("#model").modal({
 													"show" : true,
@@ -369,8 +370,8 @@
 						            dataDisplay(result,index=index-2*num,index=index+num);
 						            /*显示新一页的数据，*/                    
 							 });
-							 $("#loading_img").ajaxStart(function(){ $(this).show(); }); 
-							 $("#loading_img").ajaxStop(function(){ $(this).hide(); }); 
+// 							 $("#loading_img").ajaxStart(function(){ $(this).show(); }); 
+// 							 $("#loading_img").ajaxStop(function(){ $(this).hide(); }); 
 							 
 							 function  dataDisplay(data,start,end){
 									console.log("display="+data)
@@ -395,7 +396,9 @@
 										var title = $('<h5 class="card-title">'	+ data[i].travelName + '</h5><div class="id"  style="display:none;">'+ data[i].travelId + '</div>')
 
 										start = new Date(data[i].startDate);
+										console.log(start.getMonth()+1)
 										StartDate = format(start);
+										console.log(StartDate)
 										end = new Date(data[i].endDate);
 										endDate = format(end);
 										var text = $('<p class="card-text">'
@@ -426,7 +429,7 @@
 		
 		function format(time) {
 			var y = time.getFullYear();
-			var M = time.getMonth();
+			var M = time.getMonth()+1;
 			var d = time.getDate();
 			return y + '/' + M + '/' + d;
 		}
