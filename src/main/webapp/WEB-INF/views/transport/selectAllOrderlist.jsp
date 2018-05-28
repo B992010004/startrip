@@ -97,15 +97,15 @@ $('.navbar-nav.ml-auto').children().eq(2).addClass('active')
 </div>
 
 
-   <section class="probootstrap-cover overflow-hidden relative" style="background-image: url('/startrip/assets/transport/images/into.jpg');"
+<section  class="probootstrap-cover overflow-hidden relative" style="background-image: url('/startrip/assets/transport/images/into.jpg');"
         data-stellar-background-ratio="0.5" id="section-home">
-        
-            <div class="row align-items-center">
-                <div class="col-md probootstrap-animate">
- <form action="/startrip/insertSeatList" class="probootstrap-form" style="border-radius: 30px;">                   
+
+                
  <h1 align="center" style="color:#E8CCFF" id="QQ">這是您已預定的車票</h1>
 	
     <div class="div">
+ <form action="/startrip/stationEdit" class="probootstrap-form" style="border-radius: 30px;">
+
 <table border="1" cellpadding="10" cellspacing="0" class="table  table-bordered">
 		
 		<tr align="center">班次資訊
@@ -116,11 +116,8 @@ $('.navbar-nav.ml-auto').children().eq(2).addClass('active')
 			<th>迄站名稱</th>
 			<th>座號</th>
 			<th>發車時間</th>
-			<th>票價</th>
-		
-			
-		</tr>
-			
+			<th>票價</th>			
+		</tr>			
 			<tr>
 				<td>01</td>			
 				<td>2018-05-29</td>
@@ -129,19 +126,15 @@ $('.navbar-nav.ml-auto').children().eq(2).addClass('active')
 				<td>花蓮車站</td>
 				<td>12</td>
 				<td>12:00:00</td>
-				<td>250</td>
-				
-			</tr>
-	
-	
+				<td>250</td>				
 			</tr>
 		 	</table>
-
-
-
-
 		<a href="/startrip/select">回到大眾運輸首頁</a>
+
+</form>
 </div>
+</section>
+
 
 
 
