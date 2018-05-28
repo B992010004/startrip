@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 @Entity
 public class HotelOrder implements Serializable {
@@ -35,6 +36,12 @@ public class HotelOrder implements Serializable {
 	private String email;
 	private String cellphone;
 	private String password;
+
+	@Transient
+	private Rooms room;
+	
+	@Transient
+	private HotelsBean hotelBean;
 
 	public String getOrderId() {
 		return orderId;
@@ -172,6 +179,22 @@ public class HotelOrder implements Serializable {
 		this.password = password;
 	}
 
+	public Rooms getRoom() {
+		return room;
+	}
+
+	public void setRoom(Rooms room) {
+		this.room = room;
+	}
+
+	public HotelsBean getHotelBean() {
+		return hotelBean;
+	}
+
+	public void setHotelBean(HotelsBean hotelBean) {
+		this.hotelBean = hotelBean;
+	}
+
 	@Override
 	public String toString() {
 		return "HotelOrder [orderId=" + orderId + ", hotelid=" + hotelid + ", roomid=" + roomid + ", memberid="
@@ -179,7 +202,8 @@ public class HotelOrder implements Serializable {
 				+ ", orderTimeStamp=" + orderTimeStamp + ", ordernote=" + ordernote + ", totalamount=" + totalamount
 				+ ", singlenightprice=" + singlenightprice + ", checkin=" + checkin + ", checkout=" + checkout
 				+ ", lastname=" + lastname + ", firstname=" + firstname + ", email=" + email + ", cellphone="
-				+ cellphone + ", password=" + password + "]";
+				+ cellphone + ", password=" + password + ", room=" + room + ", hotelBean=" + hotelBean + "]";
 	}
 
+	
 }
