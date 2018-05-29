@@ -64,7 +64,7 @@
 <!-- 					<li class="list-group-item " align="center"><a	href="Views/add">新增景點</a></li> -->
 <!-- 					<li class="list-group-item " align="center"><a	href="TravelViews/all">查詢景點</a></li> -->
 				</ul> 
-					<img style="width:100%;height:100%;opacity: 0.5;"	alt="" src="/startrip/assets/Travel/img/BG.jpg">
+<!-- 					<img style="width:100%;height:100%;opacity: 0.5;"	alt="" src="/startrip/assets/Travel/img/BG.jpg"> -->
 			</div>
 
 			<div class="col-md-9" id="travels">
@@ -178,6 +178,7 @@
 	<script type="text/javascript">
 		$(function() {
 			searchTravels();
+			searchMemberTravels()
 			$('.navbar-nav.ml-auto').children().eq(0).removeClass('active');
 			$('.navbar-nav.ml-auto').children().eq(3).addClass('active')
 			
@@ -243,20 +244,21 @@
 											}
 										})
 							})//click end
-
-			$(document).on('click', '.btn.btn-primary.btn-lg.btn-block', function(e) {
+$(document).on('click', '.btn.btn-primary.btn-lg.btn-block', function(e) {
 				var value = {}
 				mail = '${LoginOK.mail}'
 				value.mail = mail;
-				travelId = $('#' + e.target.id).prev().prev().text();
+				travelName = $('#' + e.target.id).prev().prev().text();
+				travelId = $('#' + e.target.id).prev().prev().data('travelid');
+				console.log(travelName,travelId,mail)
 				//   		console.log($('#'+e.target.id).prev().prev().text())
 				value.travelId = travelId
 
-				$.get("/startrip/travel/id", value, function(data) {
-					console.log(data)
-				})
+// 				$.get("/startrip/travel/id", value, function(data) {
+// 					console.log(data)
+// 				})
 
-				location.href = "/startrip/list/All/" + mail + "/" + travelId
+// 				location.href = "/startrip/list/All/" + mail + "/" + travelId
 			})
 
 			//dataPicker
@@ -292,7 +294,7 @@
 		//搜尋會員行程
 		
 		
-		function searchTravels() {
+function searchTravels() {
 			var num=6;//每页显示多少条数据，暂定设为6.
 			var page;//总页数
 			var now_page=1;//当前页数
@@ -372,12 +374,17 @@
 							 });
 // 							 $("#loading_img").ajaxStart(function(){ $(this).show(); }); 
 // 							 $("#loading_img").ajaxStop(function(){ $(this).hide(); }); 
-							 
-							 function  dataDisplay(data,start,end){
+							
+
+
+
+
+
+
+function  dataDisplay(data,start,end){
 									console.log("display="+data)
 									console.log("display="+data[0].img)
 										$('#row').empty();
-										 
 									var docFrag = $(document.createDocumentFragment());
 									var start;
 									var end;
@@ -385,28 +392,18 @@
 										end=result.length
 									}
 									for (var i = start, len = end; i < len; i++) {
-// 										console.log("displayi="+data[i].img)
-// 									for (var i = start; i < end; i++) {
-// 										console.log(data[i].img)
 										var card = $('<div class="card col-5" id="plan" style="width: 18rem;"></div>')
 										var imgrow = $('<div class="row" "></div>');
-										var img = $('<img id="travelimg" class="card-img-top col-8" src="/startrip/show/'+data[i].img+'" alt="Card image cap"><div  class="icon update" id="update'
-												+ (i + 1)+ '"></div><div id="del'+ (i + 1)+ '" class="icon  del" ></div>')
+										var img = $('<img id="travelimg" class="card-img-top col-10" src="/startrip/show/'+data[i].img+'" alt="Card image cap">')
 										var body = $('<div class="card-body"></div>')
-										var title = $('<h5 class="card-title">'	+ data[i].travelName + '</h5><div class="id"  style="display:none;">'+ data[i].travelId + '</div>')
+										var title = $('<h5 class="card-title" data-travelid="'+data[i].travelId+'">'	+ data[i].travelName + '</h5><div class="id"  style="display:none;">'+ data[i].travelId + '</div>')
 
 										start = new Date(data[i].startDate);
-										console.log(start.getMonth()+1)
 										StartDate = format(start);
-										console.log(StartDate)
 										end = new Date(data[i].endDate);
 										endDate = format(end);
-										var text = $('<p class="card-text">'
-												+ StartDate
-												+ ' - '
-												+ endDate
-												+ '</p><button  id="planset'+i+'"  class="btn btn-primary btn-lg btn-block" type="submit" id=btn'+i+'>確定</button>')
-										body.append([ title, text ]);
+										var text = $('<button  id="planset'+i+'"  class="btn btn-primary btn-lg btn-block" type="submit" id=btn'+i+'>匯入行程</button>')
+										body.append([ title,text ]);
 										imgrow.append(img);
 										card.append([ imgrow, body ]);
 										docFrag.append(card);
@@ -414,11 +411,6 @@
 									
 									$('#row').append(docFrag);
 									}
-							
-						
-							
-						
-						
 						}//success---end
 					})//ajax --end
 		}
@@ -433,6 +425,51 @@
 			var d = time.getDate();
 			return y + '/' + M + '/' + d;
 		}
+		function searchMemberTravels() {
+			var all={};
+			all.mail = "${LoginOK.mail}";
+			var docFrag = $(document.createDocumentFragment());
+			$.ajax({ 
+					url : "/startrip/travel/member/all",
+					type : "GET",
+					data : all,
+					dataType : "json",
+				    contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
+				    success : function(data) {
+				    	var len = data.length;
+				 		console.log(data)
+				 		
+				 		
+				 		for(var i =0;i<len;i++){ 
+				 		var start = new Date(data[i].startDate);
+						var StartDate = format(start);
+						var end = new Date(data[i].endDate);
+						var endDate = format(end);
+				    	var membertravellist=$('<div style=" height: 700px;overflow-y: scroll;" class="membertravellist"></div>');
+				    	var membertravel=$('<div style="width:100%;height:180px;" class="membertravel"></div>')
+				    	var traveltitle=$('<h5 class="traveltitle" style="padding: 0 3%;">'+data[i].travelName+'</h5><br><div  class="icon update" id="update'
+								+ (i + 1)+ '"></div><div id="del'+ (i + 1)+ '" class="icon  del" ></div>')
+				    	var traveldate=$('<span class=".startDate">'+StartDate+'</span><br><span style="margin:0px 10%">|</span><br><span class="endDate">'+endDate+' </span>')
+				    	var bg=$('<div class="bgImg"></div>')
+				    	bg.append([traveltitle,traveldate])
+		
+				    	membertravel.css('background-image','url(/startrip/show/'+data[i].img+')') 
+				    	membertravel.css('background-repeat','no-repeat') 
+				    	membertravel.css('background-size','100%') 
+				    	membertravel.append(bg); 
+				    	
+				    	docFrag.append(membertravel);
+				 		}
+				    	
+				    	membertravellist.append(docFrag)
+				    	$('.col-md-3').append(membertravellist);
+				    
+				    }
+			 })
+		}	
+		
+		
+		
 	</script>
 </body>
 </html>

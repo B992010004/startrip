@@ -119,6 +119,23 @@ public class TravelPlanController {
 //	}
 	
 	//查詢ALL Travel-----------------------------------------
+	@RequestMapping(value="travel/member/all",method=RequestMethod.GET)
+	@ResponseBody
+	public List<TravelAllBean> travelMemberAll(Model model,String mail) {
+		
+		HashMap<String , String > map = new HashMap<>();
+		System.out.println("mail="+mail);
+		MemberBean mb = memberservice.select(mail);
+		Integer id = mb.getMemberid();
+		System.out.println("id="+id);
+		List<TravelAllBean> all = new ArrayList<>();
+		List<TravelAllBean> list = travelservice.select_mail(id);
+		for(TravelAllBean bean :list) {
+			all.add(bean);
+		}
+		return all;
+	}
+	
 	@RequestMapping(value="travel/all",method=RequestMethod.GET)
 	@ResponseBody
 	public List<TravelAllBean> travelAll(Model model,String mail) {
@@ -129,7 +146,7 @@ public class TravelPlanController {
 		Integer id = mb.getMemberid();
 		System.out.println("id="+id);
 		List<TravelAllBean> all = new ArrayList<>();
-		List<TravelAllBean> list = travelservice.select_mail(id);
+		List<TravelAllBean> list = travelservice.selectAllTravel();
 		for(TravelAllBean bean :list) {
 			all.add(bean);
 		}
