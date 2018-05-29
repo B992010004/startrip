@@ -174,7 +174,7 @@
 
 						<br>
                         <div class="form-group">
-                            <input type="submit" class="btn btn-primary" id="submit" name="submit" value="Send Review">
+                            <input type="submit" class="btn btn-primary" id="submit" name="submit" value="送出">
                         </div>
                         
                         <form:input id="overallRank" path="overallRank" type="hidden" class="form-control" placeholder="星星評分用(隱藏欄位)" />
