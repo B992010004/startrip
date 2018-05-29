@@ -281,14 +281,15 @@ function changetype(){
 		right.hide(1000);
 		$('#'+k).parent().parent().find('.timediv').hide(1000); 
 		
-		
+		if(len>1){
 		placeroute(len,right);
+		}
 	}else{
 		right.show(1000);
 		$('#'+k).parent().parent().find('.timediv').show(1000);
-		
+		if(len>1){
 		placeroute(len,right);
-		
+		}
 					
 			}
 }//changetype---end
@@ -323,7 +324,6 @@ function placeroute(len,right){
 	 directionsService = new google.maps.DirectionsService;
 	 directionsDisplay = new google.maps.DirectionsRenderer({
        map: map,
-//        suppressMarkers: true//隱藏support marker
     });
 	
 	var waypts=[];
@@ -392,10 +392,7 @@ $('#insertday').on('click',function(){
 
 
 $(document).on('click','.closeday',function(e){
-	console.log($(e.target))
 	var daybody=$(e.target).parent().attr('id');
-	
-	console.log(daybody)
 	var day = daybody.substr(7,1)
 	console.log(day)
 	console.log('${Travel.travelId}')
@@ -648,8 +645,10 @@ $(document).on('click','#checklist',function(){
 					console.log('新增行程');
 					console.log('tripday = '+data.tripday);
 					searchList(data.tripday);
-				
+					
+					
 					}
+				
 				})
 			}
 			})
@@ -690,23 +689,20 @@ $(document).on('click','#checklist',function(){
 })
 //刪除清單
 $(document).on('click','.closelist',function(e){
-	console.log(e.target.id)
-	var nextid=e.target.id
-	var daybody=$('#'+e.target.id).parent().parent().parent().attr('id');
+	var nextid=e.target
+	var daybody=$(nextid).parent().parent().parent().attr('id');
 	var day = daybody.substr(7,1);
 	var list={}
-	list.travelId=${Travel.travelId}
-	list.tripday=day
-  	list.endtime=$('#'+e.target.id).parent().find('.end').text()
- 	$.get('/startrip/list/remove',list,function(data){
- 		console.log('data='+data);
- 		$('#'+e.target.id).parent().parent().remove();
-		searchList(data)
-		
- 	
- 	})
 	
-
+	list.travelId=${Travel.travelId}
+	list.tripday=day  
+  	list.endtime=$(nextid).parent().find('.end').text()
+ 	$.get('/startrip/list/remove',list,function(data){
+ 		console.log($('.'+e.target.id))
+ 		$(nextid).parent().parent().remove();
+		searchList(data)
+ 	})
+ 	
 })
 
 $(document).on('mouseenter',".contentDay",function(e){
@@ -835,6 +831,7 @@ function searchList(day){
 				  console.log("只有一個點")
 			  }else{
 				var request={}
+				
 				if(wlen>2){
 				request.waypoints= waypts//模式
 				}
@@ -844,9 +841,6 @@ function searchList(day){
 				request.travelMode= 'DRIVING'//模式
 				directionsService.route(request, function(response,status){
 			  	if (status === 'OK') {
-			  		
-			  		
-			  		
 			        var result=response.routes[0]
 			        var rlen=result.legs.length
 			          road=[]
@@ -864,7 +858,7 @@ function searchList(day){
 				        	var body = $('<div class="timediv" id="time'+(i+1)+'"> </div>')
 				        	var road=$('<span class="col-4" data-googledistance='+distanceval+'>'+distance+'</span><div class="placeImg"></div><span  data-googledistance='+durationval+'>'+duration+'</span></div>')
 				        	body.append(road)
-				        	var daybody=$(".timeline").find("#"+tag)
+				        	daybody=$(".timeline").find("#"+tag)
 				        	daybody.find('#dayTile'+(i+1)).after(body);
 							}
 				      	
@@ -924,7 +918,9 @@ function searchList(day){
 			  			}         
 					}
 				})//directionsService end
-			}
+				
+			 
+			  }
 		},
 	complete:function(){
 		 document.execCommand('Refresh') 
