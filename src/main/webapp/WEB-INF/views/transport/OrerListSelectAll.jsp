@@ -121,7 +121,7 @@ $('.navbar-nav.ml-auto').children().eq(2).addClass('active')
 		</tr>
 			<c:forEach items='${OrerList}' var='select'>
 			<tr>
-				<td>1</td>
+				<td>3</td>
 				<td><fmt:formatDate pattern="yyyy-MM-dd"  value="${select.orderDate }" /></td>						
 				<td>${select.orderTime}</td>
 				<td>${select.starStation}</td>
