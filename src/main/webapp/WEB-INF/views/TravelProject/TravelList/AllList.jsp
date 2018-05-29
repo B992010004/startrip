@@ -648,6 +648,7 @@ $(document).on('click','#checklist',function(){
 					console.log('新增行程');
 					console.log('tripday = '+data.tripday);
 					searchList(data.tripday);
+				
 					}
 				})
 			}
@@ -700,14 +701,9 @@ $(document).on('click','.closelist',function(e){
  	$.get('/startrip/list/remove',list,function(data){
  		console.log('data='+data);
  		$('#'+e.target.id).parent().parent().remove();
-//  		searchDays();
-//  		console.log("daybody="+daybody)
-//  		var len = $('#'+daybody).find('.right').length;
-//  		var right =  $('#'+daybody).find('.right');
-//  		console.log("len="+len)
-// 		placeroute(len,right);
 		searchList(data)
- 		
+		
+ 	
  	})
 	
 
@@ -848,12 +844,16 @@ function searchList(day){
 				request.travelMode= 'DRIVING'//模式
 				directionsService.route(request, function(response,status){
 			  	if (status === 'OK') {
+			  		
+			  		
+			  		
 			        var result=response.routes[0]
 			        var rlen=result.legs.length
 			          road=[]
 			        if(rlen<0){
 			         	console.log("沒有行程")
 		          	}else{
+		          		
 				          for(var i = 0;i<(len-1);i++){
 				        	  
 				        	var distance=result.legs[i].distance.text;
