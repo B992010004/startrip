@@ -1,10 +1,4 @@
-.icon{
-	width:20px;
-	height:20px;
-	
-	margin:15px auto;
-		
-}
+
 .btn:hover{
 	cursor:pointer;
 }
@@ -16,8 +10,8 @@
 	cursor: pointer;
 }
 #travelimg{
-	width:150px;
-	height:150px;
+	height:200px;
+	width:100%
 }
 
 .card.col-5{
@@ -30,11 +24,16 @@
 	background-image: url("/startrip/assets/Travel/img/marker.png");
 	    width: 32px;
     height: 32px;
+    float: right;
+    margin:5px;
+    
 }
 .icon.del{
 	background-image: url("/startrip/assets/Travel/img/close2.png");
 	width: 32px;
     height: 32px; 
+    float: right;
+    margin:5px;
 }
 .row{
 	padding:30px;
@@ -75,7 +74,7 @@ li{
 }
 
 .card-text{
-	    font-size: 1em;
+	font-size: 1em;
     font-family: fantasy;}
     
 .probootstrap_section {
@@ -83,3 +82,27 @@ li{
     float: left;
     width: 100%;
 }
+.bgImg{
+	 background-image: url(/startrip/assets/Travel/img/icon-black-corner.png);
+    background-repeat:no-repeat;
+    background-size: 25em;
+    height: 180px;
+    width: 100%;
+    
+   }
+ span{
+ color: white;
+ font-size: 1em;
+ font-family: fantasy;
+ margin:10px;
+ }
+ .traveltitle{
+ color: white;
+ display: inline;
+
+ }
+ .membertravel{
+
+
+ }
+ 
