@@ -234,14 +234,17 @@ tbody th img {
 ul li {
 	ist-style-type: none;
 }
-.littletitle1{
-font-size:20px;
+
+.littletitle1 {
+	font-size: 20px;
 }
-.ml-3{
-font-size:20px;
+
+.ml-3 {
+	font-size: 20px;
 }
-.word{
-font-size:24px;
+
+.word {
+	font-size: 24px;
 }
 </style>
 

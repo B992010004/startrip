@@ -176,7 +176,7 @@ public class RestaurantController {
 		RtDetailsBean rdb = rtDetailsService.getAllRtDetailsrtId(rbb.getRtId());
 		model.addAttribute("RtId", rdb);
 
-		return "restaurant/Individualdetails";
+		return "redirect:/restaurantHome";
 	}
 
 	// /前台新增訂單/---------------------------------------------------------------------------------------------

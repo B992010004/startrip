@@ -188,10 +188,7 @@
 						<div class="btn11" id="btn11">
 							<input type="image" class="btnn repairButton" id="repair" img
 								src="/startrip/assets/images/rt/pencil.png"> 
-<!-- 								<input -->
-<!-- 								type="image" class="btnn insideButton" id="submitOK" img -->
-<!-- 								src="/startrip/assets/images/rt/inside.png"> -->
-								 <input
+							<input
 								type="image" class="btnn deleteButton" id="delectOne" img
 								src="/startrip/assets/images/rt/delete.png">
 

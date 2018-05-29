@@ -58,8 +58,6 @@
 	href="/startrip/assets/restaurant/Css/rthome2.css">
 
 
-
-
 <style>
 .probootstrap-cover .overlay {
 	position: absolute;

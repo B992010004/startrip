@@ -95,6 +95,20 @@
 	height: 75px;
 	margin: 5px;
 }
+
+.modal-body {
+	border-top: #00CA4C 3px solid;
+}
+
+.bookingtitle {
+	font-size: 24px;
+	color: #00CA4C;
+}
+
+.bookingok {
+	font-size: 20px;
+}
+
 </style>
 
 </head>
@@ -121,7 +135,8 @@
 
 		<!-- -------------------------------------------------------------------------------------------------- -->
 
-		<form:form method="post" modelAttribute="RtDetailsBean" enctype="multipart/form-data">
+		<form:form method="post" modelAttribute="RtDetailsBean" id="formgo"
+			enctype="multipart/form-data">
 			<div class="intermediate">
 				<div class="container">
 					<div class="bigheadline1">
@@ -266,10 +281,36 @@
 
 					<!--  -------圖片-------------------------------------------------------------   -->
 
-					<div class="col-md">
-						<input type="submit"
-							value="新&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;增"
-							class="btn btn-primary btn-block">
+					<div class="bookingbutton">
+
+						<button type="button" class="btn btn-primary btn-block"
+							data-toggle="modal" data-target="#exampleModalCenter">
+							新&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;增&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;餐&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;廳
+						</button>
+					</div>
+					<!-- Modal -->
+					<div class="modal fade" id="exampleModalCenter" tabindex="-1"
+						role="dialog" aria-labelledby="exampleModalCenterTitle"
+						aria-hidden="true">
+						<div class="modal-dialog modal-dialog-centered" role="document">
+							<div class="modal-content">
+								<div class="modal-header title1">
+									<h5 class="modal-title bookingtitle" id="exampleModalLongTitle">提醒&nbsp;&nbsp;!&nbsp;&nbsp;?</h5>
+								</div>
+								<div class="modal-body">
+									<br>
+									<p class="bookingok">已新增完成</p>
+									<p class="bookingok">將轉往餐廳所有資料</p>
+								</div>
+								<div class="modal-footer">
+									<div class="container">
+										<div class="review">
+											<button class="btn btn-primary buttongo" id="bookingokok">所有餐廳資料</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -345,6 +386,16 @@
 			}
 		}
 	</script>
+	
+		<script>
+	
+	$("#buttongo").click(function() {
+		$("#formgo").submit();
+	});
+	
+	</script>
+	
+	
 </body>
 
 </html>

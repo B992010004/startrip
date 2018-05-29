@@ -145,8 +145,20 @@
 	text-align: center;
 }
 
-.modal-body{
-	border-top: #00CA4C 2px solid;
+.modal-body {
+	border-top: #00CA4C 3px solid;
+}
+
+.bookingtitle {
+	font-size: 24px;
+}
+
+.bookingok {
+	font-size: 20px;
+}
+
+.titl1 {
+	border-bottom: #00CA4C 3px solid;
 }
 </style>
 
@@ -179,7 +191,7 @@
 
 	<!-- END section -->
 	<section class="probootstrap_section">
-		<form:form method="post" modelAttribute="RtBookingBean"
+		<form:form method="post" modelAttribute="RtBookingBean" id="formok"
 			action="/startrip/insertRtBooking/">
 			<!--  method="post" modelAttribute="RtDetailsBean" action="insertRestaurant" -->
 			<div class="intermediate">
@@ -333,39 +345,40 @@
 					<!-- 規定 -->
 					<!-- Button trigger modal -->
 					<div class="bookingbutton">
-						<input type="submit"
-							value="確&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;認&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;訂&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;位"
-							class="btn btn-primary btn-block">
-						<!-- 						<button type="button" class="btn btn-primary" data-toggle="modal" -->
-						<!-- 							data-target="#exampleModalCenter"> -->
-						<!-- 							確&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;認&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;訂&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;位 -->
-						<!-- 						</button> -->
+						<!-- 						<input type="submit" -->
+						<!-- 							value="確&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;認&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;訂&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;位" -->
+						<!-- 							class="btn btn-primary btn-block"> -->
+						<button type="button" class="btn btn-primary" data-toggle="modal"
+							data-target="#exampleModalCenter">
+							確&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;認&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;訂&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;位
+						</button>
 					</div>
 					<!-- Modal -->
-					<!-- 					<div class="modal fade" id="exampleModalCenter" tabindex="-1" -->
-					<!-- 						role="dialog" aria-labelledby="exampleModalCenterTitle" -->
-					<!-- 						aria-hidden="true"> -->
-					<!-- 						<div class="modal-dialog modal-dialog-centered" role="document"> -->
-					<!-- 							<div class="modal-content"> -->
-					<!-- 								<div class="modal-header" -->
-					<!-- 									style="border-bottom: #00CA4C 3px solid;"> -->
-					<!-- 									<h5 class="modal-title" id="exampleModalLongTitle">Star -->
-					<!-- 										Trip 感謝您</h5> -->
-					<!-- 								</div> -->
-					<!-- 								<div class="modal-body"> -->
-					<!-- 									<h3>餐廳名稱</h3> -->
-					<!-- 									<br>已訂位完成 -->
-					<!-- 								</div> -->
-					<!-- 								<div class="modal-footer"> -->
-					<!-- 									<div class="container"> -->
-					<!-- 										<div class="review"> -->
-					<!-- 											<a href="/startrip/" class="btn btn-primary">回首頁</a> -->
-					<!-- 										</div> -->
-					<!-- 									</div> -->
-					<!-- 								</div> -->
-					<!-- 							</div> -->
-					<!-- 						</div> -->
-					<!-- 					</div> -->
+					<div class="modal fade" id="exampleModalCenter" tabindex="-1"
+						role="dialog" aria-labelledby="exampleModalCenterTitle"
+						aria-hidden="true">
+						<div class="modal-dialog modal-dialog-centered" role="document">
+							<div class="modal-content">
+								<div class="modal-header title1">
+									<h5 class="modal-title" id="exampleModalLongTitle">Star
+										Trip 感謝您</h5>
+								</div>
+								<div class="modal-body">
+									<br>
+									<h3 class="bookingtitle">${RtDetailsBean.rtName}</h3>
+									<br>
+									<p class="bookingok">已訂位完成</p>
+								</div>
+								<div class="modal-footer">
+									<div class="container">
+										<div class="review">
+											<button class="btn btn-primary buttonback" id="bookingokok">回首頁</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</form:form>
@@ -391,11 +404,12 @@
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title">提醒&nbsp;&nbsp;!&nbsp;&nbsp;?</h5>
+						<h5 class="modal-title bookingtitle">提醒&nbsp;&nbsp;!&nbsp;&nbsp;?</h5>
 					</div>
 					<div class="modal-body">
-						<p>離開此頁面，資料將消失</p>
-						<p>如需再次訂位，須重填您的資料</p>
+					<br>
+						<p class="bookingok">離開此頁面，資料將消失</p>
+						<p class="bookingok">如需再次訂位，須重填您的資料</p>
 					</div>
 					<div class="modal-footer">
 						<input type="button" class="btn btn-secondary" value="返回餐廳首頁"
@@ -448,26 +462,32 @@
 	<script src="/startrip/assets/js/jquery-ui.js"></script>
 	<script src="/startrip/assets/js/jquery.popupoverlay.js"></script>
 	<!-- 	<script src="/startrip/assets/js/reservation1.js"></script> -->
-	
+
 	<script>
-	
-	$('#probootstrap-date-departure, #probootstrap-date-arrival')
+		$('#probootstrap-date-departure, #probootstrap-date-arrival')
 				.datepicker({
 					'format' : 'yyyy/m/d',
 					'autoclose' : true,
 					'startDate' : new Date(),
 				});
-	
-	$('#probootstrap-date-arrival').datepicker().on('changeDate',
-			function(ev) {
 
-				//不知道為啥沒反應
-				$('#probootstrap-date-departure').datepicker({
-					'startDate' : '2018-5-27',
+		$('#probootstrap-date-arrival').datepicker().on('changeDate',
+				function(ev) {
+
+					//不知道為啥沒反應
+					$('#probootstrap-date-departure').datepicker({
+						'startDate' : '2018-5-27',
+					});
+					console.log('日期改變瞜' + ev.date);
+
 				});
-				console.log('日期改變瞜' + ev.date);
+	</script>
 
-			});
+	<script>
+	
+	$("#bookingokok").click(function() {
+		$("#formok").submit();
+	});
 	
 	</script>
 
