@@ -222,6 +222,42 @@
 					</a>
 				</div>
 			</div>
+			<div class="row">
+				<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
+					<a href="/startrip/Rooms/${hotelList[4].hotelid }"
+						class="probootstrap-thumbnail"> <img
+						src="/startrip/getPicture/hotel/${hotelList[4].hotelid }/${hotelList[4].photoArr[0] }"
+						alt="Free Template by ProBootstrap.com" class="img-fluid">
+						<div class="probootstrap-text">
+							<h3>${hotelList[4].hotelname }</h3>
+						</div>
+					</a>
+				</div>
+				<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
+					<a href="/startrip/Rooms/${hotelList[5].hotelid }"
+						class="probootstrap-thumbnail"> <img
+						src="/startrip/getPicture/hotel/${hotelList[5].hotelid }/${hotelList[5].photoArr[0] }"
+						alt="Free Template by ProBootstrap.com" class="img-fluid">
+						<h3>${hotelList[5].hotelname }</h3>
+					</a>
+				</div>
+				<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
+					<a href="/startrip/Rooms/${hotelList[6].hotelid }"
+						class="probootstrap-thumbnail"> <img
+						src="/startrip/getPicture/hotel/${hotelList[6].hotelid }/${hotelList[6].photoArr[0] }"
+						alt="Free Template by ProBootstrap.com" class="img-fluid">
+						<h3>${hotelList[6].hotelname }</h3>
+					</a>
+				</div>
+				<div class="col-lg-3 col-md-6 probootstrap-animate mb-3">
+					<a href="/startrip/Rooms/${hotelList[7].hotelid }"
+						class="probootstrap-thumbnail"> <img
+						src="/startrip/getPicture/hotel/${hotelList[7].hotelid }/${hotelList[7].photoArr[0] }"
+						alt="Free Template by ProBootstrap.com" class="img-fluid">
+						<h3>${hotelList[7].hotelname }</h3>
+					</a>
+				</div>
+			</div>
 		</div>
 
 		
