@@ -193,9 +193,9 @@ $('.navbar-nav.ml-auto').children().eq(2).addClass('active')
                     $("#gm").empty();
                     for (var i = 0; i < response.length; i++) {
                         $("#tbo").append("<tr><td>" + response[i].area + "</td>" +
-                            "<td>" + response[i].stationName + "</td>" +
+                            "<td><img id='startStationIcon' width='30' height='30' src='/startrip/assets/transport/images/starticon.png'>" + response[i].stationName + "<img id='endStationIcon' width='30' height='30' src='/startrip/assets/transport/images/endicon.png'></td>" +
                             
-                            "<td >" + "<img class='mapImage' id='getAddress' width='30' height='30' src='/startrip/assets/transport/images/mapicon.png' ><span>" + response[i].address + "</span></td></tr>");
+                            "<td ><img class='mapImage' id='getAddress' width='30' height='30' src='/startrip/assets/transport/images/mapicon.png' ><span>" + response[i].address + "</span></td></tr>");
                     }
 
                 }, error: function (jqXHR, textStatus, errorThrown) { alert("no") },
@@ -205,7 +205,7 @@ $('.navbar-nav.ml-auto').children().eq(2).addClass('active')
             $(document).on('click', '.mapImage', function () {
                 //    alert(this)
                 //    alert('aaaa')
-                console.log("事件");
+  //              console.log("事件");
                 $("#gm").empty();
                 var googleAddress = $(this).parent('td').children('span').text();
                 //                             alert(googleAddress)
@@ -216,6 +216,31 @@ $('.navbar-nav.ml-auto').children().eq(2).addClass('active')
                 ).slideDown(1000);
             });
 //------------------------------------------------
+            $(document).on('click', '.startStationIcon', function () {
+                //    alert(this)
+                //    alert('aaaa')
+                console.log("事件");
+                $("#inputStation").empty();
+                var inputStationName = $(this).parent('td').children('span').text();
+                //                             alert(googleAddress)
+                console.log("地址: " + inputStationName);
+                $("#inputStation").val(inputStationName);
+            });
+//------------------------------------------------------------
+            $(document).on('click', '.endStationIcon', function () {
+                //    alert(this)
+                //    alert('aaaa')
+                console.log(" click事件");
+                $("#inputStation2").empty();
+                var inputStationName = $(this).parent('td').children('span').text();
+                //                             alert(googleAddress)
+                console.log("地址: " + inputStationName);
+                $("#inputStation2").val(inputStationName);
+            });
+
+
+
+
         };
     </script>   
 
@@ -291,9 +316,7 @@ $('.navbar-nav.ml-auto').children().eq(2).addClass('active')
                                     <label for="id_label_people">
                                         出發站名
                                         <select id="inputStation" class="form-control" name="StarStation">
-
                                             <option value="" selected="selected">選擇出發車站</option>
-
                                         </select>
                                     </label>
                                 </div>
@@ -335,9 +358,6 @@ $('.navbar-nav.ml-auto').children().eq(2).addClass('active')
                                         到達車站
                                         <select id="inputStation2" class="form-control" name="EndStation">
                                             <option value="">請選擇目的車站</option>
-
-
-
                                         </select>
                                     </label>
                                 </div>
@@ -353,17 +373,12 @@ $('.navbar-nav.ml-auto').children().eq(2).addClass('active')
                                 </div>
                             </div>
                             <!-- summit -->
-
                             <!-- 							送出 -->
-
                         </div>
                     </div>
                 </form>
             </div>
         </div>
-		
-	
-	
     </section>
 <!--     選擇出發站及終點站產生地圖路線 -->
     <div id="twoPoints" align="center">
@@ -409,16 +424,7 @@ class="form-control" placeholder="請輸入訂票電話">
 </form>
 
 </div>   
-<script>
-$("#CEle").click(function(){
-	$("#id").empty();
-	$("#id").val("A123456789");
-	$("#phone").empty();
-	$("#phone").val("0987654321");
-	
-	}); 
-       
-</script>     
+  
             <div id="mapDiv">
                 <a id="mapDiv" class="probootstrap-thumbnail">
                     <img style="width:200% " id="imgMap" class="img-fluid" alt="Free Template by ProBootstrap.com" src="/startrip/assets/transport/images/taiwan.png"
@@ -442,7 +448,6 @@ $("#CEle").click(function(){
                         <area class=imgbut shape="rect" coords="155,93,204,114" id=16 onclick="getArea('新竹')">
                         <area class=imgbut shape="rect" coords="148,44,197,67" id=17 onclick="getArea('桃園')">
                     </map>
-
                 </a>
             </div>
             <!-- 以上為地圖顯示區塊 -->
@@ -513,8 +518,6 @@ $("#CEle").click(function(){
                     </tbody>
                     <tfoot>
                 </table>
-
-
             </div>
             <div class="row">
                     <div id="gm" class="col-md">
@@ -526,8 +529,6 @@ $("#CEle").click(function(){
                         </a>
                     </div>
                 </div>
-
-                
         </div>
     </div>
     <!-- 以上為地區顯示車站 -->
@@ -543,7 +544,7 @@ $("#CEle").click(function(){
 $(document).on('click', '.mapImage', function () {
     //    alert(this)
     //    alert('aaaa')
-    console.log("事件");
+//    console.log("事件");
     $("#gm").empty();
     var googleAddress = $(this).parent('td').children('span').text();
     //                             alert(googleAddress)
@@ -560,9 +561,19 @@ $(document).on('click', '.mapImage', function () {
 $("#inputStation2").change(function(){
 	$("#twoPoints").empty();
 	$($("#twoPoints")).hide().html("<iframe width='600' height='450' alternatives='true' frameborder='0' units='metric' style='border:0' src='https://www.google.com/maps/embed/v1/directions?key=AIzaSyDl3nl3wQF2mlYkw87KHByGF9dB9In_fGQ&origin="+$('#inputStation').val()+"1&destination="+$('#inputStation2').val()+"'>  </iframe>").slideDown(1000);
-	console.log($("#inputStation").val());
-	console.log($("#inputStation2").val());
+//	console.log($("#inputStation").val());
+//	console.log($("#inputStation2").val());
 	});
 </script>
+<script>
+$("#CEle").click(function(){
+	$("#id").empty();
+	$("#id").val("A123456789");
+	$("#phone").empty();
+	$("#phone").val("0987654321");
+	
+	}); 
+       
+</script>   
 </body>
-</html>
+</htm"C:/Users/III/Desktop/地圖物件/endicon.png"l>
