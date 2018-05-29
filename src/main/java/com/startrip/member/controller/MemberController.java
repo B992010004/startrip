@@ -310,9 +310,10 @@ public class MemberController {
 		return "/member/ModifyMember";
 	}
 
+
 	@RequestMapping(value = "/ModifyMember", method = RequestMethod.POST)
 	public String ModifyMember(@ModelAttribute("MemberBean") MemberBean mb, BindingResult result,
-			HttpServletRequest request) {
+		HttpServletRequest request) {
 		MultipartFile avatarImage = mb.getAvatarImage();
 		String originalFilename = avatarImage.getOriginalFilename();
 		if (avatarImage != null) {
@@ -352,7 +353,10 @@ public class MemberController {
 		mb.setRegisterDate(outDate);
 		mb.setValidataCode(null);
 		System.out.println(mb);
+		
 		memberservice.update(mb);
+		HttpSession session = request.getSession();
+		session.setAttribute("LoginOK", mb);
 		return "redirect:/";
 	}
 
