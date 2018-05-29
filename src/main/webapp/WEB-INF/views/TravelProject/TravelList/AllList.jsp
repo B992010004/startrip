@@ -700,9 +700,10 @@ $(document).on('click','.closelist',function(e){
  	$.get('/startrip/list/remove',list,function(data){
  		console.log($('.'+e.target.id))
  		$(nextid).parent().parent().remove();
-		searchList(data)
+		 searchList(data)
+		 
  	})
- 	
+ 		
 })
 
 $(document).on('mouseenter',".contentDay",function(e){
@@ -918,8 +919,7 @@ function searchList(day){
 			  			}         
 					}
 				})//directionsService end
-				
-			 
+				return day;
 			  }
 		},
 	complete:function(){
