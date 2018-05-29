@@ -868,12 +868,14 @@ function searchList(day){
 							};
 				  	     	var listlen =  daybody.find('.right').length
 				  	    	var tripday=daybody;
+				  	     	console.log('listlen='+listlen)
 				  			for(var j = 0;j<listlen;j++){
 				  				
 				  				if(j==0){
 				  					var firstend=daybody.find('.right').eq(0).find('.end').text();
 				  					console.log('firstend = '+ firstend)
 				  				}else{
+				  					
 					  				var prevend = daybody.find('.right').eq(j-1).find('.end').text()
 					  				var duration =daybody.find('.timediv').eq(j-1).find('span').eq(1).data('googledistance')
 					  				var start = daybody.find('.right').eq(j).find('.start').text()
@@ -881,15 +883,20 @@ function searchList(day){
 					  				var sstart =start.split(":");
 					  				var send = end.split(":");
 					  				
+					  				console.log(prevend,duration,start,end)
+					  				
+					  				console.log(send[0],sstart[0])
 				  				hour=parseInt(send[0])-parseInt(sstart[0]);
 				  				min=parseInt(send[1])-parseInt(sstart[1]);
+				  				console.log('持續時間='+hour+','+min )
 				  				if(min<0){
 				  						hour =hour-1;
 				  						min = min+60;
 				  					}
 				  				var pend =prevend.split(":");
-				  				starthour = parseInt(pend[0])+(Math.round(duration/3600));
+				  				starthour = parseInt(pend[0])+(Math.floor(duration/3600));
 				  				startmin = parseInt(pend[1])+(Math.round((duration%3600)/60));
+				  				
 				  				endhour = starthour+hour
 				  				endmin = startmin+min
 				  				if(endmin>60){
@@ -902,9 +909,11 @@ function searchList(day){
 			  					}
 				  				var stime= twobit(starthour)+":"+twobit(startmin)
 				  				var etime=	twobit(endhour)+":"+twobit(endmin)
+				  				console.log('新的開始時間'+stime+','+etime)
 				  				daybody.find('.right').eq(j).find('.start').text(twobit(starthour)+":"+twobit(startmin));
 			  					daybody.find('.right').eq(j).find('.end').text(twobit(endhour)+":"+twobit(endmin));
 			  					var value = {};
+			  					console.log('stime='+stime+',etime='+etime) 
 			  					value.startTime=stime
 			  					value.endTime=etime
 			  					value.travelId="${Travel.travelId}"
