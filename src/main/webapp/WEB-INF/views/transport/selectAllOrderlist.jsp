@@ -119,7 +119,7 @@ $('.navbar-nav.ml-auto').children().eq(2).addClass('active')
 			<th>票價</th>			
 		</tr>			
 			<tr>
-				<td>01</td>			
+				<td>3</td>			
 				<td>2018-06-01</td>
 				<td>台北車站</td>
 				<td align="center"><img width="200" height="20" src="/startrip/assets/transport/images/arow.jpg"></td>

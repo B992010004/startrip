@@ -64,7 +64,7 @@ $('.navbar-nav.ml-auto').children().eq(2).addClass('active')
 <table border="1" cellpadding="10" cellspacing="0" class="table  table-bordered">
 		
 		<tr align="center">班次資訊
-			<th>班次編號</th>
+			
 			<th>日期</th>
 			<th>起站名稱</th>
 			<th>迄站名稱</th>
@@ -76,7 +76,7 @@ $('.navbar-nav.ml-auto').children().eq(2).addClass('active')
 		</tr>
 			<c:forEach items='${TripInfList}' var='select'>
 			<tr>
-				<td>${select.trip}</td>			
+					
 				<td><fmt:formatDate pattern="yyyy-MM-dd"  value="${select.date}" /></td>
 				<td>${select.starStation}</td>
 				<td>${select.endStation}</td>
