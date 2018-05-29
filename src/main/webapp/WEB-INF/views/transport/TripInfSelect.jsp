@@ -13,6 +13,20 @@
     <meta name="description" content="Free Bootstrap 4 Theme by ProBootstrap.com">
     <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+     <script src="/startrip/assets/js/jquery.min.js"></script>
+
+    <script src="/startrip/assets/js/popper.min.js"></script>
+    <script src="/startrip/assets/js/bootstrap.min.js"></script>
+    <script src="/startrip/assets/js/owl.carousel.min.js"></script>
+
+    <script src="/startrip/assets/js/bootstrap-datepicker.js"></script>
+    <script src="/startrip/assets/js/jquery.waypoints.min.js"></script>
+    <script src="/startrip/assets/js/jquery.easing.1.3.js"></script>
+
+    <script src="/startrip/assets/js/select2.min.js"></script>
+
+    <script src="/startrip/assets/js/main.js"></script>
+    
     <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,700" rel="stylesheet">
 
     <link rel="stylesheet" href="/startrip/assets/css/bootstrap/bootstrap.css">
@@ -25,22 +39,6 @@
     <link rel="stylesheet" href="/startrip/assets/css/select2.css">
     <link rel="stylesheet" href="/startrip/assets/css/helpers.css">
     <link rel="stylesheet" href="/startrip/assets/css/style.css">
-    <script src="/startrip/assets/js/jquery.min.js"></script>
-	<script src="/startrip/assets/js/popper.min.js"></script>
-	<script src="/startrip/assets/js/bootstrap.min.js"></script>
-	<script src="/startrip/assets/js/owl.carousel.min.js"></script>
-	<script src="/startrip/assets/js/jquery.waypoints.min.js"></script>
-	<script src="/startrip/assets/js/jquery.easing.1.3.js"></script>
-	<script src="/startrip/assets/js/select2.min.js"></script>
-	<script src="/startrip/assets/js/main.js"></script>
-	<script src="/startrip/assets/js/jquery.min.js"></script>
-	<script src="/startrip/assets/js/popper.min.js"></script>
-	<script src="/startrip/assets/js/bootstrap.min.js"></script>
-	<script src="/startrip/assets/js/owl.carousel.min.js"></script>
-	<script src="/startrip/assets/js/jquery.waypoints.min.js"></script>
-	<script src="/startrip/assets/js/jquery.easing.1.3.js"></script>
-	<script src="/startrip/assets/js/select2.min.js"></script>
-	<script src="/startrip/assets/js/main.js"></script>	
 
 
 
@@ -61,12 +59,12 @@ $('.navbar-nav.ml-auto').children().eq(2).addClass('active')
 
  <section class="probootstrap-cover overflow-hidden relative" style="background-image: url('/startrip/assets/transport/images/into.jpg');"
         data-stellar-background-ratio="0.5" id="section-home">
-       
+      <div class="container">  
  <form action="/startrip/stationEdit" class="probootstrap-form" style="border-radius: 30px;">
 <table border="1" cellpadding="10" cellspacing="0" class="table  table-bordered">
 		
 		<tr align="center">班次資訊
-			<th>班次編號</th>
+			
 			<th>日期</th>
 			<th>起站名稱</th>
 			<th>迄站名稱</th>
@@ -78,7 +76,7 @@ $('.navbar-nav.ml-auto').children().eq(2).addClass('active')
 		</tr>
 			<c:forEach items='${TripInfList}' var='select'>
 			<tr>
-				<td>${select.trip}</td>			
+					
 				<td><fmt:formatDate pattern="yyyy-MM-dd"  value="${select.date}" /></td>
 				<td>${select.starStation}</td>
 				<td>${select.endStation}</td>
@@ -91,6 +89,7 @@ $('.navbar-nav.ml-auto').children().eq(2).addClass('active')
 		</c:forEach>
 	</table>
 		</form>
+		</div>
   </section>
 
 

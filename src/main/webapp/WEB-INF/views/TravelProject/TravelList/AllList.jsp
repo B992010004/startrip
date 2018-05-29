@@ -281,14 +281,15 @@ function changetype(){
 		right.hide(1000);
 		$('#'+k).parent().parent().find('.timediv').hide(1000); 
 		
-		
+		if(len>1){
 		placeroute(len,right);
+		}
 	}else{
 		right.show(1000);
 		$('#'+k).parent().parent().find('.timediv').show(1000);
-		
+		if(len>1){
 		placeroute(len,right);
-		
+		}
 					
 			}
 }//changetype---end
@@ -323,7 +324,6 @@ function placeroute(len,right){
 	 directionsService = new google.maps.DirectionsService;
 	 directionsDisplay = new google.maps.DirectionsRenderer({
        map: map,
-//        suppressMarkers: true//隱藏support marker
     });
 	
 	var waypts=[];
@@ -376,6 +376,13 @@ $('#insertday').on('click',function(){
 			contentType: "application/json; charset=utf-8",
 			success:function(data){
 				searchDays();
+				var docFrag = $(document.createDocumentFragment());
+				for(var i =1;i<=data.travelDays;i++){
+					var selectday=$('<div class="circle col-2" id="chioceday'+i+'">'+i+'</div>')
+					docFrag.append(selectday);
+					}
+				$('.modal-body').find('.checkview').empty();
+				$('.modal-body').find('.checkview').append(docFrag)
 		}
 	})
 })//新增天數END
@@ -385,10 +392,7 @@ $('#insertday').on('click',function(){
 
 
 $(document).on('click','.closeday',function(e){
-	console.log($(e.target))
 	var daybody=$(e.target).parent().attr('id');
-	
-	console.log(daybody)
 	var day = daybody.substr(7,1)
 	console.log(day)
 	console.log('${Travel.travelId}')
@@ -630,6 +634,7 @@ $(document).on('click','#checklist',function(){
 					datas.tripday=inputDay.val();
 					datas.travelId='${Travel.travelId}';
 					datas.memberId='${LoginOK.memberid}';
+					
 				$.ajax({
 				url:"/startrip/Travel/add/list",
 				type:"GET",
@@ -637,11 +642,13 @@ $(document).on('click','#checklist',function(){
 				data:datas,
 				contentType: "application/json; charset=utf-8",
 				success:function(data){
-					console.log('新增行程')
-					console.log('tripday = '+data.tripday)
-					searchDays();
+					console.log('新增行程');
+					console.log('tripday = '+data.tripday);
+					searchList(data.tripday);
+					
 					
 					}
+				
 				})
 			}
 			})
@@ -665,9 +672,10 @@ $(document).on('click','#checklist',function(){
 				data:datas,
 				contentType: "application/json; charset=utf-8",
 				success:function(data){
+					
 					console.log('新增行程')
 					console.log(data)
-					searchDays();
+					searchList(data.tripday);
 					
 				}
 			})
@@ -681,28 +689,21 @@ $(document).on('click','#checklist',function(){
 })
 //刪除清單
 $(document).on('click','.closelist',function(e){
-	console.log(e.target.id)
-	var nextid=e.target.id
-	var daybody=$('#'+e.target.id).parent().parent().parent().attr('id');
+	var nextid=e.target
+	var daybody=$(nextid).parent().parent().parent().attr('id');
 	var day = daybody.substr(7,1);
 	var list={}
-	list.travelId=${Travel.travelId}
-	list.tripday=day
-  	list.endtime=$('#'+e.target.id).parent().find('.end').text()
- 	$.get('/startrip/list/remove',list,function(data){
- 		console.log(data);
- 		$('#'+e.target.id).parent().parent().remove();
- 		searchDays();
- 		console.log("daybody="+daybody)
- 		var len = $('#'+daybody).find('.right').length;
- 		var right =  $('#'+daybody).find('.right');
- 		console.log("len="+len)
-		placeroute(len,right);
-
- 		
- 	})
 	
-
+	list.travelId=${Travel.travelId}
+	list.tripday=day  
+  	list.endtime=$(nextid).parent().find('.end').text()
+ 	$.get('/startrip/list/remove',list,function(data){
+ 		console.log($('.'+e.target.id))
+ 		$(nextid).parent().parent().remove();
+		 searchList(data)
+		 
+ 	})
+ 		
 })
 
 $(document).on('mouseenter',".contentDay",function(e){
@@ -782,7 +783,8 @@ function searchList(day){
 	travel.mail="${LoginOK.mail}"
 	travel.travelId="${Travel.travelId}"
 	travel.day=day
-	
+	$('#daybody'+day).find('.right').remove();
+	$('#daybody'+day).find('.timediv').remove();
 	console.log("day="+day)
 	
 	$.ajax({
@@ -830,6 +832,7 @@ function searchList(day){
 				  console.log("只有一個點")
 			  }else{
 				var request={}
+				
 				if(wlen>2){
 				request.waypoints= waypts//模式
 				}
@@ -845,6 +848,7 @@ function searchList(day){
 			        if(rlen<0){
 			         	console.log("沒有行程")
 		          	}else{
+		          		
 				          for(var i = 0;i<(len-1);i++){
 				        	  
 				        	var distance=result.legs[i].distance.text;
@@ -855,7 +859,7 @@ function searchList(day){
 				        	var body = $('<div class="timediv" id="time'+(i+1)+'"> </div>')
 				        	var road=$('<span class="col-4" data-googledistance='+distanceval+'>'+distance+'</span><div class="placeImg"></div><span  data-googledistance='+durationval+'>'+duration+'</span></div>')
 				        	body.append(road)
-				        	var daybody=$(".timeline").find("#"+tag)
+				        	daybody=$(".timeline").find("#"+tag)
 				        	daybody.find('#dayTile'+(i+1)).after(body);
 							}
 				      	
@@ -864,12 +868,14 @@ function searchList(day){
 							};
 				  	     	var listlen =  daybody.find('.right').length
 				  	    	var tripday=daybody;
+				  	     	console.log('listlen='+listlen)
 				  			for(var j = 0;j<listlen;j++){
 				  				
 				  				if(j==0){
 				  					var firstend=daybody.find('.right').eq(0).find('.end').text();
 				  					console.log('firstend = '+ firstend)
 				  				}else{
+				  					
 					  				var prevend = daybody.find('.right').eq(j-1).find('.end').text()
 					  				var duration =daybody.find('.timediv').eq(j-1).find('span').eq(1).data('googledistance')
 					  				var start = daybody.find('.right').eq(j).find('.start').text()
@@ -877,15 +883,20 @@ function searchList(day){
 					  				var sstart =start.split(":");
 					  				var send = end.split(":");
 					  				
+					  				console.log(prevend,duration,start,end)
+					  				
+					  				console.log(send[0],sstart[0])
 				  				hour=parseInt(send[0])-parseInt(sstart[0]);
 				  				min=parseInt(send[1])-parseInt(sstart[1]);
+				  				console.log('持續時間='+hour+','+min )
 				  				if(min<0){
 				  						hour =hour-1;
 				  						min = min+60;
 				  					}
 				  				var pend =prevend.split(":");
-				  				starthour = parseInt(pend[0])+(Math.round(duration/3600));
+				  				starthour = parseInt(pend[0])+(Math.floor(duration/3600));
 				  				startmin = parseInt(pend[1])+(Math.round((duration%3600)/60));
+				  				
 				  				endhour = starthour+hour
 				  				endmin = startmin+min
 				  				if(endmin>60){
@@ -898,9 +909,11 @@ function searchList(day){
 			  					}
 				  				var stime= twobit(starthour)+":"+twobit(startmin)
 				  				var etime=	twobit(endhour)+":"+twobit(endmin)
+				  				console.log('新的開始時間'+stime+','+etime)
 				  				daybody.find('.right').eq(j).find('.start').text(twobit(starthour)+":"+twobit(startmin));
 			  					daybody.find('.right').eq(j).find('.end').text(twobit(endhour)+":"+twobit(endmin));
 			  					var value = {};
+			  					console.log('stime='+stime+',etime='+etime) 
 			  					value.startTime=stime
 			  					value.endTime=etime
 			  					value.travelId="${Travel.travelId}"
@@ -912,15 +925,11 @@ function searchList(day){
 			  					})
 				  					} //else end
 				  				}
-				  				
-				  					  
-				  					
-				          
-				          
 			  			}         
 					}
 				})//directionsService end
-			}
+				return day;
+			  }
 		},
 	complete:function(){
 		 document.execCommand('Refresh') 
@@ -1093,6 +1102,7 @@ function initMap() {
 				
 			}
 			for(var i =1;i<=days;i++){
+				console.log('circle days='+days)
 				var selectday=$('<div class="circle col-2" id="chioceday'+i+'">'+i+'</div>')
 				docFrag.append(selectday);
 				}
@@ -1230,11 +1240,11 @@ function initMap() {
 				docFrag.html(view);
 				}
 				}
-			$('#views').html(docFrag);
+			$('#views').html(docFrag); 
 				
               })
  
  </script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzJ1t4g1piJ5W74CnSofqbkkzmPqhItYs&libraries=places&callback=initMap&language=zh-tw" async defer></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcJ_tKbqeZBaicggo1H1eTzqQZCx_EOK0&libraries=places&callback=initMap&language=zh-tw" async defer></script>
 </body>
 </html>

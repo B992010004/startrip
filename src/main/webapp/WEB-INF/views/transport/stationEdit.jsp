@@ -77,6 +77,14 @@
         	cursor: pointer;
         
         }
+        .random{
+        
+        cursor: pointer;
+        }
+        
+        
+        
+        
     </style>
     
     
@@ -141,18 +149,13 @@ $('.navbar-nav.ml-auto').children().eq(2).addClass('active')
 			
 		}	
     </script>
-
-
 <body>
    <div>
         <jsp:include page="/WEB-INF/views/header.jsp" flush="true" />
     </div>
-
-
-
     <!-- 以下為訂票功能 -->
 
-    <section class="probootstrap-cover overflow-hidden relative" style="background-image: url('/startrip/assets/transport/images/into.jpg');"
+<section class="probootstrap-cover overflow-hidden relative" style="background-image: url('/startrip/assets/transport/images/into.jpg');"
         data-stellar-background-ratio="0.5" id="section-home">
         
             <div class="row align-items-center">
@@ -278,22 +281,25 @@ $('.navbar-nav.ml-auto').children().eq(2).addClass('active')
                 </td>
             </tr>
         </table>
-<button id="random" >電腦選位</button>
-
-
+        <div align="center">
+<a  id="random" style="border-color:green;border-width:3px;border-style:outset ;">電腦選位</a>
+ </div>>
 
 <input type="submit" value="送出" class="btn btn-primary btn-block">
        </div>
-        <form action="/startrip/stationEdit" class="probootstrap-form" style="border-radius: 30px;">
+     
         <br>
         <h1 id="QQ"></h1>                                                                                    
                     
                     
                    
                 </div>
+                <br>
           
     </section> 
- 
+    
+
+
                               
                           
 

@@ -62,8 +62,8 @@ public class HomeController {
 	public Set<Integer> hotelRandom() {
 		Set<Integer> randomList = new HashSet<>();
 
-		for (; randomList.size() < 4;) {
-			int idx = (int) (Math.random() * 7 + 1);
+		for (; randomList.size() < 8;) {
+			int idx = (int) (Math.random() * 13 + 1);
 			randomList.add(idx);
 		}
 		return randomList;

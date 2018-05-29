@@ -96,13 +96,12 @@ $('.navbar-nav.ml-auto').children().eq(2).addClass('active')
 <jsp:include page="/WEB-INF/views/header.jsp" flush="true" />
 </div>
 
-
-   <section class="probootstrap-cover overflow-hidden relative" style="background-image: url('/startrip/assets/transport/images/into.jpg');"
-        data-stellar-background-ratio="0.5" id="section-home">
+<div class="probootstrap-cover overflow-hidden relative" style="background-image: url('/startrip/assets/transport/images/into.jpg');"
+         id="section-home">
         
             <div class="row align-items-center">
                 <div class="col-md probootstrap-animate">
- <form action="/startrip/insertSeatList" class="probootstrap-form" style="border-radius: 30px;">                   
+ <form action="/startrip/insertSeatList" class="probootstrap-form" style="border-radius: 30px;">                
                    <h1 align="center" style="color:#E8CCFF" id="QQ">這是您預訂的車票</h1>
 	
     <div class="div">
@@ -122,7 +121,7 @@ $('.navbar-nav.ml-auto').children().eq(2).addClass('active')
 		</tr>
 			<c:forEach items='${OrerList}' var='select'>
 			<tr>
-				<td>1</td>
+				<td>3</td>
 				<td><fmt:formatDate pattern="yyyy-MM-dd"  value="${select.orderDate }" /></td>						
 				<td>${select.orderTime}</td>
 				<td>${select.starStation}</td>
@@ -139,11 +138,15 @@ $('.navbar-nav.ml-auto').children().eq(2).addClass('active')
 
 <h1 align="center">祝您旅途愉快</h1>
 
-		<a href="/startrip/select">回到大眾運輸首頁</a>
+
+
+		<a  href="/startrip/select">回到大眾運輸首頁</a>
 </div>
 
-
-
+</form>
+</div>
+</div>
+</div>
 
 </body>
 </html>

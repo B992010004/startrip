@@ -1,6 +1,8 @@
 package com.startrip.hotel.model;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -38,10 +40,23 @@ public class HotelOrder implements Serializable {
 	private String password;
 
 	@Transient
+	private Integer night;
+
+	@Transient
 	private Rooms room;
-	
+
 	@Transient
 	private HotelsBean hotelBean;
+
+	public Integer getNight() {
+		long night = 0;
+		night = (getCheckout().getTime() - getCheckin().getTime()) / (24 * 60 * 60 * 1000);
+		return (int) night;
+	}
+
+	public void setNight(Integer night) {
+		this.night = night;
+	}
 
 	public String getOrderId() {
 		return orderId;
@@ -201,9 +216,9 @@ public class HotelOrder implements Serializable {
 				+ memberid + ", orderstateid=" + orderstateid + ", paymentmethodid=" + paymentmethodid
 				+ ", orderTimeStamp=" + orderTimeStamp + ", ordernote=" + ordernote + ", totalamount=" + totalamount
 				+ ", singlenightprice=" + singlenightprice + ", checkin=" + checkin + ", checkout=" + checkout
-				+ ", lastname=" + lastname + ", firstname=" + firstname + ", email=" + email + ", cellphone="
-				+ cellphone + ", password=" + password + ", room=" + room + ", hotelBean=" + hotelBean + "]";
+				+ ", night=" + night + ", lastname=" + lastname + ", firstname=" + firstname + ", email=" + email
+				+ ", cellphone=" + cellphone + ", password=" + password + ", room=" + room + ", hotelBean=" + hotelBean
+				+ "]";
 	}
 
-	
 }

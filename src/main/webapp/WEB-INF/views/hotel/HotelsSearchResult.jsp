@@ -359,14 +359,18 @@
                   </div>
                   <div class="col-md-8">
                     <div class="row">
-                      <div class="col-md-8">${hotel.hotelname }</div>
+                      <div class="col-md-8" style="font-weight:bold;font-size:16px;">${hotel.hotelname }</div>
                       <div class="col-md-4">5.7</div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">${hotel.hoteladdress }</div>
                     </div>
                     <div class="row">
-                      <div class="col-md-12">★★★★★</div>
+                      <div class="col-md-12">
+                      <c:forEach var = "i" begin = "1" end = "${hotel.hotelstar }">
+                      	★
+                      </c:forEach>
+                      </div>
                     </div>
                     <br>
                     <br>
