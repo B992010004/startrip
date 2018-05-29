@@ -58,13 +58,15 @@ public class TravelAllDao implements ITripAllDao {
 
 	@Override
 	public String insert(TravelAllBean bean) {
-//		MemberBean mb = getMail(bean.getMail());
-//		bean.setMail(mai(l);
 		System.out.println(bean.toString());
 		 getSession().saveOrUpdate(bean);
 		
 				return "insert OK";
 	}
+	
+	
+	
+	
 	@Override
 	public Integer insert_getprimarykey(TravelAllBean bean) {
 //		MemberBean mb = getMail(bean.getMail());
@@ -199,6 +201,15 @@ public class TravelAllDao implements ITripAllDao {
 			}
 	}
 	//--------------------------------------------------------------
+
+	@Override
+	public TravelAllBean getTravel(Integer travelId, String travelName) {
+		String sql = "select * from TravelPlan where travelId=:travelId and travelName=:travelName";
+		
+		TravelAllBean bean = getSession().createNativeQuery(sql, TravelAllBean.class)
+		.setParameter("travelId", travelId).setParameter("travelName", travelName).getSingleResult();
+		return bean;
+	}
 
 	
 

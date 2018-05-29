@@ -11,7 +11,7 @@ public interface ITravelListService {
 
 	public List<TravelListBean> selectAllList();
 
-
+	
 	public Integer insert(TravelListBean bean);
 
 	public void update(TravelListBean bean) throws SQLException;
@@ -29,4 +29,6 @@ public interface ITravelListService {
 	public String updateListDay(Integer travelId,Integer travelListDay);
 	
 	public String updateListDayState(Integer travelId,Integer travelListDay);
+
+	public List<TravelListBean> selectTravelList(Integer travelId);
 }

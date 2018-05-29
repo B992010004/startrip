@@ -66,4 +66,9 @@ public class AllServiceImp implements ITravelAllService {
 		travelDao.updateTravel(bean);
 		
 	}
+	@Transactional
+	@Override
+	public TravelAllBean getTravel(Integer travelId, String travelName) {
+		return travelDao.getTravel(travelId, travelName);
+	}
 }

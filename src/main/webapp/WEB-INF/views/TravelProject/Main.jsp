@@ -156,6 +156,55 @@
 			</div>
 		</div>
 	</div>
+	
+	
+		<div class="modal fade" tabindex="-1" role="dialog"	aria-labelledby="exampleModalCenterTitle" aria-hidden="true"	id="modeal">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">新增行程</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				
+			
+				</div>
+				<!-- -------------------------------------------------------- -->
+				<form method='GET' name="insert">
+					<div class="modal-body">
+
+						<div class="form-group">
+							<label class="form-control-label" for="formGroupExampleInput">travelName:</label>
+							<input value="請輸入行程名稱" type="text" name="travelName"
+								class="form-control" />
+						</div>
+
+						<div class="form-group">
+							<label class="form-control-label" for="startDate:">startDate:</label>
+							<input placeholder="請輸入開始日期" type="text" name="startDate"
+								id="insertstartDate" class="form-control" />
+						</div>
+						<div class="form-group">
+							<label class="form-control-label" for="endDate">endDate:</label>
+							<input placeholder="請輸入結束日期" type="text" name="endDate"
+								id="insertendDate" class="form-control" />
+						</div>
+						<input name="mail" value="${LoginOK.mail}" type="hidden">
+						<input name="travelid" type="hidden">
+
+					</div>
+
+
+
+					<div class="modal-footer">
+						<button id="insert" type="submit" class="btn btn-primary">確認</button>
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
 	<!--  ----------------------------------------------------------------------- -->
 
 	<script src="/startrip/assets/js/jquery.min.js"></script>
@@ -191,10 +240,11 @@
 			})
 			//刪除行程
 			$(document).on(	"click",".del",function(e) {
-								console.log(e.target.id)
+// 								console.log(e.target.id)
 								var del = {}
 								del.email = "${LoginOK.mail}";
-								del.id = $('#' + e.target.id).parent().parent().find('.id').text();
+								del.id = $('#' + e.target.id).prev().prev().prev().data('travelid');
+								console.log(del)
 								$.ajax({
 											url : "/startrip/travel/remove",
 											type : "GET",
@@ -205,14 +255,14 @@
 												console.log(e.target.id)
 												$('#' + e.target.id).parent().parent().remove();
 												
-											},complete:searchTravels()
+											}
 										})
 							})//click end
 
 			$(document).on(	"click",".update",function(e) {
 								var update = {}
 								update.mail = "${LoginOK.mail}";
-								update.travelId = $('#' + e.target.id).parent().parent().find('.id').text();
+								update.travelId = $('#' + e.target.id).prev().prev().data('travelid');
 								$.ajax({
 									url : "/startrip/travel/id",
 									type : "GET",
@@ -244,23 +294,65 @@
 											}
 										})
 							})//click end
+							
+	$(document).on('click','.bgImg',function(e){
+		console.log(e.target)
+		var data={}
+		var mail='${LoginOK.mail}'
+		var travelId=$(e.target).find('h5').data('travelid')
+		data.mail=mail
+		data.travelId=travelId
+		
+		$.get('/startrip/travel/id',data,function(){
+			
+		})
+		location.href = "/startrip/list/All/" + mail + "/" + travelId
+	})						
+							
+							
+							
 $(document).on('click', '.btn.btn-primary.btn-lg.btn-block', function(e) {
 				var value = {}
 				mail = '${LoginOK.mail}'
-				value.mail = mail;
 				travelName = $('#' + e.target.id).prev().prev().text();
 				travelId = $('#' + e.target.id).prev().prev().data('travelid');
-				console.log(travelName,travelId,mail)
-				//   		console.log($('#'+e.target.id).prev().prev().text())
-				value.travelId = travelId
-
-// 				$.get("/startrip/travel/id", value, function(data) {
-// 					console.log(data)
-// 				})
+				value.mail = mail;
+				value.travelId = travelId;
+				value.travelName=travelName;
+				console.log(travelId)
+				$.get("/startrip/travel/searchPlan", value, function(data) {
+					console.log(data)
+					$('input[name="travelName"]').val(data.travelName);
+					$('input[name="travelid"]').val(travelId)
+					console.log($('input[name="travelId"]').val())
+							
+					$("#modeal").modal({
+						"show" : true,
+					})
+					
+					
+					$(document).on('click',"#insert",function() {
+					var datas = $('form[name="insert"]').serialize();
+					
+					console.log(datas)
+					
+					$.ajax({
+						url : "/startrip/travel/insert",
+						type : "GET",
+						dataType : "json",
+						data : datas,
+						contentType : "application/json; charset=utf-8",
+						success : function(data) {
+							console.log(data)
+// 							location.href = "/startrip/list/All/" + data.mail + "/" + data.travelId
+							}
+						})
+					
+				})
 
 // 				location.href = "/startrip/list/All/" + mail + "/" + travelId
 			})
-
+})
 			//dataPicker
 			var dateFormat = "yy-mm-dd", startDate = $("#startDate")
 					.datepicker({
@@ -278,6 +370,26 @@ $(document).on('click', '.btn.btn-primary.btn-lg.btn-block', function(e) {
 			}).on("change", function() {
 				startDate.datepicker("option", "maxDate", getDate(this));
 			});
+			
+			var dateFormat2 = "yy-mm-dd", startDate = $("#insertstartDate")
+			.datepicker({
+				dateFormat : "yy-mm-dd",
+				defaultDate : "+1w",
+				changeMonth : true,
+				numberOfMonths : 1
+			}).on("change", function() {
+				endDate.datepicker("option", "minDate", getDate(this));
+			}), endDate = $("#insertendDate").datepicker({
+		dateFormat : "yy-mm-dd",
+		defaultDate : "+1w",
+		changeMonth : true,
+		numberOfMonths : 1
+	}).on("change", function() {
+		startDate.datepicker("option", "maxDate", getDate(this));
+	});		
+			
+			
+			
 			function getDate(element) {
 				var date;
 				try {
@@ -382,35 +494,33 @@ function searchTravels() {
 
 
 function  dataDisplay(data,start,end){
-									console.log("display="+data)
-									console.log("display="+data[0].img)
-										$('#row').empty();
-									var docFrag = $(document.createDocumentFragment());
-									var start;
-									var end;
-									if(end>result.length){
-										end=result.length
-									}
-									for (var i = start, len = end; i < len; i++) {
-										var card = $('<div class="card col-5" id="plan" style="width: 18rem;"></div>')
-										var imgrow = $('<div class="row" "></div>');
-										var img = $('<img id="travelimg" class="card-img-top col-10" src="/startrip/show/'+data[i].img+'" alt="Card image cap">')
-										var body = $('<div class="card-body"></div>')
-										var title = $('<h5 class="card-title" data-travelid="'+data[i].travelId+'">'	+ data[i].travelName + '</h5><div class="id"  style="display:none;">'+ data[i].travelId + '</div>')
+			$('#row').empty();
+		var docFrag = $(document.createDocumentFragment());
+		var start;
+		var end;
+		if(end>result.length){
+			end=result.length
+		}
+		for (var i = start, len = end; i < len; i++) {
+			var card = $('<div class="card col-5" id="plan" style="width: 18rem;"></div>')
+			var imgrow = $('<div class="row" "></div>');
+			var img = $('<img id="travelimg" class="card-img-top col-10" src="/startrip/show/'+data[i].img+'" alt="Card image cap">')
+			var body = $('<div class="card-body"></div>')
+			var title = $('<h5 class="card-title" data-travelid="'+data[i].travelId+'">'	+ data[i].travelName + '</h5><div class="id"  style="display:none;">'+ data[i].travelId + '</div>')
 
-										start = new Date(data[i].startDate);
-										StartDate = format(start);
-										end = new Date(data[i].endDate);
-										endDate = format(end);
-										var text = $('<button  id="planset'+i+'"  class="btn btn-primary btn-lg btn-block" type="submit" id=btn'+i+'>匯入行程</button>')
-										body.append([ title,text ]);
-										imgrow.append(img);
-										card.append([ imgrow, body ]);
-										docFrag.append(card);
-									}
-									
-									$('#row').append(docFrag);
-									}
+			start = new Date(data[i].startDate);
+			StartDate = format(start);
+			end = new Date(data[i].endDate);
+			endDate = format(end);
+			var text = $('<button  id="planset'+i+'"  class="btn btn-primary btn-lg btn-block" type="submit" id=btn'+i+'>匯入行程</button>')
+			body.append([ title,text ]);
+			imgrow.append(img);
+			card.append([ imgrow, body ]);
+			docFrag.append(card);
+		}
+		
+		$('#row').append(docFrag);
+		}
 						}//success---end
 					})//ajax --end
 		}
@@ -425,6 +535,8 @@ function  dataDisplay(data,start,end){
 			var d = time.getDate();
 			return y + '/' + M + '/' + d;
 		}
+		
+		
 		function searchMemberTravels() {
 			var all={};
 			all.mail = "${LoginOK.mail}";
@@ -447,9 +559,9 @@ function  dataDisplay(data,start,end){
 						var endDate = format(end);
 				    	var membertravellist=$('<div style=" height: 700px;overflow-y: scroll;" class="membertravellist"></div>');
 				    	var membertravel=$('<div style="width:100%;height:180px;" class="membertravel"></div>')
-				    	var traveltitle=$('<h5 class="traveltitle" style="padding: 0 3%;">'+data[i].travelName+'</h5><br><div  class="icon update" id="update'
+				    	var traveltitle=$('<h5 class="traveltitle" data-travelId="'+data[i].travelId+'" style="padding: 0 3%;">'+data[i].travelName+'</h5><br><div  class="icon update" id="update'
 								+ (i + 1)+ '"></div><div id="del'+ (i + 1)+ '" class="icon  del" ></div>')
-				    	var traveldate=$('<span class=".startDate">'+StartDate+'</span><br><span style="margin:0px 10%">|</span><br><span class="endDate">'+endDate+' </span>')
+				    	var traveldate=$('<span class="startDate">'+StartDate+'</span><br><span style="margin:0px 10%">|</span><br><span class="endDate">'+endDate+' </span>')
 				    	var bg=$('<div class="bgImg"></div>')
 				    	bg.append([traveltitle,traveldate])
 		

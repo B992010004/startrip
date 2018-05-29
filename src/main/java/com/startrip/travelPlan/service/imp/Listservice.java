@@ -72,5 +72,12 @@ public class Listservice implements ITravelListService {
 	public String updateListDayState(Integer travelId,Integer travelListDay) {
 		return listDao.updateListDayState(travelId, travelListDay);
 	}
-
+	@Transactional
+	@Override
+	public List<TravelListBean> selectTravelList(Integer travelId){
+		return listDao.selectTravelList( travelId);
+	}
+	
+	
+	
 }

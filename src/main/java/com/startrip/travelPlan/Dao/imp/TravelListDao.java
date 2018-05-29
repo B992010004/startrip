@@ -28,7 +28,20 @@ public class TravelListDao implements ITravelListDao  {
 	public TravelListDao(){
 		
 	}
-	
+	@Override
+	public List<TravelListBean> selectTravelList(Integer travelId) {
+		String sql = "select * from TravelList where travelId=:travelId and  state=1  order by tripday asc,LEFT(starttime,2)";
+			Session session = factory.getCurrentSession();
+		List<TravelListBean> result = session.createNativeQuery(sql,TravelListBean.class)
+				.setParameter("travelId", travelId)
+				.list();
+//		for(TravelListBean list : result) {
+//			list.set
+//		}
+		
+			System.out.println(result);
+		return result;
+	}
 	
 	@Override
 	public List<TravelListBean> Select_travellist(Integer travelId,Integer day) {

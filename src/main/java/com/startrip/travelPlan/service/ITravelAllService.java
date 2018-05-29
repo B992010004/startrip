@@ -25,4 +25,6 @@ public interface ITravelAllService {
 	
 	public List<TravelAllBean> select_mail(Integer id);
 	
+	public TravelAllBean getTravel(Integer travelId, String travelName);
+	
 }
