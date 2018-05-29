@@ -236,6 +236,8 @@
 			var ckpassword = document.getElementById("passck2").value;
 			if (fgpassword != ckpassword) {
 				document.getElementById("errarea").innerHTML = "<font color=\'red\'>請輸入相同密碼</font>";
+			}else{
+				document.getElementById("errarea").innerHTML = "";
 			}
 		}
 
