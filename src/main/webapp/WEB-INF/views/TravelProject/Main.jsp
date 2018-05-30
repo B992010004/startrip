@@ -315,11 +315,11 @@
 		data.mail=mail
 		data.travelId=travelId
 		console.log(mail+","+travelId)
-		$.get('/startrip/travel/id',data,function(){
-			
+		$.get('/startrip/travel/id',data,function(data){
+			console.log(data)
+		location.href = "/startrip/list/All/" + mail + "/" + travelId
 		})
 // 		alert('enter')
-		location.href = "/startrip/list/All/" + mail + "/" + travelId
 	})						
 							
 							
