@@ -309,8 +309,9 @@
       <!-- select -->
       <!-- result -->
       <div class="col-md-9" >
+      <br>
       <div id="displayHotels">
-        <br>
+        
         <!-- 靜態資料產生 -->
 <!--         <a href="/startrip/Rooms/1" class="roomlink"> -->
 <!--           <div class="row"> -->
@@ -393,9 +394,12 @@
         <!-- 動態資料結束 -->
         <div class="row justify-content-between">
             <div class="col-2">
-            <button id="prePage" type="button" class="btn btn-outline-primary">
+            <button id="prePage" type="button" class="btn btn-outline-primary " style="display: none;">
              上一頁
             </button>
+            </div>
+            <div class="col-2">
+            <span id="idx">第1頁/ 共<fmt:formatNumber value="${counts/5  + (counts % 5 == 0 ? 0 : 0.5)}" type="number" pattern="#" />頁</span>
             </div>
             <div class="col-2">
             <button id="nextPage" type="button" class="btn btn-outline-primary">
@@ -460,6 +464,13 @@
       console.log(rangevalue)
       console.log(checkedid)
     })
+    
+    $('#prePage, #nextPage').click(function () {
+                $('html, body').animate({
+                    scrollTop: $('#displayHotels').offset().top
+                }, 800);
+            });
+            // 滑動至預定區間
 
   </script>
   <script>
@@ -546,9 +557,31 @@
 
 			$('#displayHotels').html(docFrag);			
 			
-			console.log(responce);
-			
+			console.log(responce);			
 			console.log(nowPage);
+			
+			//設定上一頁按鈕
+			if(nowPage != 0){
+// 				$('#prePage').attr('hidden',false);
+				$('#prePage').show();
+				
+			}else{
+// 				$('#prePage').attr('hidden',true);
+				$('#prePage').hide();
+			}
+			
+			//設定下一頁
+			if(nowPage == Math.floor(responce.counts/5)){
+				$('#nextPage').hide();
+				
+			}else{
+
+				$('#nextPage').show();
+			}
+			var temp = nowPage;
+			temp += 1;
+			$('#idx').text("第"+temp+"頁/ 共3頁");
+			
 		});	  
   }
   

@@ -65,7 +65,7 @@ public class HotelController {
 
 		// System.out.println("搜尋結果: " + hotelService.selectByCriteria(searchHotel));
 		// List<HotelsBean> list = hotelService.selectByCriteria(searchHotel);
-		// 分頁 先固定傳7筆
+		// 分頁 先固定傳5筆
 		List<HotelsBean> list = hotelService.selectPage(0, 5);
 		for (HotelsBean bean : list) {
 			photoArr = bean.getPhotoString().split(";");
@@ -76,6 +76,7 @@ public class HotelController {
 		HttpSession session = request.getSession();
 		session.setAttribute("searchBean", searchHotel);
 
+		model.addAttribute("counts", hotelService.count().get(0));
 		model.addAttribute("results", list);
 		return "hotel/HotelsSearchResult";
 	}
@@ -289,7 +290,7 @@ public class HotelController {
 			String[] photoArr = bean.getPhotoString().split(";");
 			bean.setPhotoArr(photoArr);
 		}
-		
+
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("hotels", list);
 		map.put("counts", hotelService.count().get(0));
