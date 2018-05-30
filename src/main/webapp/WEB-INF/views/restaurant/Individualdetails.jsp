@@ -42,6 +42,7 @@
 <link rel="stylesheet" href="/startrip/assets/css/rthome2.css">
 <link rel="stylesheet" href="/startrip/assets/css/rthome3.css">
 <link rel="stylesheet" href="/startrip/assets/css/rthome4.css">
+<link rel="shortcut icon" type="image/x-icon" href="/startrip/assets/images/rt/favicon.ico" />
 
 <style>
 .probootstrap-cover .overlay {
@@ -868,6 +869,15 @@ ul li {
                  }
              });
          });
+	</script>
+	
+	<script>
+	
+	$(function() {
+		$('.navbar-nav.ml-auto').children().eq(0).removeClass('active');
+		$('.navbar-nav.ml-auto').children().eq(1).addClass('active')
+		})
+		
 	</script>
 
 </body>

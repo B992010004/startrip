@@ -27,6 +27,7 @@
 
   <link href='/startrip/assets/css/fullcalendar.min.css' rel='stylesheet' />
   <link href='/startrip/assets/css/fullcalendar.print.min.css' rel='stylesheet' media='print' />
+  <link rel="shortcut icon" type="image/x-icon" href="/startrip/assets/images/rt/favicon.ico" />
 
   <style>
     #section-home {

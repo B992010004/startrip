@@ -9,6 +9,7 @@
 	content="689390388499-b3hifo46ha5ch3l3emcjif9ffphu7etu.apps.googleusercontent.com">
 <link href="/startrip/assets/css/bootstrap/botton.css" rel="stylesheet"
 	type="text/css" />
+	<link rel="shortcut icon" type="image/x-icon" href="/startrip/assets/images/rt/favicon.ico" />
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <!-- <script src='https://www.google.com/recaptcha/api.js'></script>  -->
 <script src="https://apis.google.com/js/platform.js?onload=init" async

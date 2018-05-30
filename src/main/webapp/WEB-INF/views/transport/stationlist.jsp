@@ -28,6 +28,7 @@
   <link rel="stylesheet" href="assets/fonts/fontawesome/css/font-awesome.min.css">
 
   <link rel="stylesheet" href="assets/css/select2.css">
+  <link rel="shortcut icon" type="image/x-icon" href="/startrip/assets/images/rt/favicon.ico" />
 
 
   <link rel="stylesheet" href="assets/css/helpers.css">
