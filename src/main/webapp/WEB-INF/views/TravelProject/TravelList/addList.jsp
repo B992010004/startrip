@@ -15,6 +15,7 @@
 <!-- Bootstrap core CSS -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="/startrip/assets/Travel/css/timepicker.min.css">
+<link rel="shortcut icon" type="image/x-icon" href="/startrip/assets/images/rt/favicon.ico" />
 
 </head>
 <body>

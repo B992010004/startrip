@@ -28,6 +28,7 @@
 <link href="https://fonts.googleapis.com/css?family=Allura" rel="stylesheet">
 <link rel="stylesheet" href="/startrip/assets/Travel/css/style.css">
 <link rel="stylesheet" href="/startrip/assets/Travel/css/timepicker.min.css">
+<link rel="shortcut icon" type="image/x-icon" href="/startrip/assets/images/rt/favicon.ico" />
 
 <!-- <link rel="stylesheet" href="/startrip/assets/Travel/css/lightbox.css"> -->
 </head>

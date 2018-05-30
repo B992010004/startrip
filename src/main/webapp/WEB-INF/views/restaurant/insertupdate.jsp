@@ -42,6 +42,8 @@
 <link rel="stylesheet" href="/startrip/assets/css/rthome2.css">
 <link rel="stylesheet" href="/startrip/assets/css/rthome3.css">
 <link rel="stylesheet" href="/startrip/assets/css/rthome4.css">
+<link rel="shortcut icon" type="image/x-icon" href="/startrip/assets/images/rt/favicon.ico" />
+
 <style>
 .probootstrap-cover .overlay {
 	position: absolute;
@@ -109,6 +111,10 @@
 	font-size: 20px;
 }
 
+.borderall {
+	border-right: #00CA4C 3px double;
+	border-left: #00CA4C 3px double;
+}
 </style>
 
 </head>
@@ -138,7 +144,7 @@
 		<form:form method="post" modelAttribute="RtDetailsBean" id="formgo"
 			enctype="multipart/form-data">
 			<div class="intermediate">
-				<div class="container">
+				<div class="container borderall">
 					<div class="bigheadline1">
 						<h1 class="headline1">新增餐廳資料</h1>
 					</div>
@@ -386,16 +392,21 @@
 			}
 		}
 	</script>
-	
-		<script>
-	
-	$("#buttongo").click(function() {
-		$("#formgo").submit();
-	});
-	
+
+	<script>
+		$("#buttongo").click(function() {
+			$("#formgo").submit();
+		});
 	</script>
-	
-	
+
+	<script>
+		$(function() {
+			$('.navbar-nav.ml-auto').children().eq(0).removeClass('active');
+			$('.navbar-nav.ml-auto').children().eq(4).addClass('active')
+		})
+	</script>
+
+
 </body>
 
 </html>

@@ -40,6 +40,7 @@
 
 <link rel="stylesheet"
 	href="/startrip/assets/Travel/css/jquery-ui.min.css">
+	<link rel="shortcut icon" type="image/x-icon" href="/startrip/assets/images/rt/favicon.ico" />
 
 </head>
 <body>

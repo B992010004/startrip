@@ -56,7 +56,7 @@
 <link rel="stylesheet" href="/startrip/assets/restaurant/Css/rthome.css">
 <link rel="stylesheet"
 	href="/startrip/assets/restaurant/Css/rthome2.css">
-
+<link rel="shortcut icon" type="image/x-icon" href="/startrip/assets/images/rt/favicon.ico" />
 
 <style>
 .probootstrap-cover .overlay {
@@ -76,11 +76,13 @@
 .headline1 {
 	color: #00CA4C;
 	display: inline;
+	font-size: 350%;
 }
 
 .headline2 {
 	color: #e1e100;
 	display: inline;
+	font-size: 350%;
 }
 
 .img-fluid {
@@ -111,6 +113,14 @@
 .probootstrap_section.bg-light {
 	background: #ECECEC !important;
 }
+
+.headp {
+	font-size: 150%;
+}
+
+.margintitle{
+	margin-top:3%;
+}
 </style>
 
 </head>
@@ -127,7 +137,7 @@
 		<div class="overlay"></div>
 		<div class="container">
 			<form action="/startrip/RtAllList">
-				<div class="row align-items-center text-center">
+				<div class="row align-items-center text-center margintitle">
 					<div class="input-group mb-3">
 						<input type="text" class="form-control" placeholder="城市、餐廳名稱等"
 							aria-label="Recipient's username" aria-describedby="basic-addon2">
@@ -148,7 +158,8 @@
 			<h1 class="headline1">搜尋美食盡在</h1>
 			<h1 class="headline2">Star★</h1>
 			<h1 class="headline1">Trip</h1>
-			<p>在 StarTrip 內總共為您準備了超過 10000 筆的餐廳資訊、價格以及評分，協助尋找最適合您的餐廳喜好。</p>
+			<p class="headp">在 StarTrip 內總共為您準備了超過 10000
+				筆的餐廳資訊、價格以及評分，協助尋找最適合您的餐廳喜好。</p>
 		</div>
 		<div class="container">
 			<div class="row text-center mb-5 probootstrap-animate">
@@ -407,6 +418,14 @@
 	<script src="/startrip/assets/js/select2.min.js"></script>
 
 	<script src="/startrip/assets/js/main.js"></script>
+
+	<script>
+		$(function() {
+			$('.navbar-nav.ml-auto').children().eq(0).removeClass('active');
+			$('.navbar-nav.ml-auto').children().eq(1).addClass('active')
+		})
+	</script>
+
 </body>
 
 </html>

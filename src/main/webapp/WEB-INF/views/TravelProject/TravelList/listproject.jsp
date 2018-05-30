@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="/startrip/assets/css/style.css">
     
     <link rel="stylesheet" href="/startrip/assets/Travel/css/style.css">
+    <link rel="shortcut icon" type="image/x-icon" href="/startrip/assets/images/rt/favicon.ico" />
 </head>
 <body>
 

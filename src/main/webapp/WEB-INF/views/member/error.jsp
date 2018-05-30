@@ -38,6 +38,7 @@
 <link rel="stylesheet" href="/startrip/assets/css/style.css">
 <link href="/startrip/assets/css/bootstrap/botton.css" rel="stylesheet"
 	type="text/css" />
+	<link rel="shortcut icon" type="image/x-icon" href="/startrip/assets/images/rt/favicon.ico" />
 <style>
 #section-home {
 	padding-top: 45px;
