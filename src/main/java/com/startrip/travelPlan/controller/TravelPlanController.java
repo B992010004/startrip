@@ -17,7 +17,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.hibernate.cfg.JoinedSubclassFkSecondPass;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.CacheControl;
 import org.springframework.http.HttpHeaders;
@@ -34,8 +33,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonParser;
 import com.startrip.member.Service.MemberServiceInterface;
 import com.startrip.member.memberModle.MemberBean;
 import com.startrip.travelPlan.model.TravelAllBean;
@@ -95,7 +92,6 @@ public class TravelPlanController {
 		//------------------
 		MemberBean mb =memberservice.select(mail+"."+domain);
 		Integer id =mb.getMemberid();
-//		bean.setMail(mail);
 		bean.setMemberId(id);
 		bean.setState(1);
 		Integer pk =travelservice.insert_getprimarykey(bean);
@@ -127,7 +123,6 @@ public class TravelPlanController {
 		System.out.println("mail="+mail);
 		MemberBean mb = memberservice.select(mail);
 		Integer id = mb.getMemberid();
-		System.out.println("id="+id);
 		List<TravelAllBean> all = new ArrayList<>();
 		List<TravelAllBean> list = travelservice.select_mail(id);
 		for(TravelAllBean bean :list) {
@@ -152,6 +147,52 @@ public class TravelPlanController {
 		}
 		return all;
 	}
+	
+	@RequestMapping(value="travel/searchPlan",method=RequestMethod.GET)
+	@ResponseBody
+	public TravelAllBean travelInsert(Integer travelId,String mail,String travelName) {
+		System.out.println("searchPlan ="+travelId+","+mail+","+travelName);
+		TravelAllBean bean = travelservice.getTravel(travelId,travelName);
+		Integer memberId = memberservice.select(mail).getMemberid();
+		bean.setMemberId(memberId);
+		return bean;
+	}
+	
+	@RequestMapping(value="travel/insert",method=RequestMethod.GET)
+	@ResponseBody
+	public TravelAllBean insertTravel(@RequestParam("travelName")String travelName
+			,@RequestParam("startDate")Date startDate,@RequestParam("endDate")Date endDate
+			,@RequestParam("travelid")Integer travelid,@RequestParam("mail")String mail) {
+		TravelAllBean bean =new TravelAllBean();
+		System.out.println("insert ="+travelName+","+startDate+","+endDate+","+travelid+","+mail);
+		
+		bean.setEndDate(endDate);
+		bean.setStartDate(startDate);
+		bean.setTravelName(travelName);
+		bean.setMail(mail);
+		Integer img =(int)(Math.random()*10+1);
+		bean.setImg(img+".jpg");
+		int days = (int)((endDate.getTime()-startDate.getTime())/(1000*60*60*24)+1);
+		bean.setTravelDays(days);
+		MemberBean mb =memberservice.select(mail);
+		Integer id =mb.getMemberid();
+		bean.setMemberId(id);
+		bean.setState(1);
+		Integer pk =travelservice.insert_getprimarykey(bean);
+		System.out.println("pk="+pk);
+		bean.setTravelId(pk);
+		System.out.println("searchList ="+travelid+bean.getTravelName());
+		List<TravelListBean> list= listservice.selectTravelList(travelid);
+		System.out.println("size="+list.size());
+		for(TravelListBean result :list) {
+			System.out.println("list = "+ result.toString());
+		result.setTravelId(pk);
+		listservice.insert(result);
+		}
+		
+		return bean;
+	}
+	
 	//移除行程
 		@RequestMapping(value="travel/remove" ,method=RequestMethod.GET)
 		@ResponseBody
@@ -388,11 +429,10 @@ public class TravelPlanController {
 	@RequestMapping(value="list/All/{mail}/{travelId}",method=RequestMethod.GET)
 	public String getAllList(Model model,HttpServletRequest request,
 			@PathVariable("mail")String mail,@PathVariable("travelId")Integer travelId) {
-//		System.out.println(mail+","+travelId);
-		TravelAllBean tb = new TravelAllBean();
-		tb.setMail(mail);
-		tb.setTravelId(travelId);
-	
+		Integer memberId =memberservice.select(mail).getMemberid();
+		TravelAllBean tab = travelservice.Select_Travel(memberId, travelId);
+		HttpSession session = request.getSession();
+		session.setAttribute("Travel", tab);
 		return "/TravelProject/TravelList/AllList";
 	}
 	
@@ -425,6 +465,24 @@ public class TravelPlanController {
 		System.out.println(all.toString());
 		return all;
 	}
+	
+	@RequestMapping(value="list/travelId/name",method=RequestMethod.GET)
+	@ResponseBody
+	public ArrayList<TravelListBean> getTravelList2(@RequestParam("travelId")Integer travelId
+			,@RequestParam("day")Integer day){
+		System.out.println("travelId/name"+travelId);
+		TravelListBean bean = new TravelListBean();
+		List<TravelListBean> result  =listservice.Select_travellist(travelId,day);
+		ArrayList<TravelListBean> all = new ArrayList<>();
+		for(int i =0;i<result.size();i++) {
+		bean=result.get(i);
+		all.add(bean);
+		}
+		
+		System.out.println(all.toString());
+		return all;
+	}
+	
 	@RequestMapping(value="travel/checkday",method=RequestMethod.GET)
 	@ResponseBody
 	public boolean getAllList(Model model,TravelListBean bean,String mail) {

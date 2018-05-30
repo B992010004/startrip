@@ -194,7 +194,7 @@ $('.navbar-nav.ml-auto').children().eq(2).addClass('active')
                     $("#gm").empty();
                     for (var i = 0; i < response.length; i++) {
                         $("#tbo").append("<tr><td>" + response[i].area + "</td>" +
-                            "<td><img id='startStationIcon' width='30' height='30' src='/startrip/assets/transport/images/starticon.png'>" + response[i].stationName + "<img id='endStationIcon' width='30' height='30' src='/startrip/assets/transport/images/endicon.png'></td>" +
+                            "<td><img id='startStationIcon' width='30' height='30' src='/startrip/assets/transport/images/starticon.png'><span>" + response[i].stationName + "</span><img id='endStationIcon' width='30' height='30' src='/startrip/assets/transport/images/endicon.png'></td>" +
                             
                             "<td ><img class='mapImage' id='getAddress' width='30' height='30' src='/startrip/assets/transport/images/mapicon.png' ><span>" + response[i].address + "</span></td></tr>");
                     }
@@ -219,8 +219,8 @@ $('.navbar-nav.ml-auto').children().eq(2).addClass('active')
 //------------------------------------------------
             $(document).on('click', '.startStationIcon', function () {
                 //    alert(this)
-                //    alert('aaaa')
-                console.log("事件");
+//                    alert('aaaa')
+//                console.log("事件");
                 $("#inputStation").empty();
                 var inputStationName = $(this).parent('td').children('span').text();
                 //                             alert(googleAddress)
@@ -228,20 +228,20 @@ $('.navbar-nav.ml-auto').children().eq(2).addClass('active')
                 $("#inputStation").val(inputStationName);
             });
 //------------------------------------------------------------
-            $(document).on('click', '.endStationIcon', function () {
-                //    alert(this)
-                //    alert('aaaa')
-                console.log(" click事件");
-                $("#inputStation2").empty();
-                var inputStationName = $(this).parent('td').children('span').text();
-                //                             alert(googleAddress)
-                console.log("地址: " + inputStationName);
-                $("#inputStation2").val(inputStationName);
+           
+            $(document).on('click', '#startStationIcon', function () {
+// 				alert('aaaa')  
+				$("#inputStation").empty();
+				var stationSelectedName = $(this).parent('td').find('span').text()
+				$('#inputStation').append($('<option selected="selected">'+ stationSelectedName +'</option>'))
             });
-
-
-
-
+            $(document).on('click', '#endStationIcon', function () {
+// 				alert('aaaa')
+                $("#inputStation2").empty();
+				var stationSelectedName1 = $(this).parent('td').find('span').text()
+//				alert(stationSelectedName1)
+				$('#inputStation2').append($('<option selected="selected">'+ stationSelectedName1 +'</option>'))
+            });
         };
     </script>   
 

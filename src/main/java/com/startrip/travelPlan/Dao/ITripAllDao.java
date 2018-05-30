@@ -24,6 +24,9 @@ public interface ITripAllDao {
 	public void delete(Integer id);
 
 	MemberBean getMail(String mail);
+	
+	public TravelAllBean getTravel(Integer travelId,String travelName);
+	
 	public List<TravelAllBean> select_mail(Integer id);
 
 }

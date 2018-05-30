@@ -24,7 +24,7 @@ public class Rooms implements Serializable {
 	// fk
 	private Integer hotelid;
 
-	// 設定1為可訂
+	// 設定1為被訂
 	private Integer roomstate;
 
 	// 房型之類的

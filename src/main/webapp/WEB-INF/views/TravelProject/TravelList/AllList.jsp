@@ -376,6 +376,7 @@ $('#insertday').on('click',function(){
 			data:add,
 			contentType: "application/json; charset=utf-8",
 			success:function(data){
+				console.log(data)
 				searchDays();
 				var docFrag = $(document.createDocumentFragment());
 				for(var i =1;i<=data.travelDays;i++){
@@ -404,8 +405,17 @@ $(document).on('click','.closeday',function(e){
 	travel.listday=day;
 	
 	$.get('/startrip/travel/remove/day',travel,function(data){
-		console.log(data)
+		console.log(data.travelDays)
 		searchDays();
+		var docFrag = $(document.createDocumentFragment());
+		for(var i =1;i<=data.travelDays;i++){
+			var selectday=$('<div class="circle col-2" id="chioceday'+i+'">'+i+'</div>')
+			docFrag.append(selectday);
+			}
+		$('.modal-body').find('.checkview').empty();
+		console.log('checkview')
+		console.log($('.modal-body').find('.checkview'))
+		$('.modal-body').find('.checkview').append(docFrag)
 		
 	})
 	
@@ -1089,8 +1099,17 @@ function initMap() {
 			var daysrow = $('<div class="checkview row"></div>');
 			var imgs=$('<div class="list-group-item col-3" id="food" src="/startrip/assets/Travel/img/food.png"></div><div id="shop" class="list-group-item col-3" src="/startrip/assets/Travel/img/shop.png"></div><div id="travel" class="list-group-item col-3" src="/startrip/assets/Travel/img/mountain.png"></div><div id="rest" class="list-group-item col-3" src="/startrip/assets/Travel/img/zzz.png"><div><hr>');
 			var docFrag = $(document.createDocumentFragment());
-
-			var days=${Travel.travelDays};
+			var days;
+			datas={}
+			datas.travelId="${Travel.travelId}";
+			datas.mail="${LoginOK.mail}"
+			$.get("/startrip/travel/id",datas,function(data){
+				days=data.Name.travelDays
+				
+			
+			console.log("days="+days)
+			var travelId = ${Travel.travelId}
+			console.log(days+","+travelId)
 			var day1=$('#daybody1').find('.right').length;
 			console.log(day1)
 			
@@ -1107,6 +1126,7 @@ function initMap() {
 				var selectday=$('<div class="circle col-2" id="chioceday'+i+'">'+i+'</div>')
 				docFrag.append(selectday);
 				}
+			console.log('docFrag')
 			$('#viewName').val(place.name)
 			li.append(btn);
 			
@@ -1118,7 +1138,7 @@ function initMap() {
 			
 	    	body.animate({left:"+350px"},500);
 	       
-	       
+			})
 	    	});
 
 

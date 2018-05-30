@@ -46,25 +46,27 @@ public class TravelAllDao implements ITripAllDao {
 		
 	}
 
-	private	static final String findAll = "FROM TravelAllBean where state=:state";
+	private	static final String findAll = "Select * from travelplan order by travelId desc ";
 	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<TravelAllBean> selectAllTravel() {
 		
-		return this.getSession().createQuery(findAll).setParameter("state", 1).list();
+		return this.getSession().createNativeQuery(findAll, TravelAllBean.class).list();
 		
 	}
 
 	@Override
 	public String insert(TravelAllBean bean) {
-//		MemberBean mb = getMail(bean.getMail());
-//		bean.setMail(mai(l);
 		System.out.println(bean.toString());
 		 getSession().saveOrUpdate(bean);
 		
 				return "insert OK";
 	}
+	
+	
+	
+	
 	@Override
 	public Integer insert_getprimarykey(TravelAllBean bean) {
 //		MemberBean mb = getMail(bean.getMail());
@@ -119,7 +121,7 @@ public class TravelAllDao implements ITripAllDao {
 
 	@Override
 	public List<TravelAllBean> select_mail(Integer id) {
-		String sql = "Select * from travelplan where memberId=:memberId and state=:state" ;
+		String sql = "Select * from travelplan where memberId=:memberId and state=:state order by travelId desc" ;
 		List<TravelAllBean> list = getSession().createNativeQuery(sql,TravelAllBean.class)
 									.setParameter("memberId", id)
 									.setParameter("state", 1).getResultList();
@@ -199,6 +201,15 @@ public class TravelAllDao implements ITripAllDao {
 			}
 	}
 	//--------------------------------------------------------------
+
+	@Override
+	public TravelAllBean getTravel(Integer travelId, String travelName) {
+		String sql = "select * from TravelPlan where travelId=:travelId and travelName=:travelName";
+		System.out.println("gettravel="+travelId+','+travelName);
+		TravelAllBean bean = getSession().createNativeQuery(sql, TravelAllBean.class)
+		.setParameter("travelId", travelId).setParameter("travelName", travelName).getSingleResult();
+		return bean;
+	}
 
 	
 

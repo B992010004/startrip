@@ -30,4 +30,8 @@ public interface ITravelListDao {
 	public String updateListDay(Integer travelId,Integer travelListDay);
 	
 	public String updateListDayState(Integer travelId,Integer travelListDay);
+
+	public List<TravelListBean> selectTravelList(Integer travelId);
+	
+	public List<TravelListBean> Select_travellist_Id(Integer travelId) ;
 }
