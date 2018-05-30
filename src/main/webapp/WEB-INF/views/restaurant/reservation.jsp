@@ -42,6 +42,7 @@
 <link rel="stylesheet" href="/startrip/assets/css/rthome3.css">
 <link rel="stylesheet" href="/startrip/assets/css/rthome4.css">
 <link rel="stylesheet" href="/startrip/assets/css/jquery-ui.css">
+<link rel="shortcut icon" type="image/x-icon" href="/startrip/assets/images/rt/favicon.ico" />
 
 <style>
 .probootstrap-cover .overlay {
@@ -131,7 +132,8 @@
 
 .ion-calendar {
 	text-align: right;
-	padding-right: 78%;
+	padding-right: 43%;
+	padding-bottom: 2%;
 }
 
 .button1 {
@@ -160,6 +162,28 @@
 .titl1 {
 	border-bottom: #00CA4C 3px solid;
 }
+
+.colorword {
+	color: red;
+	display: inline;
+}
+
+.littletitle2 {
+	font-size: 20px;
+}
+
+.Precautions {
+	border: #00CA4C 3px outset;
+}
+
+.bottom {
+	margin-top: 5%;
+}
+
+.black {
+	color: black;
+	font-size: 24px;
+}
 </style>
 
 </head>
@@ -181,8 +205,8 @@
 				<div class="col-md-123">
 					<h2 class="display-4 probootstrap-section-heading">${RtDetailsBean.rtName}</h2>
 					<div class="littletitle1">
-						<div>${RtDetailsBean.rtPhone}</div>
-						<div>${RtDetailsBean.rtAddress}</div>
+						<div class="littletitle2">${RtDetailsBean.rtPhone}</div>
+						<div class="littletitle2">${RtDetailsBean.rtAddress}</div>
 					</div>
 				</div>
 			</div>
@@ -202,96 +226,121 @@
 
 					<form:input value="${RtDetailsBean.rtId}" path="rtId" type="hidden" />
 					<div class="form-group">
-						<label for="account">訂位者姓名&nbsp;:&nbsp;</label>
+						<label for="account" class="black"><div class="colorword">*</div>&nbsp;訂位者姓名&nbsp;:&nbsp;</label>
 						<form:input type="text" class="form-control" path="crName"
-							placeholder="王大明等..." autofocus="autofocus" />
-						<!-- 							<p>(不可空白,至少兩個字且必須為中文字)</p> -->
-						<!-- required="required" -->
+							placeholder="王大明等..." autofocus="autofocus" required="required" />
 					</div>
 					<div class="form-group">
-						<label>連絡電話&nbsp;:&nbsp;</label>
+						<label class="black"><div class="colorword">*</div>&nbsp;連絡電話&nbsp;:&nbsp;</label>
 						<form:input type="text" class="form-control" path="crPhone"
-							placeholder="09XX-XXXXXX" autofocus="autofocus" />
-						<!-- required="required" -->
+							placeholder="09XX-XXXXXX" autofocus="autofocus"
+							required="required" />
 					</div>
-
-					<div class="form-group">大人幾位&nbsp;:&nbsp;</div>
-					<form:select path="bgPeople" class="js-states form-control"
-						id="id_label_single" style="width: 100%;">
-						<form:option value="1">1</form:option>
-						<form:option value="2">2</form:option>
-						<form:option value="3">3</form:option>
-						<form:option value="4">4</form:option>
-						<form:option value="5">5</form:option>
-						<form:option value="6">6</form:option>
-						<form:option value="7">7</form:option>
-						<form:option value="8">8</form:option>
-					</form:select>
-					<br>
-					<div class="form-group">小孩幾位&nbsp;:&nbsp;</div>
-					<form:select path="cnPeople" class="js-states form-control"
-						id="id_label_single" style="width: 100%;">
-						<form:option value="0">0</form:option>
-						<form:option value="1">1</form:option>
-						<form:option value="2">2</form:option>
-						<form:option value="3">3</form:option>
-						<form:option value="4">4</form:option>
-						<form:option value="5">5</form:option>
-						<form:option value="6">6</form:option>
-						<form:option value="7">7</form:option>
-						<form:option value="8">8</form:option>
-					</form:select>
-					<br>
-					<div class="form-group">兒童專用座椅&nbsp;:&nbsp;</div>
-					<form:select path="cnChair" class="js-states form-control"
-						id="id_label_single" style="width: 100%;">
-						<form:option value="0">0</form:option>
-						<form:option value="1">1</form:option>
-						<form:option value="2">2</form:option>
-						<form:option value="3">3</form:option>
-						<form:option value="4">4</form:option>
-						<form:option value="5">5</form:option>
-						<form:option value="6">6</form:option>
-						<form:option value="7">7</form:option>
-						<form:option value="8">8</form:option>
-					</form:select>
-					<br>
-					<div class="form-group">用餐日期&nbsp;:&nbsp;</div>
-					<div class="form-group inputState">
-						<div class="probootstrap-date-wrap">
-							<label for="probootstrap-date-arrival"> <span
-								class="icon ion-calendar"></span> <form:input path="bgDate"
-									type="text" id="probootstrap-date-arrival" name="checkin"
-									class="form-control" placeholder="日期" />
-							</label>
+					<div class="container">
+						<div class="row">
+							<div class="col-sm">
+								<div class="form-group black">
+									<div class="colorword">*</div>
+									&nbsp;大人幾位&nbsp;:&nbsp;
+								</div>
+								<form:select path="bgPeople" class="js-states form-control"
+									id="id_label_single" style="width: 100%;" required="required">
+									<form:option value="1">1</form:option>
+									<form:option value="2">2</form:option>
+									<form:option value="3">3</form:option>
+									<form:option value="4">4</form:option>
+									<form:option value="5">5</form:option>
+									<form:option value="6">6</form:option>
+									<form:option value="7">7</form:option>
+									<form:option value="8">8</form:option>
+								</form:select>
+							</div>
+							<div class="col-sm">
+								<div class="form-group black">小孩幾位&nbsp;:&nbsp;</div>
+								<form:select path="cnPeople" class="js-states form-control"
+									id="id_label_single" style="width: 100%;">
+									<form:option value="0">0</form:option>
+									<form:option value="1">1</form:option>
+									<form:option value="2">2</form:option>
+									<form:option value="3">3</form:option>
+									<form:option value="4">4</form:option>
+									<form:option value="5">5</form:option>
+									<form:option value="6">6</form:option>
+									<form:option value="7">7</form:option>
+									<form:option value="8">8</form:option>
+								</form:select>
+							</div>
+							<div class="col-sm">
+								<div class="form-group black">兒童專用座椅&nbsp;:&nbsp;</div>
+								<form:select path="cnChair" class="js-states form-control"
+									id="id_label_single" style="width: 100%;">
+									<form:option value="0">0</form:option>
+									<form:option value="1">1</form:option>
+									<form:option value="2">2</form:option>
+									<form:option value="3">3</form:option>
+									<form:option value="4">4</form:option>
+									<form:option value="5">5</form:option>
+									<form:option value="6">6</form:option>
+									<form:option value="7">7</form:option>
+									<form:option value="8">8</form:option>
+								</form:select>
+							</div>
 						</div>
 					</div>
-					<div class="form-group">用餐時段&nbsp;:&nbsp;</div>
-					<form:select path="bgPeriod" class="js-states form-control"
-						id="id_label_single" style="width: 100%;">
-						<form:option value="11:00">11:00</form:option>
-						<form:option value="11:30">11:30</form:option>
-						<form:option value="12:00">12:00</form:option>
-						<form:option value="12:30">12:30</form:option>
-						<form:option value="13:00">13:00</form:option>
-						<form:option value="13:30">13:30</form:option>
-						<form:option value="14:00">14:00</form:option>
-						<form:option value="14:30">14:30</form:option>
-						<form:option value="17:00">17:00</form:option>
-						<form:option value="17:30">17:30</form:option>
-						<form:option value="18:00">18:00</form:option>
-						<form:option value="18:30">18:30</form:option>
-						<form:option value="19:00">19:00</form:option>
-						<form:option value="19:30">19:30</form:option>
-						<form:option value="20:00">20:00</form:option>
-						<form:option value="20:30">20:30</form:option>
-						<form:option value="21:00">21:00</form:option>
-						<form:option value="21:30">21:30</form:option>
-						<form:option value="22:00">22:00</form:option>
-					</form:select>
+					<br>
+
+					<div class="row no-gutters">
+						<div class="col-6 col-md-4">
+							<div class="col">
+								<div class="form-group black">
+									<div class="colorword">*</div>
+									&nbsp;用餐日期&nbsp;:&nbsp;
+								</div>
+								<div class="form-group inputState">
+									<div class="probootstrap-date-wrap">
+										<label for="probootstrap-date-arrival"> <span
+											class="icon ion-calendar"></span> <form:input path="bgDate"
+												type="text" id="probootstrap-date-arrival" name="checkin"
+												class="form-control" placeholder="日期" required="required" />
+										</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-12 col-sm-6 col-md-8">
+							<div class="col">
+								<div class="form-group black">
+									<div class="colorword">*</div>
+									&nbsp;用餐時段&nbsp;:&nbsp;
+								</div>
+								<form:select path="bgPeriod" class="js-states form-control"
+									id="id_label_single" style="width: 100%;" required="required">
+									<form:option value="11:00">11:00</form:option>
+									<form:option value="11:30">11:30</form:option>
+									<form:option value="12:00">12:00</form:option>
+									<form:option value="12:30">12:30</form:option>
+									<form:option value="13:00">13:00</form:option>
+									<form:option value="13:30">13:30</form:option>
+									<form:option value="14:00">14:00</form:option>
+									<form:option value="14:30">14:30</form:option>
+									<form:option value="17:00">17:00</form:option>
+									<form:option value="17:30">17:30</form:option>
+									<form:option value="18:00">18:00</form:option>
+									<form:option value="18:30">18:30</form:option>
+									<form:option value="19:00">19:00</form:option>
+									<form:option value="19:30">19:30</form:option>
+									<form:option value="20:00">20:00</form:option>
+									<form:option value="20:30">20:30</form:option>
+									<form:option value="21:00">21:00</form:option>
+									<form:option value="21:30">21:30</form:option>
+									<form:option value="22:00">22:00</form:option>
+								</form:select>
+							</div>
+						</div>
+					</div>
 					<br>
 					<div class="form-group">
-						<label>其他注意事項&nbsp;:&nbsp;</label>
+						<label class="black">其他注意事項&nbsp;:&nbsp;</label>
 						<form:textarea cols="40" rows="8" class="form-control"
 							path="bgNote" placeholder="如需特別告知等..." autofocus="autofocus" />
 						<!-- required="required" -->
@@ -300,40 +349,38 @@
 
 
 					<div class="container">
-
 						<div class="row">
-
-							<div class="col-md">
+							<div class="col-md Precautions">
 								<!-- 規定 -->
 								<br>
-								<h5>訂位注意事項：</h5>
+								<h5 class="black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;訂位注意事項：</h5>
 								<br>
 								<table rules="none" class="table table-hover ml-3">
-									<tbody>
+									<tbody class="littletitle2">
 										<tr>
-											<th width="4%" scope="row">1.</th>
+											<th width="4%" scope="row">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.</th>
 											<td>連絡電話如實填寫，方便通知您</td>
 										</tr>
 										<!-- 政策提示生成起始 -->
 										<tr>
-											<th width="4%" scope="row">2.</th>
+											<th width="4%" scope="row">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.</th>
 											<td>用餐時間限制請依照餐廳公告為主</td>
 										</tr>
 										<!-- 政策提示生成結束 -->
 										<tr>
-											<th scope="row">3.</th>
+											<th scope="row">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.</th>
 											<td>訂位僅保留15分鐘</td>
 										</tr>
 										<tr>
-											<th scope="row">4.</th>
+											<th scope="row">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.</th>
 											<td>明確標註，「幾位大人幾位小孩」，並寫上「所需兒童椅數量」</td>
 										</tr>
 										<tr>
-											<th scope="row">5.</th>
+											<th scope="row">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.</th>
 											<td>如有特殊需求，標註於「其他注意事項」</td>
 										</tr>
 										<tr>
-											<th scope="row">6.</th>
+											<th scope="row">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6.</th>
 											<td>線上訂位完全及無法更改</td>
 										</tr>
 									</tbody>
@@ -348,8 +395,8 @@
 						<!-- 						<input type="submit" -->
 						<!-- 							value="確&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;認&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;訂&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;位" -->
 						<!-- 							class="btn btn-primary btn-block"> -->
-						<button type="button" class="btn btn-primary" data-toggle="modal"
-							data-target="#exampleModalCenter">
+						<button type="button" class="btn btn-primary btn-block bottom"
+							data-toggle="modal" data-target="#exampleModalCenter">
 							確&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;認&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;訂&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;位
 						</button>
 					</div>
@@ -372,7 +419,7 @@
 								<div class="modal-footer">
 									<div class="container">
 										<div class="review">
-											<button class="btn btn-primary buttonback" id="bookingokok">回首頁</button>
+											<button class="btn btn-primary buttonback" id="bookingokok">回餐廳首頁</button>
 										</div>
 									</div>
 								</div>
@@ -407,7 +454,7 @@
 						<h5 class="modal-title bookingtitle">提醒&nbsp;&nbsp;!&nbsp;&nbsp;?</h5>
 					</div>
 					<div class="modal-body">
-					<br>
+						<br>
 						<p class="bookingok">離開此頁面，資料將消失</p>
 						<p class="bookingok">如需再次訂位，須重填您的資料</p>
 					</div>
@@ -484,11 +531,16 @@
 	</script>
 
 	<script>
-	
-	$("#bookingokok").click(function() {
-		$("#formok").submit();
-	});
-	
+		$("#bookingokok").click(function() {
+			$("#formok").submit();
+		});
+	</script>
+
+	<script>
+		$(function() {
+			$('.navbar-nav.ml-auto').children().eq(0).removeClass('active');
+			$('.navbar-nav.ml-auto').children().eq(1).addClass('active')
+		})
 	</script>
 
 

@@ -21,8 +21,8 @@ public class RoomsService implements RoomsServiceInterface {
 	 * @see com.startrip.hotel.service.RoomsServiceInterface#sava(com.startrip.hotel.model.Rooms)
 	 */
 	@Override
-	public int sava(Rooms rooms) {
-		return roomsDAOInterface.sava(rooms);
+	public int save(Rooms rooms) {
+		return roomsDAOInterface.save(rooms);
 	}
 
 	/* (non-Javadoc)

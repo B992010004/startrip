@@ -30,6 +30,7 @@
 
 
     <link rel="stylesheet" href="/startrip/assets/css/jquery-ui.css">
+    <link rel="shortcut icon" type="image/x-icon" href="/startrip/assets/images/rt/favicon.ico" />
 
 
     <style>
@@ -421,7 +422,7 @@
                 <hr>
                 <div class="row">
                     <div class="col-md">
-                        <h5>介紹：</h5>
+                        <h4>介紹：</h4>
                         <br>
                         <!-- 介紹生成起始 -->
                         <p class="ml-3">${hotel.hotelinfo }</p>
@@ -431,7 +432,7 @@
                 <hr>
                 <div class="row">
                     <div class="col-md">
-                        <h5>服務與設施：</h5>
+                        <h4>服務與設施：</h4>
                         <br>
                         <!-- 服務與設施生成起始 -->
                         <p class="ml-3">服務與設施列表</p>
@@ -442,7 +443,7 @@
                 <div class="row">
                     <div class="col-md">
                         <!-- 規定 -->
-                        <h5>政策提示：</h5>
+                        <h4>政策提示：</h4>
                         <br>
                         <table rules="none" class="table table-hover ml-3">
                             <tbody>
@@ -676,7 +677,7 @@
 		      var myTextdiv = $("<div class='myTextDiv' style='border-radius:10px;background-color:#0066FF;float:right;clear:both;max-width:146px;word-wrap: break-word;margin-bottom:5px;'></div>").append(myText);
 		      $('#displayMessage').append(myTextdiv);		      
 		//       var payload = JSON.stringify({'message':'Marco!'});
-		      var payload = JSON.stringify({"message":message, "messageStatus":"1", "senderAccName":'${LoginOK.firstname }'});		      
+		      var payload = JSON.stringify({"message":message, "messageStatus":"1", "senderAccName":'${LoginOK.lastname }'});		      
 		      //stomp.send("/app/chatRoom/" + senderPk + "/" + receiverPk, {}, payload);
 		      //一開始先推到對方廣播
 		      stomp.send("/app/brocast/message/" + senderPk + "/" + receiverPk, {}, payload);

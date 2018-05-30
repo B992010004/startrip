@@ -6,7 +6,7 @@ import com.startrip.hotel.model.Rooms;
 
 public interface RoomsServiceInterface {
 
-	int sava(Rooms rooms);
+	int save(Rooms rooms);
 
 	Rooms selectByPk(Integer roomsid);
 

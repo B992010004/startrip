@@ -35,6 +35,7 @@
 <link rel="stylesheet" href="/startrip/assets/css/rthome2.css">
 <link rel="stylesheet" href="/startrip/assets/css/rthome3.css">
 <link rel="stylesheet" href="/startrip/assets/css/rthome4.css">
+<link rel="shortcut icon" type="image/x-icon" href="/startrip/assets/images/rt/favicon.ico" />
 
 <style>
 .probootstrap-cover .overlay {
@@ -84,17 +85,20 @@
 .container {
 	padding: 0%;
 }
-.portfolio-item{
-	weight:100px;
+
+.portfolio-item {
+	weight: 100px;
 }
-.row{
-margin-left:10%;
-margin-right:10%;
-margin-bottom:4%;
+
+.row {
+	margin-left: 10%;
+	margin-right: 10%;
+	margin-bottom: 4%;
 }
-.row2{
-margin-left:15%;
-margin-right:15%;
+
+.row2 {
+	margin-left: 15%;
+	margin-right: 15%;
 }
 </style>
 
@@ -118,42 +122,42 @@ margin-right:15%;
 
 
 
-		<div class="col-md1">
-			<div class="bigheadline1">
-				<h2 class="display-4 probootstrap-section-heading">★餐廳嘉年華★</h2>
-			</div>
+	<div class="col-md1">
+		<div class="bigheadline1">
+			<h2 class="display-4 probootstrap-section-heading">★餐廳嘉年華★</h2>
 		</div>
+	</div>
 
-		<!-- --------------------------------------------------------------------------------------------------- -->
+	<!-- --------------------------------------------------------------------------------------------------- -->
 
-		<div class="row">
-			<c:forEach var='rtDetails' items='${RtDetails}'>
-				<div class="col-lg-3 portfolio-item">
-					<div class="card h-100">
-						<a href="/startrip/restaurant/${rtDetails.rtId}"><img
-							class="card-img-top"
-							src="/startrip/getPicture/rtImage/${rtDetails.photoArr[0]}"
-							alt="" height='229.2' width='345.98'></a>
-						<div class="card-body">
-							<h4 class="card-title">
-								<a href="/startrip/restaurant/${rtDetails.rtId}">${rtDetails.rtName}</a>
-							</h4>
-							<p class="card-text">${rtDetails.rtCuisine}</p>
-							<p class="card-text">${rtDetails.teCategory}</p>
-							<p class="card-text">${rtDetails.rtPricepount}</p>
-							<p class="card-text">${rtDetails.rtCounty}</p>
-							<div class="btn11">
-								<a href="/startrip/restaurant/${rtDetails.rtId}"
-									class="btn btn-primary">去了解</a>
-							</div>
+	<div class="row">
+		<c:forEach var='rtDetails' items='${RtDetails}'>
+			<div class="col-lg-3 portfolio-item">
+				<div class="card h-100">
+					<a href="/startrip/restaurant/${rtDetails.rtId}"><img
+						class="card-img-top"
+						src="/startrip/getPicture/rtImage/${rtDetails.photoArr[0]}" alt=""
+						height='229.2' width='345.98'></a>
+					<div class="card-body">
+						<h4 class="card-title">
+							<a href="/startrip/restaurant/${rtDetails.rtId}">${rtDetails.rtName}</a>
+						</h4>
+						<p class="card-text">${rtDetails.rtCuisine}</p>
+						<p class="card-text">${rtDetails.teCategory}</p>
+						<p class="card-text">${rtDetails.rtPricepount}</p>
+						<p class="card-text">${rtDetails.rtCounty}</p>
+						<div class="btn11">
+							<a href="/startrip/restaurant/${rtDetails.rtId}"
+								class="btn btn-primary">去了解</a>
 						</div>
 					</div>
 				</div>
-			</c:forEach>
-		</div>
+			</div>
+		</c:forEach>
+	</div>
 
-		<!-- --------------------------------------------------------------------------------------------------- -->
-<div class="row2">
+	<!-- --------------------------------------------------------------------------------------------------- -->
+	<div class="row2">
 
 		<div class="form-group">縣市&nbsp;:&nbsp;</div>
 		<select path="" class="js-states form-control" id="id_label_single"
@@ -265,5 +269,14 @@ margin-right:15%;
 			</div>
 		</div>
 	</footer>
+
+
 </body>
+
+<script>
+	$(function() {
+		$('.navbar-nav.ml-auto').children().eq(0).removeClass('active');
+		$('.navbar-nav.ml-auto').children().eq(1).addClass('active')
+	})
+</script>
 </html>
