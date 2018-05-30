@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="/startrip/assets/css/select2.css">
     <link rel="stylesheet" href="/startrip/assets/css/helpers.css">
     <link rel="stylesheet" href="/startrip/assets/css/style.css">
+    <link rel="shortcut icon" type="image/x-icon" href="/startrip/assets/images/rt/favicon.ico" />
      <script src="/startrip/assets/js/jquery.min.js"></script>
     <script src="/startrip/assets/js/popper.min.js"></script>
     <script src="/startrip/assets/js/bootstrap.min.js"></script>
@@ -77,14 +78,9 @@
         	cursor: pointer;
         
         }
-        .random{
-        
+        .random{        
         cursor: pointer;
-        }
-        
-        
-        
-        
+        }                
     </style>
     
     
@@ -138,12 +134,9 @@ $('.navbar-nav.ml-auto').children().eq(2).addClass('active')
         		this.src = "/startrip/assets/transport/images/setOff.jpg";
                for (var i = 1; i <= 31; i++) {
               	 document.getElementById("idimg" + i).alt=""; 
-               } 
-            
+               }      
     	  	}    
-        }
-        
-        
+        }  
         function getRandom(){
 			$("#QQ").html("<span>"+'您選的座位為'+Math.floor(Math.random()*31+1)+'號'+"</span>");
 			
@@ -282,27 +275,20 @@ $('.navbar-nav.ml-auto').children().eq(2).addClass('active')
             </tr>
         </table>
         <div align="center">
-<a  id="random" style="border-color:green;border-width:3px;border-style:outset ;">電腦選位</a>
- </div>>
+<a class="random" id="random" style="background:rgba(90%,95%,100%,0.85);
+border:1px solid silver;
+display:inline-block;
+padding:0.5em 0.75em; ;">電腦選位</a>
+ </div>
 
 <input type="submit" value="送出" class="btn btn-primary btn-block">
        </div>
      
         <br>
-        <h1 id="QQ"></h1>                                                                                    
-                    
-                    
-                   
+        <h1 id="QQ"></h1>                                                                                                       
                 </div>
-                <br>
-          
+                <br>  
     </section> 
-    
-
-
-                              
-                          
-
     <div>
 		<jsp:include page="/WEB-INF/views/footer.jsp" flush="true" />
 	</div>

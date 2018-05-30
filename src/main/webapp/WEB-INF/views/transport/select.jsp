@@ -40,6 +40,7 @@
     <link rel="stylesheet" href="/startrip/assets/css/select2.css">
     <link rel="stylesheet" href="/startrip/assets/css/helpers.css">
     <link rel="stylesheet" href="/startrip/assets/css/style.css">
+    <link rel="shortcut icon" type="image/x-icon" href="/startrip/assets/images/rt/favicon.ico" />
     <style>
         #showMap {
             width: 300px;
@@ -76,7 +77,19 @@
         .mapImage {
             cursor: pointer;
 
-        }
+         } 
+         .stationImage { 
+             cursor: pointer; 
+
+         } 
+        .endstationicon { 
+             cursor: pointer; 
+
+         } 
+         
+         tr:nth-child(even){
+	background-color:#ccc;
+	}
     </style>
    
     
@@ -176,7 +189,6 @@ $(function(){
 $('.navbar-nav.ml-auto').children().eq(0).removeClass('active');
 $('.navbar-nav.ml-auto').children().eq(2).addClass('active')
 });
-
 </script>
 <script>
         function getArea(data) {
@@ -193,7 +205,7 @@ $('.navbar-nav.ml-auto').children().eq(2).addClass('active')
                     $("#gm").empty();
                     for (var i = 0; i < response.length; i++) {
                         $("#tbo").append("<tr><td>" + response[i].area + "</td>" +
-                            "<td><img id='startStationIcon' width='30' height='30' src='/startrip/assets/transport/images/starticon.png'><span>" + response[i].stationName + "</span><img id='endStationIcon' width='30' height='30' src='/startrip/assets/transport/images/endicon.png'></td>" +
+                            "<td align='center'><img align='left' class='stationImage' id='startStationIcon' width='30' height='30' src='/startrip/assets/transport/images/starticon.png'><span>" + response[i].stationName + "</span><img align='right' class='stationImage' id='endStationIcon' width='30' height='30' src='/startrip/assets/transport/images/endicon.png'></td>" +
                             
                             "<td ><img class='mapImage' id='getAddress' width='30' height='30' src='/startrip/assets/transport/images/mapicon.png' ><span>" + response[i].address + "</span></td></tr>");
                     }
@@ -256,10 +268,8 @@ $('.navbar-nav.ml-auto').children().eq(2).addClass('active')
 <body>
     <div>
         <jsp:include page="/WEB-INF/views/header.jsp" flush="true" />
-    </div>
-    
+    </div>    
     <!-- 以下為訂票功能 -->
-
     <section class="probootstrap-cover overflow-hidden relative" style="background-image: url('/startrip/assets/transport/images/into.jpg');"
         data-stellar-background-ratio="0.5" id="section-home">
         <div class="container">
@@ -285,7 +295,7 @@ $('.navbar-nav.ml-auto').children().eq(2).addClass('active')
                             <div class="col-md">
                                 <div class="form-group inputState">
                                     <label for="id_label_people">
-                                       <a > 出發地點</a>
+                                       <a> 出發地點</a>
                                         <select id="inputArea" class="form-control" name="">
                                             <option value="">請選擇出發地點</option>
                                             <option value="基隆">基隆</option>
@@ -463,7 +473,7 @@ class="form-control" placeholder="請輸入訂票電話">
                     </thead>
                     <tbody id="tbo">
                         <tr><td>台北 </td>
-                            <td>台北車站 </td>
+                            <td align='center'><img align='left' class='stationImage' id='startStationIcon' width='30' height='30' src='/startrip/assets/transport/images/starticon.png'><span>台北車站 </span><img align='right' class='stationImage' id='endStationIcon' width='30' height='30' src='/startrip/assets/transport/images/endicon.png'></td>
                             <td>
                                 <img class='mapImage' id='getAddress' width='30' height='30' src='/startrip/assets/transport/images/mapicon.png'>
                                 <span>台北市中正區市民大道一段168號</span>
@@ -471,7 +481,7 @@ class="form-control" placeholder="請輸入訂票電話">
                         </tr>
                         <tr>
                             <td>台北 </td>
-                            <td>市府轉運站 </td>
+                            <td align='center'><img align='left' class='stationImage' id='startStationIcon' width='30' height='30' src='/startrip/assets/transport/images/starticon.png'><span>市府轉運站 </span><img align='right' class='stationImage' id='endStationIcon' width='30' height='30' src='/startrip/assets/transport/images/endicon.png'></td>
                             <td>
                                 <img class="mapImage" id="getAddress" width="30" height="30" src="/startrip/assets/transport/images/mapicon.png">
                                 <span>台北市信義區忠孝東路五段6號 </span>
@@ -479,7 +489,7 @@ class="form-control" placeholder="請輸入訂票電話">
                         </tr>
                         <tr>
                             <td>台北 </td>
-                            <td>士林轉運站 </td>
+                            <td align='center'><img align='left' class='stationImage' id='startStationIcon' width='30' height='30' src='/startrip/assets/transport/images/starticon.png'><span>士林轉運站 </span><img align='right' class='stationImage' id='endStationIcon' width='30' height='30' src='/startrip/assets/transport/images/endicon.png'></td>
                             <td>
                                 <img class="mapImage" id="getAddress" width="30" height="30" src="/startrip/assets/transport/images/mapicon.png">
                                 <span>臺北市士林區福德路1號 </span>
@@ -487,7 +497,7 @@ class="form-control" placeholder="請輸入訂票電話">
                         </tr>
                         <tr>
                             <td>台北 </td>
-                            <td>松山機場站 </td>
+                            <td align='center'><img align='left' class='stationImage' id='startStationIcon' width='30' height='30' src='/startrip/assets/transport/images/starticon.png'><span>松山機場站</span><img align='right' class='stationImage' id='endStationIcon' width='30' height='30' src='/startrip/assets/transport/images/endicon.png'> </td>
                             <td>
                                 <img class="mapImage" id="getAddress" width="30" height="30" src="/startrip/assets/transport/images/mapicon.png">
                                 <span>台北市松山區敦化北路340之9號 </span>
@@ -495,7 +505,7 @@ class="form-control" placeholder="請輸入訂票電話">
                         </tr>
                         <tr>
                             <td>台北 </td>
-                            <td>南港轉運站 </td>
+                            <td align='center'><img align='left' class='stationImage' id='startStationIcon' width='30' height='30' src='/startrip/assets/transport/images/starticon.png'><span>南港轉運站 </span><img align='right' class='stationImage' id='endStationIcon' width='30' height='30' src='/startrip/assets/transport/images/endicon.png'></td>
                             <td>
       							<img class="mapImage" id="getAddress" width="30" height="30" src="/startrip/assets/transport/images/mapicon.png">
       							   <span>台北市南港區南港路一段313號 </span>
@@ -503,7 +513,7 @@ class="form-control" placeholder="請輸入訂票電話">
                         </tr>
                         <tr>
                             <td>台北 </td>
-                            <td>捷運南港展覽館 </td>
+                            <td align='center'><img align='left' class='stationImage' id='startStationIcon' width='30' height='30' src='/startrip/assets/transport/images/starticon.png'><span>捷運南港展覽館 </span><img align='right' class='stationImage' id='endStationIcon' width='30' height='30' src='/startrip/assets/transport/images/endicon.png'></td>
                             <td>
                        <img class="mapImage" id="getAddress" width="30" height="30" src="/startrip/assets/transport/images/mapicon.png">
                                 <span>台北市南港區經貿二路1號(163櫃)</span> 
@@ -511,7 +521,7 @@ class="form-control" placeholder="請輸入訂票電話">
                         </tr>
                         <tr>
                             <td>台北 </td>
-                            <td>捷運圓山站 </td>
+                            <td align='center'><img align='left' class='stationImage' id='startStationIcon' width='30' height='30' src='/startrip/assets/transport/images/starticon.png'><span>捷運圓山站 </span><img align='right' class='stationImage' id='endStationIcon' width='30' height='30' src='/startrip/assets/transport/images/endicon.png'></td>
                             <td>
                                 <img class="mapImage" id="getAddress" width="30" height="30" src="/startrip/assets/transport/images/mapicon.png">
                                 <span>台北市大同區酒泉街9-1號</span>
@@ -525,7 +535,7 @@ class="form-control" placeholder="請輸入訂票電話">
                         <a href="https://maps.google.com/maps?q=台北市中正區市民大道一段168號&amp;z=11" data-geo="" target="_blank">
                             <img class="map" 
                             alt=台北市中正區市民大道一段168號 
-                            src="https://maps.google.com/maps/api/staticmap?zoom=15&size=700x700&maptype=terrain&sensor=false&center=台北市中正區市民大道一段168號&markers=color:blue%7Clabel:S%7C台北市中正區市民大道一段168號&key=AIzaSyARfDct4ecrevMJjHgcrjmPOLfbM6X9N7w">
+                            src="https://maps.google.com/maps/api/staticmap?zoom=15&size=400x600&maptype=terrain&sensor=false&center=台北市中正區市民大道一段168號&markers=color:blue%7Clabel:S%7C台北市中正區市民大道一段168號&key=AIzaSyARfDct4ecrevMJjHgcrjmPOLfbM6X9N7w">
                         </a>
                     </div>
                 </div>
@@ -575,5 +585,24 @@ $("#CEle").click(function(){
 	}); 
        
 </script>   
+<script>
+$(document).on('click', '#startStationIcon', function () {
+//		alert('aaaa')  
+	$("#inputStation").empty();
+	var stationSelectedName = $(this).parent('td').find('span').text()
+	$('#inputStation').append($('<option selected="selected">'+ stationSelectedName +'</option>'))
+});
+$(document).on('click', '#endStationIcon', function () {
+//		alert('aaaa')
+    $("#inputStation2").empty();
+	var stationSelectedName1 = $(this).parent('td').find('span').text()
+//	alert(stationSelectedName1)
+	$('#inputStation2').append($('<option selected="selected">'+ stationSelectedName1 +'</option>'))
+});
+
+</script>
+
+
+
 </body>
-</htm"C:/Users/III/Desktop/地圖物件/endicon.png"l>
+</html>

@@ -29,6 +29,7 @@
   <link rel="stylesheet" href="/startrip/assets/css/style.css">
 
   <link rel="stylesheet" href="/startrip/assets/css/range.css">
+  <link rel="shortcut icon" type="image/x-icon" href="/startrip/assets/images/rt/favicon.ico" />
   <style>
     .roomlink:link,
     .roomlink:visited,

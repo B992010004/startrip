@@ -170,7 +170,7 @@ public class TravelPlanController {
 		bean.setStartDate(startDate);
 		bean.setTravelName(travelName);
 		bean.setMail(mail);
-		Integer img =(int)(Math.random()*10+1);
+		Integer img =(int)(Math.random()*12+1);
 		bean.setImg(img+".jpg");
 		int days = (int)((endDate.getTime()-startDate.getTime())/(1000*60*60*24)+1);
 		bean.setTravelDays(days);
