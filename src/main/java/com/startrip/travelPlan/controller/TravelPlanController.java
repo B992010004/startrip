@@ -429,11 +429,10 @@ public class TravelPlanController {
 	@RequestMapping(value="list/All/{mail}/{travelId}",method=RequestMethod.GET)
 	public String getAllList(Model model,HttpServletRequest request,
 			@PathVariable("mail")String mail,@PathVariable("travelId")Integer travelId) {
-//		System.out.println(mail+","+travelId);
-		TravelAllBean tb = new TravelAllBean();
-		tb.setMail(mail);
-		tb.setTravelId(travelId);
-	
+		Integer memberId =memberservice.select(mail).getMemberid();
+		TravelAllBean tab = travelservice.Select_Travel(memberId, travelId);
+		HttpSession session = request.getSession();
+		session.setAttribute("Travel", tab);
 		return "/TravelProject/TravelList/AllList";
 	}
 	
