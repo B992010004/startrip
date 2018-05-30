@@ -246,8 +246,10 @@
 				$(e.target).removeClass('active');
 			})
 			//刪除行程
-			$(document).on(	"click",".del",function(e) {
-// 								console.log(e.target.id)
+			$(document).on(	"click",".icon.del",function(e) {
+				e.stopPropagation();
+								alert(e.target.id)
+								alert(e.cancelBubble)
 								var del = {}
 								del.email = "${LoginOK.mail}";
 								del.id = $('#' + e.target.id).prev().prev().prev().data('travelid');
@@ -267,6 +269,9 @@
 							})//click end
 
 			$(document).on(	"click",".update",function(e) {
+				alert(e.target.id)
+				alert(e.cancelBubble=true)
+			e.stopPropagation();
 								var update = {}
 								update.mail = "${LoginOK.mail}";
 								update.travelId = $('#' + e.target.id).prev().prev().data('travelid');
@@ -298,9 +303,9 @@
 								}
 							})
 					})
-											}
-										})
-							})//click end
+					}
+				})
+	})//click end
 							
 	$(document).on('click','.bgImg',function(e){
 		console.log(e.target)
@@ -309,10 +314,11 @@
 		var travelId=$(e.target).find('h5').data('travelid')
 		data.mail=mail
 		data.travelId=travelId
-		
+		console.log(mail+","+travelId)
 		$.get('/startrip/travel/id',data,function(){
 			
 		})
+// 		alert('enter')
 		location.href = "/startrip/list/All/" + mail + "/" + travelId
 	})						
 							
@@ -321,12 +327,12 @@
 $(document).on('click', '.btn.btn-primary.btn-lg.btn-block', function(e) {
 				var value = {}
 				mail = '${LoginOK.mail}'
-				travelName = $('#' + e.target.id).prev().prev().text();
-				travelId = $('#' + e.target.id).prev().prev().data('travelid');
+				travelName = $('#' + e.target.id).prev().prev().prev().text();
+				travelId = $('#' + e.target.id).prev().prev().prev().data('travelid');
 				value.mail = mail;
 				value.travelId = travelId;
 				value.travelName=travelName;
-				console.log(travelId)
+				console.log(travelId) 
 				$('#listview').empty();
 				var docFrag = $(document.createDocumentFragment());
 				$.get("/startrip/travel/searchPlan", value, function(data) {
@@ -334,21 +340,35 @@ $(document).on('click', '.btn.btn-primary.btn-lg.btn-block', function(e) {
 					$('input[name="travelName"]').val(data.travelName);
 					$('input[name="travelid"]').val(travelId)
 					var lists=$('<div class=lists></div>')
+					
+					console.log('days='+data.travelDays)
 					for(var i =0;i<data.travelDays;i++){
 						var daytitle =$('<h4 class="listtitle">Day'+(i+1)+'</h4>');
 						var list=$('<div class="list"></div>')
-						value.day=i;
+						value.day=(i+1);
+						console.log()
 						
-						$.get('/startrip/list/travelId/name',value,function(data){
-							console.log(data)
+					$.ajax({
+						url : "/startrip/list/travelId/name",
+						type : "GET",
+						dataType : "json",
+						data : value,
+						contentType : "application/json; charset=utf-8",
+						async: false, 
+						success : function(data) {
+							
 							for(var j = 0;j<data.length;j++){
-								list.append("【"+data[j].viewName+"】+")
+								console.log(data[j].viewName+','+data[j].tripday)
+								list.append("【"+data[j].viewName+"】→")
 								if(j==(data.length-1)){
 									list.append("【"+data[j].viewName+"】")
 								}
 							}
 							
-						})
+						}
+		})
+						
+						
 					lists.append([daytitle,list])
 						
 					docFrag.append(lists)
@@ -370,6 +390,7 @@ $(document).on('click', '.btn.btn-primary.btn-lg.btn-block', function(e) {
 						type : "GET",
 						dataType : "json",
 						data : datas,
+						async: false, 
 						contentType : "application/json; charset=utf-8",
 						success : function(data) {
 							console.log(data)
@@ -377,9 +398,9 @@ $(document).on('click', '.btn.btn-primary.btn-lg.btn-block', function(e) {
 							}
 						})
 					
+// 				location.href = "/startrip/list/All/" + mail + "/" + travelId
 				})
 
-// 				location.href = "/startrip/list/All/" + mail + "/" + travelId
 			})
 })
 			//dataPicker
@@ -492,7 +513,7 @@ function searchTravels() {
 							 $("#left").click(function(){
 						            now_page--;/*每次点击上一页，页数-1*/
 						            $("#now").text(now_page);  //改变分页按钮上显示的页数
-						            if(now_page-1<=1){
+						            if(now_page-1<1){
 						            	$("#left").addClass('not-active') 
 						                /*如果是第一页，就禁用a标签*/
 						            }
@@ -535,13 +556,13 @@ function  dataDisplay(data,start,end){
 			var imgrow = $('<div class="row" "></div>');
 			var img = $('<img id="travelimg" class="card-img-top col-10" src="/startrip/show/'+data[i].img+'" alt="Card image cap">')
 			var body = $('<div class="card-body"></div>')
-			var title = $('<h5 class="card-title" data-travelid="'+data[i].travelId+'">'	+ data[i].travelName + '</h5><div class="id"  style="display:none;">'+ data[i].travelId + '</div>')
+			var title = $('<h3 class="card-title" data-travelid="'+data[i].travelId+'">'	+ data[i].travelName + '</h3><div class="id"  style="display:none;">'+ data[i].travelId + '</div>')
 
 			start = new Date(data[i].startDate);
 			StartDate = format(start);
 			end = new Date(data[i].endDate);
-			endDate = format(end);
-			var text = $('<button  id="planset'+i+'"  class="btn btn-primary btn-lg btn-block" type="submit" id=btn'+i+'>匯入行程</button>')
+			endDate = format(end); 
+			var text = $('<div class="tavelDays">'+data[i].travelDays+'日遊</div><button  id="planset'+i+'"  class="btn btn-primary btn-lg btn-block" type="submit" id=btn'+i+'>匯入行程</button>')
 			body.append([ title,text ]);
 			imgrow.append(img);
 			card.append([ imgrow, body ]);
