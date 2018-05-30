@@ -676,7 +676,7 @@
 		      var myTextdiv = $("<div class='myTextDiv' style='border-radius:10px;background-color:#0066FF;float:right;clear:both;max-width:146px;word-wrap: break-word;margin-bottom:5px;'></div>").append(myText);
 		      $('#displayMessage').append(myTextdiv);		      
 		//       var payload = JSON.stringify({'message':'Marco!'});
-		      var payload = JSON.stringify({"message":message, "messageStatus":"1", "senderAccName":'${LoginOK.firstname }'});		      
+		      var payload = JSON.stringify({"message":message, "messageStatus":"1", "senderAccName":'${LoginOK.lastname }'});		      
 		      //stomp.send("/app/chatRoom/" + senderPk + "/" + receiverPk, {}, payload);
 		      //一開始先推到對方廣播
 		      stomp.send("/app/brocast/message/" + senderPk + "/" + receiverPk, {}, payload);

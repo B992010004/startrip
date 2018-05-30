@@ -24,7 +24,7 @@ public class RoomsDAO implements RoomsDAOInterface {
 	 * .Rooms)
 	 */
 	@Override
-	public int sava(Rooms rooms) {
+	public int save(Rooms rooms) {
 		Session session = factory.getCurrentSession();
 		int pk = (Integer) session.save(rooms);
 		return pk;

@@ -126,9 +126,12 @@ public class HotelPaymentController {
 		order.setRoomid(room.getRoomid());
 		order.setSinglenightprice(room.getBasicprice());
 		order.setTotalamount(totalAmount);
-
+		
 		hotelOrderServiceInterface.save(order);
 		System.out.println(order);
+		room.setRoomstate(1);
+		room.setOpendate(new java.sql.Date(format.parse(searchBean.getCheckOut()).getTime()));
+		roomsServiceInterface.save(room);
 
 		try {
 			String html = all.aioCheckOut(aio, invoice);
