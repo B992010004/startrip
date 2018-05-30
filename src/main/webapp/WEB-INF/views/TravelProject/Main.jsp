@@ -190,6 +190,13 @@
 							<input placeholder="請輸入結束日期" type="text" name="endDate"
 								id="insertendDate" class="form-control" />
 						</div>
+						<div class="form-group" id="listview">
+						<div class=lists>
+						<h4 class="traveltitle"></h4>
+						<div class="list"></div>
+						</div>
+						</div>
+						
 						<input name="mail" value="${LoginOK.mail}" type="hidden">
 						<input name="travelid" type="hidden">
 
@@ -320,12 +327,34 @@ $(document).on('click', '.btn.btn-primary.btn-lg.btn-block', function(e) {
 				value.travelId = travelId;
 				value.travelName=travelName;
 				console.log(travelId)
+				$('#listview').empty();
+				var docFrag = $(document.createDocumentFragment());
 				$.get("/startrip/travel/searchPlan", value, function(data) {
-					console.log(data)
+					
 					$('input[name="travelName"]').val(data.travelName);
 					$('input[name="travelid"]').val(travelId)
-					console.log($('input[name="travelId"]').val())
+					var lists=$('<div class=lists></div>')
+					for(var i =0;i<data.travelDays;i++){
+						var daytitle =$('<h4 class="listtitle">Day'+(i+1)+'</h4>');
+						var list=$('<div class="list"></div>')
+						value.day=i;
+						
+						$.get('/startrip/list/travelId/name',value,function(data){
+							console.log(data)
+							for(var j = 0;j<data.length;j++){
+								list.append("【"+data[j].viewName+"】+")
+								if(j==(data.length-1)){
+									list.append("【"+data[j].viewName+"】")
+								}
+							}
 							
+						})
+					lists.append([daytitle,list])
+						
+					docFrag.append(lists)
+					
+					}
+					$('#listview').append(docFrag)
 					$("#modeal").modal({
 						"show" : true,
 					})
@@ -371,7 +400,7 @@ $(document).on('click', '.btn.btn-primary.btn-lg.btn-block', function(e) {
 				startDate.datepicker("option", "maxDate", getDate(this));
 			});
 			
-			var dateFormat2 = "yy-mm-dd", startDate = $("#insertstartDate")
+	var dateFormat2 = "yy-mm-dd", startDate = $("#insertstartDate")
 			.datepicker({
 				dateFormat : "yy-mm-dd",
 				defaultDate : "+1w",

@@ -77,7 +77,10 @@ public class Listservice implements ITravelListService {
 	public List<TravelListBean> selectTravelList(Integer travelId){
 		return listDao.selectTravelList( travelId);
 	}
-	
-	
+	@Transactional
+	@Override
+	public List<TravelListBean> Select_travellist_Id(Integer travelId) {
+		return listDao.Select_travellist_Id(travelId);
+	}
 	
 }

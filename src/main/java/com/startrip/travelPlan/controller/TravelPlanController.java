@@ -466,6 +466,24 @@ public class TravelPlanController {
 		System.out.println(all.toString());
 		return all;
 	}
+	
+	@RequestMapping(value="list/travelId/name",method=RequestMethod.GET)
+	@ResponseBody
+	public ArrayList<TravelListBean> getTravelList2(@RequestParam("travelId")Integer travelId
+			,@RequestParam("day")Integer day){
+		System.out.println("travelId/name"+travelId);
+		TravelListBean bean = new TravelListBean();
+		List<TravelListBean> result  =listservice.Select_travellist(travelId,day);
+		ArrayList<TravelListBean> all = new ArrayList<>();
+		for(int i =0;i<result.size();i++) {
+		bean=result.get(i);
+		all.add(bean);
+		}
+		
+		System.out.println(all.toString());
+		return all;
+	}
+	
 	@RequestMapping(value="travel/checkday",method=RequestMethod.GET)
 	@ResponseBody
 	public boolean getAllList(Model model,TravelListBean bean,String mail) {
