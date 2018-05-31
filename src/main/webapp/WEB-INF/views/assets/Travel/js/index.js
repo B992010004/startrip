@@ -14,12 +14,22 @@ var map;
       
       }
 
-			$("#switch").click(
+			$("#switch").click( 
 				function(){
-				 
-						$(".aside").toggle();
-						$(".aside1").toggle();}
+				 			
+							$(".aside").toggle(
+									function(){
+										
+								$("#switch").text("旅遊文章")	
+									}
+									)
+						
 				
+							$(".aside1").toggle(
+									function(){$("#switch").text("行程清單")	
+									}	
+							)
+				}
 				
 		);
 			$("#goback").click(

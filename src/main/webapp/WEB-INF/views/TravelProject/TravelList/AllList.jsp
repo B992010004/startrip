@@ -47,7 +47,7 @@
 
 	<div class="main" >
 		<div class="switch">
-		    <a id="switch"type="button" class="btn btn-outline-primary switch">切換</a>
+		    <a id="switch"type="button" class="btn btn-outline-primary switch">旅遊文章</a>
 		     <a id="goback"  type="button" href="/startrip/TravelMain" class="btn btn-outline-primary switch">返回</a>
 		</div>
     
