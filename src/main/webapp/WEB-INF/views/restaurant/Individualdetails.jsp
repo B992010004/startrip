@@ -42,7 +42,8 @@
 <link rel="stylesheet" href="/startrip/assets/css/rthome2.css">
 <link rel="stylesheet" href="/startrip/assets/css/rthome3.css">
 <link rel="stylesheet" href="/startrip/assets/css/rthome4.css">
-<link rel="shortcut icon" type="image/x-icon" href="/startrip/assets/images/rt/favicon.ico" />
+<link rel="shortcut icon" type="image/x-icon"
+	href="/startrip/assets/images/rt/favicon.ico" />
 
 <style>
 .probootstrap-cover .overlay {
@@ -64,6 +65,9 @@
 
 .littletitle1 {
 	text-align: left;
+	padding-top: 2%;
+	font-size: 20px;
+	color: black;
 }
 
 #section-home {
@@ -127,10 +131,6 @@ tbody th img {
 .probootstrap-section-heading {
 	border-bottom: #00CA4C 5px solid;
 	padding: 1%;
-}
-
-.littletitle1 {
-	padding-top: 2%;
 }
 
 .map {
@@ -236,16 +236,17 @@ ul li {
 	ist-style-type: none;
 }
 
-.littletitle1 {
-	font-size: 20px;
-}
-
 .ml-3 {
 	font-size: 20px;
 }
 
 .word {
 	font-size: 24px;
+	color: black;
+}
+
+.tbodycolor {
+	color: black;
 }
 </style>
 
@@ -370,7 +371,7 @@ ul li {
 					<br>
 					<h5 class="word">餐廳詳細資料：</h5>
 					<br>
-					<table rules="none" class="table table-hover ml-3">
+					<table rules="none" class="table table-hover ml-3 tbodycolor">
 						<tbody>
 							<tr>
 								<th width="4%" scope="row">1.</th>
@@ -870,7 +871,7 @@ ul li {
              });
          });
 	</script>
-	
+
 	<script>
 	
 	$(function() {
