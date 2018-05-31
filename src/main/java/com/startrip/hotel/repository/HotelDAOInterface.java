@@ -16,5 +16,9 @@ public interface HotelDAOInterface {
 	List<HotelsBean> selectByMemberid(Integer memberid);
 
 	List<HotelsBean> selectByCriteria(SearchHotel searchHotel);
+	
+	List<HotelsBean> selectPage(Integer firstResult, Integer maxResults, SearchHotel searchHotel);
+	
+	List<Integer> count();
 
 }

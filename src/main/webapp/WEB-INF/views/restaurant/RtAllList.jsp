@@ -9,7 +9,7 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>餐廳總覽</title>
+<title>餐廳嘉年華</title>
 
 <meta name="description"
 	content="Free Bootstrap 4 Theme by ProBootstrap.com">
@@ -35,7 +35,8 @@
 <link rel="stylesheet" href="/startrip/assets/css/rthome2.css">
 <link rel="stylesheet" href="/startrip/assets/css/rthome3.css">
 <link rel="stylesheet" href="/startrip/assets/css/rthome4.css">
-<link rel="shortcut icon" type="image/x-icon" href="/startrip/assets/images/rt/favicon.ico" />
+<link rel="shortcut icon" type="image/x-icon"
+	href="/startrip/assets/images/rt/favicon.ico" />
 
 <style>
 .probootstrap-cover .overlay {
@@ -100,6 +101,7 @@
 	margin-left: 15%;
 	margin-right: 15%;
 }
+
 </style>
 
 
@@ -109,6 +111,7 @@
 
 <body>
 	<jsp:include page="/WEB-INF/views/header.jsp" flush="true" />
+
 	<section class="probootstrap-cover overflow-hidden relative"
 		style="background-image: url('/startrip/assets/images/rt/03.jpg');">
 		<div class="overlay"></div>
@@ -157,100 +160,95 @@
 	</div>
 
 	<!-- --------------------------------------------------------------------------------------------------- -->
-	<div class="row2">
+	
+	
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div id="selectCheckBox">
+						<label class="sr-only-focusable">菜系類別&nbsp;:&nbsp;</label>
+						<ul>
+							<li><input id="cr1" type="checkbox" name="family" value="家庭">中式料理</li>
+							<li><input id="cr2" type="checkbox" name="couple"
+								value="伴侶旅行">日式料理</li>
+							<li><input id="cr3" type="checkbox" name="alone"
+								value="單獨旅行">港式料理</li>
+							<li><input id="cr4" type="checkbox" name="business"
+								value="商務">韓式料理</li>
+							<li><input id="cr5" type="checkbox" name="friends"
+								value="朋友">泰式料理</li>
+							<li><input id="cr6" type="checkbox" name="friends"
+								value="朋友">法式料理</li>
+							<li><input id="cr7" type="checkbox" name="friends"
+								value="朋友">印度料理</li>
+							<li><input id="cr8" type="checkbox" name="friends"
+								value="朋友">南洋料理</li>
+							<li><input id="cr9" type="checkbox" name="friends"
+								value="朋友">墨西哥料理</li>
+							<li><input id="cr10" type="checkbox" name="business"
+								value="商務">新疆料理</li>
+							<li><input id="cr11" type="checkbox" name="friends"
+								value="朋友">四川料理</li>
+							<li><input id="cr12" type="checkbox" name="friends"
+								value="朋友">美式料理</li>
+							<li><input id="cr13" type="checkbox" name="friends"
+								value="朋友">英式料理</li>
+							<li><input id="cr14" type="checkbox" name="friends"
+								value="朋友">台式料理</li>
+							<li><input id="cr15" type="checkbox" name="friends"
+								value="朋友">素食料理</li>
 
-		<div class="form-group">縣市&nbsp;:&nbsp;</div>
-		<select path="" class="js-states form-control" id="id_label_single"
-			style="width: 100%;">
-			<option value="">請選擇縣市</option>
-			<option value="臺北市">臺北市</option>
-			<option value="新北市">新北市</option>
-			<option value="桃園市">桃園市</option>
-			<option value="臺中市">臺中市</option>
-			<option value="臺南市">臺南市</option>
-			<option value="高雄市">高雄市</option>
-			<option value="基隆市">基隆市</option>
-			<option value="新竹市">新竹市</option>
-			<option value="嘉義市">嘉義市</option>
-			<option value="新竹縣">新竹縣</option>
-			<option value="苗栗縣">苗栗縣</option>
-			<option value="彰化縣">彰化縣</option>
-			<option value="南投縣">南投縣</option>
-			<option value="雲林縣">雲林縣</option>
-			<option value="嘉義縣">嘉義縣</option>
-			<option value="屏東縣">屏東縣</option>
-			<option value="宜蘭縣">宜蘭縣</option>
-			<option value="花蓮縣">花蓮縣</option>
-			<option value="臺東縣">臺東縣</option>
-			<option value="澎湖縣">澎湖縣</option>
-		</select> <br>
-		<div class="form-group">地區&nbsp;:&nbsp;</div>
-		<select path="" class="js-states form-control" id="id_label_single"
-			style="width: 100%;">
-			<option value="">請選擇地區</option>
-			<option value="花蓮市">花蓮市</option>
-			<option value="鳳林鎮">玉里鎮</option>
-			<option value="鳳林鎮">鳳林鎮</option>
-			<option value="新城鄉">新城鄉</option>
-			<option value="吉安鄉">吉安鄉</option>
-			<option value="壽豐鄉">壽豐鄉</option>
-			<option value="光復鄉">光復鄉</option>
-			<option value="豐濱鄉">豐濱鄉</option>
-			<option value="瑞穗鄉">瑞穗鄉</option>
-			<option value="富里鄉">富里鄉</option>
-			<option value="秀林鄉">秀林鄉</option>
-			<option value="萬榮鄉">萬榮鄉</option>
-			<option value="卓溪鄉">卓溪鄉</option>
-		</select> <br>
-		<div class="form-group">菜系類別&nbsp;:&nbsp;</div>
-		<select path="" class="js-states form-control" id="id_label_single"
-			style="width: 100%;">
-			<option value="">請選擇菜系</option>
-			<option value="中式料理">中式料理</option>
-			<option value="日式料理">日式料理</option>
-			<option value="港式料理">港式料理</option>
-			<option value="韓式料理">韓式料理</option>
-			<option value="泰式料理">泰式料理</option>
-			<option value="法式料理">法式料理</option>
-			<option value="印度料理">印度料理</option>
-			<option value="南洋料理">南洋料理</option>
-			<option value="墨西哥料理">墨西哥料理</option>
-			<option value="新疆料理">新疆料理</option>
-			<option value="四川料理">四川料理</option>
-			<option value="美式料理">美式料理</option>
-			<option value="英式料理">英式料理</option>
-			<option value="台式料理">台式料理</option>
-			<option value="素食料理">素食料理</option>
-		</select> <br>
-		<div class="form-group">餐點類別&nbsp;:&nbsp;</div>
-		<select path="" class="js-states form-control" id="id_label_single"
-			style="width: 100%;">
-			<option value="">請選擇區段</option>
-			<option value="早餐">早餐</option>
-			<option value="早午餐">早午餐</option>
-			<option value="午餐">午餐</option>
-			<option value="下午茶">下午茶</option>
-			<option value="午餐">午晚餐</option>
-			<option value="晚餐">晚餐</option>
-			<option value="宵夜">宵夜</option>
-		</select> <br>
-		<div class="form-group">餐點價位&nbsp;:&nbsp;</div>
-		<select path="" class="js-states form-control" id="id_label_single"
-			style="width: 100%;">
-			<option value="">請選擇價位</option>
-			<option value="高級餐廳">高級餐廳</option>
-			<option value="中等價位">中等價位</option>
-			<option value="平價美食">平價美食</option>
-		</select> <br> <input type="submit"
-			value="搜&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;尋"
-			class="btn btn-primary btn-block">
-	</div>
+						</ul>
+					</div>
+				</div>
+				<div class="col">
+					<div id="selectCheckBox">
+						<label class="sr-only-focusable">餐點類別&nbsp;:&nbsp;</label>
+						<ul>
+							<li><input id="cr1" type="checkbox" name="family" value="家庭"
+								onclick="selectByCriteria('${hotel.hotelid }')">早餐</li>
+							<li><input id="cr2" type="checkbox" name="couple"
+								value="伴侶旅行">早午餐</li>
+							<li><input id="cr3" type="checkbox" name="alone"
+								value="單獨旅行">午餐</li>
+							<li><input id="cr4" type="checkbox" name="business"
+								value="商務">下午茶</li>
+							<li><input id="cr5" type="checkbox" name="friends"
+								value="朋友">午晚餐</li>
+							<li><input id="cr5" type="checkbox" name="friends"
+								value="朋友">晚餐</li>
+							<li><input id="cr5" type="checkbox" name="friends"
+								value="朋友">宵夜</li>
+						</ul>
+					</div>
+
+				</div>
+				<div class="col">
+					<div id="selectCheckBox">
+						<label class="sr-only-focusable">餐點類別&nbsp;:&nbsp;</label>
+						<ul>
+							<li><input id="cr1" type="checkbox" name="family" value="家庭"
+								onclick="selectByCriteria('${hotel.hotelid }')">早餐</li>
+							<li><input id="cr2" type="checkbox" name="couple"
+								value="伴侶旅行">早午餐</li>
+							<li><input id="cr3" type="checkbox" name="alone"
+								value="單獨旅行">午餐</li>
+							<li><input id="cr4" type="checkbox" name="business"
+								value="商務">下午茶</li>
+							<li><input id="cr5" type="checkbox" name="friends"
+								value="朋友">午晚餐</li>
+							<li><input id="cr5" type="checkbox" name="friends"
+								value="朋友">晚餐</li>
+							<li><input id="cr5" type="checkbox" name="friends"
+								value="朋友">宵夜</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
 
 	<!-- --------------------------------------------------------------------------------------------------- -->
-
-
-
-
 
 
 	<footer class="probootstrap_section probootstrap-border-top">
@@ -270,13 +268,45 @@
 		</div>
 	</footer>
 
+	<div>
+		<jsp:include page="/WEB-INF/views/footer.jsp" flush="true" />
+	</div>
+	<div>
+		<jsp:include page="/WEB-INF/views/member/login.jsp" flush="true" />
+	</div>
+	<!-- END footer -->
+	<script src="/startrip/assets/js/jquery.min.js"></script>
+
+	<script src="/startrip/assets/js/popper.min.js"></script>
+	<script src="/startrip/assets/js/bootstrap.min.js"></script>
+	<script src="/startrip/assets/js/owl.carousel.min.js"></script>
+
+	<script src="/startrip/assets/js/bootstrap-datepicker.js"></script>
+	<script src="/startrip/assets/js/jquery.waypoints.min.js"></script>
+	<script src="/startrip/assets/js/jquery.easing.1.3.js"></script>
+
+	<script src="/startrip/assets/js/select2.min.js"></script>
+
+	<script src="/startrip/assets/js/main.js"></script>
+
+	<script>
+		$(function() {
+			$('.navbar-nav.ml-auto').children().eq(0).removeClass('active');
+			$('.navbar-nav.ml-auto').children().eq(1).addClass('active')
+		})
+	</script>
+
+	<script>
+		$(document).ready(function() {
+			$(document).on('click', '#cr2', function() {
+
+				
+			})
+		});
+	</script>
 
 </body>
 
-<script>
-	$(function() {
-		$('.navbar-nav.ml-auto').children().eq(0).removeClass('active');
-		$('.navbar-nav.ml-auto').children().eq(1).addClass('active')
-	})
-</script>
+
+
 </html>

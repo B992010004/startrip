@@ -332,7 +332,6 @@ function placeroute(len,right){
 		if(i==0){
 			start =right.eq(i).find('h5').text()
 			
-			console.log('start'+start)
 		}else if(i==(len-1)){
 			end = right.eq(i).find('h5').text()
 			
@@ -350,8 +349,6 @@ function placeroute(len,right){
 		      travelMode: 'DRIVING'//模式
 		      }, function(response, status) {
 		        	if (status === 'OK') {
-		        		console.log(response)
-// 		        		console.log('startlocation='+response.route[0].leg[0].start_location)
 			        	directionsDisplay.setDirections(response);
 			        	var input = document.getElementById('pac-input');
 			        	 var searchBox = new google.maps.places.SearchBox(input);
@@ -376,7 +373,6 @@ $('#insertday').on('click',function(){
 			data:add,
 			contentType: "application/json; charset=utf-8",
 			success:function(data){
-				console.log(data)
 				searchDays();
 				var docFrag = $(document.createDocumentFragment());
 				for(var i =1;i<=data.travelDays;i++){
@@ -396,16 +392,11 @@ $('#insertday').on('click',function(){
 $(document).on('click','.closeday',function(e){
 	var daybody=$(e.target).parent().attr('id');
 	var day = daybody.substr(7,1)
-	console.log(day)
-	console.log('${Travel.travelId}')
-	console.log('${LoginOK.mail}')
 	var travel={}
-	travel.mail='${LoginOK.mail}'
-	travel.travelId ='${Travel.travelId}'
-	travel.listday=day;
-	
+	travel.travelId="${Travel.travelId}"
+	travel.mail="${LoginOK.mail}"
+	travel.listday=day
 	$.get('/startrip/travel/remove/day',travel,function(data){
-		console.log(data.travelDays)
 		searchDays();
 		var docFrag = $(document.createDocumentFragment());
 		for(var i =1;i<=data.travelDays;i++){
@@ -413,8 +404,6 @@ $(document).on('click','.closeday',function(e){
 			docFrag.append(selectday);
 			}
 		$('.modal-body').find('.checkview').empty();
-		console.log('checkview')
-		console.log($('.modal-body').find('.checkview'))
 		$('.modal-body').find('.checkview').append(docFrag)
 		
 	})
@@ -508,12 +497,10 @@ $(document).on('click','.circle',function(e){
 		data:datas,
 		success:function(data){
 			if(data==true){
-				console.log('true')
 				$('#starttime').parent().css('display','none');
 				$('#endtime').parent().css('display','none');
 				$('#time').parent().css('display','block');
 			} else{
-				console.log('false')
 				$('#starttime').parent().css('display','block');
 				$('#endtime').parent().css('display','block');
 				$('#time').parent().css('display','none');
@@ -547,13 +534,11 @@ $(document).on('click','#insertList',function(){
 	view.latlng = latlng
 	view.travelId='${Travel.travelId}'
 	view.memberId='${LoginOK.memberid}'
-	console.log(view)
 	$.ajax({
 		url:"/startrip/Travel/add/view",
 		type:"GET",
 		data:view,
 		success:function(data){
-			console.log(data)
 			}
 		})
 	})
@@ -566,14 +551,11 @@ $(document).on('click','#checklist',function(){
 	value.mail=mail;
 	value.travelId=travelId;
 	value.tripday=day
-	console.log(value)
-	console.log('準備判斷天數有沒有行程')
 	$.ajax({
 		url:"/startrip/travel/checkday",
 		type:"GET",
 		data:value,
 		success:function(check){
-			console.log("check="+check)
 			if(check==true){
 				console.log('有行程')
 				list={}
@@ -598,7 +580,6 @@ $(document).on('click','#checklist',function(){
 				        	if(routemin==0){
 				        		routemin=1;
 				        	}
-					  	console.log('routehour = '+routehour+',routemin = '+routemin)
 					   
 					datas.starttime=data.endTime;
 					
@@ -654,7 +635,6 @@ $(document).on('click','#checklist',function(){
 				contentType: "application/json; charset=utf-8",
 				success:function(data){
 					console.log('新增行程');
-					console.log('tripday = '+data.tripday);
 					searchList(data.tripday);
 					
 					
@@ -685,7 +665,6 @@ $(document).on('click','#checklist',function(){
 				success:function(data){
 					
 					console.log('新增行程')
-					console.log(data)
 					searchList(data.tripday);
 					
 				}
@@ -709,7 +688,6 @@ $(document).on('click','.closelist',function(e){
 	list.tripday=day  
   	list.endtime=$(nextid).parent().find('.end').text()
  	$.get('/startrip/list/remove',list,function(data){
- 		console.log($('.'+e.target.id))
  		$(nextid).parent().parent().remove();
 		 searchList(data)
 		 
@@ -763,11 +741,9 @@ function searchDays(){
 			$('#tripcontext').html(bg)
 		//清空清單 並建立清單項目
 		$('.timeline').empty();
-		//console.log("天數"+data.Name.travelDays)
 			var docFrag = $(document.createDocumentFragment());
 			var main =$(".timeline");
 			for( var i = 1,day=data.Name.travelDays;i<=day;i++){
-				console.log('第'+i+'天')
 				//---天數新增
 				var title=$('<h2 class="title" onclick="changetype()" id="day'+i+'" >Day'+i+'</h2>');
 				var dayremove=$('<div class="closeday" style="float:right;"></div>')
@@ -777,7 +753,6 @@ function searchDays(){
 					daycontent.html(title);
 					right1.html([dayremove,daycontent]);
 					docFrag.append(right1);
-					console.log('i='+i)
 					
 					searchList(i);
 			}
@@ -796,7 +771,6 @@ function searchList(day){
 	travel.day=day
 	$('#daybody'+day).find('.right').remove();
 	$('#daybody'+day).find('.timediv').remove();
-	console.log("day="+day)
 	
 	$.ajax({
 		url:"/startrip/list/travelId",
@@ -879,12 +853,10 @@ function searchList(day){
 							};
 				  	     	var listlen =  daybody.find('.right').length
 				  	    	var tripday=daybody;
-				  	     	console.log('listlen='+listlen)
 				  			for(var j = 0;j<listlen;j++){
 				  				
 				  				if(j==0){
 				  					var firstend=daybody.find('.right').eq(0).find('.end').text();
-				  					console.log('firstend = '+ firstend)
 				  				}else{
 				  					
 					  				var prevend = daybody.find('.right').eq(j-1).find('.end').text()
@@ -894,12 +866,8 @@ function searchList(day){
 					  				var sstart =start.split(":");
 					  				var send = end.split(":");
 					  				
-					  				console.log(prevend,duration,start,end)
-					  				
-					  				console.log(send[0],sstart[0])
 				  				hour=parseInt(send[0])-parseInt(sstart[0]);
 				  				min=parseInt(send[1])-parseInt(sstart[1]);
-				  				console.log('持續時間='+hour+','+min )
 				  				if(min<0){
 				  						hour =hour-1;
 				  						min = min+60;
@@ -920,11 +888,9 @@ function searchList(day){
 			  					}
 				  				var stime= twobit(starthour)+":"+twobit(startmin)
 				  				var etime=	twobit(endhour)+":"+twobit(endmin)
-				  				console.log('新的開始時間'+stime+','+etime)
 				  				daybody.find('.right').eq(j).find('.start').text(twobit(starthour)+":"+twobit(startmin));
 			  					daybody.find('.right').eq(j).find('.end').text(twobit(endhour)+":"+twobit(endmin));
 			  					var value = {};
-			  					console.log('stime='+stime+',etime='+etime) 
 			  					value.startTime=stime
 			  					value.endTime=etime
 			  					value.travelId="${Travel.travelId}"
@@ -932,7 +898,6 @@ function searchList(day){
 			  					value.tripday=day;
 			  					value.viewName=daybody.find('.right').eq(j).find('h5').text();
 			  					$.get("/startrip/list/update",value,function(data){
-			  						console.log(data)
 			  					})
 				  					} //else end
 				  				}
@@ -1032,7 +997,6 @@ function initMap() {
 	      searchBox.addListener('places_changed', function() {
 	    	  marker.setMap(null);
 	   var places = searchBox.getPlaces();
-			console.log(places)
 	   if (places.length == 0) {
 	      return;
 	   }
@@ -1049,7 +1013,6 @@ function initMap() {
 	    
 	    places.forEach(function(place,index) {
 	    	var photoslen = place.photos
-	    	console.log("photoslen="+photoslen)
 	    	if (!place.geometry||(photoslen.length!=1)||(photoslen==undefined)) {
 	        console.log("Returned place contains no geometry");
 	        return;
@@ -1107,26 +1070,24 @@ function initMap() {
 				days=data.Name.travelDays
 				
 			
-			console.log("days="+days)
 			var travelId = ${Travel.travelId}
-			console.log(days+","+travelId)
 			var day1=$('#daybody1').find('.right').length;
-			console.log(day1)
 			
 			if(!(day1==0)){
 				$('#starttime').parent().css('display','none');
 				$('#endtime').parent().css('display','none');
+				$('#time').parent().css('display','block');
 				
 			}else{
+				$('#starttime').parent().css('display','block');
+				$('#endtime').parent().css('display','block');
 				$('#time').parent().css('display','none');
 				
 			}
 			for(var i =1;i<=days;i++){
-				console.log('circle days='+days)
 				var selectday=$('<div class="circle col-2" id="chioceday'+i+'">'+i+'</div>')
 				docFrag.append(selectday);
 				}
-			console.log('docFrag')
 			$('#viewName').val(place.name)
 			li.append(btn);
 			
@@ -1236,16 +1197,8 @@ function initMap() {
 			
 			      
 			        
-// 	                  console.log(data.articles.length)
-// 	                  console.log(data.articles[i])
 	                 
 	         if(!(data.articles[i].location==undefined)){
-// 	            	 console.log(data.articles[i].title)
-// 	                  console.log("tumb="+data.articles[i].thumb)
-// 	                  console.log(data.articles[i].link)
-// 	                  console.log(data.articles[i].cover) 
-// 	                  console.log("i =" +data.articles[i].location)
-// 	                console.log(data.articles[i])
 // 				var split =data[i].imgName.split(";");
 				var img = $('<img  class="card-img-top hover-shadow" id="img'+(0+1)+'"  alt="Card image cap">').attr("src",data.articles[i].thumb);
 				var a = $('<a href="'+data.articles[i].link+'"></a>')
@@ -1266,6 +1219,6 @@ function initMap() {
               })
  
  </script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcJ_tKbqeZBaicggo1H1eTzqQZCx_EOK0&libraries=places&callback=initMap&language=zh-tw" async defer></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCr3ZZX2zoTmlUF78iuTLaFYzocdzZ_iGk&libraries=places&callback=initMap&language=zh-tw" async defer></script>
 </body>
 </html>

@@ -39,7 +39,8 @@
 	
 	document.addEventListener("DOMContentLoaded", function() {
 		document.getElementById("logout").addEventListener("click",
-				fblogout);})
+				fblogout);
+		})
 	
 // 	function fblogout(){     
 // 		FB.logout(function(response){    
