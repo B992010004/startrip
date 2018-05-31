@@ -399,7 +399,7 @@
             </button>
             </div>
             <div class="col-2">
-            <span id="idx" style="font-size:20px">第1頁/ 共<fmt:formatNumber value="${counts/5  + (counts % 5 == 0 ? 0 : 0.5)}" type="number" pattern="#" />頁</span>
+            <span id="idx" style="font-size:18px">第1頁/ 共<fmt:formatNumber value="${counts/5  + (counts % 5 == 0 ? 0 : 0.5)}" type="number" pattern="#" />頁</span>
             </div>
             <div class="col-2">
             <c:if test= "${counts>=5 }">
