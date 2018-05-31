@@ -249,12 +249,9 @@
 			//刪除行程
 			$(document).on(	"click",".icon.del",function(e) {
 				e.stopPropagation();
-								alert(e.target.id)
-								alert(e.cancelBubble)
 								var del = {}
 								del.email = "${LoginOK.mail}";
 								del.id = $('#' + e.target.id).prev().prev().prev().data('travelid');
-								console.log(del)
 								$.ajax({
 											url : "/startrip/travel/remove",
 											type : "GET",
@@ -262,7 +259,6 @@
 											data : del,
 											contentType : "application/json; charset=utf-8",
 											success : function(data) {
-												console.log(e.target.id)
 												$('#' + e.target.id).parent().parent().remove();
 												
 											}
@@ -270,8 +266,6 @@
 							})//click end
 
 			$(document).on(	"click",".update",function(e) {
-				alert(e.target.id)
-				alert(e.cancelBubble=true)
 			e.stopPropagation();
 								var update = {}
 								update.mail = "${LoginOK.mail}";
@@ -300,7 +294,6 @@
 							data : datas,
 							contentType : "application/json; charset=utf-8",
 							success : function(data) {
-								console.log(data)
 								}
 							})
 					})
@@ -309,18 +302,14 @@
 	})//click end
 							
 	$(document).on('click','.bgImg',function(e){
-		console.log(e.target)
 		var data={}
 		var mail='${LoginOK.mail}'
 		var travelId=$(e.target).find('h5').data('travelid')
 		data.mail=mail
 		data.travelId=travelId
-		console.log(mail+","+travelId)
 		$.get('/startrip/travel/id',data,function(data){
-			console.log(data)
 		location.href = "/startrip/list/All/" + mail + "/" + travelId
 		})
-// 		alert('enter')
 	})						
 							
 							
@@ -333,7 +322,6 @@ $(document).on('click', '.btn.btn-primary.btn-lg.btn-block', function(e) {
 				value.mail = mail;
 				value.travelId = travelId;
 				value.travelName=travelName;
-				console.log(travelId) 
 				$('#listview').empty();
 				var docFrag = $(document.createDocumentFragment());
 				$.get("/startrip/travel/searchPlan", value, function(data) {
@@ -342,12 +330,10 @@ $(document).on('click', '.btn.btn-primary.btn-lg.btn-block', function(e) {
 					$('input[name="travelid"]').val(travelId)
 					var lists=$('<div class=lists></div>')
 					
-					console.log('days='+data.travelDays)
 					for(var i =0;i<data.travelDays;i++){
 						var daytitle =$('<h4 class="listtitle">Day'+(i+1)+'</h4>');
 						var list=$('<div class="list"></div>')
 						value.day=(i+1);
-						console.log()
 						
 					$.ajax({
 						url : "/startrip/list/travelId/name",
@@ -359,7 +345,6 @@ $(document).on('click', '.btn.btn-primary.btn-lg.btn-block', function(e) {
 						success : function(data) {
 							
 							for(var j = 0;j<data.length;j++){
-								console.log(data[j].viewName+','+data[j].tripday)
 								list.append("【"+data[j].viewName+"】→")
 								if(j==(data.length-1)){
 									list.append("【"+data[j].viewName+"】")
@@ -384,7 +369,6 @@ $(document).on('click', '.btn.btn-primary.btn-lg.btn-block', function(e) {
 					$(document).on('click',"#insert",function() {
 					var datas = $('form[name="insert"]').serialize();
 					
-					console.log(datas)
 					
 					$.ajax({
 						url : "/startrip/travel/insert",
@@ -394,7 +378,6 @@ $(document).on('click', '.btn.btn-primary.btn-lg.btn-block', function(e) {
 						async: false, 
 						contentType : "application/json; charset=utf-8",
 						success : function(data) {
-							console.log(data)
 // 							location.href = "/startrip/list/All/" + data.mail + "/" + data.travelId
 							}
 						})
@@ -600,7 +583,6 @@ function  dataDisplay(data,start,end){
 				    contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
 				    success : function(data) {
 				    	var len = data.length;
-				 		console.log(data)
 				 		
 				 		
 				 		for(var i =0;i<len;i++){ 
