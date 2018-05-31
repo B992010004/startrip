@@ -63,7 +63,7 @@ public class HomeController {
 		Set<Integer> randomList = new HashSet<>();
 
 		for (; randomList.size() < 8;) {
-			int idx = (int) (Math.random() * 13 + 1);
+			int idx = (int) (Math.random() * 16 + 1);
 			randomList.add(idx);
 		}
 		return randomList;

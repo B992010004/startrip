@@ -91,9 +91,9 @@ public class HotelsDAO implements HotelDAOInterface {
 			queryString.append("hotelname like :SearchSrting0 OR hoteladdress like :SearchSrting1 ");
 			// queryString.append("hotelname = :SearchSrting0 ");
 			crteriaIsAvailable = true;
-			
-		}else {
-			//給個預設
+
+		} else {
+			// 給個預設
 			queryString.append("hotelname like :SearchSrting0 OR hoteladdress like :SearchSrting1 ");
 			// queryString.append("hotelname = :SearchSrting0 ");
 			crteriaIsAvailable = true;
@@ -138,8 +138,8 @@ public class HotelsDAO implements HotelDAOInterface {
 		if (searchHotel.getSearchSrting() != "") {
 			prepareStmt.setParameter("SearchSrting0", "%" + searchHotel.getSearchSrting() + "%");
 			prepareStmt.setParameter("SearchSrting1", "%" + searchHotel.getSearchSrting() + "%");
-		}else {
-			//給個預設
+		} else {
+			// 給個預設
 			prepareStmt.setParameter("SearchSrting0", "%花蓮%");
 			prepareStmt.setParameter("SearchSrting1", "%花蓮%");
 		}
@@ -159,6 +159,67 @@ public class HotelsDAO implements HotelDAOInterface {
 		list = prepareStmt.getResultList();
 		// System.out.println(list);
 		return list;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<HotelsBean> selectPage(Integer firstResult, Integer maxResults, SearchHotel searchHotel) {
+		Session session = factory.getCurrentSession();
+		List<HotelsBean> list = new ArrayList<>();
+		String hql = null;
+		StringBuffer queryString = new StringBuffer();
+		boolean crteriaIsAvailable = false;
+
+		if (searchHotel.getSearchSrting() != "") {
+			queryString.append("hotelname like :SearchSrting0 OR hoteladdress like :SearchSrting1 ");
+			// queryString.append("hotelname = :SearchSrting0 ");
+			crteriaIsAvailable = true;
+
+		} else {
+			// 給個預設
+			queryString.append("hotelname like :SearchSrting0 OR hoteladdress like :SearchSrting1 ");
+			// queryString.append("hotelname = :SearchSrting0 ");
+			crteriaIsAvailable = true;
+		}
+
+		String fromClause = crteriaIsAvailable ? "FROM hotels hotel WHERE " : "FROM hotels hotel ";
+		if (crteriaIsAvailable) {
+			hql = fromClause + queryString +"order by hotelid ASC";
+		} else {
+			hql = fromClause + "order by hotelid ASC";
+		}
+
+		System.out.println("hql看這裡 " + hql);
+
+		// 分頁設定
+		Query prepareStmt = session.createQuery(hql);
+		prepareStmt.setFirstResult(firstResult);// 从什么位置开始，默认为0
+		prepareStmt.setMaxResults(maxResults);// 最多检出的条数		
+		
+		if (searchHotel.getSearchSrting() != "") {
+			prepareStmt.setParameter("SearchSrting0", "%" + searchHotel.getSearchSrting() + "%");
+			prepareStmt.setParameter("SearchSrting1", "%" + searchHotel.getSearchSrting() + "%");
+		} else {
+			// 給個預設
+			prepareStmt.setParameter("SearchSrting0", "%花蓮%");
+			prepareStmt.setParameter("SearchSrting1", "%花蓮%");
+		}
+
+
+		// 4.执行SQL
+		list = prepareStmt.getResultList();
+		return list;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	//後來沒用到
+	public List<Integer> count() {
+		Session session = factory.getCurrentSession();
+		String hql = "SELECT count(distinct hotelid) FROM hotels";
+		Query query = session.createQuery(hql);
+		List<Integer> results = query.getResultList();
+		return results;
 	}
 
 }

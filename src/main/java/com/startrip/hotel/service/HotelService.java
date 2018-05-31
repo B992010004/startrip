@@ -42,4 +42,14 @@ public class HotelService implements HotelServiceInterface {
 	public List<HotelsBean> selectByCriteria(SearchHotel searchHotel) {
 		return hotelDAOInterface.selectByCriteria(searchHotel);
 	}
+
+	@Override
+	public List<HotelsBean> selectPage(Integer firstResult, Integer maxResults, SearchHotel searchHotel) {
+		return hotelDAOInterface.selectPage(firstResult, maxResults, searchHotel);
+	}
+
+	@Override
+	public List<Integer> count() {
+		return hotelDAOInterface.count();
+	}
 }
