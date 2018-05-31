@@ -308,8 +308,10 @@
       </div>
       <!-- select -->
       <!-- result -->
-      <div class="col-md-9">
-        <br>
+      <div class="col-md-9" >
+      <br>
+      <div id="displayHotels">
+        
         <!-- 靜態資料產生 -->
 <!--         <a href="/startrip/Rooms/1" class="roomlink"> -->
 <!--           <div class="row"> -->
@@ -388,7 +390,23 @@
           <p></p>
         </a>
         </c:forEach>
+        </div>
         <!-- 動態資料結束 -->
+        <div class="row justify-content-between">
+            <div class="col-2">
+            <button id="prePage" type="button" class="btn btn-outline-primary " style="display: none;">
+             上一頁
+            </button>
+            </div>
+            <div class="col-2">
+            <span id="idx">第1頁/ 共<fmt:formatNumber value="${counts/5  + (counts % 5 == 0 ? 0 : 0.5)}" type="number" pattern="#" />頁</span>
+            </div>
+            <div class="col-2">
+            <button id="nextPage" type="button" class="btn btn-outline-primary">
+             下一頁
+            </button>
+            </div>
+        </div>
       </div>
       <!-- result -->
     </div>
@@ -446,9 +464,127 @@
       console.log(rangevalue)
       console.log(checkedid)
     })
+    
+    $('#prePage, #nextPage').click(function () {
+                $('html, body').animate({
+                    scrollTop: $('#displayHotels').offset().top
+                }, 800);
+            });
+            // 滑動至預定區間
 
+  </script>
+  <script>
+  
+  var nowPage = 0;
+  
+  $(document).on('click','#nextPage', function (){
+	  nowPage+=1;
+	  page();
+  });
+  $(document).on('click','#prePage', function(){
+	  nowPage-=1;
+	  page();
+  });
+  
+  function page(){
+	  $.ajax({
+			url : '/startrip/pages',
+			type : 'GET',
+			data : {"page":nowPage},
+			//enctype: "multipart/form-data",
+			//contentType : false,
+			//processData : false,
+			//dataType:"json",
+			
+			error:function(e){
+				console.log(e);
+			}
+	
+		}).done(function(responce){
+			$('#displayHotels').empty();
+			
+			var docFrag = $(document.createDocumentFragment());
+			// for(i=0;i<responce.length;i++){
+			// 	console.log(responce[i].content);
+			// 	docFrag.append(row);
+			// }
+	
+            $.each(responce.hotels, function (idx, hotel) {
+                //連結
+                var a = $('<a href="/startrip/Rooms/'+ hotel.hotelid + '" class="roomlink"></a>');
+                var row = $('<div class="row"></div>');
+                var col = $('<div class="col-md"></div>');
+                var card = $('<div class="card"></div>');
 
+                var card_row = $('<div class="row"></div>');
+                var card_row_md4 = $('<div class="col-md-4 imgmaxheight"></div>');
+                var card_row_md4_img = $('<img src="/startrip/getPicture/hotel/'+ hotel.hotelid +'/'+ hotel.photoArr[0]  +'" class="img-thumbnail" alt="飯店圖片">');
+                card_row_md4.append(card_row_md4_img);
+                var card_row_md8 = $('<div class="col-md-8"></div>');
+                var card_row_md8_row1 = $('<div class="row"></div>');
+                var card_row_md8_row1_col8 = $('<div class="col-md-8" style="font-weight:bold;font-size:16px;">'+ hotel.hotelname +'</div>');
+                var card_row_md8_row1_col4 = $('<div class="col-md-4">5.7</div>');
+                card_row_md8_row1.append([card_row_md8_row1_col8,card_row_md8_row1_col4]);
 
+                var card_row_md8_row2 = $('<div class="row"></div>');
+                var card_row_md8_row2_col12 = $('<div class="col-md-12">'+ hotel.hoteladdress +'</div>');
+                card_row_md8_row2.append(card_row_md8_row2_col12);
+
+                var card_row_md8_row3 = $('<div class="row"></div>');
+                var card_row_md8_row3_col12 = $('<div class="col-md-12"></div>');
+                    for(i=0;i<hotel.hotelstar;i++){
+                        card_row_md8_row3_col12.append("★");
+                    }
+                card_row_md8_row3.append(card_row_md8_row3_col12);
+                card_row_md8_row3.append($('<br><br>'));
+
+                var card_row_md8_row4 = $('<div class="row"></div>');
+                var card_row_md8_row4_col8 = $('<div class="col-md-8">服務種類</div>');
+                var card_row_md8_row4_col4 = $('<div class="col-md-4">價格：NT$ '+hotel.lowestPrice+'</div>');
+                card_row_md8_row4.append([card_row_md8_row4_col8, card_row_md8_row4_col4]);
+                
+                card_row_md8.append([card_row_md8_row1, card_row_md8_row2, card_row_md8_row3, card_row_md8_row4]);
+                card_row.append([card_row_md4, card_row_md8]);
+                card.append(card_row);
+                col.append(card);
+                row.append(col);
+                a.append(row);
+                a.append($('<p></p>'));
+
+                docFrag.append(a);
+            	
+            });
+
+			$('#displayHotels').html(docFrag);			
+			
+			console.log(responce);			
+			console.log(nowPage);
+			
+			//設定上一頁按鈕
+			if(nowPage != 0){
+// 				$('#prePage').attr('hidden',false);
+				$('#prePage').show();
+				
+			}else{
+// 				$('#prePage').attr('hidden',true);
+				$('#prePage').hide();
+			}
+			
+			//設定下一頁
+			if(nowPage == Math.floor(responce.counts/5)){
+				$('#nextPage').hide();
+				
+			}else{
+
+				$('#nextPage').show();
+			}
+			var temp = nowPage;
+			temp += 1;
+			$('#idx').text("第"+temp+"頁/ 共3頁");
+			
+		});	  
+  }
+  
   </script>
 </body>
 

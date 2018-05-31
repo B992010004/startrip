@@ -307,9 +307,39 @@
                         <!-- 評分 + 地圖 -->
                         <div class="row">
                             <div class="col-md">
-                                <!-- 評分 -->
-                                旅客評分 5.7/10
-                                <br> 查看所有旅客評論
+                                <!-- 旅客評等 -->
+						<!-- <p class="col-md-3">旅客評等</p> -->
+						<label class="sr-only-focusable">旅客評等</label>
+                        <!-- 旅客評等 -->
+                                <div class="travler-rank col" >                            
+		                            <div class="progress">
+		                            	<span class="progress-label">很棒</span>
+		                            	<div class="progress-bar" role="progressbar" style="width: ${rankArr[4]/rankSize *100}%" aria-valuenow="${rankArr[4]/rankSize *100}" aria-valuemin="0" aria-valuemax="100"><fmt:formatNumber type="number" value="${rankArr[4]/rankSize *100}" maxFractionDigits="0"/>%</div>
+									</div>							
+									
+									<div class="progress">
+										<span class="progress-label">非常好</span>							  							  
+									  	<div class="progress-bar" role="progressbar" style="width: ${rankArr[3]/rankSize *100}%" aria-valuenow="${rankArr[3]/rankSize *100}" aria-valuemin="0" aria-valuemax="100"><fmt:formatNumber type="number" value="${rankArr[3]/rankSize *100}" maxFractionDigits="0"/>%</div>
+									</div>					
+									
+									<div class="progress">
+										<span class="progress-label">普通</span>							  		
+									  	<div class="progress-bar" role="progressbar" style="width: ${rankArr[2]/rankSize *100}%" aria-valuenow="${rankArr[2]/rankSize *100}" aria-valuemin="0" aria-valuemax="100"><fmt:formatNumber type="number" value="${rankArr[2]/rankSize *100}" maxFractionDigits="0"/>%</div>
+									</div>							
+									
+									<div class="progress">
+										<span class="progress-label">差</span>
+										<div class="progress-bar" role="progressbar" style="width: ${rankArr[1]/rankSize *100}%" aria-valuenow="${rankArr[1]/rankSize *100}" aria-valuemin="0" aria-valuemax="100"><fmt:formatNumber type="number" value="${rankArr[1]/rankSize *100}" maxFractionDigits="0"/>%</div>
+									</div>						
+									
+									<div class="progress">
+										<span class="progress-label">糟透了</span>
+									  	<div class="progress-bar" role="progressbar" style="width: ${rankArr[0]/rankSize *100}%" aria-valuenow="${rankArr[0]/rankSize *100}" aria-valuemin="0" aria-valuemax="100"><fmt:formatNumber type="number" value="${rankArr[0]/rankSize *100}" maxFractionDigits="0"/>%</div>
+									</div>       
+								</div>
+                                
+<!--                                 旅客評分 5.7/10 -->
+<!--                                 <br> 查看所有旅客評論 -->
                             </div>
                         </div>
                         <br>
@@ -888,7 +918,7 @@
 						var innerRow1 = $('<div class="row justify-content-center" style="margin:16px;"></div>');
 							if(responce[i].memberBean.avatar != null){
 								var memberImg = $('<img class="review-memberphoto" src="/startrip/getPicture/memberIcon/' + responce[i].memberBean.avatar +'" />');
-							}						
+							}
 						var innerRow2 = $('<div class="row justify-content-center"></div>');
 						var innerRow2content = $('<div><h6>' + responce[i].memberBean.lastname + '</h6></div>');
 						innerRow2.append(innerRow2content);

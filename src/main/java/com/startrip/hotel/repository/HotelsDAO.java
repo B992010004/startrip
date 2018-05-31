@@ -161,4 +161,28 @@ public class HotelsDAO implements HotelDAOInterface {
 		return list;
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<HotelsBean> selectPage(Integer firstResult, Integer maxResults) {
+		Session session = factory.getCurrentSession();
+		List<HotelsBean> list = new ArrayList<>();
+		//1.创建Query对象与  
+        Query query = session.createQuery("from hotels order by hotelid ASC");
+        query.setFirstResult(firstResult);//从什么位置开始，默认为0  
+        query.setMaxResults(maxResults);//最多检出的条数  
+        //4.执行SQL  
+        list = query.getResultList();  
+		return list;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Integer> count() {
+		Session session = factory.getCurrentSession();
+		String hql = "SELECT count(distinct hotelid) FROM hotels";
+		Query query = session.createQuery(hql);
+		List<Integer> results = query.getResultList();
+		return results;
+	}
+
 }

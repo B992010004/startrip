@@ -6,7 +6,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.text.ParseException;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -24,13 +26,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.startrip.hotel.model.HotelsBean;
 import com.startrip.hotel.model.Rooms;
 import com.startrip.hotel.model.SearchHotel;
 import com.startrip.hotel.service.HotelServiceInterface;
 import com.startrip.hotel.service.RoomsServiceInterface;
-import com.startrip.restaurant.model.RtDetailsBean;
 import com.startrip.restaurant.service.RtDetailsService;
 import com.startrip.reviews.model.HotelReview;
 import com.startrip.reviews.service.HotelReviewService;
@@ -62,7 +64,9 @@ public class HotelController {
 		String[] photoArr = null;
 
 		// System.out.println("搜尋結果: " + hotelService.selectByCriteria(searchHotel));
-		List<HotelsBean> list = hotelService.selectByCriteria(searchHotel);
+		// List<HotelsBean> list = hotelService.selectByCriteria(searchHotel);
+		// 分頁 先固定傳5筆
+		List<HotelsBean> list = hotelService.selectPage(0, 5);
 		for (HotelsBean bean : list) {
 			photoArr = bean.getPhotoString().split(";");
 			bean.setPhotoArr(photoArr);
@@ -72,6 +76,7 @@ public class HotelController {
 		HttpSession session = request.getSession();
 		session.setAttribute("searchBean", searchHotel);
 
+		model.addAttribute("counts", hotelService.count().get(0));
 		model.addAttribute("results", list);
 		return "hotel/HotelsSearchResult";
 	}
@@ -97,13 +102,13 @@ public class HotelController {
 		// 根本不能轉型成Integer[]??
 		for (Object[] intArr : rankList) {
 			// 用String取值超彆扭
-			//避免NullException
-			if(intArr[0]!=null) {
+			// 避免NullException
+			if (intArr[0] != null) {
 				String var = intArr[0].toString();
 				int toInt = Integer.valueOf(var);
 				rankArr[toInt - 1] = Integer.valueOf(intArr[1].toString());
 				rankSize += Integer.valueOf(intArr[1].toString());
-				
+
 			}
 		}
 
@@ -167,7 +172,7 @@ public class HotelController {
 			roomPhotoArr = room.getPhotoString().split(";");
 			room.setPhotoArr(roomPhotoArr);
 		}
-		
+
 		Rooms room = roomList.get(0);
 		model.addAttribute("room", room);
 
@@ -229,7 +234,7 @@ public class HotelController {
 
 		return responseEntity;
 	}
-	
+
 	@RequestMapping(value = "/getPicture/rooms/{hotelId}/{photoName:.+}")
 	public ResponseEntity<byte[]> getRoomPicture(HttpServletResponse resp, @PathVariable String hotelId,
 			@PathVariable String photoName) {
@@ -274,6 +279,22 @@ public class HotelController {
 		ResponseEntity<byte[]> responseEntity = new ResponseEntity<>(media, headers, HttpStatus.OK);
 
 		return responseEntity;
+	}
+
+	@RequestMapping(value = "/pages", method = RequestMethod.GET)
+	public ResponseEntity<HashMap<String, Object>> pages(@RequestParam Integer page) {
+		int firstIdex = page * 5;
+		int count = 5;
+		List<HotelsBean> list = hotelService.selectPage(firstIdex, count);
+		for (HotelsBean bean : list) {
+			String[] photoArr = bean.getPhotoString().split(";");
+			bean.setPhotoArr(photoArr);
+		}
+
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("hotels", list);
+		map.put("counts", hotelService.count().get(0));
+		return new ResponseEntity<HashMap<String, Object>>(map, HttpStatus.OK);
 	}
 
 	// 以上非會員也可瀏覽
