@@ -213,6 +213,7 @@ public class HotelsDAO implements HotelDAOInterface {
 
 	@SuppressWarnings("unchecked")
 	@Override
+	//後來沒用到
 	public List<Integer> count() {
 		Session session = factory.getCurrentSession();
 		String hql = "SELECT count(distinct hotelid) FROM hotels";

@@ -76,7 +76,7 @@ public class HotelController {
 		HttpSession session = request.getSession();
 		session.setAttribute("searchBean", searchHotel);
 
-		model.addAttribute("counts", hotelService.count().get(0));
+		model.addAttribute("counts", hotelService.selectByCriteria(searchHotel).size());
 		model.addAttribute("results", list);
 		return "hotel/HotelsSearchResult";
 	}
@@ -298,7 +298,7 @@ public class HotelController {
 
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("hotels", list);
-		map.put("counts", hotelService.count().get(0));
+		map.put("counts", hotelService.selectByCriteria(searchHotel).size());
 		return new ResponseEntity<HashMap<String, Object>>(map, HttpStatus.OK);
 	}
 

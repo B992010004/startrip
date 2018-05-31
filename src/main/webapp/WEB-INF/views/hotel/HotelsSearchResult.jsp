@@ -399,12 +399,14 @@
             </button>
             </div>
             <div class="col-2">
-            <span id="idx">第1頁/ 共<fmt:formatNumber value="${counts/5  + (counts % 5 == 0 ? 0 : 0.5)}" type="number" pattern="#" />頁</span>
+            <span id="idx" style="font-size:20px">第1頁/ 共<fmt:formatNumber value="${counts/5  + (counts % 5 == 0 ? 0 : 0.5)}" type="number" pattern="#" />頁</span>
             </div>
             <div class="col-2">
+            <c:if test= "${counts>=5 }">
             <button id="nextPage" type="button" class="btn btn-outline-primary">
              下一頁
             </button>
+            </c:if>
             </div>
         </div>
       </div>
@@ -573,6 +575,7 @@
 			//設定下一頁
 			if(nowPage == Math.floor(responce.counts/5)){
 				$('#nextPage').hide();
+				console.log(Math.floor(responce.counts/5));
 				
 			}else{
 
