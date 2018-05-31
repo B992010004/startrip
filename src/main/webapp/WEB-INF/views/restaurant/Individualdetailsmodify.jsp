@@ -244,8 +244,10 @@
 					url : "/startrip/deleteRtDetailsrtId",
 					type : "GET",
 					data : ajaxrtid,
+				}).done(function(response){
+				//	alert("ajax");
+					location.reload();
 				})
-				location.reload();
 			})
 
 		})
