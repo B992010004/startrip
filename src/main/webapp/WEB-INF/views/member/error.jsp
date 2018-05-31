@@ -11,7 +11,7 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta http-equiv="Refresh"
-	content="5; url=https://localhost:8080/startrip/">
+	content="5; url=https://startrip.southeastasia.cloudapp.azure.com:8443/startrip/">
 <title>StarTrip&mdash;星遊網</title>
 <meta name="description"
 	content="Free Bootstrap 4 Theme by ProBootstrap.com">
