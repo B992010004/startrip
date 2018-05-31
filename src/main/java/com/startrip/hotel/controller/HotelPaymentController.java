@@ -108,7 +108,7 @@ public class HotelPaymentController {
 		aio.setHoldTradeAMT("0");
 		// 這方法一定要有
 		// aio.setReturnURL("https://developers.opay.tw/AioMock/MerchantReturnUrl");
-		aio.setReturnURL("https://startrip.southeastasia.cloudapp.azure.com:8443/startrip/PayEnd");
+		aio.setReturnURL("https://developers.opay.tw/AioMock/MerchantReturnUrl");
 		// 新方法測試
 		// aio.setOrderResultURL("https://startrip.southeastasia.cloudapp.azure.com:8443/startrip/PayEnd");
 

@@ -589,6 +589,30 @@
   }
   
   </script>
+  
+  <script>
+	
+	
+	
+	
+		$('#probootstrap-date-departure, #probootstrap-date-arrival')
+				.datepicker({
+					'format' : 'yyyy/m/d',
+					'autoclose' : true,
+					'startDate' : new Date(),
+				});
+
+		$('#probootstrap-date-arrival').datepicker().on('changeDate',
+				function(ev) {
+
+					//不知道為啥沒反應
+					$('#probootstrap-date-departure').datepicker({
+						'startDate' : '2018-5-27',
+					});
+					console.log('日期改變瞜' + ev.date);
+
+				});
+	</script>
 </body>
 
 </html>
