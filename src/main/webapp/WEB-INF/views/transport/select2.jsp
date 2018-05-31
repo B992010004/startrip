@@ -137,27 +137,27 @@ $("#infinput").click(function(){
 								<label for=" "> 身分證字號: </label> 
 								<input type="text"
 									id="inputId" name="identity" class="form-control"
-									placeholder="A123456789">
+									placeholder="A123456789" value="A123456789">
 							</div>
 							<!-- 分隔線								 -->
 							<div class="form-group">
 								<label for="id_label_location"> 姓名 </label> <input type="text"
 									id="inputName" name="custname" class="form-control"
-									placeholder="城武本人">
+									placeholder="城武本人" value="城武本人">
 							</div>
 							<!-- 分隔線 -->
 							<div class="form-group inputState">
 								<label for="id_label_location"> 電子郵件: </label> 
 								<input
 									type="text" id="inputEmail" name="sMail"
-									class="form-control" placeholder="jack@gmail.com">
+									class="form-control" placeholder="jack@gmail.com" value="jack@gmail.com">
 							</div>
 							<!-- 分隔線 -->
 							<!-- 連絡電話 -->
 							<div class="form-group inputState">
 								<label for="id_label_location"> 連絡電話:<input type="text"
 									id="inputphone" name="phone" class="form-control"
-									placeholder="0987654321">
+									placeholder="0987654321" value="0987654321">
 								</label>
 							</div>
 						</div>
