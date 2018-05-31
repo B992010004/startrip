@@ -579,7 +579,7 @@
             <div id="displayReview">     
 			<c:forEach var='review' items='${reviews}'>	        
 				<div class="row" style="margin:16px;">
-					<div class="col-md-1">
+					<div class="col-md-2">
 						<div class="row justify-content-center" style="margin:16px;"><img class="review-memberphoto" src="<c:url value='/getPicture/${review.memberBean.mail}'/>"></div>
 						<div class="row justify-content-center"><div><h6>${review.memberBean.lastname }</h6></div></div>
 					</div>
@@ -914,7 +914,7 @@
 						//大row
 						var row = $('<div class="row" style="margin:16px;"></div>');
 
-						var col1 = $('<div class="col-md-1"></div>');
+						var col1 = $('<div class="col-md-2"></div>');
 						var innerRow1 = $('<div class="row justify-content-center" style="margin:16px;"></div>');
 							if(responce[i].memberBean.avatar != null){
 								var memberImg = $('<img class="review-memberphoto" src="/startrip/getPicture/memberIcon/' + responce[i].memberBean.avatar +'" />');
