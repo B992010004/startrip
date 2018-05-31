@@ -44,8 +44,8 @@ public class HotelService implements HotelServiceInterface {
 	}
 
 	@Override
-	public List<HotelsBean> selectPage(Integer firstResult, Integer maxResults) {
-		return hotelDAOInterface.selectPage(firstResult, maxResults);
+	public List<HotelsBean> selectPage(Integer firstResult, Integer maxResults, SearchHotel searchHotel) {
+		return hotelDAOInterface.selectPage(firstResult, maxResults, searchHotel);
 	}
 
 	@Override

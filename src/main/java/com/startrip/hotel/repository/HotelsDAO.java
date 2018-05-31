@@ -91,9 +91,9 @@ public class HotelsDAO implements HotelDAOInterface {
 			queryString.append("hotelname like :SearchSrting0 OR hoteladdress like :SearchSrting1 ");
 			// queryString.append("hotelname = :SearchSrting0 ");
 			crteriaIsAvailable = true;
-			
-		}else {
-			//給個預設
+
+		} else {
+			// 給個預設
 			queryString.append("hotelname like :SearchSrting0 OR hoteladdress like :SearchSrting1 ");
 			// queryString.append("hotelname = :SearchSrting0 ");
 			crteriaIsAvailable = true;
@@ -138,8 +138,8 @@ public class HotelsDAO implements HotelDAOInterface {
 		if (searchHotel.getSearchSrting() != "") {
 			prepareStmt.setParameter("SearchSrting0", "%" + searchHotel.getSearchSrting() + "%");
 			prepareStmt.setParameter("SearchSrting1", "%" + searchHotel.getSearchSrting() + "%");
-		}else {
-			//給個預設
+		} else {
+			// 給個預設
 			prepareStmt.setParameter("SearchSrting0", "%花蓮%");
 			prepareStmt.setParameter("SearchSrting1", "%花蓮%");
 		}
@@ -163,15 +163,51 @@ public class HotelsDAO implements HotelDAOInterface {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<HotelsBean> selectPage(Integer firstResult, Integer maxResults) {
+	public List<HotelsBean> selectPage(Integer firstResult, Integer maxResults, SearchHotel searchHotel) {
 		Session session = factory.getCurrentSession();
 		List<HotelsBean> list = new ArrayList<>();
-		//1.创建Query对象与  
-        Query query = session.createQuery("from hotels order by hotelid ASC");
-        query.setFirstResult(firstResult);//从什么位置开始，默认为0  
-        query.setMaxResults(maxResults);//最多检出的条数  
-        //4.执行SQL  
-        list = query.getResultList();  
+		String hql = null;
+		StringBuffer queryString = new StringBuffer();
+		boolean crteriaIsAvailable = false;
+
+		if (searchHotel.getSearchSrting() != "") {
+			queryString.append("hotelname like :SearchSrting0 OR hoteladdress like :SearchSrting1 ");
+			// queryString.append("hotelname = :SearchSrting0 ");
+			crteriaIsAvailable = true;
+
+		} else {
+			// 給個預設
+			queryString.append("hotelname like :SearchSrting0 OR hoteladdress like :SearchSrting1 ");
+			// queryString.append("hotelname = :SearchSrting0 ");
+			crteriaIsAvailable = true;
+		}
+
+		String fromClause = crteriaIsAvailable ? "FROM hotels hotel WHERE " : "FROM hotels hotel ";
+		if (crteriaIsAvailable) {
+			hql = fromClause + queryString +"order by hotelid ASC";
+		} else {
+			hql = fromClause + "order by hotelid ASC";
+		}
+
+		System.out.println("hql看這裡 " + hql);
+
+		// 分頁設定
+		Query prepareStmt = session.createQuery(hql);
+		prepareStmt.setFirstResult(firstResult);// 从什么位置开始，默认为0
+		prepareStmt.setMaxResults(maxResults);// 最多检出的条数		
+		
+		if (searchHotel.getSearchSrting() != "") {
+			prepareStmt.setParameter("SearchSrting0", "%" + searchHotel.getSearchSrting() + "%");
+			prepareStmt.setParameter("SearchSrting1", "%" + searchHotel.getSearchSrting() + "%");
+		} else {
+			// 給個預設
+			prepareStmt.setParameter("SearchSrting0", "%花蓮%");
+			prepareStmt.setParameter("SearchSrting1", "%花蓮%");
+		}
+
+
+		// 4.执行SQL
+		list = prepareStmt.getResultList();
 		return list;
 	}
 

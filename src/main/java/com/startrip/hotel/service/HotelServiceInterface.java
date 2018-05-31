@@ -16,7 +16,7 @@ public interface HotelServiceInterface {
 
 	List<HotelsBean> selectByCriteria(SearchHotel searchHotel);
 
-	List<HotelsBean> selectPage(Integer firstResult, Integer maxResults);
+	List<HotelsBean> selectPage(Integer firstResult, Integer maxResults, SearchHotel searchHotel);
 
 	List<Integer> count();
 }

@@ -66,7 +66,7 @@ public class HotelController {
 		// System.out.println("搜尋結果: " + hotelService.selectByCriteria(searchHotel));
 		// List<HotelsBean> list = hotelService.selectByCriteria(searchHotel);
 		// 分頁 先固定傳5筆
-		List<HotelsBean> list = hotelService.selectPage(0, 5);
+		List<HotelsBean> list = hotelService.selectPage(0, 5, searchHotel);
 		for (HotelsBean bean : list) {
 			photoArr = bean.getPhotoString().split(";");
 			bean.setPhotoArr(photoArr);
@@ -282,10 +282,15 @@ public class HotelController {
 	}
 
 	@RequestMapping(value = "/pages", method = RequestMethod.GET)
-	public ResponseEntity<HashMap<String, Object>> pages(@RequestParam Integer page) {
+	public ResponseEntity<HashMap<String, Object>> pages(@RequestParam Integer page, HttpServletRequest request) {
 		int firstIdex = page * 5;
 		int count = 5;
-		List<HotelsBean> list = hotelService.selectPage(firstIdex, count);
+		
+		// 搜尋字串丟session保存
+		HttpSession session = request.getSession();
+		SearchHotel searchHotel= (SearchHotel) session.getAttribute("searchBean");
+		
+		List<HotelsBean> list = hotelService.selectPage(firstIdex, count, searchHotel);
 		for (HotelsBean bean : list) {
 			String[] photoArr = bean.getPhotoString().split(";");
 			bean.setPhotoArr(photoArr);
