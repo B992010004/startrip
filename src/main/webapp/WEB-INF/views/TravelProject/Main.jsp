@@ -127,18 +127,18 @@
 					<div class="modal-body">
 
 						<div class="form-group">
-							<label class="form-control-label" for="formGroupExampleInput">travelName:</label>
+							<label class="form-control-label" for="formGroupExampleInput">行程名稱:</label>
 							<input value="請輸入行程名稱" type="text" name="travelName"
 								class="form-control" />
 						</div>
 
 						<div class="form-group">
-							<label class="form-control-label" for="startDate:">startDate:</label>
+							<label class="form-control-label" for="startDate:">開始日期:</label>
 							<input placeholder="請輸入行程名稱" type="text" name="startDate"
 								id="startDate" class="form-control" />
 						</div>
 						<div class="form-group">
-							<label class="form-control-label" for="endDate">endDate:</label>
+							<label class="form-control-label" for="endDate">結束日期:</label>
 							<input placeholder="請輸入行程名稱" type="text" name="endDate"
 								id="endDate" class="form-control" />
 						</div>
@@ -176,18 +176,18 @@
 					<div class="modal-body">
 
 						<div class="form-group">
-							<label class="form-control-label" for="formGroupExampleInput">travelName:</label>
+							<label class="form-control-label" for="formGroupExampleInput">行程名稱:</label>
 							<input value="請輸入行程名稱" type="text" name="travelName"
 								class="form-control" />
 						</div>
 
 						<div class="form-group">
-							<label class="form-control-label" for="startDate:">startDate:</label>
+							<label class="form-control-label" for="startDate:">開始日期:</label>
 							<input placeholder="請輸入開始日期" type="text" name="startDate"
 								id="insertstartDate" class="form-control" />
 						</div>
 						<div class="form-group">
-							<label class="form-control-label" for="endDate">endDate:</label>
+							<label class="form-control-label" for="endDate">結束日期:</label>
 							<input placeholder="請輸入結束日期" type="text" name="endDate"
 								id="insertendDate" class="form-control" />
 						</div>
