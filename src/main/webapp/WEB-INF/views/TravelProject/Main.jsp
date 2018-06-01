@@ -93,9 +93,9 @@
 				</div>
 				<div>
 				<ul class="pagination">
-			        <li><a id="left" href="#" class="page not-active">上一页</a></li>  
+			        <li><a id="left" href="#" class="page not-active">上一頁</a></li>  
 			        <li class="active"><a id="now" href="#">1</a></li>
-			        <li><a id="right" href="#" class="page">下一页</a></li>
+			        <li><a id="right" href="#" class="page">下一頁</a></li>
 			    </ul>
 				</div>
 			</div>
