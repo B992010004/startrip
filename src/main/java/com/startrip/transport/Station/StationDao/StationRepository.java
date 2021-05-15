@@ -53,21 +53,6 @@ public class StationRepository implements StationRepositoryInterface{
 		}
 		return false;
 	}
-<<<<<<< HEAD
-=======
-	
-	
-	@Override
-	public void update(String area, String stationName) {
-//		String hql = "update StationBean set   password=:password address=:address phone=:phone birthday=:birthday username=:username avatar=:avatar photo=:photo  where mail =:mail";
-//		Session session = factory.getCurrentSession();
-//		session.createQuery(hql).setParameter("mail", mail).setParameter("password", password)
-//				.setParameter("address", address).setParameter("username", username).setParameter("birthday", birthday)
-//				.setParameter("password", password).setParameter("avatar", avatar).setParameter("photo", photo)
-//				.executeUpdate();
-	}
-
->>>>>>> d93d85980455678313772780f60f80154284ae52
 
 //	@Override
 //	public void update(String area, String stationName) {
@@ -85,18 +70,10 @@ public class StationRepository implements StationRepositoryInterface{
 		
 	}
 
-<<<<<<< HEAD
 	@Override
 	public void insert(StationBean bean) {
 		// TODO Auto-generated method stub
 		
 	}
-	
-	
-	
-=======
-
-
->>>>>>> d93d85980455678313772780f60f80154284ae52
 
 }

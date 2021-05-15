@@ -18,5 +18,4 @@ List<StationBean> select();
 	
 	boolean delete(Integer id);
 	
-	
 }
