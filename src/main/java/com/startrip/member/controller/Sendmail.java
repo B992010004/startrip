@@ -14,12 +14,12 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-public class sendmail {
+public class Sendmail {
 
 			
 	public void sendemail(String emailTitle,String emailContent,String sendWho) throws AddressException, MessagingException {
 		
-		Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
+		//Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
 		final String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
 		// Get a Properties object
 		Properties props = System.getProperties();

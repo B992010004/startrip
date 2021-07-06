@@ -2,7 +2,7 @@ package com.startrip.member.controller;
 
 import java.security.MessageDigest;
 
-public class md5 {
+public class Md5 {
 	public static class MD5Util {
 
 	    private static String byteArrayToHexString(byte b[]) {

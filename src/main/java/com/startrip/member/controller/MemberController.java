@@ -42,7 +42,7 @@ import com.startrip.hotel.service.HotelOrderServiceInterface;
 import com.startrip.hotel.service.HotelServiceInterface;
 import com.startrip.hotel.service.RoomsServiceInterface;
 import com.startrip.member.Service.MemberServiceInterface;
-import com.startrip.member.controller.md5.MD5Util;
+import com.startrip.member.controller.Md5.MD5Util;
 import com.startrip.member.memberModle.MemberBean;
 import com.startrip.restaurant.model.RtBookingBean;
 import com.startrip.restaurant.model.RtDetailsBean;
@@ -502,7 +502,7 @@ public class MemberController {
 				String emailContent = "<H1>" + lastname + "您好</H1><BR>" + "<h2>請點選下方連結重設密碼</h2><br>" + resetPassHref
 						+ " <br><BR>連結30分鐘後失效，請盡速修改您的密碼。<br><H4>感謝您對StarTrip的支持</h4>";
 				System.out.print(resetPassHref);
-				sendmail send = new sendmail();
+				Sendmail send = new Sendmail();
 				send.sendemail(emailTitle, emailContent, mb.getMail());
 				writer.println(0);
 			} catch (Exception e) {
